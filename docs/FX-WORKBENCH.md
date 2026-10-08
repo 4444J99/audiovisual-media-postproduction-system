@@ -6,11 +6,21 @@ Implemented October 8, 2026. This is a functioning source-bound rack and demonst
 
 The private production preview is at <https://god-here-five-realities.ajpadavano.chatgpt.site/fx/>. The earlier five-realities player and audio review remain available at the same site.
 
+For immediate playback, open <https://god-here-five-realities.ajpadavano.chatgpt.site/fx/watch.html>. Its native video player contains picture and sound together, loads no frame atlases or audio worker, and offers all six patches and thirteen processor demonstrations. Rotate the device for the corresponding composition. **Edit this patch** opens the matching rack through `?patch=` or `?demo=`. Direct movie links remain available if scripting cannot run.
+
 1. Choose one of the six named patches and press **Play**.
 2. Select any of the thirteen processors, then **Demonstrate selected**. This opens a full-canvas comparison: approximately 0–2 s bypass, 2–6 s extreme preset, 6–10 s Intensity sweep, and 10–12.167 s bypass. **Demonstrate patch** applies that sequence to the current rack.
 3. Exit full screen to edit the rack. The up/down buttons exchange processor positions while retaining branch connections. **Make serial chain** deliberately replaces the current routing with a serial chain.
 4. Use the Monitor selector for the original recording, the dialogue enhancement candidate, or expressive output. **Bypass rack** directly selects the dialogue reference and original picture; it does not sum several bypassed parallel branches.
 5. Export the patch to retain the source identity, ordered nodes, typed cables, presets, macros, seed, curves and recorded changes. Import validates those fields before replacing the working patch. The current patch is also saved in browser storage when available.
+
+### Playback recovery
+
+Pending Play changes to **Cancel**. Canceling, pausing, or selecting another patch invalidates that playback request; later audio completion cannot restart it. Sound startup and rendering have bounded waits, explicit error state, and **Retry sound**. A failed worker clears the busy state and is replaced on retry. The original recording and dialogue candidate remain independently playable while expressive sound is unavailable.
+
+Rendered previews request playback before requiring decoded frame readiness, including when a phone honors `preload="metadata"` without preloading video frames. Intentional pause/source-change `AbortError` results do not permanently disable the preset preview. Coarse-pointer devices use a smaller temporal frame-cache budget.
+
+The focused recovery harness is `tools/check-fx-playback.mjs`. It requires Playwright WebKit and the private media pack in `web/fx/assets/`; set `PLAYWRIGHT_WEBKIT_EXECUTABLE` only when using a non-default installed browser. Its browser-level fault injections cover pending-play cancellation, worker failure/retry with reference audition, metadata-only video readiness, and invalid persisted patches. These checks do not establish physical iPhone behavior.
 
 ## Processor behavior
 

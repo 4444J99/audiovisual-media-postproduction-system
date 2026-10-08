@@ -6,6 +6,8 @@ A directable audiovisual postproduction system that translates creative notes in
 
 [Open the private FX workbench](https://god-here-five-realities.ajpadavano.chatgpt.site/fx/).
 
+[Play the demonstrations](https://god-here-five-realities.ajpadavano.chatgpt.site/fx/watch.html) uses a lightweight native video player with embedded sound, six patches and all thirteen module demonstrations. It selects portrait or landscape media for the device and links each selection to its editable rack.
+
 The new `web/fx/` application implements thirteen processors with extreme presets, six saved artwork patches, independent typed connections, clip and track inserts, serial and parallel paths, sends, returns, sidechains, and replayable parameter changes. Each processor has bypass, solo, wet/dry, target selection, automation and an editable Intensity macro. Intensity does not secretly blend the dry recording into fully wet sound.
 
 The working passage is source **95.000–107.167 seconds**. Voice processing uses the shared stereo dialogue candidate. Picture processing uses random-access source frames, five moving appearance-labelled workprint mattes, authored object rectangles and a qualified hybrid room fill. Original audio and the dialogue candidate remain separately selectable.

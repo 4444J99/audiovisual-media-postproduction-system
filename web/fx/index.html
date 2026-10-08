@@ -11,7 +11,7 @@
 <body>
   <header class="masthead">
     <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">g.</span><span>god-here <strong>FX WORKBENCH</strong></span></a>
-    <div class="header-actions"><button id="undo" title="Undo latest edit">Undo</button><button id="save">Export patch</button><label class="button">Import<input id="import" type="file" accept="application/json,.json" hidden></label></div>
+    <div class="header-actions"><a class="button" href="watch.html">Play demonstrations</a><button id="undo" title="Undo latest edit">Undo</button><button id="save">Export patch</button><label class="button">Import<input id="import" type="file" accept="application/json,.json" hidden></label></div>
   </header>
   <main class="workspace">
     <section class="monitor-column" aria-label="Audiovisual preview">
@@ -20,13 +20,13 @@
         <canvas id="picture" width="960" height="540" aria-label="Processed film preview"></canvas>
         <video id="rendered-picture" muted playsinline preload="metadata" hidden aria-label="Rendered version of the current preset"></video>
         <div class="monitor-top"><span id="phase" class="phase">READY</span><span id="signal-label">EXPRESSIVE OUT</span><button id="exit-full" hidden>Exit full screen</button></div>
-        <div id="loading" class="loading"><div class="loader"></div><span id="loading-text">Preparing picture and sound…</span></div>
+        <div id="loading" class="loading"><div class="loader"></div><span id="loading-text">Preparing picture and sound…</span><button id="load-retry" hidden>Retry loading</button><a href="watch.html">Play demonstrations now</a></div>
         <button id="stage-play" class="stage-play" aria-label="Play audiovisual patch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 13 8-13 8z"/></svg></button>
         <div id="demo-stages" class="demo-stages" hidden><span data-phase="bypass-a">01 BYPASS</span><span data-phase="extreme">02 EXTREME</span><span data-phase="sweep">03 SWEEP</span><span data-phase="bypass-b">04 BYPASS</span></div>
         <div class="monitor-bottom"><span id="stage-caption">95.000–107.167 s · source passage</span><button id="fullscreen" title="Hide controls and fill the screen">Full screen</button></div>
       </div>
       <div class="transport">
-        <button id="play" class="primary" disabled>Play</button><button id="restart" title="Return to start">Restart</button>
+        <button id="play" class="primary" disabled>Play</button><button id="restart" title="Return to start">Restart</button><button id="audio-retry" hidden>Retry sound</button>
         <input id="seek" type="range" min="0" max="12.166667" step="0.01" value="0" aria-label="Output time">
         <output id="clock">00:00.00</output><button id="loop" class="toggle on" aria-pressed="true">Loop</button>
       </div>

@@ -11,9 +11,10 @@ const human=s=>String(s).replaceAll('-',' ');
 const isFX=n=>!!CATALOG_BY_TYPE[n.type];
 const timeLabel=t=>`${String(Math.floor(t/60)).padStart(2,'0')}:${(t%60).toFixed(2).padStart(5,'0')}`;
 const fmt=n=>Number.isInteger(n)?String(n):Number(n).toFixed(Math.abs(n)<.1?3:2).replace(/0+$/,'').replace(/\.$/,'');
-const state={patch:null,selected:null,position:0,playing:false,loop:true,bypass:false,monitor:'expressive',volume:.7,layout:'auto',recording:false,ready:false,revision:0,drawRevision:-1,drawFrame:-1,undo:[],saved:Object.create(null),audioRevision:-1,audioDesired:0,audioBusy:false,audioWaiters:[],worker:null};
+const state={patch:null,selected:null,position:0,playing:false,playPending:false,loop:true,bypass:false,monitor:'expressive',volume:.7,layout:'auto',recording:false,ready:false,revision:0,drawRevision:-1,drawFrame:-1,undo:[],saved:Object.create(null),audioRevision:-1,audioDesired:0,audioBusy:false,audioError:null,audioWaiters:[],worker:null,workerReady:false};
 let media,assets,sourceBinding,engine,sourcePCM,referencePCM,ctx,gain,player,startedAt=0,expressivePCM,renderDebounce,toastTimer;
 const previews=new Map();let previewRevision=-1,previewEntry=null,previewPath='',previewFailed=new Set(),previewSeek=-1;
+let playRequest=0,workerWatchdog,previewPlayPromise=null;
 let controlEnvelopes={},controlFps=12;
 const status=text=>$('status').textContent=text;
 function toast(text){$('toast').textContent=text;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,3300);}
@@ -25,7 +26,7 @@ function validate(patch){const result=validatePatch(patch,{source:sourceBinding,
 function setPatch(patch,{stash=true,seek=true}={}){
   patch=normalizeWorkbenchPatch(patch,{source:sourceBinding,regions:assets.regions.items.map(r=>r.id),duration:media.duration});
   validate(patch);if(stash&&state.patch){snapshot();state.saved[state.patch.id]=clonePatch(state.patch);}
-  const wasPlaying=state.playing;pause();state.patch=patch;state.selected=patch.nodes.find(isFX)?.id;state.recording=false;
+  const wasPlaying=state.playing||state.playPending;pause();state.patch=patch;state.selected=patch.nodes.find(isFX)?.id;state.recording=false;
   if(seek)state.position=0;state.bypass=false;$('bypass').classList.remove('on');$('bypass').setAttribute('aria-pressed','false');
   renderUI();invalidate();status(patch.metadata?.description||'Adjust a processor, or play its extreme demonstration.');
   if(wasPlaying)play();
@@ -131,21 +132,55 @@ function startBuffer(offset){
 }
 async function play(){
   if(!state.ready)return;
-  try{await ensureContext();if(state.monitor==='expressive'&&!state.bypass&&(!expressivePCM||state.audioRevision<state.audioDesired)){status('Preparing this patch’s sound…');await waitForAudio();}
-    if(state.position>=media.duration-.01)state.position=0;startBuffer(state.position);status(state.recording?'Recording parameter changes.':'Playing the current patch.');
-  }catch(error){status(error.message);toast('Playback could not start. Tap Play to try again.');}
+  const request=++playRequest;state.playPending=true;updateTransport();
+  if(state.position>=media.duration-.01)state.position=0;
+  // Start media loading during the tap, including on metadata-only phone players.
+  if(previewPath)previewFailed.delete(previewPath);syncPreview(state.position);
+  try{await ensureContext();if(request!==playRequest)return;
+    if(state.monitor==='expressive'&&!state.bypass&&(!expressivePCM||state.audioRevision<state.audioDesired)){status('Preparing this patch’s sound…');await waitForAudio();}
+    if(request!==playRequest)return;
+    state.playPending=false;startBuffer(state.position);status(state.recording?'Recording parameter changes.':'Playing the current patch.');
+  }catch(error){if(request!==playRequest)return;state.playPending=false;$('rendered-picture').pause();updateTransport();status(state.audioError?'Sound needs to reconnect. Tap Retry sound, or open Play demonstrations.':error.message);toast(state.audioError?'Retry sound is available below the player.':'Playback could not start. Tap Play to try again.');}
 }
-function pause(){if(state.playing){state.position=position();state.playing=false;}if(player){player.onended=null;try{player.stop();}catch{}player.disconnect();player=null;}$('rendered-picture').pause();updateTransport();}
+function pause(){++playRequest;state.playPending=false;if(state.playing){state.position=position();state.playing=false;}if(player){player.onended=null;try{player.stop();}catch{}player.disconnect();player=null;}$('rendered-picture').pause();updateTransport();}
 function refreshPlaying(){if(state.playing)startBuffer(position());}
 function requestAudio(){state.audioDesired++;pumpAudio();}
-function pumpAudio(){
-  if(!state.worker||state.audioBusy||!state.patch)return;
-  if(state.audioRevision>=state.audioDesired)return;
-  state.audioBusy=true;state.worker.postMessage({type:'render',id:state.audioDesired,patch:state.patch,input:'reference'});
+function failAudio(message){
+  clearTimeout(workerWatchdog);state.audioBusy=false;state.workerReady=false;state.audioError=String(message||'Sound loading stopped.');
+  if(state.worker){state.worker.terminate();state.worker=null;}
+  state.audioWaiters.splice(0).forEach(w=>w.reject(Error(state.audioError)));
+  pause();$('audio-retry').hidden=false;status('Sound needs to reconnect. Tap Retry sound, or open Play demonstrations.');
 }
-function waitForAudio(){if(state.audioRevision>=state.audioDesired&&expressivePCM)return Promise.resolve();pumpAudio();return new Promise((resolve,reject)=>state.audioWaiters.push({resolve,reject}));}
+function startAudioWorker(){
+  clearTimeout(workerWatchdog);if(state.worker)state.worker.terminate();
+  state.worker=null;state.workerReady=false;state.audioBusy=false;state.audioError=null;state.audioRevision=-1;
+  $('audio-retry').hidden=true;
+  try{
+    const worker=new Worker(new URL('./audio-worker.mjs',import.meta.url),{type:'module'});state.worker=worker;
+    workerWatchdog=setTimeout(()=>failAudio('Sound loading timed out.'),20000);
+    worker.onmessage=({data})=>{
+      if(state.worker!==worker)return;
+      if(data.type==='ready'){clearTimeout(workerWatchdog);state.workerReady=true;pumpAudio();return;}
+      clearTimeout(workerWatchdog);state.audioBusy=false;
+      if(data.type==='error'){failAudio(data.message);return;}
+      if(data.type!=='rendered'){failAudio('The sound response could not be read.');return;}
+      if(data.id===state.audioDesired){expressivePCM=data.channels;controlEnvelopes=data.controlEnvelopes||{};controlFps=data.controlFps||12;engine.cacheSignature=null;state.revision++;state.audioRevision=data.id;state.audioReport=data.report;if(state.playing&&state.monitor==='expressive'&&!state.bypass)refreshPlaying();state.audioWaiters.splice(0).forEach(w=>w.resolve());}
+      else pumpAudio();
+    };
+    worker.onerror=e=>{if(state.worker===worker)failAudio(e.message||'Sound loading stopped.');};
+    worker.onmessageerror=()=>{if(state.worker===worker)failAudio('The sound response could not be read.');};
+    worker.postMessage({type:'init',source:sourcePCM,reference:referencePCM,sampleRate:media.audio.sampleRate});
+  }catch(error){failAudio(error.message);}
+}
+function pumpAudio(){
+  if(!state.worker||!state.workerReady||state.audioBusy||state.audioError||!state.patch)return;
+  if(state.audioRevision>=state.audioDesired)return;
+  state.audioBusy=true;clearTimeout(workerWatchdog);workerWatchdog=setTimeout(()=>failAudio('This sound render took too long. Retry sound or choose a simpler patch.'),45000);
+  try{state.worker.postMessage({type:'render',id:state.audioDesired,patch:state.patch,input:'reference'});}catch(error){failAudio(error.message);}
+}
+function waitForAudio(){if(state.audioError)return Promise.reject(Error(state.audioError));if(state.audioRevision>=state.audioDesired&&expressivePCM)return Promise.resolve();return new Promise((resolve,reject)=>{state.audioWaiters.push({resolve,reject});pumpAudio();});}
 function updateTransport(){
-  $('play').textContent=state.playing?'Pause':'Play';$('stage-play').hidden=state.playing||!state.ready;$('loop').classList.toggle('on',state.loop);$('loop').setAttribute('aria-pressed',String(state.loop));
+  $('play').textContent=state.playing?'Pause':state.playPending?'Cancel':'Play';$('stage-play').hidden=state.playing||state.playPending||!state.ready;$('loop').classList.toggle('on',state.loop);$('loop').setAttribute('aria-pressed',String(state.loop));
   $('record').setAttribute('aria-pressed',String(state.recording));
 }
 function renderTimeline(t){
@@ -164,10 +199,15 @@ function syncPreview(t){
   const path=!state.bypass&&state.monitor==='expressive'&&previewEntry?(portrait?previewEntry.portrait:previewEntry.video):null;
   if(!path||previewFailed.has(path)){video.hidden=true;video.pause();c.hidden=false;$('render-mode').textContent='Editable rack';return false;}
   if(previewPath!==path){previewPath=path;previewSeek=-1;video.src=`assets/renders/${path}`;video.load();}
+  // A metadata preload need not decode a frame until play is requested.
+  if((state.playing||state.playPending)&&video.paused&&!previewPlayPromise){
+    const requestedPath=path;
+    const pending=video.play();previewPlayPromise=pending;
+    pending.catch(error=>{if(previewPath===requestedPath&&(state.playing||state.playPending)&&error.name!=='AbortError'){previewFailed.add(requestedPath);state.revision++;}}).finally(()=>{if(previewPlayPromise===pending)previewPlayPromise=null;});
+  }
   if(video.readyState<2){video.hidden=true;c.hidden=false;return false;}
   if(!video.seeking&&(Math.abs(video.currentTime-t)>.14||!state.playing&&Math.abs(video.currentTime-t)>.018)&&previewSeek!==t){video.currentTime=t;previewSeek=t;}
-  if(state.playing&&video.paused)video.play().catch(()=>{previewFailed.add(path);state.revision++;});
-  if(!state.playing&&!video.paused)video.pause();
+  if(!state.playing&&!state.playPending&&!video.paused)video.pause();
   video.hidden=false;c.hidden=true;$('render-mode').textContent='Rendered preset';return true;
 }
 $('rendered-picture').onerror=()=>{if(previewPath)previewFailed.add(previewPath);state.revision++;};
@@ -197,7 +237,9 @@ async function enterFullscreen(){
 }
 async function leaveFullscreen(){if(document.fullscreenElement)try{await document.exitFullscreen();}catch{}$('stage').classList.remove('expanded');document.body.classList.remove('stage-open');$('exit-full').hidden=true;state.drawFrame=-1;}
 
-$('play').onclick=()=>state.playing?pause():play();$('stage-play').onclick=play;
+$('play').onclick=()=>state.playing||state.playPending?pause():play();$('stage-play').onclick=play;
+$('audio-retry').onclick=()=>{pause();startAudioWorker();status('Reconnecting sound…');};
+$('load-retry').onclick=()=>location.reload();
 $('restart').onclick=()=>{const resume=state.playing;pause();state.position=0;state.revision++;if(resume)play();};
 $('seek').oninput=()=>{const resume=state.playing;pause();state.position=Number($('seek').value);state.revision++;if(resume)play();};
 $('loop').onclick=()=>{state.loop=!state.loop;updateTransport();};
@@ -207,7 +249,7 @@ $('bypass').onclick=()=>{state.bypass=!state.bypass;$('bypass').classList.toggle
 $('layout').onchange=()=>{state.layout=$('layout').value;state.revision++;};
 $('fullscreen').onclick=enterFullscreen;$('exit-full').onclick=leaveFullscreen;
 document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&$('stage').classList.contains('expanded'))leaveFullscreen();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')leaveFullscreen();if(e.code==='Space'&&!['INPUT','TEXTAREA','SELECT','BUTTON'].includes(e.target.tagName)){e.preventDefault();state.playing?pause():play();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')leaveFullscreen();if(e.code==='Space'&&!['INPUT','TEXTAREA','SELECT','BUTTON'].includes(e.target.tagName)){e.preventDefault();state.playing||state.playPending?pause():play();}});
 document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
 $('source-details').onclick=()=>{setTab('source');$('tab-source').scrollIntoView({behavior:'smooth',block:'nearest'});};
 $('patch-select').onchange=()=>{if($('patch-select').value!=='current')loadNamed($('patch-select').value);};
@@ -270,31 +312,25 @@ async function initialize(){
     media=await get('manifest.json');const [cues,regions,waveforms,provenance]=await Promise.all([get(media.cues),get(media.regions),get(media.waveforms),get(media.provenance)]);
     sourceBinding={id:'god-here-second-draft',sha256:provenance.source.sha256,offset:media.sourceIn,duration:media.duration};
     let loaded=0;const total=media.picture.pages.length+media.matte.pages.length+1;
-    const loadImage=path=>new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>{$('loading-text').textContent=`Preparing picture layers… ${++loaded}/${total}`;resolve(image);};image.onerror=()=>reject(Error(`Could not load ${path}`));image.src=`assets/${path}`;});
+    const loadImage=path=>new Promise((resolve,reject)=>{const image=new Image();const timer=setTimeout(()=>reject(Error('Picture loading timed out. Retry loading or play the demonstrations.')),25000);image.onload=()=>{clearTimeout(timer);$('loading-text').textContent=`Preparing picture layers… ${++loaded}/${total}`;resolve(image);};image.onerror=()=>{clearTimeout(timer);reject(Error(`Could not load ${path}`));};image.src=`assets/${path}`;});
     const picture=await Promise.all(media.picture.pages.map(loadImage));const matte=await Promise.all(media.matte.pages.map(loadImage));const room=await loadImage(media.room.hybrid);
     assets={picture,matte,room,cues,regions,waveforms};
-    const audioResponses=await Promise.all([fetch(`assets/${media.audio.source}`).then(r=>r.arrayBuffer()),fetch(`assets/${media.audio.reference}`).then(r=>r.arrayBuffer())]);
+    const audioResponses=await Promise.all([media.audio.source,media.audio.reference].map(async path=>{const r=await fetch(`assets/${path}`);if(!r.ok)throw Error(`Could not load sound: ${path}`);return r.arrayBuffer();}));
     sourcePCM=decodeWav(audioResponses[0]).channels;referencePCM=decodeWav(audioResponses[1]).channels;
     const envelope=amplitudeEnvelope(referencePCM,media.audio.sampleRate);
     const lane=(id,t)=>{const values=controlEnvelopes[id];return values?values[Math.min(values.length-1,Math.max(0,Math.floor(t*controlFps)))]:null;};
-    engine=new VisualEngine(media,assets,{width:384,height:216,control:t=>envelope[Math.min(envelope.length-1,Math.max(0,Math.floor(t*media.audio.sampleRate)))],controlLane:lane});
+    engine=new VisualEngine(media,assets,{width:384,height:216,cacheFrames:matchMedia('(pointer: coarse)').matches?96:192,control:t=>envelope[Math.min(envelope.length-1,Math.max(0,Math.floor(t*media.audio.sampleRate)))],controlLane:lane});
     try{const response=await fetch('assets/renders/render-manifest.json');if(response.ok){const manifest=await response.json();for(const entry of manifest.entries||[])if(typeof entry.signalSignature==='string')previews.set(entry.signalSignature,entry);}}catch{/* An editable checkout can run without optional rendered previews. */}
-    state.worker=new Worker(new URL('./audio-worker.mjs',import.meta.url),{type:'module'});
-    state.worker.onmessage=({data})=>{
-      if(data.type==='ready'){pumpAudio();return;}
-      state.audioBusy=false;
-      if(data.type==='error'){status(`Audio processing failed: ${data.message}`);state.audioWaiters.splice(0).forEach(w=>w.reject(Error(data.message)));return;}
-      if(data.id===state.audioDesired){expressivePCM=data.channels;controlEnvelopes=data.controlEnvelopes||{};controlFps=data.controlFps||12;engine.cacheSignature=null;state.revision++;state.audioRevision=data.id;state.audioReport=data.report;if(state.playing&&state.monitor==='expressive'&&!state.bypass)refreshPlaying();state.audioWaiters.splice(0).forEach(w=>w.resolve());}
-      else pumpAudio();
-    };
-    state.worker.onerror=e=>{status(`Audio worker unavailable: ${e.message}`);state.audioWaiters.splice(0).forEach(w=>w.reject(Error(e.message)));};
-    state.worker.postMessage({type:'init',source:sourcePCM,reference:referencePCM,sampleRate:media.audio.sampleRate});
+    startAudioWorker();
     state.ready=true;$('loading').hidden=true;$('play').disabled=false;$('seek').max=media.duration;
     let saved;try{saved=JSON.parse(localStorage.getItem('god-here-fx-patch-v1'));if(saved)saved=normalizeWorkbenchPatch(saved,{source:sourceBinding,regions:assets.regions.items.map(r=>r.id),duration:media.duration});}catch{saved=null;}
-    if(saved)setPatch(saved,{stash:false});else loadNamed('message-impact');
-    state.position=0;state.revision++;status('Ready. Choose a processor or play the patch.');
+    const query=new URLSearchParams(location.search),demo=query.get('demo'),named=query.get('patch');
+    if(demo&&Object.hasOwn(CATALOG_BY_TYPE,demo)){const patch=createSingleModulePatch(demo,{...GOD_HERE_OPTIONS,source:sourceBinding,demonstration:true,module:GOD_HERE_DEMO_MODULES[demo]||{}});setPatch(patch,{stash:false});}
+    else if(named&&PATCH_CATALOG.some(p=>p.id===named))loadNamed(named);
+    else if(saved)setPatch(saved,{stash:false});else loadNamed('message-impact');
+    state.position=0;state.revision++;status(state.audioError?'Sound needs to reconnect. Tap Retry sound, or open Play demonstrations.':'Ready. Choose a processor or play the patch.');
     // An inspectable read-only snapshot supports reproducible acceptance checks.
-    window.fxWorkbench={getPatch:()=>clonePatch(state.patch),getStatus:()=>({ready:state.ready,playing:state.playing,time:position(),audioBusy:state.audioBusy,audioRevision:state.audioRevision,audioDesired:state.audioDesired,preview:!$('rendered-picture').hidden?'rendered':'editable',report:state.audioReport}),renderAt:t=>{pause();state.position=clamp(t,0,media.duration);state.revision++;},selectModule:type=>single(type),selectPatch:id=>loadNamed(id)};
-  }catch(error){$('loading-text').textContent=error.message;status('The media pack could not be prepared. Reload after the connection recovers.');}
+    window.fxWorkbench={getPatch:()=>clonePatch(state.patch),getStatus:()=>({ready:state.ready,playing:state.playing,playPending:state.playPending,time:position(),audioBusy:state.audioBusy,audioError:state.audioError,workerReady:state.workerReady,audioRevision:state.audioRevision,audioDesired:state.audioDesired,preview:!$('rendered-picture').hidden?'rendered':'editable',report:state.audioReport}),renderAt:t=>{pause();state.position=clamp(t,0,media.duration);state.revision++;},selectModule:type=>single(type),selectPatch:id=>loadNamed(id)};
+  }catch(error){$('loading-text').textContent=error.message;$('load-retry').hidden=false;status('The media pack could not be prepared. Retry loading, or open Play demonstrations.');}
 }
 requestAnimationFrame(animate);initialize();
