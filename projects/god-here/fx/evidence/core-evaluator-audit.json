@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "comparison": "actual audio processing against independently evaluated canonical core node snapshots",
+  "points": 14,
+  "sampleComparisons": 28,
+  "maximumError": 0,
+  "covered": [
+    "wet-only blending",
+    "Intensity macro ease-out",
+    "common automation",
+    "parameter automation",
+    "events override keyframes",
+    "sidechain add",
+    "parameter bounding",
+    "clip boundaries"
+  ],
+  "audioUnitTests": 29,
+  "integrationTests": 1,
+  "engineSha256": "99a073b2bfecf1f8f814c791d9f40fb94fa4e7da686215af2839c575c61d365e",
+  "replayedBy": "tests/fx/audio-core.test.mjs"
+}

@@ -1,5 +1,13 @@
 # Production status
 
+## October 8: modular FX workbench
+
+The new `web/fx/` edition implements thirteen audiovisual processors, six artwork patches, typed routing, clip/track inserts, parallel buses, shared audio-derived control lanes, editable macros and replayable parameter changes. It uses the continuous source passage 95.000–107.167 s. Each module and each factory patch has a full-screen bypass/extreme/sweep/bypass comparison, with matching horizontal and portrait renders. The browser and offline CLI share JavaScript processing modules. See [FX-WORKBENCH.md](FX-WORKBENCH.md) and [FX-ENGINE.md](FX-ENGINE.md).
+
+This edition uses an inherited DeepFilterNet dialogue candidate, moving guided-segmentation workprint mattes and a hybrid room fill containing previously generated hidden-room material. Those inputs have explicit provenance and are not newly certified restoration, roto or recovered scenery. The original audio remains selectable. Voice effects operate on the shared recording. Physical phone/Safari testing and artistic/listening acceptance remain open.
+
+## Earlier five-realities edition
+
 The supplied handoff has been implemented through reproducible software and rendered workprints. Acceptance gates that depend on hearing, verified wording, artistic selection, target-device playback, or a physical venue remain open. They are attached to live GitHub tasks rather than silently treated as completed.
 
 | Stage | Delivered implementation | Remaining acceptance |

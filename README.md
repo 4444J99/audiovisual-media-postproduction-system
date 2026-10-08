@@ -2,6 +2,18 @@
 
 A directable audiovisual postproduction system that translates creative notes into reproducible edits: audio restoration and design, dialogue and performance revision, animated typography, tracked reframing, detail reconstruction, compositing, and new editions from existing media.
 
+## Audiovisual FX workbench
+
+[Open the private FX workbench](https://god-here-five-realities.ajpadavano.chatgpt.site/fx/).
+
+The new `web/fx/` application implements thirteen processors with extreme presets, six saved artwork patches, independent typed connections, clip and track inserts, serial and parallel paths, sends, returns, sidechains, and replayable parameter changes. Each processor has bypass, solo, wet/dry, target selection, automation and an editable Intensity macro. Intensity does not secretly blend the dry recording into fully wet sound.
+
+The working passage is source **95.000–107.167 seconds**. Voice processing uses the shared stereo dialogue candidate. Picture processing uses random-access source frames, five moving appearance-labelled workprint mattes, authored object rectangles and a qualified hybrid room fill. Original audio and the dialogue candidate remain separately selectable.
+
+Select a processor, then **Demonstrate selected**, to run bypass → extreme → parameter sweep → bypass in full screen. The six patches also have **Demonstrate patch**. Unchanged presets use matching horizontal or portrait renders; editing switches to the JavaScript picture engine. Sound is computed in a worker and runs on the audio clock. Dense custom graphs can render below the 12 fps preview rate.
+
+See [the workbench guide](docs/FX-WORKBENCH.md), [the processing contract](docs/FX-ENGINE.md), and [the source specification](docs/god-here-fx-workbench-spec.md). Portable JSON fixtures and schema are in `web/fx/fixtures/` and `web/fx/rack.schema.json`. Original film and derived media stay outside the public repository.
+
 ## First implemented project: god-here
 
 This repository now contains a working Python renderer and a static interactive edition for **God's Ears**. The artist's sketch becomes five independently scored regions in the existing shared room. Each performer keeps a visual identity across the two camera views. The five authored trial vocabularies are pressure, lag, refraction, residue, and erosion.
