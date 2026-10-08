@@ -1,0 +1,1248 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_kind": "issue-ready-development-backlog",
+  "project_id": "god-here",
+  "planning_date": "2026-10-07",
+  "planning_timezone": "America/New_York",
+  "publication_status": "published",
+  "repository": "4444J99/audiovisual-media-postproduction-system",
+  "status_note": "Working mechanisms and workprints delivered. Each task retains its acceptance criteria; artist, audio, language, device, and venue acceptance remain explicit.",
+  "priorities": {
+    "P0": "First combined proof: source calibration, selected excerpt restoration, five-field processing, and aligned comparison.",
+    "P1": "Full authored linear edition, complete clean audio, delivery, and optional soft/spill boundary extension; original-source discovery may run in parallel.",
+    "P2": "Advanced independent layers, AI environment trials, and reproducible generative composition.",
+    "P3": "Interactive/mobile presentation and later installation."
+  },
+  "scope_contract": [
+    "Five character fields occupy regions inside the source frame; they are not five separate screens or five independently clocked media players.",
+    "The shared room right of B05 remains separate from the fifth character field unless an authored event deliberately changes it.",
+    "P01-P05 are visual performer references. Script-character names remain unconfirmed until verified.",
+    "Shot B requires distinct calibration; unverified layouts use source pass-through.",
+    "Expression is authored independently of turn-taking; silent reactions can change a field.",
+    "Clean/restored dialogue remains separate from expressive audio layers.",
+    "The first proof retains the original dialogue timeline and uses a common source interval across A/B/C/D.",
+    "The first proof uses hard boundaries. Soft transitions and authored spill are optional GHERE-017 work after the proof, not prerequisites for it or for a hard-boundary linear edition.",
+    "Original sources remain unchanged; derivatives, estimated layers, and generated material retain provenance and verification status.",
+    "Unavailable original recordings do not block the MP4 pilot.",
+    "The complete linear edition does not depend on advanced segmentation, generated environments, generative recomposition, or interaction."
+  ],
+  "first_proof": {
+    "status": "provisional-pending-word-edge-and-listening-review",
+    "source_start_seconds": 85.133,
+    "source_end_seconds": 107.167,
+    "candidate_duration_seconds": 22.034,
+    "selection_task": "GHERE-005",
+    "delivery_task": "GHERE-019",
+    "conditions": {
+      "A": {
+        "picture": "source",
+        "audio": "source"
+      },
+      "B": {
+        "picture": "source",
+        "audio": "selected clean pilot dialogue"
+      },
+      "C": {
+        "picture": "five character fields",
+        "audio": "selected clean pilot dialogue"
+      },
+      "D": {
+        "picture": "five character fields",
+        "audio": "selected clean pilot dialogue plus separately controlled pilot expressive layer"
+      }
+    }
+  },
+  "epics": [
+    {
+      "id": "E0",
+      "title": "Source evidence and pilot calibration",
+      "objective": "Establish usable source mappings, performed words, shot layouts, and a bounded pilot without delaying it for unavailable originals."
+    },
+    {
+      "id": "E1",
+      "title": "Dialogue restoration and clean audio",
+      "objective": "Deliver a substantially clearer dialogue foundation before adding expressive sound treatments."
+    },
+    {
+      "id": "E2",
+      "title": "Five character fields within one frame",
+      "objective": "Translate the sketch into independently controlled regions of the existing shared image."
+    },
+    {
+      "id": "E3",
+      "title": "Combined proof and authored linear edition",
+      "objective": "Prove the audiovisual treatment on one continuous excerpt, then compose and finish a complete new edition."
+    },
+    {
+      "id": "E4",
+      "title": "Independent bodies and responsive environments",
+      "objective": "Add targeted AI masks, gesture timing, depth, and generated environmental material when the composition benefits."
+    },
+    {
+      "id": "E5",
+      "title": "Reproducible generative composition",
+      "objective": "Produce controlled variations from source-addressable units and explicit compositional rules."
+    },
+    {
+      "id": "E6",
+      "title": "Interactive and installation editions",
+      "objective": "Make audience attention materially change the work while preserving reliable playback and a linear fallback."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "GHERE-001",
+      "epic": "E0",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Inventory sources and preserve provenance",
+      "rationale": "The source film, script, sketch, and earlier study have different evidentiary roles. The new edition needs traceable inputs without changing the originals or silently reconciling their version dates.",
+      "acceptance_criteria": [
+        "Record each available source by filename, byte identity or checksum, media properties where applicable, and availability status; record missing material as missing.",
+        "Preserve the supplied originals unchanged and identify every working proxy or derivative separately.",
+        "Keep screenplay wording, performed dialogue, source export dates, and inferred chronology distinct.",
+        "Record the existing Reception Study as an earlier experiment, without claiming it supplies restored dialogue or tracked person masks."
+      ],
+      "dependency_ids": [],
+      "deliverables": [
+        "Source inventory and provenance manifest",
+        "Read-only source references and derivative naming convention"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 9,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/9"
+      }
+    },
+    {
+      "id": "GHERE-002",
+      "epic": "E0",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Locate original audio and production recordings",
+      "rationale": "Original recordings may contain recoverable clarity absent from the edited MP4. Their discovery should improve the production path without preventing an immediate MP4-based pilot.",
+      "acceptance_criteria": [
+        "Search only available or subsequently supplied production locations and record what was actually examined.",
+        "Identify original camera audio, external recorder files, project timelines, or alternate takes if found; compare sample rates, channel content, duration, and candidate synchronization.",
+        "Report found, unavailable, inaccessible, and unverified sources separately; do not describe estimated separation as an original isolated microphone track.",
+        "Conclude with either usable source candidates and alignment notes or a bounded unavailable-source report; GHERE-005 through GHERE-019 continue from the MP4."
+      ],
+      "dependency_ids": [
+        "GHERE-001"
+      ],
+      "deliverables": [
+        "Original-audio discovery report",
+        "Candidate source alignment notes"
+      ],
+      "activation_condition": "Run in parallel when original recordings or accessible production locations are available. Not a hard dependency of the MP4 pilot or full-edition source path.",
+      "github_issue": {
+        "number": 10,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/10"
+      }
+    },
+    {
+      "id": "GHERE-003",
+      "epic": "E0",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Verify performed dialogue and source word anchors",
+      "rationale": "The film and screenplay differ. Processing events and captions require the words actually performed, with uncertainties retained and phrase edges suitable for audio edits.",
+      "acceptance_criteria": [
+        "Create a source-timed performed-dialogue transcript; distinguish manually checked passages from automatic proposals and explicitly retain unclear words.",
+        "Check the first pilot passage by listening, including word onsets, final consonants, interruptions, breaths, and any silence needed around edits.",
+        "Use performer IDs or unknown-speaker labels when attribution is uncertain; do not infer script-character names from spatial position.",
+        "Retain source time, any proxy offset, and the mapping back to the unchanged source; mark additional full-film word anchors by verification status."
+      ],
+      "dependency_ids": [
+        "GHERE-001"
+      ],
+      "deliverables": [
+        "Performed-dialogue transcript with verification status",
+        "Source word and phrase cue table"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 11,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/11"
+      }
+    },
+    {
+      "id": "GHERE-004",
+      "epic": "E0",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Calibrate shot layouts, performer identities, and sketch boundaries",
+      "rationale": "The sketch describes five adjacent fields inside a source image, while the film contains another camera composition. Position alone cannot preserve character identity across cuts.",
+      "acceptance_criteria": [
+        "Locate the unannotated source frame corresponding to the sketch and map the source aperture separately from screenshot margins, UI controls, and marker strokes.",
+        "Calibrate boundary strokes B00 through B05 into normalized source-frame coordinates, delimiting F01 through F05; retain uncertainty until source registration is checked.",
+        "Keep the room to the right of B05 as shared background outside the five character fields, with any other uncovered source area also accounted for.",
+        "Use stable visual performer IDs P01 through P05; leave script-character names unconfirmed until supported by evidence.",
+        "Calibrate the alternate shot B independently. For any unverified layout, explicitly use source pass-through rather than applying shot A coordinates."
+      ],
+      "dependency_ids": [
+        "GHERE-001"
+      ],
+      "deliverables": [
+        "Per-shot calibration and performer mapping",
+        "Registered five-field reference overlays",
+        "Unverified-layout fallback record"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 12,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/12"
+      }
+    },
+    {
+      "id": "GHERE-005",
+      "epic": "E0",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Select the pilot and representative audio benchmark excerpts",
+      "rationale": "A bounded, continuous comparison makes improvement measurable and keeps the first proof independent of later world generation or interactive delivery.",
+      "acceptance_criteria": [
+        "Evaluate source 85.133-107.167 seconds, approximately 22.034 seconds, as the provisional first proof; confirm or adjust the range after listening and checking word edges.",
+        "Keep the selected pilot in original dialogue order and document exact frame/sample boundaries, any camera cut, and the relevant region layouts.",
+        "Choose additional short audio benchmarks for materially different defects or speakers when the pilot alone does not represent them.",
+        "Identify speaking and visible listening/reaction opportunities without inventing emotional states; define A source/source, B source/clean, C fields/clean, and D fields/clean plus expressive as aligned comparison conditions."
+      ],
+      "dependency_ids": [
+        "GHERE-003",
+        "GHERE-004"
+      ],
+      "deliverables": [
+        "Pilot excerpt selection and timing record",
+        "Audio benchmark excerpt list",
+        "A/B/C/D comparison specification"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 13,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/13"
+      }
+    },
+    {
+      "id": "GHERE-006",
+      "epic": "E1",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Listen and build an audio defect map",
+      "rationale": "Substantial restoration should target observed defects. Automated metrics and a transcript cannot establish intelligibility, timbre, or room problems by themselves.",
+      "acceptance_criteria": [
+        "Listen to the pilot and benchmark excerpts and map observed noise, reverberation, clipping, inconsistent level, masking, and intelligibility defects by source interval.",
+        "Inspect available channels before summing them and record whether they contain useful differences or merely similar mixed material.",
+        "Separate observed listening findings from measured properties and hypotheses requiring a treatment test.",
+        "Define the material improvement sought on each benchmark, including consonant clarity, continuity, voice character, and tolerable residual ambience."
+      ],
+      "dependency_ids": [
+        "GHERE-005"
+      ],
+      "deliverables": [
+        "Time-based audio defect map",
+        "Restoration comparison rubric",
+        "Channel inspection notes"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 14,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/14"
+      }
+    },
+    {
+      "id": "GHERE-007",
+      "epic": "E1",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Render restoration candidates and level-match comparisons",
+      "rationale": "A louder export can sound superficially better. Competing repair chains need comparable playback levels and preserved source timing to support a meaningful selection.",
+      "acceptance_criteria": [
+        "Render an untreated reference and a bounded set of treatment candidates using only methods justified by the defect map.",
+        "Record processing order, settings, model/tool identity when applicable, source selection, and any latency compensation for each candidate.",
+        "Level-match the compared excerpts and report measured levels separately from subjective judgments.",
+        "Check speech boundaries and gross artifacts before comparison; retain intact words and original source-time alignment.",
+        "Keep original dialogue and candidate outputs available independently; no synthetic replacement dialogue is introduced in this ticket."
+      ],
+      "dependency_ids": [
+        "GHERE-006"
+      ],
+      "deliverables": [
+        "Level-matched reference and restoration candidates",
+        "Processing recipes and latency record",
+        "Candidate measurement table"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 15,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/15"
+      }
+    },
+    {
+      "id": "GHERE-008",
+      "epic": "E1",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Compare and select the pilot restoration treatment",
+      "rationale": "The pilot should proceed with a demonstrably improved dialogue foundation, with residual limitations stated rather than hidden by an expressive sound layer.",
+      "acceptance_criteria": [
+        "Compare the candidates at matched loudness against the benchmark rubric and record the selection rationale.",
+        "Reject or revise treatments that lose words, alter apparent wording, introduce distracting musical/metallic residue, or damage vocal character.",
+        "Check intelligibility in a stereo listening condition and in mono; use a representative small-speaker condition when available and report actual conditions used.",
+        "Provide the selected clean pilot dialogue and its exact source-time mapping; the combined proof can now proceed without waiting for full-film restoration."
+      ],
+      "dependency_ids": [
+        "GHERE-007"
+      ],
+      "deliverables": [
+        "Selected clean pilot dialogue",
+        "Restoration comparison decision record",
+        "Documented residual audio limitations"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 16,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/16"
+      }
+    },
+    {
+      "id": "GHERE-009",
+      "epic": "E1",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Restore the complete dialogue track and verify synchronization",
+      "rationale": "The successful excerpt treatment must be adapted to the rest of the film, whose noise, distance, or recording conditions may vary.",
+      "acceptance_criteria": [
+        "Apply the selected restoration approach across the required source intervals, varying it only where the defect map or listening warrants.",
+        "Retain a clean dialogue track separate from expressive delays, panning, repetition, and environmental sound design.",
+        "Check the beginning, end, shot transitions, and selected speech anchors for processing latency or cumulative drift.",
+        "Document any source replacement found through GHERE-002 and its synchronization if such a source is actually used; unavailable originals do not prevent processing the MP4.",
+        "Identify remaining irreparable or uncertain passages for conditional consideration under GHERE-011."
+      ],
+      "dependency_ids": [
+        "GHERE-003",
+        "GHERE-008"
+      ],
+      "deliverables": [
+        "Full clean dialogue master",
+        "Full-film restoration recipe and sync report",
+        "Residual problem passage list"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 17,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/17"
+      }
+    },
+    {
+      "id": "GHERE-010",
+      "epic": "E1",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Qualify speaker layers and preserve usable ambience",
+      "rationale": "Per-character audio processing may need speaker-focused layers, but the supplied mixed soundtrack does not establish isolated recordings. Layer quality and provenance must remain explicit.",
+      "acceptance_criteria": [
+        "Assess whether source recordings, careful edits, or estimated separation can provide usable speaker-focused control for the required passages.",
+        "Label outputs as original isolated sources, estimated separations, or edited mixed passages as appropriate; retain leakage and uncertainty notes.",
+        "Check overlaps, breaths, room continuity, and any separation artifacts at the intended mix level.",
+        "Create a usable ambience reference where recoverable; do not describe a generated or heavily reconstructed layer as untouched room sound.",
+        "If reliable separation is unavailable, provide a documented mixed-dialogue routing fallback that still supports the authored edition."
+      ],
+      "dependency_ids": [
+        "GHERE-009"
+      ],
+      "deliverables": [
+        "Qualified audio-layer manifest",
+        "Usable speaker-focused layers or documented mix fallback",
+        "Ambience reference and continuity notes"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 18,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/18"
+      }
+    },
+    {
+      "id": "GHERE-011",
+      "epic": "E1",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Evaluate alternatives for irreparable essential lines",
+      "rationale": "A few damaged lines may require a specific artistic decision. This branch should remain conditional and should not silently substitute synthetic or newly performed speech.",
+      "acceptance_criteria": [
+        "Activate only for an identified passage whose remaining damage materially obstructs the intended work.",
+        "Compare available original takes, alternate edits, retained imperfection with readable text support, and separately proposed rerecording or reconstruction options.",
+        "Identify any option that changes the recorded performance or introduces new/generated audio, and retain that distinction in the source record.",
+        "Record the author-selected treatment and synchronize any adopted replacement; no option is represented as already selected by this plan.",
+        "If the branch is necessary to satisfy the edition intelligibility requirement, add its resolution to the affected release gate; otherwise it stays outside the hard dependency path."
+      ],
+      "dependency_ids": [
+        "GHERE-009"
+      ],
+      "deliverables": [
+        "Irreparable-line alternatives comparison",
+        "Conditional treatment decision and provenance record"
+      ],
+      "activation_condition": "Optional. Activate only when essential dialogue remains materially unusable after restoration and an alternative is required for the intended edition. No task has GHERE-011 as an unconditional dependency.",
+      "github_issue": {
+        "number": 19,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/19"
+      }
+    },
+    {
+      "id": "GHERE-012",
+      "epic": "E1",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Complete clean-audio quality control",
+      "rationale": "The full composition needs an accepted clean foundation so artistic distortion can remain deliberate and independently adjustable.",
+      "acceptance_criteria": [
+        "Listen through the full clean dialogue and check words, voice consistency, breaths, transitions, noise changes, and obvious repair artifacts.",
+        "Check synchronization, channel behavior, mono compatibility, clipping/true-peak behavior, and the chosen delivery-level target; record actual measurements.",
+        "Retain a comparison reference and document any limitations still audible in the selected master.",
+        "Do not silently pass an essential unintelligible line: document the intended retained limitation or the resolved GHERE-011 alternative if that branch becomes necessary.",
+        "Mark clean-audio acceptance separately from artistic sound-design acceptance and from the later final encoded-file check."
+      ],
+      "dependency_ids": [
+        "GHERE-009",
+        "GHERE-010"
+      ],
+      "deliverables": [
+        "Clean-audio QC report",
+        "Accepted clean dialogue and qualified layer set",
+        "Remaining limitations and conditional gate record"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 20,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/20"
+      }
+    },
+    {
+      "id": "GHERE-013",
+      "epic": "E2",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Implement a fixed-region compositor and composition schema",
+      "rationale": "Five local transformations can begin as masks over one source frame. The first proof does not need five independent media players or AI person segmentation.",
+      "acceptance_criteria": [
+        "Represent F01-F05 as regions within the original normalized source frame, keeping original framing and shared background intact.",
+        "Validate shot, performer, field, cue, and source references plus region ordering and bounds in a small composition schema.",
+        "Process fields through one shared source-time/rendering system; any extra frame history serves deliberate temporal effects, not separate playback clocks.",
+        "With all intensities zero, produce exact source pass-through before encoding; with an invalid or unavailable layout, fall back to the source image.",
+        "Implement hard containment for the first proof: an activated field changes only its own region, and all outside pixels match the neutral baseline before encoding. Soft transitions and authored spill are deferred to GHERE-017.",
+        "Provide an independently adjustable intensity and bounded parameters per field without assigning an unverified script-character identity."
+      ],
+      "dependency_ids": [
+        "GHERE-004"
+      ],
+      "deliverables": [
+        "Fixed-region compositor",
+        "Validated composition schema",
+        "Neutral and single-field diagnostic renders"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 21,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/21"
+      }
+    },
+    {
+      "id": "GHERE-014",
+      "epic": "E2",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Define a distinct expressive grammar for each character field",
+      "rationale": "The sketch supplies boundaries, while the visual language within each field still needs authored differentiation grounded in the performance.",
+      "acceptance_criteria": [
+        "Assign proposed behaviors to stable performer IDs rather than unconfirmed character names, retaining the assignments as creative decisions.",
+        "Specify each field behavior by operation, expressive purpose, trigger options, intensity range, attack, duration, release, and recovery.",
+        "Allow silent listening, hesitation, resistance, or other reviewed reaction cues to drive a field; speaking alone does not determine intensity.",
+        "Treat marker colors as boundary annotations unless a separate palette is deliberately chosen; do not infer emotional types or personalities from them.",
+        "Keep the operation set small enough to distinguish the five fields and evaluate their effect in the pilot."
+      ],
+      "dependency_ids": [
+        "GHERE-004"
+      ],
+      "deliverables": [
+        "Per-performer expressive grammar table",
+        "Parameter limits and baseline states",
+        "Creative interpretation uncertainty notes"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 22,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/22"
+      }
+    },
+    {
+      "id": "GHERE-015",
+      "epic": "E2",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Author an expression score including silent reaction",
+      "rationale": "A manual score establishes what the transformation means before automatic detectors are allowed to propose events.",
+      "acceptance_criteria": [
+        "Bind every enabled pilot event to a verified source interval and a stable performer/field reference.",
+        "Include at least one selected silent reaction if the source supports it, and distinguish visible evidence from the interpretation assigned to it.",
+        "Allow concurrent character states; do not restrict expression to whichever person currently speaks.",
+        "Specify intensity envelopes and recovery so changes can persist or decay intentionally rather than switching on every word.",
+        "Leave unverified illustrative cues disabled and record any scene interval deliberately held at the neutral baseline."
+      ],
+      "dependency_ids": [
+        "GHERE-003",
+        "GHERE-005",
+        "GHERE-014"
+      ],
+      "deliverables": [
+        "Authored pilot expression score",
+        "Event-to-source cue mapping",
+        "Neutral and reaction interval annotations"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 23,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/23"
+      }
+    },
+    {
+      "id": "GHERE-016",
+      "epic": "E2",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Maintain shot-local temporal buffers and identity across cuts",
+      "rationale": "Temporal copies and loops must not sample the wrong camera view or transfer one character state to another person occupying a similar screen position.",
+      "acceptance_criteria": [
+        "Constrain delay, persistence, and loop samples to the permitted source shot unless an explicit cross-shot memory event enables another interval.",
+        "Preserve control state by performer identity across verified shot layouts while resetting or remapping visual history according to an authored cut policy.",
+        "Use shot B source pass-through until its separate calibration is valid; never reuse shot A region coordinates as an implicit substitute.",
+        "Check the pilot cut or a separate short cut diagnostic for frame contamination, identity switching, and timing jumps.",
+        "Record source-frame and output-time mappings for every temporal operation used in the proof."
+      ],
+      "dependency_ids": [
+        "GHERE-004",
+        "GHERE-013"
+      ],
+      "deliverables": [
+        "Shot-aware history and state handling",
+        "Cross-cut diagnostic render",
+        "Temporal source mapping record"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 24,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/24"
+      }
+    },
+    {
+      "id": "GHERE-017",
+      "epic": "E2",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Extend verified hard boundaries with soft transitions and authored spill",
+      "rationale": "Once the first hard-boundary proof succeeds, soft edges or deliberate spill can extend the expressive vocabulary where the composition benefits. They do not gate the first proof or the full hard-boundary edition.",
+      "acceptance_criteria": [
+        "Retain the verified hard mode from GHERE-013 and GHERE-018 as the reference and fallback; demonstrate that enabling this extension does not change its behavior.",
+        "Soft mode uses a bounded transition width and normalized compositing weights, avoiding unintended gaps, dark seams, or double exposure.",
+        "Spill mode requires a named authored event defining recipient regions or shared background, direction, extent, and duration; it is disabled by default.",
+        "Keep sampling behavior near edges explicit so warps and temporal effects do not expose invalid image areas or unintentionally borrow another character field.",
+        "Provide short comparisons against the completed hard-boundary proof and verify weight normalization, designated spill recipients, recovery, and shared-room behavior only for the selected extension."
+      ],
+      "dependency_ids": [
+        "GHERE-013",
+        "GHERE-014",
+        "GHERE-019"
+      ],
+      "deliverables": [
+        "Optional soft/spill boundary controls",
+        "Comparison with verified hard-boundary proof",
+        "Authored-spill event contract"
+      ],
+      "activation_condition": "Optional extension after GHERE-019. Activate when soft transitions or authored spill are selected for the composition; the first proof and a complete hard-boundary linear edition remain independent of this task.",
+      "github_issue": {
+        "number": 25,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/25"
+      }
+    },
+    {
+      "id": "GHERE-018",
+      "epic": "E2",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Verify neutral image, shared room, and effect containment",
+      "rationale": "The room remaining to the right of B05 is part of the original image, not a sixth character or an extension automatically assigned to the nearest field.",
+      "acceptance_criteria": [
+        "Account for the full source image as five fields plus residual shared background; preserve the room right of B05 and any narrow uncovered left area.",
+        "Verify zero-intensity equality before encoding and a reasonable encoded comparison that accounts for codec differences.",
+        "Activate one field at a time and confirm that hard boundaries preserve all outside pixels, with complete region/background coverage and no unintended overlap.",
+        "Keep shared room areas at source pass-through in the first proof and check hard-contained field recovery to the baseline; soft-weight and authored-spill checks belong to later GHERE-017.",
+        "Check the actual pilot at its source framing for visible seams, cropping, screenshot annotations, invalid samples, and unintended identity changes."
+      ],
+      "dependency_ids": [
+        "GHERE-013",
+        "GHERE-016"
+      ],
+      "deliverables": [
+        "Containment and baseline verification report",
+        "Shared-room routing and mask coverage record",
+        "Pilot-ready field configuration"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 26,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/26"
+      }
+    },
+    {
+      "id": "GHERE-019",
+      "epic": "E3",
+      "priority": "P0",
+      "status": "implementation_and_acceptance_review",
+      "title": "Render aligned A/B/C/D combined proof from one excerpt",
+      "rationale": "The first reviewable result must prove improved hearing and character-specific realities together without waiting for a full audio master or later AI systems.",
+      "acceptance_criteria": [
+        "Use the selected continuous source interval, provisionally 85.133-107.167 seconds, with identical output duration and word boundaries across A/B/C/D.",
+        "Render A with source picture/source audio; B with source picture/selected clean audio; C with five fields/selected clean audio; D with five fields/clean audio plus a modest separately controllable expressive layer.",
+        "Retain original dialogue order and a common clock in all four versions. The pilot-only expressive recipe is created here; it does not wait for full-edition GHERE-021.",
+        "Use verified hard region boundaries for the first proof; soft transitions and authored spill in GHERE-017 are later optional extensions.",
+        "Include the authored silent reaction and verify containment, cut behavior, phrase intelligibility, latency compensation, and a clear neutral reference.",
+        "Provide aligned comparison files and processing settings plus a short review recording what improved, what failed, and which treatment proceeds."
+      ],
+      "dependency_ids": [
+        "GHERE-005",
+        "GHERE-008",
+        "GHERE-015",
+        "GHERE-018"
+      ],
+      "deliverables": [
+        "Four aligned proof renders A/B/C/D",
+        "Pilot expressive-audio recipe and cue map",
+        "Combined-proof evaluation record"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 27,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/27"
+      }
+    },
+    {
+      "id": "GHERE-020",
+      "epic": "E3",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Score the complete new edition and choose its duration",
+      "rationale": "The combined proof should develop into a sustained composition whose changes have a purposeful progression across the film.",
+      "acceptance_criteria": [
+        "Choose the edition duration and source coverage deliberately; do not inherit the earlier study length as an obligation.",
+        "Write a continuous score covering neutral periods, character changes, collective pressure, temporal processing, room behavior, recovery, and ending.",
+        "Carry forward only operations supported by the proof or by a clearly bounded additional test; give each recurring operation a compositional purpose.",
+        "Map every used phrase, image interval, repetition, and rearrangement to source time, and document the intended intelligibility at each section.",
+        "Identify the minimum implementation work for this linear edition; do not make AI segmentation, generated environments, or audience interaction prerequisites."
+      ],
+      "dependency_ids": [
+        "GHERE-003",
+        "GHERE-019"
+      ],
+      "deliverables": [
+        "Complete new-edition composition score",
+        "Duration and source-coverage decision",
+        "Bounded production list for the linear edition"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 28,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/28"
+      }
+    },
+    {
+      "id": "GHERE-021",
+      "epic": "E3",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Compose character and shared expressive-audio buses",
+      "rationale": "Expressive sound should extend the work while the restored dialogue remains separately available and adjustable.",
+      "acceptance_criteria": [
+        "Route clean dialogue, qualified character-focused layers when available, shared ambience, and expressive effects through independently adjustable controls.",
+        "Implement scored delay, repetition, panning, accumulation, disappearance, or other selected treatments with explicit source and timing references.",
+        "Use mixed-dialogue routing where reliable speaker isolation is unavailable; do not silently assign overlapping words to the wrong character.",
+        "Check essential-word intelligibility, phase/mono behavior, transitions, and the balance between clean speech and expressive layers.",
+        "Retain a clean bypass and export the creative mix with its settings and any adopted deviations from the clean baseline."
+      ],
+      "dependency_ids": [
+        "GHERE-012",
+        "GHERE-020"
+      ],
+      "deliverables": [
+        "Expressive-audio score and routing",
+        "Creative mix and independently adjustable layers",
+        "Speech-intelligibility comparison notes"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 29,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/29"
+      }
+    },
+    {
+      "id": "GHERE-022",
+      "epic": "E3",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Compose typography and word-shaped image apertures",
+      "rationale": "Language can control or contain imagery, extending the original title treatment and the conversation about sending and receiving.",
+      "acceptance_criteria": [
+        "Select words or phrases from verified performed dialogue or explicitly identified screenplay material; distinguish these sources.",
+        "Prototype timing, typography, masking, and image apertures within the retained source framing and field grammar.",
+        "Keep text and image relationships deliberate, readable where intended, and separate from captions needed for access.",
+        "Check wording, cut timing, visual clashes, and foreground/background relationships at the intended export dimensions.",
+        "Record the selected treatment in the edition score; an explicit creative decision to omit a tested treatment is a valid outcome rather than forcing decoration into the film."
+      ],
+      "dependency_ids": [
+        "GHERE-003",
+        "GHERE-013",
+        "GHERE-020"
+      ],
+      "deliverables": [
+        "Typography/aperture study and selected assets",
+        "Timed language-to-image cues",
+        "Integration or omission decision"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 30,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/30"
+      }
+    },
+    {
+      "id": "GHERE-023",
+      "epic": "E3",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Render the complete authored linear edition",
+      "rationale": "A complete film is the principal production milestone. It should stand on its own using the proven fields, clear dialogue, and deliberate sound/image score.",
+      "acceptance_criteria": [
+        "Render the entire approved composition from the source references, per-shot layouts, expression score, and creative audio mix.",
+        "Preserve intended source framing and character continuity; use verified fallback behavior for any deliberately untreated or uncalibrated region.",
+        "Check full-duration picture and sound together, including scene transitions, word edges, repeated fragments, region recovery, and ending.",
+        "Retain a reproducible recipe, exact input identities, settings, and output identity.",
+        "Complete this milestone without requiring any task in E4, E5, or E6."
+      ],
+      "dependency_ids": [
+        "GHERE-012",
+        "GHERE-018",
+        "GHERE-020",
+        "GHERE-021",
+        "GHERE-022"
+      ],
+      "deliverables": [
+        "Complete new linear edition render",
+        "Reproduction recipe and source/output mapping",
+        "Full-duration composition review notes"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 31,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/31"
+      }
+    },
+    {
+      "id": "GHERE-024",
+      "epic": "E3",
+      "priority": "P1",
+      "status": "implementation_and_acceptance_review",
+      "title": "Finish delivery files, captions, and final quality checks",
+      "rationale": "The artistic master and the file someone can actually watch are separate outputs. The final encode needs a complete playback check and clear presentation options.",
+      "acceptance_criteria": [
+        "Export the chosen high-quality master and practical viewing copy with documented frame rate, dimensions, audio format, levels, and source version.",
+        "Generate captions from checked performed dialogue and map them to the new edition timeline, including repeated or rearranged passages.",
+        "Check complete decoding, final picture/sound synchronization, clipping behavior, caption timing, title/credit accuracy, and intentional silent or black intervals.",
+        "Review a representative phone-sized playback and mono listening condition when available; record what was actually tested and any limits.",
+        "Package the viewing file, caption file, source-relative composition recipe, and concise release notes without claiming external publication."
+      ],
+      "dependency_ids": [
+        "GHERE-003",
+        "GHERE-023"
+      ],
+      "deliverables": [
+        "Master and practical viewing copy",
+        "Caption file and readable transcript",
+        "Final encode QC and release notes"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 32,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/32"
+      }
+    },
+    {
+      "id": "GHERE-025",
+      "epic": "E4",
+      "priority": "P2",
+      "status": "implementation_and_acceptance_review",
+      "title": "Test targeted body and object segmentation",
+      "rationale": "Finer independence should be introduced where the linear treatment demonstrates a need, rather than making perfect masks a universal prerequisite.",
+      "acceptance_criteria": [
+        "Select a small number of shots and elements whose independent treatment would visibly improve the composition.",
+        "Generate or manually refine candidate person/object masks and identify the model, source frames, prompts/points, and corrections used.",
+        "Review mask edges, performer identity, occlusion, and temporal stability at the required effect strength and export size.",
+        "Keep source pixels, estimated masks, and resulting derivatives distinct; uncertainty and failed intervals remain documented.",
+        "Retain the fixed-field compositor as a valid fallback when finer segmentation does not improve the work."
+      ],
+      "dependency_ids": [
+        "GHERE-004",
+        "GHERE-023"
+      ],
+      "deliverables": [
+        "Targeted mask set and evaluation",
+        "Model/correction provenance",
+        "Approved independent elements or field fallback"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 33,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/33"
+      }
+    },
+    {
+      "id": "GHERE-026",
+      "epic": "E4",
+      "priority": "P2",
+      "status": "implementation_and_acceptance_review",
+      "title": "Model selected room surfaces, depth, and occlusion",
+      "rationale": "A responsive environment needs an explicit relationship between people, surfaces, and depth so transformed material appears intentionally situated.",
+      "acceptance_criteria": [
+        "Select only the room surfaces and depth relationships needed for the intended transformation.",
+        "Label estimated depth and geometry as estimates; do not claim physical measurements from uncalibrated footage.",
+        "Define foreground/background ordering and test occlusion where bodies, furniture, typography, or projected imagery overlap.",
+        "Evaluate stability separately for each camera view and define behavior at cuts.",
+        "Provide a source-picture or simpler 2D surface fallback for intervals with unstable geometry."
+      ],
+      "dependency_ids": [
+        "GHERE-025"
+      ],
+      "deliverables": [
+        "Selected surface and depth representation",
+        "Occlusion/registration diagnostics",
+        "Per-shot environment fallback rules"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 34,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/34"
+      }
+    },
+    {
+      "id": "GHERE-027",
+      "epic": "E4",
+      "priority": "P2",
+      "status": "implementation_and_acceptance_review",
+      "title": "Give gestures independent timing with speech anchors",
+      "rationale": "Bodies, words, and room elements can occupy different times, but the resulting relationship to speech must remain deliberately composed.",
+      "acceptance_criteria": [
+        "Select source-addressable gesture intervals and the corresponding performer masks or approved simpler regions.",
+        "Implement independent hold, repeat, delay, or speed changes with bounded source sampling and authored transitions.",
+        "Identify intervals where mouth/speech synchronization must be preserved and intervals where deliberate separation is part of the score.",
+        "Review speech anchors, mask stability, gesture discontinuities, and identity across cuts.",
+        "Record each gesture output mapping and provide a neutral synchronized state."
+      ],
+      "dependency_ids": [
+        "GHERE-003",
+        "GHERE-016",
+        "GHERE-025"
+      ],
+      "deliverables": [
+        "Gesture interval manifest",
+        "Independent-timing study",
+        "Lip-sync anchor and deliberate-offset record"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 35,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/35"
+      }
+    },
+    {
+      "id": "GHERE-028",
+      "epic": "E4",
+      "priority": "P2",
+      "status": "implementation_and_acceptance_review",
+      "title": "Trial a generated or responsive room transformation",
+      "rationale": "The conversation changing its environment is a major artistic branch that should be tested on a limited interval before being expanded.",
+      "acceptance_criteria": [
+        "Define one concrete environmental transformation and its relationship to an authored conversational or character event.",
+        "Produce a bounded generated/processed trial with input identities, settings, model details where applicable, and output provenance.",
+        "Check continuity of the recorded performance, face/body stability where retained, room registration, occlusion, and flicker or visual incoherence.",
+        "Keep generated material identifiable as generated; do not overwrite the recorded image or describe invented space as recovered footage.",
+        "Compare the trial with the simpler field treatment and record whether its additional complexity provides an artistic benefit."
+      ],
+      "dependency_ids": [
+        "GHERE-026"
+      ],
+      "deliverables": [
+        "Responsive/generated environment trial",
+        "Generation and compositing record",
+        "Comparison and selection notes"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 36,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/36"
+      }
+    },
+    {
+      "id": "GHERE-029",
+      "epic": "E4",
+      "priority": "P2",
+      "status": "implementation_and_acceptance_review",
+      "title": "Integrate successful independent layers with fallbacks",
+      "rationale": "Advanced masks and environments need to join the composition without making its reproducibility or readability depend on their weakest intervals.",
+      "acceptance_criteria": [
+        "Integrate only selected successful mask, gesture, surface, or environment treatments into a distinct edition variant.",
+        "Maintain clean-dialogue control, intended speech anchors, original source provenance, and the authored expressive score.",
+        "Use per-shot or per-interval fallback to source picture or the fixed-field treatment where advanced processing is unstable.",
+        "Check the full integrated passage or variant together, including layer edges, occlusion, temporal continuity, captions, and sound.",
+        "Retain the earlier linear edition as its own finished output and document the variant relationship."
+      ],
+      "dependency_ids": [
+        "GHERE-024",
+        "GHERE-027",
+        "GHERE-028"
+      ],
+      "deliverables": [
+        "Advanced integrated variant",
+        "Fallback map and integration recipe",
+        "Variant comparison/QC record"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 37,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/37"
+      }
+    },
+    {
+      "id": "GHERE-030",
+      "epic": "E5",
+      "priority": "P2",
+      "status": "implementation_and_acceptance_review",
+      "title": "Create a reusable source-unit manifest",
+      "rationale": "Rule-based composition needs addressable source material and verified constraints, without proliferating unnecessary physical copies of every fragment.",
+      "acceptance_criteria": [
+        "Describe useful phrases, pauses, gestures, shots, words, field states, and room elements by stable IDs and source intervals or explicit derivative references.",
+        "Keep source coordinates, performed text, speaker/performer certainty, duration, and processing prerequisites with each unit.",
+        "Record which units are cleanly usable, conditionally usable, or uncertain; do not hide failed separation or masking within a generic asset label.",
+        "Reference original media plus edit instructions by default, generating cached excerpts only when useful.",
+        "Validate IDs, references, interval bounds, and required source availability; advanced E4 assets may be added but are not required."
+      ],
+      "dependency_ids": [
+        "GHERE-003",
+        "GHERE-018",
+        "GHERE-020"
+      ],
+      "deliverables": [
+        "Reusable unit manifest",
+        "Unit reference and interval validation",
+        "Optional cache policy"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 38,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/38"
+      }
+    },
+    {
+      "id": "GHERE-031",
+      "epic": "E5",
+      "priority": "P2",
+      "status": "implementation_and_acceptance_review",
+      "title": "Define seeded composition rules and allowed transitions",
+      "rationale": "Generative variation should extend demonstrated artistic relationships while remaining reproducible and bounded.",
+      "acceptance_criteria": [
+        "Specify allowed transitions, repetition limits, concurrency, intensity ranges, recovery, and required orientation/intelligibility constraints.",
+        "Use a recorded seed or decision sequence so the same inputs and rules reproduce the same composition schedule.",
+        "Separate authored rules from optional AI proposals or estimated emotional labels; the latter do not silently become authority.",
+        "Reject invalid source references and timing schedules before rendering, with a clear reason and a defined fallback.",
+        "Allow the authored linear score to remain a selectable fixed composition within the same unit vocabulary."
+      ],
+      "dependency_ids": [
+        "GHERE-024",
+        "GHERE-030"
+      ],
+      "deliverables": [
+        "Seeded rule configuration",
+        "Composition schedule generator",
+        "Validation and fixed-score selection"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 39,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/39"
+      }
+    },
+    {
+      "id": "GHERE-032",
+      "epic": "E5",
+      "priority": "P2",
+      "status": "implementation_and_acceptance_review",
+      "title": "Generate three reproducible versions and cue graphs",
+      "rationale": "Several actual outputs are needed to establish that the rule system yields meaningful variation rather than one fixed edit with arbitrary surface changes.",
+      "acceptance_criteria": [
+        "Generate at least three intentionally distinguishable versions from the same eligible source collection.",
+        "Save each seed/decision sequence, rule version, source identities, scheduled cues, and produced output identity.",
+        "Render or play each version and inspect source continuity, intelligibility, character consistency, and allowed intensity bounds.",
+        "Provide a cue graph or equivalent time/transition map showing how each version was composed.",
+        "Recreate one selected version from its saved record and compare the event schedule and output properties; document any nondeterministic media stage."
+      ],
+      "dependency_ids": [
+        "GHERE-031"
+      ],
+      "deliverables": [
+        "Three generated versions",
+        "Seeds, schedules, and cue graphs",
+        "Reproduction check record"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 40,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/40"
+      }
+    },
+    {
+      "id": "GHERE-033",
+      "epic": "E5",
+      "priority": "P2",
+      "status": "implementation_and_acceptance_review",
+      "title": "Evaluate generated versions and fix an authored outcome",
+      "rationale": "Generation supplies material for judgment. The work needs a path from variation back to a deliberately chosen and editable composition.",
+      "acceptance_criteria": [
+        "Compare generated versions against the authored linear reference using explicit artistic criteria: development, character distinction, coherence, and the intended reception experience.",
+        "Identify successful and failed transitions or passages with source and output references.",
+        "Select one generated outcome or set of passages and freeze its schedule into an editable authored score.",
+        "Retain the original generated record and document later authored changes rather than rewriting the record of how it was produced.",
+        "Conclude with a selected outcome or a reasoned decision that the current rules need a specific revision."
+      ],
+      "dependency_ids": [
+        "GHERE-024",
+        "GHERE-032"
+      ],
+      "deliverables": [
+        "Generative-version evaluation",
+        "Selected fixed score or targeted rule revision",
+        "Selection and subsequent-edit provenance"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 41,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/41"
+      }
+    },
+    {
+      "id": "GHERE-034",
+      "epic": "E6",
+      "priority": "P3",
+      "status": "implementation_and_acceptance_review",
+      "title": "Design meaningful tap, dwell, and listening interactions",
+      "rationale": "Audience input should alter reception, attention, or expression in a way that contributes to the artwork rather than becoming an unrelated interface layer.",
+      "acceptance_criteria": [
+        "Define a small interaction vocabulary and the perceptible effect of each input on hearing, visibility, delay, accumulation, or field intensity.",
+        "Specify the difference between selecting a field, remaining with it, and leaving it; avoid treating every touch as an arbitrary randomizer.",
+        "Include an understandable starting state, a neutral/recovery path, and behavior when the audience does nothing.",
+        "Avoid requiring microphone access or inferring private emotional states unless a later separately chosen experience needs them.",
+        "Produce an interaction score or prototype specification with acceptance examples tied to the existing composition units."
+      ],
+      "dependency_ids": [
+        "GHERE-033"
+      ],
+      "deliverables": [
+        "Interaction vocabulary and state model",
+        "Audience input-to-composition examples",
+        "Neutral and inactivity behavior"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 42,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/42"
+      }
+    },
+    {
+      "id": "GHERE-035",
+      "epic": "E6",
+      "priority": "P3",
+      "status": "implementation_and_acceptance_review",
+      "title": "Implement common transport, audio/video sync, and buffers",
+      "rationale": "Independently timed audiovisual elements require shared timing and bounded memory, not competing media clocks for each character.",
+      "acceptance_criteria": [
+        "Provide a common composition clock with explicit mappings into source audio, video, loops, and character-field histories.",
+        "Use shared decoding/rendering where practical and only the additional buffers needed by deliberate timing differences.",
+        "Define behavior for loading, underrun, seeking, repeated source intervals, and unavailable material.",
+        "Verify synchronization at selected word/gesture anchors and during input-driven changes, not solely at initial playback.",
+        "Bound memory/history use and provide a clear fallback when device capability cannot support the chosen configuration."
+      ],
+      "dependency_ids": [
+        "GHERE-030",
+        "GHERE-034"
+      ],
+      "deliverables": [
+        "Interactive transport and scheduler",
+        "Buffer and source-time mapping",
+        "Synchronization and recovery checks"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 43,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/43"
+      }
+    },
+    {
+      "id": "GHERE-036",
+      "epic": "E6",
+      "priority": "P3",
+      "status": "implementation_and_acceptance_review",
+      "title": "Verify mobile full-screen, pause/resume, and reduced motion",
+      "rationale": "The interactive work must remain watchable and controllable on a phone, including ordinary interruptions and motion preferences.",
+      "acceptance_criteria": [
+        "Present the artwork at the intended full-screen appearance while preserving source geometry or an explicitly selected crop policy.",
+        "Provide readable, reachable touch controls and a predictable start action for audio playback.",
+        "Handle pause/resume, orientation change, backgrounding, and interrupted playback without uncontrolled duplicate sound or desynchronized fields.",
+        "Offer reduced-motion behavior that retains the work through bounded or disabled deformation rather than merely hiding the artwork.",
+        "Test actual available target devices/browsers and report unsupported behavior honestly, including any full-screen limitation."
+      ],
+      "dependency_ids": [
+        "GHERE-034",
+        "GHERE-035"
+      ],
+      "deliverables": [
+        "Mobile presentation and controls",
+        "Pause/resume and reduced-motion behavior",
+        "Device/browser verification record"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 44,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/44"
+      }
+    },
+    {
+      "id": "GHERE-037",
+      "epic": "E6",
+      "priority": "P3",
+      "status": "implementation_and_acceptance_review",
+      "title": "Save presets, capture sessions, and provide a linear fallback",
+      "rationale": "Interesting audience-produced states should be recoverable, and the work needs a practical presentation when the interactive runtime cannot be used.",
+      "acceptance_criteria": [
+        "Save a preset or session record containing source/rule versions, parameters, interaction events, and timing sufficient to revisit the configuration.",
+        "Define whether capture produces a composition record, a rendered video, or both, and make that distinction visible.",
+        "Verify replay of a saved session or document any remaining nondeterministic stage.",
+        "Provide the finished linear edition or a captured session as a functional fallback with captions where applicable.",
+        "Do not claim public hosting, cross-device persistence, or recording capability unless those operations are actually implemented and checked."
+      ],
+      "dependency_ids": [
+        "GHERE-033",
+        "GHERE-036"
+      ],
+      "deliverables": [
+        "Preset and session format",
+        "Capture/replay function with verification",
+        "Linear fallback presentation"
+      ],
+      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "github_issue": {
+        "number": 45,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/45"
+      }
+    },
+    {
+      "id": "GHERE-038",
+      "epic": "E6",
+      "priority": "P3",
+      "status": "implementation_and_acceptance_review",
+      "title": "Plan and calibrate an installation with spatial audio",
+      "rationale": "Installation introduces a physical space, multiple listeners, and loudspeaker geometry that require venue-specific composition and testing.",
+      "acceptance_criteria": [
+        "Activate when a concrete installation context exists; identify display layout, loudspeaker positions, audience movement, and the intended listening region.",
+        "Map character/shared audio and visual regions into that actual configuration, with calibration for timing, level, and intelligibility.",
+        "Check multi-listener behavior, room reflections, leakage, and recovery during long-running playback.",
+        "Provide operator start/stop, a stable fallback loop, and a documented return to a known state after failure.",
+        "Record the physical setup and calibration so results are not generalized to untested rooms or playback systems."
+      ],
+      "dependency_ids": [
+        "GHERE-037"
+      ],
+      "deliverables": [
+        "Installation composition and equipment map",
+        "Spatial audio/display calibration record",
+        "Operator and recovery guide"
+      ],
+      "activation_condition": "Later optional edition. Activate when a real venue, installation setup, or concrete spatial-audio target is selected; it does not gate any linear or browser edition.",
+      "github_issue": {
+        "number": 46,
+        "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/46"
+      }
+    }
+  ],
+  "validation": {
+    "scope": "Planning structure only; no media implementation or listening result is implied.",
+    "task_count": 38,
+    "expected_ids_complete_and_unique": true,
+    "all_statuses_planned": true,
+    "dependency_references_resolve": true,
+    "dependency_graph_acyclic": true,
+    "pilot_independent_of_full_mix_and_advanced_rings": true,
+    "pilot_and_hard_boundary_linear_edition_independent_of_soft_spill_extension": true,
+    "linear_edition_independent_of_advanced_rings": true,
+    "optional_irreparable_line_task_excluded_from_hard_dependencies": true,
+    "task_counts_by_epic": {
+      "E0": 5,
+      "E1": 7,
+      "E2": 6,
+      "E3": 6,
+      "E4": 5,
+      "E5": 4,
+      "E6": 5
+    },
+    "task_counts_by_priority": {
+      "P0": 13,
+      "P1": 11,
+      "P2": 9,
+      "P3": 5
+    },
+    "one_valid_topological_order": [
+      "GHERE-001",
+      "GHERE-002",
+      "GHERE-003",
+      "GHERE-004",
+      "GHERE-005",
+      "GHERE-013",
+      "GHERE-014",
+      "GHERE-006",
+      "GHERE-016",
+      "GHERE-015",
+      "GHERE-007",
+      "GHERE-018",
+      "GHERE-008",
+      "GHERE-009",
+      "GHERE-019",
+      "GHERE-010",
+      "GHERE-011",
+      "GHERE-017",
+      "GHERE-020",
+      "GHERE-012",
+      "GHERE-022",
+      "GHERE-030",
+      "GHERE-021",
+      "GHERE-023",
+      "GHERE-024",
+      "GHERE-025",
+      "GHERE-031",
+      "GHERE-026",
+      "GHERE-027",
+      "GHERE-032",
+      "GHERE-028",
+      "GHERE-033",
+      "GHERE-029",
+      "GHERE-034",
+      "GHERE-035",
+      "GHERE-036",
+      "GHERE-037",
+      "GHERE-038"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    {
+      "path": "project_sources/02-2020-04-26-god-s-ears-second-draft.mp4",
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "bytes": 12636527
+    },
+    {
+      "path": "project_sources/01-God-s-Ears-First-Draft-May-21-2020.txt",
+      "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67",
+      "bytes": 2299
+    }
+  ],
+  "sketch_registration": {
+    "source_seconds": 10.2,
+    "correlation": 0.9996325244,
+    "footage_aperture_in_screenshot": [
+      140,
+      0,
+      1396,
+      706
+    ],
+    "marker_centers_x": [
+      144.5,
+      298.5,
+      454,
+      717,
+      925,
+      1146.5
+    ],
+    "method": "Grayscale normalized correlation at 5 fps, annotated columns and close UI excluded",
+    "precision": "0.2 s search interval; spatial alignment sufficient for fixed-field geometry"
+  },
+  "original_recordings": "No original recorder/camera tracks are accessible in this workspace. Current export is the bounded source path.",
+  "screenplay_names": "Unassigned; visual identities persist across views."
+}

@@ -1,0 +1,187 @@
+{
+  "repository": "4444J99/audiovisual-media-postproduction-system",
+  "epics": {
+    "E0": {
+      "number": 2,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/2"
+    },
+    "E1": {
+      "number": 3,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/3"
+    },
+    "E2": {
+      "number": 4,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/4"
+    },
+    "E3": {
+      "number": 5,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/5"
+    },
+    "E4": {
+      "number": 6,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/6"
+    },
+    "E5": {
+      "number": 7,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/7"
+    },
+    "E6": {
+      "number": 8,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/8"
+    }
+  },
+  "tasks": {
+    "GHERE-001": {
+      "number": 9,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/9"
+    },
+    "GHERE-002": {
+      "number": 10,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/10"
+    },
+    "GHERE-003": {
+      "number": 11,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/11"
+    },
+    "GHERE-004": {
+      "number": 12,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/12"
+    },
+    "GHERE-005": {
+      "number": 13,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/13"
+    },
+    "GHERE-006": {
+      "number": 14,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/14"
+    },
+    "GHERE-007": {
+      "number": 15,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/15"
+    },
+    "GHERE-008": {
+      "number": 16,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/16"
+    },
+    "GHERE-009": {
+      "number": 17,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/17"
+    },
+    "GHERE-010": {
+      "number": 18,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/18"
+    },
+    "GHERE-011": {
+      "number": 19,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/19"
+    },
+    "GHERE-012": {
+      "number": 20,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/20"
+    },
+    "GHERE-013": {
+      "number": 21,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/21"
+    },
+    "GHERE-014": {
+      "number": 22,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/22"
+    },
+    "GHERE-015": {
+      "number": 23,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/23"
+    },
+    "GHERE-016": {
+      "number": 24,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/24"
+    },
+    "GHERE-017": {
+      "number": 25,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/25"
+    },
+    "GHERE-018": {
+      "number": 26,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/26"
+    },
+    "GHERE-019": {
+      "number": 27,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/27"
+    },
+    "GHERE-020": {
+      "number": 28,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/28"
+    },
+    "GHERE-021": {
+      "number": 29,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/29"
+    },
+    "GHERE-022": {
+      "number": 30,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/30"
+    },
+    "GHERE-023": {
+      "number": 31,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/31"
+    },
+    "GHERE-024": {
+      "number": 32,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/32"
+    },
+    "GHERE-025": {
+      "number": 33,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/33"
+    },
+    "GHERE-026": {
+      "number": 34,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/34"
+    },
+    "GHERE-027": {
+      "number": 35,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/35"
+    },
+    "GHERE-028": {
+      "number": 36,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/36"
+    },
+    "GHERE-029": {
+      "number": 37,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/37"
+    },
+    "GHERE-030": {
+      "number": 38,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/38"
+    },
+    "GHERE-031": {
+      "number": 39,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/39"
+    },
+    "GHERE-032": {
+      "number": 40,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/40"
+    },
+    "GHERE-033": {
+      "number": 41,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/41"
+    },
+    "GHERE-034": {
+      "number": 42,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/42"
+    },
+    "GHERE-035": {
+      "number": 43,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/43"
+    },
+    "GHERE-036": {
+      "number": 44,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/44"
+    },
+    "GHERE-037": {
+      "number": 45,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/45"
+    },
+    "GHERE-038": {
+      "number": 46,
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/46"
+    }
+  }
+}

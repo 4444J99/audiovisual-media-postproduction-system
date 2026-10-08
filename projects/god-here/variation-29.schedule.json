@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "seed": 29,
+  "rules_version": "1.0",
+  "authored_reordering": true,
+  "text_verification": "provisional; no invented wording",
+  "events": [
+    {
+      "unit": "U01",
+      "source_start": 20.7,
+      "source_end": 28.5,
+      "output_start": 0.0,
+      "output_end": 7.8
+    },
+    {
+      "unit": "U04",
+      "source_start": 85.13333333333334,
+      "source_end": 88.23333333333333,
+      "output_start": 7.8,
+      "output_end": 10.9
+    },
+    {
+      "unit": "U05",
+      "source_start": 88.23333333333333,
+      "source_end": 95.0,
+      "output_start": 10.9,
+      "output_end": 17.666667
+    },
+    {
+      "unit": "U02",
+      "source_start": 48.0,
+      "source_end": 55.4,
+      "output_start": 17.666667,
+      "output_end": 25.066667
+    },
+    {
+      "unit": "U07",
+      "source_start": 101.1,
+      "source_end": 107.16666666666667,
+      "output_start": 25.066667,
+      "output_end": 31.133333
+    }
+  ],
+  "duration": 31.133333,
+  "output_sha256": "56d846e574dbea92b95d9eb01254b8a267c511ee521a5a6e630cb5a7bcd1756c"
+}

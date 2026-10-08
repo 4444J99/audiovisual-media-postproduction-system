@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23080808%22%2F%3E%3Cpath%20d%3D%22M5%206v20M10%206v20M16%206v20M22%206v20M27%206v20%22%20stroke%3D%22%23d8b58c%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>god-here · Five realities</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="stage">
+    <video id="source" playsinline preload="metadata" aria-label="God's Ears source-length dialogue workprint"></video>
+    <canvas id="picture" aria-label="Five independently composed regions of the recorded room"></canvas>
+    <div id="welcome"><p class="eyebrow">GOD-HERE · WORKPRINT 01</p><h1>Five realities.<br>One room.</h1><p>Stay with a character. Their reality intensifies.<br>Leave, and a trace remains.</p><button id="start">Enter the conversation</button><p class="small">Headphones recommended · dialogue repair under review</p></div>
+    <div id="toolbar">
+      <div class="row"><button id="play" aria-label="Play or pause">Play</button><input id="seek" type="range" min="0" max="112" step="0.033333" value="0" aria-label="Source time"><output id="clock">0:00</output><button id="fullscreen">Full screen</button><button id="controls" aria-expanded="false">Compose</button></div>
+      <div id="panel" hidden>
+        <div class="row" id="people" aria-label="Choose a character"><button data-person="P01">Striped shirt</button><button data-person="P02">Patterned shirt</button><button data-person="P03">Foreground profile</button><button data-person="P04">Cup / stove</button><button data-person="P05">Cap</button></div>
+        <div class="row"><label>Attention <input id="amount" type="range" min="0" max="1" step="0.05" value="0.7"></label><button id="release">Release attention</button><button id="reset">Reset score</button><label><input id="motion" type="checkbox"> Reduce motion</label><label><input id="original" type="checkbox"> Source picture</label></div>
+        <div class="row"><button id="save">Save score</button><label class="button">Load score<input id="load" type="file" accept="application/json" hidden></label><a id="linear" href="media/god-here-linear-workprint-01.mp4">Linear workprint</a><a href="review.html">Audio and excerpt comparisons</a></div>
+        <p id="status" role="status">Tap a region or select a performer. All voices remain in the shared recording.</p>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="player.js"></script>
+</body>
+</html>

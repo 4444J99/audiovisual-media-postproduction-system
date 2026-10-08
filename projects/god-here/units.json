@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "units": [
+    {
+      "id": "U01",
+      "start": 20.7,
+      "end": 28.5,
+      "role": "address-reversal",
+      "eligible": true,
+      "qualification": "source-addressable mixture; source speech and mouth stay paired; transcript/phrase edges unverified",
+      "text_status": "provisional, no caption assertion",
+      "allowed_next": [
+        "U02",
+        "U03",
+        "U04",
+        "U07"
+      ],
+      "terminal": false
+    },
+    {
+      "id": "U02",
+      "start": 48.0,
+      "end": 55.4,
+      "role": "receiving-question",
+      "eligible": true,
+      "qualification": "source-addressable mixture; source speech and mouth stay paired; transcript/phrase edges unverified",
+      "text_status": "provisional, no caption assertion",
+      "allowed_next": [
+        "U03",
+        "U05",
+        "U07"
+      ],
+      "terminal": false
+    },
+    {
+      "id": "U03",
+      "start": 55.4,
+      "end": 63.4,
+      "role": "correction",
+      "eligible": true,
+      "qualification": "source-addressable mixture; source speech and mouth stay paired; transcript/phrase edges unverified",
+      "text_status": "provisional, no caption assertion",
+      "allowed_next": [
+        "U01",
+        "U04",
+        "U07"
+      ],
+      "terminal": false
+    },
+    {
+      "id": "U04",
+      "start": 85.13333333333334,
+      "end": 88.23333333333333,
+      "role": "inbox",
+      "eligible": true,
+      "qualification": "source-addressable mixture; source speech and mouth stay paired; transcript/phrase edges unverified",
+      "text_status": "provisional, no caption assertion",
+      "allowed_next": [
+        "U05",
+        "U06",
+        "U07"
+      ],
+      "terminal": false
+    },
+    {
+      "id": "U05",
+      "start": 88.23333333333333,
+      "end": 95.0,
+      "role": "office",
+      "eligible": true,
+      "qualification": "source-addressable mixture; source speech and mouth stay paired; transcript/phrase edges unverified",
+      "text_status": "provisional, no caption assertion",
+      "allowed_next": [
+        "U06",
+        "U02",
+        "U07"
+      ],
+      "terminal": false
+    },
+    {
+      "id": "U06",
+      "start": 95.0,
+      "end": 100.8,
+      "role": "withdrawal",
+      "eligible": true,
+      "qualification": "source-addressable mixture; source speech and mouth stay paired; transcript/phrase edges unverified",
+      "text_status": "provisional, no caption assertion",
+      "allowed_next": [
+        "U04",
+        "U07"
+      ],
+      "terminal": false
+    },
+    {
+      "id": "U07",
+      "start": 101.1,
+      "end": 107.16666666666667,
+      "role": "final-question",
+      "eligible": true,
+      "qualification": "source-addressable mixture; source speech and mouth stay paired; transcript/phrase edges unverified",
+      "text_status": "provisional, no caption assertion",
+      "allowed_next": [
+        "U01",
+        "U02"
+      ],
+      "terminal": true
+    }
+  ]
+}

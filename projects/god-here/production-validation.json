@@ -1,0 +1,285 @@
+{
+  "pilot_source_start_frame": 2554,
+  "pilot_source_end_frame_exclusive": 3215,
+  "expected_pilot_frames": 661,
+  "candidate_measurements": {
+    "A": {
+      "wav": {
+        "input_i": -16.15,
+        "input_tp": -1.81,
+        "input_lra": 2.4,
+        "input_thresh": -26.29,
+        "output_i": -16.25,
+        "output_tp": -1.46,
+        "output_lra": 2.2,
+        "output_thresh": -26.4,
+        "normalization_type": "dynamic",
+        "target_offset": 0.25
+      },
+      "delivery": {
+        "input_i": -16.17,
+        "input_tp": -1.96,
+        "input_lra": 2.4,
+        "input_thresh": -26.32,
+        "output_i": -16.23,
+        "output_tp": -1.57,
+        "output_lra": 2.2,
+        "output_thresh": -26.41,
+        "normalization_type": "dynamic",
+        "target_offset": 0.23
+      }
+    },
+    "B": {
+      "wav": {
+        "input_i": -16.16,
+        "input_tp": -2.38,
+        "input_lra": 2.5,
+        "input_thresh": -26.52,
+        "output_i": -16.2,
+        "output_tp": -2.12,
+        "output_lra": 2.3,
+        "output_thresh": -26.63,
+        "normalization_type": "dynamic",
+        "target_offset": 0.2
+      },
+      "delivery": {
+        "input_i": -16.13,
+        "input_tp": -2.5,
+        "input_lra": 2.6,
+        "input_thresh": -26.53,
+        "output_i": -16.18,
+        "output_tp": -2.22,
+        "output_lra": 2.3,
+        "output_thresh": -26.63,
+        "normalization_type": "dynamic",
+        "target_offset": 0.18
+      }
+    },
+    "S": {
+      "wav": {
+        "input_i": -16.18,
+        "input_tp": -2.58,
+        "input_lra": 2.5,
+        "input_thresh": -26.59,
+        "output_i": -16.18,
+        "output_tp": -2.31,
+        "output_lra": 2.4,
+        "output_thresh": -26.67,
+        "normalization_type": "dynamic",
+        "target_offset": 0.18
+      },
+      "delivery": {
+        "input_i": -16.18,
+        "input_tp": -2.64,
+        "input_lra": 2.5,
+        "input_thresh": -26.61,
+        "output_i": -16.18,
+        "output_tp": -2.36,
+        "output_lra": 2.4,
+        "output_thresh": -26.67,
+        "normalization_type": "dynamic",
+        "target_offset": 0.18
+      }
+    },
+    "F": {
+      "wav": {
+        "input_i": -16.15,
+        "input_tp": -2.24,
+        "input_lra": 2.3,
+        "input_thresh": -26.45,
+        "output_i": -16.2,
+        "output_tp": -1.86,
+        "output_lra": 2.5,
+        "output_thresh": -26.51,
+        "normalization_type": "dynamic",
+        "target_offset": 0.2
+      },
+      "delivery": {
+        "input_i": -16.16,
+        "input_tp": -2.27,
+        "input_lra": 2.3,
+        "input_thresh": -26.47,
+        "output_i": -16.18,
+        "output_tp": -1.86,
+        "output_lra": 2.5,
+        "output_thresh": -26.51,
+        "normalization_type": "dynamic",
+        "target_offset": 0.18
+      }
+    }
+  },
+  "pilot_active_spread_lu": 0.05000000000000071,
+  "within_0_5_lu": true,
+  "waveform_alignment": [
+    {
+      "source_seconds": 8.5,
+      "lag_samples": 0
+    },
+    {
+      "source_seconds": 37,
+      "lag_samples": 0
+    },
+    {
+      "source_seconds": 58,
+      "lag_samples": 0
+    },
+    {
+      "source_seconds": 86,
+      "lag_samples": 0
+    },
+    {
+      "source_seconds": 104.5,
+      "lag_samples": 0
+    }
+  ],
+  "listening_acceptance": "pending",
+  "artist_acceptance": "pending",
+  "browser_device_test": "unavailable",
+  "outputs": [
+    {
+      "name": "dialogue-reference.mp4",
+      "sha256": "7efc7beab0905de8f95ab7bac416c621b79f580f52f0baea6af17a52e48a1dff",
+      "bytes": 13616094,
+      "duration": 112.0,
+      "frames": 3360,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed"
+    },
+    {
+      "name": "god-here-independent-layers.mp4",
+      "sha256": "934bd4a1561d4f4c5337f329a4b52acc33e511182dae2530cfbf74a516923cc2",
+      "bytes": 1459466,
+      "duration": 8.233333,
+      "frames": 247,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed"
+    },
+    {
+      "name": "god-here-linear-picture.mp4",
+      "sha256": "6ded015bebb447329161a449b1544bb2e251538764181d4b54949c9958131729",
+      "bytes": 16098363,
+      "duration": 112.0,
+      "frames": 3360,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed"
+    },
+    {
+      "name": "god-here-linear-workprint-01.mp4",
+      "sha256": "7f9fc24cde2cdfa5e45b1c65de6063cd7c9d5f18a1fc9726ff11ea117ec8601a",
+      "bytes": 16098420,
+      "duration": 112.0,
+      "frames": 3360,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed"
+    },
+    {
+      "name": "god-here-variation-17.mp4",
+      "sha256": "cdf02b0f31f93a86415ecfef8d04e73c887267b029d7257b259acaaf391aa5c2",
+      "bytes": 3813926,
+      "duration": 25.866667,
+      "frames": 776,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed",
+      "expected_frames": 776
+    },
+    {
+      "name": "god-here-variation-29.mp4",
+      "sha256": "56d846e574dbea92b95d9eb01254b8a267c511ee521a5a6e630cb5a7bcd1756c",
+      "bytes": 3917614,
+      "duration": 31.133333,
+      "frames": 934,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed",
+      "expected_frames": 934
+    },
+    {
+      "name": "god-here-variation-43.mp4",
+      "sha256": "f1667e1211c301c4441a3b0402c5717b411e3e0e0af3ed1c1957071ab5fd02d4",
+      "bytes": 4204246,
+      "duration": 33.833333,
+      "frames": 1015,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed",
+      "expected_frames": 1015
+    },
+    {
+      "name": "proof-A.mp4",
+      "sha256": "cee7601c7aa5bab879d45a03778d4c94798f8ae56709ec354d82280f1e6a7e50",
+      "bytes": 2968653,
+      "duration": 22.033333,
+      "frames": 661,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed"
+    },
+    {
+      "name": "proof-B.mp4",
+      "sha256": "091172dcfcb20ca8b8a63bb26cd10a7afa3cf20f7ab7d3cc474f25d15d133edf",
+      "bytes": 2969557,
+      "duration": 22.033333,
+      "frames": 661,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed"
+    },
+    {
+      "name": "proof-C.mp4",
+      "sha256": "b3bf46c62226483b2cfe0da46bc5b2e71167d0cfa197427f279e7f8ef39d3b1c",
+      "bytes": 3426733,
+      "duration": 22.033333,
+      "frames": 661,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed"
+    },
+    {
+      "name": "proof-D.mp4",
+      "sha256": "f78b45d88f3a53f1c33d67aa92295ebdd5b036cb76a62e106ecbc8287682e2f5",
+      "bytes": 3426352,
+      "duration": 22.033333,
+      "frames": 661,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "full_decode": "passed"
+    }
+  ],
+  "seeded_schedule_reproduction": {
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "all_events_reproduced": true,
+    "all_output_frame_counts_exact": true,
+    "rule_version": "1.0"
+  }
+}

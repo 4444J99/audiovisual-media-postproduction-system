@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0",
+  "project_id": "god-here",
+  "source_work_title": "God's Ears",
+  "artifact_kind": "development-plan-source-manifest",
+  "plan_revision_utc": "2026-10-08",
+  "status": {
+    "plan_created": true,
+    "new_restoration_completed": false,
+    "subjective_audio_review_completed": false,
+    "new_field_renderer_completed": false,
+    "new_artwork_rendered": false,
+    "issues_published": false
+  },
+  "artist_direction": {
+    "objective": "Create a new audiovisual iteration through processing, engineering, AI, and related methods.",
+    "latest_additions": [
+      "Plan all prior directions",
+      "Improve the audio drastically",
+      "Use the sketch boundaries for character-specific distortions of reality"
+    ]
+  },
+  "sources": [
+    {
+      "id": "SRC-001",
+      "original_filename": "God\u2018s Ears (First Draft) May 21 2020.txt",
+      "bytes": 2299,
+      "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67",
+      "included_in_this_archive": false,
+      "archive_path": null,
+      "status": "supplied-source-unchanged"
+    },
+    {
+      "id": "SRC-002",
+      "original_filename": "2020 04 26   god's ears   second draft.mp4",
+      "bytes": 12636527,
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "included_in_this_archive": false,
+      "archive_path": null,
+      "status": "supplied-source-unchanged"
+    },
+    {
+      "id": "SRC-003",
+      "original_filename": "IMG_6971.jpeg",
+      "bytes": 192296,
+      "sha256": "d5deb50824888de14e92d2dde9077643dc405c7c1a1e2121848874f38dffd7f4",
+      "included_in_this_archive": true,
+      "archive_path": "sources/IMG_6971.jpeg",
+      "status": "supplied-source-unchanged"
+    }
+  ],
+  "source_chronology": {
+    "text_heading": "First Draft / May 21 2020",
+    "video_filename_label": "second draft / 2020 04 26",
+    "video_creation_tag": "2020-04-26T20:42:57.000000Z",
+    "relationship_status": "unresolved; media creation tag is not independently verified capture/composition chronology"
+  },
+  "video_principal_shots": [
+    {
+      "id": "SHOT-01",
+      "start_s": 5.033333333,
+      "end_s": 33.4,
+      "view": "A",
+      "status": "cut_detected_and_view_inspected"
+    },
+    {
+      "id": "SHOT-02",
+      "start_s": 33.4,
+      "end_s": 47.9,
+      "view": "B",
+      "status": "cut_detected_and_view_inspected"
+    },
+    {
+      "id": "SHOT-03",
+      "start_s": 47.9,
+      "end_s": 53.233333333,
+      "view": "A",
+      "status": "cut_detected_and_view_inspected"
+    },
+    {
+      "id": "SHOT-04",
+      "start_s": 53.233333333,
+      "end_s": 88.233333333,
+      "view": "B",
+      "status": "cut_detected_and_view_inspected"
+    },
+    {
+      "id": "SHOT-05",
+      "start_s": 88.233333333,
+      "end_s": 95,
+      "view": "A",
+      "status": "cut_detected_and_view_inspected"
+    },
+    {
+      "id": "SHOT-06",
+      "start_s": 95,
+      "end_s": 107.166666667,
+      "view": "B",
+      "status": "cut_detected_and_view_inspected"
+    }
+  ],
+  "shot_map_note": "These six cut intervals were measured in the previous source review. The current field example uses two unbound layout placeholders; production must register the sketch, verify performer identity across views, and instantiate each source interval.",
+  "pilot_candidate": {
+    "source_id": "SRC-002",
+    "start_seconds": 85.133333333,
+    "end_seconds": 107.166666667,
+    "duration_seconds": 22.033333334,
+    "status": "provisional; listening and word-edge checks required",
+    "comparison_versions": [
+      "A: original picture and original audio at comparison level",
+      "B: original picture and selected restored audio",
+      "C: five fields with the same restored audio",
+      "D: same fields and restored audio with expressive returns"
+    ]
+  },
+  "previous_study": {
+    "archive_filename": "god-here-iteration-02.zip",
+    "workprint_filename": "god-here-reception-study-01.mp4",
+    "workprint_sha256": "d5d1ce43fffed6c95969a449659b947ca259257acec8a1eed6abbd5ffb701d25",
+    "duration_seconds": 41.2,
+    "status": "earlier experimental workprint; no audio restoration or five-field implementation",
+    "originals_and_workprint_included_in_current_archive": false,
+    "reference_data_directory": "previous-study"
+  },
+  "provisional_transcript": {
+    "archive_path": "previous-study/local-whisper-draft.json",
+    "source_id": "SRC-002",
+    "method": "local faster-whisper tiny.en",
+    "status": "unverified automatic transcript",
+    "uses_script_as_prompt": false
+  },
+  "audio_measurements": "audio-numerical-diagnostics.json",
+  "field_specification": "character-fields-spec.md",
+  "field_configuration": "character-fields.example.json",
+  "field_schema": "composition.schema.json",
+  "backlog": "backlog.json",
+  "primary_references": [
+    {
+      "id": "R1",
+      "url": "https://github.com/Rikorose/DeepFilterNet"
+    },
+    {
+      "id": "R2",
+      "url": "https://docs.izotope.com/rx12/en/index-en.html"
+    },
+    {
+      "id": "R3",
+      "url": "https://github.com/pyannote/pyannote-audio"
+    },
+    {
+      "id": "R4",
+      "url": "https://github.com/facebookresearch/sam2"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "origin": "Shared repaired mixture, shot-local delays",
+  "individual_voice_isolation": false,
+  "global_trim_db": 0,
+  "measurement": {
+    "input_i": -16.4,
+    "input_tp": -2.33,
+    "input_lra": 4.7,
+    "input_thresh": -26.97,
+    "output_i": -16.17,
+    "output_tp": -1.64,
+    "output_lra": 4.1,
+    "output_thresh": -26.73,
+    "normalization_type": "dynamic",
+    "target_offset": 0.17
+  },
+  "listening_acceptance": "pending"
+}

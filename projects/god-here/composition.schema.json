@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Source-addressable five-region composition",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "project",
+    "fps",
+    "performers",
+    "layouts",
+    "shots",
+    "cues",
+    "source_sha256"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "fps": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "performers": {
+      "type": "object",
+      "minProperties": 5,
+      "maxProperties": 5
+    },
+    "shots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "start",
+          "end",
+          "layout"
+        ]
+      }
+    },
+    "cues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "performer",
+          "start",
+          "end",
+          "intensity"
+        ],
+        "properties": {
+          "intensity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  },
+  "description": "Structural interchange schema; amp.core.validate additionally checks interval bounds, unique performer coverage, nonoverlapping fields, and buffer bounds."
+}

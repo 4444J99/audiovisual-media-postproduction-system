@@ -1,0 +1,568 @@
+{
+  "schema_version": "1.0",
+  "project": "god-here",
+  "fps": 30,
+  "history_frames": 20,
+  "status": "production workprint; acceptance pending",
+  "performers": {
+    "P01": {
+      "style": "pressure",
+      "description": "Striped shirt, glasses, standing",
+      "screenplay_name": null,
+      "assignment_status": "authored trial"
+    },
+    "P02": {
+      "style": "lag",
+      "description": "Bald, patterned shirt, seated",
+      "screenplay_name": null,
+      "assignment_status": "authored trial"
+    },
+    "P03": {
+      "style": "refraction",
+      "description": "Gray shirt, prominent bearded foreground profile",
+      "screenplay_name": null,
+      "assignment_status": "authored trial"
+    },
+    "P04": {
+      "style": "residue",
+      "description": "Beard, plain dark shirt, at stove / cup opposite camera",
+      "screenplay_name": null,
+      "assignment_status": "authored trial"
+    },
+    "P05": {
+      "style": "erosion",
+      "description": "Cap, dark graphic shirt",
+      "screenplay_name": null,
+      "assignment_status": "authored trial"
+    }
+  },
+  "layouts": {
+    "A": {
+      "registered": true,
+      "registration_method": "Sketch aperture registered against source at 10.2 s; correlation 0.99963 excluding colored strokes/UI",
+      "artist_acceptance": "pending",
+      "fields": [
+        {
+          "performer": "P01",
+          "span": [
+            0.0036,
+            0.1262
+          ]
+        },
+        {
+          "performer": "P02",
+          "span": [
+            0.1262,
+            0.25
+          ]
+        },
+        {
+          "performer": "P03",
+          "span": [
+            0.25,
+            0.4594
+          ]
+        },
+        {
+          "performer": "P04",
+          "span": [
+            0.4594,
+            0.625
+          ]
+        },
+        {
+          "performer": "P05",
+          "span": [
+            0.625,
+            0.8014
+          ]
+        }
+      ]
+    },
+    "B": {
+      "registered": true,
+      "registration_method": "Manually authored source-view partition; correspondence inspected against clothing/faces; no sketch supplied for B",
+      "artist_acceptance": "pending",
+      "fields": [
+        {
+          "performer": "P04",
+          "span": [
+            0.0036,
+            0.13
+          ]
+        },
+        {
+          "performer": "P05",
+          "span": [
+            0.13,
+            0.45
+          ]
+        },
+        {
+          "performer": "P01",
+          "span": [
+            0.45,
+            0.59
+          ]
+        },
+        {
+          "performer": "P02",
+          "span": [
+            0.59,
+            0.79
+          ]
+        },
+        {
+          "performer": "P03",
+          "span": [
+            0.79,
+            0.996
+          ]
+        }
+      ]
+    }
+  },
+  "shots": [
+    {
+      "id": "SHOT-01",
+      "start": 5.033333333333333,
+      "end": 33.4,
+      "layout": "A"
+    },
+    {
+      "id": "SHOT-02",
+      "start": 33.4,
+      "end": 47.9,
+      "layout": "B"
+    },
+    {
+      "id": "SHOT-03",
+      "start": 47.9,
+      "end": 53.233333333333334,
+      "layout": "A"
+    },
+    {
+      "id": "SHOT-04",
+      "start": 53.233333333333334,
+      "end": 88.23333333333333,
+      "layout": "B"
+    },
+    {
+      "id": "SHOT-05",
+      "start": 88.23333333333333,
+      "end": 95.0,
+      "layout": "A"
+    },
+    {
+      "id": "SHOT-06",
+      "start": 95.0,
+      "end": 107.16666666666667,
+      "layout": "B"
+    }
+  ],
+  "cues": [
+    {
+      "id": "C01",
+      "performer": "P01",
+      "start": 21,
+      "end": 28,
+      "intensity": 0.55,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "direction-of-address",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C02",
+      "performer": "P03",
+      "start": 24.5,
+      "end": 29.5,
+      "intensity": 0.55,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "mouth/ear reversal hypothesis",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C03",
+      "performer": "P05",
+      "start": 32.5,
+      "end": 40.5,
+      "intensity": 0.4,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "withdrawal hypothesis",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C04",
+      "performer": "P02",
+      "start": 38,
+      "end": 44,
+      "intensity": 0.55,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "silent reception trial",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C05",
+      "performer": "P04",
+      "start": 43,
+      "end": 47.7,
+      "intensity": 0.45,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "room retains direction",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C06",
+      "performer": "P01",
+      "start": 53.3,
+      "end": 63.3,
+      "intensity": 0.6,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "correction pressure",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C07",
+      "performer": "P02",
+      "start": 54,
+      "end": 57.5,
+      "intensity": 0.55,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "staggered recurrence",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C08",
+      "performer": "P03",
+      "start": 65.9,
+      "end": 74.2,
+      "intensity": 0.25,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "perspective",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C09",
+      "performer": "P04",
+      "start": 77.4,
+      "end": 85.2,
+      "intensity": 0.55,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "instruction traces",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C10",
+      "performer": "P05",
+      "start": 85.4,
+      "end": 88.2,
+      "intensity": 0.78,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "inbox contraction",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C11",
+      "performer": "P01",
+      "start": 85.4,
+      "end": 91.7,
+      "intensity": 0.45,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "silent listening response, timing unverified",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C12",
+      "performer": "P03",
+      "start": 86,
+      "end": 89.5,
+      "intensity": 0.4,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "secondary refraction",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C13",
+      "performer": "P04",
+      "start": 88.3,
+      "end": 94.8,
+      "intensity": 0.6,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "out-of-office residue",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C14",
+      "performer": "P02",
+      "start": 90,
+      "end": 94.9,
+      "intensity": 0.7,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "reply lags",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C15",
+      "performer": "P05",
+      "start": 96.5,
+      "end": 100.8,
+      "intensity": 0.75,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "absence while voice remains",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C16",
+      "performer": "P01",
+      "start": 101.1,
+      "end": 106.2,
+      "intensity": 0.65,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "correction returns",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C17",
+      "performer": "P02",
+      "start": 101.7,
+      "end": 104.2,
+      "intensity": 0.7,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "second question delay",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C18",
+      "performer": "P03",
+      "start": 103.2,
+      "end": 106.8,
+      "intensity": 0.55,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "inversion",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C19",
+      "performer": "P04",
+      "start": 104.4,
+      "end": 107.1,
+      "intensity": 0.6,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "closing residue",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    },
+    {
+      "id": "C20",
+      "performer": "P05",
+      "start": 105.2,
+      "end": 107.1,
+      "intensity": 0.3,
+      "attack": 0.35,
+      "release": 0.65,
+      "anchor": "recovery remains partial",
+      "anchor_status": "authored interval using provisional transcript and source picture; wording not certified"
+    }
+  ],
+  "spills": [
+    {
+      "start": 97.5,
+      "end": 100.8,
+      "intensity": 0.55,
+      "attack": 0.8,
+      "release": 0.8,
+      "box": [
+        0.8014,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "view": "A",
+      "meaning": "Authored transfer into shared room; optional variant only"
+    }
+  ],
+  "typography": [
+    {
+      "start": 83,
+      "end": 85.1,
+      "performer": "P04",
+      "text": "RECEIVE",
+      "provenance": "newly authored visual text"
+    },
+    {
+      "start": 85.5,
+      "end": 88,
+      "performer": "P05",
+      "text": "CLOSED",
+      "provenance": "newly authored visual text"
+    },
+    {
+      "start": 97.5,
+      "end": 100.3,
+      "performer": "P05",
+      "text": "OUT",
+      "provenance": "newly authored visual text"
+    },
+    {
+      "start": 104.4,
+      "end": 106.8,
+      "performer": "P01",
+      "text": "?",
+      "provenance": "newly authored visual text"
+    }
+  ],
+  "layers": [
+    {
+      "id": "gesture-P03-arm",
+      "kind": "gesture",
+      "view": "B",
+      "start": 85.5,
+      "end": 88.1,
+      "delay_frames": 8,
+      "mask_origin": "manual polygon interpolation; estimate, not AI segmentation",
+      "lip_sync": "excludes face; arm-only intentional 0.267 s delay",
+      "keyframes": [
+        {
+          "time": 85.5,
+          "polygon": [
+            [
+              0.66,
+              0.66
+            ],
+            [
+              0.71,
+              0.65
+            ],
+            [
+              0.9,
+              0.6
+            ],
+            [
+              0.92,
+              0.66
+            ],
+            [
+              0.78,
+              0.73
+            ],
+            [
+              0.66,
+              0.72
+            ]
+          ]
+        },
+        {
+          "time": 87,
+          "polygon": [
+            [
+              0.66,
+              0.66
+            ],
+            [
+              0.72,
+              0.64
+            ],
+            [
+              0.91,
+              0.59
+            ],
+            [
+              0.93,
+              0.67
+            ],
+            [
+              0.79,
+              0.73
+            ],
+            [
+              0.66,
+              0.72
+            ]
+          ]
+        },
+        {
+          "time": 88.1,
+          "polygon": [
+            [
+              0.66,
+              0.68
+            ],
+            [
+              0.72,
+              0.66
+            ],
+            [
+              0.91,
+              0.61
+            ],
+            [
+              0.93,
+              0.68
+            ],
+            [
+              0.79,
+              0.75
+            ],
+            [
+              0.66,
+              0.74
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wall-blueprint",
+      "kind": "surface",
+      "view": "B",
+      "start": 80,
+      "end": 85.1,
+      "delay_frames": 0,
+      "mask_origin": "manually authored visible wall polygon",
+      "depth": "planar composition, no measured depth or hidden background",
+      "keyframes": [
+        {
+          "time": 80,
+          "polygon": [
+            [
+              0.6,
+              0.03
+            ],
+            [
+              0.81,
+              0.03
+            ],
+            [
+              0.81,
+              0.23
+            ],
+            [
+              0.6,
+              0.23
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "score_version": "1.0",
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225"
+}

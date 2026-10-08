@@ -1,0 +1,176 @@
+{
+  "sample_rate": 48000,
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "active_speech_definition": "Union of provisional automatic transcript intervals; an evaluation mask, not certified VAD",
+  "common_active_target_lufs": -16.5,
+  "latency_samples": 0,
+  "latency_basis": "STFT reconstruction retains sample count; no offset introduced by slicing",
+  "listening_acceptance": "pending",
+  "provisional_workprint_choice": "B",
+  "candidates": {
+    "A": {
+      "gain_db": 0.5100000000000016,
+      "before_active": {
+        "input_i": -17.01,
+        "input_tp": -2.32,
+        "input_lra": 2.8,
+        "input_thresh": -27.13,
+        "output_i": -16.29,
+        "output_tp": -1.25,
+        "output_lra": 2.6,
+        "output_thresh": -26.39,
+        "normalization_type": "dynamic",
+        "target_offset": 0.29
+      },
+      "after_active": {
+        "input_i": -16.5,
+        "input_tp": -1.81,
+        "input_lra": 2.8,
+        "input_thresh": -26.62,
+        "output_i": -16.29,
+        "output_tp": -1.25,
+        "output_lra": 2.6,
+        "output_thresh": -26.39,
+        "normalization_type": "dynamic",
+        "target_offset": 0.29
+      },
+      "full_program": {
+        "input_i": -16.61,
+        "input_tp": -1.81,
+        "input_lra": 4.3,
+        "input_thresh": -26.88,
+        "output_i": -16.27,
+        "output_tp": -1.0,
+        "output_lra": 4.0,
+        "output_thresh": -26.51,
+        "normalization_type": "dynamic",
+        "target_offset": 0.27
+      },
+      "samples": 5376627,
+      "sha256": "b3855324d08e3da2064dd301c7ad5a5cb0c86c49b7585d7665af6516cce59852"
+    },
+    "B": {
+      "gain_db": 0.6999999999999993,
+      "before_active": {
+        "input_i": -17.2,
+        "input_tp": -2.99,
+        "input_lra": 2.9,
+        "input_thresh": -27.45,
+        "output_i": -16.22,
+        "output_tp": -1.73,
+        "output_lra": 2.7,
+        "output_thresh": -26.47,
+        "normalization_type": "dynamic",
+        "target_offset": 0.22
+      },
+      "after_active": {
+        "input_i": -16.5,
+        "input_tp": -2.29,
+        "input_lra": 2.9,
+        "input_thresh": -26.75,
+        "output_i": -16.22,
+        "output_tp": -1.73,
+        "output_lra": 2.7,
+        "output_thresh": -26.47,
+        "normalization_type": "dynamic",
+        "target_offset": 0.22
+      },
+      "full_program": {
+        "input_i": -16.41,
+        "input_tp": -2.29,
+        "input_lra": 4.7,
+        "input_thresh": -26.98,
+        "output_i": -16.17,
+        "output_tp": -1.57,
+        "output_lra": 4.2,
+        "output_thresh": -26.74,
+        "normalization_type": "dynamic",
+        "target_offset": 0.17
+      },
+      "samples": 5376627,
+      "sha256": "129907ef32fb769c33a0290dea504675882b2b411e93f35afa009db9cc998042"
+    },
+    "S": {
+      "gain_db": 0.8299999999999983,
+      "before_active": {
+        "input_i": -17.33,
+        "input_tp": -3.15,
+        "input_lra": 2.9,
+        "input_thresh": -27.6,
+        "output_i": -16.2,
+        "output_tp": -1.78,
+        "output_lra": 2.7,
+        "output_thresh": -26.48,
+        "normalization_type": "dynamic",
+        "target_offset": 0.2
+      },
+      "after_active": {
+        "input_i": -16.5,
+        "input_tp": -2.32,
+        "input_lra": 2.9,
+        "input_thresh": -26.77,
+        "output_i": -16.2,
+        "output_tp": -1.78,
+        "output_lra": 2.7,
+        "output_thresh": -26.48,
+        "normalization_type": "dynamic",
+        "target_offset": 0.2
+      },
+      "full_program": {
+        "input_i": -16.35,
+        "input_tp": -2.32,
+        "input_lra": 4.9,
+        "input_thresh": -26.98,
+        "output_i": -16.17,
+        "output_tp": -1.77,
+        "output_lra": 4.2,
+        "output_thresh": -26.81,
+        "normalization_type": "dynamic",
+        "target_offset": 0.17
+      },
+      "samples": 5376627,
+      "sha256": "6af86334e34ce39525fcb66872c6f85329a502a51868d2f0832df06bb014e053"
+    },
+    "F": {
+      "gain_db": 0.5100000000000016,
+      "before_active": {
+        "input_i": -17.01,
+        "input_tp": -2.62,
+        "input_lra": 2.9,
+        "input_thresh": -27.18,
+        "output_i": -16.25,
+        "output_tp": -1.56,
+        "output_lra": 2.6,
+        "output_thresh": -26.42,
+        "normalization_type": "dynamic",
+        "target_offset": 0.25
+      },
+      "after_active": {
+        "input_i": -16.49,
+        "input_tp": -2.11,
+        "input_lra": 2.9,
+        "input_thresh": -26.67,
+        "output_i": -16.25,
+        "output_tp": -1.56,
+        "output_lra": 2.6,
+        "output_thresh": -26.42,
+        "normalization_type": "dynamic",
+        "target_offset": 0.25
+      },
+      "full_program": {
+        "input_i": -16.58,
+        "input_tp": -2.11,
+        "input_lra": 4.5,
+        "input_thresh": -26.97,
+        "output_i": -16.24,
+        "output_tp": -1.22,
+        "output_lra": 4.0,
+        "output_thresh": -26.59,
+        "normalization_type": "dynamic",
+        "target_offset": 0.24
+      },
+      "samples": 5376627,
+      "sha256": "2466bf794cbc8f33b9add16a116b9afbc2aba9aef7811b8a6c376b4cd8c8260b"
+    }
+  }
+}
