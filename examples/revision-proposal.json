@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "proposal_id": "illustrative-note-001",
+  "project_id": "synthetic-fixture",
+  "status": "proposed",
+  "execution_allowed": false,
+  "creative_note": "Make the reply feel more reluctant, and bring attention to the listener before the answer.",
+  "intended_change": "Compare a longer pre-reply interval and a tracked listener emphasis without changing the spoken words. This is illustrative, not a directive for the source film.",
+  "targets": [
+    {
+      "id": "reply-window",
+      "source_id": "unbound-synthetic-fixture-01",
+      "source_status": "unverified",
+      "start_tick": 300,
+      "end_tick": 390,
+      "ticks_per_second": {
+        "numerator": 30,
+        "denominator": 1
+      }
+    }
+  ],
+  "constraints": [
+    "Do not change the performed words.",
+    "Do not infer that slower delivery necessarily feels reluctant.",
+    "This fixture is not bound to media; no operation may execute.",
+    "A crop or generated pixel is not proof of recovered source detail."
+  ],
+  "operations": [
+    {
+      "id": "timing-option",
+      "kind": "dialogue_timing",
+      "target_id": "reply-window",
+      "depends_on": [],
+      "implementation_status": "planned",
+      "parameters": {
+        "candidate_pause_extension_ticks": 6,
+        "compare_with_unchanged_reference": true
+      }
+    },
+    {
+      "id": "listener-emphasis",
+      "kind": "tracked_reframe",
+      "target_id": "reply-window",
+      "depends_on": [
+        "timing-option"
+      ],
+      "implementation_status": "planned",
+      "parameters": {
+        "tracked_entity": "listener-to-be-verified",
+        "framing": "authored-close-up",
+        "track_status": "unavailable"
+      }
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "accepted_by": null,
+    "criteria": [
+      "Does the result feel more reluctant rather than simply slower?",
+      "Are original words, reaction continuity, and intended synchronization preserved?",
+      "Does the moving close-up remain temporally coherent?"
+    ]
+  }
+}
