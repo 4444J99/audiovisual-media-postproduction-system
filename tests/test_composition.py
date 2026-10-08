@@ -40,6 +40,8 @@ class CompositionTests(unittest.TestCase):
         cfg["layouts"]["B"]["registered"] = False
         self.assertTrue(np.array_equal(composite(self.image, self.history, cfg, 40), self.image))
         self.assertTrue(np.array_equal(composite(self.image, self.history, cfg, 3), self.image))
+        cfg["shots"][1]["layout"] = "unavailable"
+        self.assertTrue(np.array_equal(composite(self.image, self.history, cfg, 40), self.image))
 
     def test_cut_retains_identity_with_different_position(self):
         a = CONFIG["layouts"]["A"]["fields"]

@@ -160,8 +160,8 @@ def composite(image, history, config, t, *, mode="hard", overrides=None, layers=
     shot = shot_at(config, t)
     if not shot:
         return image.copy()
-    layout = config["layouts"][shot["layout"]]
-    if not layout.get("registered", False):
+    layout = config["layouts"].get(shot["layout"])
+    if not layout or not layout.get("registered", False):
         return image.copy()
     out = image.copy()
     w, h = image.size

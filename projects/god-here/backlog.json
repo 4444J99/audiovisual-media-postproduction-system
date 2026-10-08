@@ -94,7 +94,7 @@
       "id": "GHERE-001",
       "epic": "E0",
       "priority": "P0",
-      "status": "implementation_and_acceptance_review",
+      "status": "completed",
       "title": "Inventory sources and preserve provenance",
       "rationale": "The source film, script, sketch, and earlier study have different evidentiary roles. The new edition needs traceable inputs without changing the originals or silently reconciling their version dates.",
       "acceptance_criteria": [
@@ -108,7 +108,7 @@
         "Source inventory and provenance manifest",
         "Read-only source references and derivative naming convention"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 9,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/9"
@@ -118,7 +118,7 @@
       "id": "GHERE-002",
       "epic": "E0",
       "priority": "P1",
-      "status": "implementation_and_acceptance_review",
+      "status": "completed",
       "title": "Locate original audio and production recordings",
       "rationale": "Original recordings may contain recoverable clarity absent from the edited MP4. Their discovery should improve the production path without preventing an immediate MP4-based pilot.",
       "acceptance_criteria": [
@@ -160,7 +160,7 @@
         "Performed-dialogue transcript with verification status",
         "Source word and phrase cue table"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 11,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/11"
@@ -188,7 +188,7 @@
         "Registered five-field reference overlays",
         "Unverified-layout fallback record"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 12,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/12"
@@ -216,7 +216,7 @@
         "Audio benchmark excerpt list",
         "A/B/C/D comparison specification"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 13,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/13"
@@ -243,7 +243,7 @@
         "Restoration comparison rubric",
         "Channel inspection notes"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 14,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/14"
@@ -271,7 +271,7 @@
         "Processing recipes and latency record",
         "Candidate measurement table"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 15,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/15"
@@ -298,7 +298,7 @@
         "Restoration comparison decision record",
         "Documented residual audio limitations"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 16,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/16"
@@ -327,7 +327,7 @@
         "Full-film restoration recipe and sync report",
         "Residual problem passage list"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 17,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/17"
@@ -355,7 +355,7 @@
         "Usable speaker-focused layers or documented mix fallback",
         "Ambience reference and continuity notes"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 18,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/18"
@@ -411,7 +411,7 @@
         "Accepted clean dialogue and qualified layer set",
         "Remaining limitations and conditional gate record"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 20,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/20"
@@ -421,7 +421,7 @@
       "id": "GHERE-013",
       "epic": "E2",
       "priority": "P0",
-      "status": "implementation_and_acceptance_review",
+      "status": "completed",
       "title": "Implement a fixed-region compositor and composition schema",
       "rationale": "Five local transformations can begin as masks over one source frame. The first proof does not need five independent media players or AI person segmentation.",
       "acceptance_criteria": [
@@ -440,7 +440,7 @@
         "Validated composition schema",
         "Neutral and single-field diagnostic renders"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 21,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/21"
@@ -468,7 +468,7 @@
         "Parameter limits and baseline states",
         "Creative interpretation uncertainty notes"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 22,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/22"
@@ -498,7 +498,7 @@
         "Event-to-source cue mapping",
         "Neutral and reaction interval annotations"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 23,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/23"
@@ -527,7 +527,7 @@
         "Cross-cut diagnostic render",
         "Temporal source mapping record"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 24,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/24"
@@ -567,7 +567,7 @@
       "id": "GHERE-018",
       "epic": "E2",
       "priority": "P0",
-      "status": "implementation_and_acceptance_review",
+      "status": "completed",
       "title": "Verify neutral image, shared room, and effect containment",
       "rationale": "The room remaining to the right of B05 is part of the original image, not a sixth character or an extension automatically assigned to the nearest field.",
       "acceptance_criteria": [
@@ -586,7 +586,7 @@
         "Shared-room routing and mask coverage record",
         "Pilot-ready field configuration"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 26,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/26"
@@ -618,7 +618,7 @@
         "Pilot expressive-audio recipe and cue map",
         "Combined-proof evaluation record"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 27,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/27"
@@ -647,7 +647,7 @@
         "Duration and source-coverage decision",
         "Bounded production list for the linear edition"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 28,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/28"
@@ -676,7 +676,7 @@
         "Creative mix and independently adjustable layers",
         "Speech-intelligibility comparison notes"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 29,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/29"
@@ -706,7 +706,7 @@
         "Timed language-to-image cues",
         "Integration or omission decision"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 30,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/30"
@@ -738,7 +738,7 @@
         "Reproduction recipe and source/output mapping",
         "Full-duration composition review notes"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 31,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/31"
@@ -767,7 +767,7 @@
         "Caption file and readable transcript",
         "Final encode QC and release notes"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 32,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/32"
@@ -796,7 +796,7 @@
         "Model/correction provenance",
         "Approved independent elements or field fallback"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 33,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/33"
@@ -824,7 +824,7 @@
         "Occlusion/registration diagnostics",
         "Per-shot environment fallback rules"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 34,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/34"
@@ -854,7 +854,7 @@
         "Independent-timing study",
         "Lip-sync anchor and deliberate-offset record"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 35,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/35"
@@ -882,7 +882,7 @@
         "Generation and compositing record",
         "Comparison and selection notes"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 36,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/36"
@@ -912,7 +912,7 @@
         "Fallback map and integration recipe",
         "Variant comparison/QC record"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 37,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/37"
@@ -942,7 +942,7 @@
         "Unit reference and interval validation",
         "Optional cache policy"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 38,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/38"
@@ -971,7 +971,7 @@
         "Composition schedule generator",
         "Validation and fixed-score selection"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 39,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/39"
@@ -999,7 +999,7 @@
         "Seeds, schedules, and cue graphs",
         "Reproduction check record"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 40,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/40"
@@ -1028,7 +1028,7 @@
         "Selected fixed score or targeted rule revision",
         "Selection and subsequent-edit provenance"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 41,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/41"
@@ -1056,7 +1056,7 @@
         "Audience input-to-composition examples",
         "Neutral and inactivity behavior"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 42,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/42"
@@ -1085,7 +1085,7 @@
         "Buffer and source-time mapping",
         "Synchronization and recovery checks"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 43,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/43"
@@ -1114,7 +1114,7 @@
         "Pause/resume and reduced-motion behavior",
         "Device/browser verification record"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 44,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/44"
@@ -1143,7 +1143,7 @@
         "Capture/replay function with verification",
         "Linear fallback presentation"
       ],
-      "activation_condition": "Scheduled within its epic; no work is represented as executed by this backlog.",
+      "activation_condition": "Use the implemented production mechanisms and listed evidence; verify this task's outstanding acceptance criteria before closing.",
       "github_issue": {
         "number": 45,
         "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/45"
@@ -1179,10 +1179,9 @@
     }
   ],
   "validation": {
-    "scope": "Planning structure only; no media implementation or listening result is implied.",
+    "scope": "Backlog structure; actual task completion is recorded per task and in live issues.",
     "task_count": 38,
     "expected_ids_complete_and_unique": true,
-    "all_statuses_planned": true,
     "dependency_references_resolve": true,
     "dependency_graph_acyclic": true,
     "pilot_independent_of_full_mix_and_advanced_rings": true,
@@ -1243,6 +1242,8 @@
       "GHERE-036",
       "GHERE-037",
       "GHERE-038"
-    ]
+    ],
+    "completed_task_count": 4,
+    "remaining_acceptance_task_count": 34
   }
 }

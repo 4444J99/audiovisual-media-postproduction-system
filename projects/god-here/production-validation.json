@@ -281,5 +281,11 @@
     "all_events_reproduced": true,
     "all_output_frame_counts_exact": true,
     "rule_version": "1.0"
+  },
+  "encoded_containment_comparison": {
+    "shared_room_encoded_mae_8bit": 0.9481384220354808,
+    "right_region_interior_start_x": 1042,
+    "encoding": "Independent libx264 CRF 19; boundary macroblock margin excluded",
+    "passed": true
   }
 }
