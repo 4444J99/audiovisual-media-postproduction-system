@@ -1,0 +1,410 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "fractured-utterance",
+  "name": "Fractured utterance",
+  "seed": 773,
+  "duration": 12.166666667,
+  "source": {
+    "id": "god-here-second-draft",
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "offset": 95,
+    "duration": 12.166666667
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "type": "source"
+    },
+    {
+      "id": "fracture-capture",
+      "type": "stutter",
+      "name": "Stutter",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "window": 0.24,
+        "repeats": 16,
+        "rate": 1,
+        "gap": 0.035,
+        "release": 0.03,
+        "capture": 2.88
+      },
+      "macro": [
+        {
+          "parameter": "window",
+          "min": 0.65,
+          "max": 0.24,
+          "curve": "linear"
+        },
+        {
+          "parameter": "repeats",
+          "min": 2,
+          "max": 16,
+          "curve": "linear"
+        },
+        {
+          "parameter": "gap",
+          "min": 0.12,
+          "max": 0.035,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "fragment-cloud",
+      "type": "granular",
+      "name": "Granular",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "size": 0.07,
+        "density": 30,
+        "scatter": 0.7,
+        "pitch": 7,
+        "spatial": 0.95,
+        "tiles": 14,
+        "order": 1
+      },
+      "macro": [
+        {
+          "parameter": "size",
+          "min": 0.3,
+          "max": 0.07,
+          "curve": "linear"
+        },
+        {
+          "parameter": "density",
+          "min": 6,
+          "max": 30,
+          "curve": "linear"
+        },
+        {
+          "parameter": "scatter",
+          "min": 0,
+          "max": 0.7,
+          "curve": "linear"
+        },
+        {
+          "parameter": "spatial",
+          "min": 0.03,
+          "max": 0.95,
+          "curve": "linear"
+        },
+        {
+          "parameter": "tiles",
+          "min": 3,
+          "max": 14,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "backward-units",
+      "type": "reverse",
+      "name": "Reverse",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "span": 2.2,
+        "speed": 1,
+        "pivot": 4,
+        "mode": 0
+      },
+      "macro": [
+        {
+          "parameter": "span",
+          "min": 0.4,
+          "max": 2.2,
+          "curve": "linear"
+        },
+        {
+          "parameter": "speed",
+          "min": 0.5,
+          "max": 1,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "residue",
+      "type": "freeze",
+      "name": "Freeze / Hold",
+      "presetId": "residue",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "capture": 2.92,
+        "duration": 6,
+        "grain": 0.09,
+        "decay": 0.35,
+        "motion": 0.025,
+        "release": 0.05
+      },
+      "macro": [
+        {
+          "parameter": "duration",
+          "min": 0.5,
+          "max": 6,
+          "curve": "linear"
+        },
+        {
+          "parameter": "decay",
+          "min": 0.8,
+          "max": 0.35,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "gain": 1
+    }
+  ],
+  "connections": [
+    {
+      "from": "source",
+      "to": "fracture-capture",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "fracture-capture",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "fracture-capture",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "fracture-capture",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fracture-capture",
+      "to": "fragment-cloud",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fracture-capture",
+      "to": "fragment-cloud",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fracture-capture",
+      "to": "fragment-cloud",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fracture-capture",
+      "to": "fragment-cloud",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fragment-cloud",
+      "to": "backward-units",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fragment-cloud",
+      "to": "backward-units",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fragment-cloud",
+      "to": "backward-units",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fragment-cloud",
+      "to": "backward-units",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "backward-units",
+      "to": "residue",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "backward-units",
+      "to": "residue",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "backward-units",
+      "to": "residue",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "backward-units",
+      "to": "residue",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "residue",
+      "to": "output",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "residue",
+      "to": "output",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "residue",
+      "to": "output",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "residue",
+      "to": "output",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    }
+  ],
+  "events": [],
+  "metadata": {
+    "sourceClock": "seconds relative to excerpt",
+    "voiceInput": "shared recording; performer isolation is not claimed",
+    "project": "god-here",
+    "originalPictureInterval": [
+      95,
+      107.166666667
+    ],
+    "identityPolicy": "Appearance labels, not certified performer names.",
+    "dialogueReference": {
+      "sha256": "24817c4f076a1c9fca43ebcf9825964610fc2956c1755501547de7477d173254",
+      "method": "Inherited DeepFilterNet v0.5.6 candidate; shared stereo recording; artist/listening acceptance remains pending."
+    },
+    "wordMaterial": [
+      {
+        "id": "out",
+        "text": "OUT",
+        "start": 2.88,
+        "end": 3.12,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "how",
+        "text": "HOW",
+        "start": 6.14,
+        "end": 6.52,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "what",
+        "text": "WHAT",
+        "start": 9.94,
+        "end": 10.08,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "why",
+        "text": "WHY",
+        "provenance": "authored screenplay word; not performed in this excerpt",
+        "listeningAccepted": false
+      }
+    ],
+    "layerStatus": "Guided classical segmentation workprint; fine roto is not accepted.",
+    "roomStatus": "Hybrid generated hidden-room fill; source-shot registration remains approximate.",
+    "objectStatus": "Authored object regions, not segmented object tracks.",
+    "patchMacro": "Fragmentation",
+    "description": "Stutter → Granular → Reverse → Freeze leave a held residual unit.",
+    "sourceSelections": "Workprint intervals; checked speech cues must carry their own provenance."
+  }
+}

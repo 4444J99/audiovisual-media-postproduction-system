@@ -1,0 +1,13 @@
+{
+  "name": "audiovisual-media-postproduction-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=20"},
+  "scripts": {
+    "test": "node --test tests/fx/*.test.mjs && node tests/score.test.mjs",
+    "render:fx": "node tools/render-fx.mjs",
+    "render:factory": "node tools/render-factory.mjs"
+  },
+  "devDependencies": {"@napi-rs/canvas": "0.1.100"}
+}

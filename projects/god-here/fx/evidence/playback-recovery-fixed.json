@@ -1,0 +1,813 @@
+{
+  "started": "2026-10-08T06:16:51.604Z",
+  "root": "/workspace/scratch/558050fdfb0c/god-here-site/dist",
+  "label": "fixed",
+  "browser": "Headless Playwright WebKit; public browser API fault injection; no physical iPhone claim",
+  "checks": [
+    {
+      "name": "Cancel a pending Play; later worker completion never starts audio",
+      "started": "2026-10-08T06:16:51.727Z",
+      "pending": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "playPending": true,
+          "time": 0,
+          "audioBusy": true,
+          "audioError": null,
+          "workerReady": true,
+          "audioRevision": 2,
+          "audioDesired": 3,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "fx-1",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "fx-1",
+                "type": "gate",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": true,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.40167236328125,
+              "peakAfter": 0.40167236328125,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Preparing this patch\u2019s sound\u2026",
+        "playText": "Cancel",
+        "retry": {
+          "hidden": true,
+          "disabled": false
+        },
+        "workerCount": 1,
+        "held": 1,
+        "audioStarts": 0,
+        "previewPlays": 0
+      },
+      "canceled": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "playPending": false,
+          "time": 0,
+          "audioBusy": true,
+          "audioError": null,
+          "workerReady": true,
+          "audioRevision": 2,
+          "audioDesired": 3,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "fx-1",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "fx-1",
+                "type": "gate",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": true,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.40167236328125,
+              "peakAfter": 0.40167236328125,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Preparing this patch\u2019s sound\u2026",
+        "playText": "Play",
+        "retry": {
+          "hidden": true,
+          "disabled": false
+        },
+        "workerCount": 1,
+        "held": 1,
+        "audioStarts": 0,
+        "previewPlays": 0
+      },
+      "released": 1,
+      "afterCompletion": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "playPending": false,
+          "time": 0,
+          "audioBusy": false,
+          "audioError": null,
+          "workerReady": true,
+          "audioRevision": 3,
+          "audioDesired": 3,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "fx-1",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "fx-1",
+                "type": "gate",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": true,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.466644287109375,
+              "peakAfter": 0.466644287109375,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Preparing this patch\u2019s sound\u2026",
+        "playText": "Play",
+        "retry": {
+          "hidden": true,
+          "disabled": false
+        },
+        "workerCount": 1,
+        "held": 0,
+        "audioStarts": 0,
+        "previewPlays": 0
+      },
+      "pageErrors": [],
+      "pass": true,
+      "finished": "2026-10-08T06:16:54.683Z"
+    },
+    {
+      "name": "Worker failure clears waiters; reference works; Retry restarts expressive rendering",
+      "started": "2026-10-08T06:16:54.684Z",
+      "beforeFailure": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "playPending": true,
+          "time": 0,
+          "audioBusy": true,
+          "audioError": null,
+          "workerReady": true,
+          "audioRevision": 2,
+          "audioDesired": 3,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "fx-1",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "fx-1",
+                "type": "gate",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": true,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.40167236328125,
+              "peakAfter": 0.40167236328125,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Preparing this patch\u2019s sound\u2026",
+        "playText": "Cancel",
+        "retry": {
+          "hidden": true,
+          "disabled": false
+        },
+        "workerCount": 1,
+        "held": 1,
+        "audioStarts": 0,
+        "previewPlays": 0
+      },
+      "failed": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "playPending": false,
+          "time": 0,
+          "audioBusy": false,
+          "audioError": "QA injected audio worker failure",
+          "workerReady": false,
+          "audioRevision": 2,
+          "audioDesired": 3,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "fx-1",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "fx-1",
+                "type": "gate",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": true,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.40167236328125,
+              "peakAfter": 0.40167236328125,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Sound needs to reconnect. Tap Retry sound, or open Play demonstrations.",
+        "playText": "Play",
+        "retry": {
+          "hidden": false,
+          "disabled": false
+        },
+        "workerCount": 1,
+        "held": 0,
+        "audioStarts": 0,
+        "previewPlays": 0
+      },
+      "reference": {
+        "status": {
+          "ready": true,
+          "playing": true,
+          "playPending": false,
+          "time": 0.005804988662131527,
+          "audioBusy": false,
+          "audioError": "QA injected audio worker failure",
+          "workerReady": false,
+          "audioRevision": 2,
+          "audioDesired": 3,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "fx-1",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "fx-1",
+                "type": "gate",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": true,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.40167236328125,
+              "peakAfter": 0.40167236328125,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Playing the current patch.",
+        "playText": "Pause",
+        "retry": {
+          "hidden": false,
+          "disabled": false
+        },
+        "workerCount": 1,
+        "held": 0,
+        "audioStarts": 1,
+        "previewPlays": 0
+      },
+      "retried": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "playPending": false,
+          "time": 0.06675736961451248,
+          "audioBusy": false,
+          "audioError": null,
+          "workerReady": true,
+          "audioRevision": 3,
+          "audioDesired": 3,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "fx-1",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "fx-1",
+                "type": "gate",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": true,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.466644287109375,
+              "peakAfter": 0.466644287109375,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Reconnecting sound\u2026",
+        "playText": "Play",
+        "retry": {
+          "hidden": true,
+          "disabled": false
+        },
+        "workerCount": 2,
+        "held": 0,
+        "audioStarts": 1,
+        "previewPlays": 0
+      },
+      "expressive": {
+        "status": {
+          "ready": true,
+          "playing": true,
+          "playPending": false,
+          "time": 0.07836734693877553,
+          "audioBusy": false,
+          "audioError": null,
+          "workerReady": true,
+          "audioRevision": 3,
+          "audioDesired": 3,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "fx-1",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "fx-1",
+                "type": "gate",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": true,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.466644287109375,
+              "peakAfter": 0.466644287109375,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Playing the current patch.",
+        "playText": "Pause",
+        "retry": {
+          "hidden": true,
+          "disabled": false
+        },
+        "workerCount": 2,
+        "held": 0,
+        "audioStarts": 2,
+        "previewPlays": 0
+      },
+      "pageErrors": [],
+      "pass": true,
+      "finished": "2026-10-08T06:16:57.221Z"
+    },
+    {
+      "name": "Metadata-only preset video receives a Play attempt before readyState reaches 2",
+      "started": "2026-10-08T06:16:57.222Z",
+      "before": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "playPending": false,
+          "time": 0,
+          "audioBusy": false,
+          "audioError": null,
+          "workerReady": true,
+          "audioRevision": 1,
+          "audioDesired": 1,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "travel",
+              "giant-word",
+              "impact-echo",
+              "impact-field",
+              "sum",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "travel",
+                "type": "routing",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "giant-word",
+                "type": "typography",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "visual-only typography"
+              },
+              {
+                "id": "impact-echo",
+                "type": "delay",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "impact-field",
+                "type": "displacement",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "voice target not selected"
+              }
+            ],
+            "solo": false,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.4991093575954437,
+              "peakAfter": 0.4991093575954437,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Ready. Choose a processor or play the patch.",
+        "playText": "Play",
+        "retry": {
+          "hidden": true,
+          "disabled": false
+        },
+        "workerCount": 1,
+        "held": 0,
+        "audioStarts": 0,
+        "previewPlays": 0
+      },
+      "after": {
+        "status": {
+          "ready": true,
+          "playing": true,
+          "playPending": false,
+          "time": 0.008707482993197277,
+          "audioBusy": false,
+          "audioError": null,
+          "workerReady": true,
+          "audioRevision": 1,
+          "audioDesired": 1,
+          "preview": "rendered",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "travel",
+              "giant-word",
+              "impact-echo",
+              "impact-field",
+              "sum",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "travel",
+                "type": "routing",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "giant-word",
+                "type": "typography",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "visual-only typography"
+              },
+              {
+                "id": "impact-echo",
+                "type": "delay",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "impact-field",
+                "type": "displacement",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "voice target not selected"
+              }
+            ],
+            "solo": false,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.4991093575954437,
+              "peakAfter": 0.4991093575954437,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Playing the current patch.",
+        "playText": "Pause",
+        "retry": {
+          "hidden": true,
+          "disabled": false
+        },
+        "workerCount": 1,
+        "held": 0,
+        "audioStarts": 1,
+        "previewPlays": 1
+      },
+      "pageErrors": [],
+      "pass": true,
+      "finished": "2026-10-08T06:16:58.840Z"
+    },
+    {
+      "name": "Valid JSON with malformed persisted patch falls back to a playable factory rack",
+      "started": "2026-10-08T06:16:58.840Z",
+      "recovered": {
+        "status": {
+          "ready": true,
+          "playing": true,
+          "playPending": false,
+          "time": 0.00580498866213152,
+          "audioBusy": false,
+          "audioError": null,
+          "workerReady": true,
+          "audioRevision": 1,
+          "audioDesired": 1,
+          "preview": "rendered",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "travel",
+              "giant-word",
+              "impact-echo",
+              "impact-field",
+              "sum",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "travel",
+                "type": "routing",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "giant-word",
+                "type": "typography",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "visual-only typography"
+              },
+              {
+                "id": "impact-echo",
+                "type": "delay",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "impact-field",
+                "type": "displacement",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "voice target not selected"
+              }
+            ],
+            "solo": false,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.4991093575954437,
+              "peakAfter": 0.4991093575954437,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "message": "Playing the current patch.",
+        "playText": "Pause",
+        "retry": {
+          "hidden": true,
+          "disabled": false
+        },
+        "workerCount": 1,
+        "held": 0,
+        "audioStarts": 1,
+        "previewPlays": 1
+      },
+      "patchId": "message-impact",
+      "pageErrors": [],
+      "pass": true,
+      "finished": "2026-10-08T06:17:00.520Z"
+    }
+  ],
+  "appSha256": "3dd938032d59e17ee9833313ed2fbba2f2aea43412a6f0e3f94931a16d9b5f7e",
+  "finished": "2026-10-08T06:17:00.520Z",
+  "passed": 4,
+  "failed": 0
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101113">
+  <title>god-here · Audiovisual FX rack</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23dbfb65' d='M0 0h32v32H0z'/%3E%3Cpath stroke='%23101113' stroke-width='3' d='M8 7v18m8-18v18m8-18v18M4 13h8m0 6h8m0-8h8'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="workbench.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">g.</span><span>god-here <strong>FX WORKBENCH</strong></span></a>
+    <div class="header-actions"><a class="button" href="watch.html">Play demonstrations</a><button id="undo" title="Undo latest edit">Undo</button><button id="save">Export patch</button><label class="button">Import<input id="import" type="file" accept="application/json,.json" hidden></label></div>
+  </header>
+  <main class="workspace">
+    <section class="monitor-column" aria-label="Audiovisual preview">
+      <div class="patch-heading"><div><p class="eyebrow">EXPERIMENTAL RACK / 01</p><h1 id="patch-title">Message impact</h1></div><label class="patch-picker"><span class="sr-only">Choose a patch</span><select id="patch-select"></select></label></div>
+      <div id="stage" class="stage">
+        <canvas id="picture" width="960" height="540" aria-label="Processed film preview"></canvas>
+        <video id="rendered-picture" muted playsinline preload="metadata" hidden aria-label="Rendered version of the current preset"></video>
+        <div class="monitor-top"><span id="phase" class="phase">READY</span><span id="signal-label">EXPRESSIVE OUT</span><button id="exit-full" hidden>Exit full screen</button></div>
+        <div id="loading" class="loading"><div class="loader"></div><span id="loading-text">Preparing picture and sound…</span><button id="load-retry" hidden>Retry loading</button><a href="watch.html">Play demonstrations now</a></div>
+        <button id="stage-play" class="stage-play" aria-label="Play audiovisual patch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 13 8-13 8z"/></svg></button>
+        <div id="demo-stages" class="demo-stages" hidden><span data-phase="bypass-a">01 BYPASS</span><span data-phase="extreme">02 EXTREME</span><span data-phase="sweep">03 SWEEP</span><span data-phase="bypass-b">04 BYPASS</span></div>
+        <div class="monitor-bottom"><span id="stage-caption">95.000–107.167 s · source passage</span><button id="fullscreen" title="Hide controls and fill the screen">Full screen</button></div>
+      </div>
+      <div class="transport">
+        <button id="play" class="primary" disabled>Play</button><button id="restart" title="Return to start">Restart</button><button id="audio-retry" hidden>Retry sound</button>
+        <input id="seek" type="range" min="0" max="12.166667" step="0.01" value="0" aria-label="Output time">
+        <output id="clock">00:00.00</output><button id="loop" class="toggle on" aria-pressed="true">Loop</button>
+      </div>
+      <div class="timeline-wrap"><canvas id="timeline" width="960" height="70" aria-label="Audio envelope and automation events"></canvas><div class="timeline-legend"><span><i class="voice-color"></i> DIALOGUE ENVELOPE</span><span id="event-count">0 recorded changes</span></div></div>
+      <div class="comparison-bar">
+        <label>Monitor <select id="monitor"><option value="expressive">Expressive output</option><option value="reference">Dialogue candidate</option><option value="source">Original recording</option></select></label>
+        <button id="bypass" class="toggle" aria-pressed="false">Bypass rack</button>
+        <label class="volume">Level <input id="volume" type="range" min="0" max="1" step="0.02" value="0.7" aria-label="Playback level"></label>
+      </div>
+      <div class="module-heading"><h2>13 processors</h2><span>Select a processor for its extreme demonstration</span></div>
+      <div id="module-library" class="module-library"></div>
+      <div class="demo-bar"><button id="demo" class="accent">Demonstrate selected</button><button id="demo-patch">Demonstrate patch</button><label>Canvas <select id="layout"><option value="auto">Auto fill</option><option value="fill">One filled frame</option><option value="stack">Three stacked panes</option></select></label></div>
+      <p class="status" id="status" role="status">Loading the source passage.</p><p class="preview-status"><span id="render-mode">Editable rack</span> · <a id="reel" href="assets/renders/god-here-13-processors-landscape.mp4">Watch all 13 demonstrations</a></p>
+      <p class="source-note">Dialogue candidate and moving masks are workprints. The audio is a shared recording; word cues are machine cross-checked. <button id="source-details" class="text-button">Source details</button></p>
+    </section>
+    <aside class="rack-column" aria-label="FX rack and routing">
+      <nav class="tabs" aria-label="Workbench panels"><button data-tab="rack" class="active">Rack</button><button data-tab="routing">Connections</button><button data-tab="automation">Automation</button><button data-tab="source">Source</button></nav>
+      <section id="tab-rack" class="tab-panel">
+        <div class="rack-toolbar"><span id="rack-count">3 inserts</span><select id="add-module" aria-label="Add an FX module"><option value="">Add processor…</option></select></div>
+        <div id="rack"></div>
+        <div class="rack-end"><span>OUTPUT</span><span id="output-description">Picture + voice + text</span></div>
+      </section>
+      <section id="tab-routing" class="tab-panel" hidden>
+        <h2>Signal connections</h2><p class="panel-copy">Each cable carries one signal. Add a mix to join branches; send a control envelope to modulate another processor.</p>
+        <div id="graph-map" class="graph-map"></div>
+        <div id="connections"></div>
+        <form id="connection-form" class="connection-form"><label>From<select id="connect-from"></select></label><label>To<select id="connect-to"></select></label><label>Signal<select id="connect-port"><option>audio</option><option>picture</option><option>text</option><option>matte</option><option>control</option></select></label><label>Role<select id="connect-role"><option>insert</option><option>send</option><option>return</option><option>sidechain</option></select></label><label>Gain<input id="connect-gain" type="number" min="0" max="4" step="0.05" value="1"></label><button class="accent" type="submit">Connect</button></form>
+        <div class="panel-actions"><button id="add-mix">Add mix bus</button><button id="serial">Make serial chain</button></div>
+        <p id="route-error" class="error" role="alert"></p>
+      </section>
+      <section id="tab-automation" class="tab-panel" hidden>
+        <h2>Replayable changes</h2><p class="panel-copy">Record control changes against the output clock, or edit a curve. Every saved patch contains its seed, routing, curves, and recorded events.</p>
+        <div class="panel-actions"><button id="record" class="toggle" aria-pressed="false">Record controls</button><button id="replay">Replay</button><button id="clear-events">Clear recording</button></div>
+        <form id="automation-form" class="automation-form"><label>Processor<select id="auto-node"></select></label><label>Parameter<select id="auto-param"><option value="intensity">Intensity</option><option value="wet">Wet / dry</option></select></label><label>Curve<select id="auto-curve"><option value="linear">Linear</option><option value="step">Step</option></select></label><label>Time : value pairs<textarea id="auto-points" rows="4" spellcheck="false">0:0.15, 2:1, 6:1, 10:0.2, 12.166667:0.8</textarea></label><button class="accent" type="submit">Apply curve</button></form>
+        <div id="automation-list"></div><div id="events-list"></div>
+        <label class="seed-label">Random seed<input id="seed" type="number" min="0" step="1" value="773"></label>
+      </section>
+      <section id="tab-source" class="tab-panel" hidden>
+        <h2>Material & evidence</h2><dl class="source-list"><dt>Passage</dt><dd>Source 95.000–107.167 seconds. One continuous camera view.</dd><dt>Picture</dt><dd>146 addressable frames at 12 fps. The supplied film is 1280 × 720 at 30 fps; this rack uses a lighter preview.</dd><dt>Dialogue reference</dt><dd>Existing DeepFilterNet enhancement candidate. Listening and artistic acceptance remain open. Original audio is separately selectable.</dd><dt>Voice target</dt><dd>The shared dialogue mixture. These files do not contain isolated performer stems.</dd><dt>Body target</dt><dd>Five moving workprint masks, identified by clothing. Hard edges and occlusion artifacts remain.</dd><dt>Room fill</dt><dd>A hybrid room plate includes previously generated fill behind performers. It is used for visible removal; it is not recovered footage.</dd><dt>Object target</dt><dd>An authored rectangle around a visible object. Adjust its bounds in the module; this is not object segmentation.</dd><dt>Words</dt><dd>OUT / HOW / WHAT come from machine-crosschecked phrase hypotheses. WHY / MOUTH / EARS are explicitly authored screenplay material.</dd></dl>
+        <label>Expressive word material<select id="word-mode"><option value="cues">Passage cue hypotheses</option><option value="authored">Authored words</option></select></label><label>Authored words<input id="authored-words" type="text" value="HOW WHY WHAT" maxlength="120"></label>
+        <div class="panel-actions"><a class="button" href="assets/provenance.json" target="_blank" rel="noopener">Source provenance</a><a class="button" href="assets/passage-source.mp4">Source passage</a><a class="button" href="../review.html">Earlier audio review</a></div>
+        <p class="panel-copy">Effects rearrange the supplied performance and authored screen text. Browser changes and offline renders use the same JavaScript processing modules. Unchanged factory patches play rendered pictures for smooth playback; any signal edit switches to the editable rack. Dense edited graphs can reduce the picture frame rate. Audio continues on its own clock.</p>
+      </section>
+    </aside>
+  </main>
+  <div id="toast" role="status" hidden></div>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>
