@@ -9,7 +9,7 @@ from .render import render, remix
 
 def main():
     parser = argparse.ArgumentParser(description="Source-addressable postproduction")
-    parser.add_argument("command", choices=["validate", "audio", "render", "generate"])
+    parser.add_argument("command", choices=["validate", "audio", "render", "generate", "revision", "replay", "track"])
     parser.add_argument("--project", default="projects/god-here")
     parser.add_argument("--source")
     parser.add_argument("--audio")
@@ -22,6 +22,10 @@ def main():
     parser.add_argument("--layers", action="store_true")
     parser.add_argument("--typography", action="store_true")
     parser.add_argument("--original-picture", action="store_true")
+    parser.add_argument("--recipe")
+    parser.add_argument("--session")
+    parser.add_argument("--track")
+    parser.add_argument("--roi", nargs=4, type=float)
     args = parser.parse_args()
     project = Path(args.project)
     config = json.loads((project / "composition.json").read_text())
@@ -47,6 +51,29 @@ def main():
         schedule = generate_schedule(units, args.seed)
         remix(args.source, schedule, args.output)
         print(json.dumps(schedule))
+    elif args.command == "track":
+        from .revision import track_region
+        if not args.source or args.end is None or not args.roi:
+            parser.error('track requires --source, --end, and --roi')
+        record=track_region(args.source,round(args.start*config['fps']),round(args.end*config['fps']),args.roi,args.output,config['fps'])
+        print(json.dumps({'tracked_frames':len(record['rows']),'output':args.output}))
+    else:
+        from .revision import render_revision
+        if not args.source or not args.audio:
+            parser.error('revision/replay requires --source and --audio')
+        if args.command=='revision' and not args.recipe:
+            parser.error('revision requires --recipe')
+        if args.command=='replay' and not args.session:
+            parser.error('replay requires --session')
+        recipe=json.loads(Path(args.recipe).read_text()) if args.recipe else {
+            'schema_version':'1.0','source_sha256':config['source_sha256'],
+            'segments':[{'source_start_frame':round(args.start*config['fps']),
+                         'source_end_frame':round((args.end or 112)*config['fps']),
+                         'output_frames':round(((args.end or 112)-args.start)*config['fps'])}],
+            'animated_typography':True}
+        session=json.loads(Path(args.session).read_text()) if args.session else None
+        track=json.loads(Path(args.track).read_text()) if args.track else None
+        print(json.dumps(render_revision(args.source,args.audio,config,recipe,args.output,session,track,args.width)))
 
 
 if __name__ == "__main__":

@@ -30,7 +30,17 @@ Pass `--start` and `--end` for excerpts, `--layers` for the manual fine-layer va
 
 `tools/finish_production.py` is the **god-here production recipe**, with its explicit 112-second baseline. `amp` holds reusable processing primitives; project-specific intervals, masks, styles, and scores live in `projects/god-here`. Original media are external inputs, not committed public assets. Source identities are recorded by SHA-256.
 
-## Browser edition
+## Directed revision extension
+
+The next implemented edition adds three concrete directorial alternatives, animated text, tracked reaction emphasis, a complete 112.6-second candidate, offline rendering of saved browser attention scores, and REAPER/Fusion workstation handoffs. See [directed revisions](docs/DIRECTED-REVISIONS.md) for reproduction, source/output timing, and the remaining listening and native-application review gates.
+
+```sh
+python tools/build_directed_proof.py /path/to/source.mp4 outputs/directed
+python -m amp.cli replay --source /path/to/source.mp4 --audio outputs/audio/candidate-B.wav \
+  --session god-here-attention-score.json --output outputs/attention-film.mp4
+```
+
+## Hosted browser edition
 
 [Open the private god-here production preview](https://god-here-five-realities.ajpadavano.chatgpt.site).
 

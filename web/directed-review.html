@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>god-here · Directed edition</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b0b0c;color:#ece7dd;font:16px system-ui;padding:24px;max-width:1000px;margin:auto}h1{font-weight:500;font-size:clamp(28px,6vw,48px)}p{line-height:1.5;color:#bbb7b0}video{width:100%;background:#000;max-height:70vh}button,select,textarea{font:inherit;background:#222;color:inherit;border:1px solid #555;border-radius:6px;padding:12px}button{cursor:pointer}label{display:block;margin:16px 0 8px}textarea{width:100%;min-height:100px}.row{display:flex;gap:10px;flex-wrap:wrap}a{color:#d8b58c}output{font-variant-numeric:tabular-nums}button[aria-pressed=true]{border-color:#d8b58c;color:#d8b58c}#status{min-height:2em}
+</style>
+<main><p>GOD-HERE · DIRECTED WORKPRINT</p><h1>What happens before the answer?</h1>
+<video id="picture" controls playsinline preload="metadata"></video>
+<label for="variant">Compare treatments</label><select id="variant">
+<option value="proof-A.mp4">A · Original reference</option><option value="proof-B.mp4">B · Dialogue repair candidate</option>
+<option value="proof-C.mp4">C · Five realities</option><option value="directed-gap.mp4">D1 · More time to receive</option>
+<option value="directed-reaction.mp4">D2 · Follow a reaction</option><option value="directed-integrated.mp4">D3 · Timing, reaction, words</option>
+<option value="god-here-directed-passage.mp4" selected>E · Combined expressive passage</option>
+<option value="attention-replay.mp4">Attention score rendered as film</option><option value="god-here-directed-full-workprint.mp4">Complete directed workprint</option>
+</select><p><output id="clock">Source —</output></p>
+<p>The longer treatments add 0.6 seconds near the closing exchange. Switching treatments keeps the same source moment. Dialogue repair and the artistic choices are open for review.</p>
+<label for="notes">Your observations</label><textarea id="notes" placeholder="What is easier to hear? Does the extra time change the exchange? Where does an effect distract?"></textarea>
+<div class="row"><button id="save">Save review</button><a href="index.html">Compose attention</a></div><p id="status" role="status"></p></main>
+<script type="module">
+const video=document.getElementById('picture'),select=document.getElementById('variant'),clock=document.getElementById('clock');
+const base=2554/30, gapStart=98.5,gapEnd=99.3,speed=24/42;
+const elongated=new Set(['directed-gap.mp4','directed-integrated.mp4','god-here-directed-passage.mp4','god-here-directed-full-workprint.mp4']);
+function sourceTime(file,t){const offset=file==='god-here-directed-full-workprint.mp4'?0:base;let s=t+offset;if(!elongated.has(file))return s;if(s<gapStart)return s;if(s<gapStart+1.4)return gapStart+(s-gapStart)*speed;return s-.6;}
+function outputTime(file,s){const offset=file==='god-here-directed-full-workprint.mp4'?0:base;let t=s;if(elongated.has(file)){if(s>=gapEnd)t=s+.6;else if(s>=gapStart)t=gapStart+(s-gapStart)/speed;}return Math.max(0,t-offset);}
+let active=select.value;video.src='media/'+active;
+select.onchange=()=>{const source=sourceTime(active,video.currentTime),playing=!video.paused;active=select.value;video.src='media/'+active;video.onloadedmetadata=()=>{video.currentTime=Math.min(video.duration-.04,outputTime(active,source));if(playing)video.play().catch(()=>{});};};
+video.ontimeupdate=()=>{clock.value='Source '+sourceTime(active,video.currentTime).toFixed(2)+' s';};
+video.onerror=()=>{document.getElementById('status').textContent='This video could not load. Open the MP4 files from the review package.';};
+document.getElementById('save').onclick=()=>{const data={project:'god-here',variant:active,source_time:sourceTime(active,video.currentTime),observations:document.getElementById('notes').value,decision:'observations recorded; no automatic artistic acceptance',recorded_at:new Date().toISOString()};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='god-here-directed-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);document.getElementById('status').textContent='Review downloaded.';};
+</script></html>

@@ -4,10 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "audiovisual-media-postproduction-system"
-version = "0.1.0"
+version = "0.2.0"
 description = "Source-addressable audiovisual composition and postproduction"
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.24", "scipy>=1.10", "Pillow>=9"]
+
+[project.optional-dependencies]
+tracking = ["opencv-python-headless>=4.8,<6"]
 
 [project.scripts]
 amp = "amp.cli:main"
