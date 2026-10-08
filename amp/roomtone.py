@@ -87,7 +87,8 @@ def pause_inventory(samples, segments, probabilities, hop, *, start=5.033333, en
              "minimum_fragment_seconds": .13, "pool_floor_rms": floor}
 
 
-def assemble(samples, regions, *, duration, seed=6971, step=.01):
+def assemble(samples, regions, *, duration, seed=6971, step=.01,
+             crossfade_seconds=(.045, .075), cosine=False):
     """Random-order fragment overlap-add, with bounded speed/gain variation.
 
     Every accepted source portion contributes before any portion is reused. Source
@@ -118,10 +119,14 @@ def assemble(samples, regions, *, duration, seed=6971, step=.01):
             points = np.linspace(0, len(fragment) - 1, new_length)
             stretch = np.column_stack([np.interp(points, np.arange(len(fragment)), fragment[:, c]) for c in range(2)])
             gain = float(np.clip(target / rms[index], .60, 1.60) * 10 ** (rng.uniform(-.7, .7) / 20))
-            fade = min(round(rng.uniform(.045, .075) * RATE), new_length // 3)
+            fade = min(round(rng.uniform(*crossfade_seconds) * RATE), new_length // 3)
             window = np.ones(new_length)
-            window[:fade] = np.linspace(0, 1, fade, endpoint=False)
-            window[-fade:] = np.linspace(1, 0, fade)
+            if cosine:
+                window[:fade] = .5 - .5 * np.cos(np.linspace(0, np.pi, fade))
+                window[-fade:] = .5 + .5 * np.cos(np.linspace(0, np.pi, fade))
+            else:
+                window[:fade] = np.linspace(0, 1, fade, endpoint=False)
+                window[-fade:] = np.linspace(1, 0, fade)
             stop = min(length, position + new_length)
             n = stop - position
             bed[position:stop] += stretch[:n] * gain * window[:n, None]
