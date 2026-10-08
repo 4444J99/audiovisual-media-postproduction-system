@@ -1,0 +1,92 @@
+{
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "proof_source_frames": [
+    2554,
+    3215
+  ],
+  "proof_frames": 661,
+  "fps": 30,
+  "proof_duration_seconds": 22.033333333333335,
+  "composed_pilot_gain_correction_db": -0.629999999999999,
+  "foley_standalone_audition_gain_db": 12,
+  "dialogue_trial_delivered_spread_lu": 0.010000000000001563,
+  "learned_speech_executed": true,
+  "learned_segmentation_executed": true,
+  "stove_in_default_mix": false,
+  "files": {
+    "dialogue-reference.mp4": {
+      "sha256": "0909b79a45521c37d478ca28df5cf192a380b46d5f151208f0cc2a7c21da021b",
+      "frames": 3360,
+      "duration": 112.0,
+      "full_decode": "passed"
+    },
+    "god-here-fixed-regions-workprint-02.mp4": {
+      "sha256": "2450cb6b66bfe36cc6b24d89109fb26a9d99a7b7e866b48327e18fa9b6a7b889",
+      "frames": 3360,
+      "duration": 112.0,
+      "full_decode": "passed"
+    },
+    "god-here-linear-workprint-02.mp4": {
+      "sha256": "f7f6df99c65b47ba3374cc41d70fdb32cf45ca6976009528109c1130eea8a64c",
+      "frames": 3360,
+      "duration": 112.0,
+      "full_decode": "passed"
+    },
+    "interactive-source.mp4": {
+      "sha256": "a7eb23862444be65439799467dbc2d24bb1912dc46279445f8d23c49cabc3876",
+      "frames": 3360,
+      "duration": 112.0,
+      "full_decode": "passed"
+    },
+    "proof-A.mp4": {
+      "sha256": "8da5f394e61b69b07b00a2d8b91af4f93fe103f4cfb3e343db455ae7f6b25ad0",
+      "frames": 661,
+      "duration": 22.033333,
+      "full_decode": "passed"
+    },
+    "proof-B.mp4": {
+      "sha256": "cfc5b7dedc51795fcbf24867702aa1a3dbe918037e89ca827df80241c62fe8c9",
+      "frames": 661,
+      "duration": 22.033333,
+      "full_decode": "passed"
+    },
+    "proof-C.mp4": {
+      "sha256": "1d10edb57def74b0474a7f5028cf88c599805a7fc4990132e0c0aec665505fb7",
+      "frames": 661,
+      "duration": 22.033333,
+      "full_decode": "passed"
+    },
+    "proof-D.mp4": {
+      "sha256": "fbd4e00da84834a4d608b828735d44072ba3db572bdf023eb5572335097437fe",
+      "frames": 661,
+      "duration": 22.033333,
+      "full_decode": "passed"
+    },
+    "proof-E.mp4": {
+      "sha256": "d5023069dd8bdf3ae44ccc92c5582fdac579c34ca92a78fdea02e5319b836fd5",
+      "frames": 661,
+      "duration": 22.033333,
+      "full_decode": "passed"
+    }
+  },
+  "acceptance": "workprint; listening, wording, naturalness, masks and artistic selection pending",
+  "sound_stem_sum_max_error": 3.5762786865234375e-07,
+  "delivered_full_mix_loudness": {
+    "input_i": -16.27,
+    "input_tp": -1.89,
+    "input_lra": 5.4,
+    "input_thresh": -27.04,
+    "output_i": -16.0,
+    "output_tp": -1.36,
+    "output_lra": 5.0,
+    "output_thresh": -26.8,
+    "normalization_type": "dynamic",
+    "target_offset": -0.0
+  },
+  "automated_project_checks": {
+    "python_tests": 21,
+    "node_score_checks": "passed",
+    "review_syntax_simulated_transport": "passed",
+    "browser_runtime": "not tested"
+  }
+}

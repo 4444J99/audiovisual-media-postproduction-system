@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "base_file": "god-here-linear-workprint-02.mp4",
+  "base_sha256": "f7f6df99c65b47ba3374cc41d70fdb32cf45ca6976009528109c1130eea8a64c",
+  "base_video_frames": 3360,
+  "base_fps": 30,
+  "unit_manifest_sha256": "f89d9eda9eda8ed0082769c7c43c788ffd66d4766e01967b1194a8230374f877",
+  "picture_and_audio": "Pass 02 learned body masks, learned dialogue, reconstructed room tone, foley and expressive returns",
+  "reproduction": "python -m amp.cli generate --source /absolute/path/to/god-here-linear-workprint-02.mp4 --seed SEED --output /absolute/path/to/god-here-variation-SEED.mp4",
+  "status": "Reproducible workprints; language, listening and artistic acceptance pending",
+  "variations": [
+    {
+      "seed": 17,
+      "file": "god-here-variation-17.mp4",
+      "schedule_file": "god-here-variation-17.schedule.json",
+      "sha256": "6509e26b015b06b8f801c6c42738216d5f917b54ffbb7b76d3ca376c675872dc",
+      "schedule_sha256": "bbb8f421b38d04b0d652ac2c50f8b04c52a6ce30c560db9dc92f3307d358356e",
+      "frames": 776,
+      "expected_frames": 776,
+      "fps": 30,
+      "duration_seconds": 25.866667,
+      "audio_duration_seconds": 25.866,
+      "units": [
+        "U01",
+        "U04",
+        "U06",
+        "U04",
+        "U07"
+      ],
+      "schedule_reproduced": true,
+      "full_decode": "passed"
+    },
+    {
+      "seed": 29,
+      "file": "god-here-variation-29.mp4",
+      "schedule_file": "god-here-variation-29.schedule.json",
+      "sha256": "90e598f376b9a005935fe39159f993ed31154121fb7c75113334982530f05a2d",
+      "schedule_sha256": "280a1cb7704f6d95d8c816fa33e9ded1f235d6f01c725c878c44e0f84a28f58d",
+      "frames": 934,
+      "expected_frames": 934,
+      "fps": 30,
+      "duration_seconds": 31.133333,
+      "audio_duration_seconds": 31.133,
+      "units": [
+        "U01",
+        "U04",
+        "U05",
+        "U02",
+        "U07"
+      ],
+      "schedule_reproduced": true,
+      "full_decode": "passed"
+    },
+    {
+      "seed": 43,
+      "file": "god-here-variation-43.mp4",
+      "schedule_file": "god-here-variation-43.schedule.json",
+      "sha256": "e839871af6dab8b3059abf29b1710d15ff9d3ce29e5d0e7a1d5ef161663118cf",
+      "schedule_sha256": "776c41e85563c7d30ff677f2570684aae023d1af86033d4829a7c5ea3eb14587",
+      "frames": 1015,
+      "expected_frames": 1015,
+      "fps": 30,
+      "duration_seconds": 33.833333,
+      "audio_duration_seconds": 33.833,
+      "units": [
+        "U01",
+        "U02",
+        "U05",
+        "U06",
+        "U07"
+      ],
+      "schedule_reproduced": true,
+      "full_decode": "passed"
+    }
+  ],
+  "generator_module_sha256": "3c1ec96f2d14cfe36621c2a88bc4b57d93778c34fb885aa41b3198c3e29aeb7f",
+  "remix_module_sha256": "3ed4cf6bba5cab1f6862b815e1d76ad3eb02f3e2c2271a3e0b92d6788e30d5d9"
+}

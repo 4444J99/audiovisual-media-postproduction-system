@@ -1,0 +1,279 @@
+{
+  "learned_segmentation_run": true,
+  "model": "YOLOv8n-seg, COCO person class",
+  "checkpoint_url": "https://huggingface.co/unileon-robotics/YOLO8-ONNX/resolve/223bf64bbb0fe4f20b759f20c493130f4e848a76/yolov8n-seg.onnx",
+  "checkpoint_sha256": "f322e2b816501b9dfe88518f7742271f59719fcf46e7cbc42aff46c4f8eddcb5",
+  "checkpoint_bytes": 13873476,
+  "model_repository_revision": "223bf64bbb0fe4f20b759f20c493130f4e848a76",
+  "checkpoint_license": "AGPL-3.0",
+  "weights_bundled_in_repository": false,
+  "runtime": "ONNX Runtime CPUExecutionProvider",
+  "runtime_version": "1.30.0",
+  "confidence_threshold": 0.25,
+  "nms_iou": 0.6,
+  "model_input": "RGB [0,1], NCHW 1x3x640x640; aspect-preserving resize and 114-gray letterbox",
+  "mask_output": "COCO person instance masks; union alpha 640x360, 8-bit FFV1 lossless, source 30fps",
+  "postprocessing": "learned prototype logits >0, box crop, one-pixel Gaussian edge; bilinear source resize",
+  "temporal_method": "inference on every source dialogue frame; no reuse or smoothing across cuts",
+  "performer_identity": "provisional region-centroid association; no learned identity tracking or verified screenplay mapping",
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "source_start_frame": 0,
+  "source_end_frame_exclusive": 3360,
+  "frames": 3360,
+  "fps": 30,
+  "duration_seconds": 112.0,
+  "mask_dimensions": [
+    640,
+    360
+  ],
+  "picture_dimensions": [
+    1280,
+    720
+  ],
+  "detection_count_histogram": {
+    "0": 296,
+    "4": 4,
+    "5": 2148,
+    "6": 871,
+    "7": 37,
+    "8": 4
+  },
+  "inference_seconds": 375.07,
+  "mask_sha256": "e65070e0f7d844b83f811133509feeff151f6471f7a5a867ec31e17263780ed6",
+  "picture_sha256": "6e1be86a67fc29ea9645a1f5b8f3573e46123b7f1ce5692d907f9841d356fa5c",
+  "review_sha256": "f6a4dbdc72793e1da6f7ce483a1b44a344de5345545683a3dbf3577934725a1e",
+  "review_source_start_frame": 2554,
+  "review_source_end_frame_exclusive": 3215,
+  "review_frames": 661,
+  "picture_composition": "Original five hard regions and typography; current source person pixels restored over region treatment",
+  "limitations": [
+    "Mask edges, glasses, cups, occlusion and missed or duplicate detections still require moving-image review.",
+    "No human artistic acceptance or mask-quality measurement against hand-labeled ground truth.",
+    "Preserving bodies can leave ghosts where a field transform displaces an earlier body into background.",
+    "This is instance segmentation, not SAM 2 or identity-aware temporal tracking."
+  ],
+  "rejected_trial": {
+    "model": "onnx-community/mediapipe_selfie_segmentation_landscape",
+    "reason": "Near-empty output in wide alternate view at 85.5 seconds; retained only as failed trial record"
+  },
+  "primary_documentation": [
+    "https://docs.ultralytics.com/models/yolov8/",
+    "https://docs.ultralytics.com/tasks/segment/",
+    "https://huggingface.co/unileon-robotics/YOLO8-ONNX/blob/223bf64bbb0fe4f20b759f20c493130f4e848a76/README.md"
+  ],
+  "status": "Rendered learned-mask workprint; editorial and temporal mask review pending",
+  "analysis_resize": "Source RGB area-downsampled to 640x360 before model preprocessing",
+  "independent_pilot_mask_report": "independent-person-mask-pilot.json",
+  "automated_visual_inspection": "visual-mask-inspection.json",
+  "validation_report": "segmentation-validation.json",
+  "dialogue_frame_count": 3064,
+  "full_dialogue_spatial_control_detection_coverage": {
+    "P01": 3064,
+    "P02": 3044,
+    "P03": 3064,
+    "P04": 3064,
+    "P05": 3064
+  },
+  "full_dialogue_frames_with_missing_spatial_control": [
+    {
+      "source_frame": 1732,
+      "source_time": 57.733333,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1733,
+      "source_time": 57.766667,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1734,
+      "source_time": 57.8,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1735,
+      "source_time": 57.833333,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1767,
+      "source_time": 58.9,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1768,
+      "source_time": 58.933333,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1769,
+      "source_time": 58.966667,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1770,
+      "source_time": 59.0,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1771,
+      "source_time": 59.033333,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1772,
+      "source_time": 59.066667,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1775,
+      "source_time": 59.166667,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1776,
+      "source_time": 59.2,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1780,
+      "source_time": 59.333333,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1781,
+      "source_time": 59.366667,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1782,
+      "source_time": 59.4,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1783,
+      "source_time": 59.433333,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1784,
+      "source_time": 59.466667,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1785,
+      "source_time": 59.5,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1786,
+      "source_time": 59.533333,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "source_frame": 1787,
+      "source_time": 59.566667,
+      "controls": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ]
+    }
+  ]
+}

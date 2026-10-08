@@ -1,0 +1,30 @@
+{
+  "model": "onnx-community/mediapipe_selfie_segmentation_landscape",
+  "checkpoint_sha256": "7a0adcfdb1715d3b0ff0f61486d8a181c33f4a208343a5abfccbc6540e872d24",
+  "checkpoint_bytes": 462338,
+  "license": "Apache-2.0",
+  "model_input": "RGB [0,1], NCHW 1x3x144x256, bilinear resize, no normalization",
+  "source_samples": [
+    {
+      "time_seconds": 10.2,
+      "mean_alpha": 0.11317752
+    },
+    {
+      "time_seconds": 85.5,
+      "mean_alpha": 1.0671405e-10
+    },
+    {
+      "time_seconds": 92.2,
+      "mean_alpha": 0.027328962
+    },
+    {
+      "time_seconds": 101.4,
+      "mean_alpha": 1.8244302e-07
+    }
+  ],
+  "decision": "Rejected: wide-view people omitted, effectively empty at85.5and101.4. Replaced by multiperson COCO instance segmentation.",
+  "primary_documentation": [
+    "https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/selfie_segmentation.md",
+    "https://huggingface.co/onnx-community/mediapipe_selfie_segmentation_landscape/raw/main/preprocessor_config.json"
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "review_type": "Automated agent visual inspection of cached source frames and alpha tracks; no human acceptance and no annotated ground truth",
+  "review_scope": "Six discrete pilot frames. No additional inference was run. This review does not establish temporal stability between the samples.",
+  "artifacts": [
+    "cached-mask-inspection-sheet.jpg",
+    "cached-mask-details.jpg"
+  ],
+  "samples": [
+    {
+      "requested_time": 85.5,
+      "source_frame": 2565,
+      "decoded_time": 85.5,
+      "alpha_pixels": {
+        "P01": 7952,
+        "P02": 9407,
+        "P03": 22213,
+        "P04": 8551,
+        "P05": 15473
+      }
+    },
+    {
+      "requested_time": 88.2,
+      "source_frame": 2646,
+      "decoded_time": 88.2,
+      "alpha_pixels": {
+        "P01": 7317,
+        "P02": 10407,
+        "P03": 21692,
+        "P04": 9395,
+        "P05": 15276
+      }
+    },
+    {
+      "requested_time": 88.25,
+      "source_frame": 2648,
+      "decoded_time": 88.26666666666667,
+      "alpha_pixels": {
+        "P01": 15139,
+        "P02": 10816,
+        "P03": 24640,
+        "P04": 7935,
+        "P05": 14146
+      }
+    },
+    {
+      "requested_time": 92.2,
+      "source_frame": 2766,
+      "decoded_time": 92.2,
+      "alpha_pixels": {
+        "P01": 14306,
+        "P02": 11328,
+        "P03": 24516,
+        "P04": 7266,
+        "P05": 13467
+      }
+    },
+    {
+      "requested_time": 95,
+      "source_frame": 2850,
+      "decoded_time": 95.0,
+      "alpha_pixels": {
+        "P01": 7579,
+        "P02": 7715,
+        "P03": 24120,
+        "P04": 10306,
+        "P05": 15810
+      }
+    },
+    {
+      "requested_time": 101.4,
+      "source_frame": 3042,
+      "decoded_time": 101.4,
+      "alpha_pixels": {
+        "P01": 7732,
+        "P02": 9472,
+        "P03": 22359,
+        "P04": 10038,
+        "P05": 15817
+      }
+    }
+  ],
+  "identity_association": {
+    "status": "No discernible identity swap in the six observed frames",
+    "basis": "Striped standing performer maps to P01, bald patterned shirt to P02, gray shirt/profile to P03, dark shirt/cup/stove performer to P04, cap to P05 in both views. Screenplay names remain unverified."
+  },
+  "edge_findings": [
+    "The learned alpha generally follows visible head, torso and arm silhouettes. It is a coarse person mask, not a precision face, finger or object matte.",
+    "P03 foreground silhouette remains associated with the same performer after the change from view B to view A, including the visible head and upper body.",
+    "P05 cap is included in the silhouette and the outstretched arm is broadly retained in the sampled view B frames.",
+    "At 92.2 seconds P04 raises a drinking vessel to the mouth. The mask follows the combined hand and mouth region; it does not provide an independently controllable glass or sip mask.",
+    "Fine hair, eyeglasses, fingers, gaps at arm/body boundaries and contact edges require closer review before selective transformation. The masks are 640 by 360 while the source is 1280 by 720."
+  ],
+  "occlusion_findings": [
+    "View A includes major foreground occlusion of P02 by P03 and P04 by the seated group. The visible-person masks should be interpreted as partial silhouettes, not complete bodies behind those occluders.",
+    "Table, chair, cup and hand contacts are not separately labeled. Overlap ordering and edge contamination must be checked at the exact frames used for a composited effect.",
+    "The six samples do not establish that overlapped person alphas are disjoint."
+  ],
+  "cut_findings": [
+    "At the view change near 88.2333 seconds, performer masks relocate to the appropriate positions in view A in the sampled post-cut frame 2648.",
+    "At 95.0 seconds, the masks are in the appropriate view B positions in frame 2850. No old-view silhouette is discernible in that sampled frame.",
+    "Continuous person identity still depends on the authored layout association. A detection centroid crossing a field boundary can misassign identity even when the segmentation silhouette is otherwise plausible.",
+    "Mask association and any temporal effect history should reset on a source shot cut; this discrete review is not evidence that all transition frames are artifact-free."
+  ],
+  "acceptance_status": "Useful pilot silhouette trial; pending full moving-footage inspection and artist approval. Detection coverage is not an accuracy score."
+}

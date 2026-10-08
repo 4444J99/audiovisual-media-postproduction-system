@@ -1,0 +1,84 @@
+{
+  "validation": "Full frame count and complete media decode; not mask accuracy or human artistic acceptance",
+  "media": [
+    {
+      "name": "body-preserving-picture.mp4",
+      "frames": 3360,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "fps": "30/1",
+      "duration": "112.000000",
+      "full_decode": true,
+      "sha256": "6e1be86a67fc29ea9645a1f5b8f3573e46123b7f1ce5692d907f9841d356fa5c"
+    },
+    {
+      "name": "person-union-alpha.mkv",
+      "frames": 3360,
+      "dimensions": [
+        640,
+        360
+      ],
+      "fps": "30/1",
+      "duration": "112.000000",
+      "full_decode": true,
+      "sha256": "e65070e0f7d844b83f811133509feeff151f6471f7a5a867ec31e17263780ed6"
+    },
+    {
+      "name": "mask-review-pilot.mp4",
+      "frames": 661,
+      "dimensions": [
+        1536,
+        288
+      ],
+      "fps": "30/1",
+      "duration": "22.033333",
+      "full_decode": true,
+      "sha256": "f6a4dbdc72793e1da6f7ce483a1b44a344de5345545683a3dbf3577934725a1e"
+    }
+  ],
+  "independent_pilot_alpha": [
+    {
+      "track": "P01-person-alpha-pilot.mkv",
+      "frames": 661,
+      "frames_with_nonempty_alpha": 661,
+      "minimum_foreground_pixels": 5436,
+      "maximum_foreground_pixels": 16442,
+      "sha256": "091139f4334045efc0dce86954c5135154c55e8bbe7096bcc53cbfeb24d998c5"
+    },
+    {
+      "track": "P02-person-alpha-pilot.mkv",
+      "frames": 661,
+      "frames_with_nonempty_alpha": 661,
+      "minimum_foreground_pixels": 7609,
+      "maximum_foreground_pixels": 11978,
+      "sha256": "e831e88e784145d269639eaf6d6ba31f8fccb088bb11418b5b93833d77124c36"
+    },
+    {
+      "track": "P03-person-alpha-pilot.mkv",
+      "frames": 661,
+      "frames_with_nonempty_alpha": 661,
+      "minimum_foreground_pixels": 21973,
+      "maximum_foreground_pixels": 30844,
+      "sha256": "3e82721b38a22182a48114951a2f8951cdbcc39cbf6e01e125281895379427db"
+    },
+    {
+      "track": "P04-person-alpha-pilot.mkv",
+      "frames": 661,
+      "frames_with_nonempty_alpha": 661,
+      "minimum_foreground_pixels": 6792,
+      "maximum_foreground_pixels": 11907,
+      "sha256": "fa3a8a544f682cb1330e0c65b053829eb78247f49cdc722b3777b4a29dbfa269"
+    },
+    {
+      "track": "P05-person-alpha-pilot.mkv",
+      "frames": 661,
+      "frames_with_nonempty_alpha": 661,
+      "minimum_foreground_pixels": 14013,
+      "maximum_foreground_pixels": 16738,
+      "sha256": "6300b527f4acb9ab2c8f8de1f9e2ab58c58050f81e17a453233db96df0b821b3"
+    }
+  ],
+  "unit_tests": "4 pass: empty masks, union/composition, fractional alpha/bad geometry, distinct-person NMS"
+}

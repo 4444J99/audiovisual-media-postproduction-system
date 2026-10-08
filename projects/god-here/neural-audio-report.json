@@ -1,0 +1,554 @@
+{
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "source_sample_rate": 48000,
+  "model": {
+    "name": "DTLN two-stage 500-hour DNS pretrained model",
+    "repository": "https://github.com/breizhn/DTLN",
+    "revision": "1de1f15a8b5b7e1c44905618ff2ef70ca8277fbc",
+    "license": "MIT; upstream LICENSE retained",
+    "model_sample_rate": 16000,
+    "files": {
+      "model_1.onnx": "22b91cae3855e5a0620e66a917ca6c82c58db0e842c770f58d86751c5e8d4ae3",
+      "model_2.onnx": "e20c92f9233fccf29cddf86970d0d0161a03aebccc26d6f4d5639c4d5ec2e639"
+    }
+  },
+  "runtime": {
+    "engine": "onnxruntime",
+    "provider": "CPUExecutionProvider",
+    "intra_op_threads": 1,
+    "inter_op_threads": 1,
+    "inference_seconds_two_channels": 16.959335465006006
+  },
+  "processing": {
+    "mixture_channels": 2,
+    "independent_voice_isolation": false,
+    "neural_blend": 0.7,
+    "dry_blend": 0.3,
+    "sample_rate_conversion": "zero-phase polyphase 48k -> 16k -> 48k",
+    "stream_offset_compensated_samples_at_16k": 384,
+    "stream_offset_compensated_ms": 24.0,
+    "tail_flush": true,
+    "retained_source_samples": 5376627,
+    "model_bandwidth_note": "DTLN is 16 kHz; original upper frequencies survive only in the dry portion of dtln70.",
+    "outside_dialogue_scene": "untreated source; 150 ms handovers"
+  },
+  "active_speech_mask": "Union of provisional automatic transcript intervals; evaluation definition, not certified speech labels",
+  "full_scene_common_active_target_lufs": -16.5,
+  "alignment_checks": {
+    "dtln100": [
+      {
+        "source_center_s": 8.5,
+        "lag_at_8k_samples": 0,
+        "lag_ms": 0.0
+      },
+      {
+        "source_center_s": 37,
+        "lag_at_8k_samples": 0,
+        "lag_ms": 0.0
+      },
+      {
+        "source_center_s": 58,
+        "lag_at_8k_samples": 0,
+        "lag_ms": 0.0
+      },
+      {
+        "source_center_s": 86,
+        "lag_at_8k_samples": 0,
+        "lag_ms": 0.0
+      },
+      {
+        "source_center_s": 104.5,
+        "lag_at_8k_samples": 0,
+        "lag_ms": 0.0
+      }
+    ],
+    "dtln70": [
+      {
+        "source_center_s": 8.5,
+        "lag_at_8k_samples": 0,
+        "lag_ms": 0.0
+      },
+      {
+        "source_center_s": 37,
+        "lag_at_8k_samples": 0,
+        "lag_ms": 0.0
+      },
+      {
+        "source_center_s": 58,
+        "lag_at_8k_samples": 0,
+        "lag_ms": 0.0
+      },
+      {
+        "source_center_s": 86,
+        "lag_at_8k_samples": 0,
+        "lag_ms": 0.0
+      },
+      {
+        "source_center_s": 104.5,
+        "lag_at_8k_samples": 0,
+        "lag_ms": 0.0
+      }
+    ]
+  },
+  "listening_acceptance": "pending; metrics do not establish intelligibility or naturalness",
+  "candidates": {
+    "original": {
+      "file": "candidate-original.wav",
+      "gain_db": 0.5100000000000016,
+      "before_active": {
+        "input_i": -17.01,
+        "input_tp": -2.32,
+        "input_lra": 2.8,
+        "input_thresh": -27.13,
+        "output_i": -16.29,
+        "output_tp": -1.25,
+        "output_lra": 2.6,
+        "output_thresh": -26.39,
+        "normalization_type": "dynamic",
+        "target_offset": 0.29
+      },
+      "after_active": {
+        "input_i": -16.5,
+        "input_tp": -1.81,
+        "input_lra": 2.8,
+        "input_thresh": -26.62,
+        "output_i": -16.29,
+        "output_tp": -1.25,
+        "output_lra": 2.6,
+        "output_thresh": -26.39,
+        "normalization_type": "dynamic",
+        "target_offset": 0.29
+      },
+      "full_program": {
+        "input_i": -16.61,
+        "input_tp": -1.81,
+        "input_lra": 4.3,
+        "input_thresh": -26.88,
+        "output_i": -16.27,
+        "output_tp": -1.0,
+        "output_lra": 4.0,
+        "output_thresh": -26.51,
+        "normalization_type": "dynamic",
+        "target_offset": 0.27
+      },
+      "samples": 5376627,
+      "sha256": "b3855324d08e3da2064dd301c7ad5a5cb0c86c49b7585d7665af6516cce59852"
+    },
+    "dsp": {
+      "file": "candidate-dsp.wav",
+      "gain_db": 0.6999999999999993,
+      "before_active": {
+        "input_i": -17.2,
+        "input_tp": -2.99,
+        "input_lra": 2.9,
+        "input_thresh": -27.45,
+        "output_i": -16.22,
+        "output_tp": -1.73,
+        "output_lra": 2.7,
+        "output_thresh": -26.47,
+        "normalization_type": "dynamic",
+        "target_offset": 0.22
+      },
+      "after_active": {
+        "input_i": -16.5,
+        "input_tp": -2.29,
+        "input_lra": 2.9,
+        "input_thresh": -26.75,
+        "output_i": -16.22,
+        "output_tp": -1.73,
+        "output_lra": 2.7,
+        "output_thresh": -26.47,
+        "normalization_type": "dynamic",
+        "target_offset": 0.22
+      },
+      "full_program": {
+        "input_i": -16.41,
+        "input_tp": -2.29,
+        "input_lra": 4.7,
+        "input_thresh": -26.98,
+        "output_i": -16.17,
+        "output_tp": -1.57,
+        "output_lra": 4.2,
+        "output_thresh": -26.74,
+        "normalization_type": "dynamic",
+        "target_offset": 0.17
+      },
+      "samples": 5376627,
+      "sha256": "c2fb726cd21b5df43d4ab5006ad43567babcc238eda7691102fffd5028c5f8dc"
+    },
+    "dtln70": {
+      "file": "candidate-dtln70.wav",
+      "gain_db": 1.0899999999999999,
+      "before_active": {
+        "input_i": -17.59,
+        "input_tp": -2.95,
+        "input_lra": 2.7,
+        "input_thresh": -27.94,
+        "output_i": -15.92,
+        "output_tp": -1.17,
+        "output_lra": 2.6,
+        "output_thresh": -26.28,
+        "normalization_type": "dynamic",
+        "target_offset": -0.08
+      },
+      "after_active": {
+        "input_i": -16.5,
+        "input_tp": -1.86,
+        "input_lra": 2.7,
+        "input_thresh": -26.85,
+        "output_i": -15.93,
+        "output_tp": -1.17,
+        "output_lra": 2.6,
+        "output_thresh": -26.29,
+        "normalization_type": "dynamic",
+        "target_offset": -0.07
+      },
+      "full_program": {
+        "input_i": -16.24,
+        "input_tp": -1.86,
+        "input_lra": 5.5,
+        "input_thresh": -27.03,
+        "output_i": -16.02,
+        "output_tp": -1.3,
+        "output_lra": 5.0,
+        "output_thresh": -26.83,
+        "normalization_type": "dynamic",
+        "target_offset": 0.02
+      },
+      "samples": 5376627,
+      "sha256": "08cf9d20bf1a7d2978e15ad889d846f5bdb0fd3583cd133d1ae63e1970f714ab"
+    },
+    "dtln100": {
+      "file": "candidate-dtln100.wav",
+      "gain_db": 1.2899999999999991,
+      "before_active": {
+        "input_i": -17.79,
+        "input_tp": -3.06,
+        "input_lra": 2.9,
+        "input_thresh": -28.18,
+        "output_i": -15.85,
+        "output_tp": -1.0,
+        "output_lra": 2.7,
+        "output_thresh": -26.26,
+        "normalization_type": "dynamic",
+        "target_offset": -0.15
+      },
+      "after_active": {
+        "input_i": -16.5,
+        "input_tp": -1.77,
+        "input_lra": 2.8,
+        "input_thresh": -26.89,
+        "output_i": -15.85,
+        "output_tp": -1.0,
+        "output_lra": 2.7,
+        "output_thresh": -26.25,
+        "normalization_type": "dynamic",
+        "target_offset": -0.15
+      },
+      "full_program": {
+        "input_i": -16.18,
+        "input_tp": -1.77,
+        "input_lra": 6.2,
+        "input_thresh": -27.04,
+        "output_i": -15.98,
+        "output_tp": -1.09,
+        "output_lra": 5.2,
+        "output_thresh": -26.87,
+        "normalization_type": "dynamic",
+        "target_offset": -0.02
+      },
+      "samples": 5376627,
+      "sha256": "02f79de7a5eebdedd9940fb2797f8fd7299ce82811cc456d36aeb495416727a3"
+    }
+  },
+  "pilot": {
+    "original": {
+      "file": "candidate-original-pilot.wav",
+      "gain_db": 0.16000000000000014,
+      "before_active": {
+        "input_i": -16.66,
+        "input_tp": -2.32,
+        "input_lra": 2.4,
+        "input_thresh": -26.81,
+        "output_i": -16.25,
+        "output_tp": -1.45,
+        "output_lra": 2.2,
+        "output_thresh": -26.4,
+        "normalization_type": "dynamic",
+        "target_offset": 0.25
+      },
+      "after_active": {
+        "input_i": -16.5,
+        "input_tp": -2.16,
+        "input_lra": 2.4,
+        "input_thresh": -26.65,
+        "output_i": -16.24,
+        "output_tp": -1.45,
+        "output_lra": 2.2,
+        "output_thresh": -26.39,
+        "normalization_type": "dynamic",
+        "target_offset": 0.24
+      },
+      "full_program": {
+        "input_i": -17.22,
+        "input_tp": -2.16,
+        "input_lra": 3.6,
+        "input_thresh": -27.33,
+        "output_i": -16.46,
+        "output_tp": -1.0,
+        "output_lra": 3.5,
+        "output_thresh": -26.48,
+        "normalization_type": "dynamic",
+        "target_offset": 0.46
+      },
+      "samples": 1057600,
+      "sha256": "5e986f3e18c639be4e5f1e8c4d2965a00f50bdb1ddab503b4065798073d7f5b1",
+      "aac_active": {
+        "input_i": -16.52,
+        "input_tp": -2.28,
+        "input_lra": 2.4,
+        "input_thresh": -26.67,
+        "output_i": -16.23,
+        "output_tp": -1.55,
+        "output_lra": 2.2,
+        "output_thresh": -26.4,
+        "normalization_type": "dynamic",
+        "target_offset": 0.23
+      }
+    },
+    "dsp": {
+      "file": "candidate-dsp-pilot.wav",
+      "gain_db": 0.26000000000000156,
+      "before_active": {
+        "input_i": -16.76,
+        "input_tp": -2.99,
+        "input_lra": 2.5,
+        "input_thresh": -27.12,
+        "output_i": -16.2,
+        "output_tp": -2.12,
+        "output_lra": 2.3,
+        "output_thresh": -26.63,
+        "normalization_type": "dynamic",
+        "target_offset": 0.2
+      },
+      "after_active": {
+        "input_i": -16.51,
+        "input_tp": -2.73,
+        "input_lra": 2.5,
+        "input_thresh": -26.87,
+        "output_i": -16.2,
+        "output_tp": -2.12,
+        "output_lra": 2.3,
+        "output_thresh": -26.63,
+        "normalization_type": "dynamic",
+        "target_offset": 0.2
+      },
+      "full_program": {
+        "input_i": -17.01,
+        "input_tp": -2.73,
+        "input_lra": 3.7,
+        "input_thresh": -27.57,
+        "output_i": -16.39,
+        "output_tp": -1.46,
+        "output_lra": 3.6,
+        "output_thresh": -26.95,
+        "normalization_type": "dynamic",
+        "target_offset": 0.39
+      },
+      "samples": 1057600,
+      "sha256": "c6a70f33acbb770f5085324aed00fd43db2f6f9f0e54b679b7f919fecda9bb1c",
+      "aac_active": {
+        "input_i": -16.53,
+        "input_tp": -2.79,
+        "input_lra": 2.5,
+        "input_thresh": -26.89,
+        "output_i": -16.17,
+        "output_tp": -2.15,
+        "output_lra": 2.4,
+        "output_thresh": -26.63,
+        "normalization_type": "dynamic",
+        "target_offset": 0.17
+      }
+    },
+    "dtln70": {
+      "file": "candidate-dtln70-pilot.wav",
+      "gain_db": 0.46000000000000085,
+      "before_active": {
+        "input_i": -16.96,
+        "input_tp": -3.92,
+        "input_lra": 2.7,
+        "input_thresh": -27.48,
+        "output_i": -16.2,
+        "output_tp": -3.0,
+        "output_lra": 2.6,
+        "output_thresh": -26.82,
+        "normalization_type": "dynamic",
+        "target_offset": 0.2
+      },
+      "after_active": {
+        "input_i": -16.5,
+        "input_tp": -3.46,
+        "input_lra": 2.7,
+        "input_thresh": -27.02,
+        "output_i": -16.21,
+        "output_tp": -3.0,
+        "output_lra": 2.6,
+        "output_thresh": -26.83,
+        "normalization_type": "dynamic",
+        "target_offset": 0.21
+      },
+      "full_program": {
+        "input_i": -16.89,
+        "input_tp": -3.46,
+        "input_lra": 3.8,
+        "input_thresh": -27.8,
+        "output_i": -16.32,
+        "output_tp": -2.54,
+        "output_lra": 4.0,
+        "output_thresh": -27.38,
+        "normalization_type": "dynamic",
+        "target_offset": 0.32
+      },
+      "samples": 1057600,
+      "sha256": "c34d80f5e10de788d35de611c30f9367fdea2ba567ab4d88a0cb5109f383e95c",
+      "aac_active": {
+        "input_i": -16.52,
+        "input_tp": -3.46,
+        "input_lra": 2.7,
+        "input_thresh": -27.04,
+        "output_i": -16.2,
+        "output_tp": -2.99,
+        "output_lra": 2.5,
+        "output_thresh": -26.82,
+        "normalization_type": "dynamic",
+        "target_offset": 0.2
+      }
+    },
+    "dtln100": {
+      "file": "candidate-dtln100-pilot.wav",
+      "gain_db": 0.5899999999999999,
+      "before_active": {
+        "input_i": -17.09,
+        "input_tp": -3.96,
+        "input_lra": 2.8,
+        "input_thresh": -27.67,
+        "output_i": -16.21,
+        "output_tp": -2.96,
+        "output_lra": 2.7,
+        "output_thresh": -26.9,
+        "normalization_type": "dynamic",
+        "target_offset": 0.21
+      },
+      "after_active": {
+        "input_i": -16.5,
+        "input_tp": -3.37,
+        "input_lra": 2.8,
+        "input_thresh": -27.08,
+        "output_i": -16.21,
+        "output_tp": -2.96,
+        "output_lra": 2.7,
+        "output_thresh": -26.89,
+        "normalization_type": "dynamic",
+        "target_offset": 0.21
+      },
+      "full_program": {
+        "input_i": -16.9,
+        "input_tp": -3.37,
+        "input_lra": 3.8,
+        "input_thresh": -27.89,
+        "output_i": -16.3,
+        "output_tp": -2.51,
+        "output_lra": 4.1,
+        "output_thresh": -27.45,
+        "normalization_type": "dynamic",
+        "target_offset": 0.3
+      },
+      "samples": 1057600,
+      "sha256": "035030e3ca02ec05e90ab1b01ff10b825d8f3d2d671c703bb1e1ae1576b6712f",
+      "aac_active": {
+        "input_i": -16.52,
+        "input_tp": -3.37,
+        "input_lra": 2.8,
+        "input_thresh": -27.09,
+        "output_i": -16.19,
+        "output_tp": -2.94,
+        "output_lra": 2.7,
+        "output_thresh": -26.88,
+        "normalization_type": "dynamic",
+        "target_offset": 0.19
+      }
+    }
+  },
+  "benchmarks": [
+    {
+      "label": "opening",
+      "source_interval_s": [
+        5.03,
+        9.8
+      ],
+      "matching": "shared full-scene active-speech target"
+    },
+    {
+      "label": "distant-quiet",
+      "source_interval_s": [
+        13.2,
+        20.5
+      ],
+      "matching": "shared full-scene active-speech target"
+    },
+    {
+      "label": "raised",
+      "source_interval_s": [
+        33.4,
+        42.9
+      ],
+      "matching": "shared full-scene active-speech target"
+    },
+    {
+      "label": "brief",
+      "source_interval_s": [
+        47.4,
+        55.4
+      ],
+      "matching": "shared full-scene active-speech target"
+    },
+    {
+      "label": "corrections",
+      "source_interval_s": [
+        55.4,
+        64
+      ],
+      "matching": "shared full-scene active-speech target"
+    },
+    {
+      "label": "overlap",
+      "source_interval_s": [
+        73.9,
+        78
+      ],
+      "matching": "shared full-scene active-speech target"
+    },
+    {
+      "label": "inbox",
+      "source_interval_s": [
+        81.6,
+        88.233
+      ],
+      "matching": "shared full-scene active-speech target"
+    },
+    {
+      "label": "ending",
+      "source_interval_s": [
+        95,
+        107.167
+      ],
+      "matching": "shared full-scene active-speech target"
+    }
+  ],
+  "pilot_source_interval_s": [
+    85.13333333333334,
+    107.16666666666667
+  ],
+  "pilot_common_active_target_lufs": -16.5,
+  "pilot_delivered_active_spread_lu": 0.010000000000001563
+}

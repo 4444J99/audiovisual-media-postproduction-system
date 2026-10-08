@@ -1,8 +1,98 @@
-<!doctype html><html lang="en"><head><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23080808%22%2F%3E%3Cpath%20d%3D%22M5%206v20M10%206v20M16%206v20M22%206v20M27%206v20%22%20stroke%3D%22%23d8b58c%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>god-here · Review</title><link rel="stylesheet" href="style.css"></head><body><main class="review"><p class="eyebrow">GOD-HERE · REVIEW</p><h1>Hear it. Then see it.</h1><p>Four aligned versions of source 85.133–107.167 seconds. The repair is a candidate awaiting listening acceptance. All versions keep the source dialogue order. The character effect returns derive from the shared mixture.</p><label>Comparison <select id="version"><option value="A">A · Original picture / matched original sound</option><option value="B">B · Original picture / candidate repair</option><option value="C">C · Five regions / candidate repair</option><option value="D">D · Five regions / expressive sound</option></select></label><video id="proof" controls playsinline src="media/proof-A.mp4"></video><p>Switching preserves the current source moment. A/B/C core dialogue has been level matched; D adds expressive returns.</p><fieldset><legend>Audio trial · random labels</legend><p>Listen without the screenplay first. Rate ease of understanding, quiet replies, voice character, and artifacts. Test headphones and your phone speaker. Save your review locally.</p><div class="grid" id="trials"></div><label>Preferred label <select id="preferred"><option>Unresolved</option><option>1</option><option>2</option><option>3</option><option>4</option></select></label><label>Notes <textarea id="notes" rows="3" style="width:100%"></textarea></label><button id="save-review">Save listening review</button><button id="reveal">Reveal candidates</button><p id="key" role="status"></p></fieldset><p><a href="index.html">Interactive room</a> <a href="media/god-here-linear-workprint-01.mp4">Complete linear workprint</a></p><p class="small">Expressive words in the workprint are newly authored visual text. The automatic transcript has not been certified as captions. A real installation still needs venue calibration.</p></main><script type="module">
-const order=['A','B','S','F'];for(let i=order.length-1;i>0;i--){const r=crypto.getRandomValues(new Uint32Array(1))[0]%(i+1);[order[i],order[r]]=[order[r],order[i]];}
-document.getElementById('trials').innerHTML=order.map((x,i)=>`<div><p>Trial ${i+1}</p><audio controls preload="none" src="media/audio-trial-${x}.m4a"></audio></div>`).join('');
-const v=document.getElementById('proof');document.getElementById('version').onchange=e=>{const t=v.currentTime,playing=!v.paused;v.src=`media/proof-${e.target.value}.mp4`;v.onloadedmetadata=()=>{v.currentTime=Math.min(t,v.duration);if(playing)v.play();};};
-document.getElementById('reveal').onclick=()=>{document.getElementById('key').textContent=order.map((x,i)=>`${i+1}: ${x==='A'?'Gain-only reference':x==='B'?'Conservative spectral repair':x==='S'?'Stronger spectral repair':'FFT denoise trial'}`).join(' · ');};
-document.getElementById('save-review').onclick=()=>{const data={project:'god-here',status:'listener review',order,preferred:document.getElementById('preferred').value,notes:document.getElementById('notes').value,date:new Date().toISOString()};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='god-here-listening-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
-document.querySelectorAll('audio').forEach(a=>a.addEventListener('play',()=>{document.querySelectorAll('audio').forEach(b=>{if(b!==a)b.pause();});v.pause();}));
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>god-here · Sound and picture review</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23080808%22%2F%3E%3Cpath%20d%3D%22M5%206v20M10%206v20M16%206v20M22%206v20M27%206v20%22%20stroke%3D%22%23d8b58c%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="review.css">
+</head>
+<body>
+<main class="review">
+  <p class="eyebrow">GOD-HERE · WORKPRINT 02 REVIEW</p>
+  <h1>Hear the room.<br>Watch it change.</h1>
+  <p class="intro">Compare the restored speech, the five character regions, and the new room tone and foley. These are production trials. Listening and mask quality still need review.</p>
+
+  <section aria-labelledby="picture-heading">
+    <h2 id="picture-heading">The same moment, five versions</h2>
+    <p>Each version covers source 85.133–107.167 seconds, in the same dialogue order. Switching picture or speech trials keeps your place in the exchange.</p>
+    <label for="version">Picture and sound</label>
+    <select id="version">
+      <option value="A">A · Original picture and level-matched original sound</option>
+      <option value="B">B · Original picture and restored speech blend</option>
+      <option value="C">C · Five regions and the same restored speech</option>
+      <option value="D">D · Five regions, room tone, foley, and expressive sound</option>
+      <option value="E">E · The composed version with bodies held steady</option>
+    </select>
+    <video id="proof" controls playsinline preload="metadata" src="media/proof-A.mp4" aria-label="Aligned picture and sound comparison"></video>
+    <p class="clock">Source moment <output id="source-time">85.133 s</output></p>
+    <p class="detail">E uses a learned mask covering the people together. Check faces, hands, cups, and edges as they move. Separate identities for all five people have not been established by this mask.</p>
+  </section>
+
+  <fieldset>
+    <legend>Speech trials · hidden labels</legend>
+    <p>Four versions of the same excerpt, matched in speech loudness. Listen before reading the screenplay. Check difficult words, quiet replies, voice character, and distracting artifacts. Keep the listening volume fixed.</p>
+    <div class="trial-buttons" id="trials" role="group" aria-label="Choose a speech trial"></div>
+    <audio id="speech" controls preload="metadata" aria-label="Selected speech trial"></audio>
+    <p id="trial-status" class="detail" aria-live="polite"></p>
+    <button id="reveal" type="button">Reveal the treatments</button>
+    <p id="key" class="detail" aria-live="polite"></p>
+
+    <div class="review-grid">
+      <label for="preferred">Preferred trial
+        <select id="preferred" data-review-field>
+          <option value="unresolved">Unresolved</option>
+          <option value="1">Trial 1</option><option value="2">Trial 2</option>
+          <option value="3">Trial 3</option><option value="4">Trial 4</option>
+        </select>
+      </label>
+      <label for="device">Listening on
+        <select id="device" data-review-field>
+          <option value="unrecorded">Choose a listening setup</option>
+          <option value="headphones">Headphones</option>
+          <option value="phone-speaker">Phone speaker</option>
+          <option value="speakers">Other speakers</option>
+          <option value="headphones-and-phone">Headphones and phone speaker</option>
+        </select>
+      </label>
+    </div>
+    <label for="notes">Speech notes</label>
+    <textarea id="notes" rows="4" data-review-field placeholder="Which words became easier to hear? Did anything clear become less natural or disappear?"></textarea>
+  </fieldset>
+
+  <section aria-labelledby="layers-heading">
+    <h2 id="layers-heading">Listen to the construction layers</h2>
+    <p>The room tone combines material from eligible recorded silences into a changing bed. Source fragments are reused in varied combinations; there is no fixed repeating loop. The pause collection lets you hear the material it draws from.</p>
+    <div class="review-grid">
+      <article class="layer">
+        <h3>Reassembled room tone</h3>
+        <audio controls preload="none" src="media/room-tone.m4a" aria-label="Reassembled room-tone track"></audio>
+      </article>
+      <article class="layer">
+        <h3>Collected source pauses</h3>
+        <audio controls preload="none" src="media/source-pauses.m4a" aria-label="Collection of source pause material"></audio>
+      </article>
+    </div>
+    <p>The foley below is newly composed sound, made to accompany movement and visible gestures. The stove layer is a treatment proposed from the screenplay. These additions should be judged against the picture and kept beneath the dialogue.</p>
+    <div class="review-grid foley-grid">
+      <article class="layer"><h3>Movement</h3><audio controls preload="none" src="media/foley-movement.m4a" aria-label="Movement foley"></audio></article>
+      <article class="layer"><h3>Glasses and cups</h3><audio controls preload="none" src="media/foley-glass.m4a" aria-label="Glass and cup foley"></audio></article>
+      <article class="layer"><h3>Sips</h3><audio controls preload="none" src="media/foley-sip.m4a" aria-label="Sip foley"></audio></article>
+      <article class="layer"><h3>Stove</h3><audio controls preload="none" src="media/foley-stove.m4a" aria-label="Proposed stove sound"></audio></article>
+    </div>
+    <label for="layer-notes">Room, foley, and picture notes</label>
+    <textarea id="layer-notes" rows="4" data-review-field placeholder="Check room continuity, gesture timing, distracting additions, and mask edges."></textarea>
+  </section>
+
+  <div class="review-actions">
+    <button id="save-review" type="button">Save listening review</button>
+    <a href="media/god-here-linear-workprint-02.mp4">Watch the complete workprint</a>
+    <a href="index.html">Interactive room</a>
+  </div>
+  <p id="review-status" role="status" aria-live="polite">Notes are kept in this browser when storage is available. Saving also downloads a review file.</p>
+  <p class="detail">Expressive words in the film are authored visual text. The performed transcript still needs checking before it can become captions. A venue presentation needs its own sound and playback calibration.</p>
+</main>
+<script type="module" src="review.js"></script>
+</body>
+</html>

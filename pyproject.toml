@@ -9,6 +9,9 @@ description = "Source-addressable audiovisual composition and postproduction"
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.24", "scipy>=1.10", "Pillow>=9"]
 
+[project.optional-dependencies]
+learned = ["onnxruntime>=1.16", "opencv-python-headless>=4.8"]
+
 [project.scripts]
 amp = "amp.cli:main"
 

@@ -6,7 +6,7 @@
   "planning_timezone": "America/New_York",
   "publication_status": "published",
   "repository": "4444J99/audiovisual-media-postproduction-system",
-  "status_note": "Working mechanisms and workprints delivered. Each task retains its acceptance criteria; artist, audio, language, device, and venue acceptance remain explicit.",
+  "status_note": "Original 38-task plan preserved; two supplemental sound tasks added. Rendered implementations and human acceptance remain separately recorded.",
   "priorities": {
     "P0": "First combined proof: source calibration, selected excerpt restoration, five-field processing, and aligned comparison.",
     "P1": "Full authored linear edition, complete clean audio, delivery, and optional soft/spill boundary extension; original-source discovery may run in parallel.",
@@ -1245,5 +1245,23 @@
     ],
     "completed_task_count": 4,
     "remaining_acceptance_task_count": 34
-  }
+  },
+  "supplemental_tasks": [
+    {
+      "id": "GHERE-039",
+      "title": "Audition and qualify reconstructed nonlooping room tone",
+      "github_issue": 47,
+      "stage": "E1",
+      "implementation": "rendered",
+      "acceptance": "pending"
+    },
+    {
+      "id": "GHERE-040",
+      "title": "Review movement, glass, sip and optional stove foley",
+      "github_issue": 48,
+      "stage": "E1/E3",
+      "implementation": "rendered",
+      "acceptance": "pending"
+    }
+  ]
 }

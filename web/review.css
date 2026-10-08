@@ -1,0 +1,22 @@
+.review{max-width:960px;padding:32px 24px 48px}
+.review h1{font-size:clamp(36px,6vw,64px);max-width:700px}
+.review h2{font-size:23px;font-weight:400;margin:0 0 12px;letter-spacing:-.025em}
+.review h3{font-size:16px;font-weight:400;margin:0 0 10px}
+.review .intro{max-width:700px;font-size:18px;color:#ded7cb}
+.review section{margin:36px 0}
+.review label{display:block;margin:14px 0 8px;line-height:1.4}
+.review select,.review textarea{width:100%;font:inherit;font-size:16px;color:inherit;background:#191919;border:1px solid #ffffff38;border-radius:2px;padding:12px;min-height:44px}
+.review textarea{resize:vertical}
+.review select:focus-visible,.review textarea:focus-visible{outline:2px solid #d8b58c;outline-offset:3px}
+.review fieldset{padding:22px;margin:32px 0}
+.review legend{padding:0 8px;font-size:20px}
+.review .detail{color:#b4aea4;font-size:13px;line-height:1.6}
+.review .clock{margin-top:-5px;font-size:13px;color:#d8b58c}
+.review .clock output{font-size:inherit}
+.trial-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:20px 0 14px}
+.review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.layer{padding:18px;border:1px solid #ffffff25;background:#101010}
+.review .layer audio{min-width:0;display:block}
+.review-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+#review-status{font-size:13px;min-height:24px;color:#d8b58c}
+@media(max-width:560px){.review{padding:24px 16px 36px}.review fieldset{padding:16px 12px}.review-grid{grid-template-columns:1fr;gap:12px}.trial-buttons{grid-template-columns:repeat(2,1fr)}.review-actions>*{width:100%;text-align:center}.review .intro{font-size:16px}}

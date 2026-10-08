@@ -1,0 +1,74 @@
+{
+  "duration_seconds": 112,
+  "sample_rate": 48000,
+  "channels": 2,
+  "dialogue_origin": "70% DTLN enhanced shared recording plus 30% dry; no isolated performer stems",
+  "room_target_rms_dbfs_before_scene_envelope": -42,
+  "room_gain_db": -13.103454526526669,
+  "foley_trim_db": 9,
+  "global_fixed_trim_db": 0.0,
+  "room_role": "Subtle continuous support; original room and incidental sounds also remain in the dialogue mixture",
+  "foley_role": "Newly authored support; captured incidental sounds have not been surgically erased",
+  "listening_acceptance": "pending",
+  "versions": {
+    "dialogue-with-room": {
+      "measurement": {
+        "input_i": -16.23,
+        "input_tp": -1.83,
+        "input_lra": 5.5,
+        "input_thresh": -27.02,
+        "output_i": -16.01,
+        "output_tp": -1.32,
+        "output_lra": 5.0,
+        "output_thresh": -26.81,
+        "normalization_type": "dynamic",
+        "target_offset": 0.01
+      },
+      "sha256": "04dbd1c4a2341270eb46a3ab90fbad9851a190cb4f3d30ca7fbeafe16fa75818"
+    },
+    "dialogue-room-foley": {
+      "measurement": {
+        "input_i": -16.24,
+        "input_tp": -1.83,
+        "input_lra": 5.5,
+        "input_thresh": -27.01,
+        "output_i": -16.01,
+        "output_tp": -1.31,
+        "output_lra": 5.0,
+        "output_thresh": -26.81,
+        "normalization_type": "dynamic",
+        "target_offset": 0.01
+      },
+      "sha256": "afcc0ce94ec93d807469f25894f33893c48ff588eb9b31994c9f0d7381bf4b7d"
+    },
+    "composed-mix": {
+      "measurement": {
+        "input_i": -16.24,
+        "input_tp": -1.83,
+        "input_lra": 5.5,
+        "input_thresh": -27.01,
+        "output_i": -16.0,
+        "output_tp": -1.31,
+        "output_lra": 5.0,
+        "output_thresh": -26.81,
+        "normalization_type": "dynamic",
+        "target_offset": 0.0
+      },
+      "sha256": "e2c123db7edb9e2a048e755d9f6f32a46648e82bceee56a9fe5f586c560b5008"
+    }
+  },
+  "stems": {
+    "dialogue-core": {
+      "sha256": "33e8a9823af4fc55666b0bea1b2de05e5fe79008feb399b93ca83bb02197ef38"
+    },
+    "room-bed": {
+      "sha256": "d3cdb84d8d032c52736bd742cd0674a5647e1910918fb0e0f29f524398d0e4f6"
+    },
+    "foley-support": {
+      "sha256": "c8518c8be083f544a4171eb8a6f053e061a2d8be2cfc25e8889a380fe35c3647"
+    },
+    "expression-return": {
+      "sha256": "891add42bca750f6b4c133c35b2d287215f43dd0e3995b0f221f7c69bcea04f8"
+    }
+  }
+}
