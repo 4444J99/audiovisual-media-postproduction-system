@@ -6,6 +6,8 @@ This pass implements the request to take the assembled room pauses, slow them to
 
 The publishing target is the existing [God’s Ears room-tone workbench](https://god-here-five-realities.ajpadavano.chatgpt.site/room-tone/), with the direct [file catalog](https://god-here-five-realities.ajpadavano.chatgpt.site/room-tone/catalog.html) alongside it. This document records the prepared comparisons and their source workflow; successful live publication and download verification are recorded separately by the Sites deployment workflow.
 
+**Publication is blocked as of 2026-10-11.** The complete source was pushed and the local package passed integrity checks, but native Sites saving rejected it with `Sites archive exceeds the 256 MiB expanded archive limit`. The compressed archive is below the input limit; the expanded build is about 263.5 MiB. No new hosted version was saved or deployed from this source, and no R2 files were uploaded. The existing live publication is preserved. See the exact [publication blocker](../projects/god-here/room-stretch-20261011/publication/publication-blocker.json) and [local package verification](../projects/god-here/room-stretch-20261011/publication/package-verification.json). These records do not establish hosted playback or artistic acceptance.
+
 The workbench combines the earlier A–E room treatments, the V/P stretch study, and a dialogue-only control. Its 24-track catalog has 10 individual layers and eight stretch stacks in addition to A–E and `CORE`. `V5R` is the default full-film comparison. Context movies carry the same picture and dialogue core, so they can play through ordinary native video controls. Room-only AACs are available at production level and at the common **+14 dB inspection level**. The direct catalog exposes the files independently of the comparison script.
 
 ## Two explicitly different treatments
@@ -64,9 +66,19 @@ Open and synchronize the existing Site through its supported source workflow bef
 | Hosting configuration | UI, streaming media, and records | Lossless FLAC source files |
 |---|---|---|
 | Legacy `static.directory: "dist"` | `dist/room-tone/` | `dist/room-tone/downloads/` |
-| Current Vinext Worker, `r2: "ROOM_MEDIA"`, without `static` | `public/room-tone/` | `room-media-source/room-tone/downloads/` |
+| Prepared Vinext Worker, `r2: "ROOM_MEDIA"`, without `static` | `public/room-tone/` | `room-media-source/room-tone/downloads/` |
 
 For the Worker, `dist/` is generated build output. The reproduction helpers write the source directories in the table and leave generated `dist/` alone. Browser-facing links remain relative to `/room-tone/` in both layouts: a URL such as `downloads/stretched/V5R.flac` does not expose or change to a `room-media-source` URL. The Worker serves that same public path from its R2 binding.
+
+Five existing MP4s also use `room-media-source/` at their original relative paths. This reduces the compressed archive below the native input limit, but the expanded archive still exceeds the separate **256 MiB expanded archive limit** described above. The room-tone packager writes the earlier dialogue-comparison movie there; the other four belong to the retained Site content. The checker resolves that registered room-tone movie through the same source tree and rejects duplicate registered movies in `public/`. New stretch context movies, including the default V5R comparison, remain ordinary static assets.
+
+| Registered MP4 path, relative to the Site origin | Stored bytes |
+| --- | ---: |
+| `room-tone/media/god-here-room-tone-dialogue-comparison.mp4` | 9,888,599 |
+| `fx/assets/renders/god-here-13-processors-portrait.mp4` | 8,688,001 |
+| `fx/assets/renders/god-here-13-processors-landscape.mp4` | 6,779,262 |
+| `media/god-here-linear-workprint-02.mp4` | 6,253,907 |
+| `media/interactive-source.mp4` | 6,028,126 |
 
 The interactive route source is maintained in this repository under `web/room-tone/`: `index.html`, `styles.css`, `player.js`, `transport.mjs`, and `catalog.mjs`. Apply those reviewed route files to the corresponding Site route root through the existing Site source workflow. The media helper regenerates `media.json`, `catalog.html`, previews, context movies, and processing records. Keep the room-tone links in the Site’s existing home and review pages when reconciling the source; the helpers do not replace the Site’s other study pages.
 
@@ -93,9 +105,11 @@ python tools/check_room_tone_site.py \
 
 `prepare` uses the earlier package and creates reusable picture/preview assets. `finish` requires `--stretch` and adds the rendered layers, stacks, lossless downloads, synchronized context movies, and generated catalog. Both phases validate the project and source layout. The checker accepts the **checkout root**, resolves the unchanged download URLs against the appropriate source tree, and checks encoding, the shared picture/source clock, navigation, and the static asset limit. In Worker mode, FLACs in `public/` cause a failure; the 25 MiB static-file limit applies to `public/` assets, independently of R2 source files.
 
-### Register, publish, and seed lossless downloads
+### Register, publish, and seed stored media
 
 The complete current delivery has **42 FLAC downloads totaling 473,661,122 bytes**: 18 stretch exports and 24 earlier room/dialogue assets. Their source files remain in the Site repository under `room-media-source/room-tone/downloads/`; they are excluded from the static asset build. The exact-source WAV reels remain small downloadable records under `public/room-tone/records/`.
+
+The five registered MP4s add **37,637,895 bytes**, making **47 stored objects totaling 511,299,017 bytes**. These are unchanged originals, without another encoding pass. They use `video/mp4`, inline playback, and byte ranges; FLAC downloads keep their attachment behavior. The registry admits those exact five movie paths alongside the existing FLAC registrations.
 
 After packaging, regenerate the fixed R2 registrations from the final FLAC bytes. Run this command **from the Site checkout**, using its checked-in generator:
 
@@ -109,7 +123,7 @@ This updates `lib/room-media-manifest.json` and `lib/room-media-manifest.mjs`, r
 
 Build, verify, synchronize, save, and deploy the complete Site source through the supported Sites workflow. The runtime binding is `ROOM_MEDIA`; the upload authorization is the server-side `ROOM_MEDIA_UPLOAD_TOKEN` secret. No secret belongs in a source file, manifest, or browser bundle. A saved source version or successful local build is only a prerequisite for deployed verification.
 
-The Site’s `scripts/room_media_seed.py` receives configuration as one JSON line on hidden stdin, rather than command-line credential arguments. Its `manifest_path` points to the absolute `lib/room-media-manifest.json` path; `source_root` points to the absolute **`room-media-source` root**, above `room-tone/downloads`. For the complete source-identical delivery, `select: "all"` covers the 42 registrations. `mode: "upload"` seeds missing objects and verifies existing ones. `verify: "full"` checks HEAD metadata, a byte range, and the full downloaded SHA-256. An explicit non-secret JSON receipt records the outcome. Deployed verification must cover the original `/room-tone/downloads/...` paths before the publication is considered complete.
+The Site’s `scripts/room_media_seed.py` receives configuration as one JSON line on hidden stdin, rather than command-line credential arguments. Its `manifest_path` points to the absolute `lib/room-media-manifest.json` path; `source_root` points to the absolute **`room-media-source` root**, above `room-tone/downloads`. For the complete source-identical delivery, `select: "all"` covers all 47 registrations. `mode: "upload"` seeds missing objects and verifies existing ones. `verify: "full"` checks HEAD metadata, a byte range, and the full downloaded SHA-256. `verify: "range"` checks metadata and exact range bytes after provider-validated uploads. An explicit non-secret JSON receipt records the outcome. Deployed verification must cover the original FLAC download and five MP4 paths before the publication is considered complete.
 
 ## Verification and listening limits
 
@@ -130,6 +144,6 @@ The completed pass contains **10 individual layers and eight stacks**. Every ful
 
 Nine focused DSP tests passed. The final verification rehashed 84 media files, checked all full masters for finite samples and duration, verified exact repeated PCM away from the outer film fades, and reconstructed all eight stacks from their declared input stems with zero maximum absolute error. `room-stretch-verification.json` records those checks; `room-stretch-report.json` contains every gain and export receipt. The supplied AAC decoded with 627 tail samples beyond the picture; only those codec tail samples were trimmed, and all selected source intervals precede the tail.
 
-Five source-layout tests in `tests/test_roomsitepackaging.py` additionally exercise both packaging phases with a complete 42-file fixture inventory, compare unchanged URLs across static and Worker layouts, keep Worker FLACs out of `public/`, preserve generated `dist/`, and check cross-root resolution and static-file limits. These tests replace media encoding with tiny fixtures; they do not rerender the production masters or claim deployed playback. The earlier six encoding/archive regression tests remain separate.
+Six source-layout tests in `tests/test_roomsitepackaging.py` additionally exercise both packaging phases with a complete 42-FLAC fixture inventory, compare unchanged URLs across static and Worker layouts, keep Worker FLACs and the registered earlier movie out of `public/`, preserve generated `dist/`, and check cross-root resolution and static-file limits. These tests replace media encoding with tiny fixtures; they do not rerender the production masters or claim deployed playback. The earlier six encoding/archive regression tests remain separate.
 
 These figures describe level and construction. Loudness range does not measure whether a sound suggests an action, and the spectral controls' randomized phase does not establish artistic suitability.

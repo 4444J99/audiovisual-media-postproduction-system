@@ -4,7 +4,7 @@ This only prepares files in an already opened Sites checkout. The Sites source
 workflow owns synchronization and publication. All context movies share one
 picture stream and one fixed dialogue gain; no JavaScript audio mix is required.
 Legacy static checkouts use dist/. Vinext/R2 checkouts keep browser assets in
-public/ and lossless downloads in room-media-source/, outside generated dist/.
+public/ and registered downloads/movies in room-media-source/, outside generated dist/.
 """
 from __future__ import annotations
 
@@ -32,6 +32,15 @@ SAMPLES = DURATION * RATE
 INSPECTION_DB = 14.0
 PERIODS = [112, 84, 56, 28, 14]
 SITE_ID = "appgprj_6ac71699c8fc81919b030dcf9ad112e4"
+R2_MOVIE_PATHS = frozenset({
+    "room-tone/media/god-here-room-tone-dialogue-comparison.mp4",
+    "fx/assets/renders/god-here-13-processors-portrait.mp4",
+    "fx/assets/renders/god-here-13-processors-landscape.mp4",
+    "media/god-here-linear-workprint-02.mp4",
+    "media/interactive-source.mp4",
+})
+R2_ROOM_MOVIE_URLS = frozenset(path.removeprefix("room-tone/")
+                              for path in R2_MOVIE_PATHS if path.startswith("room-tone/"))
 
 
 @dataclass(frozen=True)
@@ -68,6 +77,11 @@ def validate_static_assets(targets):
         if lossless:
             raise ValueError("Worker public assets contain FLACs; use room-media-source/room-tone/downloads: "
                              + ", ".join(lossless))
+        registered_movies = [path.relative_to(targets.assets).as_posix()
+                             for path in files if path.relative_to(targets.assets).as_posix() in R2_MOVIE_PATHS]
+        if registered_movies:
+            raise ValueError("Worker public assets contain registered R2 movies; use room-media-source: "
+                             + ", ".join(registered_movies))
     oversize = [path.relative_to(targets.assets).as_posix()
                 for path in files if path.stat().st_size > 25 * 1024 ** 2]
     if oversize:
@@ -157,7 +171,8 @@ def prepare(source, prior, site, working):
     for path in sorted((prior / "auditions").glob("original-*.m4a")):
         checked_copy(path, media / path.name)
     for name in ["god-here-room-tone-quick-comparison.mp4", "god-here-room-tone-dialogue-comparison.mp4"]:
-        checked_copy(prior / name, media / name)
+        destination = targets.downloads.parent / "media" / name if f"media/{name}" in R2_ROOM_MOVIE_URLS else media / name
+        checked_copy(prior / name, destination)
     checked_copy(prior / "source-pause-review/source-portions-diagnostics.png", media / "source-portions-diagnostics.png")
     for path in sorted((prior / "source-pause-review").glob("*")):
         if path.is_file():

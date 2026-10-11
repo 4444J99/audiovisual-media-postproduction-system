@@ -154,10 +154,13 @@ class RoomSitePackagingTests(unittest.TestCase):
         self.assertEqual(list((worker / "dist").iterdir()), [sentinel])
         self.assertFalse((legacy / "room-media-source").exists())
         targets = packaging.site_targets(worker)
-        for item in new_manifest["downloads"]:
+        for item in [*new_manifest["downloads"], *new_manifest["videos"]]:
             previous = resolve_url(legacy / "dist/room-tone", item["url"])
             current = resolve_url(worker / "public/room-tone", item["url"], downloads=targets.downloads)
             self.assertEqual(previous.read_bytes(), current.read_bytes(), item["url"])
+        movie = "room-tone/media/god-here-room-tone-dialogue-comparison.mp4"
+        self.assertFalse((worker / "public" / movie).exists())
+        self.assertTrue((worker / "room-media-source" / movie).is_file())
         self.assertTrue((worker / "public/room-tone/catalog.html").is_file())
         self.assertTrue((worker / "public/room-tone/records/site-media-verification.json").is_file())
 
@@ -195,6 +198,20 @@ class RoomSitePackagingTests(unittest.TestCase):
             stream.truncate(26 * 1024 ** 2)
         with self.assertRaisesRegex(ValueError, "25 MiB"):
             packaging.validate_static_assets(targets)
+
+    def test_registered_r2_movie_requires_its_source_and_cannot_leak_into_public(self):
+        site = self.site("worker", {"project_id": packaging.SITE_ID, "r2": "ROOM_MEDIA"})
+        targets = packaging.site_targets(site)
+        url = "media/god-here-room-tone-dialogue-comparison.mp4"
+        stale = self.write(targets.room / url, b"stale static movie")
+        with self.assertRaisesRegex(ValueError, "registered R2 movies"):
+            packaging.validate_static_assets(targets)
+        with self.assertRaisesRegex(ValueError, "Missing"):
+            resolve_url(targets.room, url, downloads=targets.downloads)
+        source = self.write(targets.downloads.parent / url, b"registered movie")
+        self.assertEqual(resolve_url(targets.room, url, downloads=targets.downloads), source)
+        stale.unlink()
+        packaging.validate_static_assets(targets)
 
     def test_download_writer_rejects_paths_outside_the_download_tree(self):
         site = self.site("worker", {"project_id": packaging.SITE_ID, "r2": "ROOM_MEDIA"})

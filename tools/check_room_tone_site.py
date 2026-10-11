@@ -12,7 +12,7 @@ from urllib.parse import unquote, urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.package_room_refinement import validate_encoded
-from tools.package_room_stretch_site import site_targets, validate_static_assets
+from tools.package_room_stretch_site import R2_ROOM_MOVIE_URLS, site_targets, validate_static_assets
 
 
 def run(args):
@@ -36,6 +36,8 @@ def resolve_url(base, value, *, downloads=None):
     if downloads is not None and (relative == "downloads" or relative.startswith("downloads/")):
         root = downloads
         relative = relative[len("downloads"):].removeprefix("/")
+    elif downloads is not None and relative in R2_ROOM_MOVIE_URLS:
+        root = downloads.parent
     path = (root / relative).resolve()
     if not path.is_relative_to(root.resolve()) or not path.is_file() or path.stat().st_size == 0:
         raise ValueError(f"Missing or out-of-route asset: {value}")
