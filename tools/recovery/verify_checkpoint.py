@@ -12,6 +12,10 @@ import re
 
 from image_supplement import validate_image_supplement
 from reproduction_availability import ADDENDUM_PATH, same_json, validate_addendum, validate_projection
+from retained_execution_availability import (
+    ADDENDUM_PATH as RETAINED_PATH, load_inputs as load_retained_inputs,
+    validate_addendum as validate_retained_addendum, validate_projection as validate_retained_projection,
+)
 from verify_deployed_text import TEXT_ROUTES, REDIRECT_ROUTES, REDIRECT_STATUSES
 
 
@@ -100,6 +104,11 @@ def verify(root):
         require(row['decode'] == expected_decodes.get(row['sha256']), 'Workbench decode differs from evidence: ' + row['sha256'])
 
     has_reproduction_addendum = local(ADDENDUM_PATH).is_file()
+    has_retained_addendum = local(RETAINED_PATH).is_file()
+    require(bool(projection.get('retained_execution_availability')) == has_retained_addendum,
+            'Retained execution availability must be bound in both addendum and projection')
+    if not has_retained_addendum:
+        require(not projection.get('retained_outputs') and not projection.get('retained_inputs'), 'Unbound retained identities appear in the projection')
     require(bool(projection.get('reproduction_availability')) == has_reproduction_addendum,
             'Reproduction availability must be bound in both addendum and projection')
     if has_reproduction_addendum and projection.get('reproduction_availability'):
@@ -110,7 +119,16 @@ def verify(root):
         validate_addendum(addendum, reproduction_receipt, catalog, expectations, digest(catalog_path),
                           digest(expectations_path), digest(reproduction_entry['path']),
                           len(local(reproduction_entry['path']).read_bytes()))
-        validate_projection(projection, addendum, digest(ADDENDUM_PATH), expectations)
+        if has_retained_addendum:
+            retained = read(RETAINED_PATH)
+            retained_records, retained_descriptors = load_retained_inputs(root)
+            validate_retained_addendum(retained, retained_records, retained_descriptors)
+            validate_retained_projection(projection, retained, digest(RETAINED_PATH), addendum, digest(ADDENDUM_PATH), expectations)
+            expected_entry = {'path': RETAINED_PATH, 'sha256': digest(RETAINED_PATH), 'bytes': len(local(RETAINED_PATH).read_bytes())}
+            require(same_json(checkpoint.get('retained_execution_availability'), expected_entry), 'Checkpoint retained availability evidence binding differs')
+            require(same_json(checkpoint.get('current_retained_availability'), retained['counts']), 'Checkpoint retained availability counts differ')
+        else:
+            validate_projection(projection, addendum, digest(ADDENDUM_PATH), expectations)
 
     for path in sorted((root / 'manifests/acceptance').glob('*.json')):
         walk(json.loads(path.read_text()))

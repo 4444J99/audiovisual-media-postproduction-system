@@ -1,0 +1,831 @@
+{
+  "schema_version": "amps.retained-execution-preservation.v1",
+  "completed_at_utc": "2026-10-11T20:24:57.311942+00:00",
+  "status": "complete",
+  "identity_snapshot": {
+    "sha256": "713af406a881adbdf5d1b014a728947a017c2a7c9bb8b04aa00a1f81dec9a3a6",
+    "bytes": 160696
+  },
+  "metadata_join": {
+    "sha256": "5be4a4f9750ee5b5f7bac14fd3f249853f6c50c6f5335ef56e4185dbfa8e0cad",
+    "bytes": 21338
+  },
+  "public_source_equivalence": {
+    "sha256": "63d139dc79245798ce81aba4737d2bcee9973bb475968de30e01c8fde777700e",
+    "bytes": 20765
+  },
+  "existing_custody_lookup_with_pr49": {
+    "sha256": "621c19334f2fd6ab9e336df2c154e5b87c3cc5f512e5f6ae8142b73d9234e650",
+    "bytes": 2138627
+  },
+  "archive": {
+    "file_name": "god-here-retained-native-executions-2026-10-11.zip",
+    "sha256": "ebc27e4f1a9d927aa942dd18149ff2b9fbf1d4c26ccdfc40aca4307238ff3ce4",
+    "bytes": 1115343032,
+    "zip_members": 62,
+    "member_count": 62,
+    "all_member_crc_sha256_bytes_verified": true
+  },
+  "all_volumes_saved": true,
+  "all_saved_files_have_local_identity_metadata": true,
+  "all_volume_identities_rechecked_after_save": true,
+  "concatenated_saved_volume_identities_match_archive": true,
+  "ordered_volumes": [
+    {
+      "order": 1,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume01of45",
+      "offset": 0,
+      "bytes": 25000000,
+      "sha256": "5fba19cf9029840d750ace3983c67d6846adf71ddfdc02809f5c01d57a46984e",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 2,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume02of45",
+      "offset": 25000000,
+      "bytes": 25000000,
+      "sha256": "392553033ce785fd57ebcd3fbd6122eda22ad760351f85492c7ff620270f94a9",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 3,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume03of45",
+      "offset": 50000000,
+      "bytes": 25000000,
+      "sha256": "ddc04d54d0cf4878845c60e40c0eee5587e1dfc360922ab25c8f2933bce6946a",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 4,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume04of45",
+      "offset": 75000000,
+      "bytes": 25000000,
+      "sha256": "36df210bb68f396d348a9f2c2427cb949d6b7eee6a828740dcd6d863b37667d4",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 5,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume05of45",
+      "offset": 100000000,
+      "bytes": 25000000,
+      "sha256": "84ccba1a54e4241e451ac4a7d75a93d03969c906e1da3d5f615e0efeda36b3b9",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 6,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume06of45",
+      "offset": 125000000,
+      "bytes": 25000000,
+      "sha256": "f182797d8751949f79428dc61925b95f34266b6f64f9873b03c378824de9e932",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 7,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume07of45",
+      "offset": 150000000,
+      "bytes": 25000000,
+      "sha256": "67acc873eb60040c893c3673b46e6fc05e8a59c5c7e4fe6bc735033da1cf73a5",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 8,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume08of45",
+      "offset": 175000000,
+      "bytes": 25000000,
+      "sha256": "34668a041a93007fd4488c68a588d6b598964190d9cff8442e59694fa9513c51",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 9,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume09of45",
+      "offset": 200000000,
+      "bytes": 25000000,
+      "sha256": "83e21faaa136894b21a9a36fc24af3d7bd64a1f9c27456a98d86331f3f47dff7",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 10,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume10of45",
+      "offset": 225000000,
+      "bytes": 25000000,
+      "sha256": "282f55b9d4136f5e4ffb3842339a30fe035c6f7265906bc4fcc8cb9e10a61a3d",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 11,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume11of45",
+      "offset": 250000000,
+      "bytes": 25000000,
+      "sha256": "13e3930a1074fef3f386f1ac6c6aa776bbed22d1f5f8bee2376fec62f901cc10",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 12,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume12of45",
+      "offset": 275000000,
+      "bytes": 25000000,
+      "sha256": "e9b08819e7f86efd68afe14f013d50251286f56107e871f8ca9b626cea93e5fb",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 13,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume13of45",
+      "offset": 300000000,
+      "bytes": 25000000,
+      "sha256": "025739e5b79562b712b1b4c3bde8d657427a88f1269d086b7cbc53d6a42683fe",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 14,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume14of45",
+      "offset": 325000000,
+      "bytes": 25000000,
+      "sha256": "509322423ce6d231064f2487b642aa917c51a89d0e8bc9dba16ef3e178cb34df",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 15,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume15of45",
+      "offset": 350000000,
+      "bytes": 25000000,
+      "sha256": "f85c49ef017bf0905d980124ebba3deeae928270637fa97482c0f34e8d5e263b",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 16,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume16of45",
+      "offset": 375000000,
+      "bytes": 25000000,
+      "sha256": "f0c0206bdb47767ac5d313a220dd6e80fb44053ccf6e401964c6866d11bfbc39",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 17,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume17of45",
+      "offset": 400000000,
+      "bytes": 25000000,
+      "sha256": "e18f5a3db4c1a557f97e41e010bc7de3b9e46a618f3ac4fdc0b6473811f7047e",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 18,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume18of45",
+      "offset": 425000000,
+      "bytes": 25000000,
+      "sha256": "c3e6839041558f057f189a133082f045d29a3f132d244f94cdefc4028df93442",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 19,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume19of45",
+      "offset": 450000000,
+      "bytes": 25000000,
+      "sha256": "e226fac1dc823ba1e8dc35689742718b184f04493f1361c83edeea0a5e381388",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 20,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume20of45",
+      "offset": 475000000,
+      "bytes": 25000000,
+      "sha256": "e32f23b6e7b86c9ef7d469e746d6175b09a12989a32a789186680192cbc04960",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 21,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume21of45",
+      "offset": 500000000,
+      "bytes": 25000000,
+      "sha256": "4cd6cb4eb195463bb7650652de4684cb67bf8be375a7ac3b70d8c74537b26253",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 22,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume22of45",
+      "offset": 525000000,
+      "bytes": 25000000,
+      "sha256": "c064e15836084a094b76d2663427d946d959ae558d80f2db3595002dd77676f3",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 23,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume23of45",
+      "offset": 550000000,
+      "bytes": 25000000,
+      "sha256": "a393643c2a07e5018f56d5cdd75f0bd748bed7c6b013903b2f2ba5bfa2ffabfd",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 24,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume24of45",
+      "offset": 575000000,
+      "bytes": 25000000,
+      "sha256": "7811210a1edfd86f5ee334348a932321d162aa1b26daf898dd31a51fdcd78a07",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 25,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume25of45",
+      "offset": 600000000,
+      "bytes": 25000000,
+      "sha256": "d5f7b009562ac9d9e494553f87f7986743defda3fee0b7c918d5d64d42a4bc0a",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 26,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume26of45",
+      "offset": 625000000,
+      "bytes": 25000000,
+      "sha256": "53917bf42edecefa03f95c9289cdfb4e6685f394b24bb3fce21ad50f212ff3f6",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 27,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume27of45",
+      "offset": 650000000,
+      "bytes": 25000000,
+      "sha256": "e6693f068118182674659d373e82e1b13e6f541e03fdddde7c4baa94ff92ff38",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 28,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume28of45",
+      "offset": 675000000,
+      "bytes": 25000000,
+      "sha256": "7178d1637d350efe70cbbcc8fa7ac35ebb18b9c8eb1cc8e4f27e80f7e71beaa8",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 29,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume29of45",
+      "offset": 700000000,
+      "bytes": 25000000,
+      "sha256": "220e0b2cef2ac8be11f35c073ccd9463fb395b820ce4c467d1980b798798540f",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 30,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume30of45",
+      "offset": 725000000,
+      "bytes": 25000000,
+      "sha256": "176edbec312c0e9aaa98087393ba72e13a35406d49ad14e3b7b6c5a9252c021b",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 31,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume31of45",
+      "offset": 750000000,
+      "bytes": 25000000,
+      "sha256": "8c965f4d4d75077cd221921ce6e82fe25c52a19cdec3731c64932f3c5b7598c5",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 32,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume32of45",
+      "offset": 775000000,
+      "bytes": 25000000,
+      "sha256": "7d853a38203ea253890984eb5449c9e5f4eb722c94ea95a0b1de2b5b0e0ddd01",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 33,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume33of45",
+      "offset": 800000000,
+      "bytes": 25000000,
+      "sha256": "42cf00ef0447e622858b2bf3cc3c9d3e238e00cb0f6163e496a6ff4ae2beb909",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 34,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume34of45",
+      "offset": 825000000,
+      "bytes": 25000000,
+      "sha256": "c153f758b2b6315c721d10e366284ceda69b8de52d105c7c4d19786233fa953d",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 35,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume35of45",
+      "offset": 850000000,
+      "bytes": 25000000,
+      "sha256": "4d0f962523c1603db7c05c2cf67acd75afda4a19f07c56f37b70713d6f408e0b",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 36,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume36of45",
+      "offset": 875000000,
+      "bytes": 25000000,
+      "sha256": "d25647d3dba15acededf8aec2fb061264b11cb0f53f225eed946280fbc9862dc",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 37,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume37of45",
+      "offset": 900000000,
+      "bytes": 25000000,
+      "sha256": "51f3e29459e407dcf593d63d4746f373f3663714f7bd108912ff4ac8222346ed",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 38,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume38of45",
+      "offset": 925000000,
+      "bytes": 25000000,
+      "sha256": "8e3968eca327746aff85500ec6f7cb9989efaab0420d1f6e77b18a60a9047099",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 39,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume39of45",
+      "offset": 950000000,
+      "bytes": 25000000,
+      "sha256": "33199342be33ef402cf2789e00a4f23e81bab50fa548ca0f1455fe7f58720911",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 40,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume40of45",
+      "offset": 975000000,
+      "bytes": 25000000,
+      "sha256": "829885117a8b9abb1c5c898473889fe864cf38c542e6efbaff9978d00d72cc2d",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 41,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume41of45",
+      "offset": 1000000000,
+      "bytes": 25000000,
+      "sha256": "7fe2eff48e867a5c5f90ba0258e646ef95bd29f17f17a3aefee1dfbff62855bc",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 42,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume42of45",
+      "offset": 1025000000,
+      "bytes": 25000000,
+      "sha256": "3d5039aad1f2f447176823d17c84f619bf23923dd599ce6589108f69d96dadee",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 43,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume43of45",
+      "offset": 1050000000,
+      "bytes": 25000000,
+      "sha256": "22f2f16195b29a29085c7fc3c09ddc8c4feaff280d9bcc040427ff6390097ac5",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 44,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume44of45",
+      "offset": 1075000000,
+      "bytes": 25000000,
+      "sha256": "3d4bcf2f8b22ba59ba57000d72571d7668fdcd3f3dfa32c6ac884412c121bcfc",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    },
+    {
+      "order": 45,
+      "file_name": "god-here-retained-native-executions-2026-10-11.zip.volume45of45",
+      "offset": 1100000000,
+      "bytes": 15343032,
+      "sha256": "b44171668ceb6ae9911580e959a0a74f5bf951522bc5c1e400846a5afc47d2a8",
+      "status": "succeeded",
+      "local_metadata_applied": true
+    }
+  ],
+  "reconstruction_manifest": {
+    "sha256": "2b44605360fc4689dc4c67ca22ae87639d3b224b21004a9df486f8f0280bca9b",
+    "bytes": 28621,
+    "file_name": "god-here-retained-native-executions-2026-10-11-volumes.json",
+    "status": "succeeded"
+  },
+  "archive_validation": {
+    "sha256": "6157c152b1b9473da069fa68e8611a277f17dfccb0bc62bdbf6c628596ea8e7e",
+    "bytes": 662
+  },
+  "new_required_outputs": [
+    {
+      "binding_id": "direction-proof-directed",
+      "file": "render.mp4",
+      "sha256": "cad78c8dbee1c79143d6729949a826612581ded392a63bd8a30a31f47f2a7061",
+      "bytes": 3937689,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/cad78c8dbee1c79143d6729949a826612581ded392a63bd8a30a31f47f2a7061.mp4"
+    },
+    {
+      "binding_id": "direction-proof-directed",
+      "file": "render.render.json",
+      "sha256": "d6825ace7451defef4956e621803adc6c5325e2f7c9c95b8b09470fd0f6eeacd",
+      "bytes": 94546,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/d6825ace7451defef4956e621803adc6c5325e2f7c9c95b8b09470fd0f6eeacd.json"
+    },
+    {
+      "binding_id": "fx-demo-delay",
+      "file": "render.render.json",
+      "sha256": "91442474df179db3049c20ff76b0b6851ef80da3e7af9d14abe11dc99533dfaf",
+      "bytes": 14824,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/91442474df179db3049c20ff76b0b6851ef80da3e7af9d14abe11dc99533dfaf.json"
+    },
+    {
+      "binding_id": "fx-demo-delay",
+      "file": "render.wav",
+      "sha256": "60a7f78714e994fb9ce1cc100ddd686a1b7db6fc477827a5949079b0f8baa06e",
+      "bytes": 1168044,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/60a7f78714e994fb9ce1cc100ddd686a1b7db6fc477827a5949079b0f8baa06e.wav"
+    },
+    {
+      "binding_id": "direction-proof-reference",
+      "file": "render.mp4",
+      "sha256": "9c179c3aa8b00d1c1f38a117f32583ffe42d013dacf337a1181d7fb6c8127ae0",
+      "bytes": 1205953,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/9c179c3aa8b00d1c1f38a117f32583ffe42d013dacf337a1181d7fb6c8127ae0.mp4"
+    },
+    {
+      "binding_id": "direction-proof-reference",
+      "file": "render.render.json",
+      "sha256": "30b00893bdf4172cdeec9e01dd04472475c6cd0bfcf330346756a1446b72ca31",
+      "bytes": 49935,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/30b00893bdf4172cdeec9e01dd04472475c6cd0bfcf330346756a1446b72ca31.json"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P112.wav",
+      "sha256": "cdf1e5a0f6ab06676c1978d7c43f8d0810fe4bbae5bcb1b8b6a196491e2626fa",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/cdf1e5a0f6ab06676c1978d7c43f8d0810fe4bbae5bcb1b8b6a196491e2626fa.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P14.wav",
+      "sha256": "9e16974ba819a157eb119ca711ba51ef64946efde192d341d971dc84baaea82c",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/9e16974ba819a157eb119ca711ba51ef64946efde192d341d971dc84baaea82c.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P28.wav",
+      "sha256": "87448cac35ae65826eaaff85d98eb8bcb3a4314b01825f752820c118cbb8dd4b",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/87448cac35ae65826eaaff85d98eb8bcb3a4314b01825f752820c118cbb8dd4b.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P56.wav",
+      "sha256": "2a12dd6dcea0cd792a06f11ef4095d8d5a2de18ee912a19909a02d7b01929dcd",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/2a12dd6dcea0cd792a06f11ef4095d8d5a2de18ee912a19909a02d7b01929dcd.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P84.wav",
+      "sha256": "6ef5263c3bdc498a4247d0b96ff58b911a95eb650b39caadbe6344551b33a8dc",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/6ef5263c3bdc498a4247d0b96ff58b911a95eb650b39caadbe6344551b33a8dc.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V112.wav",
+      "sha256": "e03be717c49f5add4fb0e82805b90b55fa6398d3e25af6700187ed85ffb55ff9",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/e03be717c49f5add4fb0e82805b90b55fa6398d3e25af6700187ed85ffb55ff9.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V14.wav",
+      "sha256": "0cfc3f5340d158a16609461742bb210e9a789fb8d6105a75a2c8c414b7bf19e1",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/0cfc3f5340d158a16609461742bb210e9a789fb8d6105a75a2c8c414b7bf19e1.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V28.wav",
+      "sha256": "194956cd44fea05861d42ed3d7e6bb3892d73a58c56106bb01c4f2e9f43da206",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/194956cd44fea05861d42ed3d7e6bb3892d73a58c56106bb01c4f2e9f43da206.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V56.wav",
+      "sha256": "298b81ca0012ef1de0d8c7dd92d0decadf96eae9316ca00b31d6ca5f1146f367",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/298b81ca0012ef1de0d8c7dd92d0decadf96eae9316ca00b31d6ca5f1146f367.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V84.wav",
+      "sha256": "726aeee8b6c497c8f9d4d464e27aeb960b29ece75fd3b9e10e34f9a47a46da08",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/726aeee8b6c497c8f9d4d464e27aeb960b29ece75fd3b9e10e34f9a47a46da08.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "room-stretch-report.json",
+      "sha256": "0c4a82bba9d46062595f420644273045a8bdcfbd8671c14bdfe48b0df3d06ca7",
+      "bytes": 87992,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/0c4a82bba9d46062595f420644273045a8bdcfbd8671c14bdfe48b0df3d06ca7.json"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/P5-stack.wav",
+      "sha256": "47190b5eb65fc6920c3b9c520549072a311c820df8a23ce511e0f7a6003ff722",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/47190b5eb65fc6920c3b9c520549072a311c820df8a23ce511e0f7a6003ff722.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/P5R.wav",
+      "sha256": "e4a28cba217da9d284c8fb77e279b9cc1c6b7d2dec105a76aec6ce7adf49786c",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/e4a28cba217da9d284c8fb77e279b9cc1c6b7d2dec105a76aec6ce7adf49786c.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V1-stack.wav",
+      "sha256": "72d05203391fc2baba71ff1d71fb112205b6edab612b1731f6e5d7d79336b20a",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/72d05203391fc2baba71ff1d71fb112205b6edab612b1731f6e5d7d79336b20a.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V2-stack.wav",
+      "sha256": "78200c2252cb4a2c85b80913a462d6cceaced42b5d0a452547de092cfe38da86",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/78200c2252cb4a2c85b80913a462d6cceaced42b5d0a452547de092cfe38da86.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V3-stack.wav",
+      "sha256": "359bfa76bd738e7c7e641a6e95a44e51e8c9d1dd2b544e92a98aeb8c4f468957",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/359bfa76bd738e7c7e641a6e95a44e51e8c9d1dd2b544e92a98aeb8c4f468957.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V4-stack.wav",
+      "sha256": "8f14e8770ff304b3710dc2da999761cf2624fb7a13b028e9679f1dc303803f4c",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/8f14e8770ff304b3710dc2da999761cf2624fb7a13b028e9679f1dc303803f4c.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V5-stack.wav",
+      "sha256": "11d7c46932f2896229e6978fd01338e1f435645f29d0d64dede892efb6547cb2",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/11d7c46932f2896229e6978fd01338e1f435645f29d0d64dede892efb6547cb2.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V5R.wav",
+      "sha256": "06f83d16146e35a2ccbb215ad2da75c77f57e5257c9a6c974f2ef140e638fa7d",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/06f83d16146e35a2ccbb215ad2da75c77f57e5257c9a6c974f2ef140e638fa7d.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P112.wav",
+      "sha256": "5b23b79fe1160880c6753ab83f31a13b66f856b64fd289d2a836c514d845c5f5",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/5b23b79fe1160880c6753ab83f31a13b66f856b64fd289d2a836c514d845c5f5.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P14.wav",
+      "sha256": "3a06bbc9aa1619bb14a5f674c8485e61aeb73a599d47bbc6e7f8dcb5a413f229",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/3a06bbc9aa1619bb14a5f674c8485e61aeb73a599d47bbc6e7f8dcb5a413f229.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P28.wav",
+      "sha256": "e5acfd9d2975fdcf1f695f9511160d7911ccad5469c7bc0a003df89528ac1992",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/e5acfd9d2975fdcf1f695f9511160d7911ccad5469c7bc0a003df89528ac1992.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P56.wav",
+      "sha256": "b1d740c34879b29b707f54123a35a8af0989a8220ea01d39fe7490c50a8ed3c0",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/b1d740c34879b29b707f54123a35a8af0989a8220ea01d39fe7490c50a8ed3c0.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P84.wav",
+      "sha256": "dfc7454bba6c66d554b158bdfb02d83fd0ceb71db2a7f7bffa850431be863b9b",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/dfc7454bba6c66d554b158bdfb02d83fd0ceb71db2a7f7bffa850431be863b9b.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V112.wav",
+      "sha256": "b7c3c822cb9409d0daed38952820d6d16eefddbce96aadbb6c4b97237ecde9cf",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/b7c3c822cb9409d0daed38952820d6d16eefddbce96aadbb6c4b97237ecde9cf.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V14.wav",
+      "sha256": "76750d0f1c9a462dedcebb08a536ec5508655bf8a37a21a9e26adaa2f42529fa",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/76750d0f1c9a462dedcebb08a536ec5508655bf8a37a21a9e26adaa2f42529fa.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V28.wav",
+      "sha256": "8bbe177b19d00a9cae083ee7535bc620b1fc0c17a047fe039b40a6c868b590b7",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/8bbe177b19d00a9cae083ee7535bc620b1fc0c17a047fe039b40a6c868b590b7.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V56.wav",
+      "sha256": "54cdcb9008ff68bb6ce1776e6fafe33bd4047e663ad8f6eee5f2086e4e04e496",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/54cdcb9008ff68bb6ce1776e6fafe33bd4047e663ad8f6eee5f2086e4e04e496.wav"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V84.wav",
+      "sha256": "98f2b0d67d83144690503eaf0616ea5837e0c56566b992d26525e8340b9d5dfe",
+      "bytes": 43008058,
+      "technical_status": "required_native_output_verified",
+      "artistic_acceptance": "pending",
+      "preservation": "new_identity_in_this_archive",
+      "archive_member": "objects/98f2b0d67d83144690503eaf0616ea5837e0c56566b992d26525e8340b9d5dfe.wav"
+    }
+  ],
+  "new_required_output_count": 35,
+  "new_required_output_bytes": 1210784607,
+  "existing_custody_match_count": 60,
+  "existing_custody_basis": "Exact SHA256 and byte-count match to previously recorded verified custody; originals were not downloaded again for this save.",
+  "all_required_output_identities_accounted_for": true,
+  "failed_artifacts_preserved_separately": [
+    {
+      "binding_id": "directed-integrated-excerpt",
+      "sha256": "a37b01b9865af34f679435130f71166d1313938ad6b3e3f6e1c36a8e166ea9dd",
+      "bytes": 2359344,
+      "archive_member": "failed-not-accepted/a37b01b9865af34f679435130f71166d1313938ad6b3e3f6e1c36a8e166ea9dd.mp4",
+      "status": "failed_not_accepted",
+      "cause": "not established"
+    }
+  ],
+  "incidental_intermediates": {
+    "count": 40,
+    "bytes": 641796767,
+    "identities_and_dispositions_recorded": true,
+    "bytes_retained": false,
+    "qualification": "Reconstructible native temporary files are not required final products and were not marked decode-verified or accepted for delivery."
+  },
+  "privacy": {
+    "private_preservation_only": true,
+    "original_source_binaries_copied": false,
+    "archive_contains_private_native_reports_and_logs": true,
+    "new_public_media_delivery_performed": false
+  },
+  "qualification": "Technical verification and exact preservation do not establish artistic acceptance. The first failed PR50 attempt remains failed. Room native production remains at its original code identity; the later output verification is separately identified. Frozen and baseline catalogs remain unchanged."
+}

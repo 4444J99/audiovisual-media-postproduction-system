@@ -1,0 +1,152 @@
+{
+  "schema_version": "god-here.hosted-ci.v1",
+  "source_commit": "e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+  "status": "passed",
+  "scope": "Hosted GitHub Actions on the corrected native-code checkpoint with the version-10 recovery projection; later retained-execution recovery-view changes receive their own checks.",
+  "runs": [
+    {
+      "id": 38171851342,
+      "name": "Verify production system",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/actions/runs/38171851342",
+      "started_at": "2026-10-11T20:21:17Z",
+      "updated_at": "2026-10-11T20:22:25Z"
+    },
+    {
+      "id": 38171851425,
+      "name": "Recovery integrity",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/actions/runs/38171851425",
+      "started_at": "2026-10-11T20:21:17Z",
+      "updated_at": "2026-10-11T20:23:59Z"
+    },
+    {
+      "id": 38171847610,
+      "name": "Verify production system",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/actions/runs/38171847610",
+      "started_at": "2026-10-11T20:21:14Z",
+      "updated_at": "2026-10-11T20:22:00Z"
+    },
+    {
+      "id": 38171847619,
+      "name": "Recovery integrity",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/actions/runs/38171847619",
+      "started_at": "2026-10-11T20:21:14Z",
+      "updated_at": "2026-10-11T20:23:54Z"
+    }
+  ],
+  "production_job": {
+    "id": 114565918737,
+    "name": "Combined checks and Python package",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 38171851342,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Check out the selected revision",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Set up Python",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Set up Node",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Install declared verification dependencies",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Run the complete project checks",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Build the Python distribution without network resolution",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Post Set up Node",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12
+      },
+      {
+        "name": "Post Set up Python",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13
+      },
+      {
+        "name": "Post Check out the selected revision",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15
+      }
+    ]
+  },
+  "observed_log_summaries": [
+    "2026-10-11T20:22:04.7521009Z Successfully built audiovisual-media-postproduction-system",
+    "2026-10-11T20:22:14.6488971Z {\"valid\": true, \"shots\": 6, \"cues\": 20}",
+    "2026-10-11T20:22:18.6323015Z Ran 150 tests in 2.437s",
+    "2026-10-11T20:22:18.7944604Z Transport, score replay, residues, and invalid-session checks passed",
+    "2026-10-11T20:22:22.0640799Z Successfully built audiovisual-media-postproduction-system",
+    "2026-10-11T20:22:18.9659547Z \u2139 tests 25",
+    "2026-10-11T20:22:18.9660015Z \u2139 pass 25",
+    "2026-10-11T20:22:18.9660222Z \u2139 fail 0",
+    "2026-10-11T20:22:18.9660926Z \u2139 skipped 0",
+    "2026-10-11T20:22:21.1941876Z \u2139 tests 97",
+    "2026-10-11T20:22:21.1942301Z \u2139 pass 97",
+    "2026-10-11T20:22:21.1942507Z \u2139 fail 0",
+    "2026-10-11T20:22:21.1942937Z \u2139 skipped 0"
+  ],
+  "artistic_acceptance": "not_assessed",
+  "observed_counts": {
+    "python": 150,
+    "room_javascript": 25,
+    "fx_javascript": 97,
+    "enumerated_total": 272,
+    "node_failures": 0,
+    "node_skipped": 0
+  }
+}

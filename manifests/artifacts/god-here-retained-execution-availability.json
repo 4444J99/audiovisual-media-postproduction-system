@@ -1,0 +1,4057 @@
+{
+  "schema_version": "god-here.retained-execution-availability.v1",
+  "recorded_at_utc": "2026-10-11T20:24:57.311942+00:00",
+  "scope": "Five retained native bindings across four renderer families, with exact PR49 supporting-input recovery. This additive view excludes carrier archives/volumes, incidental files, and unrelated post-snapshot changes from object counts.",
+  "frozen_catalog_sha256": "8843bba3e9b0d5937fe5fb93e02233fe8be69aa5f072349ad896011999ccb1e3",
+  "frozen_expectations_sha256": "8493197c215cf7acd3c0e7024b6dde5d984e010f51bb123940aaa6946a65c004",
+  "frozen_files_unchanged": true,
+  "baseline_addendum_unchanged": true,
+  "evidence": {
+    "baseline": {
+      "path": "manifests/artifacts/god-here-reproduction-availability.json",
+      "sha256": "d7665c3bd4185ab1858aceb549823eca23d82ba44b653b4b1e13a1a949fba28e",
+      "bytes": 49752
+    },
+    "identity": {
+      "path": "manifests/acceptance/god-here-retained-execution-identities.json",
+      "sha256": "713af406a881adbdf5d1b014a728947a017c2a7c9bb8b04aa00a1f81dec9a3a6",
+      "bytes": 160696
+    },
+    "preservation": {
+      "path": "manifests/acceptance/god-here-retained-execution-preservation.json",
+      "sha256": "7f4f7092a15a11d2c6df842d00890ec5d15885ba31b26e6e25d25bb6d5101a44",
+      "bytes": 33522
+    },
+    "inputs": {
+      "path": "manifests/acceptance/god-here-direction-exact-input-recovery.json",
+      "sha256": "dd9ad2cd19307b4088b7db55f3ac6a1560d52c258cd414759b3bc568b567844b",
+      "bytes": 7380
+    },
+    "equivalence": {
+      "path": "manifests/acceptance/god-here-retained-execution-code-equivalence.json",
+      "sha256": "63d139dc79245798ce81aba4737d2bcee9973bb475968de30e01c8fde777700e",
+      "bytes": 20765
+    }
+  },
+  "counts": {
+    "frozen_catalog_unique_objects": 3151,
+    "frozen_catalog_file_occurrences": 4609,
+    "baseline_additional_unique_outputs": 24,
+    "additional_exact_pr49_input_identities": 3,
+    "bound_retained_recipes": 5,
+    "native_renderer_families": 4,
+    "native_execution_attempts": 6,
+    "successful_required_product_sets": 5,
+    "required_output_occurrences": 95,
+    "unique_required_output_identities": 95,
+    "fully_decoded_required_media": 89,
+    "existing_custody_matches": 60,
+    "new_required_output_identities": 35,
+    "new_required_output_bytes": 1210784607,
+    "new_required_outputs_by_type": {
+      "audio": 29,
+      "metadata": 4,
+      "video": 2
+    },
+    "new_required_media_decode_passes": 31,
+    "frozen_unmatched_expected_hashes": 194,
+    "unmatched_after_baseline_reproduction": 189,
+    "additional_expected_hashes_reproduced": 29,
+    "expectation_rows_updated": 114,
+    "remaining_unmatched_expected_hashes": 160,
+    "frozen_baseline_pr49_retained_scoped_identity_union": 3213,
+    "historical_original_outputs_retrieved_by_this_operation": 0,
+    "new_public_output_links": 0,
+    "artistic_acceptance_added": 0
+  },
+  "runs": [
+    {
+      "binding_id": "directed-integrated-excerpt",
+      "adapter": "amp.revision.v1",
+      "status": "required_native_outputs_verified",
+      "original_execution_status": "render_verified",
+      "verification_mode": "native_execution_with_output_verification",
+      "new_render_for_later_verification": false,
+      "producing_source": {
+        "actual_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "public_commit_with_equal_declared_files": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "public_code_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "equivalence_scope": "Declared native code closure and binding bytes only; complete Git trees are not asserted equal."
+      },
+      "verification_source": {
+        "actual_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "public_commit_with_equal_declared_files": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "public_code_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "equivalence_scope": "Declared native code closure and binding bytes only; complete Git trees are not asserted equal."
+      },
+      "native_execution_receipt": {
+        "sha256": "fef72d8d08e0641b43cc037f95367d4c472bf53c6fbd8bd1f10bccc1b1909e16",
+        "bytes": 7544
+      },
+      "verification_receipt": {
+        "sha256": "fef72d8d08e0641b43cc037f95367d4c472bf53c6fbd8bd1f10bccc1b1909e16",
+        "bytes": 7544
+      },
+      "binding": {
+        "sha256": "d8efc58a920352be60e47d590a652c4d517075035d2e67f105b5bd73ddd5bbc6",
+        "bytes": 1289
+      },
+      "clocks": {
+        "source": {
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 3360
+        },
+        "output": {
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 679,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "audio_sample_rate": 48000,
+          "pcm_samples_per_channel": 1086400
+        },
+        "source_output_map": [
+          {
+            "output_start_frame": 0,
+            "output_end_frame": 401,
+            "source_start_frame": 2554,
+            "source_end_frame": 2955,
+            "audio_speed": 1.0,
+            "output_start": 0.0,
+            "output_end": 13.366666666666667,
+            "source_start": 85.13333333333334,
+            "source_end": 98.5
+          },
+          {
+            "output_start_frame": 401,
+            "output_end_frame": 443,
+            "source_start_frame": 2955,
+            "source_end_frame": 2979,
+            "audio_speed": 0.5714285714285714,
+            "output_start": 13.366666666666667,
+            "output_end": 14.766666666666667,
+            "source_start": 98.5,
+            "source_end": 99.3
+          },
+          {
+            "output_start_frame": 443,
+            "output_end_frame": 679,
+            "source_start_frame": 2979,
+            "source_end_frame": 3215,
+            "audio_speed": 1.0,
+            "output_start": 14.766666666666667,
+            "output_end": 22.633333333333333,
+            "source_start": 99.3,
+            "source_end": 107.16666666666667
+          }
+        ],
+        "frame_sampling": "native float division then integer truncation within chronological disjoint half-open source segments",
+        "camera_clock": "full-source frames",
+        "typography_clock": "full-source seconds",
+        "attention_clock": "full-source seconds",
+        "audio_mapping": "native source-sample trims and segment atempo, padded/trimmed to each output interval"
+      },
+      "runtime": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "PIL": "12.3.0",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "ffprobe": "6.1.1-3ubuntu5"
+      },
+      "native_options": {
+        "width": 1280
+      },
+      "required_output_identities": 2,
+      "full_decode_passes": 1,
+      "existing_exact_identities": 2,
+      "new_output_identities": 0,
+      "required_output_bytes": 4248263,
+      "artistic_acceptance": "pending"
+    },
+    {
+      "binding_id": "direction-proof-directed",
+      "adapter": "amp.direction.v1",
+      "status": "required_native_outputs_verified",
+      "original_execution_status": "render_verified",
+      "verification_mode": "native_execution_with_output_verification",
+      "new_render_for_later_verification": false,
+      "producing_source": {
+        "actual_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "public_commit_with_equal_declared_files": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "public_code_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "equivalence_scope": "Declared native code closure and binding bytes only; complete Git trees are not asserted equal."
+      },
+      "verification_source": {
+        "actual_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "public_commit_with_equal_declared_files": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "public_code_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "equivalence_scope": "Declared native code closure and binding bytes only; complete Git trees are not asserted equal."
+      },
+      "native_execution_receipt": {
+        "sha256": "f54f11c97eab9f438d5caaa51dff8ceccfed31ad65792200ce8273e7a026d588",
+        "bytes": 6266
+      },
+      "verification_receipt": {
+        "sha256": "f54f11c97eab9f438d5caaa51dff8ceccfed31ad65792200ce8273e7a026d588",
+        "bytes": 6266
+      },
+      "binding": {
+        "sha256": "6ed3555cbe1b39410fa52329707d9f649261040d59165e591dc0da5a8037d302",
+        "bytes": 1106
+      },
+      "clocks": {
+        "source": {
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 3360
+        },
+        "output": {
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 685,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "audio_sample_rate": 48000,
+          "pcm_samples_per_channel": 1096000
+        },
+        "source_output_map": [
+          {
+            "source_start": 2554,
+            "source_end": 2880,
+            "output_frames": 326,
+            "output_start": 0,
+            "output_end": 326
+          },
+          {
+            "source_start": 2880,
+            "source_end": 3000,
+            "output_frames": 144,
+            "output_start": 326,
+            "output_end": 470
+          },
+          {
+            "source_start": 3000,
+            "source_end": 3215,
+            "output_frames": 215,
+            "output_start": 470,
+            "output_end": 685
+          }
+        ],
+        "frame_sampling": "native integer floor within contiguous half-open source segments",
+        "camera_clock": "full-source frames",
+        "typography_clock": "output frames",
+        "audio_mapping": "native source-sample trims and segment atempo, padded/trimmed to each output interval"
+      },
+      "runtime": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "PIL": "12.3.0",
+        "cv2": "5.0.0",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "ffprobe": "6.1.1-3ubuntu5"
+      },
+      "native_options": {
+        "variant": "directed"
+      },
+      "required_output_identities": 2,
+      "full_decode_passes": 1,
+      "existing_exact_identities": 0,
+      "new_output_identities": 2,
+      "required_output_bytes": 4032235,
+      "artistic_acceptance": "pending"
+    },
+    {
+      "binding_id": "direction-proof-reference",
+      "adapter": "amp.direction.v1",
+      "status": "required_native_outputs_verified",
+      "original_execution_status": "render_verified",
+      "verification_mode": "native_execution_with_output_verification",
+      "new_render_for_later_verification": false,
+      "producing_source": {
+        "actual_commit": "994a24550e9ba9d1969db47292c0610ebc96566b",
+        "public_commit_with_equal_declared_files": "e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+        "public_code_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+        "equivalence_scope": "Declared native code closure and binding bytes only; complete Git trees are not asserted equal."
+      },
+      "verification_source": {
+        "actual_commit": "994a24550e9ba9d1969db47292c0610ebc96566b",
+        "public_commit_with_equal_declared_files": "e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+        "public_code_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+        "equivalence_scope": "Declared native code closure and binding bytes only; complete Git trees are not asserted equal."
+      },
+      "native_execution_receipt": {
+        "sha256": "37cf119c8e3c0387dbf4018989218a9b135461c74d778d35acf0e5fc9e52363a",
+        "bytes": 5689
+      },
+      "verification_receipt": {
+        "sha256": "37cf119c8e3c0387dbf4018989218a9b135461c74d778d35acf0e5fc9e52363a",
+        "bytes": 5689
+      },
+      "binding": {
+        "sha256": "81b4e42779db6ffcaf8aec98f74c40a94104fdfa01d6182fbc07b8532181de72",
+        "bytes": 854
+      },
+      "clocks": {
+        "source": {
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 3360
+        },
+        "output": {
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 661,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "audio_sample_rate": 48000,
+          "pcm_samples_per_channel": 1057600
+        },
+        "source_output_map": [
+          {
+            "source_start": 2554,
+            "source_end": 3215,
+            "output_frames": 661,
+            "output_start": 0,
+            "output_end": 661
+          }
+        ],
+        "frame_sampling": "native integer floor within contiguous half-open source segments",
+        "camera_clock": "full-source frames",
+        "typography_clock": "output frames",
+        "audio_mapping": "native source-sample trims and segment atempo, padded/trimmed to each output interval"
+      },
+      "runtime": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "PIL": "12.3.0",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "ffprobe": "6.1.1-3ubuntu5"
+      },
+      "native_options": {
+        "variant": "reference"
+      },
+      "required_output_identities": 2,
+      "full_decode_passes": 1,
+      "existing_exact_identities": 0,
+      "new_output_identities": 2,
+      "required_output_bytes": 1255888,
+      "artistic_acceptance": "pending"
+    },
+    {
+      "binding_id": "fx-demo-delay",
+      "adapter": "fx.rack.v1",
+      "status": "required_native_outputs_verified",
+      "original_execution_status": "render_verified",
+      "verification_mode": "native_execution_with_output_verification",
+      "new_render_for_later_verification": false,
+      "producing_source": {
+        "actual_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "public_commit_with_equal_declared_files": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "public_code_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "equivalence_scope": "Declared native code closure and binding bytes only; complete Git trees are not asserted equal."
+      },
+      "verification_source": {
+        "actual_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "public_commit_with_equal_declared_files": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "public_code_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "equivalence_scope": "Declared native code closure and binding bytes only; complete Git trees are not asserted equal."
+      },
+      "native_execution_receipt": {
+        "sha256": "d795d2342b63059f2170b0998d47e6a3cba14c262d42252e11ceb66f60e43104",
+        "bytes": 12665
+      },
+      "verification_receipt": {
+        "sha256": "d795d2342b63059f2170b0998d47e6a3cba14c262d42252e11ceb66f60e43104",
+        "bytes": 12665
+      },
+      "binding": {
+        "sha256": "6d28498399a023459ca668d6d31b9ed88480cd67195739e2c66aeca0da5cbc1e",
+        "bytes": 998
+      },
+      "clocks": {
+        "source": {
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 3360
+        },
+        "source_consumption": "Derived asset collection; original movie hash is lineage, not a consumed input.",
+        "excerpt": {
+          "source_in_seconds": 95,
+          "source_out_seconds": 107.16666666666667,
+          "proxy_frame_rate": 12,
+          "proxy_frames": 146,
+          "proxy_frame_addressing": {
+            "page": "floor(index/16)",
+            "column": "index%4",
+            "row": "floor((index%16)/4)",
+            "index": "min(145,floor(localSeconds*12))",
+            "sourceFrame": "2850+floor(index*2.5+0.5)"
+          }
+        },
+        "output": {
+          "frame_rate": {
+            "num": 12,
+            "den": 1
+          },
+          "frames": 146,
+          "dimensions": [
+            480,
+            270
+          ],
+          "audio_sample_rate": 24000,
+          "pcm_samples_per_channel": 292000
+        },
+        "automation_clock": "excerpt-relative output seconds",
+        "output_frame_rounding": "Math.ceil(duration * fps - 1e-6)",
+        "audio_sample_rounding": "Math.round(duration * sampleRate)",
+        "source_output_map": "Graph-dependent source resampling/loops/reversal; no single linear source-event map is asserted."
+      },
+      "runtime": {
+        "python": "3.12.14",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "ffprobe": "6.1.1-3ubuntu5",
+        "node": "24.19.0",
+        "@napi-rs/canvas": "0.1.100"
+      },
+      "native_options": {
+        "width": 480,
+        "height": 270,
+        "fps": 12,
+        "duration": 12.166666667,
+        "overlay": "none",
+        "audio_input": "reference"
+      },
+      "required_output_identities": 4,
+      "full_decode_passes": 2,
+      "existing_exact_identities": 2,
+      "new_output_identities": 2,
+      "required_output_bytes": 1666552,
+      "artistic_acceptance": "pending"
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "adapter": "amp.roomstretch.v1",
+      "status": "required_native_outputs_verified",
+      "original_execution_status": "execution_failed",
+      "verification_mode": "post_hoc_existing_products",
+      "new_render_for_later_verification": false,
+      "producing_source": {
+        "actual_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "public_commit_with_equal_declared_files": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "public_code_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+        "equivalence_scope": "Declared native code closure and binding bytes only; complete Git trees are not asserted equal."
+      },
+      "verification_source": {
+        "actual_commit": "994a24550e9ba9d1969db47292c0610ebc96566b",
+        "public_commit_with_equal_declared_files": "e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+        "public_code_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/e12dff1ef58add8315b2365fad9ea0ce83075bc6",
+        "equivalence_scope": "Declared native code closure and binding bytes only; complete Git trees are not asserted equal."
+      },
+      "native_execution_receipt": {
+        "sha256": "080165cb7f8d8952429c19de78aff69d499449dfbac7cb393b3075ab2fe9a9d5",
+        "bytes": 6510
+      },
+      "verification_receipt": {
+        "sha256": "f82c7ee7e4c18d7d3e0ce531ee72fd2950953f75691622be897fd2b257c2ab64",
+        "bytes": 112583
+      },
+      "binding": {
+        "sha256": "f763af6c93da53f6be80d74f3d5158e506adc48ba3796d54e73e74457005b404",
+        "bytes": 979
+      },
+      "clocks": {
+        "source": {
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 3360
+        },
+        "output": {
+          "sample_rate": 48000,
+          "samples_per_channel": 5376000,
+          "channels": 2
+        },
+        "source_reel_map": [
+          {
+            "source_start_sample": 349920,
+            "source_end_sample": 362880,
+            "reel_start_sample": 0,
+            "reel_end_sample": 12960
+          },
+          {
+            "source_start_sample": 1149120,
+            "source_end_sample": 1186560,
+            "reel_start_sample": 12960,
+            "reel_end_sample": 50400
+          },
+          {
+            "source_start_sample": 1326720,
+            "source_end_sample": 1400160,
+            "reel_start_sample": 50400,
+            "reel_end_sample": 123840
+          },
+          {
+            "source_start_sample": 1452480,
+            "source_end_sample": 1478400,
+            "reel_start_sample": 123840,
+            "reel_end_sample": 149760
+          },
+          {
+            "source_start_sample": 3055200,
+            "source_end_sample": 3073920,
+            "reel_start_sample": 149760,
+            "reel_end_sample": 168480
+          },
+          {
+            "source_start_sample": 3136320,
+            "source_end_sample": 3156000,
+            "reel_start_sample": 168480,
+            "reel_end_sample": 188160
+          },
+          {
+            "source_start_sample": 4551840,
+            "source_end_sample": 4558560,
+            "reel_start_sample": 188160,
+            "reel_end_sample": 194880
+          },
+          {
+            "source_start_sample": 4734720,
+            "source_end_sample": 4752000,
+            "reel_start_sample": 194880,
+            "reel_end_sample": 212160
+          }
+        ],
+        "source_reel_samples": 212160,
+        "layer_periods": [
+          {
+            "mode": "literal_varispeed",
+            "samples": 5376000
+          },
+          {
+            "mode": "literal_varispeed",
+            "samples": 4032000
+          },
+          {
+            "mode": "literal_varispeed",
+            "samples": 2688000
+          },
+          {
+            "mode": "literal_varispeed",
+            "samples": 1344000
+          },
+          {
+            "mode": "literal_varispeed",
+            "samples": 672000
+          },
+          {
+            "mode": "spectral_stretch",
+            "samples": 5376000
+          },
+          {
+            "mode": "spectral_stretch",
+            "samples": 4032000
+          },
+          {
+            "mode": "spectral_stretch",
+            "samples": 2688000
+          },
+          {
+            "mode": "spectral_stretch",
+            "samples": 1344000
+          },
+          {
+            "mode": "spectral_stretch",
+            "samples": 672000
+          }
+        ],
+        "event_mapping": "selected-material lineage only; spectral phase randomization has no invertible source-event map",
+        "loop_clock": "output samples at 48000 Hz; full cycles then native truncated final cycle",
+        "source_tail_policy": "native AAC codec-frame tail allowance only; final execution must verify decoded sample count"
+      },
+      "runtime": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "PIL": "12.3.0",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "ffprobe": "6.1.1-3ubuntu5"
+      },
+      "native_options": {
+        "duration": 112.0,
+        "periods": [
+          112.0,
+          84.0,
+          56.0,
+          28.0,
+          14.0
+        ],
+        "target_lufs": -40.37,
+        "audition_boost_db": 14.0,
+        "spectral": true
+      },
+      "required_output_identities": 85,
+      "full_decode_passes": 84,
+      "existing_exact_identities": 56,
+      "new_output_identities": 29,
+      "required_output_bytes": 1502478786,
+      "artistic_acceptance": "pending"
+    }
+  ],
+  "required_output_objects": [
+    {
+      "sha256": "027f05761b9b5f7a99c1974aabf131a0e43d5b9e21c1126d1d477c128cb111c1",
+      "bytes": 2763981,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V112-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V112-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "04543e8231819c61177bb9a6706eb165d07b1d85355c8080d41540490aa6bc6b",
+      "bytes": 2757535,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V2-stack-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V2-stack-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "06f83d16146e35a2ccbb215ad2da75c77f57e5257c9a6c974f2ef140e638fa7d",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V5R.wav",
+      "names": [
+        "room-stretch-full/stacks/V5R.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "0a819ad7d841a1fafe6c3eb850aa055f15adf322fcff44dc69887f23a6da024a",
+      "bytes": 5034389,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/V84.flac",
+      "names": [
+        "room-stretch-full/stems/V84.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "0c4a82bba9d46062595f420644273045a8bdcfbd8671c14bdfe48b0df3d06ca7",
+      "bytes": 87992,
+      "type": "metadata",
+      "binding_id": "room-stretch-full",
+      "file": "room-stretch-report.json",
+      "names": [
+        "room-stretch-full/room-stretch-report.json"
+      ],
+      "full_decode_status": "not_applicable",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "0cfc3f5340d158a16609461742bb210e9a789fb8d6105a75a2c8c414b7bf19e1",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V14.wav",
+      "names": [
+        "room-stretch-full/raw-stems/V14.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "0fc2d84c3abd78cb43232866367f5311b07a1e71bd7cc61818d84e5cc465c06a",
+      "bytes": 2715038,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P84-audition.m4a",
+      "names": [
+        "room-stretch-full/web/P84-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "11d7c46932f2896229e6978fd01338e1f435645f29d0d64dede892efb6547cb2",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V5-stack.wav",
+      "names": [
+        "room-stretch-full/stacks/V5-stack.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "194956cd44fea05861d42ed3d7e6bb3892d73a58c56106bb01c4f2e9f43da206",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V28.wav",
+      "names": [
+        "room-stretch-full/raw-stems/V28.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "1ffc3ff740d63a96c48103808ad35d1dd774751b3ed29e75f511bc9dffc8f0f7",
+      "bytes": 2714886,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P84-production.m4a",
+      "names": [
+        "room-stretch-full/web/P84-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "237cda13893985e76964654055dd9b909507f6d21e1cb17e8b2d3122dada0de1",
+      "bytes": 2716418,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V4-stack-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V4-stack-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "298b81ca0012ef1de0d8c7dd92d0decadf96eae9316ca00b31d6ca5f1146f367",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V56.wav",
+      "names": [
+        "room-stretch-full/raw-stems/V56.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "2a12dd6dcea0cd792a06f11ef4095d8d5a2de18ee912a19909a02d7b01929dcd",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P56.wav",
+      "names": [
+        "room-stretch-full/raw-stems/P56.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "2c3792c4ec7ac5ee808ca8103e0f4057c596fd87d0e3b39fbb8d88d33c1f02f7",
+      "bytes": 2714963,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P14-audition.m4a",
+      "names": [
+        "room-stretch-full/web/P14-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "2d46387dd51b9c407d982651958e46cd51802c171ee63a24ed9d924ebff0be96",
+      "bytes": 2130811,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V56-production.m4a",
+      "names": [
+        "room-stretch-full/web/V56-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "30b00893bdf4172cdeec9e01dd04472475c6cd0bfcf330346756a1446b72ca31",
+      "bytes": 49935,
+      "type": "metadata",
+      "binding_id": "direction-proof-reference",
+      "file": "render.render.json",
+      "names": [
+        "direction-proof-reference/render.render.json"
+      ],
+      "full_decode_status": "not_applicable",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "322aa6d145ad9a0cf230845bec1bb9fdd8b595fd25343644bf2f67c27e4bda87",
+      "bytes": 2511259,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V4-stack-production.m4a",
+      "names": [
+        "room-stretch-full/web/V4-stack-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "359bfa76bd738e7c7e641a6e95a44e51e8c9d1dd2b544e92a98aeb8c4f468957",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V3-stack.wav",
+      "names": [
+        "room-stretch-full/stacks/V3-stack.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "3601ade70fba8307e11ba6bebab0b82eefea1d8b75925174c6fd1232d492936a",
+      "bytes": 2713676,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V5R-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V5R-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "37481652c7bb5da209b17d835a3bad2344f9462ba7a212f298e4e3c6015d5608",
+      "bytes": 2175334,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V84-production.m4a",
+      "names": [
+        "room-stretch-full/web/V84-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "3a06bbc9aa1619bb14a5f674c8485e61aeb73a599d47bbc6e7f8dcb5a413f229",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/P14.wav",
+      "names": [
+        "room-stretch-full/stems/P14.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "42577c53ee2b3219102544c8855d84a3743e16ce7992661d86ddfc705d956144",
+      "bytes": 19162441,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/P5-stack.flac",
+      "names": [
+        "room-stretch-full/stacks/P5-stack.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "458bf0bf6bbdb3f02c46be08c6e2629c5c3f54caa4f3b2f96185582af408bceb",
+      "bytes": 2238170,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V3-stack-production.m4a",
+      "names": [
+        "room-stretch-full/web/V3-stack-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "45b44421a094ed5f108325f06911bf1cc1e92c74a97e462b641539836f87a387",
+      "bytes": 2190916,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V112-production.m4a",
+      "names": [
+        "room-stretch-full/web/V112-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "45f30cd4f38d03143988d663b4297491510197216efe79d58a3495cfdadf2a77",
+      "bytes": 18919340,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/P112.flac",
+      "names": [
+        "room-stretch-full/stems/P112.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "468a57cabfb3bab76e95bf9bc65390db1c29b1affea6ba0ff7b98b00eee50ec9",
+      "bytes": 2373608,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V28-production.m4a",
+      "names": [
+        "room-stretch-full/web/V28-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "47190b5eb65fc6920c3b9c520549072a311c820df8a23ce511e0f7a6003ff722",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/P5-stack.wav",
+      "names": [
+        "room-stretch-full/stacks/P5-stack.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "482bb15dbfee5d4e447b5614e7980f9d86e7023cb252f76863a1c2869b566fcb",
+      "bytes": 2715407,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P112-production.m4a",
+      "names": [
+        "room-stretch-full/web/P112-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "50bd2cee80f67a20a05f6d3e4af6517222f87942f47617f219d121f82fbbf2ac",
+      "bytes": 5050223,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V2-stack.flac",
+      "names": [
+        "room-stretch-full/stacks/V2-stack.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "5260c7f957102f7e65eae9705572c265f571e58a8c33709b50d74eb9768c2a02",
+      "bytes": 2730759,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V56-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V56-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "5432e88176bfa422c594052b0f819f69301a441eca83674289ae5d0e16ec2ed6",
+      "bytes": 2714850,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P56-production.m4a",
+      "names": [
+        "room-stretch-full/web/P56-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "54cdcb9008ff68bb6ce1776e6fafe33bd4047e663ad8f6eee5f2086e4e04e496",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/V56.wav",
+      "names": [
+        "room-stretch-full/stems/V56.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "57097f1f02d69d1aed4cc2503310425dfd688b6f7d78deff0ea13ce6a92f8424",
+      "bytes": 2713048,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V5-stack-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V5-stack-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "5762c6868ca32253baa0e4bb48af23c18af99c5a144494154427e2d2913b34c1",
+      "bytes": 4968075,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V1-stack.flac",
+      "names": [
+        "room-stretch-full/stacks/V1-stack.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "5841d8f1559ef4711970a9799afd9477c72757711fa01f852bb0f47b52592591",
+      "bytes": 2193346,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V1-stack-production.m4a",
+      "names": [
+        "room-stretch-full/web/V1-stack-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "5ac9c5bde9871c243e547c76e78291ebcb333f972533c0ccb6384400b133aa16",
+      "bytes": 18929081,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/P28.flac",
+      "names": [
+        "room-stretch-full/stems/P28.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "5b23b79fe1160880c6753ab83f31a13b66f856b64fd289d2a836c514d845c5f5",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/P112.wav",
+      "names": [
+        "room-stretch-full/stems/P112.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "5dc5f8ab268c85107a17e168e5f8cb55dadc64befed406a4eb87fe6166720484",
+      "bytes": 18897252,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/P14.flac",
+      "names": [
+        "room-stretch-full/stems/P14.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "5e8566f2d5a6644588a75c656b93375d3fcc48fc210ea6669f0a5a1e349d8fce",
+      "bytes": 2710371,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V14-production.m4a",
+      "names": [
+        "room-stretch-full/web/V14-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "5f3a51c5864d85b03a9c7e596e68e9b6139dffedbf9f54dd2011539e177e4d6c",
+      "bytes": 5359633,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V3-stack.flac",
+      "names": [
+        "room-stretch-full/stacks/V3-stack.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "60a7f78714e994fb9ce1cc100ddd686a1b7db6fc477827a5949079b0f8baa06e",
+      "bytes": 1168044,
+      "type": "audio",
+      "binding_id": "fx-demo-delay",
+      "file": "render.wav",
+      "names": [
+        "fx-demo-delay/render.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "62c617b8778e804393db998df9a1cf19a685740f5b04e81679fc9ae903a45a0f",
+      "bytes": 2715039,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P56-audition.m4a",
+      "names": [
+        "room-stretch-full/web/P56-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "67d59165faafeaccfa729d2b1cfaa1305a7d3e808aac2a5fde000c376acff394",
+      "bytes": 2714783,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P5-stack-audition.m4a",
+      "names": [
+        "room-stretch-full/web/P5-stack-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "6ef5263c3bdc498a4247d0b96ff58b911a95eb650b39caadbe6344551b33a8dc",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P84.wav",
+      "names": [
+        "room-stretch-full/raw-stems/P84.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "726aeee8b6c497c8f9d4d464e27aeb960b29ece75fd3b9e10e34f9a47a46da08",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V84.wav",
+      "names": [
+        "room-stretch-full/raw-stems/V84.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "72d05203391fc2baba71ff1d71fb112205b6edab612b1731f6e5d7d79336b20a",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V1-stack.wav",
+      "names": [
+        "room-stretch-full/stacks/V1-stack.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "75cf5d43f272d9544c4ce376121ed2e13c0781f9e3d005d89f13cf9ee93b9371",
+      "bytes": 2714987,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P5R-audition.m4a",
+      "names": [
+        "room-stretch-full/web/P5R-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "76750d0f1c9a462dedcebb08a536ec5508655bf8a37a21a9e26adaa2f42529fa",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/V14.wav",
+      "names": [
+        "room-stretch-full/stems/V14.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "78200c2252cb4a2c85b80913a462d6cceaced42b5d0a452547de092cfe38da86",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V2-stack.wav",
+      "names": [
+        "room-stretch-full/stacks/V2-stack.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "787f26b60225a69521435de4c1f099c9513f556fe97102385d599e55ecff8f3f",
+      "bytes": 19162815,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/P5R.flac",
+      "names": [
+        "room-stretch-full/stacks/P5R.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "79880e8f16fecb0dd216e1cc081c8a4adc1fd51df20f4bd462707c5c88a6317a",
+      "bytes": 8113403,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V5R.flac",
+      "names": [
+        "room-stretch-full/stacks/V5R.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "7cc1f459bd30464a85f724090eb81fac337b3ea1279efd331dd2783733ddd644",
+      "bytes": 2764636,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V1-stack-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V1-stack-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "8258efc263c9c9aae9903ba3e384d8a2c98ffcf0f8a336b5eed128a78e1265aa",
+      "bytes": 5130,
+      "type": "metadata",
+      "binding_id": "fx-demo-delay",
+      "file": "render.patch.json",
+      "names": [
+        "fx-demo-delay/render.patch.json"
+      ],
+      "full_decode_status": "not_applicable",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "86e122a85b066837df8d067cca988540cf3f25fd3620f0782fdf0f1144a1c150",
+      "bytes": 2709805,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V5-stack-production.m4a",
+      "names": [
+        "room-stretch-full/web/V5-stack-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "87448cac35ae65826eaaff85d98eb8bcb3a4314b01825f752820c118cbb8dd4b",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P28.wav",
+      "names": [
+        "room-stretch-full/raw-stems/P28.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "8862ab9b5d3c82afb7fae3e2ebadf5f84028057676b6e2bc76379261e5cef996",
+      "bytes": 1697338,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "source-reel-raw.wav",
+      "names": [
+        "room-stretch-full/source-reel-raw.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "8bbe177b19d00a9cae083ee7535bc620b1fc0c17a047fe039b40a6c868b590b7",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/V28.wav",
+      "names": [
+        "room-stretch-full/stems/V28.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "8cc532eb406ce890b46eab110cb1eea9010920f54ffbb0c503a7e62657ae3416",
+      "bytes": 2715409,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P14-production.m4a",
+      "names": [
+        "room-stretch-full/web/P14-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "8ddfbfaa7974669797ebf95cd82458ba41aeee353eb554f4ac91573fc330c086",
+      "bytes": 18921741,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/P56.flac",
+      "names": [
+        "room-stretch-full/stems/P56.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "8f14e8770ff304b3710dc2da999761cf2624fb7a13b028e9679f1dc303803f4c",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V4-stack.wav",
+      "names": [
+        "room-stretch-full/stacks/V4-stack.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "8f41269d66d7e1b8e00b25b0131650eb8bc64c809480a7f111ba85451f814172",
+      "bytes": 2714697,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P5R-production.m4a",
+      "names": [
+        "room-stretch-full/web/P5R-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "91442474df179db3049c20ff76b0b6851ef80da3e7af9d14abe11dc99533dfaf",
+      "bytes": 14824,
+      "type": "metadata",
+      "binding_id": "fx-demo-delay",
+      "file": "render.render.json",
+      "names": [
+        "fx-demo-delay/render.render.json"
+      ],
+      "full_decode_status": "not_applicable",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "96b356871efe31da3556f40de796be32da11da4e42e674780ae1327cdcb450fd",
+      "bytes": 2714990,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P28-production.m4a",
+      "names": [
+        "room-stretch-full/web/P28-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "98f2b0d67d83144690503eaf0616ea5837e0c56566b992d26525e8340b9d5dfe",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/V84.wav",
+      "names": [
+        "room-stretch-full/stems/V84.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "9c179c3aa8b00d1c1f38a117f32583ffe42d013dacf337a1181d7fb6c8127ae0",
+      "bytes": 1205953,
+      "type": "video",
+      "binding_id": "direction-proof-reference",
+      "file": "render.mp4",
+      "names": [
+        "direction-proof-reference/render.mp4"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "9e16974ba819a157eb119ca711ba51ef64946efde192d341d971dc84baaea82c",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P14.wav",
+      "names": [
+        "room-stretch-full/raw-stems/P14.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "a9bdf2019d2b6ca7c87e99d27979cf2e8d6b3971ee68917b5b8c91f88800fe78",
+      "bytes": 2235550,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V2-stack-production.m4a",
+      "names": [
+        "room-stretch-full/web/V2-stack-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "aa0034a2dc0e041b0a937101b4ae753d119f444e930cd06d02c7fcfebd208e35",
+      "bytes": 6204924,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/V28.flac",
+      "names": [
+        "room-stretch-full/stems/V28.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "b1d740c34879b29b707f54123a35a8af0989a8220ea01d39fe7490c50a8ed3c0",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/P56.wav",
+      "names": [
+        "room-stretch-full/stems/P56.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "b3780bf0050943a264695249f679ba203b703c6a3a95998a8c00519d95682629",
+      "bytes": 2714877,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P112-audition.m4a",
+      "names": [
+        "room-stretch-full/web/P112-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "b52948467e361416290722cc042ae02d34281de5c01d67192790a84eb14c6196",
+      "bytes": 6131664,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V4-stack.flac",
+      "names": [
+        "room-stretch-full/stacks/V4-stack.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "b5c0241b3b58812e169e545bffe37300f40eb9ec6d1c3c04d5106ab2bdab1d46",
+      "bytes": 2740452,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V3-stack-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V3-stack-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "b67906a568c712f2d41ee5041a81ed785c15ae088f9a94dc87718d10dc02b925",
+      "bytes": 7984593,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V5-stack.flac",
+      "names": [
+        "room-stretch-full/stacks/V5-stack.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "b67cee41d454c030856ab6ac714fd50b6318d94a560aa4ac231337a0ae31009b",
+      "bytes": 2714415,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P28-audition.m4a",
+      "names": [
+        "room-stretch-full/web/P28-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "b7c3c822cb9409d0daed38952820d6d16eefddbce96aadbb6c4b97237ecde9cf",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/V112.wav",
+      "names": [
+        "room-stretch-full/stems/V112.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "c3dad9395acac5b57ec3fc80e8e268389fdb9b9f63b946cf1d06d689d030a013",
+      "bytes": 478554,
+      "type": "video",
+      "binding_id": "fx-demo-delay",
+      "file": "render.mp4",
+      "names": [
+        "fx-demo-delay/render.mp4"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "cad78c8dbee1c79143d6729949a826612581ded392a63bd8a30a31f47f2a7061",
+      "bytes": 3937689,
+      "type": "video",
+      "binding_id": "direction-proof-directed",
+      "file": "render.mp4",
+      "names": [
+        "direction-proof-directed/render.mp4"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "cdb21a8d4e7ad4d0a3c8d6770e2a6e4c3637fe5bf41ca431e0f3ee2f2a5a91de",
+      "bytes": 2714067,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V14-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V14-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "cdf1e5a0f6ab06676c1978d7c43f8d0810fe4bbae5bcb1b8b6a196491e2626fa",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P112.wav",
+      "names": [
+        "room-stretch-full/raw-stems/P112.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "d54d1d7b99a43fee3764cb8df89624495860e62341a8e0b335d41c5cb8631000",
+      "bytes": 2747409,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V84-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V84-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "d6825ace7451defef4956e621803adc6c5325e2f7c9c95b8b09470fd0f6eeacd",
+      "bytes": 94546,
+      "type": "metadata",
+      "binding_id": "direction-proof-directed",
+      "file": "render.render.json",
+      "names": [
+        "direction-proof-directed/render.render.json"
+      ],
+      "full_decode_status": "not_applicable",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "d7a9eefcf4bb8d6235e8b0b3c10f0068226ef2c3be645ba9ec7ec45648935ff8",
+      "bytes": 2715086,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/P5-stack-production.m4a",
+      "names": [
+        "room-stretch-full/web/P5-stack-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "dbdc99e1105344b60f6fea32d62e4377c11be436ca210cb797fafb8b30016cc7",
+      "bytes": 8273973,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/V14.flac",
+      "names": [
+        "room-stretch-full/stems/V14.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "de39bde617d1a892e31af22a5eadb7c81cbbef8895bb98983297a8e475b6df3b",
+      "bytes": 1697338,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "source-reel-seam-smoothed.wav",
+      "names": [
+        "room-stretch-full/source-reel-seam-smoothed.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "dfc7454bba6c66d554b158bdfb02d83fd0ceb71db2a7f7bffa850431be863b9b",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/P84.wav",
+      "names": [
+        "room-stretch-full/stems/P84.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "e03be717c49f5add4fb0e82805b90b55fa6398d3e25af6700187ed85ffb55ff9",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V112.wav",
+      "names": [
+        "room-stretch-full/raw-stems/V112.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "e0dc42c51b42cdaa8cad003da56925da08a8bf4324d7d2a30df282d9c90ddf34",
+      "bytes": 4244723,
+      "type": "video",
+      "binding_id": "directed-integrated-excerpt",
+      "file": "render.mp4",
+      "names": [
+        "directed-integrated-excerpt/render.mp4"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "e25d30d918b6c2eebce865b62e2dedee13c873f84bc69be2bec067485ddf785e",
+      "bytes": 3540,
+      "type": "metadata",
+      "binding_id": "directed-integrated-excerpt",
+      "file": "render.revision.json",
+      "names": [
+        "directed-integrated-excerpt/render.revision.json"
+      ],
+      "full_decode_status": "not_applicable",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "e4a28cba217da9d284c8fb77e279b9cc1c6b7d2dec105a76aec6ce7adf49786c",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stacks/P5R.wav",
+      "names": [
+        "room-stretch-full/stacks/P5R.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "e5acfd9d2975fdcf1f695f9511160d7911ccad5469c7bc0a003df89528ac1992",
+      "bytes": 43008058,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/P28.wav",
+      "names": [
+        "room-stretch-full/stems/P28.wav"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": false,
+      "present_in_frozen_catalog": false,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "efbe921cebed107ea62b302283fd894f7db937e32af8ea30d1a5d1ad366f0f43",
+      "bytes": 19105629,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/P84.flac",
+      "names": [
+        "room-stretch-full/stems/P84.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "f0e225602d70ddd85434bbe2f0896326b119d1d595753f9392a18b139a00d479",
+      "bytes": 2713593,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V28-audition.m4a",
+      "names": [
+        "room-stretch-full/web/V28-audition.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "fa58d7f6e09fff549010566eb8777cb7046dfd99dd82c5438c5406779fea0a6a",
+      "bytes": 4967420,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/V112.flac",
+      "names": [
+        "room-stretch-full/stems/V112.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "fc7817a697f843c451ff24647a0d6b039a066243914e0ca51e568cfae38b92ca",
+      "bytes": 5319922,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "stems/V56.flac",
+      "names": [
+        "room-stretch-full/stems/V56.flac"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "fd70b524020d21cd610e9685937e011bb2c72416baa60b25a046a4a690407e5d",
+      "bytes": 2709805,
+      "type": "audio",
+      "binding_id": "room-stretch-full",
+      "file": "web/V5R-production.m4a",
+      "names": [
+        "room-stretch-full/web/V5R-production.m4a"
+      ],
+      "full_decode_status": "passed",
+      "present_before_retained_executions": true,
+      "present_in_frozen_catalog": true,
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "public_delivery": "not_established_by_this_receipt",
+      "artistic_acceptance": "pending"
+    }
+  ],
+  "additional_input_objects": [
+    {
+      "sha256": "21f02ebcea75529d3ed9d26e089cd1b9c59a4b784119ba3a96e9bc83cf755ec7",
+      "bytes": 667844,
+      "names": [
+        "font/DejaVuSansCondensed-Bold.ttf"
+      ],
+      "type": "font",
+      "decode": "not_applicable",
+      "role": "font",
+      "provenance": "official distribution package; exact historical font identity",
+      "availability": "privately_preserved",
+      "links": [],
+      "historical_original_retrieval": false,
+      "exact_dependency_bytes_retrieved": true,
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "57cd5662206c247861551bad7dc9651bb07157188b70c4687203b0c913f4fd21",
+      "bytes": 43013074,
+      "names": [
+        "audio/candidate-full.wav"
+      ],
+      "type": "audio",
+      "decode": "passed",
+      "role": "audio",
+      "provenance": "exact reproduction of historical preparation input",
+      "availability": "privately_preserved",
+      "links": [],
+      "historical_original_retrieval": false,
+      "exact_dependency_bytes_retrieved": false,
+      "artistic_acceptance": "pending"
+    },
+    {
+      "sha256": "be0e55149b0e9b076e88659b2a16a309c536283355765ec77ed344eebe201aa7",
+      "bytes": 43013074,
+      "names": [
+        "audio/source-full.wav"
+      ],
+      "type": "audio",
+      "decode": "passed",
+      "role": "reference_audio",
+      "provenance": "exact reproduction of historical preparation input",
+      "availability": "privately_preserved",
+      "links": [],
+      "historical_original_retrieval": false,
+      "exact_dependency_bytes_retrieved": false,
+      "artistic_acceptance": "pending"
+    }
+  ],
+  "expectation_updates": [
+    {
+      "expectation_id": "expectation-02c2600d9b1ee663922f9b77",
+      "expected_sha256": "359bfa76bd738e7c7e641a6e95a44e51e8c9d1dd2b544e92a98aeb8c4f468957",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V3-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-05e3ee26dabd67c38341d80e",
+      "expected_sha256": "e5acfd9d2975fdcf1f695f9511160d7911ccad5469c7bc0a003df89528ac1992",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-06b1ea195b5ba3072e8f14f0",
+      "expected_sha256": "298b81ca0012ef1de0d8c7dd92d0decadf96eae9316ca00b31d6ca5f1146f367",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-07eb68e1dbf241c75fe97eef",
+      "expected_sha256": "194956cd44fea05861d42ed3d7e6bb3892d73a58c56106bb01c4f2e9f43da206",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-094e128a365b1920ef8ee4e2",
+      "expected_sha256": "11d7c46932f2896229e6978fd01338e1f435645f29d0d64dede892efb6547cb2",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V5-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-0a5ddf10ffa9f93e337bf471",
+      "expected_sha256": "e4a28cba217da9d284c8fb77e279b9cc1c6b7d2dec105a76aec6ce7adf49786c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/P5R.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-0b6445db536c00add4f5f00f",
+      "expected_sha256": "87448cac35ae65826eaaff85d98eb8bcb3a4314b01825f752820c118cbb8dd4b",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-0fb46b715a5c0f955acc2081",
+      "expected_sha256": "9e16974ba819a157eb119ca711ba51ef64946efde192d341d971dc84baaea82c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-1026c8d39e7c6f18011129f3",
+      "expected_sha256": "b7c3c822cb9409d0daed38952820d6d16eefddbce96aadbb6c4b97237ecde9cf",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-1059f37f25294209b9b34765",
+      "expected_sha256": "47190b5eb65fc6920c3b9c520549072a311c820df8a23ce511e0f7a6003ff722",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/P5-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-1078f6720c18ca99f33a453e",
+      "expected_sha256": "06f83d16146e35a2ccbb215ad2da75c77f57e5257c9a6c974f2ef140e638fa7d",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V5R.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-10e2aa2b9ace3c93d032aa8d",
+      "expected_sha256": "cdf1e5a0f6ab06676c1978d7c43f8d0810fe4bbae5bcb1b8b6a196491e2626fa",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-11345320a1657610ad63040f",
+      "expected_sha256": "11d7c46932f2896229e6978fd01338e1f435645f29d0d64dede892efb6547cb2",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V5-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-12588a9a382fefc26c639766",
+      "expected_sha256": "dfc7454bba6c66d554b158bdfb02d83fd0ceb71db2a7f7bffa850431be863b9b",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-12bd38f09cc5bd2204614f94",
+      "expected_sha256": "9e16974ba819a157eb119ca711ba51ef64946efde192d341d971dc84baaea82c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-14043ad4a9cf01993c7665cb",
+      "expected_sha256": "726aeee8b6c497c8f9d4d464e27aeb960b29ece75fd3b9e10e34f9a47a46da08",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-15a423a199874271e200cd7f",
+      "expected_sha256": "6ef5263c3bdc498a4247d0b96ff58b911a95eb650b39caadbe6344551b33a8dc",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-161e00433a56922389d50253",
+      "expected_sha256": "2a12dd6dcea0cd792a06f11ef4095d8d5a2de18ee912a19909a02d7b01929dcd",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-187003d1ace8c62e2a090e44",
+      "expected_sha256": "78200c2252cb4a2c85b80913a462d6cceaced42b5d0a452547de092cfe38da86",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V2-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-193a11a7fbb5eab2cd991127",
+      "expected_sha256": "8f14e8770ff304b3710dc2da999761cf2624fb7a13b028e9679f1dc303803f4c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V4-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-1edc6e1033ef26860b8f5f5c",
+      "expected_sha256": "87448cac35ae65826eaaff85d98eb8bcb3a4314b01825f752820c118cbb8dd4b",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-1f98e8a843618225539dfe3c",
+      "expected_sha256": "5b23b79fe1160880c6753ab83f31a13b66f856b64fd289d2a836c514d845c5f5",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-21e2146a6a59fc5317b49a30",
+      "expected_sha256": "76750d0f1c9a462dedcebb08a536ec5508655bf8a37a21a9e26adaa2f42529fa",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-2855a5a727d298f9953b7627",
+      "expected_sha256": "9e16974ba819a157eb119ca711ba51ef64946efde192d341d971dc84baaea82c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-2bcf16e7aa45047e56b07b15",
+      "expected_sha256": "72d05203391fc2baba71ff1d71fb112205b6edab612b1731f6e5d7d79336b20a",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V1-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-2bf60c2ba95c3be19646e78e",
+      "expected_sha256": "5b23b79fe1160880c6753ab83f31a13b66f856b64fd289d2a836c514d845c5f5",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-2dbf5639f00966033d6bdfbe",
+      "expected_sha256": "8bbe177b19d00a9cae083ee7535bc620b1fc0c17a047fe039b40a6c868b590b7",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-3058fdbbff5ace51bae1b334",
+      "expected_sha256": "b1d740c34879b29b707f54123a35a8af0989a8220ea01d39fe7490c50a8ed3c0",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-33143b3a71d0c90826f4fa6e",
+      "expected_sha256": "06f83d16146e35a2ccbb215ad2da75c77f57e5257c9a6c974f2ef140e638fa7d",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V5R.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-36bce26fdc2b75fca95d58f5",
+      "expected_sha256": "47190b5eb65fc6920c3b9c520549072a311c820df8a23ce511e0f7a6003ff722",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/P5-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-36c06c5fe305b17395700dab",
+      "expected_sha256": "6ef5263c3bdc498a4247d0b96ff58b911a95eb650b39caadbe6344551b33a8dc",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-38861d4935be6646a4bb0ec7",
+      "expected_sha256": "87448cac35ae65826eaaff85d98eb8bcb3a4314b01825f752820c118cbb8dd4b",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-38d987f02a83e5b1539d6039",
+      "expected_sha256": "e5acfd9d2975fdcf1f695f9511160d7911ccad5469c7bc0a003df89528ac1992",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-3ce30e5b1e429fdc7197854a",
+      "expected_sha256": "cdf1e5a0f6ab06676c1978d7c43f8d0810fe4bbae5bcb1b8b6a196491e2626fa",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-41374a89854c168cb1bf8231",
+      "expected_sha256": "60a7f78714e994fb9ce1cc100ddd686a1b7db6fc477827a5949079b0f8baa06e",
+      "matched_bytes": 1168044,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "fx-demo-delay/render.wav"
+      ],
+      "binding_id": "fx-demo-delay",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-421951cedd59a13e3f008a39",
+      "expected_sha256": "e5acfd9d2975fdcf1f695f9511160d7911ccad5469c7bc0a003df89528ac1992",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-4407d4997ed1bec7595cd9f3",
+      "expected_sha256": "e4a28cba217da9d284c8fb77e279b9cc1c6b7d2dec105a76aec6ce7adf49786c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/P5R.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-47c51a6b13559cd5891b591d",
+      "expected_sha256": "8bbe177b19d00a9cae083ee7535bc620b1fc0c17a047fe039b40a6c868b590b7",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-486ad32f1f232ee9f47dbb91",
+      "expected_sha256": "76750d0f1c9a462dedcebb08a536ec5508655bf8a37a21a9e26adaa2f42529fa",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-4a443b38bb5b9f785163a299",
+      "expected_sha256": "98f2b0d67d83144690503eaf0616ea5837e0c56566b992d26525e8340b9d5dfe",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-4d596545f04faaeda23581db",
+      "expected_sha256": "e03be717c49f5add4fb0e82805b90b55fa6398d3e25af6700187ed85ffb55ff9",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-4da1e8891f99916ccb70376b",
+      "expected_sha256": "194956cd44fea05861d42ed3d7e6bb3892d73a58c56106bb01c4f2e9f43da206",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-4efb18b06e868ad8690fd90c",
+      "expected_sha256": "726aeee8b6c497c8f9d4d464e27aeb960b29ece75fd3b9e10e34f9a47a46da08",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-4f663e74127840bdca57e245",
+      "expected_sha256": "726aeee8b6c497c8f9d4d464e27aeb960b29ece75fd3b9e10e34f9a47a46da08",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-5019559227b4dc42303245b9",
+      "expected_sha256": "11d7c46932f2896229e6978fd01338e1f435645f29d0d64dede892efb6547cb2",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V5-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-503f9816099cb110062e86dc",
+      "expected_sha256": "cdf1e5a0f6ab06676c1978d7c43f8d0810fe4bbae5bcb1b8b6a196491e2626fa",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-51b8a6bbf97baa0e44cda24d",
+      "expected_sha256": "8f14e8770ff304b3710dc2da999761cf2624fb7a13b028e9679f1dc303803f4c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V4-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-5abd1a43dae2940c7eba09d1",
+      "expected_sha256": "3a06bbc9aa1619bb14a5f674c8485e61aeb73a599d47bbc6e7f8dcb5a413f229",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-600aebfe0fd02a260a6fd049",
+      "expected_sha256": "6ef5263c3bdc498a4247d0b96ff58b911a95eb650b39caadbe6344551b33a8dc",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-61c24b35cc272d58303244f5",
+      "expected_sha256": "5b23b79fe1160880c6753ab83f31a13b66f856b64fd289d2a836c514d845c5f5",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-6404810fae1da7df577c8eb4",
+      "expected_sha256": "e03be717c49f5add4fb0e82805b90b55fa6398d3e25af6700187ed85ffb55ff9",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-676b97203ec595ba2b105849",
+      "expected_sha256": "72d05203391fc2baba71ff1d71fb112205b6edab612b1731f6e5d7d79336b20a",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V1-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-67b21cd79fadf1ae75b15e9f",
+      "expected_sha256": "98f2b0d67d83144690503eaf0616ea5837e0c56566b992d26525e8340b9d5dfe",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-692c075f09be1b1071f64952",
+      "expected_sha256": "0cfc3f5340d158a16609461742bb210e9a789fb8d6105a75a2c8c414b7bf19e1",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-6da8c7707bb8d9fff53a3baa",
+      "expected_sha256": "0cfc3f5340d158a16609461742bb210e9a789fb8d6105a75a2c8c414b7bf19e1",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-6e626318b40a60169e275597",
+      "expected_sha256": "72d05203391fc2baba71ff1d71fb112205b6edab612b1731f6e5d7d79336b20a",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V1-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-703a0c8b5cbb0aa367041a1c",
+      "expected_sha256": "87448cac35ae65826eaaff85d98eb8bcb3a4314b01825f752820c118cbb8dd4b",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-7249f85d3eaebaa51baa8551",
+      "expected_sha256": "e5acfd9d2975fdcf1f695f9511160d7911ccad5469c7bc0a003df89528ac1992",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-728408ade14509dc8e8c98c0",
+      "expected_sha256": "b1d740c34879b29b707f54123a35a8af0989a8220ea01d39fe7490c50a8ed3c0",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-733e20b8022ef04877150ed8",
+      "expected_sha256": "298b81ca0012ef1de0d8c7dd92d0decadf96eae9316ca00b31d6ca5f1146f367",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-75b10bac537a074a4e115180",
+      "expected_sha256": "cdf1e5a0f6ab06676c1978d7c43f8d0810fe4bbae5bcb1b8b6a196491e2626fa",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-79bc3ec8b23d3120280756cc",
+      "expected_sha256": "726aeee8b6c497c8f9d4d464e27aeb960b29ece75fd3b9e10e34f9a47a46da08",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-83154323ddffe29cf07e3625",
+      "expected_sha256": "47190b5eb65fc6920c3b9c520549072a311c820df8a23ce511e0f7a6003ff722",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/P5-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-8479440c2a40fc57b793ac96",
+      "expected_sha256": "76750d0f1c9a462dedcebb08a536ec5508655bf8a37a21a9e26adaa2f42529fa",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-8ae8cf81a908fe29a55d531d",
+      "expected_sha256": "b1d740c34879b29b707f54123a35a8af0989a8220ea01d39fe7490c50a8ed3c0",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-8c2ad6e61d28bcaa2b3c72cc",
+      "expected_sha256": "54cdcb9008ff68bb6ce1776e6fafe33bd4047e663ad8f6eee5f2086e4e04e496",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-8cad0dceb6c92d9382a2e0ea",
+      "expected_sha256": "76750d0f1c9a462dedcebb08a536ec5508655bf8a37a21a9e26adaa2f42529fa",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-8d8d7f88ac0b0d63d52abbb7",
+      "expected_sha256": "54cdcb9008ff68bb6ce1776e6fafe33bd4047e663ad8f6eee5f2086e4e04e496",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-8e4bd4afa3dd0f38374ad517",
+      "expected_sha256": "54cdcb9008ff68bb6ce1776e6fafe33bd4047e663ad8f6eee5f2086e4e04e496",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-9a09cc4c7f61b05106677bcf",
+      "expected_sha256": "78200c2252cb4a2c85b80913a462d6cceaced42b5d0a452547de092cfe38da86",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V2-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-9a9a616ff6e8e3372739a1d8",
+      "expected_sha256": "dfc7454bba6c66d554b158bdfb02d83fd0ceb71db2a7f7bffa850431be863b9b",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-9b889e4847a6b647a89a3233",
+      "expected_sha256": "0cfc3f5340d158a16609461742bb210e9a789fb8d6105a75a2c8c414b7bf19e1",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-9c3ddf81073273d05da3d7a7",
+      "expected_sha256": "3a06bbc9aa1619bb14a5f674c8485e61aeb73a599d47bbc6e7f8dcb5a413f229",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-9cad8280c36bb7095f2fed23",
+      "expected_sha256": "3a06bbc9aa1619bb14a5f674c8485e61aeb73a599d47bbc6e7f8dcb5a413f229",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-9f0efd614bf0f72b2366aa6c",
+      "expected_sha256": "0cfc3f5340d158a16609461742bb210e9a789fb8d6105a75a2c8c414b7bf19e1",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-a18f3c6be7fb2985e0257a43",
+      "expected_sha256": "06f83d16146e35a2ccbb215ad2da75c77f57e5257c9a6c974f2ef140e638fa7d",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V5R.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-a29b726893e529e64830159f",
+      "expected_sha256": "298b81ca0012ef1de0d8c7dd92d0decadf96eae9316ca00b31d6ca5f1146f367",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-a33f30f6c7d64920780f0725",
+      "expected_sha256": "11d7c46932f2896229e6978fd01338e1f435645f29d0d64dede892efb6547cb2",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V5-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-a484b13fbfaaa67a67a672fe",
+      "expected_sha256": "dfc7454bba6c66d554b158bdfb02d83fd0ceb71db2a7f7bffa850431be863b9b",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-a972fd98e74005890c7bf727",
+      "expected_sha256": "b1d740c34879b29b707f54123a35a8af0989a8220ea01d39fe7490c50a8ed3c0",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-a9d50deaeb5e5367e498e7e1",
+      "expected_sha256": "359bfa76bd738e7c7e641a6e95a44e51e8c9d1dd2b544e92a98aeb8c4f468957",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V3-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-aae9214d4f502411d1ac9879",
+      "expected_sha256": "e03be717c49f5add4fb0e82805b90b55fa6398d3e25af6700187ed85ffb55ff9",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-ad2370faef349e5b3a7abeeb",
+      "expected_sha256": "5b23b79fe1160880c6753ab83f31a13b66f856b64fd289d2a836c514d845c5f5",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-b1629a7e59942caa9b6160da",
+      "expected_sha256": "2a12dd6dcea0cd792a06f11ef4095d8d5a2de18ee912a19909a02d7b01929dcd",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-b2d2fcb1b8d8f9a9fe603c3b",
+      "expected_sha256": "359bfa76bd738e7c7e641a6e95a44e51e8c9d1dd2b544e92a98aeb8c4f468957",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V3-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-b3142fccdf7252d9d82bb9da",
+      "expected_sha256": "9e16974ba819a157eb119ca711ba51ef64946efde192d341d971dc84baaea82c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-b4937981259baafedf910f1c",
+      "expected_sha256": "194956cd44fea05861d42ed3d7e6bb3892d73a58c56106bb01c4f2e9f43da206",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-b6589b5368e372a0e8a12b75",
+      "expected_sha256": "72d05203391fc2baba71ff1d71fb112205b6edab612b1731f6e5d7d79336b20a",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V1-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-be45b495236f71fb579a1b66",
+      "expected_sha256": "2a12dd6dcea0cd792a06f11ef4095d8d5a2de18ee912a19909a02d7b01929dcd",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-bee805bb474ff0464f674995",
+      "expected_sha256": "b7c3c822cb9409d0daed38952820d6d16eefddbce96aadbb6c4b97237ecde9cf",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-c3675977455ee54323639216",
+      "expected_sha256": "dfc7454bba6c66d554b158bdfb02d83fd0ceb71db2a7f7bffa850431be863b9b",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-c4c8c5fb0b2186af8e42a101",
+      "expected_sha256": "8bbe177b19d00a9cae083ee7535bc620b1fc0c17a047fe039b40a6c868b590b7",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-c9bc4ea4691ee187f31e9949",
+      "expected_sha256": "8f14e8770ff304b3710dc2da999761cf2624fb7a13b028e9679f1dc303803f4c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V4-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-d5383127fbecf723dab6e232",
+      "expected_sha256": "98f2b0d67d83144690503eaf0616ea5837e0c56566b992d26525e8340b9d5dfe",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-d6d10c5c586872d39046de0e",
+      "expected_sha256": "6ef5263c3bdc498a4247d0b96ff58b911a95eb650b39caadbe6344551b33a8dc",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-d9abaf896a21872000f7d68f",
+      "expected_sha256": "78200c2252cb4a2c85b80913a462d6cceaced42b5d0a452547de092cfe38da86",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V2-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-db13e1254ff09821da575dcb",
+      "expected_sha256": "78200c2252cb4a2c85b80913a462d6cceaced42b5d0a452547de092cfe38da86",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V2-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-df3c783fd1d45c4051600c52",
+      "expected_sha256": "359bfa76bd738e7c7e641a6e95a44e51e8c9d1dd2b544e92a98aeb8c4f468957",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V3-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-e2ae8b9f1b11bc9c4484adbc",
+      "expected_sha256": "b7c3c822cb9409d0daed38952820d6d16eefddbce96aadbb6c4b97237ecde9cf",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-e2d5b627b9cbc62caa90c76c",
+      "expected_sha256": "06f83d16146e35a2ccbb215ad2da75c77f57e5257c9a6c974f2ef140e638fa7d",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V5R.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-e44c1f7b30053d857da6c65b",
+      "expected_sha256": "e03be717c49f5add4fb0e82805b90b55fa6398d3e25af6700187ed85ffb55ff9",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-e56a769ad74c1568cb9dace6",
+      "expected_sha256": "3a06bbc9aa1619bb14a5f674c8485e61aeb73a599d47bbc6e7f8dcb5a413f229",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/P14.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-e853de41e3c3a5698d2fe85b",
+      "expected_sha256": "194956cd44fea05861d42ed3d7e6bb3892d73a58c56106bb01c4f2e9f43da206",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-ea565bdb86e9fc6a5e1a9a13",
+      "expected_sha256": "2a12dd6dcea0cd792a06f11ef4095d8d5a2de18ee912a19909a02d7b01929dcd",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/P56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-ef0072d78c214740e906ae64",
+      "expected_sha256": "54cdcb9008ff68bb6ce1776e6fafe33bd4047e663ad8f6eee5f2086e4e04e496",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-f35e4d940f27950656354677",
+      "expected_sha256": "8f14e8770ff304b3710dc2da999761cf2624fb7a13b028e9679f1dc303803f4c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/V4-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-f3d22998da68ce5b0ab168dd",
+      "expected_sha256": "98f2b0d67d83144690503eaf0616ea5837e0c56566b992d26525e8340b9d5dfe",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V84.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-f42fd1ca0236166c088d395d",
+      "expected_sha256": "60a7f78714e994fb9ce1cc100ddd686a1b7db6fc477827a5949079b0f8baa06e",
+      "matched_bytes": 1168044,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "fx-demo-delay/render.wav"
+      ],
+      "binding_id": "fx-demo-delay",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-f60b398e4e05deb85fc42f0e",
+      "expected_sha256": "b7c3c822cb9409d0daed38952820d6d16eefddbce96aadbb6c4b97237ecde9cf",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V112.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-f709f0e18205526b27cd8f32",
+      "expected_sha256": "8bbe177b19d00a9cae083ee7535bc620b1fc0c17a047fe039b40a6c868b590b7",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stems/V28.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-fcb4fe18b543b94020051033",
+      "expected_sha256": "47190b5eb65fc6920c3b9c520549072a311c820df8a23ce511e0f7a6003ff722",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/P5-stack.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-fd0ebee7ddf78c23ca57c257",
+      "expected_sha256": "e4a28cba217da9d284c8fb77e279b9cc1c6b7d2dec105a76aec6ce7adf49786c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/P5R.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-ffcc170684660661987a261b",
+      "expected_sha256": "e4a28cba217da9d284c8fb77e279b9cc1c6b7d2dec105a76aec6ce7adf49786c",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/stacks/P5R.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    },
+    {
+      "expectation_id": "expectation-ffddf94ee14f66b085f0ac0a",
+      "expected_sha256": "298b81ca0012ef1de0d8c7dd92d0decadf96eae9316ca00b31d6ca5f1146f367",
+      "matched_bytes": 43008058,
+      "frozen_status": "unavailable",
+      "current_status": "exact_hash_reproduced",
+      "output_paths": [
+        "room-stretch-full/raw-stems/V56.wav"
+      ],
+      "binding_id": "room-stretch-full",
+      "availability": "privately_preserved",
+      "historical_original_retrieval": false,
+      "reproduction_scope": "retained_native_execution",
+      "qualification": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established."
+    }
+  ],
+  "private_preservation": {
+    "status": "complete",
+    "archive": {
+      "sha256": "ebc27e4f1a9d927aa942dd18149ff2b9fbf1d4c26ccdfc40aca4307238ff3ce4",
+      "bytes": 1115343032
+    },
+    "saved_volume_count": 45,
+    "new_public_media_links": []
+  },
+  "failed_attempts": [
+    {
+      "binding_id": "directed-integrated-excerpt",
+      "execution_receipt": {
+        "sha256": "7781a1f13aae46f81555c69e64cf2004c29d9b702cfbf3513b02504878afb8e0",
+        "bytes": 5571
+      },
+      "integrity_observation": {
+        "sha256": "c56f6fc23d3347cab1d4b7725d4dac9517cef370daffa0c11b16bb06dc3664c6",
+        "bytes": 833
+      },
+      "observed_file": {
+        "sha256": "a37b01b9865af34f679435130f71166d1313938ad6b3e3f6e1c36a8e166ea9dd",
+        "bytes": 2359344
+      },
+      "status": "failed_not_accepted",
+      "cause": "not established",
+      "fresh_retry": "verified separately; original native recipe and inputs unchanged"
+    }
+  ],
+  "failed_artifacts_preserved_separately": [
+    {
+      "binding_id": "directed-integrated-excerpt",
+      "sha256": "a37b01b9865af34f679435130f71166d1313938ad6b3e3f6e1c36a8e166ea9dd",
+      "bytes": 2359344,
+      "archive_member": "failed-not-accepted/a37b01b9865af34f679435130f71166d1313938ad6b3e3f6e1c36a8e166ea9dd.mp4",
+      "status": "failed_not_accepted",
+      "cause": "not established"
+    }
+  ],
+  "incidental_intermediates": {
+    "count": 40,
+    "bytes": 641796767,
+    "identities_and_dispositions_recorded": true,
+    "bytes_retained": false,
+    "qualification": "Reconstructible native temporary files are not required final products and were not marked decode-verified or accepted for delivery."
+  },
+  "interpretation": "Exact matching bytes are privately preserved from a verified retained native execution. This operation reproduced the identity; it did not retrieve the historical original copy. The frozen recovery and baseline reproduction records remain unchanged. Artistic acceptance and public delivery of these new private outputs are not established.",
+  "room_verification_qualification": "The room outputs were produced at the original recorded commit and verified later with corrected wrapper rules. The original failed execution receipt remains failed; the later check did not execute a new native render."
+}

@@ -17,6 +17,7 @@ import sys
 import tempfile
 
 from reproduction_availability import ADDENDUM_PATH, RECEIPT_PATH as REPRODUCTION_RECEIPT_PATH
+from retained_execution_availability import ADDENDUM_PATH as RETAINED_PATH, IDENTITY_PATH, PRESERVATION_PATH, EQUIVALENCE_PATH, INPUT_PATH
 
 
 CHECKPOINT = 'manifests/acceptance/god-here-consolidation-checkpoint.json'
@@ -147,6 +148,8 @@ def main():
                         if value.get('reproduction_availability'):
                             value['reproduction_availability']['addendum_sha256'] = sha((fixture / ADDENDUM_PATH).read_bytes())
                             value['reproduction_availability']['receipt_sha256'] = sha((fixture / REPRODUCTION_RECEIPT_PATH).read_bytes())
+                        if value.get('retained_execution_availability'):
+                            value['retained_execution_availability']['addendum_sha256'] = sha((fixture / RETAINED_PATH).read_bytes())
                         for row in value.get('objects', []):
                             if row.get('baseline_reproduction'):
                                 row['baseline_reproduction']['receipt_sha256'] = sha((fixture / REPRODUCTION_RECEIPT_PATH).read_bytes())
@@ -341,7 +344,9 @@ def main():
         input_hashes = {relative: sha(original[relative]) for relative in (CATALOG, EXPECTATIONS, CHECKPOINT, PUBLICATION, PROJECTION, supplement_path, receipt_path, text_receipt_path, 'web/recovery/index.html', 'web/recovery/recovery.js', 'web/recovery/recovery.css')}
         if reproduction_present:
             input_hashes.update({relative: sha(original[relative]) for relative in (ADDENDUM_PATH, REPRODUCTION_RECEIPT_PATH)})
-        script_hashes = {path.name: sha(path.read_bytes()) for path in [script_dir / name for name in ('verify_checkpoint.py', 'build_workbench_index.py', 'image_supplement.py', 'reproduction_availability.py', 'verify_deployed_text.py', 'probe_checkpoint_negatives.py')]}
+        if RETAINED_PATH in original:
+            input_hashes.update({relative: sha(original[relative]) for relative in (RETAINED_PATH, IDENTITY_PATH, PRESERVATION_PATH, EQUIVALENCE_PATH, INPUT_PATH)})
+        script_hashes = {path.name: sha(path.read_bytes()) for path in [script_dir / name for name in ('verify_checkpoint.py', 'build_workbench_index.py', 'image_supplement.py', 'reproduction_availability.py', 'retained_execution_availability.py', 'verify_deployed_text.py', 'probe_checkpoint_negatives.py')]}
     report = {'schema_version': 'god-here.checkpoint-negative-probes.v1', 'status': 'passed' if all(row['passed'] for row in results) else 'failed', 'scope': 'Deterministic temporary metadata mutations and synthetic builder fixtures; no network, media access, decoding, publication, or artistic acceptance.', 'repository_files_modified': False, 'input_sha256': input_hashes, 'script_sha256': script_hashes, 'positive_controls': sum(row['expected'] == 'passed' for row in results), 'negative_cases': sum(row['expected'] == 'semantic_rejection' for row in results), 'cases_passed': sum(row['passed'] for row in results), 'cases_failed': sum(not row['passed'] for row in results), 'results': results}
     write(args.output, report)
     print(json.dumps({'status': report['status'], 'positive_controls': report['positive_controls'], 'negative_cases': report['negative_cases'], 'cases_passed': report['cases_passed'], 'cases_failed': report['cases_failed']}, indent=2))

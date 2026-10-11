@@ -212,7 +212,7 @@ def apply_to_projection(projection, addendum, addendum_sha256):
     return projection
 
 
-def validate_projection(projection, addendum, addendum_sha256, expectations):
+def validate_projection(projection, addendum, addendum_sha256, expectations, later_expectation_updates=()):
     rebuilt = apply_to_projection(copy.deepcopy(projection), addendum, addendum_sha256)
     require(same_json(projection.get('reproduction_availability'), rebuilt['reproduction_availability']), 'projection reproduction summary differs')
     require(same_json(projection.get('reproductions'), rebuilt['reproductions']), 'projection reproduced identities, statuses or private-link rules differ')
@@ -221,6 +221,9 @@ def validate_projection(projection, addendum, addendum_sha256, expectations):
     for actual, expected in zip(projection['objects'], rebuilt['objects']):
         require(same_json(actual.get('baseline_reproduction'), expected.get('baseline_reproduction')), 'projection baseline reproduction annotation differs')
     updates = {row['expectation_id']: row for row in addendum['expectation_updates']}
+    later = {row['expectation_id']: row for row in later_expectation_updates}
+    require(len(later) == len(later_expectation_updates) and not (set(later) & set(updates)), 'later expectation updates repeat or overwrite baseline matches')
+    updates.update(later)
     frozen = {row['expectation_id']: row for row in expectations['expectations'] if row['category'] not in EXCLUDED_CATEGORIES}
     actual = {row['id']: row for row in projection['expectations']}
     require(len(actual) == len(projection['expectations']) and set(actual) == set(frozen), 'projection reference IDs are missing or repeated')
@@ -230,23 +233,29 @@ def validate_projection(projection, addendum, addendum_sha256, expectations):
                 and same_json(row['expected_bytes'], original.get('expected_bytes'))
                 and row['category'] == original['category'], 'projection reference identity or size differs')
         update = updates.get(identity)
+        if update:
+            require(update['expected_sha256'] == original.get('expected_sha256')
+                    and update['frozen_status'] == original['status']
+                    and (original.get('expected_bytes') is None or same_json(update['matched_bytes'], original['expected_bytes'])), 'later expectation update conflicts with frozen identity')
         require(row['status'] == (CURRENT_STATUS if update else original['status']), 'projection reference availability differs')
         require(row.get('matched_sha256') == (update['expected_sha256'] if update else original.get('matched_sha256')), 'projection reference match differs')
         if update:
             require(row.get('frozen_status') == original['status'] and row.get('availability') == 'privately_preserved'
                     and row.get('historical_original_retrieval') is False and row.get('reproduced_names') == update['output_paths']
-                    and row.get('qualification') == QUALIFICATION, 'projection exact-reproduction provenance differs')
+                    and row.get('qualification') == update['qualification'], 'projection exact-reproduction provenance differs')
         expected_row = {
             'id': identity, 'name': original['logical_name'],
             'expected_sha256': original.get('expected_sha256'), 'expected_bytes': original.get('expected_bytes'),
             'status': CURRENT_STATUS if update else original['status'],
             'matched_sha256': update['expected_sha256'] if update else original.get('matched_sha256'),
             'category': original['category'], 'candidates': original.get('candidate_sha256s', []),
-            'qualification': QUALIFICATION if update else original.get('qualification'),
+            'qualification': update['qualification'] if update else original.get('qualification'),
         }
         if update:
             expected_row.update({'frozen_status': original['status'], 'availability': 'privately_preserved',
                                  'historical_original_retrieval': False, 'reproduced_names': update['output_paths']})
+            if identity in later:
+                expected_row['reproduction_scope'] = update['reproduction_scope']
         require(same_json(row, expected_row), 'projection reference fields differ from frozen or reproduced evidence')
 
 
@@ -266,7 +275,17 @@ def main():
     if args.apply_to_projection:
         path = root / 'web/recovery/catalog.json'
         projection = apply_to_projection(json.loads(path.read_bytes()), result, digest(raw))
-        validate_projection(projection, result, digest(raw), expectations)
+        from retained_execution_availability import ADDENDUM_PATH as RETAINED_PATH
+        if (root / RETAINED_PATH).is_file():
+            from retained_execution_availability import load_inputs, validate_addendum as check_retained, apply_to_projection as apply_retained, validate_projection as check_projection
+            records, descriptors = load_inputs(root)
+            retained_raw = (root / RETAINED_PATH).read_bytes()
+            retained = json.loads(retained_raw)
+            check_retained(retained, records, descriptors)
+            apply_retained(projection, retained, digest(retained_raw))
+            check_projection(projection, retained, digest(retained_raw), result, digest(raw), expectations)
+        else:
+            validate_projection(projection, result, digest(raw), expectations)
         path.write_text(json.dumps(projection, ensure_ascii=False, separators=(',', ':')) + '\n')
     print(json.dumps({'addendum_sha256': digest(raw), 'bytes': len(raw), 'counts': result['counts']}, indent=2))
 

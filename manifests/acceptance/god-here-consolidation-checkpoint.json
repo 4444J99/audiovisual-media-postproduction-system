@@ -265,10 +265,10 @@
   },
   "subsequent_publication_receipt": "god-here-workbench-publication.json",
   "remaining_gates": [
-    "Unavailable historical identities",
+    "Unavailable historical identities and access to unmounted original session material",
     "Historical images lacking individual decode receipts",
-    "Further retained-experiment render reproduction; baseline recipe verified",
-    "Remaining experiment bindings and mounting in the canonical review interface",
+    "Further retained-experiment reproduction beyond the verified baseline and five initial retained bindings",
+    "Remaining experiment bindings and playable review packages in the canonical workbench",
     "Native external application imports",
     "Deployed browser and physical-phone playback in both orientations",
     "User artistic acceptance"
@@ -278,11 +278,12 @@
     "god-here-post-snapshot-source-delta.json",
     "god-here-post-snapshot-source-delta-02.json",
     "god-here-post-snapshot-source-delta-03.json",
-    "god-here-post-snapshot-source-delta-04.json"
+    "god-here-post-snapshot-source-delta-04.json",
+    "god-here-post-snapshot-source-delta-05.json"
   ],
   "current_workbench_delivery": {
-    "source_commit": "e1632852f8b7cedd1623a36fb314589a7257dafa",
-    "version_number": 10,
+    "source_commit": "807e4864f89c7b5909010a7336adc16409d03875",
+    "version_number": 11,
     "deployment_status": "succeeded",
     "deployed_environment_revision": 6,
     "text_checks_passed": 22,
@@ -291,9 +292,10 @@
     "registered_media_delivery_status": "verified",
     "temporary_upload_key_removed_and_applied": true,
     "publication_receipt": "god-here-workbench-publication.json",
-    "reviewable_payload": "god-here-public-media-delivery-review.json"
+    "reviewable_payload": "god-here-public-media-delivery-review.json",
+    "retained_execution_view": "Published with exact response hashes; five bound runs, 35 new private outputs and three separate exact inputs. No new private-media playback links."
   },
-  "updated_at_utc": "2026-10-11T20:19:37.642055+00:00",
+  "updated_at_utc": "2026-10-11T20:44:23.798374+00:00",
   "image_validation_supplement": {
     "path": "manifests/acceptance/god-here-image-validation-supplement.json",
     "bytes": 566706,
@@ -397,7 +399,7 @@
       "bytes": 20716,
       "sha256": "ea0204f49cf3d810c0ae6eda23ec8bc9ea9f7d036f84b564af18177199686dc2"
     },
-    "render_execution_evidence_status": "All five bound recipes have verified actual required outputs; durable deduplicated preservation and the public retained-execution addendum are being finalized. Room products were rendered at7469 and verified later at994a without rerender.",
+    "render_execution_evidence_status": "All five bound recipes have verified actual required outputs. Sixty required identities have recorded existing custody; 35 new required identities are durably preserved. The separate retained-execution addendum records current availability. Room products were rendered at 7469ea42 and verified later at 994a2455 without rerender.",
     "artistic_acceptance": "pending",
     "focused_test_evidence_scope": "The complete150-test Python suite includes all45 execution tests; the earlier standalone41-test evidence remains historical.",
     "historical_focused_test_evidence": {
@@ -511,5 +513,81 @@
         "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       }
     ]
+  },
+  "corrected_code_hosted_ci": {
+    "path": "manifests/acceptance/god-here-corrected-code-hosted-ci.json",
+    "bytes": 4958,
+    "sha256": "bcc57827434c07d97f23c154b816ba7d61f4b9619e866d7696e022a1cc2d18ef"
+  },
+  "retained_execution_availability": {
+    "path": "manifests/artifacts/god-here-retained-execution-availability.json",
+    "bytes": 191301,
+    "sha256": "d78fbd0381d9b55f975bf8dedab9bbafa0980175af7744ef6d77f0f19d17bf77"
+  },
+  "retained_execution_identity_snapshot": {
+    "path": "manifests/acceptance/god-here-retained-execution-identities.json",
+    "bytes": 160696,
+    "sha256": "713af406a881adbdf5d1b014a728947a017c2a7c9bb8b04aa00a1f81dec9a3a6"
+  },
+  "retained_execution_preservation": {
+    "path": "manifests/acceptance/god-here-retained-execution-preservation.json",
+    "bytes": 33522,
+    "sha256": "7f4f7092a15a11d2c6df842d00890ec5d15885ba31b26e6e25d25bb6d5101a44"
+  },
+  "retained_execution_code_equivalence": {
+    "path": "manifests/acceptance/god-here-retained-execution-code-equivalence.json",
+    "bytes": 20765,
+    "sha256": "63d139dc79245798ce81aba4737d2bcee9973bb475968de30e01c8fde777700e"
+  },
+  "retained_execution_availability_review": {
+    "path": "manifests/acceptance/god-here-retained-execution-availability-review.json",
+    "bytes": 7323,
+    "sha256": "5a8c2fe303cf0611c0e0877b81b535ef1e4b5d917ef24aaad59aa62d2ebfa8d7"
+  },
+  "retained_execution_negative_probes": {
+    "path": "manifests/acceptance/god-here-retained-availability-probes.json",
+    "bytes": 33998,
+    "sha256": "ef343891cd39bc89c8d51e4c3dfc526b1aad6dc907f748931c355c0fd34b35ac"
+  },
+  "retained_execution_view_metadata_check": {
+    "path": "manifests/acceptance/god-here-retained-view-metadata-check.json",
+    "bytes": 82156,
+    "sha256": "952e513263346b53552a9b601ce1d9b799ceddaf4ced053e208c0bd2489215c3"
+  },
+  "current_retained_availability": {
+    "frozen_catalog_unique_objects": 3151,
+    "frozen_catalog_file_occurrences": 4609,
+    "baseline_additional_unique_outputs": 24,
+    "additional_exact_pr49_input_identities": 3,
+    "bound_retained_recipes": 5,
+    "native_renderer_families": 4,
+    "native_execution_attempts": 6,
+    "successful_required_product_sets": 5,
+    "required_output_occurrences": 95,
+    "unique_required_output_identities": 95,
+    "fully_decoded_required_media": 89,
+    "existing_custody_matches": 60,
+    "new_required_output_identities": 35,
+    "new_required_output_bytes": 1210784607,
+    "new_required_outputs_by_type": {
+      "audio": 29,
+      "metadata": 4,
+      "video": 2
+    },
+    "new_required_media_decode_passes": 31,
+    "frozen_unmatched_expected_hashes": 194,
+    "unmatched_after_baseline_reproduction": 189,
+    "additional_expected_hashes_reproduced": 29,
+    "expectation_rows_updated": 114,
+    "remaining_unmatched_expected_hashes": 160,
+    "frozen_baseline_pr49_retained_scoped_identity_union": 3213,
+    "historical_original_outputs_retrieved_by_this_operation": 0,
+    "new_public_output_links": 0,
+    "artistic_acceptance_added": 0
+  },
+  "retained_execution_independent_review": {
+    "path": "manifests/acceptance/god-here-retained-execution-availability-independent-review.json",
+    "bytes": 16191,
+    "sha256": "27f6e6ec443b8f16cffe0c2b69f225ec53c3e2c4cad445c0831214a280341259"
   }
 }

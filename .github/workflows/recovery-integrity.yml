@@ -60,3 +60,8 @@ jobs:
           node tools/recovery/probe_reproduction_view.mjs
           --root "$GITHUB_WORKSPACE"
           --output "$RUNNER_TEMP/god-here-reproduction-view-check.json"
+      - name: Reject inconsistent retained-execution accounting and preservation
+        run: >-
+          python3 tools/recovery/probe_retained_availability.py
+          --root "$GITHUB_WORKSPACE"
+          --output "$RUNNER_TEMP/god-here-retained-availability-probes.json"

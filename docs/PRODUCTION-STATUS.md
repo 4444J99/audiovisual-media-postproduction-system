@@ -4,7 +4,13 @@
 
 The [engineering integration record](ENGINEERING-INTEGRATION.md) describes the four retained branch heads now combined, the resolved conflicts, and the complete existing test suites exercised together. The source-length baseline was reproduced separately at its preserved revision; that evidence does not certify renders from later integrated code or select an artistic treatment.
 
+The [shared execution contract](architecture/shared-execution-contract.md) now covers five retained bindings with completed output verification: PR49 directed and reference proofs, the 679-frame PR50 integrated excerpt, FX demo-delay and the full room-stretch set. Their 95 required output identities include 89 fully decoded media files. The 60 existing custody matches and 35 newly preserved identities are reconciled by exact SHA-256 and byte count. The room set retains its original production record and a separate later verification; the failed initial PR50 attempt remains preserved independently of its successful byte-identical retry. See the [retained-execution availability record](../manifests/artifacts/god-here-retained-execution-availability.json).
+
+The frozen catalog remains 3,151 identities. The separate baseline, exact PR49 inputs and retained-output additions bring the explicitly scoped union to 3,213 identities. Reproduction resolves 34 formerly missing expected hashes in total, leaving 160 unmatched hashes with explicit reference records. This does not count missing films or establish recovery of every historical session. The final combined source passes 150 Python, 25 room and 97 FX tests with no failures or skips; [hosted CI](../manifests/acceptance/god-here-corrected-code-hosted-ci.json) also confirms the package build.
+
 Current workbench publication and registered-media availability are maintained in the [canonical publication receipt](https://github.com/4444J99/audiovisual-media-postproduction-system/blob/inventory/god-here-project-reconciliation-20261011/manifests/acceptance/god-here-workbench-publication.json). Earlier dated publication failures and production reports remain historical evidence. The retained directed renderers and their review pages keep separate timing contracts and media requirements.
+
+The separate 3,378-frame full-film recipe, other retained treatments, native REAPER/Fusion imports, physical-device playback and artistic/listening dispositions remain open. The 45-frame kitchen pilot and further creative expansion remain downstream of those consolidation gates.
 
 ## October 8: modular FX workbench
 

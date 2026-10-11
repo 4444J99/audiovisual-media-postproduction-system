@@ -4,31 +4,31 @@
   "status": "published_and_all_registered_media_delivery_verified",
   "catalog_sha256": "8843bba3e9b0d5937fe5fb93e02233fe8be69aa5f072349ad896011999ccb1e3",
   "expectations_sha256": "8493197c215cf7acd3c0e7024b6dde5d984e010f51bb123940aaa6946a65c004",
-  "source_commit": "e1632852f8b7cedd1623a36fb314589a7257dafa",
+  "source_commit": "807e4864f89c7b5909010a7336adc16409d03875",
   "site_version": {
-    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_60177a8b16f081918a2b2773d996086f",
-    "version_number": 10,
+    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_eca98bb75f9c819192ba7fbe79750a74",
+    "version_number": 11,
     "source": {
-      "commit_sha": "e1632852f8b7cedd1623a36fb314589a7257dafa"
+      "commit_sha": "807e4864f89c7b5909010a7336adc16409d03875"
     },
     "archive_storage": {
       "archive_format": "tar",
-      "content_hash": "sha256:8993c9beca5f25ee7374987339e9a20e64f9d8b64c0fce0983d8907690b77237",
+      "content_hash": "sha256:26228e8c1d3bf445ff767039f39c356c361235cea8a9b3919efc56c038fdadcb",
       "file_count": 393,
-      "size_bytes": 263659520
+      "size_bytes": 263761920
     }
   },
   "production_url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
   "audience": "public_unchanged",
   "current_deployment": {
-    "id": "appgdep_6acbe775d0f08191bb5f4e741c61b0cc",
+    "id": "appgdep_6acbf471ca9c8191a079761d4135120d",
     "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
-    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_60177a8b16f081918a2b2773d996086f",
+    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_eca98bb75f9c819192ba7fbe79750a74",
     "type": "publish",
     "status": "succeeded",
     "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
     "env_set_revision": 6,
-    "updated_at": "2026-10-11T19:46:23.665968+00:00",
+    "updated_at": "2026-10-11T20:41:40.425425+00:00",
     "failure_message": null
   },
   "deployment_sequence": {
@@ -106,16 +106,27 @@
       "env_set_revision": 6,
       "updated_at": "2026-10-11T19:46:23.665968+00:00",
       "failure_message": null
+    },
+    "retained_execution_availability": {
+      "id": "appgdep_6acbf471ca9c8191a079761d4135120d",
+      "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+      "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_eca98bb75f9c819192ba7fbe79750a74",
+      "type": "publish",
+      "status": "succeeded",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+      "env_set_revision": 6,
+      "updated_at": "2026-10-11T20:41:40.425425+00:00",
+      "failure_message": null
     }
   },
   "archive_verification": {
-    "archive_bytes": 243795714,
-    "expanded_regular_file_bytes": 263348289,
+    "archive_bytes": 243805561,
+    "expanded_regular_file_bytes": 263450225,
     "members": 424,
-    "archive_sha256": "f30a239deea48ede41b10fcb07fee93c1e7f97e979b1bd99ffa1e55c3371ef26",
+    "archive_sha256": "4d819355ce04894977cfa0d499272b911f39342fdd9caa5983397e9f259d5b3b",
     "limit_bytes": 268435456,
-    "both_limits_passed": true,
-    "unsafe_members": []
+    "unsafe_members": [],
+    "both_limits_passed": true
   },
   "archive_hash_scope": "archive_sha256 identifies the local compressed upload. site_version.archive_storage.content_hash identifies the host-normalized archive; these are separate representations.",
   "earlier_archive_save_rejections": [
@@ -133,9 +144,9 @@
     }
   ],
   "build_evidence": {
-    "path": "docs/recovery/evidence/workbench-reproduction-build.json",
-    "bytes": 958,
-    "sha256": "8caffc2f1ebd8240419ca6f349efcfeef507458320f0eda1747a2689e3eda1a4"
+    "path": "docs/recovery/evidence/workbench-retained-execution-build.json",
+    "bytes": 1309,
+    "sha256": "cf5352dcbfe6d61fe4b9eac824bf54d74d7f8e9925bed7bb6b859fcddb9c7fa0"
   },
   "text_delivery": {
     "status": "passed",
@@ -144,14 +155,14 @@
     "full_text_body_checks": 18,
     "canonical_redirect_checks": 4,
     "evidence": {
-      "path": "manifests/acceptance/god-here-workbench-v10-text-verification.json",
+      "path": "manifests/acceptance/god-here-workbench-v11-text-verification.json",
       "bytes": 10772,
-      "sha256": "aa4ce90354d1aa5b18fb526ab346e2fe4aaa7b0dec32ea97bf44023ad08e34cc"
+      "sha256": "96e4ec6fe67d6e5728aef692c667411f97b40a0ead56e7e29cfd8f9f264c221a"
     },
-    "source_commit": "e1632852f8b7cedd1623a36fb314589a7257dafa",
+    "source_commit": "807e4864f89c7b5909010a7336adc16409d03875",
     "tested_environment_revision": 6,
     "current_environment_revision": 6,
-    "qualification": "Full source-matching delivery checks include recovery data, review pages, repaired FX runtime, preview-provenance gate and demonstration player. Browser or physical-device playback is not inferred."
+    "qualification": "Full source-matching delivery checks include the retained-execution recovery data and interface, review pages, repaired FX runtime, preview-provenance gate and demonstration player. Browser or physical-device playback is not inferred."
   },
   "source_media": {
     "media_path_occurrences": 240,
@@ -208,9 +219,9 @@
     "Registered media delivery is complete for the explicitly approved payload.",
     "No physical-device or browser playback acceptance is claimed.",
     "No artistic acceptance was added.",
-    "Retained baseline reproduction is documented separately; all other experiment recipes retain their own pending gates."
+    "The baseline and five initial retained bindings have their own verified execution receipts. Other retained treatments and full-film editions keep separate reproduction and acceptance gates."
   ],
-  "updated_at_utc": "2026-10-11T19:50:50.137117+00:00",
+  "updated_at_utc": "2026-10-11T20:44:23.798374+00:00",
   "approved_control_plane_evidence": {
     "path": "manifests/acceptance/god-here-approved-delivery-control-plane.json",
     "bytes": 1406,
@@ -222,13 +233,23 @@
     "bytes": 9381
   },
   "publication_control_plane_evidence": {
-    "path": "manifests/acceptance/god-here-workbench-v10-control-plane.json",
+    "path": "manifests/acceptance/god-here-workbench-v11-control-plane.json",
     "bytes": 920,
-    "sha256": "f628497f67bf094104ce864535da71b28ea3bd1154382d9c825d45e979a8ef50"
+    "sha256": "5cb4abcd7238abaffda996802e2b3f093b777b478046edf64d24313455424da4"
   },
   "reproduction_availability_evidence": {
     "path": "manifests/artifacts/god-here-reproduction-availability.json",
     "bytes": 49752,
     "sha256": "d7665c3bd4185ab1858aceb549823eca23d82ba44b653b4b1e13a1a949fba28e"
+  },
+  "retained_execution_availability_evidence": {
+    "path": "manifests/artifacts/god-here-retained-execution-availability.json",
+    "bytes": 191301,
+    "sha256": "d78fbd0381d9b55f975bf8dedab9bbafa0980175af7744ef6d77f0f19d17bf77"
+  },
+  "retained_execution_independent_review_evidence": {
+    "path": "manifests/acceptance/god-here-retained-execution-availability-independent-review.json",
+    "bytes": 16191,
+    "sha256": "27f6e6ec443b8f16cffe0c2b69f225ec53c3e2c4cad445c0831214a280341259"
   }
 }

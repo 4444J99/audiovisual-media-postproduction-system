@@ -1,0 +1,33 @@
+{
+  "schema_version": "god-here.site-source-delta.v1",
+  "generated_at_utc": "2026-10-11T20:43:24.350705+00:00",
+  "before_source_commit": "e1632852f8b7cedd1623a36fb314589a7257dafa",
+  "after_source_commit": "807e4864f89c7b5909010a7336adc16409d03875",
+  "changes": [
+    {
+      "path": "public/recovery/catalog.json",
+      "change": "modified",
+      "git_blob": "a03fb66dd45600fbc5c8a249af189b8258d473a4",
+      "sha256": "30c0cf7667142129264b439e32f5a27c457a66a995437214d199c9fae3326440",
+      "bytes": 2605692
+    },
+    {
+      "path": "public/recovery/index.html",
+      "change": "modified",
+      "git_blob": "d5977b29d6f59aeea5a7bab73283cc544a294652",
+      "sha256": "d421430fb40a648a2f02ba472586fe92b395ace330ad38ff6b9afa7614a578c8",
+      "bytes": 8572
+    },
+    {
+      "path": "public/recovery/recovery.js",
+      "change": "modified",
+      "git_blob": "fac601c9c91fcb71f21a3bb05634218e127c06d4",
+      "sha256": "3a6030c5ea23a917cf07de66d0e90d275d2f49471d4b789371452bd96c6d0c05",
+      "bytes": 20264
+    }
+  ],
+  "untouched_baseline_files": 528,
+  "deleted_files": [],
+  "protected_media_and_registry_unchanged": true,
+  "scope": "Add five verified retained-execution records, 35 privately preserved required output identities, three exact PR49 input identities and 114 historical-reference availability updates. Frozen and baseline layers remain unchanged. This update changes recovery metadata and navigation only; no media, registry, public playback link, renderer or audience changes."
+}

@@ -13,6 +13,11 @@ from urllib.parse import quote
 
 from image_supplement import validate_image_supplement
 from reproduction_availability import ADDENDUM_PATH, RECEIPT_PATH, apply_to_projection, validate_addendum, validate_projection
+from retained_execution_availability import (
+    ADDENDUM_PATH as RETAINED_PATH, load_inputs as load_retained_inputs,
+    validate_addendum as validate_retained_addendum, apply_to_projection as apply_retained,
+    validate_projection as validate_retained_projection,
+)
 
 
 def main():
@@ -24,6 +29,7 @@ def main():
     parser.add_argument("--image-validation-supplement", type=Path, help="Optional later image decode evidence bound to the frozen catalog")
     parser.add_argument("--reproduction-availability-addendum", type=Path, help="Defaults to the canonical sibling availability addendum when present")
     parser.add_argument("--reproduction-receipt", type=Path, help="Defaults to the canonical baseline reproduction receipt")
+    parser.add_argument("--retained-execution-availability-addendum", type=Path, help="Defaults to the canonical retained-execution addendum when present; receipt inputs remain repository-bound")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     raw = args.catalog.read_bytes()
@@ -180,6 +186,16 @@ def main():
     if reproduction_addendum is not None:
         apply_to_projection(result, reproduction_addendum, reproduction_addendum_sha)
         validate_projection(result, reproduction_addendum, reproduction_addendum_sha, expectations)
+    retained_path = args.retained_execution_availability_addendum or repository_root / RETAINED_PATH
+    if retained_path.is_file():
+        retained_raw = retained_path.read_bytes()
+        retained = json.loads(retained_raw)
+        records, descriptors = load_retained_inputs(repository_root)
+        validate_retained_addendum(retained, records, descriptors)
+        apply_retained(result, retained, hashlib.sha256(retained_raw).hexdigest())
+        validate_retained_projection(result, retained, hashlib.sha256(retained_raw).hexdigest(), reproduction_addendum, reproduction_addendum_sha, expectations)
+    elif args.retained_execution_availability_addendum:
+        raise ValueError('Requested retained execution availability addendum is missing')
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")) + "\n")
     print(json.dumps({"objects": len(objects), "historical_references": len(historical), "bytes": args.output.stat().st_size, "output": str(args.output)}))
