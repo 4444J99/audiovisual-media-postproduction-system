@@ -7,7 +7,6 @@ limiter, denoiser, or adaptive volume is added by this packaging step.
 from __future__ import annotations
 
 import argparse
-import base64
 import json
 import math
 import shutil
@@ -163,10 +162,6 @@ def concatenate(paths, audio_paths, target):
          "-movflags", "+faststart", target])
 
 
-def data_audio(path):
-    return "data:audio/mp4;base64," + base64.b64encode(path.read_bytes()).decode("ascii")
-
-
 def validate_inputs(source, refinement, audit, baseline, dialogue):
     """Bind the listening labels to the exact verified source and renders."""
     reports = {
@@ -203,47 +198,34 @@ def validate_inputs(source, refinement, audit, baseline, dialogue):
 
 
 def write_player(out, layers, audit_path):
-    track_data = {key: {"title": title, "description": detail,
-                       "room": data_audio(out / "auditions" / f"{key}-room-30s.m4a"),
-                       "mix": data_audio(out / "auditions" / f"{key}-dialogue-30s.m4a")}
-                  for key, (_, title, detail) in VERSIONS.items()}
-    layer_data = {name: data_audio(path) for name, path in layers.items()}
+    """Keep the downloadable HTML as a small native gateway to the live Site.
+
+    The earlier embedded player relied on JavaScript in a downloaded HTML preview.
+    Hosted comparisons now own interactive playback; direct media stays usable
+    without its comparison script. Preserve handled AAC exports for the archive.
+    """
     audit = json.loads((audit_path / "portion-review.json").read_text())
-    pause_data = []
     for portion in audit["portions"]:
-        target = out / "auditions" / f"{portion['portion_id']}-with-handles.m4a"
-        encode(audit_path / portion["review_audio"]["path"], target)
-        pause_data.append({"id": portion["portion_id"], "source_start": portion["source_start"],
-                           "source_end": portion["source_end"], "source_offset": portion["handle_start"],
-                           "selected_start": portion["review_audio"]["portion_start_seconds"],
-                           "selected_end": portion["review_audio"]["portion_end_seconds"],
-                           "audio": data_audio(target)})
-    image_data = "data:image/png;base64," + base64.b64encode((audit_path / "source-portions-diagnostics.png").read_bytes()).decode("ascii")
-    body = """<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>God's Ears — room-tone review</title><style>
-:root{color-scheme:dark;font:17px/1.55 system-ui,sans-serif;background:#101921;color:#f1eee5}body{max-width:980px;margin:0 auto;padding:24px}h1{font-size:clamp(28px,5vw,46px);line-height:1.15;margin:.5em 0}h2{font-size:23px;margin-top:32px}.eyebrow{color:#bbd9b6;letter-spacing:.12em;font-size:12px}p{max-width:75ch}.muted{color:#a5b3bd}button,select,textarea,input{font:inherit;color:inherit;background:#1d2b37;border:1px solid #506273;border-radius:8px;padding:12px}button{cursor:pointer}button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #bbd9b6;outline-offset:3px}.controls{display:flex;gap:10px;flex-wrap:wrap}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:10px;margin:18px 0}.cards button{text-align:left;min-height:120px}.cards button[aria-pressed=true]{border:2px solid #bbd9b6;background:#253d38}.cards strong{display:block;font-size:22px;color:#bbd9b6}.cards span{font-size:14px}audio{width:100%;margin:15px 0}textarea{display:block;width:100%;box-sizing:border-box;min-height:110px}a{color:#bbd9b6}.panel{padding:18px;border:1px solid #304350;border-radius:12px;margin-top:18px}#status{min-height:3em}small{display:block}.pause-note{border-top:1px solid #304350;padding:12px 0}
-</style><p class="eyebrow">GOD'S EARS / COMPARATIVE LISTENING / 11 OCTOBER 2026</p>
-<h1>Let the room become still.</h1><p>Five versions of the same room material. A preserves the previous render. B and C test timing and effects. D and E synthesize new texture from the recorded pauses. These are audition candidates; no naturalness or clean-silence acceptance is implied.</p>
-<div class="panel"><div class="controls"><label for="mode">Listen to</label><select id="mode"><option value="room">Room alone — raised to a listening level</option><option value="mix">Dialogue plus room — production level</option></select><button id="restart">Restart excerpt</button><button id="core">Dialogue only</button></div>
-<p class="muted">Every main excerpt covers source 00:28–00:58. Switching a version keeps the excerpt position. Room-only clips are matched near −24 LUFS with a fixed gain; this is louder than their production level. Dialogue retains the same gain across versions.</p>
-<div class="cards" id="choices"></div><p id="status" aria-live="polite"></p><audio id="player" controls preload="metadata"></audio><p id="position" class="muted"></p>
-<label for="notes">What draws attention, repeats, or sounds like an action?</label><textarea id="notes" placeholder="Example: C at source 00:35 — still a scraping shape in the middle band."></textarea><button id="save" style="margin-top:12px">Download listening notes</button></div>
-<h2>Locate the activity in the earlier rack</h2><p class="muted">These six existing contributions use one shared audition gain. Their relative levels remain intact. They are the original dry contributions and effect returns.</p><div id="layers" class="controls"></div>
-<h2>Source pauses</h2><p>Eight portions totaling 4.42 seconds remain available. Each button plays a portion with one second of surrounding context on either side. The selected interval is shown below the player. All excerpts share one fixed review gain; statistical screening has not certified any portion as free of activity.</p><div id="pauses" class="controls"></div><details style="margin-top:18px"><summary>Open the waveform and spectrogram review sheet</summary><img src="__IMAGE__" alt="Eight source portions with selected boundaries, surrounding handles, waveforms and spectrograms" style="width:100%;height:auto;margin-top:14px"></details><p class="muted">Full 112-second lossless beds, underlying stems, full-length dialogue comparisons, cued source-pause WAVs, measurements, and reproduction instructions are in the accompanying ZIP. This self-contained player contains short comparisons and source-pause excerpts. The original room and activity already embedded in the dialogue core remain audible in that control.</p>
-<script>const tracks=__TRACKS__;const layers=__LAYERS__;const pauses=__PAUSES__;const core=__CORE__;const player=document.querySelector('#player'),mode=document.querySelector('#mode'),status=document.querySelector('#status');let key='A',active={kind:'candidate',id:'A',mode:'room',source_offset:28};
-function position(){const t=player.currentTime||0;let value='Source position '+(active.source_offset+t).toFixed(2)+' s';if(active.kind==='source-portion'){const within=t>=active.selected_start&&t<active.selected_end;value+=' · Selected portion '+active.selected_start.toFixed(2)+'–'+active.selected_end.toFixed(2)+' s in this excerpt · '+(within?'INSIDE SELECTED PORTION':'surrounding handle');}document.querySelector('#position').textContent=value;}
-function clearChoice(){document.querySelectorAll('[data-key]').forEach(b=>b.setAttribute('aria-pressed','false'));}
-function load(url,text,descriptor,keep=true){const at=keep?(player.currentTime||0):0,playing=!player.paused;player.pause();active=descriptor;player.src=url;player.onloadedmetadata=()=>{player.currentTime=Math.min(at,Math.max(0,player.duration-.05));position();if(playing)player.play().catch(()=>{});};status.textContent=text;position();}
-function choose(k,keep=true){keep=keep&&active.source_offset===28&&active.kind!=='source-portion';key=k;document.querySelectorAll('[data-key]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.key===key));load(tracks[k][mode.value],k+' — '+tracks[k].title+'. '+tracks[k].description,{kind:'candidate',id:k,mode:mode.value,source_offset:28},keep);}
-Object.entries(tracks).forEach(([k,v])=>{const b=document.createElement('button');b.dataset.key=k;b.setAttribute('aria-pressed','false');const strong=document.createElement('strong');strong.textContent=k;const span=document.createElement('span');span.textContent=v.title;b.append(strong,span);b.onclick=()=>choose(k);document.querySelector('#choices').append(b);});
-Object.entries(layers).forEach(([name,url])=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>{clearChoice();load(url,'Original rack contribution: '+name+'. Shared audition gain.',{kind:'original-contribution',id:name,mode:'shared-solo-gain',source_offset:28},active.source_offset===28&&active.kind!=='source-portion');};document.querySelector('#layers').append(b);});
-pauses.forEach(p=>{const b=document.createElement('button');b.textContent=p.id+' · '+p.source_start.toFixed(2)+'–'+p.source_end.toFixed(2)+' s';b.onclick=()=>{clearChoice();load(p.audio,'Source '+p.id+' with surrounding handles. Selected source interval '+p.source_start.toFixed(2)+'–'+p.source_end.toFixed(2)+' s; listening review pending.',{kind:'source-portion',id:p.id,mode:'common-review-gain',source_offset:p.source_offset,selected_start:p.selected_start,selected_end:p.selected_end},false);player.scrollIntoView({behavior:'smooth',block:'center'});};document.querySelector('#pauses').append(b);});
-document.querySelector('#core').onclick=()=>{clearChoice();load(core,'Dialogue core alone, at the same production gain used in every dialogue comparison. Original embedded room/activity remain.',{kind:'dialogue-core',id:'dialogue-only',mode:'production',source_offset:28},active.source_offset===28&&active.kind!=='source-portion');};player.ontimeupdate=position;mode.onchange=()=>choose(key);document.querySelector('#restart').onclick=()=>{player.currentTime=0;player.play().catch(()=>{});};document.querySelector('#save').onclick=()=>{const data={project:'god-here',study:'room-tone-refinement-20261011',track:{...active},excerpt_time_seconds:player.currentTime||0,source_time_seconds:active.source_offset+(player.currentTime||0),notes:document.querySelector('#notes').value,recorded_at:new Date().toISOString(),human_acceptance:'unspecified'};const u=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download='god-here-room-listening-notes.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);};choose('A',false);
-</script></html>"""
-    body = body.replace("__TRACKS__", json.dumps(track_data)).replace("__LAYERS__", json.dumps(layer_data))
-    body = body.replace("__PAUSES__", json.dumps(pause_data)).replace("__IMAGE__", image_data)
-    body = body.replace("__CORE__", json.dumps(data_audio(out / "auditions" / "dialogue-only-30s.m4a")))
-    (out / "god-here-room-tone-review.html").write_text(body)
+        encode(audit_path / portion["review_audio"]["path"],
+               out / "auditions" / f"{portion['portion_id']}-with-handles.m4a")
+    write_hosted_gateway(out / "god-here-room-tone-review.html")
+
+
+def write_hosted_gateway(path):
+    """A script-independent entry point for downloaded-file previews."""
+    origin = "https://god-here-five-realities.ajpadavano.chatgpt.site/room-tone/"
+    body = f"""<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>God’s Ears · room-tone workbench</title>
+<style>html{{color-scheme:dark;background:#080808;color:#f3efe7;font:18px/1.6 system-ui}}body{{max-width:900px;padding:24px;margin:auto}}a{{color:#d8b58c}}video{{width:100%;height:auto}}.open{{display:inline-block;border:1px solid #d8b58c;padding:16px;margin:12px 0}}</style>
+<h1>Room-tone comparisons are on the project site.</h1>
+<p><a class="open" href="{origin}">Open the room-tone workbench →</a></p>
+<p>Compare the original A–E treatments, the 112 / 84 / 56 / 28 / 14-second stretched layers, their stacked mixes, and dialogue alone. The same site also provides the assembled 4.42-second source and lossless downloads.</p>
+<video controls playsinline preload="none" poster="{origin}media/room-poster.jpg" src="{origin}media/context-V5R.mp4"></video>
+<p><a href="{origin}media/context-V5R.mp4">Open the full slowdown stack as an ordinary video</a></p>
+<p><a href="{origin}catalog.html">Open all files and native players</a></p>
+<p>If this app displays the HTML as a document, use the links above to open the site. No script in this downloaded file is required.</p>
+</html>"""
+    Path(path).write_text(body)
 
 
 def export_edit_assets(refinement, audit, baseline, dialogue, out):

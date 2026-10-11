@@ -30,13 +30,15 @@ For the trained sound/mask pass, install `python -m pip install -e '.[learned]'`
 
 For the report that the room bed sounds like activity, use the opt-in [room-tone refinement comparisons](docs/ROOM-REFINEMENT.md). This pass recovers the earlier rack, tests shared band timing and effect bypass, and renders sustained and stationary source-shaped textures. It includes cued source-pause reviews and matched listening comparisons; the existing production default remains available pending listening selection.
 
+The [stretch-and-stack experiment](docs/ROOM-STRETCH.md) expands the same 4.42-second source reel to 112, 84, 56, 28, and 14 seconds, repeats each to fill the film, and renders progressive and original-relative-gain stacks. The [hosted room-tone workbench](https://god-here-five-realities.ajpadavano.chatgpt.site/room-tone/) provides native playback, full-film context comparisons, source review, and lossless downloads.
+
 Pass `--start` and `--end` for excerpts, `--layers` for the manual fine-layer variant, and `--mode soft` or `--mode spill` for authored boundary extensions. Hard boundaries are the baseline. The final source-length picture uses 3,360 frames at 30 fps. The pilot uses source frames 2,554–3,214 inclusive, 661 frames.
 
 `tools/finish_production.py` is the **god-here production recipe**, with its explicit 112-second baseline. `amp` holds reusable processing primitives; project-specific intervals, masks, styles, and scores live in `projects/god-here`. Original media are external inputs, not committed public assets. Source identities are recorded by SHA-256.
 
 ## Browser edition
 
-[Open the private god-here production preview](https://god-here-five-realities.ajpadavano.chatgpt.site).
+[Open the god-here production preview](https://god-here-five-realities.ajpadavano.chatgpt.site). The existing Site's audience is public as verified on October 11, 2026; the room-tone update preserves that setting.
 
 Copy `web/` to a static HTTP server. Supply these files under `web/media/`:
 

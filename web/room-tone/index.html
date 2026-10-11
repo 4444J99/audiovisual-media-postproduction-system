@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <title>God's Ears · Room-tone studies</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#listen">Skip to the player</a>
+  <header class="site-header">
+    <a class="brand" href="../index.html">GOD'S EARS <span>/ SOUND STUDIES</span></a>
+    <nav aria-label="Project"><a href="../review.html">Sound &amp; picture</a><a href="catalog.html">All files / simple players</a></nav>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="title">
+      <div><p class="eyebrow">ROOM TONE · THE NEXT PASS</p><h1 id="title">A few seconds.<br>A room that holds.</h1></div>
+      <div class="intro-copy"><p>Compare the existing room rack with longer, overlapping stretches of the same recorded pauses.</p><p class="quiet">Eight source portions · 4.42 seconds available · 112-second studies. Listening selection remains open.</p></div>
+    </section>
+
+    <section id="listen" class="player-panel" aria-labelledby="selected-title">
+      <div class="player-heading"><div><p class="eyebrow" id="selected-kind">FIVE STRETCHED LAYERS / DIALOGUE + ROOM</p><h2 id="selected-title">V5R · The full stack, original relative gains</h2></div><span class="duration-tag" id="duration-tag">FULL FILM · 1:52</span></div>
+      <div class="screen">
+        <video id="context-player" controls playsinline preload="metadata" poster="media/room-poster.jpg" src="media/context-V5R.mp4" aria-label="V5R full stretch stack with dialogue and the complete film">
+          <a href="media/context-V5R.mp4">Open V5R with dialogue and picture</a>
+        </video>
+        <img id="room-picture" src="media/room-poster.jpg" alt="An uncropped frame from God's Ears" hidden>
+      </div>
+      <audio id="room-player" controls preload="metadata" aria-label="Selected room-tone or source-pause audio" hidden></audio>
+      <p id="picture-note" class="quiet picture-note">The full frame is shown throughout the dialogue comparison.</p>
+      <p id="play-status" class="play-status" role="status" aria-live="polite">Press the native Play control to begin.</p>
+      <div class="fallback-row"><a id="direct-file" class="text-link" href="media/context-V5R.mp4">Open this film directly ↗</a><a class="text-link" href="catalog.html">Every version and download ↗</a></div>
+
+      <div id="transport-controls" class="enhanced-transport" hidden>
+        <div class="transport-row"><button id="play-selected" class="accent" type="button">Play selected</button><button id="pause-selected" type="button">Pause</button><button id="restart-selected" type="button">From the beginning</button><output id="clock" aria-label="Current study position">0:00 / 1:52</output></div>
+        <div class="mode-row" role="group" aria-label="Listening balance">
+          <button type="button" data-mode="context" aria-pressed="true">Dialogue + room</button>
+          <button type="button" data-mode="room" aria-pressed="false">Room alone</button>
+          <button type="button" data-mode="inspection" aria-pressed="false">Inspect room · +14 dB</button>
+        </div>
+        <p id="balance-note" class="quiet">Dialogue keeps the same gain across the comparison mixes.</p>
+      </div>
+      <noscript><p class="fallback-notice">Use the video above, or open <a href="catalog.html">all files and simple players</a> to choose another study.</p></noscript>
+      <p id="catalog-status" class="quiet">The complete listening catalog is available through All files.</p>
+    </section>
+
+    <section id="comparison-controls" class="studies" aria-labelledby="studies-heading" hidden>
+      <div class="section-heading"><div><p class="eyebrow">CHOOSE A STUDY</p><h2 id="studies-heading">Hear what changes.</h2></div><div class="reference-actions"><button id="reference-button" type="button" hidden>Compare with E</button><button id="core-button" type="button" hidden>Play dialogue only</button></div></div>
+      <div class="study-tabs" role="group" aria-label="Study family">
+        <button type="button" data-group="rack" aria-pressed="true">Earlier rack · A–E</button>
+        <button type="button" data-group="varispeed" aria-pressed="false">Literal slowdown · V</button>
+        <button type="button" data-group="spectral" aria-pressed="false">Frequency-retaining · P</button>
+      </div>
+      <p id="group-description" class="group-description">A preserves the earlier room rack. B–E compare shared timing, effect bypass, and sustained textures.</p>
+      <div id="track-grid" class="track-grid"></div>
+      <details id="layer-section" class="layer-section" hidden><summary>Listen to each stretched layer</summary><p class="quiet">Each layer is a complete 112-second audition. Its own cycle repeats within that span.</p><div id="layer-grid" class="layer-grid"></div></details>
+      <div id="periods" class="periods" hidden aria-label="The five stretch periods">
+        <span><i style="--length:100%"></i>112 s</span><span><i style="--length:75%"></i>84 s</span><span><i style="--length:50%"></i>56 s</span><span><i style="--length:25%"></i>28 s</span><span><i style="--length:12.5%"></i>14 s</span>
+      </div>
+      <p class="quiet comparison-help">A study's Play button starts it at the same film position. Source-pause excerpts use their own source clock. The louder inspection balance is for examining the room alone.</p>
+    </section>
+
+    <section class="source-reel support-section" aria-labelledby="reel-heading">
+      <div><p class="eyebrow">BEFORE THE STRETCH</p><h2 id="reel-heading">The assembled 4.42 seconds.</h2><p class="quiet">The eight selected source portions, joined in order. Hear what the longer layers begin with.</p></div>
+      <div><audio id="source-reel-player" controls preload="none" src="media/source-reel-raw.m4a" aria-label="The original 4.42-second source reel"></audio><p><a class="text-link" href="media/source-reel-raw.m4a">Open the assembled source directly ↗</a></p></div>
+    </section>
+
+    <section id="pauses-section" class="support-section" aria-labelledby="pauses-heading" hidden>
+      <div class="section-heading"><div><p class="eyebrow">THE RECORDED MATERIAL</p><h2 id="pauses-heading">Return to the pauses.</h2></div></div>
+      <p>Hear each selected portion with its surrounding context. These excerpts still need listening review for breaths, words, and recognizable actions.</p>
+      <div id="pause-grid" class="pause-grid"></div>
+      <p id="pause-cue" class="quiet" role="status"></p>
+    </section>
+
+    <section id="previous-section" class="support-section" aria-labelledby="previous-heading" hidden>
+      <p class="eyebrow">EARLIER COMPARISONS</p><h2 id="previous-heading">The rack in sequence.</h2>
+      <div id="previous-videos" class="previous-videos"></div>
+    </section>
+
+    <section id="notes-section" class="support-section notes-section" aria-labelledby="notes-heading" hidden>
+      <div><p class="eyebrow">LISTENING NOTES</p><h2 id="notes-heading">Mark the moment.</h2><p class="quiet">A saved note records the selected study, listening balance, and current position. Notes stay in this browser until you export them.</p></div>
+      <div><label for="note-text">What sounds like activity, or becomes useful room texture?</label><textarea id="note-text" rows="3" placeholder="Describe the sound and why it draws attention."></textarea><div class="transport-row"><button id="save-note" type="button">Save this note</button><button id="export-notes" type="button">Export notes</button></div><p id="note-status" class="quiet" role="status"></p><ol id="note-list"></ol></div>
+    </section>
+
+    <section class="downloads support-section" aria-labelledby="downloads-heading"><h2 id="downloads-heading">Keep the material.</h2><p>Open individual renders, source reviews, and processing records in the complete catalog.</p><a class="button accent" href="catalog.html">Open all files and simple players</a><div id="download-links" class="download-links"></div></section>
+  </main>
+  <footer><p>God's Ears / god-here · Source-derived sound studies</p><p>These are comparisons for listening, with no final naturalness or artistic acceptance implied.</p></footer>
+  <script type="module" src="player.js"></script>
+</body>
+</html>
