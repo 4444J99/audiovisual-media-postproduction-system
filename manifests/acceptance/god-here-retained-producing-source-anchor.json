@@ -1,0 +1,228 @@
+{
+  "schema_version": "god-here.retained-producing-source-anchor.v1",
+  "verified_at_utc": "2026-10-11T20:15:50.685341+00:00",
+  "status": "exact_producing_closures_and_bindings_match",
+  "recorded_local_producing_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+  "public_source_commit": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+  "public_source_tree": "f76f10f719042ac41990febc8e61762219ee870e",
+  "public_source_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/tree/08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+  "scope": "Every declared producing-code file for all four native adapters and all five concrete binding files matches the actual retained-run source. The complete local and public trees differ in non-producing UI/documentation/recovery files; full-tree identity is not claimed.",
+  "closures": {
+    "amp.direction.v1": [
+      {
+        "source_path": "amp/__init__.py",
+        "bytes": 79,
+        "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85"
+      },
+      {
+        "source_path": "amp/cli.py",
+        "bytes": 6354,
+        "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1"
+      },
+      {
+        "source_path": "amp/core.py",
+        "bytes": 11990,
+        "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849"
+      },
+      {
+        "source_path": "amp/direction.py",
+        "bytes": 22405,
+        "sha256": "96f3537160b1bca111602117fb908b38fb1cfb024bef0604eeeb10f104e5b5b4"
+      },
+      {
+        "source_path": "amp/execution.py",
+        "bytes": 43265,
+        "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661"
+      },
+      {
+        "source_path": "amp/media_resolver.py",
+        "bytes": 7223,
+        "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c"
+      }
+    ],
+    "amp.revision.v1": [
+      {
+        "source_path": "amp/__init__.py",
+        "bytes": 79,
+        "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85"
+      },
+      {
+        "source_path": "amp/audio.py",
+        "bytes": 7762,
+        "sha256": "7fa1e4dfcf0f7be4166939dd997fbb800df19e5efa90a197ee0fab175d9759a9"
+      },
+      {
+        "source_path": "amp/cli.py",
+        "bytes": 6354,
+        "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1"
+      },
+      {
+        "source_path": "amp/core.py",
+        "bytes": 11990,
+        "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849"
+      },
+      {
+        "source_path": "amp/execution.py",
+        "bytes": 43265,
+        "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661"
+      },
+      {
+        "source_path": "amp/media_resolver.py",
+        "bytes": 7223,
+        "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c"
+      },
+      {
+        "source_path": "amp/render.py",
+        "bytes": 4956,
+        "sha256": "3ed4cf6bba5cab1f6862b815e1d76ad3eb02f3e2c2271a3e0b92d6788e30d5d9"
+      },
+      {
+        "source_path": "amp/revision.py",
+        "bytes": 15828,
+        "sha256": "00d0b8695df79dbcaf2413c05d4d4e42e33c9cbc4f8c709ccf87523306656c73"
+      }
+    ],
+    "fx.rack.v1": [
+      {
+        "source_path": "amp/__init__.py",
+        "bytes": 79,
+        "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85"
+      },
+      {
+        "source_path": "amp/cli.py",
+        "bytes": 6354,
+        "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1"
+      },
+      {
+        "source_path": "amp/execution.py",
+        "bytes": 43265,
+        "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661"
+      },
+      {
+        "source_path": "amp/media_resolver.py",
+        "bytes": 7223,
+        "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c"
+      },
+      {
+        "source_path": "tools/render-fx.mjs",
+        "bytes": 18485,
+        "sha256": "7d3b703d1d38f8ee389dff22c8dc07224cf68ac56d8149786fd708b61f037382"
+      },
+      {
+        "source_path": "tools/validate-execution-fx.mjs",
+        "bytes": 4279,
+        "sha256": "813dc0b74b0555afb9b1b403732799379fa490c7e174d9db703f8291ec910571"
+      },
+      {
+        "source_path": "web/fx/audio-engine.mjs",
+        "bytes": 46902,
+        "sha256": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f"
+      },
+      {
+        "source_path": "web/fx/catalog.mjs",
+        "bytes": 14108,
+        "sha256": "7f3659b58b446e9aae932b2fc9a2246524b67ec9d70f7730c37d409ab914adfd"
+      },
+      {
+        "source_path": "web/fx/core.mjs",
+        "bytes": 31251,
+        "sha256": "2127a48b62c507082ccf783937fc0ffb3222bab158d31d4768ea1d5439b9b0af"
+      },
+      {
+        "source_path": "web/fx/visual-engine.mjs",
+        "bytes": 24864,
+        "sha256": "42be9510643e71595a088faa1fe0ca616297b8a45f0723f19acd2abff75f34b1"
+      },
+      {
+        "source_path": "web/fx/workbench-state.mjs",
+        "bytes": 5965,
+        "sha256": "f77e43155c3aa9db1c61a4f41a9df7369b0438b154e82a8cf20fe44d6ce15fbf"
+      }
+    ],
+    "amp.roomstretch.v1": [
+      {
+        "source_path": "amp/__init__.py",
+        "bytes": 79,
+        "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85"
+      },
+      {
+        "source_path": "amp/audio.py",
+        "bytes": 7762,
+        "sha256": "7fa1e4dfcf0f7be4166939dd997fbb800df19e5efa90a197ee0fab175d9759a9"
+      },
+      {
+        "source_path": "amp/cli.py",
+        "bytes": 6354,
+        "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1"
+      },
+      {
+        "source_path": "amp/core.py",
+        "bytes": 11990,
+        "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849"
+      },
+      {
+        "source_path": "amp/execution.py",
+        "bytes": 43265,
+        "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661"
+      },
+      {
+        "source_path": "amp/media_resolver.py",
+        "bytes": 7223,
+        "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c"
+      },
+      {
+        "source_path": "amp/roomrack.py",
+        "bytes": 7040,
+        "sha256": "6dbd5b0cb3767618cf4c79e13ee24b79549f2c600475b51ff32b7c0d1855f363"
+      },
+      {
+        "source_path": "amp/roomrefine.py",
+        "bytes": 24579,
+        "sha256": "1049b9365db7a811b86c1f5f24e58c83c9254dd18373d06835495700baca4be7"
+      },
+      {
+        "source_path": "amp/roomstretch.py",
+        "bytes": 29246,
+        "sha256": "3616cdf5c4bbac41cc30747a75aebbd0ae3e18467f3a556284cbf8c235a40a5a"
+      },
+      {
+        "source_path": "amp/roomtone.py",
+        "bytes": 9569,
+        "sha256": "6dabcaf3effd2a56830adf948fbe4a684f0281f2f9d2f9c05f3d6bd5fa867374"
+      },
+      {
+        "source_path": "tools/run_room_stretch.py",
+        "bytes": 1594,
+        "sha256": "fa1579f43071588b29667d6ff086164218ad378c48497654a5e336a3a7da513f"
+      }
+    ]
+  },
+  "bindings": [
+    {
+      "source_path": "projects/god-here/executions/directed-integrated-excerpt.json",
+      "bytes": 1289,
+      "sha256": "d8efc58a920352be60e47d590a652c4d517075035d2e67f105b5bd73ddd5bbc6"
+    },
+    {
+      "source_path": "projects/god-here/executions/direction-proof-directed.json",
+      "bytes": 1106,
+      "sha256": "6ed3555cbe1b39410fa52329707d9f649261040d59165e591dc0da5a8037d302"
+    },
+    {
+      "source_path": "projects/god-here/executions/direction-proof-reference.json",
+      "bytes": 854,
+      "sha256": "81b4e42779db6ffcaf8aec98f74c40a94104fdfa01d6182fbc07b8532181de72"
+    },
+    {
+      "source_path": "projects/god-here/executions/fx-demo-delay.json",
+      "bytes": 998,
+      "sha256": "6d28498399a023459ca668d6d31b9ed88480cd67195739e2c66aeca0da5cbc1e"
+    },
+    {
+      "source_path": "projects/god-here/executions/room-stretch-full.json",
+      "bytes": 979,
+      "sha256": "f763af6c93da53f6be80d74f3d5158e506adc48ba3796d54e73e74457005b404"
+    }
+  ],
+  "runtime_parity": "Use the separate actual run receipts; source equivalence does not imply historical environment or rendered-byte parity."
+}

@@ -13,7 +13,8 @@ from unittest.mock import patch
 
 from amp.execution import (ADAPTERS, ContractError, ExecutionPlan, REPO_ROOT, code_provenance,
                            command_output, decode_audio, direction_clock, execute, expected_products,
-                           preflight, presentation_clock, revision_clock, room_clock, runtime_dependencies, stage_inputs, verify_products)
+                           preflight, presentation_clock, revision_clock, room_clock, room_output_identities,
+                           runtime_dependencies, stage_inputs, verify_products)
 from amp.media_resolver import MediaResolver, file_identity, read_json
 
 SOURCE_HASH = "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225"
@@ -374,6 +375,83 @@ class DispatchTests(unittest.TestCase):
 
 
 class OutputGatesTests(unittest.TestCase):
+    def room_fixture(self, root):
+        references = {}
+        for name in ("source-reel-raw.wav", "source-reel-seam-smoothed.wav", "final.wav"):
+            (root / name).write_bytes(("inert native output " + name).encode())
+            references[name] = file_identity(root / name, "fixture")
+        report = {"source_reel_raw": {"file": "source-reel-raw.wav", **references["source-reel-raw.wav"]},
+                  "source_reel_processed": {"file": "source-reel-seam-smoothed.wav", **references["source-reel-seam-smoothed.wav"]},
+                  "layers": [{"stem_wav": "final.wav", "receipts": {"wav": references["final.wav"]}}], "stacks": []}
+        (root / "room-stretch-report.json").write_text(json.dumps(report))
+        temporary = root / ".room-audition-native-test/audition.wav"
+        temporary.parent.mkdir()
+        temporary.write_bytes(b"incomplete temporary writer bytes, not a deliverable")
+        plan = ExecutionPlan({"adapter": "amp.roomstretch.v1"}, {}, MediaResolver(root), root,
+                             clock={"source_reel_samples": 2, "output": {"sample_rate": 48000, "channels": 2, "samples_per_channel": 4}})
+        return plan, set(references) | {"room-stretch-report.json"}, temporary
+
+    def test_native_temporary_file_is_accounted_without_replacing_or_decoding_outputs(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            plan, required, temporary = self.room_fixture(root)
+            (root / "undeclared.txt").write_bytes(b"needs separate review")
+            accounting = {}
+            with patch("amp.execution.expected_products", return_value=required), \
+                 patch("amp.execution.probe", return_value={"streams": [{"codec_type": "audio", "codec_name": "pcm_f32le", "sample_rate": "48000", "channels": 2}]}), \
+                 patch("amp.execution.decode_audio", return_value={"finite": True}) as decoder:
+                rows = verify_products(plan, root, accounting=accounting)
+            self.assertEqual({row["file"] for row in rows}, required)
+            self.assertEqual({call.args[0].name for call in decoder.call_args_list}, {"final.wav", "source-reel-raw.wav", "source-reel-seam-smoothed.wav"})
+            self.assertEqual(accounting["required_output_count"], 4)
+            self.assertEqual(accounting["observed_file_count"], 6)
+            incidental = {row["file"]: row for row in accounting["incidental_outputs"]}
+            observed = incidental[temporary.relative_to(root).as_posix()]
+            self.assertEqual({key: observed[key] for key in ("sha256", "bytes")}, file_identity(temporary, "fixture"))
+            self.assertEqual(observed["disposition"], "reconstructible_intermediate_not_retained")
+            self.assertEqual(observed["full_decode"], "not_checked_not_a_required_deliverable")
+            self.assertFalse(observed["accepted_for_delivery"])
+            self.assertEqual(incidental["undeclared.txt"]["disposition"], "review_required")
+            self.assertNotIn(str(root), json.dumps(accounting))
+
+    def test_native_temporary_file_does_not_satisfy_a_missing_required_room_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            plan, required, _ = self.room_fixture(root)
+            (root / "final.wav").unlink()
+            with patch("amp.execution.expected_products", return_value=required), patch("amp.execution.probe") as probe_call:
+                with self.assertRaisesRegex(ContractError, "missing_native_outputs"):
+                    verify_products(plan, root)
+            probe_call.assert_not_called()
+
+    def test_temporary_prefix_only_classifies_a_native_replacement_of_a_required_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            plan, required, _ = self.room_fixture(root)
+            names = (".room-stretch-native/final.wav", "unknown/.room-stretch-native/unrelated.bin")
+            for name in names:
+                (root / name).parent.mkdir(parents=True)
+                (root / name).write_bytes(b"temporary-looking bytes")
+            accounting = {}
+            with patch("amp.execution.expected_products", return_value=required), \
+                 patch("amp.execution.probe", return_value={"streams": [{"codec_type": "audio", "codec_name": "pcm_f32le", "sample_rate": "48000", "channels": 2}]}), \
+                 patch("amp.execution.decode_audio", return_value={"finite": True}):
+                verify_products(plan, root, accounting=accounting)
+            incidental = {row["file"]: row for row in accounting["incidental_outputs"]}
+            self.assertEqual(incidental[names[0]]["disposition"], "reconstructible_intermediate_not_retained")
+            self.assertEqual(incidental[names[1]]["disposition"], "review_required")
+
+    def test_room_output_must_match_native_report_hash_even_if_clock_could_match(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            plan, required, _ = self.room_fixture(root)
+            target = root / "final.wav"
+            target.write_bytes(b"x" * target.stat().st_size)
+            with patch("amp.execution.expected_products", return_value=required), patch("amp.execution.probe") as probe_call:
+                with self.assertRaisesRegex(ContractError, "native_output_identity_mismatch"):
+                    verify_products(plan, root)
+            probe_call.assert_not_called()
+
     def test_shifted_presentation_timestamps_fail_despite_correct_counts(self):
         stream = {"codec_name": "h264", "time_base": "1/15360", "start_pts": 0, "duration_ts": 348160}
         clock = presentation_clock(stream, Fraction(680, 30), Fraction(1, 30))
@@ -447,6 +525,7 @@ class OutputGatesTests(unittest.TestCase):
             (products / "room-stretch-report.json").write_text(json.dumps(report))
             required = expected_products(plan, products)
             self.assertTrue({"source-reel-raw.wav", "raw-stems/V112.wav", "stems/P14.wav", "web/P14-audition.m4a", "stacks/V5R.flac", "stacks/P5R.wav"} <= required)
+            self.assertEqual(set(room_output_identities(report)) | {"room-stretch-report.json"}, required)
             report["layers"] = report["layers"][:-1]
             (products / "room-stretch-report.json").write_text(json.dumps(report))
             with self.assertRaises(ContractError):

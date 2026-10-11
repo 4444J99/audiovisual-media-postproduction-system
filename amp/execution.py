@@ -542,17 +542,69 @@ def presentation_clock(stream, expected_duration, unit):
             "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"}
 
 
-def verify_products(plan, products):
-    """Full decode required media and verify each family's native output clocks."""
+def room_output_identities(report):
+    """Join final room filenames to the hashes in this run's native report."""
+    result = {}
+
+    def add(name, receipt):
+        from .media_resolver import relative_path
+        name = str(relative_path(name, "native_output"))
+        identity = {key: receipt[key] for key in ("sha256", "bytes") if key in receipt}
+        require(re.fullmatch(r"[0-9a-f]{64}", str(identity.get("sha256"))) is not None, "native_output_identity_missing")
+        require("bytes" not in identity or type(identity["bytes"]) is int and identity["bytes"] >= 0, "native_output_identity_missing")
+        require(name not in result or result[name] == identity, "native_output_identity_conflict")
+        result[name] = identity
+
+    for key in ("source_reel_raw", "source_reel_processed"):
+        add(report[key]["file"], report[key])
+    for row in report["layers"] + report["stacks"]:
+        if "raw_stem_wav" in row:
+            add(row["raw_stem_wav"], row["raw_stem_receipt"])
+        for key, receipt_key in (("stem_wav", "wav"), ("mix_wav", "wav"), ("stem_flac", "flac"),
+                                 ("mix_flac", "flac"), ("production_aac", "production_aac"), ("audition_aac", "audition_aac")):
+            if key in row:
+                add(row[key], row["receipts"][receipt_key])
+    return result
+
+
+def verify_products(plan, products, *, accounting=None):
+    """Verify required deliverables; separately account for undeclared files.
+
+    The optional receipt dictionary is populated before decoding so a failed
+    final-file check still retains incidental-file identities and dispositions.
+    """
     required = expected_products(plan, products)
-    actual_files = {path.relative_to(products).as_posix() for path in products.rglob("*") if path.is_file()}
+    entries = sorted(products.rglob("*"))
+    require(all(not path.is_symlink() for path in entries), "unsafe_output_link")
+    actual_files = {path.relative_to(products).as_posix() for path in entries if path.is_file()}
     require(required <= actual_files, "missing_native_outputs")
+    if accounting is None:
+        accounting = {}
+    accounting.update(required_output_count=len(required), observed_file_count=len(actual_files), incidental_outputs=[])
+    for name in sorted(actual_files - required):
+        # These two prefixes are created by amp.roomstretch's native temporary
+        # writers. Other undeclared files remain explicitly pending review.
+        parts = Path(name).parts
+        replacement = [i for i, part in enumerate(parts) if re.fullmatch(r"\.room-stretch-[^/]+", part)]
+        native_replacement = len(replacement) == 1 and "/".join(parts[:replacement[0]] + parts[replacement[0] + 1:]) in required
+        temporary = plan.binding["adapter"] == "amp.roomstretch.v1" and (
+            re.fullmatch(r"\.room-audition-[^/]+/audition\.wav", name) is not None
+            or native_replacement)
+        accounting["incidental_outputs"].append({"file": name, **file_identity(products / name, "incidental_output"),
+            "classification": "native_temporary_file" if temporary else "undeclared_native_output",
+            "full_decode": "not_checked_not_a_required_deliverable",
+            "disposition": "reconstructible_intermediate_not_retained" if temporary else "review_required",
+            "accepted_for_delivery": False})
+    native_identities = room_output_identities(read_json(products / "room-stretch-report.json", role="native_report")) if plan.binding["adapter"] == "amp.roomstretch.v1" else {}
+    if native_identities:
+        require(set(native_identities) | {"room-stretch-report.json"} == required, "native_output_identity_set_mismatch")
     rows = []
-    for path in sorted(products.rglob("*")):
-        if not path.is_file():
-            continue
-        require(not path.is_symlink(), "unsafe_output_link")
-        row = {"file": path.relative_to(products).as_posix(), **file_identity(path, "output")}
+    for name in sorted(required):
+        path = products / name
+        row = {"file": name, **file_identity(path, "output")}
+        if name in native_identities:
+            require(all(row[key] == value for key, value in native_identities[name].items()), "native_output_identity_mismatch")
+            row["native_report_identity"] = "matched"
         if path.suffix.lower() in (".mp4", ".wav", ".flac", ".m4a"):
             meta = probe(path, "output", count_frames=path.suffix.lower() == ".mp4")
             video = next((s for s in meta["streams"] if s["codec_type"] == "video"), None)
@@ -631,7 +683,9 @@ def execute(plan, output):
             require(file_identity(path, role) == identity, "staged_input_changed_during_execution", role)
         plan.resolver.recheck()
         require(code_provenance(plan.repo_root, plan.binding["adapter"]) == plan.code, "producing_code_changed")
-        receipt.update(status="render_verified", render_executed=True, outputs=verify_products(plan, products))
+        receipt["product_accounting"] = {}
+        receipt.update(status="render_verified", render_executed=True,
+                       outputs=verify_products(plan, products, accounting=receipt["product_accounting"]))
     except (ContractError, OSError, ValueError, KeyError, TypeError, IndexError, AttributeError, StopIteration) as exc:
         failure = exc if isinstance(exc, ContractError) else ContractError("unsupported_native_execution_result")
         receipt.update(status="execution_failed", render_executed=native_started, error={"code": failure.code, "role": failure.role})

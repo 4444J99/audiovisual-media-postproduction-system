@@ -1,0 +1,117 @@
+{
+  "schema_version": "god-here.execution-output-selection-independent-review.v1",
+  "reviewed_at_utc": "2026-10-11T20:14:58.631220+00:00",
+  "status": "independent_code_review_passed",
+  "reviewed_commit": "994a24550e9ba9d1969db47292c0610ebc96566b",
+  "parent_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+  "reviewed_tree_clean": true,
+  "reviewed_files": [
+    {
+      "path": "amp/execution.py",
+      "sha256": "49f5e544a0a0170c4fe44f9ea70eede6c2f3fc7e257e0018062ed33687ff9946",
+      "bytes": 46693
+    },
+    {
+      "path": "docs/architecture/shared-execution-contract.md",
+      "sha256": "bc95c37c47a20a3e9ff08943b614e88b40df038031ab2210e7c0b66066058cdf",
+      "bytes": 11469
+    },
+    {
+      "path": "tests/test_execution.py",
+      "sha256": "fae653f21a6cd74dcfb96ff1f201543ed2b74fd3c5ca649213fcc9feb0a85b04",
+      "bytes": 33864
+    }
+  ],
+  "test_bytes_equal_committed_bytes": true,
+  "scope": "Three-file wrapper correction. Native renderer algorithms, recipe parameters, media bytes, and prior verification evidence are unchanged. This receipt does not assert successful playback verification of the completed room media.",
+  "closed_findings": [
+    {
+      "id": "room-deliverable-selection",
+      "issue": "The earlier wrapper decoded incidental native temporary files as if they were required final outputs.",
+      "resolution": "The verifier requires every declared native output and decodes only that exact set. All other observed files retain SHA-256, bytes, classification, non-acceptance and an explicit not-checked decode status."
+    },
+    {
+      "id": "native-room-output-identity-join",
+      "issue": "Duration-valid bytes could otherwise replace a reported final output without matching its native production receipt.",
+      "resolution": "All 84 required room media identities join the current native report SHA-256 and its byte count where supplied before decode; conflicting or incomplete identity maps fail."
+    },
+    {
+      "id": "temporary-classification-boundary",
+      "issue": "An early prefix-only draft could misclassify an unrelated file as a reconstructible room intermediate.",
+      "resolution": "A temporary replacement must map exactly to a declared output when its single native temporary directory component is removed. The top-level temporary audition-source pattern is explicit. Unrelated files remain review_required."
+    }
+  ],
+  "independent_regression_tests": {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "tests.test_execution.OutputGatesTests",
+      "-v"
+    ],
+    "tests_run": 11,
+    "suite_seconds": 0.675,
+    "exit_code": 0,
+    "source_unchanged_during_tests": true,
+    "test_receipt": {
+      "sha256": "4a657193ceba77a01b480f8ac451576a92458b51fe25a406f11f304a52bd8df0",
+      "bytes": 1439
+    },
+    "stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "stderr": {
+      "sha256": "85e79fa6a44bf1a128f8354e9b50494a015e08ab7339105167990ff876efbafe",
+      "bytes": 2052
+    }
+  },
+  "implementing_agent_focused_suite": {
+    "attribution": "Executed by implementation agent; independently read its complete saved log.",
+    "tests_run": 45,
+    "suite_seconds": 0.96,
+    "log": {
+      "sha256": "065348fc93c677fee1c752253ff58f814b47257e7c17a8731045c0d4532a3597",
+      "bytes": 7244
+    },
+    "exit_interpretation": "Log reports OK with all 45 tests passing; this is not an additional independent run of all 45."
+  },
+  "completed_run_metadata_inspection": {
+    "scope": "Read report and file presence/stat only. No media rendering, decoding or output mutation by this review.",
+    "producing_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+    "original_execution_receipt": {
+      "sha256": "080165cb7f8d8952429c19de78aff69d499449dfbac7cb393b3075ab2fe9a9d5",
+      "bytes": 6510
+    },
+    "original_execution_status": "execution_failed",
+    "original_execution_error": {
+      "code": "invalid_media_probe",
+      "role": "output"
+    },
+    "native_report": {
+      "sha256": "0c4a82bba9d46062595f420644273045a8bdcfbd8671c14bdfe48b0df3d06ca7",
+      "bytes": 87992
+    },
+    "observed_files": 125,
+    "required_files": 85,
+    "required_media": 84,
+    "required_bytes": 1502478786,
+    "missing_required": [],
+    "incidental_files": 40,
+    "incidental_bytes": 641796767,
+    "successful_media_verification": "pending separate later-verifier receipt"
+  },
+  "post_hoc_verifier_source_review": {
+    "helper": {
+      "sha256": "2636c7fcd71d47f2f13e000e54bbfc642c9ff6b9967684fc0e64b6281b5243b3",
+      "bytes": 5798
+    },
+    "scope": "Reviewed for the retained room run only.",
+    "findings": "No blocking finding: preserves original receipt and producing code; verifies binding and unchanged native closure; checks staged inputs; identifies later verifier code/runtime; rehashes required outputs after decoding; creates a separate receipt; does not invoke native rendering."
+  },
+  "prior_evidence_policy": "The released 268-test combined check, its offline wheel receipt, and the original failed room execution receipt remain unmodified. A later consolidated check must bind the corrected source separately.",
+  "artistic_acceptance": "pending",
+  "numerical_parity_claimed": false,
+  "native_render_executed_by_this_review": false,
+  "remote_actions_by_this_review": false
+}

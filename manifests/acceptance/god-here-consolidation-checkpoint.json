@@ -293,7 +293,7 @@
     "publication_receipt": "god-here-workbench-publication.json",
     "reviewable_payload": "god-here-public-media-delivery-review.json"
   },
-  "updated_at_utc": "2026-10-11T20:08:07.668431+00:00",
+  "updated_at_utc": "2026-10-11T20:19:37.642055+00:00",
   "image_validation_supplement": {
     "path": "manifests/acceptance/god-here-image-validation-supplement.json",
     "bytes": 566706,
@@ -388,17 +388,23 @@
   "shared_execution_contract": {
     "entry_point": "python -m amp.cli execute",
     "documentation": "docs/architecture/shared-execution-contract.md",
-    "reviewed_local_source_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+    "reviewed_local_source_commit": "994a24550e9ba9d1969db47292c0610ebc96566b",
     "native_adapter_families": 4,
     "concrete_bindings": 5,
-    "focused_tests_passed": 41,
+    "focused_tests_passed": 45,
     "focused_test_evidence": {
+      "path": "docs/recovery/evidence/final-consolidated-check.stderr.log",
+      "bytes": 20716,
+      "sha256": "ea0204f49cf3d810c0ae6eda23ec8bc9ea9f7d036f84b564af18177199686dc2"
+    },
+    "render_execution_evidence_status": "All five bound recipes have verified actual required outputs; durable deduplicated preservation and the public retained-execution addendum are being finalized. Room products were rendered at7469 and verified later at994a without rerender.",
+    "artistic_acceptance": "pending",
+    "focused_test_evidence_scope": "The complete150-test Python suite includes all45 execution tests; the earlier standalone41-test evidence remains historical.",
+    "historical_focused_test_evidence": {
       "path": "docs/recovery/evidence/execution-contract-tests.log",
       "bytes": 6202,
       "sha256": "e07834585ded8173f7614a5de253cc4b75fda30df756cd22ccf96ff3edbb5616"
-    },
-    "render_execution_evidence_status": "Retained executions in progress; no completion inferred from preflight or tests.",
-    "artistic_acceptance": "pending"
+    }
   },
   "consolidated_execution_checks": {
     "status": "passed",
@@ -438,6 +444,69 @@
       },
       {
         "path": "docs/recovery/evidence/consolidated-execution-wheel.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "retained_producing_source_anchor": {
+    "path": "manifests/acceptance/god-here-retained-producing-source-anchor.json",
+    "bytes": 8191,
+    "sha256": "4b748722a4a17d8400400ff5decd66759ee18cb527fb02bf698ed5fd9fe131ef"
+  },
+  "producing_source_hosted_ci": {
+    "path": "manifests/acceptance/god-here-producing-source-hosted-ci.json",
+    "bytes": 2011,
+    "sha256": "31846844bde820f9013a2cc3b39118e8143162574e5d5cb6462d65a66ef7d7c3"
+  },
+  "room_output_selection_review": {
+    "path": "manifests/acceptance/god-here-room-output-selection-review.json",
+    "bytes": 5386,
+    "sha256": "aed56e596b5abc76fb705ce7738c87625bb96095884c381a6a61d32908834c19"
+  },
+  "room_existing_products_review": {
+    "path": "manifests/acceptance/god-here-room-existing-products-review.json",
+    "bytes": 3133,
+    "sha256": "6117789f729991a1c039c8fd9890f6eee9de88cd0af9e7205a311efa745c13ac"
+  },
+  "final_consolidated_checks": {
+    "status": "passed",
+    "scope": "Complete combined code after the reviewed retained-room output selection correction; actual source hashes are bound in the receipt.",
+    "python_tests": 150,
+    "room_javascript_tests": 25,
+    "fx_javascript_tests": 97,
+    "enumerated_tests": 272,
+    "failures": 0,
+    "skipped": 0,
+    "wheel_modules": 19,
+    "evidence": [
+      {
+        "path": "docs/recovery/evidence/final-consolidated-check.json",
+        "bytes": 41368,
+        "sha256": "cb64123fccff1fd0a183ec0262362e470f178e8e4e3e8e3ef7aff250e0ed5498"
+      },
+      {
+        "path": "docs/recovery/evidence/final-consolidated-check.stdout.log",
+        "bytes": 11696,
+        "sha256": "6d28f47eada34dd115bf4a56f3d434c221cac34aec4384234161d93d5544385f"
+      },
+      {
+        "path": "docs/recovery/evidence/final-consolidated-check.stderr.log",
+        "bytes": 20716,
+        "sha256": "ea0204f49cf3d810c0ae6eda23ec8bc9ea9f7d036f84b564af18177199686dc2"
+      },
+      {
+        "path": "docs/recovery/evidence/final-consolidated-wheel.json",
+        "bytes": 8532,
+        "sha256": "27762a11a1521a374ba070db4777cda848254c430dd6057720e795d2d995bfc9"
+      },
+      {
+        "path": "docs/recovery/evidence/final-consolidated-wheel.stdout.log",
+        "bytes": 998,
+        "sha256": "bbb5068f2aa115544bd0274a608acedf0eead65dd481505bf13393a411dc1a81"
+      },
+      {
+        "path": "docs/recovery/evidence/final-consolidated-wheel.stderr.log",
         "bytes": 0,
         "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       }
