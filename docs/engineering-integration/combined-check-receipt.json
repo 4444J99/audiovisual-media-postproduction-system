@@ -1,0 +1,33 @@
+{
+  "schema": "god-here.engineering-integration-check.v1",
+  "commit": "3074a1431b72a7250826ae21a2a9318027d0379b",
+  "started_at": "2026-10-11T19:28:46.326480+00:00",
+  "completed_at": "2026-10-11T19:28:51.934565+00:00",
+  "command": [
+    "python",
+    "tools/check.py"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 5.608,
+  "python": "3.12.14",
+  "node": "v24.19.0",
+  "packages": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "Pillow": "12.3.0",
+    "opencv-python-headless": "5.0.0.93"
+  },
+  "test_font": {
+    "filename": "DejaVuSans.ttf",
+    "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280"
+  },
+  "environment": {
+    "OPENBLAS_NUM_THREADS": "2",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2"
+  },
+  "test_font_parameter": "AMP_TEST_FONT points to the explicitly recorded installed DejaVuSans font. Native recipe defaults are unchanged.",
+  "stdout": "combined-check.stdout.log",
+  "stderr": "combined-check.stderr.log",
+  "scope": "Existing Python unit/encoding tests, project validation, JavaScript score transport, room-tone UI/transport/catalog, repaired FX engine/state/render regression suites; no production media render or upload."
+}

@@ -1,0 +1,591 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "room-takeover",
+  "name": "Room takeover",
+  "seed": 773,
+  "duration": 12.166666667,
+  "source": {
+    "id": "god-here-second-draft",
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "offset": 95,
+    "duration": 12.166666667
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "type": "source"
+    },
+    {
+      "id": "room-address",
+      "type": "routing",
+      "name": "Routing",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "room",
+        "text",
+        "voice"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "travel": 0.6,
+        "copies": 4,
+        "spread": 0.9,
+        "arrival": 1,
+        "origin": 0.08,
+        "destination": 0.92
+      },
+      "macro": [
+        {
+          "parameter": "copies",
+          "min": 1,
+          "max": 4,
+          "curve": "linear"
+        },
+        {
+          "parameter": "spread",
+          "min": 0.05,
+          "max": 0.9,
+          "curve": "linear"
+        },
+        {
+          "parameter": "arrival",
+          "min": 0.05,
+          "max": 1,
+          "curve": "linear"
+        },
+        {
+          "parameter": "travel",
+          "min": 1.8,
+          "max": 0.6,
+          "curve": "linear"
+        }
+      ],
+      "automation": [
+        {
+          "parameter": "intensity",
+          "interpolation": "linear",
+          "keyframes": [
+            {
+              "time": 0,
+              "value": 1
+            },
+            {
+              "time": 6,
+              "value": 1
+            },
+            {
+              "time": 8,
+              "value": 0.12
+            },
+            {
+              "time": 10,
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "room-field",
+      "type": "displacement",
+      "name": "Displacement",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "room"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "amount": 0.85,
+        "scale": 4,
+        "frequency": 4.2,
+        "speed": 1.5,
+        "spill": 1,
+        "direction": 0,
+        "warp": 0.036,
+        "ring": 0.25
+      },
+      "macro": [
+        {
+          "parameter": "amount",
+          "min": 0.03,
+          "max": 0.85,
+          "curve": "linear"
+        },
+        {
+          "parameter": "scale",
+          "min": 1,
+          "max": 4,
+          "curve": "linear"
+        },
+        {
+          "parameter": "spill",
+          "min": 0,
+          "max": 1,
+          "curve": "linear"
+        },
+        {
+          "parameter": "warp",
+          "min": 0,
+          "max": 0.036,
+          "curve": "linear"
+        },
+        {
+          "parameter": "ring",
+          "min": 0,
+          "max": 0.25,
+          "curve": "linear"
+        }
+      ],
+      "automation": [
+        {
+          "parameter": "intensity",
+          "interpolation": "linear",
+          "keyframes": [
+            {
+              "time": 0,
+              "value": 1
+            },
+            {
+              "time": 6,
+              "value": 1
+            },
+            {
+              "time": 8,
+              "value": 0.12
+            },
+            {
+              "time": 10,
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "modulation": {
+        "parameter": "params.amount",
+        "mode": "add",
+        "amount": 0.15
+      }
+    },
+    {
+      "id": "room-recurrence",
+      "type": "feedback",
+      "name": "Feedback",
+      "presetId": "invasion",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "room",
+        "text",
+        "voice"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "time": 0.41,
+        "gain": 0.72,
+        "repeats": 8,
+        "scale": 1.18,
+        "rotation": -0.08,
+        "reset": 11.5,
+        "threshold": 0.005
+      },
+      "macro": [
+        {
+          "parameter": "gain",
+          "min": 0.2,
+          "max": 0.72,
+          "curve": "linear"
+        },
+        {
+          "parameter": "repeats",
+          "min": 2,
+          "max": 8,
+          "curve": "linear"
+        },
+        {
+          "parameter": "scale",
+          "min": 1,
+          "max": 1.18,
+          "curve": "linear"
+        }
+      ],
+      "automation": [
+        {
+          "parameter": "intensity",
+          "interpolation": "linear",
+          "keyframes": [
+            {
+              "time": 0,
+              "value": 1
+            },
+            {
+              "time": 6,
+              "value": 1
+            },
+            {
+              "time": 8,
+              "value": 0.12
+            },
+            {
+              "time": 10,
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "body-anchor",
+      "type": "gate",
+      "name": "Gate / Erase",
+      "presetId": "extreme",
+      "bypass": true,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "body"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "duty": 0.18,
+        "period": 1.3,
+        "edge": 0.012,
+        "phase": 0.1,
+        "retain": 0,
+        "threshold": 0.38,
+        "detector": 0
+      },
+      "macro": [
+        {
+          "parameter": "duty",
+          "min": 1,
+          "max": 0.18,
+          "curve": "linear"
+        },
+        {
+          "parameter": "edge",
+          "min": 0.2,
+          "max": 0.012,
+          "curve": "linear"
+        },
+        {
+          "parameter": "retain",
+          "min": 0.45,
+          "max": 0,
+          "curve": "linear"
+        }
+      ],
+      "automation": [
+        {
+          "parameter": "intensity",
+          "interpolation": "linear",
+          "keyframes": [
+            {
+              "time": 0,
+              "value": 1
+            },
+            {
+              "time": 6,
+              "value": 1
+            },
+            {
+              "time": 8,
+              "value": 0.12
+            },
+            {
+              "time": 10,
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "fallback": "A qualified body matte makes the anchor independent; otherwise this branch is a collage reference."
+      }
+    },
+    {
+      "id": "sum",
+      "type": "mix",
+      "gain": 1
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "gain": 1
+    }
+  ],
+  "connections": [
+    {
+      "from": "source",
+      "to": "room-address",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "room-address",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "room-address",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "room-address",
+      "to": "room-field",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "room-address",
+      "to": "room-field",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "room-address",
+      "to": "room-field",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "room-field",
+      "to": "room-recurrence",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "room-field",
+      "to": "room-recurrence",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "room-field",
+      "to": "room-recurrence",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "room-recurrence",
+      "to": "sum",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "room-recurrence",
+      "to": "sum",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "room-recurrence",
+      "to": "sum",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "room-recurrence",
+      "to": "sum",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "body-anchor",
+      "port": "picture",
+      "gain": 1,
+      "role": "send"
+    },
+    {
+      "from": "source",
+      "to": "body-anchor",
+      "port": "matte",
+      "gain": 1,
+      "role": "send"
+    },
+    {
+      "from": "body-anchor",
+      "to": "sum",
+      "port": "picture",
+      "gain": 1,
+      "role": "return"
+    },
+    {
+      "from": "body-anchor",
+      "to": "sum",
+      "port": "matte",
+      "gain": 1,
+      "role": "return"
+    },
+    {
+      "from": "source",
+      "to": "room-field",
+      "port": "control",
+      "gain": 1,
+      "role": "sidechain"
+    },
+    {
+      "from": "source",
+      "to": "room-address",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "room-field",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "room-recurrence",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    }
+  ],
+  "events": [],
+  "metadata": {
+    "sourceClock": "seconds relative to excerpt",
+    "voiceInput": "shared recording; performer isolation is not claimed",
+    "project": "god-here",
+    "originalPictureInterval": [
+      95,
+      107.166666667
+    ],
+    "identityPolicy": "Appearance labels, not certified performer names.",
+    "dialogueReference": {
+      "sha256": "24817c4f076a1c9fca43ebcf9825964610fc2956c1755501547de7477d173254",
+      "method": "Inherited DeepFilterNet v0.5.6 candidate; shared stereo recording; artist/listening acceptance remains pending."
+    },
+    "wordMaterial": [
+      {
+        "id": "out",
+        "text": "OUT",
+        "start": 2.88,
+        "end": 3.12,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "how",
+        "text": "HOW",
+        "start": 6.14,
+        "end": 6.52,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "what",
+        "text": "WHAT",
+        "start": 9.94,
+        "end": 10.08,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "why",
+        "text": "WHY",
+        "provenance": "authored screenplay word; not performed in this excerpt",
+        "listeningAccepted": false
+      }
+    ],
+    "layerStatus": "Guided classical segmentation workprint; fine roto is not accepted.",
+    "roomStatus": "Hybrid generated hidden-room fill; source-shot registration remains approximate.",
+    "objectStatus": "Authored object regions, not segmented object tracks.",
+    "patchMacro": "Takeover",
+    "description": "Routing to room → Displacement → Feedback with a bypassed body-anchor branch.",
+    "sourceSelections": "Workprint intervals; checked speech cues must carry their own provenance.",
+    "demoPhases": [
+      {
+        "name": "bypass",
+        "start": 0,
+        "end": 2
+      },
+      {
+        "name": "extreme",
+        "start": 2,
+        "end": 6
+      },
+      {
+        "name": "parameter sweep",
+        "start": 6,
+        "end": 10
+      },
+      {
+        "name": "bypass",
+        "start": 10,
+        "end": 12.166666667
+      }
+    ]
+  }
+}

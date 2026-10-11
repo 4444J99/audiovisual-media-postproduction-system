@@ -1,0 +1,40 @@
+{
+  "schema_version": "amps.execution.v1",
+  "id": "fx-demo-delay",
+  "adapter": "fx.rack.v1",
+  "upstream": {
+    "pull_request": 51,
+    "commit": "c6656685603022193617405c87b831d28f570299"
+  },
+  "source_clock": {
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "frame_rate": {
+      "num": 30,
+      "den": 1
+    },
+    "frames": 3360
+  },
+  "inputs": {
+    "recipe": {
+      "sha256": "8258efc263c9c9aae9903ba3e384d8a2c98ffcf0f8a336b5eed128a78e1265aa",
+      "bytes": 5130,
+      "repo_path": "web/fx/fixtures/demo-delay.json"
+    },
+    "asset_receipt": {
+      "sha256": "ea922e9f278d5d0682ce396c10620031277d4895facbc5162a318d1db3ab9aa7",
+      "bytes": 6048
+    },
+    "font": {
+      "sha256": "7f33328e6b4d4cd21b45fa625791928c9407dc702db6780e56b09ca9a3ecaa67",
+      "bytes": 83264
+    }
+  },
+  "options": {
+    "width": 480,
+    "height": 270,
+    "fps": 12,
+    "duration": 12.166666667,
+    "overlay": "none",
+    "audio_input": "reference"
+  }
+}

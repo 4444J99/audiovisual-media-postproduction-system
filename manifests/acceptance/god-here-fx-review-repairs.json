@@ -1,0 +1,169 @@
+{
+  "schema": "god-here.fx-review-repair.v1",
+  "generated_at_utc": "2026-10-11T19:12:25.972060+00:00",
+  "repository": "4444J99/audiovisual-media-postproduction-system",
+  "pull_request": 51,
+  "base_commit": "fe65c9809808e7fe2bf05e16d510f365ad3b886f",
+  "repair_commit": "86bd1166130251ee60acad2daff58f9352510561",
+  "branch": "consolidation/fx-review-repairs",
+  "working_tree_clean": false,
+  "current_main_ref_observed": "b8c9b3c6ac5fc428c8895b56f4dcfcf8989766f0",
+  "pr_metadata_base_sha": "f93e93eeabedbc4a2204b8a6b3edfb8cd02e9821",
+  "base_ref_qualification": "PR metadata base_sha is not the current main branch ref. Repairs retain the current PR head as their exact parent.",
+  "files": [
+    {
+      "path": "docs/FX-ENGINE.md",
+      "bytes": 27013,
+      "sha256": "f2bb8c2d1d8060a7549fe9fe826353907c0aff674167b1aea4fa0f1125946306",
+      "git_blob": "e7ae404fc13b4051be4286a3b68d314b82717b7d"
+    },
+    {
+      "path": "tests/fx/offline-render-state.test.mjs",
+      "bytes": 5066,
+      "sha256": "806c6d4ce3a09f8c42cf432cf653509b600fca1e3616ed3aaf2982013475cc11",
+      "git_blob": "32080658cb5766d295d93cfbbec1617fa191a6c8"
+    },
+    {
+      "path": "tests/fx/visual-routing.test.mjs",
+      "bytes": 3994,
+      "sha256": "936d9a6e8def8565db61536affb655fa245329eb48d282a9a3c7ce61e9d8e54d",
+      "git_blob": "ba5e966a995548f0abbd090a288f2abb4f4d4a23"
+    },
+    {
+      "path": "tests/fx/workbench-state.test.mjs",
+      "bytes": 11189,
+      "sha256": "ac93799cecbccec64e4df511ed7d5e918a80d5154d348ea4747fa9958cf12e2c",
+      "git_blob": "ff2c9dde17ef495c51c3c5b11068296ba51f2573"
+    },
+    {
+      "path": "tools/render-fx.mjs",
+      "bytes": 18485,
+      "sha256": "7d3b703d1d38f8ee389dff22c8dc07224cf68ac56d8149786fd708b61f037382",
+      "git_blob": "c6fa18e8a3fc3f4ee2fd2bc3988136bbc234914e"
+    },
+    {
+      "path": "web/fx/app.mjs",
+      "bytes": 42349,
+      "sha256": "288a6aaf63daa61842791e47dc736e8abc92ba17bd6597f3af7d4e67d8d42726",
+      "git_blob": "d20ecf1ff0426e7c88d67f710e2c50dd6c1221a9"
+    },
+    {
+      "path": "web/fx/audio-engine.mjs",
+      "bytes": 46902,
+      "sha256": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f",
+      "git_blob": "d3a1b0d03f7119b0c45620e0145837e3868facfd"
+    },
+    {
+      "path": "web/fx/visual-engine.mjs",
+      "bytes": 24864,
+      "sha256": "42be9510643e71595a088faa1fe0ca616297b8a45f0723f19acd2abff75f34b1",
+      "git_blob": "571f5675a7adc8a41b3b153a73bb0dd3c3c964ac"
+    },
+    {
+      "path": "web/fx/workbench-state.mjs",
+      "bytes": 5965,
+      "sha256": "f77e43155c3aa9db1c61a4f41a9df7369b0438b154e82a8cf20fe44d6ce15fbf",
+      "git_blob": "2ad935b820fb6b2be7db1a8271866f0c0463b32d"
+    }
+  ],
+  "diff": {
+    "path": "fx-review-repairs.patch",
+    "bytes": 45034,
+    "sha256": "2b9967b667951db2760a98dbdc3a4fbef3b95810e05beee68e8f51515191bece"
+  },
+  "review_threads": [
+    {
+      "id": "PRRT_kwDOVAYltM6rNolS",
+      "path": "docs/FX-ENGINE.md",
+      "observed_resolved": false,
+      "disposition": "repaired_in_local_commit; no GitHub thread mutation",
+      "change": "External media paths documented without broken links"
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rNolU",
+      "path": "docs/FX-ENGINE.md",
+      "observed_resolved": false,
+      "disposition": "repaired_in_local_commit; no GitHub thread mutation",
+      "change": "Tracked audio demonstration fixture path"
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rNolW",
+      "path": "web/fx/app.mjs",
+      "observed_resolved": false,
+      "disposition": "repaired_in_local_commit; no GitHub thread mutation",
+      "change": "Authored bypass/solo state instead of effective bypass"
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rNp-u",
+      "path": "tools/render-fx.mjs",
+      "observed_resolved": false,
+      "disposition": "repaired_in_local_commit; no GitHub thread mutation",
+      "change": "One normalized immutable patch per render job"
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rNp-x",
+      "path": "web/fx/visual-engine.mjs",
+      "observed_resolved": false,
+      "disposition": "repaired_in_local_commit; no GitHub thread mutation",
+      "change": "Full rectangle bounds for named picture regions"
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rNp-z",
+      "path": "web/fx/app.mjs",
+      "observed_resolved": false,
+      "disposition": "repaired_in_local_commit; no GitHub thread mutation",
+      "change": "Keyboard range gestures capture undo state"
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rNp-1",
+      "path": "web/fx/workbench-state.mjs",
+      "observed_resolved": false,
+      "disposition": "repaired_in_local_commit; no GitHub thread mutation",
+      "change": "Ordered non-overlapping demonstration phases"
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rNp-5",
+      "path": "web/fx/app.mjs",
+      "observed_resolved": false,
+      "disposition": "repaired_in_local_commit; no GitHub thread mutation",
+      "change": "Declared output ID for graph insertion"
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rNp--",
+      "path": "tools/render-fx.mjs",
+      "observed_resolved": false,
+      "disposition": "repaired_in_local_commit; no GitHub thread mutation",
+      "change": "Emitted-prefix audio receipt with full temporal source window"
+    }
+  ],
+  "verification": {
+    "baseline_existing_fx_tests": 75,
+    "final_fx_tests": 87,
+    "failed": 0,
+    "skipped": 0,
+    "full_log": "complete-fx-regressions.log",
+    "complete_records": "verification.json",
+    "synthetic_test_inputs_only": true,
+    "rendered_historical_media_modified": false,
+    "browser_or_physical_device_qa_performed": false
+  },
+  "next_step": "Integrate reviewed changes into a separate canonical Site clone while preserving Site loader behavior and historical preview provenance.",
+  "tracked_working_tree_clean": true,
+  "preserved_untracked_files": [
+    {
+      "path": "LICENSE",
+      "bytes": 1064,
+      "sha256": "6d319436c6a6428d1cfa592e3386aef31cb02e04d67731a577b68395c5e963fc",
+      "matches_origin_main": true
+    }
+  ],
+  "published_commit": "c6656685603022193617405c87b831d28f570299",
+  "published_tree": "f0a4b9494a8fd7943df2ef71db9cb1a57ed32718",
+  "published_tree_matches_local_repair": true,
+  "public_test_evidence": {
+    "path": "docs/recovery/evidence/pr51-consolidation-fx-tests.log",
+    "bytes": 8332,
+    "sha256": "e085809f8478f76a4b15fa15c7a80b103d99ff8c5869c852f6022fb9d86a9cfc"
+  },
+  "review_thread_state_qualification": "Repairs are published; review threads have not been resolved on behalf of reviewers."
+}

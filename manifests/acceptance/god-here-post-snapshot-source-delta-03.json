@@ -1,0 +1,173 @@
+{
+  "schema_version": "god-here.site-source-delta.v1",
+  "generated_at_utc": "2026-10-11T19:25:19.111819+00:00",
+  "before_source_commit": "957093108309ef1e02df2cbed9b797a346000f4a",
+  "after_source_commit": "dc04e85989c4d52ac1269949a16d19c60a680115",
+  "changes": [
+    {
+      "path": "FX-ENGINE-INTEGRATION.md",
+      "change": "added",
+      "git_blob": "a9ceff60ecaa7230651b1361cc9cd0164858c6ad",
+      "sha256": "4f905272d5bb6c4349c208a214f7ae5136f6d05693da8583b802ffbe27743800",
+      "bytes": 3681
+    },
+    {
+      "path": "public/fx/app.mjs",
+      "change": "modified",
+      "git_blob": "d16a43db4579e9a14f67965526abdd94499b126e",
+      "sha256": "cb85b2c6869a1f52d110b60ac03db91b136ee465ecece0e656374c3be0b6446a",
+      "bytes": 43341
+    },
+    {
+      "path": "public/fx/audio-engine.mjs",
+      "change": "modified",
+      "git_blob": "d3a1b0d03f7119b0c45620e0145837e3868facfd",
+      "sha256": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f",
+      "bytes": 46902
+    },
+    {
+      "path": "public/fx/core.mjs",
+      "change": "modified",
+      "git_blob": "c637c72d1531683701bbc17fd473ad6019f93285",
+      "sha256": "2127a48b62c507082ccf783937fc0ffb3222bab158d31d4768ea1d5439b9b0af",
+      "bytes": 31251
+    },
+    {
+      "path": "public/fx/engine-provenance.json",
+      "change": "added",
+      "git_blob": "c8e6ba6d7872b12776d6d3dec23650ebc3717bd2",
+      "sha256": "af521365130a3cb23b98abb15ce485f412d18bfad4d43c828307ab1bf7e291e8",
+      "bytes": 2769
+    },
+    {
+      "path": "public/fx/index.html",
+      "change": "modified",
+      "git_blob": "6da781214b71825663c65b00b3a4bccf9b48c8f1",
+      "sha256": "dcfdcede1c19947be5ab0cadcc860be34ee2e39ba488b666382325abf5118789",
+      "bytes": 10588
+    },
+    {
+      "path": "public/fx/preview-provenance.mjs",
+      "change": "added",
+      "git_blob": "9808de7093bbe93e9c50654f21bf8dad6833cb9b",
+      "sha256": "44a3e1c53a04d97ca75bd8cbd89760ee2df754e73667980cd45ba524aa639f8d",
+      "bytes": 1270
+    },
+    {
+      "path": "public/fx/visual-engine.mjs",
+      "change": "modified",
+      "git_blob": "571f5675a7adc8a41b3b153a73bb0dd3c3c964ac",
+      "sha256": "42be9510643e71595a088faa1fe0ca616297b8a45f0723f19acd2abff75f34b1",
+      "bytes": 24864
+    },
+    {
+      "path": "public/fx/watch.html",
+      "change": "modified",
+      "git_blob": "e23073283a019187764c00c1b72c57354db72872",
+      "sha256": "8626205d43e9854e6de37b544d9727453cc2a29ca2aa895eca79897d657c27de",
+      "bytes": 6462
+    },
+    {
+      "path": "public/fx/workbench-state.mjs",
+      "change": "modified",
+      "git_blob": "2ad935b820fb6b2be7db1a8271866f0c0463b32d",
+      "sha256": "f77e43155c3aa9db1c61a4f41a9df7369b0438b154e82a8cf20fe44d6ce15fbf",
+      "bytes": 5965
+    },
+    {
+      "path": "public/recovery/catalog.json",
+      "change": "modified",
+      "git_blob": "9db623fdeab4ae65c538a50797be06b306af6103",
+      "sha256": "1a4a65cc2b299f76386db12e7223ee118890e419c47f77ebffb8989c8fcee632",
+      "bytes": 2484336
+    },
+    {
+      "path": "public/recovery/index.html",
+      "change": "modified",
+      "git_blob": "8c42b9131c4d8425ccfd26904e15dced78051eaa",
+      "sha256": "51a5e24347a57636925243865830d5a2e75c82e19f4c4930dc2575178d76a405",
+      "bytes": 6857
+    },
+    {
+      "path": "public/recovery/recovery.js",
+      "change": "modified",
+      "git_blob": "9fccef10ac53fee3cd674df9557bb169276b7dd2",
+      "sha256": "575bc46374275cf0deb10a518794c851ab8f20aaa175953eea87441e6fa56094",
+      "bytes": 9944
+    },
+    {
+      "path": "tests/fx/audio-core.test.mjs",
+      "change": "added",
+      "git_blob": "9218c86581f77ea56e6628974ee7be13ef2f472e",
+      "sha256": "3f748b97e93b92dc7affbffa9afd462e11053f0221d10d840dabe550505d3326",
+      "bytes": 3172
+    },
+    {
+      "path": "tests/fx/audio.test.mjs",
+      "change": "added",
+      "git_blob": "57404dbc48da254b140aa27c0ce88c1c52a6e826",
+      "sha256": "817496798e207e540e4cb5b196436cfd958ea6ba7ab5700e31635620a71c649b",
+      "bytes": 21584
+    },
+    {
+      "path": "tests/fx/core-contract.test.mjs",
+      "change": "added",
+      "git_blob": "0e7878572b3ac0473ff8ddcb9d6668f2b2ec50e2",
+      "sha256": "4f29998eeb07c88382716017da1fbcf55e7433024951fa78bc45007e10b60fe3",
+      "bytes": 13956
+    },
+    {
+      "path": "tests/fx/preview-provenance.test.mjs",
+      "change": "added",
+      "git_blob": "644f3f715663567ed5bd3d0359872ffcdfb2a1bd",
+      "sha256": "cfb3b72e0769fc310f3c9a5af839372481533efe3830eb5612b5cd7bc8879a8d",
+      "bytes": 3006
+    },
+    {
+      "path": "tests/fx/preview-signature.test.mjs",
+      "change": "added",
+      "git_blob": "009752c58fde2714936285b95d34c915f4b27083",
+      "sha256": "7abe567bdbbb1f83d9e2fbac7ebfb724fd3f0c4e215ec883a0c41ffa026ca11c",
+      "bytes": 2910
+    },
+    {
+      "path": "tests/fx/review-regressions.test.mjs",
+      "change": "added",
+      "git_blob": "c9673549cc88524db16de82f4df8b10bb5949859",
+      "sha256": "59852e802b5f501c614335d8134a5951b76963eb57f3f2b6ba060cde690cb5fc",
+      "bytes": 2761
+    },
+    {
+      "path": "tests/fx/runtime.mjs",
+      "change": "added",
+      "git_blob": "84ce4d93541e69ca00dc5b6d47804f56bf8c3f66",
+      "sha256": "0acf40f2744f98d240f0ce3d63e8359f62b76123dcab7ba9718b57a76a4b844e",
+      "bytes": 1732
+    },
+    {
+      "path": "tests/fx/source-binding.test.mjs",
+      "change": "added",
+      "git_blob": "65433e94fec5430f3c6a2e80568ffab5b357696c",
+      "sha256": "be349aa5cd36992a5088dd431b7f0e93e5564510f7c7d321e2458e79aa5b9a20",
+      "bytes": 840
+    },
+    {
+      "path": "tests/fx/visual-routing.test.mjs",
+      "change": "added",
+      "git_blob": "ba5e966a995548f0abbd090a288f2abb4f4d4a23",
+      "sha256": "936d9a6e8def8565db61536affb655fa245329eb48d282a9a3c7ce61e9d8e54d",
+      "bytes": 3994
+    },
+    {
+      "path": "tests/fx/workbench-state.test.mjs",
+      "change": "added",
+      "git_blob": "ff2c9dde17ef495c51c3c5b11068296ba51f2573",
+      "sha256": "ac93799cecbccec64e4df511ed7d5e918a80d5154d348ea4747fa9958cf12e2c",
+      "bytes": 11189
+    }
+  ],
+  "untouched_baseline_files": 508,
+  "deleted_files": [],
+  "protected_media_and_registry_unchanged": true,
+  "scope": "Integrate repaired FX engine with Site loading protections; retain original factory render provenance; enable 52 verified media links and 696 supplemental image decode passes. Frozen recovery catalog unchanged."
+}

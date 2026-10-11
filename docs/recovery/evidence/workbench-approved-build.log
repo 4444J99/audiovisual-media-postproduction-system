@@ -1,0 +1,40 @@
+$ node scripts/run-framework.mjs build
+
+  vinext build  (Vite 8.0.13)
+
+▲ [WARNING] Proxy environment variables detected. We'll use your proxy for fetch requests.
+
+
+[1/5] analyze client references...
+transforming (32) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.transforming (33) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.transforming (71) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.transforming (72) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.transforming (179) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6transforming (180) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6✓ 228 modules transformed.
+rendering chunks (1)...✓ built in 404ms
+[2/5] analyze server references...
+✓ 78 modules transformed.
+rendering chunks (1)...✓ built in 105ms
+[3/5] build rsc environment...
+transforming (128) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6transforming (129) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6transforming (193) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6transforming (194) node_modules/.pnpm/@vitejs+plugin-rsc@0.5.26_react-dom@19.2.6transforming (195) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6✓ 225 modules transformed.
+rendering chunks (1)...rendering chunks (2)...rendering chunks (3)...rendering chunks (4)...rendering chunks (5)...rendering chunks (6)...rendering chunks (7)...rendering chunks (8)...rendering chunks (9)...rendering chunks (10)...rendering chunks (11)...rendering chunks (12)...rendering chunks (13)...rendering chunks (14)...rendering chunks (15)...rendering chunks (16)...rendering chunks (17)...rendering chunks (18)...rendering chunks (19)...rendering chunks (20)...rendering chunks (21)...rendering chunks (22)...computing gzip size...
+✓ built in 391ms
+[4/5] build client environment...
+transforming (69) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.transforming (70) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.transforming (87) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.transforming (88) node_modules/.pnpm/@vitejs+plugin-rsc@0.5.26_react-dom@19.2.6_✓ 124 modules transformed.
+rendering chunks (1)...rendering chunks (2)...rendering chunks (3)...rendering chunks (4)...rendering chunks (5)...rendering chunks (6)...computing gzip size...
+✓ built in 777ms
+[5/5] build ssr environment...
+transforming (48) node_modules/.pnpm/vinext@1.0.0-beta.5_@vitejs+plugin-react@6.✓ 84 modules transformed.
+rendering chunks (1)...rendering chunks (2)...rendering chunks (3)...rendering chunks (4)...rendering chunks (5)...rendering chunks (6)...rendering chunks (7)...computing gzip size...
+✓ built in 409ms
+
+  Route (app)
+  ─ ? /
+
+  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+<publication-evidence>/approved-workbench-deployment.tar
+{"project_id":"appgprj_6ac71699c8fc81919b030dcf9ad112e4","checkout_path":"<canonical-workbench>","commit_sha":"dc04e85989c4d52ac1269949a16d19c60a680115","archive":"<publication-evidence>/approved-workbench-deployment.tar"}
+

@@ -1,0 +1,465 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "out-but-still-here",
+  "name": "Out, but still here",
+  "seed": 773,
+  "duration": 12.166666667,
+  "source": {
+    "id": "god-here-second-draft",
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "offset": 95,
+    "duration": 12.166666667
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "type": "source"
+    },
+    {
+      "id": "erase-territory",
+      "type": "gate",
+      "name": "Gate / Erase",
+      "presetId": "gone",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "body"
+      ],
+      "region": "light-gray-shirt",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "duty": 0.04,
+        "period": 3.4,
+        "edge": 0.005,
+        "phase": 0.4,
+        "retain": 0,
+        "threshold": 0.38,
+        "detector": 0
+      },
+      "macro": [
+        {
+          "parameter": "duty",
+          "min": 0.8,
+          "max": 0.04,
+          "curve": "linear"
+        },
+        {
+          "parameter": "edge",
+          "min": 0.15,
+          "max": 0.005,
+          "curve": "linear"
+        },
+        {
+          "parameter": "retain",
+          "min": 0.3,
+          "max": 0,
+          "curve": "linear"
+        }
+      ],
+      "automation": [
+        {
+          "parameter": "intensity",
+          "interpolation": "linear",
+          "keyframes": [
+            {
+              "time": 0,
+              "value": 1
+            },
+            {
+              "time": 6,
+              "value": 1
+            },
+            {
+              "time": 8,
+              "value": 0.12
+            },
+            {
+              "time": 10,
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voice-word-return",
+      "type": "delay",
+      "name": "Delay / Echo",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "text"
+      ],
+      "region": "light-gray-shirt",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "time": 0.62,
+        "taps": 6,
+        "decay": 0.68,
+        "spread": 0.78,
+        "scale": 0.84
+      },
+      "macro": [
+        {
+          "parameter": "taps",
+          "min": 1,
+          "max": 5,
+          "curve": "linear"
+        },
+        {
+          "parameter": "decay",
+          "min": 0.2,
+          "max": 0.68,
+          "curve": "linear"
+        },
+        {
+          "parameter": "spread",
+          "min": 0.08,
+          "max": 0.78,
+          "curve": "linear"
+        }
+      ],
+      "automation": [
+        {
+          "parameter": "intensity",
+          "interpolation": "linear",
+          "keyframes": [
+            {
+              "time": 0,
+              "value": 1
+            },
+            {
+              "time": 6,
+              "value": 1
+            },
+            {
+              "time": 8,
+              "value": 0.12
+            },
+            {
+              "time": 10,
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "held-gesture",
+      "type": "freeze",
+      "name": "Freeze / Hold",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "body",
+        "text"
+      ],
+      "region": "light-gray-shirt",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "capture": 2.92,
+        "duration": 4.4,
+        "grain": 0.08,
+        "decay": 0.12,
+        "motion": 0,
+        "release": 0.05
+      },
+      "macro": [
+        {
+          "parameter": "duration",
+          "min": 0.3,
+          "max": 4.4,
+          "curve": "linear"
+        },
+        {
+          "parameter": "decay",
+          "min": 0.7,
+          "max": 0.12,
+          "curve": "linear"
+        },
+        {
+          "parameter": "motion",
+          "min": 0.06,
+          "max": 0,
+          "curve": "linear"
+        }
+      ],
+      "automation": [
+        {
+          "parameter": "intensity",
+          "interpolation": "linear",
+          "keyframes": [
+            {
+              "time": 0,
+              "value": 1
+            },
+            {
+              "time": 6,
+              "value": 1
+            },
+            {
+              "time": 8,
+              "value": 0.12
+            },
+            {
+              "time": 10,
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "fallback": "Authored region/collage hold until a qualified body layer is supplied."
+      }
+    },
+    {
+      "id": "sum",
+      "type": "mix",
+      "gain": 1
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "gain": 1
+    }
+  ],
+  "connections": [
+    {
+      "from": "source",
+      "to": "erase-territory",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "erase-territory",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "erase-territory",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "erase-territory",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "erase-territory",
+      "to": "sum",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "erase-territory",
+      "to": "sum",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "erase-territory",
+      "to": "sum",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "voice-word-return",
+      "port": "audio",
+      "gain": 1,
+      "role": "send"
+    },
+    {
+      "from": "source",
+      "to": "voice-word-return",
+      "port": "text",
+      "gain": 1,
+      "role": "send"
+    },
+    {
+      "from": "voice-word-return",
+      "to": "sum",
+      "port": "audio",
+      "gain": 0.72,
+      "role": "return"
+    },
+    {
+      "from": "voice-word-return",
+      "to": "sum",
+      "port": "text",
+      "gain": 0.72,
+      "role": "return"
+    },
+    {
+      "from": "source",
+      "to": "held-gesture",
+      "port": "picture",
+      "gain": 1,
+      "role": "send"
+    },
+    {
+      "from": "source",
+      "to": "held-gesture",
+      "port": "matte",
+      "gain": 1,
+      "role": "send"
+    },
+    {
+      "from": "source",
+      "to": "held-gesture",
+      "port": "text",
+      "gain": 1,
+      "role": "send"
+    },
+    {
+      "from": "held-gesture",
+      "to": "sum",
+      "port": "picture",
+      "gain": 0.9,
+      "role": "return"
+    },
+    {
+      "from": "held-gesture",
+      "to": "sum",
+      "port": "matte",
+      "gain": 0.9,
+      "role": "return"
+    },
+    {
+      "from": "held-gesture",
+      "to": "sum",
+      "port": "text",
+      "gain": 0.9,
+      "role": "return"
+    }
+  ],
+  "events": [],
+  "metadata": {
+    "sourceClock": "seconds relative to excerpt",
+    "voiceInput": "shared recording; performer isolation is not claimed",
+    "project": "god-here",
+    "originalPictureInterval": [
+      95,
+      107.166666667
+    ],
+    "identityPolicy": "Appearance labels, not certified performer names.",
+    "dialogueReference": {
+      "sha256": "24817c4f076a1c9fca43ebcf9825964610fc2956c1755501547de7477d173254",
+      "method": "Inherited DeepFilterNet v0.5.6 candidate; shared stereo recording; artist/listening acceptance remains pending."
+    },
+    "wordMaterial": [
+      {
+        "id": "out",
+        "text": "OUT",
+        "start": 2.88,
+        "end": 3.12,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "how",
+        "text": "HOW",
+        "start": 6.14,
+        "end": 6.52,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "what",
+        "text": "WHAT",
+        "start": 9.94,
+        "end": 10.08,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "why",
+        "text": "WHY",
+        "provenance": "authored screenplay word; not performed in this excerpt",
+        "listeningAccepted": false
+      }
+    ],
+    "layerStatus": "Guided classical segmentation workprint; fine roto is not accepted.",
+    "roomStatus": "Hybrid generated hidden-room fill; source-shot registration remains approximate.",
+    "objectStatus": "Authored object regions, not segmented object tracks.",
+    "patchMacro": "Persistence",
+    "description": "Erase a body territory while separate voice, word and held-gesture returns survive.",
+    "sourceSelections": "Workprint intervals; checked speech cues must carry their own provenance.",
+    "demoPhases": [
+      {
+        "name": "bypass",
+        "start": 0,
+        "end": 2
+      },
+      {
+        "name": "extreme",
+        "start": 2,
+        "end": 6
+      },
+      {
+        "name": "parameter sweep",
+        "start": 6,
+        "end": 10
+      },
+      {
+        "name": "bypass",
+        "start": 10,
+        "end": 12.166666667
+      }
+    ]
+  }
+}

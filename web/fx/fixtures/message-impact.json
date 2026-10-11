@@ -1,0 +1,471 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "message-impact",
+  "name": "Message impact",
+  "seed": 773,
+  "duration": 12.166666667,
+  "source": {
+    "id": "god-here-second-draft",
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "offset": 95,
+    "duration": 12.166666667
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "type": "source"
+    },
+    {
+      "id": "travel",
+      "type": "routing",
+      "name": "Routing",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "travel": 0.6,
+        "copies": 4,
+        "spread": 0.9,
+        "arrival": 1,
+        "origin": 0.08,
+        "destination": 0.92
+      },
+      "macro": [
+        {
+          "parameter": "copies",
+          "min": 1,
+          "max": 4,
+          "curve": "linear"
+        },
+        {
+          "parameter": "spread",
+          "min": 0.05,
+          "max": 0.9,
+          "curve": "linear"
+        },
+        {
+          "parameter": "arrival",
+          "min": 0.05,
+          "max": 1,
+          "curve": "linear"
+        },
+        {
+          "parameter": "travel",
+          "min": 1.8,
+          "max": 0.6,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "impact-echo",
+      "type": "delay",
+      "name": "Delay / Echo",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "time": 0.48,
+        "taps": 5,
+        "decay": 0.68,
+        "spread": 0.78,
+        "scale": 0.84
+      },
+      "macro": [
+        {
+          "parameter": "taps",
+          "min": 1,
+          "max": 5,
+          "curve": "linear"
+        },
+        {
+          "parameter": "decay",
+          "min": 0.2,
+          "max": 0.68,
+          "curve": "linear"
+        },
+        {
+          "parameter": "spread",
+          "min": 0.08,
+          "max": 0.78,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "impact-field",
+      "type": "displacement",
+      "name": "Displacement",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "picture",
+        "room"
+      ],
+      "region": "light-gray-shirt",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "amount": 0.85,
+        "scale": 4,
+        "frequency": 4.2,
+        "speed": 1.5,
+        "spill": 1,
+        "direction": 0,
+        "warp": 0.036,
+        "ring": 0.25
+      },
+      "macro": [
+        {
+          "parameter": "amount",
+          "min": 0.03,
+          "max": 0.85,
+          "curve": "linear"
+        },
+        {
+          "parameter": "scale",
+          "min": 1,
+          "max": 4,
+          "curve": "linear"
+        },
+        {
+          "parameter": "spill",
+          "min": 0,
+          "max": 1,
+          "curve": "linear"
+        },
+        {
+          "parameter": "warp",
+          "min": 0,
+          "max": 0.036,
+          "curve": "linear"
+        },
+        {
+          "parameter": "ring",
+          "min": 0,
+          "max": 0.25,
+          "curve": "linear"
+        }
+      ],
+      "automation": [],
+      "modulation": {
+        "parameter": "params.amount",
+        "mode": "add",
+        "amount": 0.15
+      }
+    },
+    {
+      "id": "giant-word",
+      "type": "typography",
+      "name": "Typography",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "text"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "size": 1.05,
+        "copies": 9,
+        "persistence": 3.2,
+        "fragment": 0.65,
+        "mode": 0,
+        "drift": 0.55
+      },
+      "macro": [
+        {
+          "parameter": "size",
+          "min": 0.12,
+          "max": 1.05,
+          "curve": "linear"
+        },
+        {
+          "parameter": "copies",
+          "min": 1,
+          "max": 9,
+          "curve": "linear"
+        },
+        {
+          "parameter": "fragment",
+          "min": 0,
+          "max": 0.65,
+          "curve": "linear"
+        },
+        {
+          "parameter": "drift",
+          "min": 0,
+          "max": 0.55,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "sum",
+      "type": "mix",
+      "gain": 1
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "gain": 1
+    }
+  ],
+  "connections": [
+    {
+      "from": "source",
+      "to": "travel",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "travel",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "travel",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "travel",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "travel",
+      "to": "impact-echo",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "travel",
+      "to": "impact-echo",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "travel",
+      "to": "impact-echo",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "travel",
+      "to": "impact-echo",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "impact-echo",
+      "to": "impact-field",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "impact-echo",
+      "to": "impact-field",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "impact-echo",
+      "to": "impact-field",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "impact-echo",
+      "to": "impact-field",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "impact-field",
+      "to": "sum",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "impact-field",
+      "to": "sum",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "impact-field",
+      "to": "sum",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "impact-field",
+      "to": "sum",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "giant-word",
+      "port": "picture",
+      "gain": 1,
+      "role": "send"
+    },
+    {
+      "from": "source",
+      "to": "giant-word",
+      "port": "text",
+      "gain": 1,
+      "role": "send"
+    },
+    {
+      "from": "giant-word",
+      "to": "sum",
+      "port": "text",
+      "gain": 0.75,
+      "role": "return"
+    },
+    {
+      "from": "source",
+      "to": "impact-field",
+      "port": "control",
+      "gain": 1,
+      "role": "sidechain"
+    }
+  ],
+  "events": [],
+  "metadata": {
+    "sourceClock": "seconds relative to excerpt",
+    "voiceInput": "shared recording; performer isolation is not claimed",
+    "project": "god-here",
+    "originalPictureInterval": [
+      95,
+      107.166666667
+    ],
+    "identityPolicy": "Appearance labels, not certified performer names.",
+    "dialogueReference": {
+      "sha256": "24817c4f076a1c9fca43ebcf9825964610fc2956c1755501547de7477d173254",
+      "method": "Inherited DeepFilterNet v0.5.6 candidate; shared stereo recording; artist/listening acceptance remains pending."
+    },
+    "wordMaterial": [
+      {
+        "id": "out",
+        "text": "OUT",
+        "start": 2.88,
+        "end": 3.12,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "how",
+        "text": "HOW",
+        "start": 6.14,
+        "end": 6.52,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "what",
+        "text": "WHAT",
+        "start": 9.94,
+        "end": 10.08,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "why",
+        "text": "WHY",
+        "provenance": "authored screenplay word; not performed in this excerpt",
+        "listeningAccepted": false
+      }
+    ],
+    "layerStatus": "Guided classical segmentation workprint; fine roto is not accepted.",
+    "roomStatus": "Hybrid generated hidden-room fill; source-shot registration remains approximate.",
+    "objectStatus": "Authored object regions, not segmented object tracks.",
+    "patchMacro": "Impact",
+    "description": "Routing → Delay → Displacement, with a parallel giant-word branch.",
+    "sourceSelections": "Workprint intervals; checked speech cues must carry their own provenance."
+  }
+}

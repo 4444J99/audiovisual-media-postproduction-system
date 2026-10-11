@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-11T19:22:52Z",
+  "integrationCommit": "f5c8c8fdd04e6ad285fc4387a24159c5fafff92f",
+  "parent": "957093108309ef1e02df2cbed9b797a346000f4a",
+  "tree": "63632d1b252dd6c7e478ce16c19c53f57fcbea9b",
+  "upstreamPublicRepairCommit": "c6656685603022193617405c87b831d28f570299",
+  "upstreamLocalEquivalentCommit": "86bd1166130251ee60acad2daff58f9352510561",
+  "threeWayCommonCodeRevision": "7ad06f9657a57c1fd162c4e38331f03e1946d758",
+  "trackedWorkingTreeClean": true,
+  "verification": {
+    "distinctChecksPassed": 94,
+    "failures": 0,
+    "skipped": 0,
+    "runtimeChecks": 83,
+    "previewProvenanceChecks": 4,
+    "existingAssetLoaderChecks": 6,
+    "actualPreservedMonitorBindingChecks": 1,
+    "separateNodeRuns": [
+      93,
+      1
+    ],
+    "appSyntaxPassed": true,
+    "localHTMLAndESMReferencesPassed": 49,
+    "diffWhitespacePassed": true,
+    "frameworkBuild": "not run; root owns build/publish",
+    "browserOrDeviceAcceptance": "not performed"
+  },
+  "preservation": {
+    "baselineTrackedFiles": 518,
+    "unchangedBaselineGitBlobs": 511,
+    "explicitlyProtectedPaths": 229,
+    "mediaModified": false,
+    "renderReceiptsModified": false,
+    "newArtisticRenders": 0,
+    "registryChanged": false,
+    "hostingOrAudienceChanged": false,
+    "rootNavigationOrRecoveryChanged": false,
+    "assetLoaderChanged": false
+  },
+  "behavior": [
+    "Exact repaired core/audio/visual/workbench-state modules from the public GitHub repair revision.",
+    "App retains Site parallel bounded loading, late-progress guard, timeout/retry paths, optional preview-index independence and pause/end status while adding all editing and decoded-audio validation repairs.",
+    "Cached pictures require all six current engine hashes and a complete entry in addition to the existing patch signal signature. Original renders do not qualify for pairing with current processed audio.",
+    "Original factory films remain in watch.html with their muxed picture and sound. Original manifest and per-render receipts are untouched and explicitly linked from revision provenance."
+  ],
+  "files": [
+    {
+      "path": "FX-ENGINE-INTEGRATION.md",
+      "bytes": 3681,
+      "sha256": "4f905272d5bb6c4349c208a214f7ae5136f6d05693da8583b802ffbe27743800",
+      "gitBlob": "a9ceff60ecaa7230651b1361cc9cd0164858c6ad"
+    },
+    {
+      "path": "public/fx/app.mjs",
+      "bytes": 43341,
+      "sha256": "cb85b2c6869a1f52d110b60ac03db91b136ee465ecece0e656374c3be0b6446a",
+      "gitBlob": "d16a43db4579e9a14f67965526abdd94499b126e"
+    },
+    {
+      "path": "public/fx/audio-engine.mjs",
+      "bytes": 46902,
+      "sha256": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f",
+      "gitBlob": "d3a1b0d03f7119b0c45620e0145837e3868facfd"
+    },
+    {
+      "path": "public/fx/core.mjs",
+      "bytes": 31251,
+      "sha256": "2127a48b62c507082ccf783937fc0ffb3222bab158d31d4768ea1d5439b9b0af",
+      "gitBlob": "c637c72d1531683701bbc17fd473ad6019f93285"
+    },
+    {
+      "path": "public/fx/engine-provenance.json",
+      "bytes": 2769,
+      "sha256": "af521365130a3cb23b98abb15ce485f412d18bfad4d43c828307ab1bf7e291e8",
+      "gitBlob": "c8e6ba6d7872b12776d6d3dec23650ebc3717bd2"
+    },
+    {
+      "path": "public/fx/index.html",
+      "bytes": 10588,
+      "sha256": "dcfdcede1c19947be5ab0cadcc860be34ee2e39ba488b666382325abf5118789",
+      "gitBlob": "6da781214b71825663c65b00b3a4bccf9b48c8f1"
+    },
+    {
+      "path": "public/fx/preview-provenance.mjs",
+      "bytes": 1270,
+      "sha256": "44a3e1c53a04d97ca75bd8cbd89760ee2df754e73667980cd45ba524aa639f8d",
+      "gitBlob": "9808de7093bbe93e9c50654f21bf8dad6833cb9b"
+    },
+    {
+      "path": "public/fx/visual-engine.mjs",
+      "bytes": 24864,
+      "sha256": "42be9510643e71595a088faa1fe0ca616297b8a45f0723f19acd2abff75f34b1",
+      "gitBlob": "571f5675a7adc8a41b3b153a73bb0dd3c3c964ac"
+    },
+    {
+      "path": "public/fx/watch.html",
+      "bytes": 6462,
+      "sha256": "8626205d43e9854e6de37b544d9727453cc2a29ca2aa895eca79897d657c27de",
+      "gitBlob": "e23073283a019187764c00c1b72c57354db72872"
+    },
+    {
+      "path": "public/fx/workbench-state.mjs",
+      "bytes": 5965,
+      "sha256": "f77e43155c3aa9db1c61a4f41a9df7369b0438b154e82a8cf20fe44d6ce15fbf",
+      "gitBlob": "2ad935b820fb6b2be7db1a8271866f0c0463b32d"
+    },
+    {
+      "path": "tests/fx/audio-core.test.mjs",
+      "bytes": 3172,
+      "sha256": "3f748b97e93b92dc7affbffa9afd462e11053f0221d10d840dabe550505d3326",
+      "gitBlob": "9218c86581f77ea56e6628974ee7be13ef2f472e"
+    },
+    {
+      "path": "tests/fx/audio.test.mjs",
+      "bytes": 21584,
+      "sha256": "817496798e207e540e4cb5b196436cfd958ea6ba7ab5700e31635620a71c649b",
+      "gitBlob": "57404dbc48da254b140aa27c0ce88c1c52a6e826"
+    },
+    {
+      "path": "tests/fx/core-contract.test.mjs",
+      "bytes": 13956,
+      "sha256": "4f29998eeb07c88382716017da1fbcf55e7433024951fa78bc45007e10b60fe3",
+      "gitBlob": "0e7878572b3ac0473ff8ddcb9d6668f2b2ec50e2"
+    },
+    {
+      "path": "tests/fx/preview-provenance.test.mjs",
+      "bytes": 3006,
+      "sha256": "cfb3b72e0769fc310f3c9a5af839372481533efe3830eb5612b5cd7bc8879a8d",
+      "gitBlob": "644f3f715663567ed5bd3d0359872ffcdfb2a1bd"
+    },
+    {
+      "path": "tests/fx/preview-signature.test.mjs",
+      "bytes": 2910,
+      "sha256": "7abe567bdbbb1f83d9e2fbac7ebfb724fd3f0c4e215ec883a0c41ffa026ca11c",
+      "gitBlob": "009752c58fde2714936285b95d34c915f4b27083"
+    },
+    {
+      "path": "tests/fx/review-regressions.test.mjs",
+      "bytes": 2761,
+      "sha256": "59852e802b5f501c614335d8134a5951b76963eb57f3f2b6ba060cde690cb5fc",
+      "gitBlob": "c9673549cc88524db16de82f4df8b10bb5949859"
+    },
+    {
+      "path": "tests/fx/runtime.mjs",
+      "bytes": 1732,
+      "sha256": "0acf40f2744f98d240f0ce3d63e8359f62b76123dcab7ba9718b57a76a4b844e",
+      "gitBlob": "84ce4d93541e69ca00dc5b6d47804f56bf8c3f66"
+    },
+    {
+      "path": "tests/fx/source-binding.test.mjs",
+      "bytes": 840,
+      "sha256": "be349aa5cd36992a5088dd431b7f0e93e5564510f7c7d321e2458e79aa5b9a20",
+      "gitBlob": "65433e94fec5430f3c6a2e80568ffab5b357696c"
+    },
+    {
+      "path": "tests/fx/visual-routing.test.mjs",
+      "bytes": 3994,
+      "sha256": "936d9a6e8def8565db61536affb655fa245329eb48d282a9a3c7ce61e9d8e54d",
+      "gitBlob": "ba5e966a995548f0abbd090a288f2abb4f4d4a23"
+    },
+    {
+      "path": "tests/fx/workbench-state.test.mjs",
+      "bytes": 11189,
+      "sha256": "ac93799cecbccec64e4df511ed7d5e918a80d5154d348ea4747fa9958cf12e2c",
+      "gitBlob": "ff2c9dde17ef495c51c3c5b11068296ba51f2573"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "verification.json",
+      "bytes": 1785,
+      "sha256": "c101b02096390ad0900022e8d78abadb6e77e98235ab90b50ef82639b58d9ff0"
+    },
+    {
+      "path": "runtime-and-loading.log",
+      "bytes": 8734,
+      "sha256": "91a2b2fa6e44a75ec2f0e8197b963b2c36f54275c0dd262d8ee33d13373b0175"
+    },
+    {
+      "path": "preserved-source-binding.log",
+      "bytes": 217,
+      "sha256": "fd5e4679a5b69ecbd304fd486eeaf5ca5303708ffd1e6164a4412983cc188308"
+    },
+    {
+      "path": "app-module-syntax.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "diff-whitespace.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "integration-preservation.json",
+      "bytes": 55829,
+      "sha256": "4f14c878a0caca3b91ac84f74e81fd274e4a4825b8da1ec96d71939f399a26ed"
+    },
+    {
+      "path": "test-source-mapping.json",
+      "bytes": 3099,
+      "sha256": "cfa7d678f8de2f4ffa020f55b14a606d0e2e6b7ad85c37801b50d2beaecc0812"
+    },
+    {
+      "path": "site-integration.patch",
+      "bytes": 109535,
+      "sha256": "8e18e4d409dd61290e9ee292fb4e85369ea9eac15e495cc20608957bb1f7cd9b"
+    },
+    {
+      "path": "integration-source.diff",
+      "bytes": 41352,
+      "sha256": "7a2b9ed4c9b5d5985e19a2e5084d4f53eed39a8a91d6b3e5d191171194d8a3de"
+    }
+  ],
+  "remainingAcceptance": [
+    "Parent must review/cherry-pick, build and publish the Site integration.",
+    "Browser and device behavior, live picture performance and artistic acceptance remain separate.",
+    "No regenerated factory films are provided; original rendered demonstrations retain their earlier engine identity."
+  ],
+  "public_evidence": [
+    {
+      "path": "docs/recovery/evidence/workbench-fx-runtime-and-loading.log",
+      "bytes": 8734,
+      "sha256": "91a2b2fa6e44a75ec2f0e8197b963b2c36f54275c0dd262d8ee33d13373b0175"
+    },
+    {
+      "path": "docs/recovery/evidence/workbench-fx-source-binding.log",
+      "bytes": 217,
+      "sha256": "fd5e4679a5b69ecbd304fd486eeaf5ca5303708ffd1e6164a4412983cc188308"
+    },
+    {
+      "path": "manifests/acceptance/god-here-fx-integration-preservation.json",
+      "bytes": 55829,
+      "sha256": "4f14c878a0caca3b91ac84f74e81fd274e4a4825b8da1ec96d71939f399a26ed"
+    },
+    {
+      "path": "manifests/acceptance/god-here-fx-integration-test-mapping.json",
+      "bytes": 3099,
+      "sha256": "cfa7d678f8de2f4ffa020f55b14a606d0e2e6b7ad85c37801b50d2beaecc0812"
+    }
+  ],
+  "integration_scope_qualification": "This receipt describes the isolated FX changeset. The final Site source also includes the recovery projection changes, recorded in the later source delta."
+}

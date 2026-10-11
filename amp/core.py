@@ -198,6 +198,12 @@ def composite(image, history, config, t, *, mode="hard", overrides=None, layers=
             ImageDraw.Draw(mask).polygon(poly, fill=255)
             if layer["kind"] == "gesture":
                 old = history[max(0, len(history) - 1 - layer["delay_frames"])]
+                # Geometry must follow the same source time as the delayed picture.
+                effective_delay=min(layer['delay_frames'],len(history)-1)
+                source_time=t-effective_delay/config['fps']
+                mask=Image.new('L',image.size)
+                poly=[(round(x*w),round(y*h)) for x,y in polygon_at(layer,source_time)]
+                ImageDraw.Draw(mask).polygon(poly,fill=255)
                 out.paste(old, (0, 0), mask)
             else:
                 # An authored planar texture, never a claim of recovered hidden space.

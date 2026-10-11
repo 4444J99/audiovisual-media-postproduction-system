@@ -1,0 +1,2375 @@
+{
+  "schema_version": "amps.room-stretch.v1",
+  "sample_rate": 48000,
+  "channels": 2,
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "pause_inventory_sha256": "bb616355c6d328c93d19247fa01fa48d5ee2fa1b1ad2faac3bee315285acd788",
+  "source_decoded_samples": 5376627,
+  "source_codec_tail_samples_trimmed": 627,
+  "source_audio_stream": {
+    "codec_name": "aac",
+    "sample_rate": "44100"
+  },
+  "duration_seconds": 112.0,
+  "samples_per_channel": 5376000,
+  "source_reel": {
+    "raw_samples_per_channel": 212160,
+    "processed_samples_per_channel": 212160,
+    "duration_seconds": 4.42,
+    "portions": [
+      {
+        "portion_id": "PAUSE002-01",
+        "source_start_sample": 349920,
+        "source_end_sample": 362880,
+        "source_start_seconds": 7.29,
+        "source_end_seconds": 7.56,
+        "reel_start_sample": 0,
+        "reel_end_sample": 12960
+      },
+      {
+        "portion_id": "PAUSE008-01",
+        "source_start_sample": 1149120,
+        "source_end_sample": 1186560,
+        "source_start_seconds": 23.94,
+        "source_end_seconds": 24.72,
+        "reel_start_sample": 12960,
+        "reel_end_sample": 50400
+      },
+      {
+        "portion_id": "PAUSE009-01",
+        "source_start_sample": 1326720,
+        "source_end_sample": 1400160,
+        "source_start_seconds": 27.64,
+        "source_end_seconds": 29.17,
+        "reel_start_sample": 50400,
+        "reel_end_sample": 123840
+      },
+      {
+        "portion_id": "PAUSE009-02",
+        "source_start_sample": 1452480,
+        "source_end_sample": 1478400,
+        "source_start_seconds": 30.26,
+        "source_end_seconds": 30.8,
+        "reel_start_sample": 123840,
+        "reel_end_sample": 149760
+      },
+      {
+        "portion_id": "PAUSE018-01",
+        "source_start_sample": 3055200,
+        "source_end_sample": 3073920,
+        "source_start_seconds": 63.65,
+        "source_end_seconds": 64.04,
+        "reel_start_sample": 149760,
+        "reel_end_sample": 168480
+      },
+      {
+        "portion_id": "PAUSE019-01",
+        "source_start_sample": 3136320,
+        "source_end_sample": 3156000,
+        "source_start_seconds": 65.34,
+        "source_end_seconds": 65.75,
+        "reel_start_sample": 168480,
+        "reel_end_sample": 188160
+      },
+      {
+        "portion_id": "PAUSE024-01",
+        "source_start_sample": 4551840,
+        "source_end_sample": 4558560,
+        "source_start_seconds": 94.83,
+        "source_end_seconds": 94.97,
+        "reel_start_sample": 188160,
+        "reel_end_sample": 194880
+      },
+      {
+        "portion_id": "PAUSE027-01",
+        "source_start_sample": 4734720,
+        "source_end_sample": 4752000,
+        "source_start_seconds": 98.64,
+        "source_end_seconds": 99.0,
+        "reel_start_sample": 194880,
+        "reel_end_sample": 212160
+      }
+    ],
+    "seam_method": "length-preserving reflected-handle cosine crossfade",
+    "seam_window_seconds": 0.005,
+    "seams": [
+      {
+        "boundary_sample": 0,
+        "half_width_samples": 120,
+        "wraps_end_start": true,
+        "join_step_before": 0.0481489822268486,
+        "join_step_after": 0.0003164506150374249
+      },
+      {
+        "boundary_sample": 12960,
+        "half_width_samples": 120,
+        "wraps_end_start": false,
+        "join_step_before": 0.0055140238255262375,
+        "join_step_after": 3.623994148412024e-05
+      },
+      {
+        "boundary_sample": 50400,
+        "half_width_samples": 120,
+        "wraps_end_start": false,
+        "join_step_before": 0.02453061193227768,
+        "join_step_after": 0.0001612230866468098
+      },
+      {
+        "boundary_sample": 123840,
+        "half_width_samples": 120,
+        "wraps_end_start": false,
+        "join_step_before": 0.05750616639852524,
+        "join_step_after": 0.0003779490547273952
+      },
+      {
+        "boundary_sample": 149760,
+        "half_width_samples": 120,
+        "wraps_end_start": false,
+        "join_step_before": 0.13843725621700287,
+        "join_step_after": 0.0009098542594794638
+      },
+      {
+        "boundary_sample": 168480,
+        "half_width_samples": 120,
+        "wraps_end_start": false,
+        "join_step_before": 0.06216739863157272,
+        "join_step_after": 0.00040858418958958365
+      },
+      {
+        "boundary_sample": 188160,
+        "half_width_samples": 120,
+        "wraps_end_start": false,
+        "join_step_before": 0.0600779727101326,
+        "join_step_after": 0.0003948517968712182
+      },
+      {
+        "boundary_sample": 194880,
+        "half_width_samples": 120,
+        "wraps_end_start": false,
+        "join_step_before": 0.04437661170959473,
+        "join_step_after": 0.00029165739258765755
+      }
+    ],
+    "dc_removed_per_channel": [
+      -0.00039662063305917575,
+      -0.00048581028582642154
+    ],
+    "samples_outside_seams": "unchanged except one constant DC subtraction per channel",
+    "source_samples_outside_selected_portions_used": false,
+    "raw_pcm_sha256": "9e06b75d71b4f860969174d0dd06433070686450943d8304963cd40139af0400",
+    "processed_pcm_sha256": "f5f2ca470055c55f4f3f835b0469f4e75385544bd1f8bf7ab1cdccfc3dcf405c"
+  },
+  "source_reel_raw": {
+    "file": "source-reel-raw.wav",
+    "sha256": "8862ab9b5d3c82afb7fae3e2ebadf5f84028057676b6e2bc76379261e5cef996",
+    "pcm_sha256": "9e06b75d71b4f860969174d0dd06433070686450943d8304963cd40139af0400",
+    "samples_per_channel": 212160,
+    "duration_seconds": 4.42,
+    "full_decode_verified": true,
+    "finite": true
+  },
+  "source_reel_processed": {
+    "file": "source-reel-seam-smoothed.wav",
+    "sha256": "de39bde617d1a892e31af22a5eadb7c81cbbef8895bb98983297a8e475b6df3b",
+    "pcm_sha256": "f5f2ca470055c55f4f3f835b0469f4e75385544bd1f8bf7ab1cdccfc3dcf405c",
+    "samples_per_channel": 212160,
+    "duration_seconds": 4.42,
+    "full_decode_verified": true,
+    "finite": true
+  },
+  "production_target_lufs": -40.37,
+  "audition_boost_db": 14.0,
+  "audition_target_lufs": -26.369999999999997,
+  "default_changed": false,
+  "human_listening_acceptance": "pending",
+  "stereo_linked": true,
+  "limiter": false,
+  "dynamic_normalization": false,
+  "status": "rendered and technically verified; human listening pending",
+  "layers": [
+    {
+      "id": "V112",
+      "mode": "literal_varispeed",
+      "period_seconds": 112.0,
+      "period_samples": 5376000,
+      "film_fraction": 1.0,
+      "source_reel_seconds": 4.42,
+      "speed_ratio": 0.039464285714285716,
+      "stretch_factor": 25.339366515837103,
+      "pitch_shift_semitones": -55.95970262929077,
+      "pitch_label": "pitch falls with playback speed",
+      "cycles_within_film": 1.0,
+      "loops": [
+        {
+          "cycle_index": 0,
+          "output_start_sample": 0,
+          "output_end_sample": 5376000,
+          "cycle_samples_used": 5376000,
+          "truncated": false
+        }
+      ],
+      "cycle_seams": [],
+      "film_edge_fade_seconds": 0.01,
+      "cycle_wrap_sample_step": 0.0001239452394656837,
+      "processing": {
+        "algorithm": "periodic band-limited Fourier varispeed resampling",
+        "phase_randomized": false,
+        "source_event_waveforms_preserved": "slowed and band-limited; seam regions processed",
+        "stereo_method": "same resampling transform and time coordinates in both channels"
+      },
+      "raw_stem_wav": "raw-stems/V112.wav",
+      "raw_stem_receipt": {
+        "sha256": "e03be717c49f5add4fb0e82805b90b55fa6398d3e25af6700187ed85ffb55ff9",
+        "pcm_sha256": "e43bdc392b4399f541052f4d2f252017485955ad403e9ac2d6d5fa620843f0c9",
+        "samples_per_channel": 5376000,
+        "duration_seconds": 112.0,
+        "full_decode_verified": true,
+        "finite": true
+      },
+      "raw_to_production_gain_db": -2.9399999999999977,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -2.9399999999999977,
+        "before": {
+          "rms_dbfs": -28.970866156076113,
+          "sample_peak_dbfs": -13.42725658416748,
+          "bs1770_integrated_lufs": -37.43,
+          "true_peak_dbtp": -13.43,
+          "loudness_range_lu": 4.4,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -31.91086634697062,
+          "sample_peak_dbfs": -16.36725616455078,
+          "bs1770_integrated_lufs": -40.38,
+          "true_peak_dbtp": -16.37,
+          "loudness_range_lu": 4.4,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": -0.010000000000005116,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_wav": "stems/V112.wav",
+      "stem_flac": "stems/V112.flac",
+      "production_aac": "web/V112-production.m4a",
+      "audition_aac": "web/V112-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "b7c3c822cb9409d0daed38952820d6d16eefddbce96aadbb6c4b97237ecde9cf",
+          "pcm_sha256": "1daf8b62747e3f16a041550a893fa4fb639c49411057a2bbbecaba2508b36694",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "fa58d7f6e09fff549010566eb8777cb7046dfd99dd82c5438c5406779fea0a6a",
+          "bytes": 4967420,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -16.367252349853516,
+          "float_source_max_absolute_error": 1.1897554941242561e-07
+        },
+        "production_aac": {
+          "sha256": "45b44421a094ed5f108325f06911bf1cc1e92c74a97e462b641539836f87a387",
+          "bytes": 2190916,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -16.365562438964844,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "027f05761b9b5f7a99c1974aabf131a0e43d5b9e21c1126d1d477c128cb111c1",
+          "bytes": 2763981,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -2.3689124584198,
+          "float_source_max_absolute_error": null
+        }
+      }
+    },
+    {
+      "id": "V84",
+      "mode": "literal_varispeed",
+      "period_seconds": 84.0,
+      "period_samples": 4032000,
+      "film_fraction": 0.75,
+      "source_reel_seconds": 4.42,
+      "speed_ratio": 0.05261904761904762,
+      "stretch_factor": 19.004524886877828,
+      "pitch_shift_semitones": -50.97925263794464,
+      "pitch_label": "pitch falls with playback speed",
+      "cycles_within_film": 1.3333333333333333,
+      "loops": [
+        {
+          "cycle_index": 0,
+          "output_start_sample": 0,
+          "output_end_sample": 4032000,
+          "cycle_samples_used": 4032000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 1,
+          "output_start_sample": 4032000,
+          "output_end_sample": 5376000,
+          "cycle_samples_used": 1344000,
+          "truncated": true
+        }
+      ],
+      "cycle_seams": [],
+      "film_edge_fade_seconds": 0.01,
+      "cycle_wrap_sample_step": 0.00016346730990335345,
+      "processing": {
+        "algorithm": "periodic band-limited Fourier varispeed resampling",
+        "phase_randomized": false,
+        "source_event_waveforms_preserved": "slowed and band-limited; seam regions processed",
+        "stereo_method": "same resampling transform and time coordinates in both channels"
+      },
+      "raw_stem_wav": "raw-stems/V84.wav",
+      "raw_stem_receipt": {
+        "sha256": "726aeee8b6c497c8f9d4d464e27aeb960b29ece75fd3b9e10e34f9a47a46da08",
+        "pcm_sha256": "513e80a933593bda58d52246791ff4300882f45fbd1e034ca171438f2d3dc189",
+        "samples_per_channel": 5376000,
+        "duration_seconds": 112.0,
+        "full_decode_verified": true,
+        "finite": true
+      },
+      "raw_to_production_gain_db": -4.229999999999997,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -4.229999999999997,
+        "before": {
+          "rms_dbfs": -29.0940244768078,
+          "sample_peak_dbfs": -13.425132751464844,
+          "bs1770_integrated_lufs": -36.14,
+          "true_peak_dbtp": -13.43,
+          "loudness_range_lu": 4.1,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -33.324024198932776,
+          "sample_peak_dbfs": -17.655132293701172,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -17.66,
+          "loudness_range_lu": 4.1,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_wav": "stems/V84.wav",
+      "stem_flac": "stems/V84.flac",
+      "production_aac": "web/V84-production.m4a",
+      "audition_aac": "web/V84-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "98f2b0d67d83144690503eaf0616ea5837e0c56566b992d26525e8340b9d5dfe",
+          "pcm_sha256": "a782ee0acd8ae534676e5956b3a28bd1a2d3f9ba13a1b543e171acc8674b3ef1",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "0a819ad7d841a1fafe6c3eb850aa055f15adf322fcff44dc69887f23a6da024a",
+          "bytes": 5034389,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -17.655132293701172,
+          "float_source_max_absolute_error": 1.1897282092832029e-07
+        },
+        "production_aac": {
+          "sha256": "37481652c7bb5da209b17d835a3bad2344f9462ba7a212f298e4e3c6015d5608",
+          "bytes": 2175334,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -17.67185401916504,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "d54d1d7b99a43fee3764cb8df89624495860e62341a8e0b335d41c5cb8631000",
+          "bytes": 2747409,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -3.620176076889038,
+          "float_source_max_absolute_error": null
+        }
+      }
+    },
+    {
+      "id": "V56",
+      "mode": "literal_varispeed",
+      "period_seconds": 56.0,
+      "period_samples": 2688000,
+      "film_fraction": 0.5,
+      "source_reel_seconds": 4.42,
+      "speed_ratio": 0.07892857142857143,
+      "stretch_factor": 12.669683257918551,
+      "pitch_shift_semitones": -43.95970262929077,
+      "pitch_label": "pitch falls with playback speed",
+      "cycles_within_film": 2.0,
+      "loops": [
+        {
+          "cycle_index": 0,
+          "output_start_sample": 0,
+          "output_end_sample": 2688000,
+          "cycle_samples_used": 2688000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 1,
+          "output_start_sample": 2688000,
+          "output_end_sample": 5376000,
+          "cycle_samples_used": 2688000,
+          "truncated": false
+        }
+      ],
+      "cycle_seams": [],
+      "film_edge_fade_seconds": 0.01,
+      "cycle_wrap_sample_step": 0.00023972830967977643,
+      "processing": {
+        "algorithm": "periodic band-limited Fourier varispeed resampling",
+        "phase_randomized": false,
+        "source_event_waveforms_preserved": "slowed and band-limited; seam regions processed",
+        "stereo_method": "same resampling transform and time coordinates in both channels"
+      },
+      "raw_stem_wav": "raw-stems/V56.wav",
+      "raw_stem_receipt": {
+        "sha256": "298b81ca0012ef1de0d8c7dd92d0decadf96eae9316ca00b31d6ca5f1146f367",
+        "pcm_sha256": "f4cba845302258aa331566dcafae3ea851a23f5f5f4484caaa3a20bfab52a2f1",
+        "samples_per_channel": 5376000,
+        "duration_seconds": 112.0,
+        "full_decode_verified": true,
+        "finite": true
+      },
+      "raw_to_production_gain_db": -5.369999999999997,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -5.369999999999997,
+        "before": {
+          "rms_dbfs": -28.97086921130258,
+          "sample_peak_dbfs": -13.429617881774902,
+          "bs1770_integrated_lufs": -35.0,
+          "true_peak_dbtp": -13.43,
+          "loudness_range_lu": 2.8,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -34.340869534285375,
+          "sample_peak_dbfs": -18.799617767333984,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -18.8,
+          "loudness_range_lu": 2.7,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_wav": "stems/V56.wav",
+      "stem_flac": "stems/V56.flac",
+      "production_aac": "web/V56-production.m4a",
+      "audition_aac": "web/V56-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "54cdcb9008ff68bb6ce1776e6fafe33bd4047e663ad8f6eee5f2086e4e04e496",
+          "pcm_sha256": "b0a62579c1024b7dc659ecc123642534279c2e3ce09ec19d40bd74352e42715c",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "fc7817a697f843c451ff24647a0d6b039a066243914e0ca51e568cfae38b92ca",
+          "bytes": 5319922,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -18.799612045288086,
+          "float_source_max_absolute_error": 1.1897054719156586e-07
+        },
+        "production_aac": {
+          "sha256": "2d46387dd51b9c407d982651958e46cd51802c171ee63a24ed9d924ebff0be96",
+          "bytes": 2130811,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -18.807640075683594,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "5260c7f957102f7e65eae9705572c265f571e58a8c33709b50d74eb9768c2a02",
+          "bytes": 2730759,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -4.759730815887451,
+          "float_source_max_absolute_error": null
+        }
+      }
+    },
+    {
+      "id": "V28",
+      "mode": "literal_varispeed",
+      "period_seconds": 28.0,
+      "period_samples": 1344000,
+      "film_fraction": 0.25,
+      "source_reel_seconds": 4.42,
+      "speed_ratio": 0.15785714285714286,
+      "stretch_factor": 6.334841628959276,
+      "pitch_shift_semitones": -31.959702629290767,
+      "pitch_label": "pitch falls with playback speed",
+      "cycles_within_film": 4.0,
+      "loops": [
+        {
+          "cycle_index": 0,
+          "output_start_sample": 0,
+          "output_end_sample": 1344000,
+          "cycle_samples_used": 1344000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 1,
+          "output_start_sample": 1344000,
+          "output_end_sample": 2688000,
+          "cycle_samples_used": 1344000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 2,
+          "output_start_sample": 2688000,
+          "output_end_sample": 4032000,
+          "cycle_samples_used": 1344000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 3,
+          "output_start_sample": 4032000,
+          "output_end_sample": 5376000,
+          "cycle_samples_used": 1344000,
+          "truncated": false
+        }
+      ],
+      "cycle_seams": [],
+      "film_edge_fade_seconds": 0.01,
+      "cycle_wrap_sample_step": 0.00044520862866193056,
+      "processing": {
+        "algorithm": "periodic band-limited Fourier varispeed resampling",
+        "phase_randomized": false,
+        "source_event_waveforms_preserved": "slowed and band-limited; seam regions processed",
+        "stereo_method": "same resampling transform and time coordinates in both channels"
+      },
+      "raw_stem_wav": "raw-stems/V28.wav",
+      "raw_stem_receipt": {
+        "sha256": "194956cd44fea05861d42ed3d7e6bb3892d73a58c56106bb01c4f2e9f43da206",
+        "pcm_sha256": "388f6544eaf690f1036db917fae86097ae65b34d88a6118dd9441f8e2f310970",
+        "samples_per_channel": 5376000,
+        "duration_seconds": 112.0,
+        "full_decode_verified": true,
+        "finite": true
+      },
+      "raw_to_production_gain_db": -7.75,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -7.75,
+        "before": {
+          "rms_dbfs": -28.970896072141127,
+          "sample_peak_dbfs": -13.450950622558594,
+          "bs1770_integrated_lufs": -32.62,
+          "true_peak_dbtp": -13.43,
+          "loudness_range_lu": 3.2,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -36.720896209182555,
+          "sample_peak_dbfs": -21.200950622558594,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -21.18,
+          "loudness_range_lu": 3.1,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_wav": "stems/V28.wav",
+      "stem_flac": "stems/V28.flac",
+      "production_aac": "web/V28-production.m4a",
+      "audition_aac": "web/V28-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "8bbe177b19d00a9cae083ee7535bc620b1fc0c17a047fe039b40a6c868b590b7",
+          "pcm_sha256": "f954d43a35c6f43c36652f22c7cbe9c82fe4ca71d8809d91dfe921b31f30a357",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "aa0034a2dc0e041b0a937101b4ae753d119f444e930cd06d02c7fcfebd208e35",
+          "bytes": 6204924,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -21.200942993164062,
+          "float_source_max_absolute_error": 1.189655449707061e-07
+        },
+        "production_aac": {
+          "sha256": "468a57cabfb3bab76e95bf9bc65390db1c29b1affea6ba0ff7b98b00eee50ec9",
+          "bytes": 2373608,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -21.18219566345215,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "f0e225602d70ddd85434bbe2f0896326b119d1d595753f9392a18b139a00d479",
+          "bytes": 2713593,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -7.248157501220703,
+          "float_source_max_absolute_error": null
+        }
+      }
+    },
+    {
+      "id": "V14",
+      "mode": "literal_varispeed",
+      "period_seconds": 14.0,
+      "period_samples": 672000,
+      "film_fraction": 0.125,
+      "source_reel_seconds": 4.42,
+      "speed_ratio": 0.3157142857142857,
+      "stretch_factor": 3.167420814479638,
+      "pitch_shift_semitones": -19.959702629290767,
+      "pitch_label": "pitch falls with playback speed",
+      "cycles_within_film": 8.0,
+      "loops": [
+        {
+          "cycle_index": 0,
+          "output_start_sample": 0,
+          "output_end_sample": 672000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 1,
+          "output_start_sample": 672000,
+          "output_end_sample": 1344000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 2,
+          "output_start_sample": 1344000,
+          "output_end_sample": 2016000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 3,
+          "output_start_sample": 2016000,
+          "output_end_sample": 2688000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 4,
+          "output_start_sample": 2688000,
+          "output_end_sample": 3360000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 5,
+          "output_start_sample": 3360000,
+          "output_end_sample": 4032000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 6,
+          "output_start_sample": 4032000,
+          "output_end_sample": 4704000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 7,
+          "output_start_sample": 4704000,
+          "output_end_sample": 5376000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        }
+      ],
+      "cycle_seams": [],
+      "film_edge_fade_seconds": 0.01,
+      "cycle_wrap_sample_step": 0.0007425595540553331,
+      "processing": {
+        "algorithm": "periodic band-limited Fourier varispeed resampling",
+        "phase_randomized": false,
+        "source_event_waveforms_preserved": "slowed and band-limited; seam regions processed",
+        "stereo_method": "same resampling transform and time coordinates in both channels"
+      },
+      "raw_stem_wav": "raw-stems/V14.wav",
+      "raw_stem_receipt": {
+        "sha256": "0cfc3f5340d158a16609461742bb210e9a789fb8d6105a75a2c8c414b7bf19e1",
+        "pcm_sha256": "9cf4a83f281cd6ef369dac0a4cb29b80fd645aefef4178b98860683832505b73",
+        "samples_per_channel": 5376000,
+        "duration_seconds": 112.0,
+        "full_decode_verified": true,
+        "finite": true
+      },
+      "raw_to_production_gain_db": -9.809999999999999,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -9.809999999999999,
+        "before": {
+          "rms_dbfs": -28.97093686597963,
+          "sample_peak_dbfs": -13.514083862304688,
+          "bs1770_integrated_lufs": -30.56,
+          "true_peak_dbtp": -13.43,
+          "loudness_range_lu": 2.7,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -38.780936717473764,
+          "sample_peak_dbfs": -23.324085235595703,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -23.24,
+          "loudness_range_lu": 2.7,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_wav": "stems/V14.wav",
+      "stem_flac": "stems/V14.flac",
+      "production_aac": "web/V14-production.m4a",
+      "audition_aac": "web/V14-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "76750d0f1c9a462dedcebb08a536ec5508655bf8a37a21a9e26adaa2f42529fa",
+          "pcm_sha256": "a945354f54a1b94087e4067c3b7e5c7686eae1a5dddb4917cb70c764822a45fc",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "dbdc99e1105344b60f6fea32d62e4377c11be436ca210cb797fafb8b30016cc7",
+          "bytes": 8273973,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -23.324071884155273,
+          "float_source_max_absolute_error": 1.1896190699189901e-07
+        },
+        "production_aac": {
+          "sha256": "5e8566f2d5a6644588a75c656b93375d3fcc48fc210ea6669f0a5a1e349d8fce",
+          "bytes": 2710371,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -23.30451011657715,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "cdb21a8d4e7ad4d0a3c8d6770e2a6e4c3637fe5bf41ca431e0f3ee2f2a5a91de",
+          "bytes": 2714067,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -9.303380012512207,
+          "float_source_max_absolute_error": null
+        }
+      }
+    },
+    {
+      "id": "P112",
+      "mode": "spectral_stretch",
+      "period_seconds": 112.0,
+      "period_samples": 5376000,
+      "film_fraction": 1.0,
+      "source_reel_seconds": 4.42,
+      "speed_ratio": 0.039464285714285716,
+      "stretch_factor": 25.339366515837103,
+      "pitch_shift_semitones": 0.0,
+      "pitch_label": "FFT frequency range retained; source phase and event waveform randomized",
+      "cycles_within_film": 1.0,
+      "loops": [
+        {
+          "cycle_index": 0,
+          "output_start_sample": 0,
+          "output_end_sample": 5376000,
+          "cycle_samples_used": 5376000,
+          "truncated": false
+        }
+      ],
+      "cycle_seams": [
+        {
+          "boundary_sample": 0,
+          "half_width_samples": 4800,
+          "wraps_end_start": true,
+          "join_step_before": 0.024686086922883987,
+          "join_step_after": 4.039672460806609e-06
+        }
+      ],
+      "film_edge_fade_seconds": 0.01,
+      "cycle_wrap_sample_step": 4.040077328681946e-06,
+      "processing": {
+        "algorithm": "phase-randomized spectral time stretch",
+        "seed": 697221,
+        "fft_size": 65536,
+        "output_hop_samples": 32768,
+        "analysis_window_seconds": 1.3653333333333333,
+        "synthesis_frames": 166,
+        "source_cursor_samples_per_output_sample": 0.039464285714285716,
+        "source_cursor_traversals_per_cycle": 1,
+        "phase_randomized": true,
+        "source_event_waveforms_preserved": false,
+        "fft_bin_frequencies_shifted": false,
+        "stereo_method": "identical random unit-phase rotation applied to both complex channel spectra",
+        "overlap_normalization": "variance based; no signal-dependent gain"
+      },
+      "raw_stem_wav": "raw-stems/P112.wav",
+      "raw_stem_receipt": {
+        "sha256": "cdf1e5a0f6ab06676c1978d7c43f8d0810fe4bbae5bcb1b8b6a196491e2626fa",
+        "pcm_sha256": "ef237da75892315b7113bfbed0474fd41157ff669b1f1e42033d4066d89e23f6",
+        "samples_per_channel": 5376000,
+        "duration_seconds": 112.0,
+        "full_decode_verified": true,
+        "finite": true
+      },
+      "raw_to_production_gain_db": -9.559999999999999,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -9.559999999999999,
+        "before": {
+          "rms_dbfs": -32.008571779642864,
+          "sample_peak_dbfs": -17.07616424560547,
+          "bs1770_integrated_lufs": -30.81,
+          "true_peak_dbtp": -17.06,
+          "loudness_range_lu": 2.2,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -41.56857205970026,
+          "sample_peak_dbfs": -26.636165618896484,
+          "bs1770_integrated_lufs": -40.36,
+          "true_peak_dbtp": -26.62,
+          "loudness_range_lu": 2.2,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.00999999999999801,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_wav": "stems/P112.wav",
+      "stem_flac": "stems/P112.flac",
+      "production_aac": "web/P112-production.m4a",
+      "audition_aac": "web/P112-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "5b23b79fe1160880c6753ab83f31a13b66f856b64fd289d2a836c514d845c5f5",
+          "pcm_sha256": "3567f0d5db2190aaa4bf8d86abd667934f9ad19ba24f2798e60073f3edb244e1",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "45f30cd4f38d03143988d663b4297491510197216efe79d58a3495cfdadf2a77",
+          "bytes": 18919340,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -26.636154174804688,
+          "float_source_max_absolute_error": 1.1897463991772383e-07
+        },
+        "production_aac": {
+          "sha256": "482bb15dbfee5d4e447b5614e7980f9d86e7023cb252f76863a1c2869b566fcb",
+          "bytes": 2715407,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -26.689414978027344,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "b3780bf0050943a264695249f679ba203b703c6a3a95998a8c00519d95682629",
+          "bytes": 2714877,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -12.589783668518066,
+          "float_source_max_absolute_error": null
+        }
+      }
+    },
+    {
+      "id": "P84",
+      "mode": "spectral_stretch",
+      "period_seconds": 84.0,
+      "period_samples": 4032000,
+      "film_fraction": 0.75,
+      "source_reel_seconds": 4.42,
+      "speed_ratio": 0.05261904761904762,
+      "stretch_factor": 19.004524886877828,
+      "pitch_shift_semitones": 0.0,
+      "pitch_label": "FFT frequency range retained; source phase and event waveform randomized",
+      "cycles_within_film": 1.3333333333333333,
+      "loops": [
+        {
+          "cycle_index": 0,
+          "output_start_sample": 0,
+          "output_end_sample": 4032000,
+          "cycle_samples_used": 4032000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 1,
+          "output_start_sample": 4032000,
+          "output_end_sample": 5376000,
+          "cycle_samples_used": 1344000,
+          "truncated": true
+        }
+      ],
+      "cycle_seams": [
+        {
+          "boundary_sample": 0,
+          "half_width_samples": 4800,
+          "wraps_end_start": true,
+          "join_step_before": 0.03273376449942589,
+          "join_step_after": 5.356607799909124e-06
+        }
+      ],
+      "film_edge_fade_seconds": 0.01,
+      "cycle_wrap_sample_step": 5.356967449188232e-06,
+      "processing": {
+        "algorithm": "phase-randomized spectral time stretch",
+        "seed": 697221,
+        "fft_size": 65536,
+        "output_hop_samples": 32768,
+        "analysis_window_seconds": 1.3653333333333333,
+        "synthesis_frames": 125,
+        "source_cursor_samples_per_output_sample": 0.05261904761904762,
+        "source_cursor_traversals_per_cycle": 1,
+        "phase_randomized": true,
+        "source_event_waveforms_preserved": false,
+        "fft_bin_frequencies_shifted": false,
+        "stereo_method": "identical random unit-phase rotation applied to both complex channel spectra",
+        "overlap_normalization": "variance based; no signal-dependent gain"
+      },
+      "raw_stem_wav": "raw-stems/P84.wav",
+      "raw_stem_receipt": {
+        "sha256": "6ef5263c3bdc498a4247d0b96ff58b911a95eb650b39caadbe6344551b33a8dc",
+        "pcm_sha256": "5c7ad86aad03b514e75a212966f264eca06b17f7b8a8e3050017babcf8f42ad5",
+        "samples_per_channel": 5376000,
+        "duration_seconds": 112.0,
+        "full_decode_verified": true,
+        "finite": true
+      },
+      "raw_to_production_gain_db": -9.54,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -9.54,
+        "before": {
+          "rms_dbfs": -32.04751709911809,
+          "sample_peak_dbfs": -16.682044982910156,
+          "bs1770_integrated_lufs": -30.83,
+          "true_peak_dbtp": -16.66,
+          "loudness_range_lu": 2.2,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -41.587517016533624,
+          "sample_peak_dbfs": -26.2220458984375,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -26.2,
+          "loudness_range_lu": 2.2,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_wav": "stems/P84.wav",
+      "stem_flac": "stems/P84.flac",
+      "production_aac": "web/P84-production.m4a",
+      "audition_aac": "web/P84-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "dfc7454bba6c66d554b158bdfb02d83fd0ceb71db2a7f7bffa850431be863b9b",
+          "pcm_sha256": "de2ed1bc3266e83835e4ad3cd813a999c269f4730e99a34d041c4f3cb2ac1374",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "efbe921cebed107ea62b302283fd894f7db937e32af8ea30d1a5d1ad366f0f43",
+          "bytes": 19105629,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -26.222061157226562,
+          "float_source_max_absolute_error": 1.1897463991772383e-07
+        },
+        "production_aac": {
+          "sha256": "1ffc3ff740d63a96c48103808ad35d1dd774751b3ed29e75f511bc9dffc8f0f7",
+          "bytes": 2714886,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -26.1390323638916,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "0fc2d84c3abd78cb43232866367f5311b07a1e71bd7cc61818d84e5cc465c06a",
+          "bytes": 2715038,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -12.124763488769531,
+          "float_source_max_absolute_error": null
+        }
+      }
+    },
+    {
+      "id": "P56",
+      "mode": "spectral_stretch",
+      "period_seconds": 56.0,
+      "period_samples": 2688000,
+      "film_fraction": 0.5,
+      "source_reel_seconds": 4.42,
+      "speed_ratio": 0.07892857142857143,
+      "stretch_factor": 12.669683257918551,
+      "pitch_shift_semitones": 0.0,
+      "pitch_label": "FFT frequency range retained; source phase and event waveform randomized",
+      "cycles_within_film": 2.0,
+      "loops": [
+        {
+          "cycle_index": 0,
+          "output_start_sample": 0,
+          "output_end_sample": 2688000,
+          "cycle_samples_used": 2688000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 1,
+          "output_start_sample": 2688000,
+          "output_end_sample": 5376000,
+          "cycle_samples_used": 2688000,
+          "truncated": false
+        }
+      ],
+      "cycle_seams": [
+        {
+          "boundary_sample": 0,
+          "half_width_samples": 4800,
+          "wraps_end_start": true,
+          "join_step_before": 0.0679716169834137,
+          "join_step_after": 1.11229885686355e-05
+        }
+      ],
+      "film_edge_fade_seconds": 0.01,
+      "cycle_wrap_sample_step": 1.1123716831207275e-05,
+      "processing": {
+        "algorithm": "phase-randomized spectral time stretch",
+        "seed": 697221,
+        "fft_size": 65536,
+        "output_hop_samples": 32768,
+        "analysis_window_seconds": 1.3653333333333333,
+        "synthesis_frames": 84,
+        "source_cursor_samples_per_output_sample": 0.07892857142857143,
+        "source_cursor_traversals_per_cycle": 1,
+        "phase_randomized": true,
+        "source_event_waveforms_preserved": false,
+        "fft_bin_frequencies_shifted": false,
+        "stereo_method": "identical random unit-phase rotation applied to both complex channel spectra",
+        "overlap_normalization": "variance based; no signal-dependent gain"
+      },
+      "raw_stem_wav": "raw-stems/P56.wav",
+      "raw_stem_receipt": {
+        "sha256": "2a12dd6dcea0cd792a06f11ef4095d8d5a2de18ee912a19909a02d7b01929dcd",
+        "pcm_sha256": "1e3e460c0a01b50ef6fa66cb952a61970f5748da9bedaf76ec2b5ab0af05bf44",
+        "samples_per_channel": 5376000,
+        "duration_seconds": 112.0,
+        "full_decode_verified": true,
+        "finite": true
+      },
+      "raw_to_production_gain_db": -9.609999999999996,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -9.609999999999996,
+        "before": {
+          "rms_dbfs": -31.980240226182076,
+          "sample_peak_dbfs": -17.02292251586914,
+          "bs1770_integrated_lufs": -30.76,
+          "true_peak_dbtp": -16.99,
+          "loudness_range_lu": 2.1,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -41.590240338679266,
+          "sample_peak_dbfs": -26.632923126220703,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -26.6,
+          "loudness_range_lu": 2.1,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_wav": "stems/P56.wav",
+      "stem_flac": "stems/P56.flac",
+      "production_aac": "web/P56-production.m4a",
+      "audition_aac": "web/P56-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "b1d740c34879b29b707f54123a35a8af0989a8220ea01d39fe7490c50a8ed3c0",
+          "pcm_sha256": "1348bc85e41897970b16ca5c4bdab1c96fe8a639fb708bc22476b536903c1026",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "8ddfbfaa7974669797ebf95cd82458ba41aeee353eb554f4ac91573fc330c086",
+          "bytes": 18921741,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -26.632930755615234,
+          "float_source_max_absolute_error": 1.189691829495132e-07
+        },
+        "production_aac": {
+          "sha256": "5432e88176bfa422c594052b0f819f69301a441eca83674289ae5d0e16ec2ed6",
+          "bytes": 2714850,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -26.64269256591797,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "62c617b8778e804393db998df9a1cf19a685740f5b04e81679fc9ae903a45a0f",
+          "bytes": 2715039,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -12.678084373474121,
+          "float_source_max_absolute_error": null
+        }
+      }
+    },
+    {
+      "id": "P28",
+      "mode": "spectral_stretch",
+      "period_seconds": 28.0,
+      "period_samples": 1344000,
+      "film_fraction": 0.25,
+      "source_reel_seconds": 4.42,
+      "speed_ratio": 0.15785714285714286,
+      "stretch_factor": 6.334841628959276,
+      "pitch_shift_semitones": 0.0,
+      "pitch_label": "FFT frequency range retained; source phase and event waveform randomized",
+      "cycles_within_film": 4.0,
+      "loops": [
+        {
+          "cycle_index": 0,
+          "output_start_sample": 0,
+          "output_end_sample": 1344000,
+          "cycle_samples_used": 1344000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 1,
+          "output_start_sample": 1344000,
+          "output_end_sample": 2688000,
+          "cycle_samples_used": 1344000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 2,
+          "output_start_sample": 2688000,
+          "output_end_sample": 4032000,
+          "cycle_samples_used": 1344000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 3,
+          "output_start_sample": 4032000,
+          "output_end_sample": 5376000,
+          "cycle_samples_used": 1344000,
+          "truncated": false
+        }
+      ],
+      "cycle_seams": [
+        {
+          "boundary_sample": 0,
+          "half_width_samples": 4800,
+          "wraps_end_start": true,
+          "join_step_before": 0.06407774984836578,
+          "join_step_after": 1.0485789981314053e-05
+        }
+      ],
+      "film_edge_fade_seconds": 0.01,
+      "cycle_wrap_sample_step": 1.0486692190170288e-05,
+      "processing": {
+        "algorithm": "phase-randomized spectral time stretch",
+        "seed": 697221,
+        "fft_size": 65536,
+        "output_hop_samples": 32768,
+        "analysis_window_seconds": 1.3653333333333333,
+        "synthesis_frames": 43,
+        "source_cursor_samples_per_output_sample": 0.15785714285714286,
+        "source_cursor_traversals_per_cycle": 1,
+        "phase_randomized": true,
+        "source_event_waveforms_preserved": false,
+        "fft_bin_frequencies_shifted": false,
+        "stereo_method": "identical random unit-phase rotation applied to both complex channel spectra",
+        "overlap_normalization": "variance based; no signal-dependent gain"
+      },
+      "raw_stem_wav": "raw-stems/P28.wav",
+      "raw_stem_receipt": {
+        "sha256": "87448cac35ae65826eaaff85d98eb8bcb3a4314b01825f752820c118cbb8dd4b",
+        "pcm_sha256": "e2679a8633036bb72edc8fc8b57671e53c42390466a1e5d1c9796be38e27d1b7",
+        "samples_per_channel": 5376000,
+        "duration_seconds": 112.0,
+        "full_decode_verified": true,
+        "finite": true
+      },
+      "raw_to_production_gain_db": -9.569999999999997,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -9.569999999999997,
+        "before": {
+          "rms_dbfs": -32.01251676501708,
+          "sample_peak_dbfs": -16.3514461517334,
+          "bs1770_integrated_lufs": -30.8,
+          "true_peak_dbtp": -16.32,
+          "loudness_range_lu": 2.1,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -41.582516604958585,
+          "sample_peak_dbfs": -25.921443939208984,
+          "bs1770_integrated_lufs": -40.36,
+          "true_peak_dbtp": -25.89,
+          "loudness_range_lu": 2.1,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.00999999999999801,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_wav": "stems/P28.wav",
+      "stem_flac": "stems/P28.flac",
+      "production_aac": "web/P28-production.m4a",
+      "audition_aac": "web/P28-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "e5acfd9d2975fdcf1f695f9511160d7911ccad5469c7bc0a003df89528ac1992",
+          "pcm_sha256": "6f2d07335739afd00f51ec51148edd493493511db0b3c1e2f8b92d4209e542a1",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "5ac9c5bde9871c243e547c76e78291ebcb333f972533c0ccb6384400b133aa16",
+          "bytes": 18929081,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -25.921463012695312,
+          "float_source_max_absolute_error": 1.1896372598130256e-07
+        },
+        "production_aac": {
+          "sha256": "96b356871efe31da3556f40de796be32da11da4e42e674780ae1327cdcb450fd",
+          "bytes": 2714990,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -25.987356185913086,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "b67cee41d454c030856ab6ac714fd50b6318d94a560aa4ac231337a0ae31009b",
+          "bytes": 2714415,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -11.984058380126953,
+          "float_source_max_absolute_error": null
+        }
+      }
+    },
+    {
+      "id": "P14",
+      "mode": "spectral_stretch",
+      "period_seconds": 14.0,
+      "period_samples": 672000,
+      "film_fraction": 0.125,
+      "source_reel_seconds": 4.42,
+      "speed_ratio": 0.3157142857142857,
+      "stretch_factor": 3.167420814479638,
+      "pitch_shift_semitones": 0.0,
+      "pitch_label": "FFT frequency range retained; source phase and event waveform randomized",
+      "cycles_within_film": 8.0,
+      "loops": [
+        {
+          "cycle_index": 0,
+          "output_start_sample": 0,
+          "output_end_sample": 672000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 1,
+          "output_start_sample": 672000,
+          "output_end_sample": 1344000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 2,
+          "output_start_sample": 1344000,
+          "output_end_sample": 2016000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 3,
+          "output_start_sample": 2016000,
+          "output_end_sample": 2688000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 4,
+          "output_start_sample": 2688000,
+          "output_end_sample": 3360000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 5,
+          "output_start_sample": 3360000,
+          "output_end_sample": 4032000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 6,
+          "output_start_sample": 4032000,
+          "output_end_sample": 4704000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        },
+        {
+          "cycle_index": 7,
+          "output_start_sample": 4704000,
+          "output_end_sample": 5376000,
+          "cycle_samples_used": 672000,
+          "truncated": false
+        }
+      ],
+      "cycle_seams": [
+        {
+          "boundary_sample": 0,
+          "half_width_samples": 4800,
+          "wraps_end_start": true,
+          "join_step_before": 0.0027021383866667747,
+          "join_step_after": 4.421824183059586e-07
+        }
+      ],
+      "film_edge_fade_seconds": 0.01,
+      "cycle_wrap_sample_step": 4.423782229423523e-07,
+      "processing": {
+        "algorithm": "phase-randomized spectral time stretch",
+        "seed": 697221,
+        "fft_size": 65536,
+        "output_hop_samples": 32768,
+        "analysis_window_seconds": 1.3653333333333333,
+        "synthesis_frames": 22,
+        "source_cursor_samples_per_output_sample": 0.3157142857142857,
+        "source_cursor_traversals_per_cycle": 1,
+        "phase_randomized": true,
+        "source_event_waveforms_preserved": false,
+        "fft_bin_frequencies_shifted": false,
+        "stereo_method": "identical random unit-phase rotation applied to both complex channel spectra",
+        "overlap_normalization": "variance based; no signal-dependent gain"
+      },
+      "raw_stem_wav": "raw-stems/P14.wav",
+      "raw_stem_receipt": {
+        "sha256": "9e16974ba819a157eb119ca711ba51ef64946efde192d341d971dc84baaea82c",
+        "pcm_sha256": "42c69afb961f1fb48b8858b386e5cf15c7bec9310bf4756bfa45d71946326fd4",
+        "samples_per_channel": 5376000,
+        "duration_seconds": 112.0,
+        "full_decode_verified": true,
+        "finite": true
+      },
+      "raw_to_production_gain_db": -9.689999999999998,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -9.689999999999998,
+        "before": {
+          "rms_dbfs": -31.851072863030115,
+          "sample_peak_dbfs": -18.37095069885254,
+          "bs1770_integrated_lufs": -30.68,
+          "true_peak_dbtp": -18.34,
+          "loudness_range_lu": 2.0,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -41.54107275000417,
+          "sample_peak_dbfs": -28.060951232910156,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -28.03,
+          "loudness_range_lu": 2.0,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_wav": "stems/P14.wav",
+      "stem_flac": "stems/P14.flac",
+      "production_aac": "web/P14-production.m4a",
+      "audition_aac": "web/P14-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "3a06bbc9aa1619bb14a5f674c8485e61aeb73a599d47bbc6e7f8dcb5a413f229",
+          "pcm_sha256": "66eff0881db51bf4b197ffde447c25232cd40a9e7971f0008c5d32fc9f806640",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "5dc5f8ab268c85107a17e168e5f8cb55dadc64befed406a4eb87fe6166720484",
+          "bytes": 18897252,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -28.060958862304688,
+          "float_source_max_absolute_error": 1.189691829495132e-07
+        },
+        "production_aac": {
+          "sha256": "8cc532eb406ce890b46eab110cb1eea9010920f54ffbb0c503a7e62657ae3416",
+          "bytes": 2715409,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -27.926692962646484,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "2c3792c4ec7ac5ee808ca8103e0f4057c596fd87d0e3b39fbb8d88d33c1f02f7",
+          "bytes": 2714963,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -13.913512229919434,
+          "float_source_max_absolute_error": null
+        }
+      }
+    }
+  ],
+  "stacks": [
+    {
+      "id": "V1",
+      "mode": "V",
+      "member_ids": [
+        "V112"
+      ],
+      "member_gains_db": {
+        "V112": 0.0
+      },
+      "mix_gain_db": 0.010000000000005116,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": 0.010000000000005116,
+        "before": {
+          "rms_dbfs": -31.91086634697062,
+          "sample_peak_dbfs": -16.36725616455078,
+          "bs1770_integrated_lufs": -40.38,
+          "true_peak_dbtp": -16.37,
+          "loudness_range_lu": 4.4,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -31.900866660923803,
+          "sample_peak_dbfs": -16.357255935668945,
+          "bs1770_integrated_lufs": -40.36,
+          "true_peak_dbtp": -16.36,
+          "loudness_range_lu": 4.4,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.00999999999999801,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_sum_max_absolute_error": 0.0,
+      "reconstruction": "sum exported float production stems, then apply mix_gain_db once",
+      "mix_wav": "stacks/V1-stack.wav",
+      "mix_flac": "stacks/V1-stack.flac",
+      "production_aac": "web/V1-stack-production.m4a",
+      "audition_aac": "web/V1-stack-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "72d05203391fc2baba71ff1d71fb112205b6edab612b1731f6e5d7d79336b20a",
+          "pcm_sha256": "f1ae03cecfe17061fb5239eea26ab419290a5698efed03b77d579340b3c67df3",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "5762c6868ca32253baa0e4bb48af23c18af99c5a144494154427e2d2913b34c1",
+          "bytes": 4968075,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -16.357254028320312,
+          "float_source_max_absolute_error": 1.189691829495132e-07
+        },
+        "production_aac": {
+          "sha256": "5841d8f1559ef4711970a9799afd9477c72757711fa01f852bb0f47b52592591",
+          "bytes": 2193346,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -16.354047775268555,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "7cc1f459bd30464a85f724090eb81fac337b3ea1279efd331dd2783733ddd644",
+          "bytes": 2764636,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -2.408259868621826,
+          "float_source_max_absolute_error": null
+        }
+      },
+      "stem_wav": "stacks/V1-stack.wav",
+      "stem_flac": "stacks/V1-stack.flac",
+      "member_input_kind": "calibrated_production_stems",
+      "equivalent_production_stem_gains_db": {
+        "V112": 0.0
+      },
+      "title": "1 layer, calibrated solo levels"
+    },
+    {
+      "id": "V2",
+      "mode": "V",
+      "member_ids": [
+        "V112",
+        "V84"
+      ],
+      "member_gains_db": {
+        "V112": 0.0,
+        "V84": 0.0
+      },
+      "mix_gain_db": -2.989999999999995,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -2.989999999999995,
+        "before": {
+          "rms_dbfs": -29.600386628013627,
+          "sample_peak_dbfs": -15.5779447555542,
+          "bs1770_integrated_lufs": -37.38,
+          "true_peak_dbtp": -15.58,
+          "loudness_range_lu": 4.9,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -32.59038628525199,
+          "sample_peak_dbfs": -18.56794548034668,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -18.57,
+          "loudness_range_lu": 4.9,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_sum_max_absolute_error": 0.0,
+      "reconstruction": "sum exported float production stems, then apply mix_gain_db once",
+      "mix_wav": "stacks/V2-stack.wav",
+      "mix_flac": "stacks/V2-stack.flac",
+      "production_aac": "web/V2-stack-production.m4a",
+      "audition_aac": "web/V2-stack-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "78200c2252cb4a2c85b80913a462d6cceaced42b5d0a452547de092cfe38da86",
+          "pcm_sha256": "6809742aa09dd326f5ad1f765957bedbffc35d8f8392bb2ccca3ff89bc92da10",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "50bd2cee80f67a20a05f6d3e4af6517222f87942f47617f219d121f82fbbf2ac",
+          "bytes": 5050223,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -18.56793975830078,
+          "float_source_max_absolute_error": 1.1897520835191244e-07
+        },
+        "production_aac": {
+          "sha256": "a9bdf2019d2b6ca7c87e99d27979cf2e8d6b3971ee68917b5b8c91f88800fe78",
+          "bytes": 2235550,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -18.583003997802734,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "04543e8231819c61177bb9a6706eb165d07b1d85355c8080d41540490aa6bc6b",
+          "bytes": 2757535,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -4.567787170410156,
+          "float_source_max_absolute_error": null
+        }
+      },
+      "stem_wav": "stacks/V2-stack.wav",
+      "stem_flac": "stacks/V2-stack.flac",
+      "member_input_kind": "calibrated_production_stems",
+      "equivalent_production_stem_gains_db": {
+        "V112": 0.0,
+        "V84": 0.0
+      },
+      "title": "2 layers, calibrated solo levels"
+    },
+    {
+      "id": "V3",
+      "mode": "V",
+      "member_ids": [
+        "V112",
+        "V84",
+        "V56"
+      ],
+      "member_gains_db": {
+        "V112": 0.0,
+        "V84": 0.0,
+        "V56": 0.0
+      },
+      "mix_gain_db": -4.759999999999998,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -4.759999999999998,
+        "before": {
+          "rms_dbfs": -28.40297774632112,
+          "sample_peak_dbfs": -14.567217826843262,
+          "bs1770_integrated_lufs": -35.61,
+          "true_peak_dbtp": -14.57,
+          "loudness_range_lu": 3.6,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -33.162977975796075,
+          "sample_peak_dbfs": -19.327219009399414,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -19.33,
+          "loudness_range_lu": 3.7,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_sum_max_absolute_error": 0.0,
+      "reconstruction": "sum exported float production stems, then apply mix_gain_db once",
+      "mix_wav": "stacks/V3-stack.wav",
+      "mix_flac": "stacks/V3-stack.flac",
+      "production_aac": "web/V3-stack-production.m4a",
+      "audition_aac": "web/V3-stack-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "359bfa76bd738e7c7e641a6e95a44e51e8c9d1dd2b544e92a98aeb8c4f468957",
+          "pcm_sha256": "9f0739857331aaa48ad56daaf001b10705f5a6e42a6805766ac1b0ef454710de",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "5f3a51c5864d85b03a9c7e596e68e9b6139dffedbf9f54dd2011539e177e4d6c",
+          "bytes": 5359633,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -19.327219009399414,
+          "float_source_max_absolute_error": 1.1897282092832029e-07
+        },
+        "production_aac": {
+          "sha256": "458bf0bf6bbdb3f02c46be08c6e2629c5c3f54caa4f3b2f96185582af408bceb",
+          "bytes": 2238170,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -19.33159065246582,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "b5c0241b3b58812e169e545bffe37300f40eb9ec6d1c3c04d5106ab2bdab1d46",
+          "bytes": 2740452,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -5.331043243408203,
+          "float_source_max_absolute_error": null
+        }
+      },
+      "stem_wav": "stacks/V3-stack.wav",
+      "stem_flac": "stacks/V3-stack.flac",
+      "member_input_kind": "calibrated_production_stems",
+      "equivalent_production_stem_gains_db": {
+        "V112": 0.0,
+        "V84": 0.0,
+        "V56": 0.0
+      },
+      "title": "3 layers, calibrated solo levels"
+    },
+    {
+      "id": "V4",
+      "mode": "V",
+      "member_ids": [
+        "V112",
+        "V84",
+        "V56",
+        "V28"
+      ],
+      "member_gains_db": {
+        "V112": 0.0,
+        "V84": 0.0,
+        "V56": 0.0,
+        "V28": 0.0
+      },
+      "mix_gain_db": -5.989999999999995,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -5.989999999999995,
+        "before": {
+          "rms_dbfs": -27.82634273081577,
+          "sample_peak_dbfs": -14.450396537780762,
+          "bs1770_integrated_lufs": -34.38,
+          "true_peak_dbtp": -14.45,
+          "loudness_range_lu": 2.6,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -33.81634244544848,
+          "sample_peak_dbfs": -20.44039535522461,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -20.44,
+          "loudness_range_lu": 2.6,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_sum_max_absolute_error": 0.0,
+      "reconstruction": "sum exported float production stems, then apply mix_gain_db once",
+      "mix_wav": "stacks/V4-stack.wav",
+      "mix_flac": "stacks/V4-stack.flac",
+      "production_aac": "web/V4-stack-production.m4a",
+      "audition_aac": "web/V4-stack-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "8f14e8770ff304b3710dc2da999761cf2624fb7a13b028e9679f1dc303803f4c",
+          "pcm_sha256": "606bc779dae6bbd4a84f5d13f1a793163472c76c7ddc39d08227f9a0616c1f39",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "b52948467e361416290722cc042ae02d34281de5c01d67192790a84eb14c6196",
+          "bytes": 6131664,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -20.440391540527344,
+          "float_source_max_absolute_error": 1.189691829495132e-07
+        },
+        "production_aac": {
+          "sha256": "322aa6d145ad9a0cf230845bec1bb9fdd8b595fd25343644bf2f67c27e4bda87",
+          "bytes": 2511259,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -20.46591567993164,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "237cda13893985e76964654055dd9b909507f6d21e1cb17e8b2d3122dada0de1",
+          "bytes": 2716418,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -6.4507670402526855,
+          "float_source_max_absolute_error": null
+        }
+      },
+      "stem_wav": "stacks/V4-stack.wav",
+      "stem_flac": "stacks/V4-stack.flac",
+      "member_input_kind": "calibrated_production_stems",
+      "equivalent_production_stem_gains_db": {
+        "V112": 0.0,
+        "V84": 0.0,
+        "V56": 0.0,
+        "V28": 0.0
+      },
+      "title": "4 layers, calibrated solo levels"
+    },
+    {
+      "id": "V5",
+      "mode": "V",
+      "member_ids": [
+        "V112",
+        "V84",
+        "V56",
+        "V28",
+        "V14"
+      ],
+      "member_gains_db": {
+        "V112": 0.0,
+        "V84": 0.0,
+        "V56": 0.0,
+        "V28": 0.0,
+        "V14": 0.0
+      },
+      "mix_gain_db": -6.979999999999997,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -6.979999999999997,
+        "before": {
+          "rms_dbfs": -27.48578133403587,
+          "sample_peak_dbfs": -13.84914493560791,
+          "bs1770_integrated_lufs": -33.39,
+          "true_peak_dbtp": -13.85,
+          "loudness_range_lu": 2.3,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -34.4657811144751,
+          "sample_peak_dbfs": -20.829145431518555,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -20.83,
+          "loudness_range_lu": 2.3,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_sum_max_absolute_error": 0.0,
+      "reconstruction": "sum exported float production stems, then apply mix_gain_db once",
+      "mix_wav": "stacks/V5-stack.wav",
+      "mix_flac": "stacks/V5-stack.flac",
+      "production_aac": "web/V5-stack-production.m4a",
+      "audition_aac": "web/V5-stack-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "11d7c46932f2896229e6978fd01338e1f435645f29d0d64dede892efb6547cb2",
+          "pcm_sha256": "a2db20f145ab07180b2384071d5c4bf62aa3b68e493662cc0855349262f87836",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "b67906a568c712f2d41ee5041a81ed785c15ae088f9a94dc87718d10dc02b925",
+          "bytes": 7984593,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -20.829139709472656,
+          "float_source_max_absolute_error": 1.1897299145857687e-07
+        },
+        "production_aac": {
+          "sha256": "86e122a85b066837df8d067cca988540cf3f25fd3620f0782fdf0f1144a1c150",
+          "bytes": 2709805,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -20.842872619628906,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "57097f1f02d69d1aed4cc2503310425dfd688b6f7d78deff0ea13ce6a92f8424",
+          "bytes": 2713048,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -6.837300777435303,
+          "float_source_max_absolute_error": null
+        }
+      },
+      "stem_wav": "stacks/V5-stack.wav",
+      "stem_flac": "stacks/V5-stack.flac",
+      "member_input_kind": "calibrated_production_stems",
+      "equivalent_production_stem_gains_db": {
+        "V112": 0.0,
+        "V84": 0.0,
+        "V56": 0.0,
+        "V28": 0.0,
+        "V14": 0.0
+      },
+      "title": "5 layers, calibrated solo levels"
+    },
+    {
+      "id": "P5",
+      "mode": "P",
+      "member_ids": [
+        "P112",
+        "P84",
+        "P56",
+        "P28",
+        "P14"
+      ],
+      "member_gains_db": {
+        "P112": 0.0,
+        "P84": 0.0,
+        "P56": 0.0,
+        "P28": 0.0,
+        "P14": 0.0
+      },
+      "mix_gain_db": -7.07,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -7.07,
+        "before": {
+          "rms_dbfs": -34.49998632349831,
+          "sample_peak_dbfs": -16.198060989379883,
+          "bs1770_integrated_lufs": -33.3,
+          "true_peak_dbtp": -16.17,
+          "loudness_range_lu": 1.0,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -41.56998626931211,
+          "sample_peak_dbfs": -23.2680606842041,
+          "bs1770_integrated_lufs": -40.38,
+          "true_peak_dbtp": -23.24,
+          "loudness_range_lu": 0.9,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": -0.010000000000005116,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_sum_max_absolute_error": 0.0,
+      "reconstruction": "sum exported float production stems, then apply mix_gain_db once",
+      "mix_wav": "stacks/P5-stack.wav",
+      "mix_flac": "stacks/P5-stack.flac",
+      "production_aac": "web/P5-stack-production.m4a",
+      "audition_aac": "web/P5-stack-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "47190b5eb65fc6920c3b9c520549072a311c820df8a23ce511e0f7a6003ff722",
+          "pcm_sha256": "911db35e0a43d5899cffeef045bad70d543a1139facc580b7a54a57b44abd0e6",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "42577c53ee2b3219102544c8855d84a3743e16ce7992661d86ddfc705d956144",
+          "bytes": 19162441,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -23.268049240112305,
+          "float_source_max_absolute_error": 1.1897100193891674e-07
+        },
+        "production_aac": {
+          "sha256": "d7a9eefcf4bb8d6235e8b0b3c10f0068226ef2c3be645ba9ec7ec45648935ff8",
+          "bytes": 2715086,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -23.077280044555664,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "67d59165faafeaccfa729d2b1cfaa1305a7d3e808aac2a5fde000c376acff394",
+          "bytes": 2714783,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -9.636626243591309,
+          "float_source_max_absolute_error": null
+        }
+      },
+      "stem_wav": "stacks/P5-stack.wav",
+      "stem_flac": "stacks/P5-stack.flac",
+      "member_input_kind": "calibrated_production_stems",
+      "equivalent_production_stem_gains_db": {
+        "P112": 0.0,
+        "P84": 0.0,
+        "P56": 0.0,
+        "P28": 0.0,
+        "P14": 0.0
+      },
+      "title": "5 layers, calibrated solo levels"
+    },
+    {
+      "id": "V5R",
+      "mode": "V",
+      "title": "5 layers, original relative gain",
+      "member_ids": [
+        "V112",
+        "V84",
+        "V56",
+        "V28",
+        "V14"
+      ],
+      "member_input_kind": "raw_stems",
+      "member_gains_db": {
+        "V112": 0.0,
+        "V84": 0.0,
+        "V56": 0.0,
+        "V28": 0.0,
+        "V14": 0.0
+      },
+      "equivalent_production_stem_gains_db": {
+        "V112": 2.9399999999999977,
+        "V84": 4.229999999999997,
+        "V56": 5.369999999999997,
+        "V28": 7.75,
+        "V14": 9.809999999999999
+      },
+      "mix_gain_db": -13.719999999999999,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -13.719999999999999,
+        "before": {
+          "rms_dbfs": -22.08990682753816,
+          "sample_peak_dbfs": -8.804909706115723,
+          "bs1770_integrated_lufs": -26.65,
+          "true_peak_dbtp": -8.8,
+          "loudness_range_lu": 1.8,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -35.809906991078584,
+          "sample_peak_dbfs": -22.52490997314453,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -22.52,
+          "loudness_range_lu": 1.8,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_sum_max_absolute_error": 0.0,
+      "reconstruction": "sum raw_stem_wav files at unity, then apply mix_gain_db once",
+      "stem_wav": "stacks/V5R.wav",
+      "stem_flac": "stacks/V5R.flac",
+      "mix_wav": "stacks/V5R.wav",
+      "mix_flac": "stacks/V5R.flac",
+      "production_aac": "web/V5R-production.m4a",
+      "audition_aac": "web/V5R-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "06f83d16146e35a2ccbb215ad2da75c77f57e5257c9a6c974f2ef140e638fa7d",
+          "pcm_sha256": "b59591b43f10b2745473d5b614373b667a4d549d35652b012a068153cf2ab325",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "79880e8f16fecb0dd216e1cc081c8a4adc1fd51df20f4bd462707c5c88a6317a",
+          "bytes": 8113403,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -22.524917602539062,
+          "float_source_max_absolute_error": 1.1897373042302206e-07
+        },
+        "production_aac": {
+          "sha256": "fd70b524020d21cd610e9685937e011bb2c72416baa60b25a046a4a690407e5d",
+          "bytes": 2709805,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -22.52683448791504,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "3601ade70fba8307e11ba6bebab0b82eefea1d8b75925174c6fd1232d492936a",
+          "bytes": 2713676,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -8.526806831359863,
+          "float_source_max_absolute_error": null
+        }
+      }
+    },
+    {
+      "id": "P5R",
+      "mode": "P",
+      "title": "5 layers, original relative gain",
+      "member_ids": [
+        "P112",
+        "P84",
+        "P56",
+        "P28",
+        "P14"
+      ],
+      "member_input_kind": "raw_stems",
+      "member_gains_db": {
+        "P112": 0.0,
+        "P84": 0.0,
+        "P56": 0.0,
+        "P28": 0.0,
+        "P14": 0.0
+      },
+      "equivalent_production_stem_gains_db": {
+        "P112": 9.559999999999999,
+        "P84": 9.54,
+        "P56": 9.609999999999996,
+        "P28": 9.569999999999997,
+        "P14": 9.689999999999998
+      },
+      "mix_gain_db": -16.659999999999997,
+      "level_match": {
+        "method": "fixed BS.1770 integrated-loudness gain",
+        "gain_db": -16.659999999999997,
+        "before": {
+          "rms_dbfs": -24.904429673416306,
+          "sample_peak_dbfs": -6.6056437492370605,
+          "bs1770_integrated_lufs": -23.71,
+          "true_peak_dbtp": -6.58,
+          "loudness_range_lu": 1.0,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "after": {
+          "rms_dbfs": -41.56443000741051,
+          "sample_peak_dbfs": -23.26564598083496,
+          "bs1770_integrated_lufs": -40.37,
+          "true_peak_dbtp": -23.24,
+          "loudness_range_lu": 0.9,
+          "loudness_method": "FFmpeg loudnorm input BS.1770 measurement; no normalization filter applied to output"
+        },
+        "integrated_loudness_error_lu": 0.0,
+        "dynamic_normalization": false,
+        "limiter": false
+      },
+      "stem_sum_max_absolute_error": 0.0,
+      "reconstruction": "sum raw_stem_wav files at unity, then apply mix_gain_db once",
+      "stem_wav": "stacks/P5R.wav",
+      "stem_flac": "stacks/P5R.flac",
+      "mix_wav": "stacks/P5R.wav",
+      "mix_flac": "stacks/P5R.flac",
+      "production_aac": "web/P5R-production.m4a",
+      "audition_aac": "web/P5R-audition.m4a",
+      "audition_boost_db": 14.0,
+      "receipts": {
+        "wav": {
+          "sha256": "e4a28cba217da9d284c8fb77e279b9cc1c6b7d2dec105a76aec6ce7adf49786c",
+          "pcm_sha256": "25faa29fa036c69ab5707e54976df856bdf92210d6d1c3c46b5f88842da5effe",
+          "samples_per_channel": 5376000,
+          "duration_seconds": 112.0,
+          "full_decode_verified": true,
+          "finite": true
+        },
+        "flac": {
+          "sha256": "787f26b60225a69521435de4c1f099c9513f556fe97102385d599e55ecff8f3f",
+          "bytes": 19162815,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -23.265636444091797,
+          "float_source_max_absolute_error": 1.189752651953313e-07
+        },
+        "production_aac": {
+          "sha256": "8f41269d66d7e1b8e00b25b0131650eb8bc64c809480a7f111ba85451f814172",
+          "bytes": 2714697,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -23.076494216918945,
+          "float_source_max_absolute_error": null
+        },
+        "audition_aac": {
+          "sha256": "75cf5d43f272d9544c4ce376121ed2e13c0781f9e3d005d89f13cf9ee93b9371",
+          "bytes": 2714987,
+          "source_samples": 5376000,
+          "decoded_samples": 5376000,
+          "tail_padding_samples": 0,
+          "finite": true,
+          "full_decode_verified": true,
+          "sample_peak_dbfs": -9.564655303955078,
+          "float_source_max_absolute_error": null
+        }
+      }
+    }
+  ],
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers"
+  },
+  "interpretation": [
+    "Literal varispeed changes both duration and pitch; the longest layer moves much source energy below ordinary speech frequencies.",
+    "Spectral stretch is an additional phase-randomized comparison, not a transparent or event-preserving time stretch.",
+    "All production layers and standalone stacks receive one fixed gain toward the same integrated loudness.",
+    "Interactive recombination must sum production stems with the documented stack gain; audition files add the same declared boost.",
+    "The additional V5R and P5R controls instead sum the raw source-level layers at unity before applying one final fixed matching gain.",
+    "Layer repetition is intentional and exact. The 84-second layer repeats once and uses only the first 28 seconds of its second cycle.",
+    "Numerical checks establish file and signal properties; they do not establish naturalness or the absence of recognizable activity."
+  ]
+}

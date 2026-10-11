@@ -1,0 +1,17 @@
+{
+  "site_project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+  "site_base_commit": "8ceb7a9ff5d03acb542efc638ac5c1e3abc43b6f",
+  "github_parent_commit": "87e6bcf498059446a8d92553ff905993573e9870",
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "production_default_changed": false,
+  "listening_acceptance": "pending",
+  "browser_device_playback_verified": false,
+  "python_tests_passed": 58,
+  "site_tests_passed": 31,
+  "comparisons": 24,
+  "new_audio_renders": 18,
+  "full_context_movies": 14,
+  "lossless_downloads": 42,
+  "site_existing_audience_preserved": "public",
+  "old_html_replaced_with_native_gateway": true
+}

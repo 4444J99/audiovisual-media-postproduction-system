@@ -1,0 +1,951 @@
+{
+  "schema_version": "god-here.native-engineering-integration.v1",
+  "generated_at_utc": "2026-10-11T19:43:02.955838+00:00",
+  "scope": "Four retained native implementations combined with recovery records. This receipt precedes the shared execution adapter.",
+  "base_commit": "b8c9b3c6ac5fc428c8895b56f4dcfcf8989766f0",
+  "reviewed_local_integration_commit": "593a749a2ad8a4078f935cf6054afb6392f1499e",
+  "tested_native_code_commit": "3074a1431b72a7250826ae21a2a9318027d0379b",
+  "selected_public_heads": {
+    "PR49": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+    "PR50": "e31f8acab66f2caa8760b2d552f10af60c506ab3",
+    "PR51": "c6656685603022193617405c87b831d28f570299",
+    "PR53": "e7594031c566066a1c68edc0095c4ccb426ad586"
+  },
+  "integration_file_count": 144,
+  "files": [
+    {
+      "source_path": ".github/workflows/verify.yml",
+      "bytes": 2636,
+      "sha256": "14f90154175aa765389069fdfb4739d8e5df16929f1b5ae54ed30f1edf0c8b64",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": ".gitignore",
+      "bytes": 114,
+      "sha256": "a6b5c6268afedfc7d0751e4d6a3c0677148f451451605de122a0d780afde92a7",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "README.md",
+      "bytes": 12682,
+      "sha256": "3b1a1bf8904c4d98e70987ff03f20fce1b986f522219b5b92bc4e3037bb22328",
+      "matches_reviewed_integration": false
+    },
+    {
+      "source_path": "amp/cli.py",
+      "bytes": 4256,
+      "sha256": "794ff447696f4b5f5c2ed98d33476984b941496fa5c4443eb52d7c3fb09270b3",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "amp/core.py",
+      "bytes": 11990,
+      "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "amp/direction.py",
+      "bytes": 22405,
+      "sha256": "96f3537160b1bca111602117fb908b38fb1cfb024bef0604eeeb10f104e5b5b4",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "amp/revision.py",
+      "bytes": 15828,
+      "sha256": "00d0b8695df79dbcaf2413c05d4d4e42e33c9cbc4f8c709ccf87523306656c73",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "amp/roomaudit.py",
+      "bytes": 26499,
+      "sha256": "33e1ae59aa25afa8da948be0030196503bcd7c8270f1fbed9d9a252504ab5815",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "amp/roomrefine.py",
+      "bytes": 24579,
+      "sha256": "1049b9365db7a811b86c1f5f24e58c83c9254dd18373d06835495700baca4be7",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "amp/roomstretch.py",
+      "bytes": 29246,
+      "sha256": "3616cdf5c4bbac41cc30747a75aebbd0ae3e18467f3a556284cbf8c235a40a5a",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "amp/workstation.py",
+      "bytes": 4169,
+      "sha256": "1743e69d0fe281fd67af598d985d57cfe288545d1d2f7bcfadee5dc88ef03d2f",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/DIRECTED-REVISIONS.md",
+      "bytes": 5725,
+      "sha256": "94e3c5460a6eff2868d684b7a1a991127f42fca165c22653bae622e4cef0bf02",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/DIRECTION-PROOF.md",
+      "bytes": 8153,
+      "sha256": "047bf0aa40defd439c02f6348ec6c443cf9c7128cb446c35247125038c3385c9",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/ENGINEERING-INTEGRATION.md",
+      "bytes": 11659,
+      "sha256": "a935ba113333cd3f59579499301d7b854db42968734d6347ff8f2ed2e3aceac8",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/FX-ENGINE.md",
+      "bytes": 27013,
+      "sha256": "f2bb8c2d1d8060a7549fe9fe826353907c0aff674167b1aea4fa0f1125946306",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/FX-WORKBENCH.md",
+      "bytes": 13243,
+      "sha256": "c1ab7a08f0901a22fc093709d024c3f99ac13ff36322e3fd66d2ccecf4ceaf23",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/PRODUCTION-STATUS.md",
+      "bytes": 6538,
+      "sha256": "4216c54c0eb3f1bdfde756ac984a6455db2c218166803d7825bc95a85b9ed239",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/ROOM-REFINEMENT.md",
+      "bytes": 13450,
+      "sha256": "055d077e70d116c9dff4f4c4aa8bbe2f7895cd92fd82f7fce7145265f14b2312",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/ROOM-STRETCH.md",
+      "bytes": 20219,
+      "sha256": "b5e4c1caf7a91aacb027c3f0bc1ce0cbf64179127b0257b88f1bdea32219b26e",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/engineering-integration/combined-check-receipt.json",
+      "bytes": 1191,
+      "sha256": "02bde9d24183f758a7fc6f9d5715349bc18c59e54247a92b9ef9c6fb578eed35",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/engineering-integration/combined-check.stderr.log",
+      "bytes": 13841,
+      "sha256": "139f44e643ff47656025a72ada6f1cee7dcdb28d48d4b38a1641d064a04db270",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/engineering-integration/combined-check.stdout.log",
+      "bytes": 10870,
+      "sha256": "7f625ff9afcc0e760cfa50a8701e305d825e06a131f081d1a1d4223809e7e047",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/engineering-integration/selected-heads.json",
+      "bytes": 7120,
+      "sha256": "93d2f6e3d4b5d4fc352ec04e72a34cba83e61d5075cfe7092bdbfa32de4739e6",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/engineering-integration/verification.json",
+      "bytes": 4927,
+      "sha256": "e0f27144ad5cf3095d51d91b48106d119a9eeff925bb74d5ee8536b267cc8d0d",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/engineering-integration/wheel-build-receipt.json",
+      "bytes": 1336,
+      "sha256": "87763d3de9753e0ba027e6ced3d4681b2e8e7b1ee004f3bca806be21c009833a",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/engineering-integration/workflow-static-verification.json",
+      "bytes": 2130,
+      "sha256": "ff37635b1482bbce9ae6ede47b71a2d0f9759cdcb035236cf34aae80fc6496c5",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "docs/god-here-fx-workbench-spec.md",
+      "bytes": 18360,
+      "sha256": "4cfb613eac83d7efa1caa412d8946a5cbb38f09f1d2115d292a22151ef7b235d",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "package.json",
+      "bytes": 426,
+      "sha256": "77adc1a9ad2e6489638c706855df58d5908b15c0d7609c8c348fe7ea1b219bcf",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/direction-field-score.json",
+      "bytes": 2656,
+      "sha256": "8688ca61c24680ca413d92916e21c3e9a54bbb350b4ee093b8e83cad8db2486e",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/direction-proof.json",
+      "bytes": 1433,
+      "sha256": "95f9e00b7f70178fff51f488c0d99d925ab6caa424989780dfc698772abe7eab",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/direction-validation.json",
+      "bytes": 2409,
+      "sha256": "67e08b69c64d9a2d819000c3186553a96f9149fde6474ba63fe68bb2d08b498b",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/fx/evidence/audio-render-report.json",
+      "bytes": 97996,
+      "sha256": "fe05e70ab9d48929c08b6b8cda407898146b134ee15229ea182b37aa4133436d",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/fx/evidence/browser-report.json",
+      "bytes": 64079,
+      "sha256": "52414b9858e4586181f73105f435e36efc0ee37e313ff1c60a68d8a78251ad2a",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/fx/evidence/core-evaluator-audit.json",
+      "bytes": 609,
+      "sha256": "bcf2ee5ad07334610f3c986ad27f3684b03de5e8d14619c686a52b6c81a1ac58",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/fx/evidence/encoded-media-validation.json",
+      "bytes": 23599,
+      "sha256": "ea2eb9e5fc6a5a43f9356f8f75469bd4f98f25ce25f678deed4684087e691f56",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/fx/evidence/native-player.json",
+      "bytes": 4911,
+      "sha256": "6c68064933466e07f316e8ccd19e798d523af5cd94a3f6d1d7f90ecfae744411",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/fx/evidence/playback-recovery-fixed.json",
+      "bytes": 28260,
+      "sha256": "bbdfbd81a257ea693fc084b2d6b14ea18c554a017afda56c4328116c38a093f5",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/fx/evidence/visual-render-report.json",
+      "bytes": 14464,
+      "sha256": "4419f4f29d466b0952660afb23f8f99c32f68d8212439ebf1603f6bab0552690",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-refinement-20261011/export-validation.json",
+      "bytes": 3693,
+      "sha256": "dc3be17bf1dc124a32674bf46978e230c473740161ff8dba696235e4ba1fe599",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-refinement-20261011/listening-package-report.json",
+      "bytes": 11079,
+      "sha256": "cf0158e912c533723e35392164f40ee70b974ace98a3a045267ab1ef6eac6220",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-refinement-20261011/portion-review.json",
+      "bytes": 28509,
+      "sha256": "ef0cb99815fc8956b2f89466197a98ee35247348f40fde56572065e67236dea3",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-refinement-20261011/room-final-media-review.json",
+      "bytes": 3679,
+      "sha256": "67530f6bad5bfeba2e56fe2324924289b7f472c39d0900e2352d116f1d9b942d",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-refinement-20261011/room-html-interaction-review.json",
+      "bytes": 12089,
+      "sha256": "931df1167f7cdbe422fba5d00836af1ead63989c0c92c9de82bc566d2a63e7a2",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-refinement-20261011/room-pause-m4a-review.json",
+      "bytes": 3747,
+      "sha256": "14c737c395e23b5143fffad8b16f628d701e7f3f5db1d7396eeb2741a74e4810",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-refinement-20261011/room-refinement-report.json",
+      "bytes": 568578,
+      "sha256": "8b1c170a90b3d3346037e5e763a85a49c89b746971f291ccb07486652f64c61a",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-refinement-20261011/selection-original-pending.json",
+      "bytes": 3113,
+      "sha256": "8dbf5d27425dafd42708934a0e0efd9366752395a54aff438fbe99945da331e2",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-refinement-20261011/verification-receipt.json",
+      "bytes": 1336,
+      "sha256": "ea3d8b678da8f5cfbbd48dca58296521641208e2c906e19dc86d0edb1371d0be",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-stretch-20261011/lossless-download-verification.json",
+      "bytes": 7409,
+      "sha256": "8b0169155973f4a79db7614bd0296859ab4da9959cd81e09710eeb4359fff0ea",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-stretch-20261011/publication/package-verification.json",
+      "bytes": 2279,
+      "sha256": "638abfd023319bed586cb29d50eb0217a4e0cc2029603d8fdd7e8838925886c0",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-stretch-20261011/publication/publication-blocker.json",
+      "bytes": 2814,
+      "sha256": "1a5490edc476c1d5b07d341050f86bbee5cf7521e954aab56f53525715f8a838",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-stretch-20261011/room-stretch-report.json",
+      "bytes": 87992,
+      "sha256": "84dd4043b36d90f78ee2f5ccec595daf438fcf1514e8a763f906e8b02897843c",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-stretch-20261011/room-stretch-verification.json",
+      "bytes": 15710,
+      "sha256": "110d9b33648719f1acb60f3eb63608f826af82e52ef800e5bf224fc1fa682921",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-stretch-20261011/site-integration-verification.json",
+      "bytes": 19552,
+      "sha256": "b8580774284306738cf86a69d7de67e06bb02039bfb25e430e23be02a403af53",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-stretch-20261011/site-media-verification.json",
+      "bytes": 6415,
+      "sha256": "09a68bd1fdea4f675ec362cc17fd349917ce252c7a5c3cd81a2edb2f8db74984",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "projects/god-here/room-stretch-20261011/verification-receipt.json",
+      "bytes": 670,
+      "sha256": "6b120bad243bef850b1ea151cff8d4b29c3e1a8f55665d832654564168e183ae",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "pyproject.toml",
+      "bytes": 547,
+      "sha256": "49542c08601f0716941e4e8ec31ef5d4eaccaee3074694680219b12f49ca4128",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "requirements-direction.txt",
+      "bytes": 186,
+      "sha256": "b952aa6189f1e093cb0932055f19cb9bca55b4873731f12ea3da0b6ab4498f62",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/fx/audio-core.test.mjs",
+      "bytes": 3166,
+      "sha256": "b5077b6cb5262cd533b1858d5ff3465cf997fab0d091fec5b0aba0acbbe5b9a9",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/fx/audio.test.mjs",
+      "bytes": 21581,
+      "sha256": "badad4ead149317dae716c3b17291883dff0e0658d5cd62c1e9523be929ad2b0",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/fx/core-contract.test.mjs",
+      "bytes": 13956,
+      "sha256": "4f29998eeb07c88382716017da1fbcf55e7433024951fa78bc45007e10b60fe3",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/fx/offline-render-state.test.mjs",
+      "bytes": 5066,
+      "sha256": "806c6d4ce3a09f8c42cf432cf653509b600fca1e3616ed3aaf2982013475cc11",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/fx/preview-signature.test.mjs",
+      "bytes": 2910,
+      "sha256": "7abe567bdbbb1f83d9e2fbac7ebfb724fd3f0c4e215ec883a0c41ffa026ca11c",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/fx/review-regressions.test.mjs",
+      "bytes": 2758,
+      "sha256": "9345ce11985e9a3d180a1f5468938743d487afb2ebef4e1e6bdff9b74d622351",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/fx/runtime.mjs",
+      "bytes": 1729,
+      "sha256": "7bf2272be0356203927d8b7a922e5c15474578e0d345e32052839a50846b7428",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/fx/visual-routing.test.mjs",
+      "bytes": 3994,
+      "sha256": "936d9a6e8def8565db61536affb655fa245329eb48d282a9a3c7ce61e9d8e54d",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/fx/workbench-state.test.mjs",
+      "bytes": 11189,
+      "sha256": "ac93799cecbccec64e4df511ed7d5e918a80d5154d348ea4747fa9958cf12e2c",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/room-tone-catalog.test.mjs",
+      "bytes": 3156,
+      "sha256": "194413496d808b18bc2e2b8240a54976deae717173e6a60019b4291315e442f3",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/room-tone-page.test.mjs",
+      "bytes": 9426,
+      "sha256": "a22e17aba977121b6f0d28186ebac6645838fdc2fd19654488d71997331e67c7",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/room-tone-transport.test.mjs",
+      "bytes": 6861,
+      "sha256": "2d432281475febaf7758dd6f7335f25eddb4ed6ccb20dd60c440a0e0963093b4",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/test_direction.py",
+      "bytes": 5480,
+      "sha256": "334d3be105dc5fade21ed3b3b95c0231abb3f84fa4eaa2ef88699525e6f5c789",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/test_revision.py",
+      "bytes": 4524,
+      "sha256": "c77ec1ee145b587eedd09e9ada5177d2653cc9df0804a173ea5a3a53cd2d029d",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/test_roomaudit.py",
+      "bytes": 9165,
+      "sha256": "b8e1924fe553620d862b15cb516901444709c3065af1fd637537a528a980afe5",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/test_roompackaging.py",
+      "bytes": 5820,
+      "sha256": "510b4e43b244896717ec8ed8eafe9a4adbf96bf660d73a98e1716d3b2eceecae",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/test_roomrefine.py",
+      "bytes": 5537,
+      "sha256": "82b303a8c0845bf2357cab1b7c173a54072453d0675f0eb1235b98bb1f740930",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/test_roomsitepackaging.py",
+      "bytes": 14670,
+      "sha256": "391a4e91716dcc194fe223d824d6a0e663d664a235ce4b4fbd19f7ae9ea4faae",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tests/test_roomstretch.py",
+      "bytes": 7249,
+      "sha256": "dfe9845d62ab491c85bf44b1b1f76f6802953a00d3f278d2447dc740ed04ce80",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/audit_room_pauses.py",
+      "bytes": 1070,
+      "sha256": "e89385fc8eef9276ec10105d4f445aa1a65cfee6197805bbe9ae8603e36b031b",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/build-demo-reel.mjs",
+      "bytes": 6110,
+      "sha256": "755f5b3b0e6a5cbe8456958116b01ad27a6ef70d0c63489e9bb1df2774c8f059",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/build_directed_proof.py",
+      "bytes": 6542,
+      "sha256": "3dccd57949d1d119ac48756f38a76ef58649c382b1e99c955c1a5510718621cb",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/check-fx-playback.mjs",
+      "bytes": 13659,
+      "sha256": "37a2eea568c2d4f389c5118ecb46cba8c261a6feab9b3ed3b6ade22f769ab225",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/check.py",
+      "bytes": 696,
+      "sha256": "2ea3882612067f26933a746725fdb18e6106bc46e022a235a7bf037efed73bcf",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/check_room_tone_site.py",
+      "bytes": 7381,
+      "sha256": "af42b38a9e883c0667b175599937750e95526f5d8710b06053a94fd245147e25",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/package_room_refinement.py",
+      "bytes": 21637,
+      "sha256": "f8215446135ee134ed5b47fed3d8b1a54aad7a86321387f1a40c3ec4da415e1f",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/package_room_stretch_site.py",
+      "bytes": 21887,
+      "sha256": "2f882ff86c6e1108bafbcf42c1494b305e7b1114acd3dea441b331e48a65a9ae",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/prepare_direction_audio.py",
+      "bytes": 4025,
+      "sha256": "0689cab7d51952df4a7fff5ab3a14ff528873cc848790b4a5a04e5a9a722ae2e",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/render-factory.mjs",
+      "bytes": 4213,
+      "sha256": "61b9a1f906d06f3e3d7546cf86170415c5b8116c97cd7f7c2c8f77ca25589e2d",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/render-fx-audio.mjs",
+      "bytes": 1097,
+      "sha256": "f8d192d2942293803452b4ddbfbf6f888f33869fbcb147de6857b6b9c1a3d4f5",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/render-fx.mjs",
+      "bytes": 18485,
+      "sha256": "7d3b703d1d38f8ee389dff22c8dc07224cf68ac56d8149786fd708b61f037382",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/render-layout-comparison.mjs",
+      "bytes": 8329,
+      "sha256": "e459e02d343cb0630148487e796bfd36b1433a2202410dbde9bfa976a743d810",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/run_room_refinement.py",
+      "bytes": 1438,
+      "sha256": "c7c547a1859e301dec031b5915e3b68e065da7c1391374f52ffa4240c842f4e9",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/run_room_stretch.py",
+      "bytes": 1594,
+      "sha256": "fa1579f43071588b29667d6ff086164218ad378c48497654a5e336a3a7da513f",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "tools/validate_directed.py",
+      "bytes": 3216,
+      "sha256": "40f5dca5b9bac055f469c835741af14e0730a53de9a94acdf7c11f84a7171762",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/directed-review.html",
+      "bytes": 4344,
+      "sha256": "963a20b8d1341966532ff6bf0c1930d0d31e15407f728e719cb06c8e48301e52",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/direction-review.html",
+      "bytes": 14614,
+      "sha256": "acb5ea212b3a8ef1081b020097e0d5d6fa2c8c2f8350528cf5b061d1dac90c1a",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/app.mjs",
+      "bytes": 42349,
+      "sha256": "288a6aaf63daa61842791e47dc736e8abc92ba17bd6597f3af7d4e67d8d42726",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/audio-engine.mjs",
+      "bytes": 46902,
+      "sha256": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/audio-worker.mjs",
+      "bytes": 792,
+      "sha256": "a2e20bb494f4861fdf5c2d752ba970b4ff32ba87ee00d24d35ba490da0c18b94",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/catalog.mjs",
+      "bytes": 14108,
+      "sha256": "7f3659b58b446e9aae932b2fc9a2246524b67ec9d70f7730c37d409ab914adfd",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/core.mjs",
+      "bytes": 31251,
+      "sha256": "2127a48b62c507082ccf783937fc0ffb3222bab158d31d4768ea1d5439b9b0af",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/closed-inbox.json",
+      "bytes": 8867,
+      "sha256": "8ded58d7d8a30b1a380f0826c05bab5dcd993485439fe1b54ac6ba56d013d884",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/correction-machine.json",
+      "bytes": 7348,
+      "sha256": "0b1369ca6e18022ef47920a10f482c5a7bde1e904a4a61f94a688ad65ab1246f",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-damage.json",
+      "bytes": 5548,
+      "sha256": "58f6bcdb616f653e556f524b6d3c4ee3b15731a0489c71cc90025e8f4349bd9a",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-delay.json",
+      "bytes": 5130,
+      "sha256": "8258efc263c9c9aae9903ba3e384d8a2c98ffcf0f8a336b5eed128a78e1265aa",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-displacement.json",
+      "bytes": 5457,
+      "sha256": "6d602f360add0dd167cde7d77ad3cd1a3178f74a8c73e2afca6508f1b2c61d17",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-exchange.json",
+      "bytes": 5152,
+      "sha256": "e7d2245af3e755f32bbe16036bb04de5c2e50a396a5b4eca5361ae176d114ab0",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-feedback.json",
+      "bytes": 5309,
+      "sha256": "f08121aa75d99450fc22817bc1af27e1b9a3755019a041642a9ffbedde9e320e",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-freeze.json",
+      "bytes": 5164,
+      "sha256": "512b8da60d8b7990816a659a1d6f8efb688a857ef91cb1e779dfdec33966adb0",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-gate.json",
+      "bytes": 5178,
+      "sha256": "52b57c76becd592419d5a89608314a7d5c7d262100d2e5a1b54705287d9d1614",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-granular.json",
+      "bytes": 5423,
+      "sha256": "48ab83af8d74a0b931020818d55e6a66096179689ec202bc91a51cb870e3c068",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-queue.json",
+      "bytes": 5282,
+      "sha256": "e124940df1b67fe3e40fd0d820913dc03b9b365f8f9f909644877042dab0ea0d",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-reverse.json",
+      "bytes": 4960,
+      "sha256": "ac730df2c4b04c47fcd88f921ec6e9ea4f8efae079016ad234f7ec6497a8db89",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-routing.json",
+      "bytes": 5282,
+      "sha256": "0958af4d3b956f6ae3979d6c41116f7d26c3a53a5a5264793ef4f573617ce88b",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-stutter.json",
+      "bytes": 5155,
+      "sha256": "854a0daea97c65821467f409b9a0a6195af93ebce0e6a69dd54de9a6078b6453",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/demo-typography.json",
+      "bytes": 5272,
+      "sha256": "1409ad124ff4094578dbb9f49d38ca9010f6afc7828f3864fe9e327ac909c630",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/fractured-utterance.json",
+      "bytes": 8753,
+      "sha256": "50916fb841e7e43ac65091352541e5132112d14cf9710c7ff6aa4f39622defd4",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/index.json",
+      "bytes": 4585,
+      "sha256": "285abb3c7fb4265c093ee73fed50a8af1dbc5f30b155daba12190187e8dc6eb3",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/message-impact.json",
+      "bytes": 9779,
+      "sha256": "50f0a3c249a975c8cf84ebf3f16a0a4308c51f4bce6e623934b885fa7cb8aac4",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/out-but-still-here.json",
+      "bytes": 8031,
+      "sha256": "8ef2062bd6ba53e24d8c52c0a749032a6479b23972518173280fcd3ef49f5d02",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/patch-demo-closed-inbox.json",
+      "bytes": 10604,
+      "sha256": "e03d07f3b82bb774aac7312dc107eddd548fed62a554b3d8a68c3b14e9da7504",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/patch-demo-correction-machine.json",
+      "bytes": 9079,
+      "sha256": "7cdb4c8ad2b2049b103265db8a99402837d77eb60431fd70028b5d87a3d96c57",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/patch-demo-fractured-utterance.json",
+      "bytes": 10946,
+      "sha256": "5d7b2b7a51fb86477abbc9ff227656a94363130960396651c5a6642a8789e7df",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/patch-demo-message-impact.json",
+      "bytes": 11972,
+      "sha256": "5abf366aa8faee252e3cf3a3c6e8006839675c3636484e86e09887415415ac0a",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/patch-demo-out-but-still-here.json",
+      "bytes": 9768,
+      "sha256": "59d340ce4007acad79187f391047afcf960294e668679d3c60731cd1d8bfb71e",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/patch-demo-room-takeover.json",
+      "bytes": 12230,
+      "sha256": "36d20413ec01572b24fa2bf6db83f1ee2bf9eca094d973afbfa2fb35566986d8",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/fixtures/room-takeover.json",
+      "bytes": 10037,
+      "sha256": "79177800570b662e10a9d5060c660b2b386fc7955f8b9305c658b863ce4ed805",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/god-here.config.mjs",
+      "bytes": 1985,
+      "sha256": "b47ae61497db053321f4ea3ce48667d5a1121200aa1b75637a895d370c0158f7",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/index.html",
+      "bytes": 10399,
+      "sha256": "3f8b4f2aa566d3b58436634e7326a0d725d176c13b518bc2f0be4c36fee8bb30",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/preview-key.mjs",
+      "bytes": 1024,
+      "sha256": "6285b41c3f4af0afd5239aedc4c122279098a9c0b5b9cef4e8a63cf7d0b73979",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/rack.schema.json",
+      "bytes": 282819,
+      "sha256": "e755c140d6aca432ab5e37ae1255ae70a0f7b0dd759ea6d8f158f9bab922033a",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/schema.mjs",
+      "bytes": 4476,
+      "sha256": "87f3cde1cec47f87bcef359c110dfbf667a39dfa0bcae7e81cb637f89218c85a",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/visual-engine.mjs",
+      "bytes": 24864,
+      "sha256": "42be9510643e71595a088faa1fe0ca616297b8a45f0723f19acd2abff75f34b1",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/watch.css",
+      "bytes": 2932,
+      "sha256": "e319eb0d60db858617be89d29e994de5cdaedf701688329f70d03c74b80b0cc6",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/watch.html",
+      "bytes": 6266,
+      "sha256": "6bb11f2d590dbfa2d2c011b4e5afa6e0b2c65c28474f61b0b938cec4535b4a57",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/watch.js",
+      "bytes": 4134,
+      "sha256": "3d6fabe3ca03cf9c49f955d7c0153382672701db02b0fd6ec756670b01cc7b87",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/workbench-state.mjs",
+      "bytes": 5965,
+      "sha256": "f77e43155c3aa9db1c61a4f41a9df7369b0438b154e82a8cf20fe44d6ce15fbf",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/fx/workbench.css",
+      "bytes": 17270,
+      "sha256": "a3749d48b1dd751d4506400aad24ab4b9e07374f7830eb5a0b648fcc6fdfab95",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/index.html",
+      "bytes": 3097,
+      "sha256": "be3b6e55ad490c71e25c1d36d93ec6b7320413c7d12c07e261dda28ce79232ab",
+      "matches_reviewed_integration": false
+    },
+    {
+      "source_path": "web/room-tone/catalog.html",
+      "bytes": 20286,
+      "sha256": "7d605a01bd72d81bdde36f15803eacac119f11e2e2713477154b1e8c2190aca3",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/room-tone/catalog.mjs",
+      "bytes": 2851,
+      "sha256": "86a0b67714eae1aadfc8cb4d2339e0adf4b06fcd34bb3f330f2588415c826a16",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/room-tone/index.html",
+      "bytes": 8384,
+      "sha256": "509364357d5de9b560ef974bcab9c975ff844ebe506593ca44671a528dc4f7f2",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/room-tone/media.json",
+      "bytes": 24567,
+      "sha256": "d666b69f153bca9b2f909134c178b83618ef98ac8433426876c92aa3e11e4a7b",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/room-tone/player.js",
+      "bytes": 15537,
+      "sha256": "bba9b05b18add401104456193a58af69fd81bb6185c574b32fda6ed1b2d97a33",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/room-tone/styles.css",
+      "bytes": 9211,
+      "sha256": "e949579702b6a1ad65fe0b3f0fedc155287ac2b39ed70af43037ef0c0c5c7fc1",
+      "matches_reviewed_integration": true
+    },
+    {
+      "source_path": "web/room-tone/transport.mjs",
+      "bytes": 6540,
+      "sha256": "5f74c537be1b55951c49d8441e5abcbcc6d7e9e65f017c868f06da1402ea74fb",
+      "matches_reviewed_integration": true
+    }
+  ],
+  "checks": {
+    "python": {
+      "passed": 105,
+      "failed": 0,
+      "skipped": 0
+    },
+    "room_javascript": {
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0
+    },
+    "fx_javascript": {
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0
+    },
+    "score_transport": "passed",
+    "project_validation": {
+      "valid": true,
+      "shots": 6,
+      "cues": 20
+    },
+    "package_build": "passed"
+  },
+  "root_merge_decisions": {
+    "README.md": "Retain recovery/publication status, merge engineering/run/verification instructions, qualify repaired FX preview provenance.",
+    "web/index.html": "Retain recovery links and workprint-02 fallback; include both directed-review links and FX entry."
+  },
+  "limitations": [
+    "Current integration is assembled locally for publication; branch and CI acceptance are tracked separately.",
+    "No claim of equivalent image/sample results between native recipe formats.",
+    "External media mounting, native-application import and artistic review retain their own gates."
+  ],
+  "evidence": [
+    {
+      "path": "docs/engineering-integration/combined-check-receipt.json",
+      "bytes": 1191,
+      "sha256": "02bde9d24183f758a7fc6f9d5715349bc18c59e54247a92b9ef9c6fb578eed35"
+    },
+    {
+      "path": "docs/engineering-integration/combined-check.stderr.log",
+      "bytes": 13841,
+      "sha256": "139f44e643ff47656025a72ada6f1cee7dcdb28d48d4b38a1641d064a04db270"
+    },
+    {
+      "path": "docs/engineering-integration/combined-check.stdout.log",
+      "bytes": 10870,
+      "sha256": "7f625ff9afcc0e760cfa50a8701e305d825e06a131f081d1a1d4223809e7e047"
+    },
+    {
+      "path": "docs/engineering-integration/selected-heads.json",
+      "bytes": 7120,
+      "sha256": "93d2f6e3d4b5d4fc352ec04e72a34cba83e61d5075cfe7092bdbfa32de4739e6"
+    },
+    {
+      "path": "docs/engineering-integration/verification.json",
+      "bytes": 4927,
+      "sha256": "e0f27144ad5cf3095d51d91b48106d119a9eeff925bb74d5ee8536b267cc8d0d"
+    },
+    {
+      "path": "docs/engineering-integration/wheel-build-receipt.json",
+      "bytes": 1336,
+      "sha256": "87763d3de9753e0ba027e6ced3d4681b2e8e7b1ee004f3bca806be21c009833a"
+    },
+    {
+      "path": "docs/engineering-integration/workflow-static-verification.json",
+      "bytes": 2130,
+      "sha256": "ff37635b1482bbce9ae6ede47b71a2d0f9759cdcb035236cf34aae80fc6496c5"
+    }
+  ]
+}

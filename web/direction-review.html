@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>god-here · Direction proof</title>
+<style>
+:root{color-scheme:dark;font:16px/1.5 system-ui,sans-serif;background:#111214;color:#ebe9e3}*{box-sizing:border-box}body{margin:0}main{max-width:1120px;margin:auto;padding:20px}header{display:flex;justify-content:space-between;align-items:center;gap:20px}.eyebrow{font-size:.75rem;letter-spacing:.13em;color:#a9a69e}h1{font-size:clamp(1.45rem,4vw,2.3rem);font-weight:500;margin:5px 0 20px}h2{font-size:1.1rem;font-weight:550;margin:0 0 12px}p{margin:.6em 0}.muted{color:#aaa9a4;font-size:.87rem}.screen{background:#000;border:1px solid #353535;border-radius:4px;overflow:hidden}video{display:block;width:100%;aspect-ratio:16/9;background:#000}nav{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}button,.file{background:#25272b;border:1px solid #44464a;color:inherit;padding:11px 15px;border-radius:4px;font:inherit;cursor:pointer}button[aria-pressed=true]{background:#e4ddca;color:#18191b;border-color:#e4ddca}button:focus-visible,input:focus-visible,textarea:focus-visible,.file:focus-within{outline:3px solid #e0c47d;outline-offset:3px}.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:8px 0 24px}.layout{display:grid;grid-template-columns:1fr 1fr;gap:24px}section{border-top:1px solid #3a3a3a;padding:20px 0}textarea{display:block;width:100%;min-height:94px;border:1px solid #4b4b4b;background:#1b1c1f;color:inherit;padding:12px;font:inherit;resize:vertical}label.control{display:block;margin:18px 0}label span{display:flex;justify-content:space-between;gap:8px}input[type=range]{width:100%;margin:9px 0;accent-color:#d1c4a5}output{font-variant-numeric:tabular-nums}.actions{display:flex;flex-wrap:wrap;gap:8px}.file input{position:absolute;width:1px;height:1px;opacity:0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#1b1c1f;padding:14px;border-radius:4px;font-size:.76rem}#state{min-height:2em;border-left:3px solid #b3a580;padding-left:10px}details{margin:16px 0}summary{cursor:pointer}#clock{font-variant-numeric:tabular-nums}footer{padding:22px 0;color:#aaa;font-size:.8rem;border-top:1px solid #333}.tag{border:1px solid #555;border-radius:20px;padding:5px 10px;font-size:.75rem;white-space:nowrap}@media(max-width:650px){main{padding:14px}.layout{grid-template-columns:1fr;gap:0}header{align-items:flex-start}.tag{display:none}nav button{font-size:.82rem;padding:10px 12px}.screen{margin:0 -14px;border-left:0;border-right:0}label.control{margin:22px 0}}
+</style></head><body><main>
+<header><div><div class="eyebrow">GOD-HERE / EXECUTABLE DIRECTION STUDY</div><h1>A note becomes a revision.</h1></div><span class="tag">WORKPRINT · NOT ACCEPTED</span></header>
+<div class="screen"><video id="film" controls playsinline preload="metadata" src="E-expressive.mp4" aria-label="Selected proof version"></video></div>
+<nav aria-label="Comparison versions" id="variants"></nav>
+<div class="bar"><div><strong id="label">E · Integrated</strong><div class="muted" id="clock">Loading media…</div></div><button id="fullscreen">Full screen</button></div>
+<div class="layout"><section><h2>Direction and editable operations</h2><label for="note" class="muted">This note is descriptive. The controls below specify its implementation.</label><textarea id="note"></textarea>
+<label class="control"><span>Additional time in the selected beat <output id="paceValue"></output></span><input id="pace" type="range" min="0" max="60" step="1"></label>
+<label class="control"><span>Face framing <output id="zoomValue"></output></span><input id="zoom" type="range" min="1" max="3" step="0.05"></label>
+<label class="control"><span>Character-field intensity <output id="fieldValue"></output></span><input id="field" type="range" min="0" max="1" step="0.05"></label>
+<label class="control"><span>Typography opacity <output id="typeValue"></output></span><input id="type" type="range" min="0" max="1" step="0.05"></label>
+<p id="state" role="status">The player shows the supplied render. Exported changes require a new offline render.</p>
+<div class="actions"><button id="export">Export executable recipe</button><label class="file">Import recipe<input id="import" type="file" accept=".json,application/json"></label><button id="reset">Reset</button></div>
+<details><summary>Inspect current recipe</summary><pre id="json"></pre></details></section>
+<section><h2>What the comparison contains</h2><p><strong>A–C</strong> retain the original source timing. <strong>D–E</strong> give the selected movement 0.8 additional seconds, introduce two tracked reframings, and animate independently timed words.</p><p>Switching versions preserves the corresponding source moment rather than the same output second. Playback does not mark dialogue or audio restoration as accepted.</p><p class="muted">Close-ups are resampled from the 720p recording with restrained sharpening. 1080p delivery is not proof of recovered facial or object detail. Tracking uses manually seeded image features, not identity recognition. Text is authored graphics, not verified captions.</p>
+<h2 style="margin-top:26px">Render an exported change</h2><pre>python -m amp.direction \
+  --source /path/to/original.mp4 \
+  --audio /path/to/full-source-candidate.wav \
+  --recipe direction-export.json \
+  --fields projects/god-here/direction-field-score.json \
+  --font /path/to/installed-font.ttf \
+  --variant directed \
+  --output /path/to/new-revision.mp4</pre><p class="muted">The full-source-timed audio is required. The exported JSON is consumed directly by the renderer. Unknown fields, invented acceptance states, invalid geometry, and unsupported timing are rejected offline.</p>
+<h2 style="margin-top:26px">Review observations</h2><label for="review" class="muted">Record what changes the experience, what distracts, and where you hear or see an artifact.</label><textarea id="review" placeholder="Time / version / observation"></textarea><button id="saveReview" style="margin-top:12px">Save review notes</button><p class="muted">No file is sent to a server. Saving observations is not artistic acceptance.</p></section></div>
+<footer>One source. Explicit source/output maps. Reversible operations. The current direction panel does not import the older attention-player or Study 02 patch formats.</footer>
+<script id="initial" type="application/json">{
+  "schema_version": "amps.direction.v1",
+  "status": "workprint",
+  "note": "Trial direction: give the closing exchange more time; move attention from the cup movement to the seated face; let authored words linger, then return to the ensemble. No screenplay name or performed wording is assumed.",
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "fps": 30,
+  "source_span": [
+    2554,
+    3215
+  ],
+  "segments": [
+    {
+      "source_start": 2554,
+      "source_end": 2880,
+      "output_frames": 326
+    },
+    {
+      "source_start": 2880,
+      "source_end": 3000,
+      "output_frames": 144
+    },
+    {
+      "source_start": 3000,
+      "source_end": 3215,
+      "output_frames": 215
+    }
+  ],
+  "camera": [
+    {
+      "id": "cup-movement",
+      "source_start": 2874,
+      "source_end": 2943,
+      "seed_roi": [
+        0.788,
+        0.35,
+        0.08,
+        0.17
+      ],
+      "zoom": 1.95,
+      "ramp_frames": 18
+    },
+    {
+      "id": "seated-face",
+      "source_start": 2964,
+      "source_end": 3108,
+      "seed_roi": [
+        0.61,
+        0.37,
+        0.095,
+        0.17
+      ],
+      "zoom": 2.1,
+      "ramp_frames": 22
+    }
+  ],
+  "typography": [
+    {
+      "text": "OUT",
+      "output_start": 396,
+      "output_end": 549,
+      "position": [
+        0.32,
+        0.1
+      ],
+      "size": 0.095,
+      "opacity": 0.88,
+      "style": "spread",
+      "provenance": "authored-graphic-not-caption"
+    },
+    {
+      "text": "HOW",
+      "output_start": 540,
+      "output_end": 610,
+      "position": [
+        0.33,
+        0.16
+      ],
+      "size": 0.075,
+      "opacity": 0.82,
+      "style": "rise",
+      "provenance": "authored-graphic-not-caption"
+    },
+    {
+      "text": "WHAT",
+      "output_start": 598,
+      "output_end": 679,
+      "position": [
+        0.63,
+        0.1
+      ],
+      "size": 0.075,
+      "opacity": 0.9,
+      "style": "aperture",
+      "provenance": "authored-graphic-not-caption"
+    }
+  ],
+  "field_gain": 0.4,
+  "detail_amount": 0.18,
+  "return_gain": 0.07,
+  "output_width": 1920
+}
+</script>
+<script>
+'use strict';
+const initial=JSON.parse(document.getElementById('initial').textContent);let recipe=structuredClone(initial);
+const video=document.getElementById('film');let current='expressive', serial=0;
+const choices=[['A','reference','Source'],['B','audio','Audio candidate'],['C','fields','Five fields'],['D','directed','Directed'],['E','expressive','Integrated']];
+function segments(directed){if(!directed)return [{source_start:initial.source_span[0],source_end:initial.source_span[1],output_frames:initial.source_span[1]-initial.source_span[0]}];return initial.segments;}
+function toSource(time,variant){let n=time*initial.fps,cursor=0;for(const s of segments(['directed','expressive'].includes(variant))){if(n<cursor+s.output_frames)return s.source_start+(n-cursor)*(s.source_end-s.source_start)/s.output_frames;cursor+=s.output_frames;}return initial.source_span[1]-0.001;}
+function fromSource(source,variant){let n=0;for(const s of segments(['directed','expressive'].includes(variant))){if(source<s.source_end)return (n+(Math.max(source,s.source_start)-s.source_start)*s.output_frames/(s.source_end-s.source_start))/initial.fps;n+=s.output_frames;}return n/initial.fps;}
+function choose(key){const source=toSource(video.currentTime||0,current),playing=!video.paused;current=key;const item=choices.find(x=>x[1]===key),version=++serial;video.pause();video.src=`${item[0]}-${key}.mp4`;document.getElementById('label').textContent=`${item[0]} · ${item[2]}`;for(const b of document.querySelectorAll('#variants button'))b.setAttribute('aria-pressed',String(b.dataset.key===key));video.addEventListener('loadedmetadata',()=>{if(version!==serial)return;video.currentTime=Math.max(0,Math.min(video.duration-.01,fromSource(source,key)));if(playing)video.play().catch(()=>{});},{once:true});}
+for(const [letter,key,name]of choices){const b=document.createElement('button');b.textContent=`${letter} · ${name}`;b.dataset.key=key;b.setAttribute('aria-pressed',String(key===current));b.onclick=()=>choose(key);document.getElementById('variants').append(b);}
+video.addEventListener('timeupdate',()=>{document.getElementById('clock').textContent=`Output ${video.currentTime.toFixed(2)} s · source ${(toSource(video.currentTime,current)/initial.fps).toFixed(2)} s`;});
+video.addEventListener('error',()=>{document.getElementById('clock').textContent='Media unavailable: open this review page beside the five supplied MP4 files.';});
+document.getElementById('fullscreen').onclick=()=>{if(video.requestFullscreen)video.requestFullscreen().catch(()=>{});else if(video.webkitEnterFullscreen)video.webkitEnterFullscreen();};
+function show(){document.getElementById('note').value=recipe.note;document.getElementById('pace').value=recipe.segments[1].output_frames-(recipe.segments[1].source_end-recipe.segments[1].source_start);document.getElementById('zoom').value=recipe.camera[1].zoom;document.getElementById('field').value=recipe.field_gain;document.getElementById('type').value=recipe.typography[0].opacity;labels();}
+function labels(){document.getElementById('paceValue').value=`+${(Number(document.getElementById('pace').value)/recipe.fps).toFixed(2)} s`;document.getElementById('zoomValue').value=`${Number(document.getElementById('zoom').value).toFixed(2)}×`;document.getElementById('fieldValue').value=`${Math.round(recipe.field_gain*100)}%`;document.getElementById('typeValue').value=`${Math.round(recipe.typography[0].opacity*100)}%`;document.getElementById('json').textContent=JSON.stringify(recipe,null,2);}
+function changed(){recipe.note=document.getElementById('note').value;recipe.segments[1].output_frames=recipe.segments[1].source_end-recipe.segments[1].source_start+Number(document.getElementById('pace').value);recipe.camera[1].zoom=Number(document.getElementById('zoom').value);recipe.field_gain=Number(document.getElementById('field').value);for(const t of recipe.typography)t.opacity=Number(document.getElementById('type').value);const total=recipe.segments.reduce((a,s)=>a+s.output_frames,0);for(const t of recipe.typography)t.output_end=Math.min(t.output_end,total);labels();document.getElementById('state').textContent='Settings changed. The video is the previous render; export this recipe and render the revision.';}
+for(const id of ['note','pace','zoom','field','type'])document.getElementById(id).addEventListener('input',changed);
+function save(name,value){const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)+'\n'],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+document.getElementById('export').onclick=()=>save('direction-export.json',recipe);
+document.getElementById('reset').onclick=()=>{recipe=structuredClone(initial);show();document.getElementById('state').textContent='Initial recipe restored. No media was overwritten.';};
+document.getElementById('import').onchange=async(event)=>{try{const f=event.target.files[0];if(!f||f.size>1048576)throw Error('Missing or oversized JSON');const r=JSON.parse(await f.text());if(r.schema_version!=='amps.direction.v1'||r.status!=='workprint'||r.source_sha256!==initial.source_sha256||r.camera?.length!==2||r.segments?.length!==3||r.typography?.length!==3)throw Error('Recipe does not match this proof; offline validation is required');recipe=r;show();document.getElementById('state').textContent='Recipe imported. The displayed video has not changed; render the exported recipe offline.';}catch(e){document.getElementById('state').textContent=e.message;}};
+document.getElementById('saveReview').onclick=()=>save('direction-review-notes.json',{schema_version:'amps.review-notes.v1',source_sha256:recipe.source_sha256,variant:current,source_seconds:toSource(video.currentTime||0,current)/initial.fps,observations:document.getElementById('review').value,status:'observations-only',artistic_acceptance:'pending'});
+show();window.directionReview={getRecipe:()=>structuredClone(recipe),toSource,fromSource};
+</script></main></body></html>

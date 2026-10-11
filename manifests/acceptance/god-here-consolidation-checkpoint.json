@@ -184,6 +184,51 @@
       "skipped": 0,
       "source_fingerprints": "manifests/acceptance/god-here-expanded-archive-delivery-tests.json",
       "evidence_path": "docs/recovery/evidence/expanded-archive-focused-python-tests.log"
+    },
+    {
+      "scope": "PR51-consolidation-FX",
+      "code_commit": "c6656685603022193617405c87b831d28f570299",
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/recovery/evidence/pr51-consolidation-fx-tests.log"
+    },
+    {
+      "scope": "canonical-Site-FX-integration",
+      "code_commit": "dc04e85989c4d52ac1269949a16d19c60a680115",
+      "passed": 94,
+      "failed": 0,
+      "skipped": 0,
+      "source_fingerprints": "manifests/acceptance/god-here-workbench-fx-integration.json",
+      "evidence_path": "docs/recovery/evidence/workbench-fx-runtime-and-loading.log",
+      "qualification": "93 runtime/loading checks and one separate preserved-WAV binding check; same tested files retained in final publication."
+    },
+    {
+      "scope": "combined-native-python",
+      "code_commit": "3074a1431b72a7250826ae21a2a9318027d0379b",
+      "commit_scope": "Local native integration before shared dispatcher; exact file identities are in native_engineering_integration.",
+      "passed": 105,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/engineering-integration/combined-check.stderr.log"
+    },
+    {
+      "scope": "combined-native-room-javascript",
+      "code_commit": "3074a1431b72a7250826ae21a2a9318027d0379b",
+      "commit_scope": "Local native integration before shared dispatcher; exact file identities are in native_engineering_integration.",
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/engineering-integration/combined-check.stdout.log"
+    },
+    {
+      "scope": "combined-native-fx-javascript",
+      "code_commit": "3074a1431b72a7250826ae21a2a9318027d0379b",
+      "commit_scope": "Local native integration before shared dispatcher; exact file identities are in native_engineering_integration.",
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/engineering-integration/combined-check.stdout.log"
     }
   ],
   "canonical_site_media": {
@@ -216,15 +261,14 @@
     "current_source_path": "room-media-source/media/dialogue-reference.mp4",
     "public_url_path": "/media/dialogue-reference.mp4",
     "registration_id": "mp4-006-0909b79a4552",
-    "deployed_delivery": "not_fully_verified_at_approval_block"
+    "deployed_delivery": "full_download_verified"
   },
   "subsequent_publication_receipt": "god-here-workbench-publication.json",
   "remaining_gates": [
-    "Explicit approval of registered public media payload and completion of the 19 outstanding full-delivery receipts",
     "Unavailable historical identities",
     "Historical images lacking individual decode receipts",
-    "Retained-experiment render reproduction",
-    "PR reconciliation and shared revision/media resolver",
+    "Further retained-experiment render reproduction; baseline recipe verified",
+    "Remaining experiment bindings and mounting in the canonical review interface",
     "Native external application imports",
     "Deployed browser and physical-phone playback in both orientations",
     "User artistic acceptance"
@@ -232,19 +276,171 @@
   "post_snapshot_source_delta": "god-here-post-snapshot-source-delta.json",
   "post_snapshot_source_deltas": [
     "god-here-post-snapshot-source-delta.json",
-    "god-here-post-snapshot-source-delta-02.json"
+    "god-here-post-snapshot-source-delta-02.json",
+    "god-here-post-snapshot-source-delta-03.json",
+    "god-here-post-snapshot-source-delta-04.json"
   ],
   "current_workbench_delivery": {
-    "source_commit": "957093108309ef1e02df2cbed9b797a346000f4a",
-    "version_number": 8,
+    "source_commit": "e1632852f8b7cedd1623a36fb314589a7257dafa",
+    "version_number": 10,
     "deployment_status": "succeeded",
-    "deployed_environment_revision": 4,
-    "text_checks_passed": 12,
-    "registered_media_verified": 33,
-    "registered_media_unverified": 19,
-    "registered_media_delivery_status": "paused_for_explicit_public_media_approval",
+    "deployed_environment_revision": 6,
+    "text_checks_passed": 22,
+    "registered_media_verified": 52,
+    "registered_media_unverified": 0,
+    "registered_media_delivery_status": "verified",
     "temporary_upload_key_removed_and_applied": true,
     "publication_receipt": "god-here-workbench-publication.json",
     "reviewable_payload": "god-here-public-media-delivery-review.json"
+  },
+  "updated_at_utc": "2026-10-11T20:08:07.668431+00:00",
+  "image_validation_supplement": {
+    "path": "manifests/acceptance/god-here-image-validation-supplement.json",
+    "bytes": 566706,
+    "sha256": "dcc9a1ff22a197d9b62f91cba899c2d7c1064d0993e68a8bed9b017a553eaa3a"
+  },
+  "current_image_validation": {
+    "passed": 813,
+    "failed": 0,
+    "checksum_only": 540,
+    "qualification": "696 new decode passes supplement the frozen 117; no artistic acceptance."
+  },
+  "fx_review_repairs": {
+    "path": "manifests/acceptance/god-here-fx-review-repairs.json",
+    "bytes": 6524,
+    "sha256": "d4045b2e7daf385a318d0fa135252aec39ee379af1e3c443031275719744d820"
+  },
+  "baseline_reproduction": {
+    "path": "manifests/acceptance/god-here-baseline-reproduction.json",
+    "sha256": "3b6211279610e75ada8fbb94b2328f727629d9de17dfa538af685b7358527789",
+    "bytes": 34297
+  },
+  "exact_gap_recheck": {
+    "path": "manifests/acceptance/god-here-exact-gap-recheck.json",
+    "bytes": 4443,
+    "sha256": "602aff16f8ddcef0dca4fe54b553244157d68a159ce5bea077b9dc67ed426734"
+  },
+  "workbench_fx_integration": {
+    "path": "manifests/acceptance/god-here-workbench-fx-integration.json",
+    "sha256": "fd6c25f4ef19482871642cd06842ff1df49a63c57ec0adf59439f89fb79228ad",
+    "bytes": 9381
+  },
+  "checkpoint_negative_probes": {
+    "path": "manifests/acceptance/god-here-checkpoint-negative-probes.json",
+    "sha256": "0336398cc71814b2fcecd55d71bd63b2c12e9210d4844258d28edee0ca2b574f",
+    "bytes": 102907
+  },
+  "native_engineering_integration": {
+    "path": "manifests/acceptance/god-here-native-engineering-integration.json",
+    "bytes": 35015,
+    "sha256": "5fc4dc608264ab1d97f327b1bd36cc26eea5081ce413b667be23ec78785a6dab"
+  },
+  "reproduction_availability": {
+    "path": "manifests/artifacts/god-here-reproduction-availability.json",
+    "bytes": 49752,
+    "sha256": "d7665c3bd4185ab1858aceb549823eca23d82ba44b653b4b1e13a1a949fba28e"
+  },
+  "current_available_objects": {
+    "frozen_catalog_unique_objects": 3151,
+    "frozen_catalog_file_occurrences": 4609,
+    "reproduced_output_file_occurrences": 76,
+    "reproduced_unique_output_hashes": 76,
+    "reproduced_media_file_occurrences": 67,
+    "reproduced_output_file_bytes": 767651153,
+    "reproduced_identities_already_in_frozen_catalog": 52,
+    "supplemental_new_unique_outputs": 24,
+    "supplemental_new_output_bytes": 622158294,
+    "supplemental_new_outputs_by_type": {
+      "audio": 20,
+      "metadata": 2,
+      "video": 2
+    },
+    "supplemental_new_audio_video_decode_passes": 22,
+    "frozen_plus_this_reproduction_unique_objects": 3175,
+    "frozen_unmatched_expected_hashes": 194,
+    "previously_unmatched_hashes_now_reproduced": 5,
+    "remaining_unmatched_expected_hashes": 189,
+    "expectation_records_with_availability_updates": 7,
+    "historical_originals_retrieved_by_this_operation": 0,
+    "new_output_playback_links": 0,
+    "artistic_acceptance_added": 0
+  },
+  "repository_workbench_fx_alignment": {
+    "path": "manifests/acceptance/god-here-repository-workbench-fx-alignment.json",
+    "bytes": 3127,
+    "sha256": "64957b7f271dc037cc7a8e8a292164636b6a8aac6a9382d1354c534f2414a9bf"
+  },
+  "reproduction_availability_review": {
+    "path": "manifests/acceptance/god-here-reproduction-availability-review.json",
+    "bytes": 3229,
+    "sha256": "cf23eed041eca64d2891794bc70251df4401d570a0a696ae9fce8acab65ded5d"
+  },
+  "direction_exact_input_recovery": {
+    "path": "manifests/acceptance/god-here-direction-exact-input-recovery.json",
+    "bytes": 7380,
+    "sha256": "dd9ad2cd19307b4088b7db55f3ac6a1560d52c258cd414759b3bc568b567844b"
+  },
+  "shared_execution_review": {
+    "path": "manifests/acceptance/god-here-execution-independent-review.json",
+    "bytes": 8968,
+    "sha256": "014eb5ae5ec5bd9e1b1b2b5ad7bd21296c5763e3481e14e2d7fe62627162706a"
+  },
+  "shared_execution_contract": {
+    "entry_point": "python -m amp.cli execute",
+    "documentation": "docs/architecture/shared-execution-contract.md",
+    "reviewed_local_source_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+    "native_adapter_families": 4,
+    "concrete_bindings": 5,
+    "focused_tests_passed": 41,
+    "focused_test_evidence": {
+      "path": "docs/recovery/evidence/execution-contract-tests.log",
+      "bytes": 6202,
+      "sha256": "e07834585ded8173f7614a5de253cc4b75fda30df756cd22ccf96ff3edbb5616"
+    },
+    "render_execution_evidence_status": "Retained executions in progress; no completion inferred from preflight or tests.",
+    "artistic_acceptance": "pending"
+  },
+  "consolidated_execution_checks": {
+    "status": "passed",
+    "scope": "Local combined source before subsequent retained-room verification correction, identified by 207 exact file hashes.",
+    "python_tests": 146,
+    "room_javascript_tests": 25,
+    "fx_javascript_tests": 97,
+    "enumerated_tests": 268,
+    "failures": 0,
+    "skipped": 0,
+    "wheel_modules": 19,
+    "evidence": [
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-check.json",
+        "bytes": 38706,
+        "sha256": "28366433527b725426a9ea36458d2c84eb4fbe2f0c2fe1ad18c1f493e3ef93fc"
+      },
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-check.stdout.log",
+        "bytes": 11688,
+        "sha256": "e8dd5990758ae9e1e6dca518cad5023cb6a66565b706b817f973a7f7d6cfe319"
+      },
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-check.stderr.log",
+        "bytes": 19944,
+        "sha256": "1cb8fede2a4dd8272c49573169ce95828017b6019e604ecb5f2a11ae462efc68"
+      },
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-wheel.json",
+        "bytes": 7589,
+        "sha256": "37959612b4b929598852055b00df79022da66eb5cd18884a268952c54a433e01"
+      },
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-wheel.stdout.log",
+        "bytes": 954,
+        "sha256": "dcf57f71f4e6456bc8b6fed38b83d8b2277235e77dcdae4983e8c6b285e3068e"
+      },
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-wheel.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
   }
 }

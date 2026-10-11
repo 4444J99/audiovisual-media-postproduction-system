@@ -2,9 +2,29 @@
 
 A directable audiovisual postproduction system that translates creative notes into reproducible edits: audio restoration and design, dialogue and performance revision, animated typography, tracked reframing, detail reconstruction, compositing, and new editions from existing media.
 
-## First implemented project: god-here
+## Consolidation checkpoint · 11 October 2026
 
 **Current priority: consolidate and verify the existing project before further creative production.** Start with the [cross-session recovery register](docs/recovery/god-here-cross-session-register-2026-10-11.md), [content-addressed artifact catalog](manifests/artifacts/god-here-recovery-catalog.json), [historical identity expectations](manifests/artifacts/god-here-recovery-expectations.json), and [integration map](docs/architecture/god-here-consolidation-map.md). Preservation, successful decoding, reproducible rendering, publication and artistic acceptance have separate evidence. Historical recovery is not complete.
+
+The [engineering integration record](docs/ENGINEERING-INTEGRATION.md) identifies the retained directed-recipe, directed-revision, repaired FX, and room-study heads combined in this tree. The existing `amp` entry point and each native recipe format remain available. Source identity is shared; each renderer's timing and image-processing semantics stay explicit. The [shared execution contract](docs/architecture/shared-execution-contract.md) adds `amp execute`, with five exact-input bindings across the four retained native families. It verifies content hashes, records native clocks and producing code, and checks complete output sets without translating the original recipes.
+
+The [canonical publication receipt](https://github.com/4444J99/audiovisual-media-postproduction-system/blob/inventory/god-here-project-reconciliation-20261011/manifests/acceptance/god-here-workbench-publication.json) records the workbench deployment and media-delivery status. Repository integration, a saved deployment, complete media decoding, and artistic acceptance are separate gates.
+
+## Audiovisual FX workbench
+
+[Open the FX workbench](https://god-here-five-realities.ajpadavano.chatgpt.site/fx/).
+
+[Play the demonstrations](https://god-here-five-realities.ajpadavano.chatgpt.site/fx/watch) uses a lightweight native video player with embedded sound, six patches and all thirteen module demonstrations. It selects portrait or landscape media for the device and links each selection to its editable rack.
+
+The retained `web/fx/` application implements thirteen processors with extreme presets, six saved artwork patches, independent typed connections, clip and track inserts, serial and parallel paths, sends, returns, sidechains, and replayable parameter changes. Each processor has bypass, solo, wet/dry, target selection, automation and an editable Intensity macro. Intensity does not secretly blend the dry recording into fully wet sound.
+
+The working passage is source **95.000–107.167 seconds**. Voice processing uses the shared stereo dialogue candidate. Picture processing uses random-access source frames, five moving appearance-labelled workprint mattes, authored object rectangles and a qualified hybrid room fill. Original audio and the dialogue candidate remain separately selectable.
+
+Select a processor, then **Demonstrate selected**, to run bypass → extreme → parameter sweep → bypass in full screen. The six patches also have **Demonstrate patch**. Cached picture playback requires a complete manifest and exact matching patch and producing-engine hashes. The repaired runtime renders live when those requirements are not met. Earlier demonstrations retain their original embedded picture and sound in the separate demonstration player. Sound is computed in a worker and runs on the audio clock. Dense custom graphs can render below the 12 fps preview rate.
+
+See [the workbench guide](docs/FX-WORKBENCH.md), [the processing contract](docs/FX-ENGINE.md), and [the source specification](docs/god-here-fx-workbench-spec.md). Portable JSON fixtures and schema are in `web/fx/fixtures/` and `web/fx/rack.schema.json`. Original film and derived media stay outside the public repository.
+
+## First implemented project: god-here
 
 This repository now contains a working Python renderer and a static interactive edition for **God's Ears**. The artist's sketch becomes five independently scored regions in the existing shared room. Each performer keeps a visual identity across the two camera views. The five authored trial vocabularies are pressure, lag, refraction, residue, and erosion.
 
@@ -30,17 +50,33 @@ amp generate --source outputs/god-here-linear-workprint-01.mp4 \
 
 For the trained sound/mask pass, install `python -m pip install -e '.[learned]'` and follow [the sound-pass recipe](docs/SOUND-PASS-02.md). Model weights are external, revision-pinned and checksum-checked; no GPU or new model training is required.
 
+For the report that the room bed sounds like activity, use the opt-in [room-tone refinement comparisons](docs/ROOM-REFINEMENT.md). This pass recovers the earlier rack, tests shared band timing and effect bypass, and renders sustained and stationary source-shaped textures. It includes cued source-pause reviews and matched listening comparisons; the existing production default remains available pending listening selection.
+
+The [stretch-and-stack experiment](docs/ROOM-STRETCH.md) expands the same 4.42-second source reel to 112, 84, 56, 28, and 14 seconds, repeats each to fill the film, and renders progressive and original-relative-gain stacks. The [hosted room-tone workbench](https://god-here-five-realities.ajpadavano.chatgpt.site/room-tone/) provides native playback, full-film context comparisons, source review, and lossless downloads.
+
 Pass `--start` and `--end` for excerpts, `--layers` for the manual fine-layer variant, and `--mode soft` or `--mode spill` for authored boundary extensions. Hard boundaries are the baseline. The final source-length picture uses 3,360 frames at 30 fps. The pilot uses source frames 2,554–3,214 inclusive, 661 frames.
 
 `tools/finish_production.py` is the **god-here production recipe**, with its explicit 112-second baseline. `amp` holds reusable processing primitives; project-specific intervals, masks, styles, and scores live in `projects/god-here`. Original media are external inputs, not committed public assets. Source identities are recorded by SHA-256.
 
-## Browser edition
+## Directed revision extension
+
+Two retained implementations provide distinct authored alternatives. The [direction proof](docs/DIRECTION-PROOF.md) uses `python -m amp.direction`, the `amps.direction.v1` recipe, source-frame camera paths, and independently timed output-frame typography. The [directed revisions](docs/DIRECTED-REVISIONS.md) use `amp revision`, source-time typography and attention replay, and an editable REAPER/Fusion handoff. Their recipes are not interchangeable; the integration record explains the separate clocks and dependencies.
+
+The second implementation includes three directorial alternatives and a complete 112.6-second candidate. Both retain their original review pages and external media requirements; their presence in this repository does not establish deployment of those pages or artistic selection.
+
+```sh
+python tools/build_directed_proof.py /path/to/source.mp4 outputs/directed
+python -m amp.cli replay --source /path/to/source.mp4 --audio outputs/audio/candidate-B.wav \
+  --session god-here-attention-score.json --output outputs/attention-film.mp4
+```
+
+## Hosted browser edition
 
 [Open the god-here workbench](https://god-here-five-realities.ajpadavano.chatgpt.site) · [Recovery register](https://god-here-five-realities.ajpadavano.chatgpt.site/recovery/).
 
 The canonical Site was public when its access configuration was inspected on 2026-10-11. Private originals and performer references retain separate owner custody; the public repository holds their non-sensitive identities rather than their media bytes.
 
-The consolidation checkpoint is published as Site version 8, with 12 deployed text/redirect checks passing. Full delivery verification completed for 33 of 52 separately registered media files. Automatic approval review paused the remaining public-media operation; 19 registrations, including the exact dialogue-reference keeper, have no completed delivery receipts. Temporary upload access has been removed and that configuration deployed. See the [publication receipt](manifests/acceptance/god-here-workbench-publication.json) and [exact payload awaiting public-delivery approval](manifests/acceptance/god-here-public-media-delivery-review.json) before treating all playback dependencies as available.
+The canonical workbench is published with all 52 registered media files verified by response metadata, actual byte ranges and complete-download SHA-256. The keeper is available at its original URL, and temporary upload access has been removed. The reconciled FX runtime preserves the Site loader and the producing-code identity of earlier films. The unchanged baseline recipe has been reproduced: all 11 generated MP4s match retained hashes and all 67 generated audio/video files pass full decoding. The [publication receipt](manifests/acceptance/god-here-workbench-publication.json), [approved media payload](manifests/acceptance/god-here-public-media-delivery-review.json), and [reproduction evidence](manifests/acceptance/god-here-baseline-reproduction.json) record the exact current scope. Browser/device and artistic acceptance remain open.
 
 Copy `web/` to a static HTTP server. Supply these files under `web/media/`:
 
@@ -60,10 +96,11 @@ Saved attention scores are source-time control schedules, not video recordings o
 ## Verify
 
 ```bash
-python -m unittest discover -s tests -v
-node tests/score.test.mjs
+python tools/check.py
 ```
 
-Tests cover neutral pass-through, containment, shared-space preservation, identity remapping, fallback layouts, invalid geometry, deterministic permitted transitions, attention residue, and session validation. Production verification additionally fully decodes delivered videos, counts frames, checks loudness in the delivered audio encodes, and measures repaired waveform alignment.
+This runs project validation, all Python tests, the score/transport checks, the room-tone browser checks, and the repaired FX regression suites. Set `AMP_TEST_FONT` to an installed font file to exercise the two typography tests when their default test font is unavailable. `npm test` runs all JavaScript families. No model download is required for these checks.
+
+Tests cover neutral pass-through, containment, shared-space preservation, identity remapping, fallback layouts, invalid geometry, deterministic permitted transitions, attention residue, session validation, explicit retiming, and source-layout packaging. Production verification additionally fully decodes delivered videos, counts frames, checks loudness in the delivered audio encodes, and measures repaired waveform alignment.
 
 See [production status](docs/PRODUCTION-STATUS.md), [architecture](docs/ARCHITECTURE.md), [installation readiness](docs/INSTALLATION.md), and the 38-task acceptance backlog in `projects/god-here/backlog.json`.

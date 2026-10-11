@@ -5,3 +5,6 @@ __pycache__/
 outputs/
 web/media/
 sources/
+web/fx/assets/
+node_modules/
+.fx-render-cache/

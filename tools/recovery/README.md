@@ -96,6 +96,12 @@ production receipt verifies HEAD metadata, actual middle-range bytes, and the
 full-download SHA-256. Pass that receipt with `--room-media-receipt` when available;
 it must match the canonical origin and current registration manifest.
 
+Pass `--image-validation-supplement` with the separately committed later image
+receipt to add complete decode results for existing frozen identities. The
+builder checks catalog binding, hash/size identity, non-repetition, complete
+frame evidence and totals. The original catalog bytes and snapshot counts stay
+unchanged; the projection exposes current image validation separately.
+
 Copy the four `web/recovery/` files into the selected Site's `public/recovery/`,
 retain its root navigation and recovery directory route, and use the Site's
 existing source/build/publication workflow. Record deployment and response
@@ -105,8 +111,9 @@ the currently deployed version serves those bytes.
 ## Verify the deployed text routes
 
 `verify_deployed_text.py` performs read-only GETs against the fixed canonical
-workbench origin. It compares nine complete text responses with the selected
-checkout and checks three exact canonical redirect targets. It follows no
+workbench origin. It compares eighteen complete text responses, including the
+reconciled FX runtime and demonstration player, with the selected checkout and
+checks four exact canonical redirect targets. It follows no
 redirects, retries no requests, saves no response bodies, and caps each response
 at 3,000,000 bytes. It does not upload or verify media, exercise a browser, or
 claim artistic acceptance.
@@ -122,7 +129,21 @@ and absolute local paths. Terminal echo is disabled for the input; do not put
 credentials in shell arguments or files. The receipt records whether dispatch
 authorization was supplied without storing its value.
 
-The publication receipt, public-media review manifest and interrupted per-file
-observation record the current delivery boundary. They must not be passed off as
-a successful complete media receipt: 33 of 52 registrations have completed full
-verification, and further public delivery is paused for explicit approval.
+The completed `god-here-media-delivery-verified.json` receipt covers all 52
+registered files after explicit payload approval. The earlier interrupted
+per-file observation remains historical evidence and must not be used in place
+of that complete receipt.
+
+## Verify the committed checkpoint
+
+```sh
+python3 tools/recovery/verify_checkpoint.py
+```
+
+This standard-library check binds the frozen manifests, later evidence files,
+workbench projection, approved payload, saved Site version and deployment. It
+rejects changed evidence bytes, duplicate or incomplete media receipts, stale
+completion counts and unsupported image pass claims. It does not contact a
+storage service, read private media, decode a stream or certify artistic quality.
+The Recovery integrity GitHub workflow runs this check together with the catalog
+validator on relevant pull requests and pushes.

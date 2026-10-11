@@ -1,0 +1,181 @@
+{
+  "schema_version": "god-here.direction-exact-input-recovery.v1",
+  "recorded_at_utc": "2026-10-11T19:50:44.227490+00:00",
+  "status": "all_required_input_identities_verified",
+  "scope": "Inputs for the retained PR49 directed proof. This task did not render or artistically accept a new film.",
+  "upstream": {
+    "pull_request": 49,
+    "commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30"
+  },
+  "archive": {
+    "bytes": 34567821,
+    "sha256": "23d802f55163e8c7cf0d6cb4cc2078180d4511be8702c3010dc7489d6c2b1d2a"
+  },
+  "inputs": [
+    {
+      "role": "source",
+      "logical_path": "sources/original.mp4",
+      "bytes": 12636527,
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "origin": "supplied original; unchanged"
+    },
+    {
+      "role": "recipe",
+      "logical_path": "inputs/direction-proof.json",
+      "bytes": 2109,
+      "sha256": "612233bc79b4e28333627b868a149c90a7becb9b9302890badaab359ebb67ef9",
+      "origin": "exact archived member",
+      "container_sha256": "23d802f55163e8c7cf0d6cb4cc2078180d4511be8702c3010dc7489d6c2b1d2a",
+      "member": "god-here-direction-proof/direction-proof.json"
+    },
+    {
+      "role": "fields",
+      "logical_path": "inputs/direction-field-score.json",
+      "bytes": 4735,
+      "sha256": "04fb943ae7f7dda43cdf350c9f44553f43ba268ab20b8f52fc4d8de27a48ca77",
+      "origin": "exact archived member",
+      "container_sha256": "23d802f55163e8c7cf0d6cb4cc2078180d4511be8702c3010dc7489d6c2b1d2a",
+      "member": "god-here-direction-proof/direction-field-score.json"
+    },
+    {
+      "role": "audio",
+      "logical_path": "audio/candidate-full.wav",
+      "bytes": 43013074,
+      "sha256": "57cd5662206c247861551bad7dc9651bb07157188b70c4687203b0c913f4fd21",
+      "expected_historical_sha256": "57cd5662206c247861551bad7dc9651bb07157188b70c4687203b0c913f4fd21",
+      "origin": "exact reproduction of historical preparation input",
+      "full_decode": "passed",
+      "sample_rate": 48000,
+      "channels": 2,
+      "pcm_frames_per_channel": 5376627,
+      "codec": "pcm_f32le"
+    },
+    {
+      "role": "reference_audio",
+      "logical_path": "audio/source-full.wav",
+      "bytes": 43013074,
+      "sha256": "be0e55149b0e9b076e88659b2a16a309c536283355765ec77ed344eebe201aa7",
+      "expected_historical_sha256": "be0e55149b0e9b076e88659b2a16a309c536283355765ec77ed344eebe201aa7",
+      "origin": "exact reproduction of historical preparation input",
+      "full_decode": "passed",
+      "sample_rate": 48000,
+      "channels": 2,
+      "pcm_frames_per_channel": 5376627,
+      "codec": "pcm_f32le"
+    },
+    {
+      "role": "font",
+      "logical_path": "font/DejaVuSansCondensed-Bold.ttf",
+      "bytes": 667844,
+      "sha256": "21f02ebcea75529d3ed9d26e089cd1b9c59a4b784119ba3a96e9bc83cf755ec7",
+      "origin": "official distribution package; exact historical font identity",
+      "source_url": "https://deb.debian.org/debian/pool/main/f/fonts-dejavu/fonts-dejavu-extra_2.37-8_all.deb",
+      "package": {
+        "bytes": 1792460,
+        "sha256": "83128d00e5d7db412fe5a7a4e2ee32aebbf8d9ed560ad611202fb43078f80323"
+      },
+      "member": "./usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf"
+    }
+  ],
+  "original_semantic_hashes": {
+    "recipe_semantic_sha256": "7ffe3404d4cf210a6ee731205d2de44a4da17ce93f5fac0053e65525245231df",
+    "fields_semantic_sha256": "e1da8a7b912fbda4f808b12f338999fce15cda42709a2fa5db9ce30bbeee7889"
+  },
+  "historical_render_runtime": {
+    "tools": {
+      "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    "dependency_versions": {
+      "python": "3.13.5",
+      "opencv": "4.13.0",
+      "numpy": "2.3.5",
+      "Pillow": "12.3.0",
+      "scipy": "1.17.0"
+    },
+    "code": {
+      "direction_sha256": "96f3537160b1bca111602117fb908b38fb1cfb024bef0604eeeb10f104e5b5b4",
+      "core_sha256": "3c1ec96f2d14cfe36621c2a88bc4b57d93778c34fb885aa41b3198c3e29aeb7f"
+    }
+  },
+  "audio_preparation": {
+    "method": "Unchanged tools/prepare_direction_audio.py with original source and exact archived recipe; no new parameters",
+    "code_revision": "593a749a2ad8a4078f935cf6054afb6392f1499e",
+    "script_sha256": "0689cab7d51952df4a7fff5ab3a14ff528873cc848790b4a5a04e5a9a722ae2e",
+    "versions": {
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers"
+    },
+    "command_template": [
+      "python",
+      "tools/prepare_direction_audio.py",
+      "--source",
+      "ORIGINAL_SOURCE",
+      "--recipe",
+      "EXACT_ARCHIVED_RECIPE",
+      "--output",
+      "FRESH_AUDIO_DIRECTORY"
+    ],
+    "exit_code": 0,
+    "stderr_bytes": 0,
+    "started_at_utc": "2026-10-11T19:47:25.836791+00:00",
+    "finished_at_utc": "2026-10-11T19:47:38.092783+00:00",
+    "both_wavs_match_historical_input_sha256": true,
+    "source_unchanged": true,
+    "independent_full_decode": "passed",
+    "pcm_accounting": "RIFF data chunk bytes / block alignment agree with ffprobe duration_ts;5376627frames per channel, including source codec tail",
+    "validation_correction": "An initial checker had an unsupported hand-entered sample expectation off by7frames. That receipt is retained separately; independent RIFF accounting corrected the check. Media bytes and historical digest checks never changed."
+  },
+  "font_substitution": false,
+  "new_render_executed": false,
+  "artistic_acceptance": "pending",
+  "frozen_catalog_modified": false,
+  "durable_preservation": {
+    "status": "saved_verified_archive_in_four_ordered_volumes",
+    "archive": {
+      "file_name": "god-here-pr49-exact-input-recovery-2026-10-11.zip",
+      "bytes": 80100929,
+      "sha256": "9892b3fbfece3b93027e9306acc1eaff63591e9748e64e0d9b3b44d56c516ff8",
+      "zip_members": 17
+    },
+    "volumes": [
+      {
+        "order": 1,
+        "file_name": "god-here-pr49-exact-input-recovery-2026-10-11.zip.volume01of04",
+        "offset": 0,
+        "bytes": 25000000,
+        "sha256": "1d365eccd0757f81144c2aa881661a78851d7b43d16be53c06e17fdffd840881"
+      },
+      {
+        "order": 2,
+        "file_name": "god-here-pr49-exact-input-recovery-2026-10-11.zip.volume02of04",
+        "offset": 25000000,
+        "bytes": 25000000,
+        "sha256": "7be68c70b3ec9ebca0c20a77ca92a717c8a51ab0d7d2059b5b1549078c17c38b"
+      },
+      {
+        "order": 3,
+        "file_name": "god-here-pr49-exact-input-recovery-2026-10-11.zip.volume03of04",
+        "offset": 50000000,
+        "bytes": 25000000,
+        "sha256": "0d18867e886cde4587a88c2f16d64ec2fdb3e07404f3d97b71202f938bca1d81"
+      },
+      {
+        "order": 4,
+        "file_name": "god-here-pr49-exact-input-recovery-2026-10-11.zip.volume04of04",
+        "offset": 75000000,
+        "bytes": 5100929,
+        "sha256": "8d92adcdd6b07da072ee1c8947bddbb98c80326b7480113037338268f191e5c0"
+      }
+    ],
+    "restore_manifest": {
+      "file_name": "god-here-pr49-exact-input-recovery-2026-10-11-volumes.json",
+      "bytes": 1743,
+      "sha256": "05b6eab5e2036903e4dab819c0b07c4170b67cf7a70b10b60226fa0270b2901b"
+    },
+    "provider_locators": "retained in private custody receipt",
+    "contents_crc_and_sha256": "all17ZIPmembers passed",
+    "publication": "private preservation only"
+  }
+}

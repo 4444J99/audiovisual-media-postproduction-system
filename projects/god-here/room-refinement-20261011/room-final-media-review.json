@@ -1,0 +1,190 @@
+{
+  "quick": {
+    "file": "god-here-room-tone-quick-comparison.mp4",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "start_time": "0.000000",
+          "duration": "60.000000",
+          "nb_frames": "1800"
+        },
+        {
+          "codec_type": "audio",
+          "start_time": "0.000000",
+          "duration": "60.000000",
+          "nb_frames": "2814"
+        }
+      ],
+      "format": {
+        "start_time": "0.000000",
+        "duration": "60.000000"
+      }
+    },
+    "full_decode_passed": true,
+    "decoded_audio_samples_including_final_AAC_padding": 2880512,
+    "expected_presented_samples": 2880000,
+    "alignment": [
+      {
+        "candidate": "A",
+        "checked_excerpt_times_seconds": [
+          1,
+          6.0,
+          11
+        ],
+        "alignment_offset_samples": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "candidate": "B",
+        "checked_excerpt_times_seconds": [
+          1,
+          6.0,
+          11
+        ],
+        "alignment_offset_samples": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "candidate": "C",
+        "checked_excerpt_times_seconds": [
+          1,
+          6.0,
+          11
+        ],
+        "alignment_offset_samples": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "candidate": "D",
+        "checked_excerpt_times_seconds": [
+          1,
+          6.0,
+          11
+        ],
+        "alignment_offset_samples": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "candidate": "E",
+        "checked_excerpt_times_seconds": [
+          1,
+          6.0,
+          11
+        ],
+        "alignment_offset_samples": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "dialogue": {
+    "file": "god-here-room-tone-dialogue-comparison.mp4",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "start_time": "0.000000",
+          "duration": "150.000000",
+          "nb_frames": "4500"
+        },
+        {
+          "codec_type": "audio",
+          "start_time": "0.000000",
+          "duration": "150.000000",
+          "nb_frames": "7033"
+        }
+      ],
+      "format": {
+        "start_time": "0.000000",
+        "duration": "150.000000"
+      }
+    },
+    "full_decode_passed": true,
+    "decoded_audio_samples_including_final_AAC_padding": 7200768,
+    "expected_presented_samples": 7200000,
+    "alignment": [
+      {
+        "candidate": "A",
+        "checked_excerpt_times_seconds": [
+          1,
+          15.0,
+          29
+        ],
+        "alignment_offset_samples": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "candidate": "B",
+        "checked_excerpt_times_seconds": [
+          1,
+          15.0,
+          29
+        ],
+        "alignment_offset_samples": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "candidate": "C",
+        "checked_excerpt_times_seconds": [
+          1,
+          15.0,
+          29
+        ],
+        "alignment_offset_samples": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "candidate": "D",
+        "checked_excerpt_times_seconds": [
+          1,
+          15.0,
+          29
+        ],
+        "alignment_offset_samples": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "candidate": "E",
+        "checked_excerpt_times_seconds": [
+          1,
+          15.0,
+          29
+        ],
+        "alignment_offset_samples": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  }
+}

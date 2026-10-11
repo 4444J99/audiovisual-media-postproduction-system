@@ -1,0 +1,62 @@
+{
+  "schema_version": "god-here.exact-gap-recheck-supplement.v1",
+  "generated_at_utc": "2026-10-11T19:18:52.319998+00:00",
+  "scope": "Bounded recheck of four precise named gaps, with twelve original TXT statuses carried forward only; no broad rediscovery and no frozen-catalog recompilation.",
+  "frozen_catalog_sha256": "8843bba3e9b0d5937fe5fb93e02233fe8be69aa5f072349ad896011999ccb1e3",
+  "frozen_catalog_counts_unchanged": {
+    "unique_objects": 3151,
+    "file_occurrences": 4609
+  },
+  "native_capability_checked_at_utc": "2026-10-11T19:02:53.596Z",
+  "healthy_native_sessions": 0,
+  "newly_recovered_expected_target_count": 0,
+  "targets": [
+    {
+      "logical_name": "historical-download-receipts-current.json",
+      "expected_sha256": "2862b482da574991a10875283aa5a8ae114b0deb685cba3f4d40a11833801b56",
+      "expected_bytes": null,
+      "status": "exact_identity_unavailable_current_native_custody",
+      "finding": "Current exact-title Library search returned no exact result. The current Page still reports private native custody and provides the expected hash, but no remotely readable current raw register. The native capability snapshot has no healthy session. The related continuation archive preserves a different earlier register.",
+      "new_expected_bytes_recovered": false,
+      "exact_title_search_performed": true
+    },
+    {
+      "logical_name": "ghere-003-audioscrape.zip",
+      "expected_sha256": null,
+      "expected_bytes": 35750,
+      "status": "page_metadata_present_binary_access_unavailable",
+      "finding": "The current Page exposes the same archive reference and metadata. Exact-title Library search returned no exact result. The available Page reference reader does not support arbitrary archive bytes; no unsupported binary read was retried and no opaque identifier was converted into an invented file identifier.",
+      "new_expected_bytes_recovered": false,
+      "exact_title_search_performed": true
+    },
+    {
+      "logical_name": "god-here-iteration-brief.md",
+      "expected_sha256": "ebb2f369d4f812ff7ba914261dedfbb9d58d09890f4d8cd335ebd42aa2f247ee",
+      "expected_bytes": 45387,
+      "status": "exact_historical_variant_unavailable_later_candidate_distinct",
+      "finding": "The current same-name Library result is the previously cataloged version 3 with 48,301 bytes, not the expected 45,387-byte variant. Four current source-report Pages provide historical chat or sandbox references without newly readable original bytes. No read-only version-list capability is exposed; no version was guessed or restored.",
+      "new_expected_bytes_recovered": false,
+      "exact_title_search_performed": true
+    },
+    {
+      "logical_name": "god-here-horizontal-stacked-layouts-package.zip",
+      "expected_sha256": "3e03018ac987857016111f987e6e611e14ab7ae65c746cf81608c32b2fc5f4e5",
+      "expected_bytes": 2277888,
+      "status": "exact_historical_variant_unavailable_later_candidate_distinct",
+      "finding": "The current same-name Library result remains the previously cataloged 35,314,804-byte later package, not the expected 2,277,888-byte variant. The current source-report Page offers the historical source-chat reference without newly readable original bytes.",
+      "new_expected_bytes_recovered": false,
+      "exact_title_search_performed": true
+    }
+  ],
+  "original_txt_exports_carried_forward_missing": 12,
+  "original_txt_exports_fresh_individual_search_performed": false,
+  "original_txt_access_basis": "No new relevant access route was exposed by the bounded current project listing or native capability check; the twelve exact historical TXT expectations remain unchanged.",
+  "related_evidence_archives_newly_materialized": 1,
+  "related_evidence_qualification": "The continuation evidence preserves an earlier register and reports the current-register gap. It is separate cross-project evidence and adds no recovered target or frozen God-here object count.",
+  "limitations": [
+    "Search misses show no accessible exact result in the bounded checked surfaces; they do not establish that an artifact never existed.",
+    "A same-name later candidate is not evidence of the missing exact historical byte identity.",
+    "No native session registration, work submission, access-control changes, Page edits, sharing, third-party messages, or media generation were performed.",
+    "Technical image decoding does not establish artistic acceptance."
+  ]
+}

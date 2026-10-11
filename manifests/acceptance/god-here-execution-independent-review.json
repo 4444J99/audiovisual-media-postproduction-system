@@ -1,0 +1,225 @@
+{
+  "schema_version": "god-here.execution-independent-review.v1",
+  "reviewed_at_utc": "2026-10-11T19:59:30.014012+00:00",
+  "status": "no_unresolved_blocking_findings_in_reviewed_commit",
+  "commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+  "parent": "593a749a2ad8a4078f935cf6054afb6392f1499e",
+  "changed_files": [
+    {
+      "path": "amp/cli.py",
+      "bytes": 6354,
+      "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1"
+    },
+    {
+      "path": "amp/execution.py",
+      "bytes": 43265,
+      "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661"
+    },
+    {
+      "path": "amp/media_resolver.py",
+      "bytes": 7223,
+      "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c"
+    },
+    {
+      "path": "docs/ENGINEERING-INTEGRATION.md",
+      "bytes": 11877,
+      "sha256": "ef363dad10802c0cadb70f51cd9212031ef013dafbdb954fdb3e3f052fe1799b"
+    },
+    {
+      "path": "docs/architecture/shared-execution-contract.md",
+      "bytes": 10675,
+      "sha256": "362b82cd3fbd474e7c76cec13a0ad9bc27d3f51203b783d66a452ec6b993b7dd"
+    },
+    {
+      "path": "projects/god-here/executions/directed-integrated-excerpt.json",
+      "bytes": 1289,
+      "sha256": "d8efc58a920352be60e47d590a652c4d517075035d2e67f105b5bd73ddd5bbc6"
+    },
+    {
+      "path": "projects/god-here/executions/direction-proof-directed.json",
+      "bytes": 1106,
+      "sha256": "6ed3555cbe1b39410fa52329707d9f649261040d59165e591dc0da5a8037d302"
+    },
+    {
+      "path": "projects/god-here/executions/direction-proof-reference.json",
+      "bytes": 854,
+      "sha256": "81b4e42779db6ffcaf8aec98f74c40a94104fdfa01d6182fbc07b8532181de72"
+    },
+    {
+      "path": "projects/god-here/executions/fx-demo-delay.json",
+      "bytes": 998,
+      "sha256": "6d28498399a023459ca668d6d31b9ed88480cd67195739e2c66aeca0da5cbc1e"
+    },
+    {
+      "path": "projects/god-here/executions/room-stretch-full.json",
+      "bytes": 979,
+      "sha256": "f763af6c93da53f6be80d74f3d5158e506adc48ba3796d54e73e74457005b404"
+    },
+    {
+      "path": "tests/test_execution.py",
+      "bytes": 28188,
+      "sha256": "8a4a395e992af677b1a1eaead408d1dc3d13e596d4ccf1fa3b7d167bfa9c6a94"
+    },
+    {
+      "path": "tools/validate-execution-fx.mjs",
+      "bytes": 4279,
+      "sha256": "813dc0b74b0555afb9b1b403732799379fa490c7e174d9db703f8291ec910571"
+    }
+  ],
+  "working_tree_porcelain_at_review": "",
+  "native_renderer_change_check": "No retained renderer or native recipe implementation file changed in this commit. The shared dispatcher invokes existing native entry points.",
+  "review_scope": [
+    "resolver schemas, hashes/sizes, local path confinement, inventory reuse and explicit missing/ambiguous inputs",
+    "all four native clock mappings and fixed dispatch adapters",
+    "native result provenance, expected output sets, presentation clocks, full decoding and sample accounting",
+    "owner-original preservation, staged-copy checks, output freshness, failure receipts and private log handling",
+    "CLI option scoping, safe public errors and generic CI discovery of new tests",
+    "concrete original PR49 input bindings including exact restored font and exact reproduced full-source WAVs"
+  ],
+  "findings": [
+    {
+      "id": "decode-error-exit-zero",
+      "problem": "An error-level decoder diagnostic could be ignored when FFmpeg returned0.",
+      "resolution": "Both picture and audio full-decode gates require zero exit and empty error stderr; audio additionally verifies finite values, actual decoded sample count, channel count and rate.",
+      "status": "resolved"
+    },
+    {
+      "id": "native-deliverable-completeness",
+      "problem": "An unrelated decodable file could satisfy generic completion; room clocks and complete output set were not enforced.",
+      "resolution": "Expected native report and deliverable sets are required, room output set is derived from the retained report, and source-reel/full-source samples are checked separately.",
+      "status": "resolved"
+    },
+    {
+      "id": "required-picture-stream",
+      "problem": "An audio-only main MP4 could bypass picture checks.",
+      "resolution": "The required main movie must have video before frame count, dimensions, rate and full-decode checks.",
+      "status": "resolved"
+    },
+    {
+      "id": "consumed-dependency-provenance",
+      "problem": "Receipt joins and post-run checks did not cover every dependency copy actually consumed.",
+      "resolution": "Native source/audio/recipe/fields/font/composition/track/session/code hashes and time maps are checked where emitted; staged input bytes are rechecked after execution.",
+      "status": "resolved"
+    },
+    {
+      "id": "prelaunch-failure-status",
+      "problem": "A staging failure could be labeled render_executed even before process launch.",
+      "resolution": "native_started is set only after Popen succeeds and used in failure receipts; unsupported result and process errors remain explicit.",
+      "status": "resolved"
+    }
+  ],
+  "regression_evidence": {
+    "file": "execution-evidence/contract-tests-final.log",
+    "bytes": 6202,
+    "sha256": "e07834585ded8173f7614a5de253cc4b75fda30df756cd22ccf96ff3edbb5616",
+    "tests": 41,
+    "result": "passed",
+    "executed_by": "implementation agent; log independently inspected",
+    "reviewer_reran_suite": false
+  },
+  "observed_preflight_receipts": [
+    {
+      "binding_id": "direction-proof-reference",
+      "status": "preflight_passed",
+      "render_executed": false,
+      "output_clock": {
+        "frame_rate": {
+          "num": 30,
+          "den": 1
+        },
+        "frames": 661,
+        "dimensions": [
+          1920,
+          1080
+        ],
+        "audio_sample_rate": 48000,
+        "pcm_samples_per_channel": 1057600
+      },
+      "receipt_producing_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+      "scope": "Preflight evidence observed; post-commit replacement receipts are being prepared by implementer."
+    },
+    {
+      "binding_id": "direction-proof-directed",
+      "status": "preflight_passed",
+      "render_executed": false,
+      "output_clock": {
+        "frame_rate": {
+          "num": 30,
+          "den": 1
+        },
+        "frames": 685,
+        "dimensions": [
+          1920,
+          1080
+        ],
+        "audio_sample_rate": 48000,
+        "pcm_samples_per_channel": 1096000
+      },
+      "receipt_producing_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+      "scope": "Preflight evidence observed; post-commit replacement receipts are being prepared by implementer."
+    },
+    {
+      "binding_id": "directed-integrated-excerpt",
+      "status": "preflight_passed",
+      "render_executed": false,
+      "output_clock": {
+        "frame_rate": {
+          "num": 30,
+          "den": 1
+        },
+        "frames": 679,
+        "dimensions": [
+          1280,
+          720
+        ],
+        "audio_sample_rate": 48000,
+        "pcm_samples_per_channel": 1086400
+      },
+      "receipt_producing_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+      "scope": "Preflight evidence observed; post-commit replacement receipts are being prepared by implementer."
+    },
+    {
+      "binding_id": "fx-demo-delay",
+      "status": "preflight_passed",
+      "render_executed": false,
+      "output_clock": {
+        "frame_rate": {
+          "num": 12,
+          "den": 1
+        },
+        "frames": 146,
+        "dimensions": [
+          480,
+          270
+        ],
+        "audio_sample_rate": 24000,
+        "pcm_samples_per_channel": 292000
+      },
+      "receipt_producing_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+      "scope": "Preflight evidence observed; post-commit replacement receipts are being prepared by implementer."
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "status": "preflight_passed",
+      "render_executed": false,
+      "output_clock": {
+        "sample_rate": 48000,
+        "samples_per_channel": 5376000,
+        "channels": 2
+      },
+      "receipt_producing_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+      "scope": "Preflight evidence observed; post-commit replacement receipts are being prepared by implementer."
+    }
+  ],
+  "limits": [
+    "Read-only code and metadata review; no new render performed by reviewer.",
+    "Preflight and test doubles do not establish full production execution, native workstation import, device playback or artistic acceptance.",
+    "Producing code and runtime identities remain explicit; no numerical parity between native formats is claimed.",
+    "Retained execution receipts are a separate gate and will be written by the implementation agent."
+  ],
+  "exact_pr49_inputs": {
+    "public_receipt": "direction-inputs/public-direction-input-recovery.json",
+    "sha256": "dd9ad2cd19307b4088b7db55f3ac6a1560d52c258cd414759b3bc568b567844b",
+    "all_required_identities_available_privately": true
+  }
+}

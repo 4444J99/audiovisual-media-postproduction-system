@@ -1,7 +1,7 @@
 {
   "schema_version": "god-here.public-media-delivery-review.v1",
   "generated_at_utc": "2026-10-11T16:31:22.521776+00:00",
-  "status": "public_media_delivery_paused_for_explicit_user_approval",
+  "status": "explicitly_approved_and_all_registered_delivery_verified",
   "destination": "https://god-here-five-realities.ajpadavano.chatgpt.site",
   "destination_audience": "public",
   "source_commit": "957093108309ef1e02df2cbed9b797a346000f4a",
@@ -9,18 +9,17 @@
   "source_registry_sha256": "e351c99497b30bb81810ac08f0db03c7114da414f17936c4fef8f23527bd81b2",
   "registered_count": 52,
   "registered_bytes": 540442474,
-  "completed_verified_count": 33,
-  "completed_verified_bytes": 191530581,
-  "not_fully_verified_count": 19,
-  "not_fully_verified_bytes": 348911893,
-  "approval_needed": "Explicit authorization to finish delivering these registered audio/video files on the existing public workbench; the payload and audience are fixed here for review.",
-  "automatic_review_block": "Continuation of the 52-file media upload and verification operation was rejected because this specific media payload had not been explicitly authorized for the public destination.",
+  "completed_verified_count": 52,
+  "completed_verified_bytes": 540442474,
+  "not_fully_verified_count": 0,
+  "not_fully_verified_bytes": 0,
+  "approval_needed": false,
   "risk": "Audio/video files may contain performer material; public delivery makes the bytes accessible to visitors.",
-  "interpretation": "The interrupted source receipt retains status running because it has no successful operation-wide completion. Only the 33 completed per-file receipts prove delivery. Missing receipts for the other 19 are not proof of missing or corrupt source bytes, nor proof that no request reached the service before interruption.",
+  "interpretation": "The completed full receipt supersedes the earlier interrupted attempt. All 52 registrations passed HEAD metadata, actual range and complete-download byte/hash verification. The earlier interrupted observation remains unchanged as historical evidence.",
   "temporary_upload_access": {
     "environment_key_removed": true,
-    "deployed_environment_revision": 4,
-    "deployment_id": "appgdep_6acbb947db388191a45e6356b7647a77",
+    "deployed_environment_revision": 6,
+    "deployment_id": "appgdep_6acbe07b5c7c8191abac8b2ae1fd399a",
     "deployment_status": "succeeded"
   },
   "files": [
@@ -29,416 +28,636 @@
       "path": "/room-tone/downloads/previous/full-length/A-room.flac",
       "bytes": 18513507,
       "sha256": "f698436264d7d4b0131d7d55937ff14f51579e14a60ee6f41be4897eefd39bd9",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-001-f698436264d7",
+        "finished_at": "2026-10-11T19:13:18+00:00"
+      }
     },
     {
       "id": "flac-002-0f8065922227",
       "path": "/room-tone/downloads/previous/full-length/B-room.flac",
       "bytes": 18421377,
       "sha256": "0f806592222746193afd3cf832c36cc7b41c6fb5c502644a5ade6dd50782cfed",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-002-0f8065922227",
+        "finished_at": "2026-10-11T19:13:22+00:00"
+      }
     },
     {
       "id": "flac-003-8722bbe9f785",
       "path": "/room-tone/downloads/previous/full-length/C-room.flac",
       "bytes": 18563372,
       "sha256": "8722bbe9f78541c9ba7c4e725eb13a405695a0859a577ca8fdd6edeee21a5d83",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-003-8722bbe9f785",
+        "finished_at": "2026-10-11T19:13:42+00:00"
+      }
     },
     {
       "id": "flac-004-b32f6ee3eee6",
       "path": "/room-tone/downloads/previous/full-length/D-room.flac",
       "bytes": 18780912,
       "sha256": "b32f6ee3eee6028e19bd89f60cd8147ce15a263138c6b60b4bc08fb1c854dc6b",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-004-b32f6ee3eee6",
+        "finished_at": "2026-10-11T19:13:42+00:00"
+      }
     },
     {
       "id": "flac-005-3212764cbe23",
       "path": "/room-tone/downloads/previous/full-length/E-room.flac",
       "bytes": 18845332,
       "sha256": "3212764cbe233efad0609c3799eafd31962948e73e95669ad9e34d0294c5eb25",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-005-3212764cbe23",
+        "finished_at": "2026-10-11T19:14:13+00:00"
+      }
     },
     {
       "id": "flac-006-7e895a03e685",
       "path": "/room-tone/downloads/previous/full-length/dialogue-core.flac",
       "bytes": 20043223,
       "sha256": "7e895a03e68522e0aafdb1a518c9c9bdbb7f953935be62ba2db9781f0ab84bc1",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-006-7e895a03e685",
+        "finished_at": "2026-10-11T19:15:33+00:00"
+      }
     },
     {
       "id": "flac-007-2cea6f3977f9",
       "path": "/room-tone/downloads/previous/original-room-rack/high-dry-contribution.flac",
       "bytes": 17481478,
       "sha256": "2cea6f3977f9014f9f1ef5a80205c372367472093e36fa0a97f8cfc697f4026f",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-007-2cea6f3977f9",
+        "finished_at": "2026-10-11T19:12:14+00:00"
+      }
     },
     {
       "id": "flac-008-14cbd9b746c1",
       "path": "/room-tone/downloads/previous/original-room-rack/high-fx-return.flac",
       "bytes": 12551457,
       "sha256": "14cbd9b746c1ccbe23f680811794367b85561b71ef57f83723d7c97f0b38a2c1",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-008-14cbd9b746c1",
+        "finished_at": "2026-10-11T19:11:46+00:00"
+      }
     },
     {
       "id": "flac-009-6be64fe25ccf",
       "path": "/room-tone/downloads/previous/original-room-rack/low-dry-contribution.flac",
       "bytes": 3550565,
       "sha256": "6be64fe25ccfce5fddd8ff6df461423022aba95cfe73166f60a718b45dd9f7f9",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-009-6be64fe25ccf",
+        "finished_at": "2026-10-11T19:08:00+00:00"
+      }
     },
     {
       "id": "flac-010-2f7c0c782c3f",
       "path": "/room-tone/downloads/previous/original-room-rack/low-fx-return.flac",
       "bytes": 3091978,
       "sha256": "2f7c0c782c3f19f46a88ab9f4df952bf3959289b5bd3e9999ef6ff4e734c999d",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-010-2f7c0c782c3f",
+        "finished_at": "2026-10-11T19:07:45+00:00"
+      }
     },
     {
       "id": "flac-011-8e5f4c45dcbd",
       "path": "/room-tone/downloads/previous/original-room-rack/mid-dry-contribution.flac",
       "bytes": 6454897,
       "sha256": "8e5f4c45dcbdfb0422754c7f0da3d2b80514ed59d7992e8e4db183cfe0566657",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-011-8e5f4c45dcbd",
+        "finished_at": "2026-10-11T19:10:43+00:00"
+      }
     },
     {
       "id": "flac-012-da6af94a9bb8",
       "path": "/room-tone/downloads/previous/original-room-rack/mid-fx-return.flac",
       "bytes": 5115737,
       "sha256": "da6af94a9bb8ca4b699d22e9d307293fe9bae736b764d90632da4fb5c2d2a7ad",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-012-da6af94a9bb8",
+        "finished_at": "2026-10-11T19:09:30+00:00"
+      }
     },
     {
       "id": "flac-013-2cc3e3895fd0",
       "path": "/room-tone/downloads/previous/stems/B/high.flac",
       "bytes": 17593347,
       "sha256": "2cc3e3895fd023c7d31edbc518bf24c144a6dd2307eba2144b827008308b6573",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-013-2cc3e3895fd0",
+        "finished_at": "2026-10-11T19:12:29+00:00"
+      }
     },
     {
       "id": "flac-014-da5479b79138",
       "path": "/room-tone/downloads/previous/stems/B/low.flac",
       "bytes": 3614314,
       "sha256": "da5479b79138afa67f518feecf8d750ed5f3fb0236febaf8337943064f6dd703",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-014-da5479b79138",
+        "finished_at": "2026-10-11T19:08:00+00:00"
+      }
     },
     {
       "id": "flac-015-45818c1e7333",
       "path": "/room-tone/downloads/previous/stems/B/mid.flac",
       "bytes": 6476357,
       "sha256": "45818c1e7333a81aebf187b455c85a32198feca42d74262b59e5f9fbfb6951d1",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-015-45818c1e7333",
+        "finished_at": "2026-10-11T19:10:43+00:00"
+      }
     },
     {
       "id": "flac-016-9943f6bb269b",
       "path": "/room-tone/downloads/previous/stems/C/high.flac",
       "bytes": 17748917,
       "sha256": "9943f6bb269becf3a1d1da2c226e00606083468c615e24c862856e28e137c102",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-016-9943f6bb269b",
+        "finished_at": "2026-10-11T19:12:33+00:00"
+      }
     },
     {
       "id": "flac-017-e1be0547bb31",
       "path": "/room-tone/downloads/previous/stems/C/low.flac",
       "bytes": 3637495,
       "sha256": "e1be0547bb31282acdc1186955a7ad5cb77727c83f65a0a90953108ab40c2d60",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-017-e1be0547bb31",
+        "finished_at": "2026-10-11T19:08:15+00:00"
+      }
     },
     {
       "id": "flac-018-d4434a21f2ee",
       "path": "/room-tone/downloads/previous/stems/C/mid.flac",
       "bytes": 6580634,
       "sha256": "d4434a21f2ee3592ac6a04f862b4dcaa26902a64d5a1e15a2a952d2391e18f5e",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-018-d4434a21f2ee",
+        "finished_at": "2026-10-11T19:10:57+00:00"
+      }
     },
     {
       "id": "flac-019-57b184679513",
       "path": "/room-tone/downloads/previous/stems/D/high.flac",
       "bytes": 18038500,
       "sha256": "57b184679513d55e85615eedfc1647407eb48f4c014da3cdcba696195a8d424a",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-019-57b184679513",
+        "finished_at": "2026-10-11T19:12:58+00:00"
+      }
     },
     {
       "id": "flac-020-ba97a2b5ec20",
       "path": "/room-tone/downloads/previous/stems/D/low.flac",
       "bytes": 3678467,
       "sha256": "ba97a2b5ec2064fd88cbf0076044c7c1af1c4d1640949c14232ec2ce612ee44f",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-020-ba97a2b5ec20",
+        "finished_at": "2026-10-11T19:08:28+00:00"
+      }
     },
     {
       "id": "flac-021-6ad648eafe40",
       "path": "/room-tone/downloads/previous/stems/D/mid.flac",
       "bytes": 6309445,
       "sha256": "6ad648eafe4068f1868bbf72f3bc0275719ae7b14890d4fe30c6d12dd6bb311e",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-021-6ad648eafe40",
+        "finished_at": "2026-10-11T19:10:28+00:00"
+      }
     },
     {
       "id": "flac-022-f00424859be4",
       "path": "/room-tone/downloads/previous/stems/E/high.flac",
       "bytes": 18163922,
       "sha256": "f00424859be418211e47345d507b1f3a1171d26981b2a698a6b84a0419b90ba8",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-022-f00424859be4",
+        "finished_at": "2026-10-11T19:12:54+00:00"
+      }
     },
     {
       "id": "flac-023-4be2c1b37931",
       "path": "/room-tone/downloads/previous/stems/E/low.flac",
       "bytes": 3667970,
       "sha256": "4be2c1b3793134ec86a2a51aca24027e95220fe9d3de2304e8d4cd6bc1bb9006",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-023-4be2c1b37931",
+        "finished_at": "2026-10-11T19:08:19+00:00"
+      }
     },
     {
       "id": "flac-024-757388b09a66",
       "path": "/room-tone/downloads/previous/stems/E/mid.flac",
       "bytes": 6231401,
       "sha256": "757388b09a66f4d59420397897daeae2d80f49d22dfbcd7154d17245ec938317",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-024-757388b09a66",
+        "finished_at": "2026-10-11T19:10:14+00:00"
+      }
     },
     {
       "id": "flac-025-42577c53ee2b",
       "path": "/room-tone/downloads/stretched/P5.flac",
       "bytes": 19162441,
       "sha256": "42577c53ee2b3219102544c8855d84a3743e16ce7992661d86ddfc705d956144",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-025-42577c53ee2b",
+        "finished_at": "2026-10-11T19:15:12+00:00"
+      }
     },
     {
       "id": "flac-026-787f26b60225",
       "path": "/room-tone/downloads/stretched/P5R.flac",
       "bytes": 19162815,
       "sha256": "787f26b60225a69521435de4c1f099c9513f556fe97102385d599e55ecff8f3f",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-026-787f26b60225",
+        "finished_at": "2026-10-11T19:15:17+00:00"
+      }
     },
     {
       "id": "flac-027-45f30cd4f38d",
       "path": "/room-tone/downloads/stretched/PL1.flac",
       "bytes": 18919340,
       "sha256": "45f30cd4f38d03143988d663b4297491510197216efe79d58a3495cfdadf2a77",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-027-45f30cd4f38d",
+        "finished_at": "2026-10-11T19:14:27+00:00"
+      }
     },
     {
       "id": "flac-028-efbe921cebed",
       "path": "/room-tone/downloads/stretched/PL2.flac",
       "bytes": 19105629,
       "sha256": "efbe921cebed107ea62b302283fd894f7db937e32af8ea30d1a5d1ad366f0f43",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-028-efbe921cebed",
+        "finished_at": "2026-10-11T19:14:56+00:00"
+      }
     },
     {
       "id": "flac-029-8ddfbfaa7974",
       "path": "/room-tone/downloads/stretched/PL3.flac",
       "bytes": 18921741,
       "sha256": "8ddfbfaa7974669797ebf95cd82458ba41aeee353eb554f4ac91573fc330c086",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-029-8ddfbfaa7974",
+        "finished_at": "2026-10-11T19:14:33+00:00"
+      }
     },
     {
       "id": "flac-030-5ac9c5bde987",
       "path": "/room-tone/downloads/stretched/PL4.flac",
       "bytes": 18929081,
       "sha256": "5ac9c5bde9871c243e547c76e78291ebcb333f972533c0ccb6384400b133aa16",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-030-5ac9c5bde987",
+        "finished_at": "2026-10-11T19:14:52+00:00"
+      }
     },
     {
       "id": "flac-031-5dc5f8ab268c",
       "path": "/room-tone/downloads/stretched/PL5.flac",
       "bytes": 18897252,
       "sha256": "5dc5f8ab268c85107a17e168e5f8cb55dadc64befed406a4eb87fe6166720484",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-031-5dc5f8ab268c",
+        "finished_at": "2026-10-11T19:14:07+00:00"
+      }
     },
     {
       "id": "flac-032-5762c6868ca3",
       "path": "/room-tone/downloads/stretched/V1.flac",
       "bytes": 4968075,
       "sha256": "5762c6868ca32253baa0e4bb48af23c18af99c5a144494154427e2d2913b34c1",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-032-5762c6868ca3",
+        "finished_at": "2026-10-11T19:09:15+00:00"
+      }
     },
     {
       "id": "flac-033-50bd2cee80f6",
       "path": "/room-tone/downloads/stretched/V2.flac",
       "bytes": 5050223,
       "sha256": "50bd2cee80f67a20a05f6d3e4af6517222f87942f47617f219d121f82fbbf2ac",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-033-50bd2cee80f6",
+        "finished_at": "2026-10-11T19:09:30+00:00"
+      }
     },
     {
       "id": "flac-034-5f3a51c5864d",
       "path": "/room-tone/downloads/stretched/V3.flac",
       "bytes": 5359633,
       "sha256": "5f3a51c5864d85b03a9c7e596e68e9b6139dffedbf9f54dd2011539e177e4d6c",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-034-5f3a51c5864d",
+        "finished_at": "2026-10-11T19:09:43+00:00"
+      }
     },
     {
       "id": "flac-035-b52948467e36",
       "path": "/room-tone/downloads/stretched/V4.flac",
       "bytes": 6131664,
       "sha256": "b52948467e361416290722cc042ae02d34281de5c01d67192790a84eb14c6196",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-035-b52948467e36",
+        "finished_at": "2026-10-11T19:09:58+00:00"
+      }
     },
     {
       "id": "flac-036-b67906a568c7",
       "path": "/room-tone/downloads/stretched/V5.flac",
       "bytes": 7984593,
       "sha256": "b67906a568c712f2d41ee5041a81ed785c15ae088f9a94dc87718d10dc02b925",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-036-b67906a568c7",
+        "finished_at": "2026-10-11T19:11:12+00:00"
+      }
     },
     {
       "id": "flac-037-79880e8f16fe",
       "path": "/room-tone/downloads/stretched/V5R.flac",
       "bytes": 8113403,
       "sha256": "79880e8f16fecb0dd216e1cc081c8a4adc1fd51df20f4bd462707c5c88a6317a",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-037-79880e8f16fe",
+        "finished_at": "2026-10-11T19:11:11+00:00"
+      }
     },
     {
       "id": "flac-038-fa58d7f6e09f",
       "path": "/room-tone/downloads/stretched/VL1.flac",
       "bytes": 4967420,
       "sha256": "fa58d7f6e09fff549010566eb8777cb7046dfd99dd82c5438c5406779fea0a6a",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-038-fa58d7f6e09f",
+        "finished_at": "2026-10-11T19:08:56+00:00"
+      }
     },
     {
       "id": "flac-039-0a819ad7d841",
       "path": "/room-tone/downloads/stretched/VL2.flac",
       "bytes": 5034389,
       "sha256": "0a819ad7d841a1fafe6c3eb850aa055f15adf322fcff44dc69887f23a6da024a",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-039-0a819ad7d841",
+        "finished_at": "2026-10-11T19:09:15+00:00"
+      }
     },
     {
       "id": "flac-040-fc7817a697f8",
       "path": "/room-tone/downloads/stretched/VL3.flac",
       "bytes": 5319922,
       "sha256": "fc7817a697f843c451ff24647a0d6b039a066243914e0ca51e568cfae38b92ca",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-040-fc7817a697f8",
+        "finished_at": "2026-10-11T19:09:43+00:00"
+      }
     },
     {
       "id": "flac-041-aa0034a2dc0e",
       "path": "/room-tone/downloads/stretched/VL4.flac",
       "bytes": 6204924,
       "sha256": "aa0034a2dc0e041b0a937101b4ae753d119f444e930cd06d02c7fcfebd208e35",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-041-aa0034a2dc0e",
+        "finished_at": "2026-10-11T19:10:14+00:00"
+      }
     },
     {
       "id": "flac-042-dbdc99e11053",
       "path": "/room-tone/downloads/stretched/VL5.flac",
       "bytes": 8273973,
       "sha256": "dbdc99e1105344b60f6fea32d62e4377c11be436ca210cb797fafb8b30016cc7",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "flac-042-dbdc99e11053",
+        "finished_at": "2026-10-11T19:11:29+00:00"
+      }
     },
     {
       "id": "mp4-001-8e704b755953",
       "path": "/fx/assets/renders/god-here-13-processors-landscape.mp4",
       "bytes": 6779262,
       "sha256": "8e704b755953dddaeba0064af58b435bef9f611e18faa5c26f6942afc20442ac",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "mp4-001-8e704b755953",
+        "finished_at": "2026-10-11T19:10:57+00:00"
+      }
     },
     {
       "id": "mp4-002-6d908395762c",
       "path": "/fx/assets/renders/god-here-13-processors-portrait.mp4",
       "bytes": 8688001,
       "sha256": "6d908395762c5507b283a802828a6db3ece90ed1fbfddfaa08b232b46722c062",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "mp4-002-6d908395762c",
+        "finished_at": "2026-10-11T19:11:28+00:00"
+      }
     },
     {
       "id": "mp4-003-326950f70426",
       "path": "/media/god-here-linear-workprint-02.mp4",
       "bytes": 6253907,
       "sha256": "326950f7042612c8c7b45c1db230b4a87b9c86df625451c41332713019f488a4",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "mp4-003-326950f70426",
+        "finished_at": "2026-10-11T19:10:29+00:00"
+      }
     },
     {
       "id": "mp4-004-b06b44855252",
       "path": "/media/interactive-source.mp4",
       "bytes": 6028126,
       "sha256": "b06b44855252f1e3881b6663eda3453c337f78949d8d140110bc506b1c239283",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "mp4-004-b06b44855252",
+        "finished_at": "2026-10-11T19:09:58+00:00"
+      }
     },
     {
       "id": "mp4-005-25d1861330d1",
       "path": "/room-tone/media/god-here-room-tone-dialogue-comparison.mp4",
       "bytes": 9888599,
       "sha256": "25d1861330d15164dd7f479d97bc7aa66f6449801db0e825ca15e657e02f6715",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "mp4-005-25d1861330d1",
+        "finished_at": "2026-10-11T19:11:47+00:00"
+      }
     },
     {
       "id": "mp4-006-0909b79a4552",
       "path": "/media/dialogue-reference.mp4",
       "bytes": 13619707,
       "sha256": "0909b79a45521c37d478ca28df5cf192a380b46d5f151208f0cc2a7c21da021b",
-      "delivery_status": "delivery_not_verified_at_approval_block",
-      "delivery_evidence": null
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "mp4-006-0909b79a4552",
+        "finished_at": "2026-10-11T19:12:04+00:00"
+      }
     },
     {
       "id": "mp4-007-b3146602af2e",
       "path": "/room-tone/media/context-V1.mp4",
       "bytes": 3881158,
       "sha256": "b3146602af2ed7f7820fd2c1039c605609b732421e6cb82f7949d857d0e3da0f",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "mp4-007-b3146602af2e",
+        "finished_at": "2026-10-11T19:08:45+00:00"
+      }
     },
     {
       "id": "mp4-008-a59fc7ebafb2",
       "path": "/room-tone/media/context-V2.mp4",
       "bytes": 3881276,
       "sha256": "a59fc7ebafb2c60f06f9b23c2b8092d58554144ccabece7dfa7a366a0fcd8a0a",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "mp4-008-a59fc7ebafb2",
+        "finished_at": "2026-10-11T19:08:56+00:00"
+      }
     },
     {
       "id": "mp4-009-64390ccad0dc",
       "path": "/room-tone/media/context-V3.mp4",
       "bytes": 3881054,
       "sha256": "64390ccad0dc5c311597e0d8621fa2ec7ebf9ed2282d8360dbae968a9ff0704e",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "mp4-009-64390ccad0dc",
+        "finished_at": "2026-10-11T19:08:42+00:00"
+      }
     },
     {
       "id": "mp4-010-7b457f31585d",
       "path": "/room-tone/media/context-V4.mp4",
       "bytes": 3880262,
       "sha256": "7b457f31585d8c67074aea410bf009c4c60c8e913e3733845307852931e9b64c",
-      "delivery_status": "full_download_verified_before_approval_block",
-      "delivery_evidence": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json"
+      "delivery_status": "fully_verified",
+      "delivery_evidence": {
+        "receipt_path": "manifests/acceptance/god-here-media-delivery-verified.json",
+        "registration_id": "mp4-010-7b457f31585d",
+        "finished_at": "2026-10-11T19:08:31+00:00"
+      }
     }
-  ]
+  ],
+  "updated_at_utc": "2026-10-11T19:22:16.348652+00:00",
+  "approval": {
+    "instruction": "Proceed with full approval",
+    "user_time": "2026-10-11T15:00:42-04:00",
+    "scope": "Previously listed 52-file media payload to the existing public canonical workbench"
+  },
+  "prior_automatic_review_block": "Continuation of the 52-file media upload and verification operation was rejected because this specific media payload had not been explicitly authorized for the public destination.",
+  "completed_evidence": {
+    "path": "manifests/acceptance/god-here-media-delivery-verified.json",
+    "bytes": 41481,
+    "sha256": "03e8992a62747702fbb8fcef4a7fd608a9fb149dd9da5d825a79f8d5f5c956b9"
+  }
 }

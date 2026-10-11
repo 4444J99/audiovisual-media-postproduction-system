@@ -47,6 +47,15 @@ TEXT_ROUTES = (
     ("/recovery/recovery.css", "public/recovery/recovery.css"),
     ("/recovery/catalog.json", "public/recovery/catalog.json"),
     ("/fx/", "public/fx/index.html"),
+    ("/fx/app.mjs", "public/fx/app.mjs"),
+    ("/fx/core.mjs", "public/fx/core.mjs"),
+    ("/fx/audio-engine.mjs", "public/fx/audio-engine.mjs"),
+    ("/fx/audio-worker.mjs", "public/fx/audio-worker.mjs"),
+    ("/fx/visual-engine.mjs", "public/fx/visual-engine.mjs"),
+    ("/fx/workbench-state.mjs", "public/fx/workbench-state.mjs"),
+    ("/fx/preview-provenance.mjs", "public/fx/preview-provenance.mjs"),
+    ("/fx/engine-provenance.json", "public/fx/engine-provenance.json"),
+    ("/fx/watch", "public/fx/watch.html"),
     ("/review", "public/review.html"),
     ("/room-tone/", "public/room-tone/index.html"),
     ("/color-studies/", "public/color-studies/index.html"),
@@ -55,6 +64,7 @@ REDIRECT_ROUTES = (
     ("/recovery/index.html", "/recovery/"),
     ("/review.html", "/review"),
     ("/recovery", "/recovery/"),
+    ("/fx/watch.html", "/fx/watch"),
 )
 REDIRECT_STATUSES = (307, 308)
 

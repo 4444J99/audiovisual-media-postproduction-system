@@ -17,11 +17,19 @@
       <p class="qualification">Preserved files, playable media, reproducible experiments and artistic acceptance are separate milestones. Historical recovery remains open.</p>
     </section>
 
-    <section class="stats" aria-label="Verified inventory totals">
-      <div><strong id="objects-count">—</strong><span>Unique byte identities</span><small>Media, archives, code and records</small></div>
-      <div><strong id="decoded-count">—</strong><span>Audio/video decode passes</span><small>Complete stream checks</small></div>
-      <div><strong id="failed-count">—</strong><span>Audio/video decode failures</span><small>Preserved for diagnosis</small></div>
-      <div><strong id="pending-count">—</strong><span>Audio/video checks pending</span><small>Technical checks only</small></div>
+    <section class="stats" aria-label="Frozen snapshot inventory totals">
+      <div><strong id="objects-count">—</strong><span>Frozen byte identities</span><small>Media, archives, code and records</small></div>
+      <div><strong id="decoded-count">—</strong><span>Frozen audio/video passes</span><small>Complete stream checks</small></div>
+      <div><strong id="failed-count">—</strong><span>Frozen audio/video failures</span><small>Preserved for diagnosis</small></div>
+      <div><strong id="pending-count">—</strong><span>Frozen audio/video pending</span><small>Technical checks only</small></div>
+    </section>
+
+    <p id="supplemental-status" class="section-note" role="status"></p>
+
+    <section id="reproduction-summary" class="workbench" aria-labelledby="reproduction-title" hidden>
+      <div class="section-heading"><h2 id="reproduction-title">Availability added through reproduction</h2><span>Private preservation</span></div>
+      <p id="reproduction-counts"></p>
+      <p class="section-note">These later outputs come from one verified baseline recipe. Their hashes are public; the reproduced files remain private. Historical-original retrieval and artistic acceptance retain separate records.</p>
     </section>
 
     <section class="workbench" aria-labelledby="workbench-title">
@@ -40,7 +48,8 @@
     <section class="inventory" aria-labelledby="inventory-title">
       <div class="section-heading"><h2 id="inventory-title">Find an artifact</h2><span id="snapshot-date"></span></div>
       <div class="view-buttons" role="group" aria-label="Choose inventory view">
-        <button id="show-objects" type="button" aria-pressed="true">Recovered objects</button>
+        <button id="show-objects" type="button" aria-pressed="true">Frozen recovered objects</button>
+        <button id="show-reproductions" type="button" aria-pressed="false" hidden>Added by reproduction</button>
         <button id="show-expectations" type="button" aria-pressed="false">References and dependencies</button>
       </div>
       <p id="view-explanation">Each row represents one SHA-256 identity. Different revisions stay separate even when their filenames match.</p>

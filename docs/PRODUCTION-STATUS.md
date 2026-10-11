@@ -1,5 +1,19 @@
 # Production status
 
+## October 11: recovery and engineering consolidation
+
+The [engineering integration record](ENGINEERING-INTEGRATION.md) describes the four retained branch heads now combined, the resolved conflicts, and the complete existing test suites exercised together. The source-length baseline was reproduced separately at its preserved revision; that evidence does not certify renders from later integrated code or select an artistic treatment.
+
+Current workbench publication and registered-media availability are maintained in the [canonical publication receipt](https://github.com/4444J99/audiovisual-media-postproduction-system/blob/inventory/god-here-project-reconciliation-20261011/manifests/acceptance/god-here-workbench-publication.json). Earlier dated publication failures and production reports remain historical evidence. The retained directed renderers and their review pages keep separate timing contracts and media requirements.
+
+## October 8: modular FX workbench
+
+The new `web/fx/` edition implements thirteen audiovisual processors, six artwork patches, typed routing, clip/track inserts, parallel buses, shared audio-derived control lanes, editable macros and replayable parameter changes. It uses the continuous source passage 95.000–107.167 s. Each module and each factory patch has a full-screen bypass/extreme/sweep/bypass comparison, with matching horizontal and portrait renders. The browser and offline CLI share JavaScript processing modules. See [FX-WORKBENCH.md](FX-WORKBENCH.md) and [FX-ENGINE.md](FX-ENGINE.md).
+
+This edition uses an inherited DeepFilterNet dialogue candidate, moving guided-segmentation workprint mattes and a hybrid room fill containing previously generated hidden-room material. Those inputs have explicit provenance and are not newly certified restoration, roto or recovered scenery. The original audio remains selectable. Voice effects operate on the shared recording. Physical phone/Safari testing and artistic/listening acceptance remain open.
+
+## Earlier five-realities edition
+
 The supplied handoff has been implemented through reproducible software and rendered workprints. Acceptance gates that depend on hearing, verified wording, artistic selection, target-device playback, or a physical venue remain open. They are attached to live GitHub tasks rather than silently treated as completed.
 
 | Stage | Delivered implementation | Remaining acceptance |
@@ -12,7 +26,7 @@ The supplied handoff has been implemented through reproducible software and rend
 | E5 | Reusable source-addressed units; permitted transitions; 3 distinct seeded, flattened edits; saved schedules | Performed-unit qualification, artist comparison, and final selection. Their dialogue order is newly authored. |
 | E6 | Interactive browser implementation, one-clock transport, bounded history, attention residue, saved score validation/replay, reduced motion, linear fallback | Actual iPhone/Safari verification and long-running browser review. No venue-specific installation can be calibrated without a venue. |
 
-The current linear workprint preserves original scene duration, title, and credit intervals. Typography consists of explicitly authored visual words, not a caption assertion. Character effect-return files derive from the shared recording; a field name does not certify voice isolation.
+The source-length linear workprint preserves original scene duration, title, and credit intervals. The separate directed full-film candidate adds 18 frames and lasts 112.6 seconds. Typography consists of explicitly authored visual words, not a caption assertion. Character effect-return files derive from the shared recording; a field name does not certify voice isolation.
 
 The previous planning documents remain reference records. Their original `ready_for_render: false` example is not repurposed as an executable configuration. `composition.json` is the implemented production configuration, with separate acceptance status.
 

@@ -1,0 +1,317 @@
+{
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "input_report_sha256": {
+    "refinement": "8b1c170a90b3d3346037e5e763a85a49c89b746971f291ccb07486652f64c61a",
+    "audit": "ef0cb99815fc8956b2f89466197a98ee35247348f40fde56572065e67236dea3",
+    "baseline": "df280b1a928f122a329223717d0cab40f6987bc5425d6b8ca94906331f0b1703"
+  },
+  "pause_inventory_sha256": "bb616355c6d328c93d19247fa01fa48d5ee2fa1b1ad2faac3bee315285acd788",
+  "input_identity_verified": true,
+  "dialogue_file_sha256": "7e895a03e68522e0aafdb1a518c9c9bdbb7f953935be62ba2db9781f0ab84bc1",
+  "excerpt_source_seconds": [
+    28,
+    58
+  ],
+  "quick_excerpt_source_seconds": [
+    28,
+    40
+  ],
+  "common_dialogue_headroom_trim_db": 0.0,
+  "listening_acceptance": "pending",
+  "dialogue_note": "Recovered 70% DTLN / 30% original shared mixture; original room/activity remain in this core.",
+  "versions": {
+    "A": {
+      "title": "Existing room rack",
+      "description": "Original separate band sequences and effects",
+      "production_room": {
+        "integrated_lufs": -40.37,
+        "true_peak_dbtp": -28.15,
+        "rms_dbfs": -42.000000007587566,
+        "envelope_100ms_p95_minus_p05_db": 2.499902521580111
+      },
+      "dialogue_mix": {
+        "integrated_lufs": -16.24,
+        "true_peak_dbtp": -1.82,
+        "rms_dbfs": -19.83438347850146,
+        "envelope_100ms_p95_minus_p05_db": 22.180437095908424
+      },
+      "solo_30s": {
+        "file": "A-room-30s.m4a",
+        "fixed_gain_db": 16.409999999999997,
+        "target_lufs": -24.0,
+        "encoded_measurement": {
+          "integrated_lufs": -24.06,
+          "true_peak_dbtp": -12.71,
+          "rms_dbfs": -25.665446508566475,
+          "envelope_100ms_p95_minus_p05_db": 2.427222187589834
+        },
+        "samples_before_encode": 1440000
+      },
+      "solo_12s": {
+        "file": "A-room-12s.m4a",
+        "fixed_gain_db": 16.43,
+        "target_lufs": -24.0,
+        "encoded_measurement": {
+          "integrated_lufs": -24.06,
+          "true_peak_dbtp": -12.69,
+          "rms_dbfs": -25.6670999094446,
+          "envelope_100ms_p95_minus_p05_db": 2.1892016028370627
+        },
+        "samples_before_encode": 576000
+      },
+      "dialogue_excerpt_encoded": {
+        "integrated_lufs": -16.73,
+        "true_peak_dbtp": -1.83,
+        "rms_dbfs": -20.432159058183423,
+        "envelope_100ms_p95_minus_p05_db": 22.256446717820662
+      },
+      "full_room_flac_sha256": "f698436264d7d4b0131d7d55937ff14f51579e14a60ee6f41be4897eefd39bd9"
+    },
+    "B": {
+      "title": "Shared timing",
+      "description": "One source sequence across all three bands; same effects",
+      "production_room": {
+        "integrated_lufs": -40.37,
+        "true_peak_dbtp": -28.54,
+        "rms_dbfs": -42.10365995082459,
+        "envelope_100ms_p95_minus_p05_db": 3.0718837875584057
+      },
+      "dialogue_mix": {
+        "integrated_lufs": -16.24,
+        "true_peak_dbtp": -1.71,
+        "rms_dbfs": -19.836159731226925,
+        "envelope_100ms_p95_minus_p05_db": 22.176854641992477
+      },
+      "solo_30s": {
+        "file": "B-room-30s.m4a",
+        "fixed_gain_db": 16.439999999999998,
+        "target_lufs": -24.0,
+        "encoded_measurement": {
+          "integrated_lufs": -24.08,
+          "true_peak_dbtp": -12.58,
+          "rms_dbfs": -25.751208613399342,
+          "envelope_100ms_p95_minus_p05_db": 2.777022844668
+        },
+        "samples_before_encode": 1440000
+      },
+      "solo_12s": {
+        "file": "B-room-12s.m4a",
+        "fixed_gain_db": 16.509999999999998,
+        "target_lufs": -24.0,
+        "encoded_measurement": {
+          "integrated_lufs": -24.07,
+          "true_peak_dbtp": -12.67,
+          "rms_dbfs": -25.725211666819888,
+          "envelope_100ms_p95_minus_p05_db": 2.8905435003138464
+        },
+        "samples_before_encode": 576000
+      },
+      "dialogue_excerpt_encoded": {
+        "integrated_lufs": -16.72,
+        "true_peak_dbtp": -1.74,
+        "rms_dbfs": -20.42550524101063,
+        "envelope_100ms_p95_minus_p05_db": 22.179327674010338
+      },
+      "full_room_flac_sha256": "0f806592222746193afd3cf832c36cc7b41c6fb5c502644a5ade6dd50782cfed"
+    },
+    "C": {
+      "title": "Shared timing / dry",
+      "description": "Same sequence as B; the room effects are bypassed",
+      "production_room": {
+        "integrated_lufs": -40.37,
+        "true_peak_dbtp": -28.39,
+        "rms_dbfs": -41.98166469138849,
+        "envelope_100ms_p95_minus_p05_db": 3.4220643737045577
+      },
+      "dialogue_mix": {
+        "integrated_lufs": -16.24,
+        "true_peak_dbtp": -1.72,
+        "rms_dbfs": -19.835498601864987,
+        "envelope_100ms_p95_minus_p05_db": 22.137719224199827
+      },
+      "solo_30s": {
+        "file": "C-room-30s.m4a",
+        "fixed_gain_db": 16.450000000000003,
+        "target_lufs": -24.0,
+        "encoded_measurement": {
+          "integrated_lufs": -24.07,
+          "true_peak_dbtp": -12.45,
+          "rms_dbfs": -25.622191038688534,
+          "envelope_100ms_p95_minus_p05_db": 3.067693893324808
+        },
+        "samples_before_encode": 1440000
+      },
+      "solo_12s": {
+        "file": "C-room-12s.m4a",
+        "fixed_gain_db": 16.509999999999998,
+        "target_lufs": -24.0,
+        "encoded_measurement": {
+          "integrated_lufs": -24.08,
+          "true_peak_dbtp": -12.48,
+          "rms_dbfs": -25.61625498017937,
+          "envelope_100ms_p95_minus_p05_db": 3.1823747699640954
+        },
+        "samples_before_encode": 576000
+      },
+      "dialogue_excerpt_encoded": {
+        "integrated_lufs": -16.72,
+        "true_peak_dbtp": -1.76,
+        "rms_dbfs": -20.42684799885749,
+        "envelope_100ms_p95_minus_p05_db": 22.121588650597587
+      },
+      "full_room_flac_sha256": "8722bbe9f78541c9ba7c4e725eb13a405695a0859a577ca8fdd6edeee21a5d83"
+    },
+    "D": {
+      "title": "Sustained middle and air",
+      "description": "Recorded low band; slowly evolving synthesized mid and high",
+      "production_room": {
+        "integrated_lufs": -40.37,
+        "true_peak_dbtp": -27.73,
+        "rms_dbfs": -41.77600401676281,
+        "envelope_100ms_p95_minus_p05_db": 2.77043698099137
+      },
+      "dialogue_mix": {
+        "integrated_lufs": -16.24,
+        "true_peak_dbtp": -1.79,
+        "rms_dbfs": -19.834501034820647,
+        "envelope_100ms_p95_minus_p05_db": 22.168480001515455
+      },
+      "solo_30s": {
+        "file": "D-room-30s.m4a",
+        "fixed_gain_db": 16.32,
+        "target_lufs": -24.0,
+        "encoded_measurement": {
+          "integrated_lufs": -24.07,
+          "true_peak_dbtp": -11.54,
+          "rms_dbfs": -25.532888156024693,
+          "envelope_100ms_p95_minus_p05_db": 2.621787239856605
+        },
+        "samples_before_encode": 1440000
+      },
+      "solo_12s": {
+        "file": "D-room-12s.m4a",
+        "fixed_gain_db": 16.21,
+        "target_lufs": -24.0,
+        "encoded_measurement": {
+          "integrated_lufs": -24.09,
+          "true_peak_dbtp": -12.3,
+          "rms_dbfs": -25.68367995454658,
+          "envelope_100ms_p95_minus_p05_db": 2.676088478423779
+        },
+        "samples_before_encode": 576000
+      },
+      "dialogue_excerpt_encoded": {
+        "integrated_lufs": -16.72,
+        "true_peak_dbtp": -1.8,
+        "rms_dbfs": -20.42320376294391,
+        "envelope_100ms_p95_minus_p05_db": 22.185529244001046
+      },
+      "full_room_flac_sha256": "b32f6ee3eee6028e19bd89f60cd8147ce15a263138c6b60b4bc08fb1c854dc6b"
+    },
+    "E": {
+      "title": "Stationary room texture",
+      "description": "A continuous synthesized texture shaped by the source pauses",
+      "production_room": {
+        "integrated_lufs": -40.37,
+        "true_peak_dbtp": -27.49,
+        "rms_dbfs": -41.695324892546054,
+        "envelope_100ms_p95_minus_p05_db": 2.5753159592765584
+      },
+      "dialogue_mix": {
+        "integrated_lufs": -16.24,
+        "true_peak_dbtp": -1.81,
+        "rms_dbfs": -19.83102979167202,
+        "envelope_100ms_p95_minus_p05_db": 21.862318798023523
+      },
+      "solo_30s": {
+        "file": "E-room-30s.m4a",
+        "fixed_gain_db": 16.369999999999997,
+        "target_lufs": -24.0,
+        "encoded_measurement": {
+          "integrated_lufs": -24.07,
+          "true_peak_dbtp": -11.84,
+          "rms_dbfs": -25.33823916018614,
+          "envelope_100ms_p95_minus_p05_db": 2.696436295245743
+        },
+        "samples_before_encode": 1440000
+      },
+      "solo_12s": {
+        "file": "E-room-12s.m4a",
+        "fixed_gain_db": 16.35,
+        "target_lufs": -24.0,
+        "encoded_measurement": {
+          "integrated_lufs": -24.09,
+          "true_peak_dbtp": -11.81,
+          "rms_dbfs": -25.37269588877323,
+          "envelope_100ms_p95_minus_p05_db": 2.3254848405942354
+        },
+        "samples_before_encode": 576000
+      },
+      "dialogue_excerpt_encoded": {
+        "integrated_lufs": -16.72,
+        "true_peak_dbtp": -1.82,
+        "rms_dbfs": -20.421730013325124,
+        "envelope_100ms_p95_minus_p05_db": 21.83640693236375
+      },
+      "full_room_flac_sha256": "3212764cbe233efad0609c3799eafd31962948e73e95669ad9e34d0294c5eb25"
+    }
+  },
+  "existing_layers": {
+    "low-dry-contribution": {
+      "shared_gain_db": 16.409999999999997,
+      "measurement": {
+        "integrated_lufs": -29.61,
+        "true_peak_dbtp": -18.05,
+        "rms_dbfs": -29.43959721104846,
+        "envelope_100ms_p95_minus_p05_db": 4.1887967786259
+      }
+    },
+    "low-fx-return": {
+      "shared_gain_db": 16.409999999999997,
+      "measurement": {
+        "integrated_lufs": -44.81,
+        "true_peak_dbtp": -39.04,
+        "rms_dbfs": -44.48039899139789,
+        "envelope_100ms_p95_minus_p05_db": 1.8722082783211818
+      }
+    },
+    "mid-dry-contribution": {
+      "shared_gain_db": 16.409999999999997,
+      "measurement": {
+        "integrated_lufs": -28.89,
+        "true_peak_dbtp": -17.94,
+        "rms_dbfs": -31.885526910075836,
+        "envelope_100ms_p95_minus_p05_db": 2.59483189667845
+      }
+    },
+    "mid-fx-return": {
+      "shared_gain_db": 16.409999999999997,
+      "measurement": {
+        "integrated_lufs": -38.98,
+        "true_peak_dbtp": -28.17,
+        "rms_dbfs": -41.940965916664716,
+        "envelope_100ms_p95_minus_p05_db": 2.6073097135043355
+      }
+    },
+    "high-dry-contribution": {
+      "shared_gain_db": 16.409999999999997,
+      "measurement": {
+        "integrated_lufs": -37.83,
+        "true_peak_dbtp": -19.86,
+        "rms_dbfs": -43.989764182983436,
+        "envelope_100ms_p95_minus_p05_db": 6.993933922722974
+      }
+    },
+    "high-fx-return": {
+      "shared_gain_db": 16.409999999999997,
+      "measurement": {
+        "integrated_lufs": -49.92,
+        "true_peak_dbtp": -34.35,
+        "rms_dbfs": -56.12742144056949,
+        "envelope_100ms_p95_minus_p05_db": 7.46604332425418
+      }
+    }
+  },
+  "original_six_stem_sum_max_abs_error": 5.960464477539062e-07,
+  "video_audio_assembly": "Single continuous AAC encode from exact-length PCM excerpts; video-only parts concatenated at exact frame boundaries"
+}

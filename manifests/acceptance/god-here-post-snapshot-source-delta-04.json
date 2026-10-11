@@ -1,0 +1,33 @@
+{
+  "schema_version": "god-here.site-source-delta.v1",
+  "generated_at_utc": "2026-10-11T19:47:02.724455+00:00",
+  "before_source_commit": "dc04e85989c4d52ac1269949a16d19c60a680115",
+  "after_source_commit": "e1632852f8b7cedd1623a36fb314589a7257dafa",
+  "changes": [
+    {
+      "path": "public/recovery/catalog.json",
+      "change": "modified",
+      "git_blob": "b29f235e40a86bbe6658849daa80a907e9941220",
+      "sha256": "3df3eeea34a12abc0a872206e3b0701bf4a0cb1782d0011e58ff38b4ad626727",
+      "bytes": 2511755
+    },
+    {
+      "path": "public/recovery/index.html",
+      "change": "modified",
+      "git_blob": "40788452f19058c47baf40440f33737d475054e4",
+      "sha256": "6eeb698dbff39dae2d2130f1da7278cbf0f4ac5d2c97d0d167c36dbc16c2ea9d",
+      "bytes": 7523
+    },
+    {
+      "path": "public/recovery/recovery.js",
+      "change": "modified",
+      "git_blob": "2967b124669b17e9b7824cb2aad62ecb178817c5",
+      "sha256": "4f97362fd099bc0deb8c05d572c1f1f334a1cf8d1d5c01ce94f4dffd2756f5a7",
+      "bytes": 13314
+    }
+  ],
+  "untouched_baseline_files": 528,
+  "deleted_files": [],
+  "protected_media_and_registry_unchanged": true,
+  "scope": "Add 24 private reproduced identities, update seven exact historical-reference matches, and distinguish frozen recovery from later reproduction. No media, FX runtime, media registry, playback link or audience change."
+}

@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "demo-damage",
+  "name": "Signal Damage — demonstration",
+  "seed": 773,
+  "duration": 12.166666667,
+  "source": {
+    "id": "god-here-second-draft",
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "offset": 95,
+    "duration": 12.166666667
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "type": "source"
+    },
+    {
+      "id": "fx-1",
+      "type": "damage",
+      "name": "Signal Damage",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": true,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "bits": 3,
+        "rate": 3200,
+        "block": 0.13,
+        "levels": 3,
+        "drive": 2.6,
+        "band": 900,
+        "output": 0.7
+      },
+      "macro": [
+        {
+          "parameter": "bits",
+          "min": 16,
+          "max": 3,
+          "curve": "linear"
+        },
+        {
+          "parameter": "rate",
+          "min": 24000,
+          "max": 3200,
+          "curve": "linear"
+        },
+        {
+          "parameter": "block",
+          "min": 0.006,
+          "max": 0.13,
+          "curve": "linear"
+        },
+        {
+          "parameter": "levels",
+          "min": 32,
+          "max": 3,
+          "curve": "linear"
+        },
+        {
+          "parameter": "drive",
+          "min": 1,
+          "max": 2.6,
+          "curve": "linear"
+        },
+        {
+          "parameter": "band",
+          "min": 12000,
+          "max": 900,
+          "curve": "linear"
+        }
+      ],
+      "automation": [
+        {
+          "parameter": "intensity",
+          "interpolation": "linear",
+          "keyframes": [
+            {
+              "time": 0,
+              "value": 1
+            },
+            {
+              "time": 6,
+              "value": 1
+            },
+            {
+              "time": 8,
+              "value": 0.08
+            },
+            {
+              "time": 10,
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "gain": 1
+    }
+  ],
+  "connections": [
+    {
+      "from": "source",
+      "to": "fx-1",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "fx-1",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "fx-1",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "fx-1",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fx-1",
+      "to": "output",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fx-1",
+      "to": "output",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fx-1",
+      "to": "output",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "fx-1",
+      "to": "output",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    }
+  ],
+  "events": [
+    {
+      "time": 0,
+      "nodeId": "fx-1",
+      "parameter": "bypass",
+      "value": true
+    },
+    {
+      "time": 2,
+      "nodeId": "fx-1",
+      "parameter": "bypass",
+      "value": false
+    },
+    {
+      "time": 10,
+      "nodeId": "fx-1",
+      "parameter": "bypass",
+      "value": true
+    }
+  ],
+  "metadata": {
+    "sourceClock": "seconds relative to excerpt",
+    "voiceInput": "shared recording; performer isolation is not claimed",
+    "project": "god-here",
+    "originalPictureInterval": [
+      95,
+      107.166666667
+    ],
+    "identityPolicy": "Appearance labels, not certified performer names.",
+    "dialogueReference": {
+      "sha256": "24817c4f076a1c9fca43ebcf9825964610fc2956c1755501547de7477d173254",
+      "method": "Inherited DeepFilterNet v0.5.6 candidate; shared stereo recording; artist/listening acceptance remains pending."
+    },
+    "wordMaterial": [
+      {
+        "id": "out",
+        "text": "OUT",
+        "start": 2.88,
+        "end": 3.12,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "how",
+        "text": "HOW",
+        "start": 6.14,
+        "end": 6.52,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "what",
+        "text": "WHAT",
+        "start": 9.94,
+        "end": 10.08,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "why",
+        "text": "WHY",
+        "provenance": "authored screenplay word; not performed in this excerpt",
+        "listeningAccepted": false
+      }
+    ],
+    "layerStatus": "Guided classical segmentation workprint; fine roto is not accepted.",
+    "roomStatus": "Hybrid generated hidden-room fill; source-shot registration remains approximate.",
+    "objectStatus": "Authored object regions, not segmented object tracks.",
+    "demoPhases": [
+      {
+        "name": "bypass",
+        "start": 0,
+        "end": 2
+      },
+      {
+        "name": "extreme",
+        "start": 2,
+        "end": 6
+      },
+      {
+        "name": "parameter sweep",
+        "start": 6,
+        "end": 10
+      },
+      {
+        "name": "bypass",
+        "start": 10,
+        "end": 12.166666667
+      }
+    ]
+  }
+}

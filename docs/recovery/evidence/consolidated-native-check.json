@@ -1,0 +1,31 @@
+{
+  "schema_version": "god-here.consolidated-native-check.v1",
+  "started_at_utc": "2026-10-11T19:58:05.871833+00:00",
+  "finished_at_utc": "2026-10-11T19:58:11.533343+00:00",
+  "command": "python tools/check.py",
+  "exit_code": 0,
+  "elapsed_seconds": 5.662,
+  "scope": "Native integration with repository/Site FX application alignment; before shared execution adapter.",
+  "test_font": {
+    "filename": "DejaVuSans.ttf",
+    "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280"
+  },
+  "evidence": [
+    {
+      "path": "docs/recovery/evidence/consolidated-native-check.stdout.log",
+      "bytes": 11686,
+      "sha256": "b857975129abf7b16c46fae1480d19a1d9373fdb3a1258c864c5032a71abdfbe"
+    },
+    {
+      "path": "docs/recovery/evidence/consolidated-native-check.stderr.log",
+      "bytes": 13841,
+      "sha256": "58bc5e0cfada6ba201c2371f69f4f50bc87a765ec53e21888c7eb659802c8180"
+    }
+  ],
+  "python_test_count": 105,
+  "node_test_counts": [
+    25,
+    97
+  ],
+  "status": "passed"
+}
