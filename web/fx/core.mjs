@@ -270,7 +270,7 @@ export function validatePatch(patch, context = {}) {
     if (node.targets?.includes('voice') && capabilities && !capabilities.isolatedVoices) warnings.push(`${node.id}: voice target processes the shared recording, not an isolated performer.`);
   }
   if (!nodes.some(node => node?.type === 'source')) fail('Graph needs a source node.');
-  if (!nodes.some(node => node?.type === 'output')) fail('Graph needs an output node.');
+  if (nodes.filter(node => node?.type === 'output').length !== 1) fail('Graph needs exactly one output node.');
   const occupied = new Set(), duplicates = new Set();
   for (const edge of connections) {
     if (!edge || typeof edge !== 'object') {fail('Every connection must be an object.'); continue;}
@@ -300,7 +300,7 @@ export function validatePatch(patch, context = {}) {
     try {topologicalOrder({...patch, nodes, connections});} catch (error) {fail(error.message);}
     const reachable = new Set(nodes.filter(node => node.type === 'source').map(node => node.id));
     let grew = true;
-    while (grew) {grew = false; for (const edge of connections) if (reachable.has(edge.from) && !reachable.has(edge.to)) {reachable.add(edge.to); grew = true;}}
+    while (grew) {grew = false; for (const edge of connections) if (edge.port !== 'control' && reachable.has(edge.from) && !reachable.has(edge.to)) {reachable.add(edge.to); grew = true;}}
     if (nodes.some(node => node.type === 'output' && !reachable.has(node.id))) fail('Every output must be reachable from a source.');
     for (const node of nodes) if (!reachable.has(node.id)) warnings.push(`${node.id}: node is not reachable from a source.`);
   }

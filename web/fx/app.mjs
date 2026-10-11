@@ -2,7 +2,7 @@ import {CATALOG, CATALOG_BY_TYPE, PATCH_CATALOG, createModule, createPatch, crea
 import {VisualEngine, paintViewport, clamp} from './visual-engine.mjs';
 import {GOD_HERE_OPTIONS,GOD_HERE_DEMO_MODULES} from './god-here.config.mjs';
 import {amplitudeEnvelope} from './audio-engine.mjs';
-import {normalizeWorkbenchPatch} from './workbench-state.mjs';
+import {removeProcessor, validateDecodedAudio, normalizeWorkbenchPatch} from './workbench-state.mjs';
 import {signalSignature} from './preview-key.mjs';
 
 const $=id=>document.getElementById(id);
@@ -268,7 +268,7 @@ $('rack').addEventListener('change',e=>{
   else if('region' in d){snapshot();n.region=e.target.value;rememberCustom(n);renderUI();invalidate();}
   else if('scope' in d){snapshot();n.scope=e.target.value==='track'?{type:'track'}:{type:'clip',start:2,end:Math.min(10,media.duration)};rememberCustom(n);renderUI();invalidate();}
   else if('scopeTime' in d){changeGraph(()=>{n.scope[d.scopeTime]=Number(e.target.value);rememberCustom(n);});}
-  else if('macro' in d){const [i,key]=d.macro.split(':');const before=n.macro[i][key];n.macro[i][key]=Number(e.target.value);const result=validatePatch(state.patch);if(!result.valid){n.macro[i][key]=before;toast(result.errors[0]);}rememberCustom(n);renderUI();invalidate();}
+  else if('macro' in d){changeGraph(()=>{const [i,key]=d.macro.split(':');n.macro[i][key]=Number(e.target.value);rememberCustom(n);});}
   else if('sidechain' in d){changeGraph(()=>{state.patch.connections=state.patch.connections.filter(c=>!(c.to===n.id&&c.port==='control'));if(e.target.checked){n.modulation={parameter:'intensity',amount:.6,mode:'add'};state.patch.connections.push({from:'source',to:n.id,port:'control',gain:1,role:'sidechain'});}else delete n.modulation;rememberCustom(n);});}
 });
 $('rack').onclick=e=>{
@@ -278,7 +278,7 @@ $('rack').onclick=e=>{
   if(!action){if(e.target.closest('[data-select]')){state.selected=n.id;renderUI();}return;}
   if(action==='bypass'||action==='solo'){snapshot();setParameter(n,action,!evaluatedNode(n,position(),state.patch)[action]);renderUI();}
   else if(action==='up'||action==='down'){changeGraph(()=>{const effects=state.patch.nodes.filter(isFX);const i=effects.indexOf(n),j=i+(action==='up'?-1:1);if(j<0||j>=effects.length)return;const other=effects[j],a=state.patch.nodes.indexOf(n),b=state.patch.nodes.indexOf(other);[state.patch.nodes[a],state.patch.nodes[b]]=[state.patch.nodes[b],state.patch.nodes[a]];const swap=id=>id===n.id?other.id:id===other.id?n.id:id;state.patch.connections=state.patch.connections.map(edge=>edge.port==='control'?edge:{...edge,from:swap(edge.from),to:swap(edge.to)});});status('Processor positions exchanged. Buses and parallel branches are retained.');}
-  else if(action==='remove')changeGraph(()=>{const incoming=state.patch.connections.filter(e=>e.to===n.id),outgoing=state.patch.connections.filter(e=>e.from===n.id);state.patch.connections=state.patch.connections.filter(e=>e.from!==n.id&&e.to!==n.id);for(const a of incoming)for(const b of outgoing)if(a.port===b.port&&a.port!=='control')state.patch.connections.push({from:a.from,to:b.to,port:a.port,gain:a.gain*b.gain,role:b.role});state.patch.nodes=state.patch.nodes.filter(x=>x.id!==n.id);state.patch.events=state.patch.events.filter(e=>e.nodeId!==n.id);if(state.patch.metadata.customModuleStates)delete state.patch.metadata.customModuleStates[n.id];state.selected=state.patch.nodes.find(isFX)?.id;});
+  else if(action==='remove')changeGraph(()=>{removeProcessor(state.patch,n.id);state.selected=state.patch.nodes.find(isFX)?.id;});
   else if(action==='reset-macro'){snapshot();n.macro=clonePatch(CATALOG_BY_TYPE[n.type].presets.find(p=>p.id===n.presetId)?.macro||CATALOG_BY_TYPE[n.type].macro);rememberCustom(n);renderUI();invalidate();}
 };
 $('connections').onclick=e=>{const b=e.target.closest('[data-remove-edge]');if(b)changeGraph(()=>state.patch.connections.splice(Number(b.dataset.removeEdge),1));};
@@ -316,7 +316,8 @@ async function initialize(){
     const picture=await Promise.all(media.picture.pages.map(loadImage));const matte=await Promise.all(media.matte.pages.map(loadImage));const room=await loadImage(media.room.hybrid);
     assets={picture,matte,room,cues,regions,waveforms};
     const audioResponses=await Promise.all([media.audio.source,media.audio.reference].map(async path=>{const r=await fetch(`assets/${path}`);if(!r.ok)throw Error(`Could not load sound: ${path}`);return r.arrayBuffer();}));
-    sourcePCM=decodeWav(audioResponses[0]).channels;referencePCM=decodeWav(audioResponses[1]).channels;
+    const decoded=audioResponses.map(decodeWav);decoded.forEach(value=>validateDecodedAudio(value,media));
+    sourcePCM=decoded[0].channels;referencePCM=decoded[1].channels;
     const envelope=amplitudeEnvelope(referencePCM,media.audio.sampleRate);
     const lane=(id,t)=>{const values=controlEnvelopes[id];return values?values[Math.min(values.length-1,Math.max(0,Math.floor(t*controlFps)))]:null;};
     engine=new VisualEngine(media,assets,{width:384,height:216,cacheFrames:matchMedia('(pointer: coarse)').matches?96:192,control:t=>envelope[Math.min(envelope.length-1,Math.max(0,Math.floor(t*media.audio.sampleRate)))],controlLane:lane});

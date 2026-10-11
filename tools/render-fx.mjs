@@ -118,8 +118,8 @@ async function main(options){
   const engineDir=path.resolve(options['engine-dir']),assetsDir=path.resolve(options['assets-dir']);
   const patchPath=path.resolve(options.patch),outputPath=path.resolve(options.output),outBase=outputPath.replace(/\.mp4$/i,'');
   if(!/\.mp4$/i.test(outputPath))throw Error('Output must end with .mp4');
-  const [media,patch]=await Promise.all([json(path.join(assetsDir,'manifest.json')),json(patchPath)]);
-  const duration=finite(options.duration??patch.duration,'duration',{min:.001,max:patch.duration});
+  const [media,rawPatch]=await Promise.all([json(path.join(assetsDir,'manifest.json')),json(patchPath)]);
+  const duration=finite(options.duration??rawPatch.duration,'duration',{min:.001,max:rawPatch.duration});
   const width=finite(options.width??480,'width',{min:64,max:4096,integer:true}),height=finite(options.height??270,'height',{min:64,max:4096,integer:true});
   if(width%2||height%2)throw Error('H264 yuv420 dimensions must be even.');
   const fps=finite(options.fps??media.fps,'fps',{min:1,max:60}),frameCount=Math.ceil(duration*fps-1e-6);
@@ -130,8 +130,9 @@ async function main(options){
   const overlayMode=options.overlay??'none';if(!['none','phase','title-phase'].includes(overlayMode))throw Error('Overlay must be none, phase or title-phase.');
   const [provenance,regions,cues]=await Promise.all([media.provenance,media.regions,media.cues].map(p=>json(path.join(assetsDir,p))));
   const {validatePatch}=await import(pathToFileURL(path.join(engineDir,'core.mjs')));
-  const validation=validatePatch(patch,{sourceHash:provenance.source.sha256,source:{offset:media.sourceIn},regions:regions.items.map(r=>r.id)});
-  if(!validation.valid)throw Error(`Patch validation failed: ${validation.errors.join('; ')}`);
+  const {normalizeWorkbenchPatch,validateDecodedAudio}=await import(pathToFileURL(path.join(engineDir,'workbench-state.mjs')));
+  const patch=normalizeWorkbenchPatch(rawPatch,{sourceHash:provenance.source.sha256,source:{offset:media.sourceIn},regions:regions.items.map(r=>r.id)});
+  const validation=validatePatch(patch,{regions:regions.items.map(r=>r.id)});
   if(patch.duration>media.duration+1e-6)throw Error('Patch exceeds available excerpt.');
   await fs.mkdir(path.dirname(outputPath),{recursive:true});
   if(portrait)await fs.mkdir(path.dirname(portrait.output),{recursive:true});
@@ -143,6 +144,7 @@ async function main(options){
     const {decodeWav,encodeWav,renderRackAudio}=await import(pathToFileURL(path.join(engineDir,'audio-engine.mjs')));
     const inputKind=options['audio-input']??'reference';if(!['reference','source'].includes(inputKind))throw Error('Audio input must be reference or source.');
     const inputPath=path.join(assetsDir,media.audio[inputKind]),inputBytes=await fs.readFile(inputPath),decoded=decodeWav(inputBytes);
+    validateDecodedAudio(decoded,media);
     const audioStart=performance.now();
     // Queue timing uses the backend's fixed source windows. Provisional text cue
     // in/out fields are not passed as gesture/word arrival events.

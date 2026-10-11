@@ -35,3 +35,25 @@ export function normalizeWorkbenchPatch(input,context={}) {
   }
   return patch;
 }
+
+/** Preserve parallel signal amplitude while bypassing a removed processor. */
+export function removeProcessor(patch,id) {
+  const incoming=patch.connections.filter(e=>e.to===id),outgoing=patch.connections.filter(e=>e.from===id);
+  const edges=patch.connections.filter(e=>e.from!==id&&e.to!==id);
+  for(const a of incoming)for(const b of outgoing)if(a.port===b.port&&a.port!=='control'){
+    const existing=edges.find(e=>e.from===a.from&&e.to===b.to&&e.port===a.port);
+    const gain=a.gain*b.gain;
+    if(existing)existing.gain+=gain;
+    else edges.push({from:a.from,to:b.to,port:a.port,gain,role:b.role});
+  }
+  patch.connections=edges;patch.nodes=patch.nodes.filter(n=>n.id!==id);
+  patch.events=patch.events.filter(e=>e.nodeId!==id);
+  if(patch.metadata?.customModuleStates)delete patch.metadata.customModuleStates[id];
+}
+
+export function validateDecodedAudio(decoded,media) {
+  const sr=media.audio.sampleRate,frames=Math.round(media.duration*sr);
+  if(decoded.sampleRate!==sr)throw Error('Decoded WAV sample rate does not match the media manifest.');
+  if(!decoded.channels?.length||decoded.channels.some(c=>c.length!==frames))throw Error('Decoded WAV frame count does not match the media manifest duration.');
+  return decoded;
+}

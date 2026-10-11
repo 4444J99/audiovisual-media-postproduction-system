@@ -399,7 +399,8 @@ function feedback(input, ctx) {
   const ringSize = Math.ceil(maxDelay) + 3;
   const history = Array.from({ length: maxReturns + 1 }, () => empty(ringSize));
   const dampingState = Array.from({ length: maxReturns + 1 }, () => [0, 0]);
-  let epoch = 0, lastReset = -1;
+  let epoch = 0, resetActive = false;
+  const resetTimes = [];
   const damping = 1 - Math.exp(-TAU * Math.min(3800, sr * 0.4) / sr);
   const buffered = (buffer, index) => {
     if (index < epoch) return 0;
@@ -408,10 +409,12 @@ function feedback(input, ctx) {
   };
   for (let i = 0; i < n; i++) {
     const resetSample = Math.round(reset(i) * sr);
-    if (resetSample >= 0 && i >= resetSample && lastReset !== resetSample) {
-      epoch = i; lastReset = resetSample;
+    const active = resetSample >= 0 && i >= resetSample;
+    if (active && !resetActive) {
+      epoch = i; resetTimes.push(i / sr);
       for (const state of dampingState) state.fill(0);
     }
+    resetActive = active;
     const delayedAt = i - clamp(time(i), 1 / sr, 4) * sr;
     const returnGain = clamp(gain(i), 0, 0.965);
     const floor = Math.max(0, threshold(i)) * 0.002;
@@ -434,7 +437,7 @@ function feedback(input, ctx) {
     }
     out[0][i] = Math.tanh(l); out[1][i] = Math.tanh(r);
   }
-  ctx.diagnostics = { feedbackTopology: 'cross-channel delayed processed-output recursion with bounded return ages', maximumReturnGain: 0.965, maximumReturns: maxReturns, reset: true };
+  ctx.diagnostics = { feedbackTopology: 'cross-channel delayed processed-output recursion with bounded return ages', maximumReturnGain: 0.965, maximumReturns: maxReturns, reset: true, resetTimes };
   return out;
 }
 
@@ -476,7 +479,7 @@ function queue(input, ctx) {
     if (arrival <= nextService && arrival <= nextBurst) {
       waiting.push(arrivals[nextArrival++]);
       const cap = clamp(Math.round(capacity(i)), 1, 64);
-      if (waiting.length >= cap) {
+      if (waiting.length > cap) {
         const count = waiting.length, speed = 2.5;
         for (let k = 0; k < count; k++) pull(clock + k * 0.055, speed, k);
         burstCount++;
