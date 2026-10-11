@@ -1,0 +1,99 @@
+{
+  "schema_version": "god-here.focused-source-verification.v1",
+  "checked_at_utc": "2026-10-11T16:14:01.677207+00:00",
+  "root": "WORKBENCH_CHECKOUT",
+  "start_head": "ef2cb1cc274fb22ba9dc33e512be6c61fae165af",
+  "end_head": "ef2cb1cc274fb22ba9dc33e512be6c61fae165af",
+  "working_tree_modified_at_start": true,
+  "start_status_sha256": "74586a00766ab4b9c7711448f504815f5cf1434f6b199fc0d008706368fe0d11",
+  "node_version": "v24.19.0",
+  "python_version": "Python 3.12.14",
+  "source_sha256_before": {
+    "tests/room-media.test.mjs": "b9bd87f71bda886112e022fab02d41172a940fe5e7a14b274558f581df933e7f",
+    "tests/test_room_media_seed.py": "95281a8193de92403ecf909a418af617f5f6e7220ab8e6b6a99a0de1978683cf",
+    "scripts/room_media_seed.py": "2e076b339f9fb375934fba2e85d0fd14e628b183ce8b8aeed43a5c521093807b",
+    "scripts/generate-manifest.py": "68847fe53c3d26bfc0ca4a4d828c7055e10bb3274093cbb660f361e6b16b8fe5",
+    "lib/room-media.mjs": "af1c00d5aeecd03ed3736158c9c721d91fbd4cbd41d12843a3125d0e7240c530",
+    "lib/room-media-manifest.json": "e351c99497b30bb81810ac08f0db03c7114da414f17936c4fef8f23527bd81b2",
+    "lib/room-media-manifest.mjs": "50657270d117100f5b96738ce4840945b0431ea2872ab5f90f11a40dacff9092",
+    "README.md": "0b8a149c2fe863c14a0f8de69039d2801d6da5c6d29c79ba66dba0eb8378d3e9",
+    "ROOM-MEDIA-PUBLISHING.md": "87f1d47a4d5a02ea80009b1e3adefbd77be7ec2f2318419ca06db44e728179f6"
+  },
+  "source_sha256_after": {
+    "tests/room-media.test.mjs": "b9bd87f71bda886112e022fab02d41172a940fe5e7a14b274558f581df933e7f",
+    "tests/test_room_media_seed.py": "95281a8193de92403ecf909a418af617f5f6e7220ab8e6b6a99a0de1978683cf",
+    "scripts/room_media_seed.py": "2e076b339f9fb375934fba2e85d0fd14e628b183ce8b8aeed43a5c521093807b",
+    "scripts/generate-manifest.py": "68847fe53c3d26bfc0ca4a4d828c7055e10bb3274093cbb660f361e6b16b8fe5",
+    "lib/room-media.mjs": "af1c00d5aeecd03ed3736158c9c721d91fbd4cbd41d12843a3125d0e7240c530",
+    "lib/room-media-manifest.json": "e351c99497b30bb81810ac08f0db03c7114da414f17936c4fef8f23527bd81b2",
+    "lib/room-media-manifest.mjs": "50657270d117100f5b96738ce4840945b0431ea2872ab5f90f11a40dacff9092",
+    "README.md": "0b8a149c2fe863c14a0f8de69039d2801d6da5c6d29c79ba66dba0eb8378d3e9",
+    "ROOM-MEDIA-PUBLISHING.md": "87f1d47a4d5a02ea80009b1e3adefbd77be7ec2f2318419ca06db44e728179f6"
+  },
+  "tested_sources_unchanged_during_execution": true,
+  "results": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/room-media.test.mjs"
+      ],
+      "started_at_utc": "2026-10-11T16:14:01.427145+00:00",
+      "finished_at_utc": "2026-10-11T16:14:01.627725+00:00",
+      "elapsed_seconds": 0.201,
+      "exit_code": 0,
+      "passed": true,
+      "counts": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log_path": "RECOVERY_WORKSPACE/repo-audit/concurrent-migration/expanded-limit-delivery/focused-node-tests.log",
+      "log_sha256": "b8d3db2f63793408fd2ede6792e35223ca8ab007a0481a4a67bad997b4ac3942",
+      "original_log_sha256": "b8d3db2f63793408fd2ede6792e35223ca8ab007a0481a4a67bad997b4ac3942",
+      "log_sha256_scope": "original_log_bytes_before_public_path_redaction",
+      "public_log_path": "docs/recovery/evidence/expanded-archive-focused-node-tests.log",
+      "public_log_sha256": "0ca9418cfbea31428c22a2d5dbc0d04de80dc454474f5b7b58d71e3525a7a8d0",
+      "public_log_bytes": 6175
+    },
+    {
+      "name": "python",
+      "command": [
+        "env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_room_media_seed.py",
+        "-v"
+      ],
+      "started_at_utc": "2026-10-11T16:14:01.427411+00:00",
+      "finished_at_utc": "2026-10-11T16:14:01.676616+00:00",
+      "elapsed_seconds": 0.249,
+      "exit_code": 0,
+      "passed": true,
+      "counts": {
+        "tests": 26
+      },
+      "log_path": "RECOVERY_WORKSPACE/repo-audit/concurrent-migration/expanded-limit-delivery/focused-python-tests.log",
+      "log_sha256": "2f42d4a791aa6acb18224ccd37905bf965cc337d6649b2a3102225a69eabe55c",
+      "original_log_sha256": "2f42d4a791aa6acb18224ccd37905bf965cc337d6649b2a3102225a69eabe55c",
+      "log_sha256_scope": "original_log_bytes_before_public_path_redaction",
+      "public_log_path": "docs/recovery/evidence/expanded-archive-focused-python-tests.log",
+      "public_log_sha256": "a162d80da72017b91444644819a38f92d6a477af58bdc352f8ae2e61abc5ead0",
+      "public_log_bytes": 3694
+    }
+  ],
+  "passed": true,
+  "scope": "Dependency-free unit and DOM contract checks; no real network, R2 bucket, browser decoder, dependency installation, or framework build. Python bytecode writes disabled; test fixtures use temporary directories."
+}

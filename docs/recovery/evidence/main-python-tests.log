@@ -1,0 +1,28 @@
+test_cut_retains_identity_with_different_position (test_composition.CompositionTests.test_cut_retains_identity_with_different_position) ... ok
+test_invalid_geometry_rejected (test_composition.CompositionTests.test_invalid_geometry_rejected) ... ok
+test_neutral_is_source_exact (test_composition.CompositionTests.test_neutral_is_source_exact) ... ok
+test_seeded_generation_is_reproducible_and_bounded (test_composition.CompositionTests.test_seeded_generation_is_reproducible_and_bounded) ... ok
+test_single_effect_cannot_change_neighbor_or_shared_room (test_composition.CompositionTests.test_single_effect_cannot_change_neighbor_or_shared_room) ... ok
+test_unregistered_or_unknown_shot_falls_back (test_composition.CompositionTests.test_unregistered_or_unknown_shot_falls_back) ... ok
+test_all_categories_have_finite_edges (test_foley.FoleyTest.test_all_categories_have_finite_edges) ... ok
+test_invalid_recovery_claim_is_rejected (test_foley.FoleyTest.test_invalid_recovery_claim_is_rejected) ... ok
+test_out_of_range_event_is_rejected (test_foley.FoleyTest.test_out_of_range_event_is_rejected) ... ok
+test_seed_repeats_recipe_but_distinct_event_varies (test_foley.FoleyTest.test_seed_repeats_recipe_but_distinct_event_varies) ... ok
+test_empty_stream (test_neural_audio.NeuralTimingTests.test_empty_stream) ... ok
+test_overlap_stream_compensates_offset_and_flushes_end (test_neural_audio.NeuralTimingTests.test_overlap_stream_compensates_offset_and_flushes_end) ... ok
+test_unpinned_models_rejected (test_neural_audio.NeuralTimingTests.test_unpinned_models_rejected) ... ok
+test_flat_split_reconstruction (test_roomrack.RoomRackTests.test_flat_split_reconstruction) ... ok
+test_linked_compression_controls_burst (test_roomrack.RoomRackTests.test_linked_compression_controls_burst) ... ok
+test_all_fragments_seed_and_no_adjacent_reuse (test_roomtone.RoomToneTests.test_all_fragments_seed_and_no_adjacent_reuse) ... ok
+test_no_empty_pool_synthesis (test_roomtone.RoomToneTests.test_no_empty_pool_synthesis) ... ok
+test_quiet_words_and_transients_excluded (test_roomtone.RoomToneTests.test_quiet_words_and_transients_excluded) ... ok
+test_empty_frame_does_not_reuse_prior_person (test_segmentation.SegmentationTests.test_empty_frame_does_not_reuse_prior_person) ... ok
+test_fractional_alpha_and_bad_geometry (test_segmentation.SegmentationTests.test_fractional_alpha_and_bad_geometry) ... ok
+test_nms_retains_distinct_people (test_segmentation.SegmentationTests.test_nms_retains_distinct_people) ... ok
+test_union_and_body_recovery (test_segmentation.SegmentationTests.test_union_and_body_recovery) ... ok
+test_bed_outside_scene_and_smooth_handles (test_soundstage.SoundStageTests.test_bed_outside_scene_and_smooth_handles) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.123s
+
+OK

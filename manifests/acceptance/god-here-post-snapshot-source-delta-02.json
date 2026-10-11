@@ -1,0 +1,1247 @@
+{
+  "schema_version": "god-here.post-snapshot-source-delta.v2",
+  "addendum_number": 2,
+  "generated_at_utc": "2026-10-11T16:04:26.704493+00:00",
+  "baseline_source_commit": "79551a9b5223524106e9392cc1d8ac6d223811fc",
+  "observed_source_commit": "8027a1ee28f0d8c1319dd7e3b6c53ceec4f3670b",
+  "observed_parent_commits": [
+    "79551a9b5223524106e9392cc1d8ac6d223811fc"
+  ],
+  "frozen_catalog": {
+    "sha256": "8843bba3e9b0d5937fe5fb93e02233fe8be69aa5f072349ad896011999ccb1e3",
+    "bytes": 6369347
+  },
+  "first_addendum": {
+    "sha256": "16595855541235b1dbda2b030ac04bcbaf472575dd44a8b2e56552dc4611db1d",
+    "bytes": 959102
+  },
+  "scope": "Every Git blob in both immutable trees rehashed; compact receipt lists only changed source identities, exact-byte relocations and all registered assets. No source mutation, upload, publication or production execution.",
+  "snapshot_boundary": "This independent second addendum does not modify the frozen catalog, first addendum or already saved private custody ZIP.",
+  "hashing": {
+    "unique_git_blobs_hashed": 495,
+    "unique_git_blob_bytes_read": 785906775
+  },
+  "counts": {
+    "baseline_source_files": 513,
+    "observed_source_files": 513,
+    "baseline_unique_sha256s": 487,
+    "observed_unique_sha256s": 487,
+    "observed_source_file_bytes": 787323663,
+    "unchanged_same_path_files": 500,
+    "modified_same_path_files": 8,
+    "exact_byte_relocated_files": 5,
+    "raw_added_paths": 5,
+    "raw_removed_paths": 5,
+    "logical_changes": 13,
+    "new_unique_byte_identities_relative_to_baseline": 8,
+    "new_unique_byte_identities_already_in_frozen_catalog": 0,
+    "new_unique_byte_identities_already_in_first_addendum": 0,
+    "new_unique_bytes": 117218,
+    "new_unique_objects_by_kind": {
+      "code": 6,
+      "document": 1,
+      "metadata": 1
+    },
+    "observed_unique_identities_absent_from_frozen_catalog": 128,
+    "observed_media_file_occurrences": 239,
+    "observed_unique_media_identities": 238,
+    "observed_media_occurrences_by_kind": {
+      "image": 33,
+      "audio": 129,
+      "video": 77
+    },
+    "new_or_modified_media_byte_identities": 0,
+    "moved_mp4_bytes": 37637895,
+    "registered_media_entries": 47,
+    "registered_media_bytes": 511299017,
+    "registered_types": {
+      "audio/flac": {
+        "entries": 42,
+        "bytes": 473661122
+      },
+      "video/mp4": {
+        "entries": 5,
+        "bytes": 37637895
+      }
+    }
+  },
+  "media_identity_gate": {
+    "status": "passed",
+    "method": "Compare exact SHA-256 and byte-size multisets for all audio, video and image file occurrences across immutable trees. Each observed media identity also matches frozen catalog size and SHA. No decode was rerun.",
+    "same_identity_multiset_sha256": "bd111fa2493a4d74395c1793cd7540a3281e6892ea5275dd3ea4ea73a579db9e",
+    "all_observed_media_match_baseline": true,
+    "all_observed_media_match_frozen_catalog": true
+  },
+  "relocated_media": [
+    {
+      "before": {
+        "source_path": "public/fx/assets/renders/god-here-13-processors-landscape.mp4",
+        "sha256": "8e704b755953dddaeba0064af58b435bef9f611e18faa5c26f6942afc20442ac",
+        "bytes": 6779262,
+        "git_blob_sha1": "afc5f7d44bbbe29bd9529581f22c2fe9965e1528",
+        "kind": "video"
+      },
+      "after": {
+        "source_path": "room-media-source/fx/assets/renders/god-here-13-processors-landscape.mp4",
+        "sha256": "8e704b755953dddaeba0064af58b435bef9f611e18faa5c26f6942afc20442ac",
+        "bytes": 6779262,
+        "git_blob_sha1": "afc5f7d44bbbe29bd9529581f22c2fe9965e1528",
+        "kind": "video"
+      },
+      "status": "relocated_exact_sha256_and_size",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "8e704b755953dddaeba0064af58b435bef9f611e18faa5c26f6942afc20442ac",
+      "full_decode_status_reused_by_exact_identity": "passed"
+    },
+    {
+      "before": {
+        "source_path": "public/fx/assets/renders/god-here-13-processors-portrait.mp4",
+        "sha256": "6d908395762c5507b283a802828a6db3ece90ed1fbfddfaa08b232b46722c062",
+        "bytes": 8688001,
+        "git_blob_sha1": "2624eeaab25824d9baf61f0c871a9671b1ee23be",
+        "kind": "video"
+      },
+      "after": {
+        "source_path": "room-media-source/fx/assets/renders/god-here-13-processors-portrait.mp4",
+        "sha256": "6d908395762c5507b283a802828a6db3ece90ed1fbfddfaa08b232b46722c062",
+        "bytes": 8688001,
+        "git_blob_sha1": "2624eeaab25824d9baf61f0c871a9671b1ee23be",
+        "kind": "video"
+      },
+      "status": "relocated_exact_sha256_and_size",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "6d908395762c5507b283a802828a6db3ece90ed1fbfddfaa08b232b46722c062",
+      "full_decode_status_reused_by_exact_identity": "passed"
+    },
+    {
+      "before": {
+        "source_path": "public/media/god-here-linear-workprint-02.mp4",
+        "sha256": "326950f7042612c8c7b45c1db230b4a87b9c86df625451c41332713019f488a4",
+        "bytes": 6253907,
+        "git_blob_sha1": "8ddc86b1cac77aca7475fe86ee551e7a53ca30e1",
+        "kind": "video"
+      },
+      "after": {
+        "source_path": "room-media-source/media/god-here-linear-workprint-02.mp4",
+        "sha256": "326950f7042612c8c7b45c1db230b4a87b9c86df625451c41332713019f488a4",
+        "bytes": 6253907,
+        "git_blob_sha1": "8ddc86b1cac77aca7475fe86ee551e7a53ca30e1",
+        "kind": "video"
+      },
+      "status": "relocated_exact_sha256_and_size",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "326950f7042612c8c7b45c1db230b4a87b9c86df625451c41332713019f488a4",
+      "full_decode_status_reused_by_exact_identity": "passed"
+    },
+    {
+      "before": {
+        "source_path": "public/media/interactive-source.mp4",
+        "sha256": "b06b44855252f1e3881b6663eda3453c337f78949d8d140110bc506b1c239283",
+        "bytes": 6028126,
+        "git_blob_sha1": "7319d7fcf296b8074af7fc01afa7bc987c6f59dd",
+        "kind": "video"
+      },
+      "after": {
+        "source_path": "room-media-source/media/interactive-source.mp4",
+        "sha256": "b06b44855252f1e3881b6663eda3453c337f78949d8d140110bc506b1c239283",
+        "bytes": 6028126,
+        "git_blob_sha1": "7319d7fcf296b8074af7fc01afa7bc987c6f59dd",
+        "kind": "video"
+      },
+      "status": "relocated_exact_sha256_and_size",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "b06b44855252f1e3881b6663eda3453c337f78949d8d140110bc506b1c239283",
+      "full_decode_status_reused_by_exact_identity": "passed"
+    },
+    {
+      "before": {
+        "source_path": "public/room-tone/media/god-here-room-tone-dialogue-comparison.mp4",
+        "sha256": "25d1861330d15164dd7f479d97bc7aa66f6449801db0e825ca15e657e02f6715",
+        "bytes": 9888599,
+        "git_blob_sha1": "67425543d718fc54d01d106029e1132cc07c5d2f",
+        "kind": "video"
+      },
+      "after": {
+        "source_path": "room-media-source/room-tone/media/god-here-room-tone-dialogue-comparison.mp4",
+        "sha256": "25d1861330d15164dd7f479d97bc7aa66f6449801db0e825ca15e657e02f6715",
+        "bytes": 9888599,
+        "git_blob_sha1": "67425543d718fc54d01d106029e1132cc07c5d2f",
+        "kind": "video"
+      },
+      "status": "relocated_exact_sha256_and_size",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "25d1861330d15164dd7f479d97bc7aa66f6449801db0e825ca15e657e02f6715",
+      "full_decode_status_reused_by_exact_identity": "passed"
+    }
+  ],
+  "modified_source_files": [
+    {
+      "before": {
+        "source_path": "ROOM-MEDIA-PUBLISHING.md",
+        "sha256": "68ca941affc2d8105bed095cc3e511be5df1d212ad93aee2bfa6c8d43fffe7a5",
+        "bytes": 3342,
+        "git_blob_sha1": "639c7b4890c273ed46efacdf76c1433479a5a4ef",
+        "kind": "document"
+      },
+      "after": {
+        "source_path": "ROOM-MEDIA-PUBLISHING.md",
+        "sha256": "781d7e5802ea956654dcbfed02ef86483a9a7d13b804aa99f13e51a07325e779",
+        "bytes": 6053,
+        "git_blob_sha1": "71e70e338c59fbf538b638a592969c249f5948d5",
+        "kind": "document"
+      },
+      "status": "modified_source_bytes",
+      "new_to_baseline": true,
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "runtime_validation": "not_executed_by_this_receipt"
+    },
+    {
+      "before": {
+        "source_path": "lib/room-media-manifest.json",
+        "sha256": "f9a756ba0af1f64d0cc8d503767c512a13557aa6f9a9c8beee9dd326b636b8b8",
+        "bytes": 8870,
+        "git_blob_sha1": "99ab825f0c53402e2c3ebd2e7a4af83111fb76d8",
+        "kind": "metadata"
+      },
+      "after": {
+        "source_path": "lib/room-media-manifest.json",
+        "sha256": "d288208b0f91091c2de2a2084263d23133787a531d4e160658c68acb165f0362",
+        "bytes": 9916,
+        "git_blob_sha1": "059ed84dc2bdaa48a902c9e3670e96ab16a22690",
+        "kind": "metadata"
+      },
+      "status": "modified_source_bytes",
+      "new_to_baseline": true,
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "runtime_validation": "not_executed_by_this_receipt"
+    },
+    {
+      "before": {
+        "source_path": "lib/room-media-manifest.mjs",
+        "sha256": "461ffac710a16f1ee8f52951398980ac78e9d408c61ec8b503c4c76c8bc59661",
+        "bytes": 9041,
+        "git_blob_sha1": "8ab53b68254460f1ad79e871e2e8452e0dc10ed4",
+        "kind": "code"
+      },
+      "after": {
+        "source_path": "lib/room-media-manifest.mjs",
+        "sha256": "8803e6e3076fe725a6a5029ebf14bd223008747bcd53dd829d3a0f2e542a6efa",
+        "bytes": 10087,
+        "git_blob_sha1": "d9187cd5f74e31e14fa95649ffee5ab282637e38",
+        "kind": "code"
+      },
+      "status": "modified_source_bytes",
+      "new_to_baseline": true,
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "runtime_validation": "not_executed_by_this_receipt"
+    },
+    {
+      "before": {
+        "source_path": "lib/room-media.mjs",
+        "sha256": "40079416d73a4c9b897216bb1df23aa04a39f0749c3d189c7da17f99307f455b",
+        "bytes": 12129,
+        "git_blob_sha1": "ec2186d0c435078a15d9acbbe46dbd4e2a9dd352",
+        "kind": "code"
+      },
+      "after": {
+        "source_path": "lib/room-media.mjs",
+        "sha256": "867d46a6895816627bae58fb16b47d2d84b64a0ff3d22c52c506229e784c841d",
+        "bytes": 12800,
+        "git_blob_sha1": "fb31adcfa0f017cb7f141be5a453aeddf2140924",
+        "kind": "code"
+      },
+      "status": "modified_source_bytes",
+      "new_to_baseline": true,
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "runtime_validation": "not_executed_by_this_receipt"
+    },
+    {
+      "before": {
+        "source_path": "scripts/generate-manifest.py",
+        "sha256": "c2b649377b346702d35465b152378fe39e6364eb8a5f6586755bcff73c767115",
+        "bytes": 2327,
+        "git_blob_sha1": "5cfbdc70ee2ebc71daf3279c6ee4bd3d770dacbb",
+        "kind": "code"
+      },
+      "after": {
+        "source_path": "scripts/generate-manifest.py",
+        "sha256": "ea374bd9bea26776acfa982b4cdf81ac76b05ed26a388eb45a83545202356dcf",
+        "bytes": 3226,
+        "git_blob_sha1": "3a3e546226af90e1be382f2a2393d894e780a7c1",
+        "kind": "code"
+      },
+      "status": "modified_source_bytes",
+      "new_to_baseline": true,
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "runtime_validation": "not_executed_by_this_receipt"
+    },
+    {
+      "before": {
+        "source_path": "scripts/room_media_seed.py",
+        "sha256": "f380fda842ee170690048d543509d00522d722b011a0d4e7fe3f5204d9ae93f1",
+        "bytes": 26875,
+        "git_blob_sha1": "47f6d14661be5100eb9f4372b99f29f030680a68",
+        "kind": "code"
+      },
+      "after": {
+        "source_path": "scripts/room_media_seed.py",
+        "sha256": "97984d5285f5f2ece1c7699e98df8176c75c1a68f07bee70710c06d479197118",
+        "bytes": 28240,
+        "git_blob_sha1": "e5a53e4b1543f5221ad0f7fddec7484ebaac985b",
+        "kind": "code"
+      },
+      "status": "modified_source_bytes",
+      "new_to_baseline": true,
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "runtime_validation": "not_executed_by_this_receipt"
+    },
+    {
+      "before": {
+        "source_path": "tests/room-media.test.mjs",
+        "sha256": "67d452612c4fbe1f311a3213c1c52fae440e75fe895c01e4e3d0eaebd62c3f99",
+        "bytes": 18603,
+        "git_blob_sha1": "f67c23429ebcea0a08e1967bd39971ffc5a86d98",
+        "kind": "code"
+      },
+      "after": {
+        "source_path": "tests/room-media.test.mjs",
+        "sha256": "51fcd5cd6449fc32f49434e8e1eba5f8a928f6d7d26d90cbf163de3555f250d8",
+        "bytes": 25721,
+        "git_blob_sha1": "b2b2b46ee922c203b60040fb9a8ee69f75f70b08",
+        "kind": "code"
+      },
+      "status": "modified_source_bytes",
+      "new_to_baseline": true,
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "runtime_validation": "not_executed_by_this_receipt"
+    },
+    {
+      "before": {
+        "source_path": "tests/test_room_media_seed.py",
+        "sha256": "03da80ae91e1adccdbc968a7b17be24525a497f053585602136e653a69d6eb16",
+        "bytes": 15168,
+        "git_blob_sha1": "d4f52b239354d0be819d7e0d4dab2ccc219906e9",
+        "kind": "code"
+      },
+      "after": {
+        "source_path": "tests/test_room_media_seed.py",
+        "sha256": "20dbd254a59fa7e34ed2f43df639eeaa99843c13d8f1db9d4ad5c15b85fe6ff6",
+        "bytes": 21175,
+        "git_blob_sha1": "fcf08db63d7d9ffccda0987b9008321d550a82fe",
+        "kind": "code"
+      },
+      "status": "modified_source_bytes",
+      "new_to_baseline": true,
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "runtime_validation": "not_executed_by_this_receipt"
+    }
+  ],
+  "new_source_objects": [
+    {
+      "sha256": "20dbd254a59fa7e34ed2f43df639eeaa99843c13d8f1db9d4ad5c15b85fe6ff6",
+      "bytes": 21175,
+      "source_paths": [
+        "tests/test_room_media_seed.py"
+      ],
+      "kinds": [
+        "code"
+      ],
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "snapshot_membership": "separate_second_addendum_not_in_frozen_catalog_or_saved_private_packet"
+    },
+    {
+      "sha256": "51fcd5cd6449fc32f49434e8e1eba5f8a928f6d7d26d90cbf163de3555f250d8",
+      "bytes": 25721,
+      "source_paths": [
+        "tests/room-media.test.mjs"
+      ],
+      "kinds": [
+        "code"
+      ],
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "snapshot_membership": "separate_second_addendum_not_in_frozen_catalog_or_saved_private_packet"
+    },
+    {
+      "sha256": "781d7e5802ea956654dcbfed02ef86483a9a7d13b804aa99f13e51a07325e779",
+      "bytes": 6053,
+      "source_paths": [
+        "ROOM-MEDIA-PUBLISHING.md"
+      ],
+      "kinds": [
+        "document"
+      ],
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "snapshot_membership": "separate_second_addendum_not_in_frozen_catalog_or_saved_private_packet"
+    },
+    {
+      "sha256": "867d46a6895816627bae58fb16b47d2d84b64a0ff3d22c52c506229e784c841d",
+      "bytes": 12800,
+      "source_paths": [
+        "lib/room-media.mjs"
+      ],
+      "kinds": [
+        "code"
+      ],
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "snapshot_membership": "separate_second_addendum_not_in_frozen_catalog_or_saved_private_packet"
+    },
+    {
+      "sha256": "8803e6e3076fe725a6a5029ebf14bd223008747bcd53dd829d3a0f2e542a6efa",
+      "bytes": 10087,
+      "source_paths": [
+        "lib/room-media-manifest.mjs"
+      ],
+      "kinds": [
+        "code"
+      ],
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "snapshot_membership": "separate_second_addendum_not_in_frozen_catalog_or_saved_private_packet"
+    },
+    {
+      "sha256": "97984d5285f5f2ece1c7699e98df8176c75c1a68f07bee70710c06d479197118",
+      "bytes": 28240,
+      "source_paths": [
+        "scripts/room_media_seed.py"
+      ],
+      "kinds": [
+        "code"
+      ],
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "snapshot_membership": "separate_second_addendum_not_in_frozen_catalog_or_saved_private_packet"
+    },
+    {
+      "sha256": "d288208b0f91091c2de2a2084263d23133787a531d4e160658c68acb165f0362",
+      "bytes": 9916,
+      "source_paths": [
+        "lib/room-media-manifest.json"
+      ],
+      "kinds": [
+        "metadata"
+      ],
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "snapshot_membership": "separate_second_addendum_not_in_frozen_catalog_or_saved_private_packet"
+    },
+    {
+      "sha256": "ea374bd9bea26776acfa982b4cdf81ac76b05ed26a388eb45a83545202356dcf",
+      "bytes": 3226,
+      "source_paths": [
+        "scripts/generate-manifest.py"
+      ],
+      "kinds": [
+        "code"
+      ],
+      "frozen_catalog_match": false,
+      "first_addendum_identity_match": false,
+      "snapshot_membership": "separate_second_addendum_not_in_frozen_catalog_or_saved_private_packet"
+    }
+  ],
+  "registered_media": [
+    {
+      "id": "flac-001-f698436264d7",
+      "path": "/room-tone/downloads/previous/full-length/A-room.flac",
+      "bytes": 18513507,
+      "sha256": "f698436264d7d4b0131d7d55937ff14f51579e14a60ee6f41be4897eefd39bd9",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/full-length/A-room.flac",
+      "git_blob_sha1": "9811b977a5669831bd8f5961caf57ccf00703f90",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "f698436264d7d4b0131d7d55937ff14f51579e14a60ee6f41be4897eefd39bd9",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/full-length/A-room.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-002-0f8065922227",
+      "path": "/room-tone/downloads/previous/full-length/B-room.flac",
+      "bytes": 18421377,
+      "sha256": "0f806592222746193afd3cf832c36cc7b41c6fb5c502644a5ade6dd50782cfed",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/full-length/B-room.flac",
+      "git_blob_sha1": "72ee5ce1a275d771f9bdf559aacd23c7abcc7a0b",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "0f806592222746193afd3cf832c36cc7b41c6fb5c502644a5ade6dd50782cfed",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/full-length/B-room.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-003-8722bbe9f785",
+      "path": "/room-tone/downloads/previous/full-length/C-room.flac",
+      "bytes": 18563372,
+      "sha256": "8722bbe9f78541c9ba7c4e725eb13a405695a0859a577ca8fdd6edeee21a5d83",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/full-length/C-room.flac",
+      "git_blob_sha1": "172f49376b7e00b758ec50c16da290b5cd6a7350",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "8722bbe9f78541c9ba7c4e725eb13a405695a0859a577ca8fdd6edeee21a5d83",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/full-length/C-room.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-004-b32f6ee3eee6",
+      "path": "/room-tone/downloads/previous/full-length/D-room.flac",
+      "bytes": 18780912,
+      "sha256": "b32f6ee3eee6028e19bd89f60cd8147ce15a263138c6b60b4bc08fb1c854dc6b",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/full-length/D-room.flac",
+      "git_blob_sha1": "e7d0bfefc985176bcb5ea48fede87aa4f6dabba8",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "b32f6ee3eee6028e19bd89f60cd8147ce15a263138c6b60b4bc08fb1c854dc6b",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/full-length/D-room.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-005-3212764cbe23",
+      "path": "/room-tone/downloads/previous/full-length/E-room.flac",
+      "bytes": 18845332,
+      "sha256": "3212764cbe233efad0609c3799eafd31962948e73e95669ad9e34d0294c5eb25",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/full-length/E-room.flac",
+      "git_blob_sha1": "936899f799cf2ca06a17e8d399a8ab6bd9f2b64f",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "3212764cbe233efad0609c3799eafd31962948e73e95669ad9e34d0294c5eb25",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/full-length/E-room.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-006-7e895a03e685",
+      "path": "/room-tone/downloads/previous/full-length/dialogue-core.flac",
+      "bytes": 20043223,
+      "sha256": "7e895a03e68522e0aafdb1a518c9c9bdbb7f953935be62ba2db9781f0ab84bc1",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/full-length/dialogue-core.flac",
+      "git_blob_sha1": "f999218641c322dd03509f2d759afa561256042c",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "7e895a03e68522e0aafdb1a518c9c9bdbb7f953935be62ba2db9781f0ab84bc1",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/full-length/dialogue-core.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-007-2cea6f3977f9",
+      "path": "/room-tone/downloads/previous/original-room-rack/high-dry-contribution.flac",
+      "bytes": 17481478,
+      "sha256": "2cea6f3977f9014f9f1ef5a80205c372367472093e36fa0a97f8cfc697f4026f",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/original-room-rack/high-dry-contribution.flac",
+      "git_blob_sha1": "491cdf2baa312600bc3543de4e6f93b4c74b5fc5",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "2cea6f3977f9014f9f1ef5a80205c372367472093e36fa0a97f8cfc697f4026f",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/original-room-rack/high-dry-contribution.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-008-14cbd9b746c1",
+      "path": "/room-tone/downloads/previous/original-room-rack/high-fx-return.flac",
+      "bytes": 12551457,
+      "sha256": "14cbd9b746c1ccbe23f680811794367b85561b71ef57f83723d7c97f0b38a2c1",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/original-room-rack/high-fx-return.flac",
+      "git_blob_sha1": "da8df2ac0b0ef6fce18d3a712d956f2d766d7cc8",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "14cbd9b746c1ccbe23f680811794367b85561b71ef57f83723d7c97f0b38a2c1",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/original-room-rack/high-fx-return.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-009-6be64fe25ccf",
+      "path": "/room-tone/downloads/previous/original-room-rack/low-dry-contribution.flac",
+      "bytes": 3550565,
+      "sha256": "6be64fe25ccfce5fddd8ff6df461423022aba95cfe73166f60a718b45dd9f7f9",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/original-room-rack/low-dry-contribution.flac",
+      "git_blob_sha1": "f099277533544850bc42f881e8ad2b620776e838",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "6be64fe25ccfce5fddd8ff6df461423022aba95cfe73166f60a718b45dd9f7f9",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/original-room-rack/low-dry-contribution.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-010-2f7c0c782c3f",
+      "path": "/room-tone/downloads/previous/original-room-rack/low-fx-return.flac",
+      "bytes": 3091978,
+      "sha256": "2f7c0c782c3f19f46a88ab9f4df952bf3959289b5bd3e9999ef6ff4e734c999d",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/original-room-rack/low-fx-return.flac",
+      "git_blob_sha1": "e2db6cab192c515e273729c85b3380ba0e039a37",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "2f7c0c782c3f19f46a88ab9f4df952bf3959289b5bd3e9999ef6ff4e734c999d",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/original-room-rack/low-fx-return.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-011-8e5f4c45dcbd",
+      "path": "/room-tone/downloads/previous/original-room-rack/mid-dry-contribution.flac",
+      "bytes": 6454897,
+      "sha256": "8e5f4c45dcbdfb0422754c7f0da3d2b80514ed59d7992e8e4db183cfe0566657",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/original-room-rack/mid-dry-contribution.flac",
+      "git_blob_sha1": "aa5e082a5713d13a2585011b4f52d9f47a9bf985",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "8e5f4c45dcbdfb0422754c7f0da3d2b80514ed59d7992e8e4db183cfe0566657",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/original-room-rack/mid-dry-contribution.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-012-da6af94a9bb8",
+      "path": "/room-tone/downloads/previous/original-room-rack/mid-fx-return.flac",
+      "bytes": 5115737,
+      "sha256": "da6af94a9bb8ca4b699d22e9d307293fe9bae736b764d90632da4fb5c2d2a7ad",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/original-room-rack/mid-fx-return.flac",
+      "git_blob_sha1": "c9915be7b43bc39406ce654dc3e831987e82e4d7",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "da6af94a9bb8ca4b699d22e9d307293fe9bae736b764d90632da4fb5c2d2a7ad",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/original-room-rack/mid-fx-return.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-013-2cc3e3895fd0",
+      "path": "/room-tone/downloads/previous/stems/B/high.flac",
+      "bytes": 17593347,
+      "sha256": "2cc3e3895fd023c7d31edbc518bf24c144a6dd2307eba2144b827008308b6573",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/B/high.flac",
+      "git_blob_sha1": "22493bf6b5bf46c460bd4dcbd1b18d87116a508a",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "2cc3e3895fd023c7d31edbc518bf24c144a6dd2307eba2144b827008308b6573",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/B/high.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-014-da5479b79138",
+      "path": "/room-tone/downloads/previous/stems/B/low.flac",
+      "bytes": 3614314,
+      "sha256": "da5479b79138afa67f518feecf8d750ed5f3fb0236febaf8337943064f6dd703",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/B/low.flac",
+      "git_blob_sha1": "b56142d5bcf6fd324a739df9b92414055b7eac27",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "da5479b79138afa67f518feecf8d750ed5f3fb0236febaf8337943064f6dd703",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/B/low.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-015-45818c1e7333",
+      "path": "/room-tone/downloads/previous/stems/B/mid.flac",
+      "bytes": 6476357,
+      "sha256": "45818c1e7333a81aebf187b455c85a32198feca42d74262b59e5f9fbfb6951d1",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/B/mid.flac",
+      "git_blob_sha1": "3dde259256cc12272b4ae0835b2e47bd5aa98cc0",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "45818c1e7333a81aebf187b455c85a32198feca42d74262b59e5f9fbfb6951d1",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/B/mid.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-016-9943f6bb269b",
+      "path": "/room-tone/downloads/previous/stems/C/high.flac",
+      "bytes": 17748917,
+      "sha256": "9943f6bb269becf3a1d1da2c226e00606083468c615e24c862856e28e137c102",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/C/high.flac",
+      "git_blob_sha1": "7c4c7927d85407f07c304562ab9657c9fd77d7be",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "9943f6bb269becf3a1d1da2c226e00606083468c615e24c862856e28e137c102",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/C/high.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-017-e1be0547bb31",
+      "path": "/room-tone/downloads/previous/stems/C/low.flac",
+      "bytes": 3637495,
+      "sha256": "e1be0547bb31282acdc1186955a7ad5cb77727c83f65a0a90953108ab40c2d60",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/C/low.flac",
+      "git_blob_sha1": "77a9c7120115c8fe8eb68a7fc99d3ba57ecc25b2",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "e1be0547bb31282acdc1186955a7ad5cb77727c83f65a0a90953108ab40c2d60",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/C/low.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-018-d4434a21f2ee",
+      "path": "/room-tone/downloads/previous/stems/C/mid.flac",
+      "bytes": 6580634,
+      "sha256": "d4434a21f2ee3592ac6a04f862b4dcaa26902a64d5a1e15a2a952d2391e18f5e",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/C/mid.flac",
+      "git_blob_sha1": "7ae07785d76a8bf2633a45b27c682b6ef07265cb",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "d4434a21f2ee3592ac6a04f862b4dcaa26902a64d5a1e15a2a952d2391e18f5e",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/C/mid.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-019-57b184679513",
+      "path": "/room-tone/downloads/previous/stems/D/high.flac",
+      "bytes": 18038500,
+      "sha256": "57b184679513d55e85615eedfc1647407eb48f4c014da3cdcba696195a8d424a",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/D/high.flac",
+      "git_blob_sha1": "4b5c2a6e0e501e0593473fa1901f8d36ddfa0e67",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "57b184679513d55e85615eedfc1647407eb48f4c014da3cdcba696195a8d424a",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/D/high.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-020-ba97a2b5ec20",
+      "path": "/room-tone/downloads/previous/stems/D/low.flac",
+      "bytes": 3678467,
+      "sha256": "ba97a2b5ec2064fd88cbf0076044c7c1af1c4d1640949c14232ec2ce612ee44f",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/D/low.flac",
+      "git_blob_sha1": "2e62a81a79f10e78230de14177680a28759d4401",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "ba97a2b5ec2064fd88cbf0076044c7c1af1c4d1640949c14232ec2ce612ee44f",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/D/low.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-021-6ad648eafe40",
+      "path": "/room-tone/downloads/previous/stems/D/mid.flac",
+      "bytes": 6309445,
+      "sha256": "6ad648eafe4068f1868bbf72f3bc0275719ae7b14890d4fe30c6d12dd6bb311e",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/D/mid.flac",
+      "git_blob_sha1": "da085f29efc8d165adc0c54f549196b9d38bc156",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "6ad648eafe4068f1868bbf72f3bc0275719ae7b14890d4fe30c6d12dd6bb311e",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/D/mid.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-022-f00424859be4",
+      "path": "/room-tone/downloads/previous/stems/E/high.flac",
+      "bytes": 18163922,
+      "sha256": "f00424859be418211e47345d507b1f3a1171d26981b2a698a6b84a0419b90ba8",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/E/high.flac",
+      "git_blob_sha1": "e1c112cb4c0ef2e7950b36ba9a97c3f6c7c0c3a9",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "f00424859be418211e47345d507b1f3a1171d26981b2a698a6b84a0419b90ba8",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/E/high.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-023-4be2c1b37931",
+      "path": "/room-tone/downloads/previous/stems/E/low.flac",
+      "bytes": 3667970,
+      "sha256": "4be2c1b3793134ec86a2a51aca24027e95220fe9d3de2304e8d4cd6bc1bb9006",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/E/low.flac",
+      "git_blob_sha1": "3e522a625407e34ddd108c29398540a81e25fd37",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "4be2c1b3793134ec86a2a51aca24027e95220fe9d3de2304e8d4cd6bc1bb9006",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/E/low.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-024-757388b09a66",
+      "path": "/room-tone/downloads/previous/stems/E/mid.flac",
+      "bytes": 6231401,
+      "sha256": "757388b09a66f4d59420397897daeae2d80f49d22dfbcd7154d17245ec938317",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/previous/stems/E/mid.flac",
+      "git_blob_sha1": "234c4946531c09b88c321b1f0bf76766fa8a690e",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "757388b09a66f4d59420397897daeae2d80f49d22dfbcd7154d17245ec938317",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/previous/stems/E/mid.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-025-42577c53ee2b",
+      "path": "/room-tone/downloads/stretched/P5.flac",
+      "bytes": 19162441,
+      "sha256": "42577c53ee2b3219102544c8855d84a3743e16ce7992661d86ddfc705d956144",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/P5.flac",
+      "git_blob_sha1": "568726e675a91e98f55146e73eb257bf5eb067ce",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "42577c53ee2b3219102544c8855d84a3743e16ce7992661d86ddfc705d956144",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/P5.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-026-787f26b60225",
+      "path": "/room-tone/downloads/stretched/P5R.flac",
+      "bytes": 19162815,
+      "sha256": "787f26b60225a69521435de4c1f099c9513f556fe97102385d599e55ecff8f3f",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/P5R.flac",
+      "git_blob_sha1": "04b99e40509b6fa95737248237fe28db6e3cb7c3",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "787f26b60225a69521435de4c1f099c9513f556fe97102385d599e55ecff8f3f",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/P5R.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-027-45f30cd4f38d",
+      "path": "/room-tone/downloads/stretched/PL1.flac",
+      "bytes": 18919340,
+      "sha256": "45f30cd4f38d03143988d663b4297491510197216efe79d58a3495cfdadf2a77",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/PL1.flac",
+      "git_blob_sha1": "a53ade684f1ce1a127cf7f08a268c8e559853ed2",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "45f30cd4f38d03143988d663b4297491510197216efe79d58a3495cfdadf2a77",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/PL1.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-028-efbe921cebed",
+      "path": "/room-tone/downloads/stretched/PL2.flac",
+      "bytes": 19105629,
+      "sha256": "efbe921cebed107ea62b302283fd894f7db937e32af8ea30d1a5d1ad366f0f43",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/PL2.flac",
+      "git_blob_sha1": "89e97f01aee8d304057bd37ea907d98a33f54e1d",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "efbe921cebed107ea62b302283fd894f7db937e32af8ea30d1a5d1ad366f0f43",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/PL2.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-029-8ddfbfaa7974",
+      "path": "/room-tone/downloads/stretched/PL3.flac",
+      "bytes": 18921741,
+      "sha256": "8ddfbfaa7974669797ebf95cd82458ba41aeee353eb554f4ac91573fc330c086",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/PL3.flac",
+      "git_blob_sha1": "96dab55383c69a2bc207fd0e7922d6b30a0166b8",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "8ddfbfaa7974669797ebf95cd82458ba41aeee353eb554f4ac91573fc330c086",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/PL3.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-030-5ac9c5bde987",
+      "path": "/room-tone/downloads/stretched/PL4.flac",
+      "bytes": 18929081,
+      "sha256": "5ac9c5bde9871c243e547c76e78291ebcb333f972533c0ccb6384400b133aa16",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/PL4.flac",
+      "git_blob_sha1": "bdf087286fdbe6e6d6a0549aa8cc6883bdb2f42f",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "5ac9c5bde9871c243e547c76e78291ebcb333f972533c0ccb6384400b133aa16",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/PL4.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-031-5dc5f8ab268c",
+      "path": "/room-tone/downloads/stretched/PL5.flac",
+      "bytes": 18897252,
+      "sha256": "5dc5f8ab268c85107a17e168e5f8cb55dadc64befed406a4eb87fe6166720484",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/PL5.flac",
+      "git_blob_sha1": "07268a4f37ebf000dd40e4213890c6f20e9ad3cc",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "5dc5f8ab268c85107a17e168e5f8cb55dadc64befed406a4eb87fe6166720484",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/PL5.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-032-5762c6868ca3",
+      "path": "/room-tone/downloads/stretched/V1.flac",
+      "bytes": 4968075,
+      "sha256": "5762c6868ca32253baa0e4bb48af23c18af99c5a144494154427e2d2913b34c1",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/V1.flac",
+      "git_blob_sha1": "046a21a015191d5e974e02e83a29703da44f9f9f",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "5762c6868ca32253baa0e4bb48af23c18af99c5a144494154427e2d2913b34c1",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/V1.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-033-50bd2cee80f6",
+      "path": "/room-tone/downloads/stretched/V2.flac",
+      "bytes": 5050223,
+      "sha256": "50bd2cee80f67a20a05f6d3e4af6517222f87942f47617f219d121f82fbbf2ac",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/V2.flac",
+      "git_blob_sha1": "d650f57db778aaa07d2a0223e8c30ab0a0f06022",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "50bd2cee80f67a20a05f6d3e4af6517222f87942f47617f219d121f82fbbf2ac",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/V2.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-034-5f3a51c5864d",
+      "path": "/room-tone/downloads/stretched/V3.flac",
+      "bytes": 5359633,
+      "sha256": "5f3a51c5864d85b03a9c7e596e68e9b6139dffedbf9f54dd2011539e177e4d6c",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/V3.flac",
+      "git_blob_sha1": "7bee90292b17ef38c9dbbb8a1073af78f1aaf928",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "5f3a51c5864d85b03a9c7e596e68e9b6139dffedbf9f54dd2011539e177e4d6c",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/V3.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-035-b52948467e36",
+      "path": "/room-tone/downloads/stretched/V4.flac",
+      "bytes": 6131664,
+      "sha256": "b52948467e361416290722cc042ae02d34281de5c01d67192790a84eb14c6196",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/V4.flac",
+      "git_blob_sha1": "235f6a3a67a07e1b2d79a50b215c7d6fe0a0458b",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "b52948467e361416290722cc042ae02d34281de5c01d67192790a84eb14c6196",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/V4.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-036-b67906a568c7",
+      "path": "/room-tone/downloads/stretched/V5.flac",
+      "bytes": 7984593,
+      "sha256": "b67906a568c712f2d41ee5041a81ed785c15ae088f9a94dc87718d10dc02b925",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/V5.flac",
+      "git_blob_sha1": "b86d9dcf8f240ce5510e834940999981f96c4d46",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "b67906a568c712f2d41ee5041a81ed785c15ae088f9a94dc87718d10dc02b925",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/V5.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-037-79880e8f16fe",
+      "path": "/room-tone/downloads/stretched/V5R.flac",
+      "bytes": 8113403,
+      "sha256": "79880e8f16fecb0dd216e1cc081c8a4adc1fd51df20f4bd462707c5c88a6317a",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/V5R.flac",
+      "git_blob_sha1": "830a10321f27c5465a342b949044e9a07467dc04",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "79880e8f16fecb0dd216e1cc081c8a4adc1fd51df20f4bd462707c5c88a6317a",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/V5R.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-038-fa58d7f6e09f",
+      "path": "/room-tone/downloads/stretched/VL1.flac",
+      "bytes": 4967420,
+      "sha256": "fa58d7f6e09fff549010566eb8777cb7046dfd99dd82c5438c5406779fea0a6a",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/VL1.flac",
+      "git_blob_sha1": "ca8749c01da4b098aee31e98fd32b74b197085e4",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "fa58d7f6e09fff549010566eb8777cb7046dfd99dd82c5438c5406779fea0a6a",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/VL1.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-039-0a819ad7d841",
+      "path": "/room-tone/downloads/stretched/VL2.flac",
+      "bytes": 5034389,
+      "sha256": "0a819ad7d841a1fafe6c3eb850aa055f15adf322fcff44dc69887f23a6da024a",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/VL2.flac",
+      "git_blob_sha1": "2ff85406cd674cf749776d00e1c3b71765c7a4ef",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "0a819ad7d841a1fafe6c3eb850aa055f15adf322fcff44dc69887f23a6da024a",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/VL2.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-040-fc7817a697f8",
+      "path": "/room-tone/downloads/stretched/VL3.flac",
+      "bytes": 5319922,
+      "sha256": "fc7817a697f843c451ff24647a0d6b039a066243914e0ca51e568cfae38b92ca",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/VL3.flac",
+      "git_blob_sha1": "cee6320e89b8a3a49326ea86e18cce96223fd69f",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "fc7817a697f843c451ff24647a0d6b039a066243914e0ca51e568cfae38b92ca",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/VL3.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-041-aa0034a2dc0e",
+      "path": "/room-tone/downloads/stretched/VL4.flac",
+      "bytes": 6204924,
+      "sha256": "aa0034a2dc0e041b0a937101b4ae753d119f444e930cd06d02c7fcfebd208e35",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/VL4.flac",
+      "git_blob_sha1": "f74e62d57c315cab972211c87b81f739c385d671",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "aa0034a2dc0e041b0a937101b4ae753d119f444e930cd06d02c7fcfebd208e35",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/VL4.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "flac-042-dbdc99e11053",
+      "path": "/room-tone/downloads/stretched/VL5.flac",
+      "bytes": 8273973,
+      "sha256": "dbdc99e1105344b60f6fea32d62e4377c11be436ca210cb797fafb8b30016cc7",
+      "content_type_from_source_registration": "audio/flac",
+      "source_path": "room-media-source/room-tone/downloads/stretched/VL5.flac",
+      "git_blob_sha1": "9f116796b423cbaf75dd6139bcb128f00702eda6",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "dbdc99e1105344b60f6fea32d62e4377c11be436ca210cb797fafb8b30016cc7",
+      "baseline_exact_source_paths": [
+        "room-media-source/room-tone/downloads/stretched/VL5.flac"
+      ],
+      "registry_status": "unchanged_registration"
+    },
+    {
+      "id": "mp4-001-8e704b755953",
+      "path": "/fx/assets/renders/god-here-13-processors-landscape.mp4",
+      "bytes": 6779262,
+      "sha256": "8e704b755953dddaeba0064af58b435bef9f611e18faa5c26f6942afc20442ac",
+      "content_type_from_source_registration": "video/mp4",
+      "source_path": "room-media-source/fx/assets/renders/god-here-13-processors-landscape.mp4",
+      "git_blob_sha1": "afc5f7d44bbbe29bd9529581f22c2fe9965e1528",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "8e704b755953dddaeba0064af58b435bef9f611e18faa5c26f6942afc20442ac",
+      "baseline_exact_source_paths": [
+        "public/fx/assets/renders/god-here-13-processors-landscape.mp4"
+      ],
+      "registry_status": "new_registration_for_existing_media_bytes"
+    },
+    {
+      "id": "mp4-002-6d908395762c",
+      "path": "/fx/assets/renders/god-here-13-processors-portrait.mp4",
+      "bytes": 8688001,
+      "sha256": "6d908395762c5507b283a802828a6db3ece90ed1fbfddfaa08b232b46722c062",
+      "content_type_from_source_registration": "video/mp4",
+      "source_path": "room-media-source/fx/assets/renders/god-here-13-processors-portrait.mp4",
+      "git_blob_sha1": "2624eeaab25824d9baf61f0c871a9671b1ee23be",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "6d908395762c5507b283a802828a6db3ece90ed1fbfddfaa08b232b46722c062",
+      "baseline_exact_source_paths": [
+        "public/fx/assets/renders/god-here-13-processors-portrait.mp4"
+      ],
+      "registry_status": "new_registration_for_existing_media_bytes"
+    },
+    {
+      "id": "mp4-003-326950f70426",
+      "path": "/media/god-here-linear-workprint-02.mp4",
+      "bytes": 6253907,
+      "sha256": "326950f7042612c8c7b45c1db230b4a87b9c86df625451c41332713019f488a4",
+      "content_type_from_source_registration": "video/mp4",
+      "source_path": "room-media-source/media/god-here-linear-workprint-02.mp4",
+      "git_blob_sha1": "8ddc86b1cac77aca7475fe86ee551e7a53ca30e1",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "326950f7042612c8c7b45c1db230b4a87b9c86df625451c41332713019f488a4",
+      "baseline_exact_source_paths": [
+        "public/media/god-here-linear-workprint-02.mp4"
+      ],
+      "registry_status": "new_registration_for_existing_media_bytes"
+    },
+    {
+      "id": "mp4-004-b06b44855252",
+      "path": "/media/interactive-source.mp4",
+      "bytes": 6028126,
+      "sha256": "b06b44855252f1e3881b6663eda3453c337f78949d8d140110bc506b1c239283",
+      "content_type_from_source_registration": "video/mp4",
+      "source_path": "room-media-source/media/interactive-source.mp4",
+      "git_blob_sha1": "7319d7fcf296b8074af7fc01afa7bc987c6f59dd",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "b06b44855252f1e3881b6663eda3453c337f78949d8d140110bc506b1c239283",
+      "baseline_exact_source_paths": [
+        "public/media/interactive-source.mp4"
+      ],
+      "registry_status": "new_registration_for_existing_media_bytes"
+    },
+    {
+      "id": "mp4-005-25d1861330d1",
+      "path": "/room-tone/media/god-here-room-tone-dialogue-comparison.mp4",
+      "bytes": 9888599,
+      "sha256": "25d1861330d15164dd7f479d97bc7aa66f6449801db0e825ca15e657e02f6715",
+      "content_type_from_source_registration": "video/mp4",
+      "source_path": "room-media-source/room-tone/media/god-here-room-tone-dialogue-comparison.mp4",
+      "git_blob_sha1": "67425543d718fc54d01d106029e1132cc07c5d2f",
+      "source_identity_status": "registered_sha256_and_size_match_immutable_git_blob",
+      "frozen_catalog_match": true,
+      "frozen_object_sha256": "25d1861330d15164dd7f479d97bc7aa66f6449801db0e825ca15e657e02f6715",
+      "baseline_exact_source_paths": [
+        "public/room-tone/media/god-here-room-tone-dialogue-comparison.mp4"
+      ],
+      "registry_status": "new_registration_for_existing_media_bytes"
+    }
+  ],
+  "media_source_layout": {
+    "public/": {
+      "file_count": 192,
+      "bytes": 271008038,
+      "kinds": {
+        "image": 33,
+        "audio": 87,
+        "video": 72
+      }
+    },
+    "room-media-source/": {
+      "file_count": 47,
+      "bytes": 511299017,
+      "kinds": {
+        "video": 5,
+        "audio": 42
+      }
+    }
+  },
+  "registry_integration_observations": {
+    "manifest_source_path": "lib/room-media-manifest.json",
+    "baseline_flac_registrations_preserved_exactly": true,
+    "source_path_rule": "room-media-source + registered request path",
+    "request_paths_preserved": "Existing URL-relative request paths retained in manifest; five files moved out of public/ into room-media-source/ at the identical suffix.",
+    "content_types_in_source_handler": {
+      "flac": "audio/flac",
+      "mp4": "video/mp4"
+    },
+    "mp4_response_disposition_in_source_handler": "inline",
+    "seed_script_source_path": "scripts/room_media_seed.py",
+    "seed_script_registered_entry_limit": 47,
+    "seed_script_flac_limit": 42,
+    "seed_script_mp4_scope": "Explicit allowlist of the five MP4 request paths listed in registered_media.",
+    "runtime_seeding_or_download_success": "not_tested_by_this_immutable_source_audit"
+  },
+  "limitations": [
+    "Source availability and manifest registration do not prove deployed route health, object-store seeding or playback.",
+    "This receipt reuses existing media validation only by exact SHA and compatible size; it grants no artistic acceptance.",
+    "Eight new code/document/registry objects are separate from the frozen denominator and the saved private custody packet."
+  ]
+}

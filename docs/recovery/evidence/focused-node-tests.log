@@ -1,0 +1,435 @@
+Command: node --test --test-reporter=tap tests/asset-loader.test.mjs tests/legacy-static.test.mjs tests/room-media.test.mjs tests/room-tone-catalog.test.mjs tests/room-tone-page.test.mjs tests/room-tone-transport.test.mjs
+Working directory: WORKBENCH_CHECKOUT
+Started: 2026-10-11T15:59:23.235224+00:00
+
+TAP version 13
+# Subtest: reads complete JSON and binary response bodies
+ok 1 - reads complete JSON and binary response bodies
+  ---
+  duration_ms: 4.559079
+  type: 'test'
+  ...
+# Subtest: reports a missing required asset with its name and HTTP status
+ok 2 - reports a missing required asset with its name and HTTP status
+  ---
+  duration_ms: 0.713804
+  type: 'test'
+  ...
+# Subtest: a stalled request cannot leave loading pending and is aborted
+ok 3 - a stalled request cannot leave loading pending and is aborted
+  ---
+  duration_ms: 15.782327
+  type: 'test'
+  ...
+# Subtest: a response with a stalled body also reaches the retry state
+ok 4 - a response with a stalled body also reaches the retry state
+  ---
+  duration_ms: 16.078501
+  type: 'test'
+  ...
+# Subtest: malformed metadata produces an actionable error
+ok 5 - malformed metadata produces an actionable error
+  ---
+  duration_ms: 1.284593
+  type: 'test'
+  ...
+# Subtest: network failures produce an actionable error
+ok 6 - network failures produce an actionable error
+  ---
+  duration_ms: 0.249836
+  type: 'test'
+  ...
+# Subtest: known directory inventory includes color studies and recovery
+ok 7 - known directory inventory includes color studies and recovery
+  ---
+  duration_ms: 1.932408
+  type: 'test'
+  ...
+# Subtest: / serves its exact existing asset without a redirect
+ok 8 - / serves its exact existing asset without a redirect
+  ---
+  duration_ms: 4.159839
+  type: 'test'
+  ...
+# Subtest: /fx/ serves its exact existing asset without a redirect
+ok 9 - /fx/ serves its exact existing asset without a redirect
+  ---
+  duration_ms: 0.805963
+  type: 'test'
+  ...
+# Subtest: /review.html serves its exact existing asset without a redirect
+ok 10 - /review.html serves its exact existing asset without a redirect
+  ---
+  duration_ms: 0.619372
+  type: 'test'
+  ...
+# Subtest: /room-tone/ serves its exact existing asset without a redirect
+ok 11 - /room-tone/ serves its exact existing asset without a redirect
+  ---
+  duration_ms: 0.570138
+  type: 'test'
+  ...
+# Subtest: /color-studies/ serves its exact existing asset without a redirect
+ok 12 - /color-studies/ serves its exact existing asset without a redirect
+  ---
+  duration_ms: 0.616327
+  type: 'test'
+  ...
+# Subtest: /recovery/ serves its exact existing asset without a redirect
+ok 13 - /recovery/ serves its exact existing asset without a redirect
+  ---
+  duration_ms: 0.378199
+  type: 'test'
+  ...
+# Subtest: /recovery/catalog.json serves its exact existing asset without a redirect
+ok 14 - /recovery/catalog.json serves its exact existing asset without a redirect
+  ---
+  duration_ms: 0.41203
+  type: 'test'
+  ...
+# Subtest: known directory paths without a slash redirect before fetching assets, preserving the query
+ok 15 - known directory paths without a slash redirect before fetching assets, preserving the query
+  ---
+  duration_ms: 1.298073
+  type: 'test'
+  ...
+# Subtest: HEAD, query, range, conditional, and request headers survive a directory rewrite
+ok 16 - HEAD, query, range, conditional, and request headers survive a directory rewrite
+  ---
+  duration_ms: 2.709918
+  type: 'test'
+  ...
+# Subtest: a direct media request keeps byte range and returns the native response unchanged
+ok 17 - a direct media request keeps byte range and returns the native response unchanged
+  ---
+  duration_ms: 0.596838
+  type: 'test'
+  ...
+# Subtest: a conditional 304 is returned rather than mistaken for a missing asset
+ok 18 - a conditional 304 is returned rather than mistaken for a missing asset
+  ---
+  duration_ms: 1.379315
+  type: 'test'
+  ...
+# Subtest: 404 returns null for framework fallback and releases the unused body
+ok 19 - 404 returns null for framework fallback and releases the unused body
+  ---
+  duration_ms: 1.652998
+  type: 'test'
+  ...
+# Subtest: unrelated extensionless routes and API requests leave framework routing alone
+ok 20 - unrelated extensionless routes and API requests leave framework routing alone
+  ---
+  duration_ms: 0.443297
+  type: 'test'
+  ...
+# Subtest: mutation requests never enter legacy static handling
+ok 21 - mutation requests never enter legacy static handling
+  ---
+  duration_ms: 0.440643
+  type: 'test'
+  ...
+# Subtest: a missing ASSETS binding leaves the framework fallback available
+ok 22 - a missing ASSETS binding leaves the framework fallback available
+  ---
+  duration_ms: 0.111788
+  type: 'test'
+  ...
+# Subtest: an additional directory is supported without changing ordinary file handling
+ok 23 - an additional directory is supported without changing ordinary file handling
+  ---
+  duration_ms: 0.237657
+  type: 'test'
+  ...
+# Subtest: production manifest freezes the exact 42 registrations and agrees with JSON
+ok 24 - production manifest freezes the exact 42 registrations and agrees with JSON
+  ---
+  duration_ms: 17.080819
+  type: 'test'
+  ...
+# Subtest: manifest rejects traversal, aliases, duplicate keys, bad sizes and bad hashes
+ok 25 - manifest rejects traversal, aliases, duplicate keys, bad sizes and bad hashes
+  ---
+  duration_ms: 0.703368
+  type: 'test'
+  ...
+# Subtest: missing or incorrect upload authorization never reaches R2
+ok 26 - missing or incorrect upload authorization never reaches R2
+  ---
+  duration_ms: 7.226724
+  type: 'test'
+  ...
+# Subtest: only exact registered paths reach R2; no prefix alias, listing or delete route
+ok 27 - only exact registered paths reach R2; no prefix alias, listing or delete route
+  ---
+  duration_ms: 3.980158
+  type: 'test'
+  ...
+# Subtest: PUT requires declared length equal to the registered length before reading storage
+ok 28 - PUT requires declared length equal to the registered length before reading storage
+  ---
+  duration_ms: 1.628451
+  type: 'test'
+  ...
+# Subtest: PUT streams the exact bytes to the registered key with provider SHA256 enforcement
+ok 29 - PUT streams the exact bytes to the registered key with provider SHA256 enforcement
+  ---
+  duration_ms: 1.979268
+  type: 'test'
+  ...
+# Subtest: same-length tampering fails checksum validation without creating or replacing a file
+ok 30 - same-length tampering fails checksum validation without creating or replacing a file
+  ---
+  duration_ms: 1.557613
+  type: 'test'
+  ...
+# Subtest: identical repeat uploads validate again and use a conditional same-object update
+ok 31 - identical repeat uploads validate again and use a conditional same-object update
+  ---
+  duration_ms: 0.595006
+  type: 'test'
+  ...
+# Subtest: unexpected objects cannot be overwritten, including a forged custom checksum
+ok 32 - unexpected objects cannot be overwritten, including a forged custom checksum
+  ---
+  duration_ms: 1.291203
+  type: 'test'
+  ...
+# Subtest: a conditional upload race produces a retryable conflict without a success receipt
+ok 33 - a conditional upload race produces a retryable conflict without a success receipt
+  ---
+  duration_ms: 0.409557
+  type: 'test'
+  ...
+# Subtest: GET returns the original bytes and registered FLAC download metadata
+ok 34 - GET returns the original bytes and registered FLAC download metadata
+  ---
+  duration_ms: 1.271954
+  type: 'test'
+  ...
+# Subtest: HEAD reports full length, ignores Range and never fetches an object body
+ok 35 - HEAD reports full length, ignores Range and never fetches an object body
+  ---
+  duration_ms: 0.282695
+  type: 'test'
+  ...
+# Subtest: single byte ranges return exact slices, bounded lengths, and Content-Range
+ok 36 - single byte ranges return exact slices, bounded lengths, and Content-Range
+  ---
+  duration_ms: 2.848746
+  type: 'test'
+  ...
+# Subtest: unsatisfiable ranges return 416 with total size and no body fetch
+ok 37 - unsatisfiable ranges return 416 with total size and no body fetch
+  ---
+  duration_ms: 3.621378
+  type: 'test'
+  ...
+# Subtest: unsupported multiple ranges, units, and malformed syntax fall back to a full response
+ok 38 - unsupported multiple ranges, units, and malformed syntax fall back to a full response
+  ---
+  duration_ms: 1.267317
+  type: 'test'
+  ...
+# Subtest: conditional reads honor strong If-Match, weak If-None-Match and their precedence
+ok 39 - conditional reads honor strong If-Match, weak If-None-Match and their precedence
+  ---
+  duration_ms: 1.547678
+  type: 'test'
+  ...
+# Subtest: HTTP dates are compared at HTTP second precision and malformed dates are ignored
+ok 40 - HTTP dates are compared at HTTP second precision and malformed dates are ignored
+  ---
+  duration_ms: 2.388714
+  type: 'test'
+  ...
+# Subtest: If-Range requires an exact strong ETag or exact Last-Modified date
+ok 41 - If-Range requires an exact strong ETag or exact Last-Modified date
+  ---
+  duration_ms: 2.10018
+  type: 'test'
+  ...
+# Subtest: not-modified HEAD has no body; unavailable HEAD is a bodyless 404
+ok 42 - not-modified HEAD has no body; unavailable HEAD is a bodyless 404
+  ---
+  duration_ms: 0.420814
+  type: 'test'
+  ...
+# Subtest: read integrity relies on provider checksum, not forgeable custom metadata
+ok 43 - read integrity relies on provider checksum, not forgeable custom metadata
+  ---
+  duration_ms: 0.349476
+  type: 'test'
+  ...
+# Subtest: a changed object between head and get cannot escape the read precondition
+ok 44 - a changed object between head and get cannot escape the read precondition
+  ---
+  duration_ms: 0.216816
+  type: 'test'
+  ...
+# Subtest: storage exceptions are sanitized and never reflected to the caller
+ok 45 - storage exceptions are sanitized and never reflected to the caller
+  ---
+  duration_ms: 0.529147
+  type: 'test'
+  ...
+# Subtest: manifest accepts additional raw-relative-gain stacks and resolves hosted URLs
+ok 46 - manifest accepts additional raw-relative-gain stacks and resolves hosted URLs
+  ---
+  duration_ms: 1.187026
+  type: 'test'
+  ...
+# Subtest: a layer without context selects a real room file and shares the film clock
+ok 47 - a layer without context selects a real room file and shares the film clock
+  ---
+  duration_ms: 0.261483
+  type: 'test'
+  ...
+# Subtest: the dialogue-only control cannot inherit room inspection
+ok 48 - the dialogue-only control cannot inherit room inspection
+  ---
+  duration_ms: 0.162975
+  type: 'test'
+  ...
+# Subtest: unsafe media protocols fail before custom controls become usable
+ok 49 - unsafe media protocols fail before custom controls become usable
+  ---
+  duration_ms: 0.482466
+  type: 'test'
+  ...
+# Subtest: duplicate IDs and a missing default are rejected as invalid catalogs
+ok 50 - duplicate IDs and a missing default are rejected as invalid catalogs
+  ---
+  duration_ms: 0.290316
+  type: 'test'
+  ...
+# Subtest: a pause records the handle start, not the selected interval, as its source clock
+ok 51 - a pause records the handle start, not the selected interval, as its source clock
+  ---
+  duration_ms: 0.24578
+  type: 'test'
+  ...
+# Subtest: initial HTML provides native V5R playback, source reel, and direct/catalog links without script
+ok 52 - initial HTML provides native V5R playback, source reel, and direct/catalog links without script
+  ---
+  duration_ms: 2.184256
+  type: 'test'
+  ...
+# Subtest: successful initialization uses the real 24-track catalog and preserves playback already begun
+ok 53 - successful initialization uses the real 24-track catalog and preserves playback already begun
+  ---
+  duration_ms: 15.092458
+  type: 'test'
+  ...
+# Room-tone comparison controls unavailable: Catalog request failed (503).
+# Subtest: failed catalog loading keeps the static native film and direct fallback
+ok 54 - failed catalog loading keeps the static native film and direct fallback
+  ---
+  duration_ms: 6.138516
+  type: 'test'
+  ...
+# Subtest: track, mode, and control clicks bind to the corresponding direct file at the shared position
+ok 55 - track, mode, and control clicks bind to the corresponding direct file at the shared position
+  ---
+  duration_ms: 11.209681
+  type: 'test'
+  ...
+# Subtest: pause playback describes source handles, saves a source-clock note, and yields to the reel
+ok 56 - pause playback describes source handles, saves a source-clock note, and yields to the reel
+  ---
+  duration_ms: 9.513695
+  type: 'test'
+  ...
+# Subtest: a note export creates an explicit JSON download and leaves the visible note intact
+ok 57 - a note export creates an explicit JSON download and leaves the visible note intact
+  ---
+  duration_ms: 7.695553
+  type: 'test'
+  ...
+# Subtest: rapid selections retain the requested position while metadata is pending
+ok 58 - rapid selections retain the requested position while metadata is pending
+  ---
+  duration_ms: 1.802872
+  type: 'test'
+  ...
+# Subtest: a play request reaches the native element during the click, before metadata
+ok 59 - a play request reaches the native element during the click, before metadata
+  ---
+  duration_ms: 0.209796
+  type: 'test'
+  ...
+# Subtest: a stale metadata callback cannot seek a newer selection
+ok 60 - a stale metadata callback cannot seek a newer selection
+  ---
+  duration_ms: 0.316306
+  type: 'test'
+  ...
+# Subtest: blocked playback produces an actionable error instead of being swallowed
+ok 61 - blocked playback produces an actionable error instead of being swallowed
+  ---
+  duration_ms: 1.17684
+  type: 'test'
+  ...
+# Subtest: an aborted old play promise cannot replace the newer playback status
+ok 62 - an aborted old play promise cannot replace the newer playback status
+  ---
+  duration_ms: 1.199695
+  type: 'test'
+  ...
+# Subtest: a gesture rejection keeps the pending clock for the next explicit selection
+ok 63 - a gesture rejection keeps the pending clock for the next explicit selection
+  ---
+  duration_ms: 0.468355
+  type: 'test'
+  ...
+# Subtest: changing to room-only audio retains time and silences the video
+ok 64 - changing to room-only audio retains time and silences the video
+  ---
+  duration_ms: 0.991933
+  type: 'test'
+  ...
+# Subtest: a mode change while paused remains paused at the common position
+ok 65 - a mode change while paused remains paused at the common position
+  ---
+  duration_ms: 0.237457
+  type: 'test'
+  ...
+# Subtest: source-pause audition starts at zero on its own clock
+ok 66 - source-pause audition starts at zero on its own clock
+  ---
+  duration_ms: 0.300432
+  type: 'test'
+  ...
+# Subtest: a failed media load exposes the direct-file fallback
+ok 67 - a failed media load exposes the direct-file fallback
+  ---
+  duration_ms: 0.469336
+  type: 'test'
+  ...
+# Subtest: selecting a new track after the previous one ends starts at zero
+ok 68 - selecting a new track after the previous one ends starts at zero
+  ---
+  duration_ms: 0.521836
+  type: 'test'
+  ...
+# Subtest: native pause during metadata load cancels intent for the next selection
+ok 69 - native pause during metadata load cancels intent for the next selection
+  ---
+  duration_ms: 0.402486
+  type: 'test'
+  ...
+# Subtest: an old same-source play rejection cannot override a later play
+ok 70 - an old same-source play rejection cannot override a later play
+  ---
+  duration_ms: 0.671471
+  type: 'test'
+  ...
+1..70
+# tests 70
+# suites 0
+# pass 70
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 173.165453

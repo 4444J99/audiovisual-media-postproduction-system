@@ -1,0 +1,40 @@
+✔ reads complete JSON and binary response bodies (4.137736ms)
+✔ reports a missing required asset with its name and HTTP status (0.610589ms)
+✔ a stalled request cannot leave loading pending and is aborted (15.936793ms)
+✔ a response with a stalled body also reaches the retry state (16.154141ms)
+✔ malformed metadata produces an actionable error (1.23589ms)
+✔ network failures produce an actionable error (0.216246ms)
+✔ manifest accepts additional raw-relative-gain stacks and resolves hosted URLs (1.724485ms)
+✔ a layer without context selects a real room file and shares the film clock (0.268674ms)
+✔ the dialogue-only control cannot inherit room inspection (0.160962ms)
+✔ unsafe media protocols fail before custom controls become usable (0.452922ms)
+✔ duplicate IDs and a missing default are rejected as invalid catalogs (0.287092ms)
+✔ a pause records the handle start, not the selected interval, as its source clock (0.250227ms)
+✔ initial HTML provides native V5R playback, source reel, and direct/catalog links without script (2.025859ms)
+Room-tone comparison controls unavailable: Catalog request failed (503).
+✔ successful initialization uses the real 24-track catalog and preserves playback already begun (11.246291ms)
+✔ failed catalog loading keeps the static native film and direct fallback (5.544833ms)
+✔ track, mode, and control clicks bind to the corresponding direct file at the shared position (9.818403ms)
+✔ pause playback describes source handles, saves a source-clock note, and yields to the reel (6.412108ms)
+✔ a note export creates an explicit JSON download and leaves the visible note intact (7.708989ms)
+✔ rapid selections retain the requested position while metadata is pending (2.578519ms)
+✔ a play request reaches the native element during the click, before metadata (0.303918ms)
+✔ a stale metadata callback cannot seek a newer selection (0.338019ms)
+✔ blocked playback produces an actionable error instead of being swallowed (0.489627ms)
+✔ an aborted old play promise cannot replace the newer playback status (0.466011ms)
+✔ a gesture rejection keeps the pending clock for the next explicit selection (0.388255ms)
+✔ changing to room-only audio retains time and silences the video (0.207973ms)
+✔ a mode change while paused remains paused at the common position (0.257527ms)
+✔ source-pause audition starts at zero on its own clock (0.215334ms)
+✔ a failed media load exposes the direct-file fallback (0.37914ms)
+✔ selecting a new track after the previous one ends starts at zero (0.297277ms)
+✔ native pause during metadata load cancels intent for the next selection (0.148433ms)
+✔ an old same-source play rejection cannot override a later play (3.497202ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141.924377

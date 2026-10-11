@@ -1,0 +1,98 @@
+{
+  "schema_version": "god-here.keeper-delivery-fix.v1",
+  "started_at_utc": "2026-10-11T16:06:47.524255+00:00",
+  "start_head": "0c892006e82e3e13e199dbcdf8efbac7560ba556",
+  "authorized_scope": "Exact keeper relocation and sixth fixed MP4 registration; preserve existing47 registrations, hosting and recovery source; no commit,push,build or publication.",
+  "keeper": {
+    "previous_path": "public/media/dialogue-reference.mp4",
+    "current_path": "room-media-source/media/dialogue-reference.mp4",
+    "historical_catalog_path": "dist/media/dialogue-reference.mp4",
+    "bytes": 13619707,
+    "sha256": "0909b79a45521c37d478ca28df5cf192a380b46d5f151208f0cc2a7c21da021b",
+    "new_id": "mp4-006-0909b79a4552"
+  },
+  "prior_manifest_sha256": "d288208b0f91091c2de2a2084263d23133787a531d4e160658c68acb165f0362",
+  "prior_manifest_count": 47,
+  "prior_registered_bytes": 511299017,
+  "expected_registered_count": 48,
+  "expected_registered_bytes": 524918724,
+  "source_sha256_before": {
+    "lib/room-media.mjs": "867d46a6895816627bae58fb16b47d2d84b64a0ff3d22c52c506229e784c841d",
+    "lib/room-media-manifest.json": "d288208b0f91091c2de2a2084263d23133787a531d4e160658c68acb165f0362",
+    "lib/room-media-manifest.mjs": "8803e6e3076fe725a6a5029ebf14bd223008747bcd53dd829d3a0f2e542a6efa",
+    "scripts/generate-manifest.py": "ea374bd9bea26776acfa982b4cdf81ac76b05ed26a388eb45a83545202356dcf",
+    "scripts/room_media_seed.py": "97984d5285f5f2ece1c7699e98df8176c75c1a68f07bee70710c06d479197118",
+    "tests/room-media.test.mjs": "51fcd5cd6449fc32f49434e8e1eba5f8a928f6d7d26d90cbf163de3555f250d8",
+    "tests/test_room_media_seed.py": "20dbd254a59fa7e34ed2f43df639eeaa99843c13d8f1db9d4ad5c15b85fe6ff6",
+    "README.md": "2b045e51c93db07bb442f9600eca68014b5e288dc3944edc7d9878d7c23ad0f1",
+    "ROOM-MEDIA-PUBLISHING.md": "781d7e5802ea956654dcbfed02ef86483a9a7d13b804aa99f13e51a07325e779"
+  },
+  "untouched_sha256_before": {
+    ".openai/hosting.json": "31d2f69d4e9799129a5083bd3f29d7f1e8f387a3dba26431435120debc85f9c5",
+    "public/recovery/index.html": "8295b0f934c5145cf6b4f8e47ff6a437155fed14f69bff0739f29b8dc2f9404e",
+    "public/recovery/recovery.js": "14b5642fd717ec4e158f479d88ca0514b393f73504352b462134ad10e17254c9",
+    "public/recovery/recovery.css": "e97e0f1472c6a8082d13f9a93711f9c960699f6f0d42fba461938d7da16c9acf",
+    "public/recovery/catalog.json": "b6c9b360cbc81eca24b7c4ed2a2fac258a88ea7dcfec362604901c80199dad8a",
+    "public/index.html": "55ec6024ee32d6639fb97a4880090da6de4b686ad68156481f63c21796fa77fc",
+    "public/player.js": "78d11cea37650719cfbd3b7674198a06d243cf495ead1202b15fe03ec426b1b3",
+    "lib/legacy-static.mjs": "6ad38239f8d20d2125ea266004b49d5a21fe05b7a67890fc828f264869bdecb4"
+  },
+  "finished_at_utc": "2026-10-11T16:08:43.176683+00:00",
+  "end_head": "0c892006e82e3e13e199dbcdf8efbac7560ba556",
+  "source_sha256_after": {
+    "lib/room-media.mjs": "afa340be350c48e833e2d3b629d8aaed923a2ad992a85ee4185d495e369968f0",
+    "lib/room-media-manifest.json": "9400264342ef4057e7478d33f0c8b48cb469191dcd3a9e88a3eba380056b9b94",
+    "lib/room-media-manifest.mjs": "ce8593f48eb93efdeba954b34184d014f3d647fc1f00f2ebb7adcd537e9af1df",
+    "scripts/generate-manifest.py": "d98f145928c6defa179c0bbed9b8bb163010aa531163f71f864a0f5fe687b9a4",
+    "scripts/room_media_seed.py": "0c6ad7b821aae336e2f75bdeee5c8e16f4a0b83fcfc66aeefd32311b9cd5311d",
+    "tests/room-media.test.mjs": "5c1e453d85f48d39376c06ca8922b8ff06047985d135b8e6b7939730b134367e",
+    "tests/test_room_media_seed.py": "6020c7d77454866d2073939ff7d7688850d1e17402e92a1488cfc1c5d93da517",
+    "README.md": "8756d6393f284afeaadcf64f1da4decdf12474b2a52feaea04c281d6326ad52a",
+    "ROOM-MEDIA-PUBLISHING.md": "af4ce6bfd89c30e308f8015f43bb71f3eee19798df35156684e7552b3f007343"
+  },
+  "untouched_verification": {
+    ".openai/hosting.json": true,
+    "public/recovery/index.html": true,
+    "public/recovery/recovery.js": true,
+    "public/recovery/recovery.css": true,
+    "public/recovery/catalog.json": true,
+    "public/index.html": true,
+    "public/player.js": true,
+    "lib/legacy-static.mjs": true
+  },
+  "checks": {
+    "keeper_exact_bytes_at_new_path": true,
+    "keeper_absent_from_static_source": true,
+    "all_47_prior_registration_records_identical": true,
+    "new_registration_is_appended_as_mp4_006": true,
+    "registered_count_48": true,
+    "registered_bytes_524918724": true,
+    "json_generated_exact": true,
+    "mjs_generated_exact": true,
+    "hosting_and_recovery_and_player_sources_unchanged": true,
+    "focused_suites_passed": true
+  },
+  "manifest_sha256_after": "9400264342ef4057e7478d33f0c8b48cb469191dcd3a9e88a3eba380056b9b94",
+  "generator_log_sha256": "6a1a368b21cf3b9e3a4297f2356c09fcf7ec5706c87eeeebf47fe66a472a77aa",
+  "expected_projection_after_root_regeneration": {
+    "verified_static_media_paths": 192,
+    "registered_downloads_pending": 48,
+    "registered_downloads_verified": 0
+  },
+  "not_performed": [
+    "commit",
+    "push",
+    "framework build",
+    "deployment",
+    "upload",
+    "secret access",
+    "public/recovery edits",
+    "historical catalog rewrite"
+  ],
+  "passed": true,
+  "original_log_sha256": "6a1a368b21cf3b9e3a4297f2356c09fcf7ec5706c87eeeebf47fe66a472a77aa",
+  "generator_log_sha256_scope": "original_log_bytes_before_public_path_redaction",
+  "public_log_path": "docs/recovery/evidence/keeper-delivery-generator-identity.log",
+  "public_log_sha256": "a03eeac967a366a1683b67228853816463cd1c01eca34d4f52574797380a1713",
+  "public_log_bytes": 350
+}

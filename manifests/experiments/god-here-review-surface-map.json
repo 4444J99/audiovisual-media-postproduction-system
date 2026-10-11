@@ -1,0 +1,273 @@
+{
+  "schema_version": "god-here.review-surface-map.v1",
+  "scope": "Read-only branch and pinned Sites source audit. A subsequent exact-byte working-tree media repair is recorded separately; no later publication is implied. Other sessions changed Evaluation from v1 to v2 during this audit.",
+  "github_main": "b8c9b3c6ac5fc428c8895b56f4dcfcf8989766f0",
+  "canonical_site_source": "fb1723c4f161a9745376582d9f813f0947c2ec6b",
+  "last_successful_site_source": "8ceb7a9ff5d03acb542efc638ac5c1e3abc43b6f",
+  "surfaces": [
+    {
+      "id": "interactive-room",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site/",
+      "github_paths": [
+        "web/index.html",
+        "web/player.js",
+        "web/score.js",
+        "web/composition.json"
+      ],
+      "site_paths": [
+        "dist/index.html",
+        "dist/player.js",
+        "dist/score.js",
+        "dist/composition.json"
+      ],
+      "renderer": "Browser WebGL shader; native video fallback",
+      "source_time": "Full 112-second source timeline; one video clock; per-shot image history",
+      "saved_format": "Browser attention score schema_version 1.0, source_sha256, score_version, reduced_motion, events",
+      "status": "Baseline source lacks dialogue-reference.mp4; parent restored exact pass02 file to current worktree and all declared media references now resolve",
+      "blockers": [
+        "Physical iPhone/Safari acceptance unverified",
+        "Shader is not pixel-identical to Python compositor",
+        "Working-tree repair must be committed/published and actual playback accepted; baseline fb and live v6 metadata do not include it"
+      ],
+      "disposition": "Retain exact source-bound media repair; include in canonical publication and physical-device acceptance",
+      "baseline_status": "Code preserved; primary video reference points to a missing file at this baseline",
+      "verified_repair": {
+        "file": "dist/media/dialogue-reference.mp4",
+        "sha256": "0909b79a45521c37d478ca28df5cf192a380b46d5f151208f0cc2a7c21da021b",
+        "bytes": 13619707,
+        "method": "Parent restored exact pass02 artifact; no audio/picture transformation",
+        "verification": "Parent full decode; audit 484/484 static references pass after repair",
+        "evidence": "site-static-link-validation-working-tree.json"
+      }
+    },
+    {
+      "id": "matched-production-review",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site/review.html",
+      "github_paths": [
+        "web/review.html",
+        "web/review.js",
+        "web/review.css"
+      ],
+      "site_paths": [
+        "dist/review.html",
+        "dist/review.js",
+        "dist/review.css",
+        "dist/media/"
+      ],
+      "renderer": "Premuxed A-E video; randomized original/DSP/trained/blended audio and room/foley auditions",
+      "source_time": "Closing excerpt [2554,3215) at 30 fps; full-film fallback is 3360 frames",
+      "saved_format": "Listening-review observations, separate from artistic acceptance",
+      "status": "Static referenced media present and hashed",
+      "blockers": [
+        "Perceptual dialogue and phrase-boundary acceptance pending",
+        "Real device playback unverified"
+      ],
+      "disposition": "Retain as audio/mask acceptance surface under canonical navigation"
+    },
+    {
+      "id": "editable-fx-rack",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site/fx/",
+      "github_paths": [
+        "PR51 web/fx/",
+        "PR51 tools/render-fx.mjs",
+        "PR51 tools/render-factory.mjs"
+      ],
+      "site_paths": [
+        "dist/fx/",
+        "dist/fx/assets/"
+      ],
+      "renderer": "Shared JavaScript audio PCM engine and Canvas picture engine; optional encoded factory previews",
+      "source_time": "Local output clock 0-12.166667 seconds; original source offset 95 seconds; 12 fps picture atlas /24 kHz audio",
+      "saved_format": "Audiovisual rack patch schemaVersion 1.0.0, typed graph, source binding, seed, automation/events",
+      "status": "All media dependencies present; 7 web files differ between PR51 and site source",
+      "blockers": [
+        "Nine unresolved PR51 review threads",
+        "Site lacks PR51 repairs in core/audio/workbench state",
+        "PR51 lacks site-only asset-loader progress/timeout fixes",
+        "Factory render hashes match current site, not repaired PR51 core/audio",
+        "Fine matte, hybrid room and listening acceptance pending"
+      ],
+      "disposition": "Reconcile both changesets in Phase3; preserve source-bound cache provenance"
+    },
+    {
+      "id": "native-fx-player",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site/fx/watch.html",
+      "github_paths": [
+        "PR51 web/fx/watch.html",
+        "PR51 web/fx/watch.js",
+        "PR51 web/fx/watch.css"
+      ],
+      "site_paths": [
+        "dist/fx/watch.html",
+        "dist/fx/assets/renders/"
+      ],
+      "renderer": "Native premuxed H.264/AAC movies with direct-download fallback",
+      "source_time": "146 frames at 12 fps per patch/demo; horizontal and portrait pair",
+      "saved_format": "Encoded preview identity plus matching rack patch",
+      "status": "Six patches and thirteen direct demonstrations; all 19 orientation pairs present. Overall cache has 25 configurations and two processor reels",
+      "blockers": [
+        "HTTP access from audit runtime returned 403",
+        "Current physical-device playback unverified"
+      ],
+      "disposition": "Retain as simplest review entry for existing FX work"
+    },
+    {
+      "id": "room-tone-workbench",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site/room-tone/",
+      "github_paths": [
+        "PR53 web/room-tone/",
+        "PR53 amp/roomaudit.py",
+        "PR53 amp/roomrefine.py",
+        "PR53 amp/roomstretch.py"
+      ],
+      "site_paths": [
+        "dist/room-tone/"
+      ],
+      "renderer": "Native premuxed full-context movies, room/inspection audio; reproducible Python generation",
+      "source_time": "112-second source timeline; eight source portions totaling 4.42 seconds",
+      "saved_format": "media.json catalog and separate listening notes; source-bound processing reports",
+      "status": "All PR53 room-tone application/config files match Site source; 24 studies, 14 context movies, 42 lossless downloads preserved",
+      "blockers": [
+        "v7 publication failed despite preserved source",
+        "Perceptual audition and physical-device playback pending"
+      ],
+      "disposition": "Publish preserved, verified source as part of canonical consolidation; do not accept a sound treatment automatically"
+    },
+    {
+      "id": "room-tone-script-free-catalog",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site/room-tone/catalog.html",
+      "github_paths": [
+        "PR53 web/room-tone/catalog.html"
+      ],
+      "site_paths": [
+        "dist/room-tone/catalog.html"
+      ],
+      "renderer": "Native audio/video controls and direct asset links",
+      "status": "All static references resolve in preserved source",
+      "blockers": [
+        "Same v7 publication and physical-device acceptance gates as workbench"
+      ],
+      "disposition": "Retain as explicit fallback for JS/manifest failures"
+    },
+    {
+      "id": "color-and-closeup-studies",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site/color-studies/",
+      "github_paths": [],
+      "site_paths": [
+        "dist/color-studies/"
+      ],
+      "renderer": "Existing source/reference still comparison with supplied generated outputs",
+      "source_time": "Angle A 22 seconds and angle B 72 seconds are distinct moments, not synchronized coverage",
+      "saved_format": "provenance.json with original generation prompts, source relations, six asset hashes and pending acceptance",
+      "status": "Six images verified: two source frames and four generated still studies; site-only code preserved",
+      "blockers": [
+        "These are authored still studies, not accepted restoration or moving cinematography",
+        "No explicit named film-slot assignment recorded for Enrique",
+        "Exact regeneration of original nondeterministic image output is not established"
+      ],
+      "disposition": "Catalog as reference/generative studies; preserve their existing binaries and provenance"
+    },
+    {
+      "id": "direction-proof-review",
+      "url": null,
+      "github_paths": [
+        "PR49 amp/direction.py",
+        "PR49 web/direction-review.html",
+        "PR49 tools/prepare_direction_audio.py"
+      ],
+      "site_paths": [],
+      "renderer": "Bounded Python direction adapter using unchanged amp.core compositor, optical-flow framing and retiming",
+      "source_time": "Source [2554,3215) at 30 fps; D/E 685 output frames; F exported recipe 706 frames",
+      "saved_format": "amps.direction.v1",
+      "status": "Code preserved; 32 current tests pass, 2 skipped due missing font; six historical 1080p output hashes registered",
+      "blockers": [
+        "Review interface absent from canonical site",
+        "Media recovery/decoding must be matched to historical hashes",
+        "Font dependency and target-device playback pending",
+        "No migration from older attention or Study02 formats"
+      ],
+      "disposition": "Retain distinct recipe adapter and reviewed outputs; integrate navigation and source-time binding later"
+    },
+    {
+      "id": "directed-revision-review",
+      "url": null,
+      "github_paths": [
+        "PR50 amp/revision.py",
+        "PR50 amp/workstation.py",
+        "PR50 tools/build_directed_proof.py",
+        "PR50 web/directed-review.html"
+      ],
+      "site_paths": [],
+      "renderer": "Python integer-frame revision/replay adapter; bounded template tracking; REAPER/Fusion handoff generator",
+      "source_time": "Closing response span 24->42 frames; full-film edition 3378 frames /112.6 seconds",
+      "saved_format": "Revision schema_version 1.0; attention-score replay; .rpp and .comp handoff with JSON time map",
+      "status": "Code and reported media identities preserved; PR50 merge conflicts remain; review absent from site",
+      "blockers": [
+        "PR50 dirty merge state",
+        "Native REAPER/Fusion import unverified",
+        "Source wording, retiming joins, tracking and artistic selection pending"
+      ],
+      "disposition": "Reconcile with PR49 without replacing either historical recipe or claiming pixel parity"
+    },
+    {
+      "id": "independent-time-study-05",
+      "url": null,
+      "site_source_commit": "15de21096da0c091cbb2b6773c8737824ccb2529",
+      "audience": "Owner-only custom access",
+      "status": "v2 deployment succeeded;64 dist files verified against source15de;100/100 static references resolve across root and gallery; no browser or device playback run by this audit",
+      "blockers": [
+        "Owner-only audience must be preserved when cataloging alongside public canonical workbench",
+        "Historical full-size rendering recipe/assets must be recovered separately; source app is a15fps proxy",
+        "Human phrase/listening, performer-role, and physical-device acceptance remain pending",
+        "Score carries older Study04 title/version while application/export naming is Study05; preserve exact historical metadata until explicit migration"
+      ],
+      "disposition": "Retain as an independent-time experiment with a source-bound adapter in canonical catalog; keep evaluation audience and saved patch semantics intact",
+      "site_paths": [],
+      "renderer": "Independent-time Canvas composition: separate body, voice, word, room clocks; typed local patch/timed-state capture; premuxed comparison movie",
+      "source_time": "32-second authored output; picture samples source[88.266667,94.933333) at15fps/480x270; benchmark voice source[88.266667,107.32); full-size offline render requires historical code/assets",
+      "saved_format": "god-here-browser-patch/0.3 (imports0.2/0.3); source_sha256, patch, timed events, seed, reviews, audience_events; god-here-evaluation/0.1 feedback",
+      "private_location": "Recorded in the owner custody index; audience unchanged"
+    },
+    {
+      "id": "private-performer-reference-gallery",
+      "url": null,
+      "site_source_commit": "15de21096da0c091cbb2b6773c8737824ccb2529",
+      "audience": "Owner-only custom access",
+      "site_paths": [],
+      "renderer": "Static photo crop gallery, PDF contact sheet, ZIP download; no generative or moving renderer",
+      "source_time": null,
+      "saved_format": "god-here.actor-reference-extraction.v1 with original/cropSHA, rectangle coordinates and explicit user selections",
+      "status": "27crop hashes/dimensions and decoded original-region RGB pixel equality pass; nine original hashes verified within44-member ZIP; CRC passes; scripts/spec/register preserved inZIP",
+      "blockers": [
+        "Keep private performer originals and custody locators out of public repository and public media tree",
+        "Reference preservation and technical extraction verification do not establish acceptance for generative use or film integration"
+      ],
+      "disposition": "Preserve private content-addressed media and extraction provenance; expose only authorized catalog availability, never widen access",
+      "private_location": "Recorded in the owner custody index; audience unchanged"
+    }
+  ],
+  "integration_principle": "One canonical catalog and media resolver, with explicit adapters for distinct source/output time and revision schemas. Do not silently flatten incompatible recipe semantics or equate code tests with artistic acceptance.",
+  "snapshot_cutoff_utc": "2026-10-11T15:36:46.319965+00:00",
+  "historical_source_coverage": {
+    "canonical": {
+      "head": "fb1723c4f161a9745376582d9f813f0947c2ec6b",
+      "reachable_commits": 24,
+      "historical_paths": 389,
+      "older_blob_versions": 29,
+      "older_media_versions": 16
+    },
+    "evaluation": {
+      "head": "15de21096da0c091cbb2b6773c8737824ccb2529",
+      "reachable_commits": 2,
+      "historical_paths": 64,
+      "older_blob_versions": 1,
+      "older_media_versions": 0
+    },
+    "evidence": [
+      "site-history-coverage.json",
+      "site-history-file-inventory.json"
+    ],
+    "qualification": "Old media variants have exact source-commit and content identities; current URLs are not asserted to serve their bytes."
+  },
+  "publication_qualification": "This map preserves the initial pinned-source audit. See the later workbench publication receipt for deployed status."
+}

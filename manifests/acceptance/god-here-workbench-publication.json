@@ -1,0 +1,165 @@
+{
+  "schema_version": "god-here.workbench-publication.v1",
+  "generated_at_utc": "2026-10-11T16:31:22.521776+00:00",
+  "status": "site_published; registered_media_delivery_partially_verified_and_paused_for_approval",
+  "catalog_sha256": "8843bba3e9b0d5937fe5fb93e02233fe8be69aa5f072349ad896011999ccb1e3",
+  "expectations_sha256": "8493197c215cf7acd3c0e7024b6dde5d984e010f51bb123940aaa6946a65c004",
+  "source_commit": "957093108309ef1e02df2cbed9b797a346000f4a",
+  "site_version": {
+    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_c29fcc298f3c8191a2a8189171878743",
+    "version_number": 8,
+    "source": {
+      "commit_sha": "957093108309ef1e02df2cbed9b797a346000f4a"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "content_hash": "sha256:9479adf42fd28503f7b363251c875a7098696d555b9b95c856ed1730111fd9c9",
+      "file_count": 391,
+      "size_bytes": 263608320
+    }
+  },
+  "production_url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+  "audience": "public_unchanged",
+  "current_deployment": {
+    "id": "appgdep_6acbb947db388191a45e6356b7647a77",
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_c29fcc298f3c8191a2a8189171878743",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+    "env_set_revision": 4,
+    "updated_at": "2026-10-11T16:29:18.659330+00:00",
+    "failure_message": null
+  },
+  "deployment_sequence": {
+    "initial": {
+      "id": "appgdep_6acbb68b9cf8819189c9a3c14336515f",
+      "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+      "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_c29fcc298f3c8191a2a8189171878743",
+      "type": "publish",
+      "status": "succeeded",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+      "env_set_revision": 2,
+      "updated_at": "2026-10-11T16:18:21.452271+00:00",
+      "failure_message": null
+    },
+    "temporary_upload": {
+      "id": "appgdep_6acbb763096481918862ccee547aab0e",
+      "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+      "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_c29fcc298f3c8191a2a8189171878743",
+      "type": "publish",
+      "status": "succeeded",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+      "env_set_revision": 3,
+      "updated_at": "2026-10-11T16:21:13.780248+00:00",
+      "failure_message": null
+    },
+    "upload_disabled": {
+      "id": "appgdep_6acbb947db388191a45e6356b7647a77",
+      "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+      "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_c29fcc298f3c8191a2a8189171878743",
+      "type": "publish",
+      "status": "succeeded",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+      "env_set_revision": 4,
+      "updated_at": "2026-10-11T16:29:18.659330+00:00",
+      "failure_message": null
+    }
+  },
+  "archive_verification": {
+    "archive_bytes": 243781558,
+    "expanded_regular_file_bytes": 263298987,
+    "members": 422,
+    "archive_sha256": "691aec3297e0015d425d4eaa4e82ef21414caf64baf65b74b8f08f4eac7bd137",
+    "limit_bytes": 268435456,
+    "both_limits_passed": true
+  },
+  "archive_hash_scope": "archive_sha256 identifies the local compressed upload. site_version.archive_storage.content_hash identifies the host-normalized archive; these are separate representations.",
+  "earlier_archive_save_rejections": [
+    {
+      "scope": "archive input size",
+      "observed_bytes": 272411451,
+      "limit_bytes": 268435456,
+      "status": "save_rejected_before_deployment"
+    },
+    {
+      "scope": "expanded archive size",
+      "observed_bytes": 278822557,
+      "limit_bytes": 268435456,
+      "status": "save_rejected_before_deployment"
+    }
+  ],
+  "build_evidence": {
+    "path": "docs/recovery/evidence/workbench-final-build.log",
+    "sha256": "b4744a6e69dfb60d7bf422ced47531fa72256e5d5ce2c2a2d4d179df32a31c1a",
+    "bytes": 2959
+  },
+  "text_delivery": {
+    "status": "passed",
+    "checks_passed": 12,
+    "checks_failed": 0,
+    "full_text_body_checks": 9,
+    "canonical_redirect_checks": 3,
+    "evidence": {
+      "path": "manifests/acceptance/god-here-workbench-text-verification.json",
+      "sha256": "7d0822cc0b889c2e6dca50aef1d53a99398729a9fa2ba499c6ebebc672664d41",
+      "bytes": 5963
+    },
+    "source_commit": "957093108309ef1e02df2cbed9b797a346000f4a",
+    "tested_environment_revision": 3,
+    "current_environment_revision": 4,
+    "qualification": "The subsequent deployment applies removal of the temporary upload key to this same saved version and unchanged source; it is separately confirmed succeeded. No browser or device playback is inferred."
+  },
+  "source_media": {
+    "media_path_occurrences": 240,
+    "unique_content_sha256": 239,
+    "static_paths": 188,
+    "registered_paths": 52,
+    "registered_bytes": 540442474,
+    "all_source_byte_identities_and_decode_checks_passed": true
+  },
+  "registered_delivery": {
+    "status": "interrupted_by_automatic_approval_review",
+    "registry_sha256": "e351c99497b30bb81810ac08f0db03c7114da414f17936c4fef8f23527bd81b2",
+    "registered_count": 52,
+    "registered_bytes": 540442474,
+    "full_verified_count": 33,
+    "full_verified_bytes": 191530581,
+    "not_fully_verified_count": 19,
+    "not_fully_verified_bytes": 348911893,
+    "per_verified_file_checks": [
+      "HEAD byte/hash metadata",
+      "actual 4096-byte range",
+      "full GET byte count and SHA-256"
+    ],
+    "completed_receipt_scope": "Per-file only. No successful operation-wide receipt exists.",
+    "raw_interrupted_evidence": {
+      "path": "manifests/acceptance/god-here-media-delivery-interrupted-observation.json",
+      "sha256": "6024ed24af84e62ec00b450f416c1a16975b42a91120a7f32d8d827054af229b",
+      "bytes": 29320
+    },
+    "reviewable_payload": {
+      "path": "manifests/acceptance/god-here-public-media-delivery-review.json",
+      "sha256": "50d840a350e013365c49e6c3075a621341068b1d7591fde0d9ff9c05cc55f79a",
+      "bytes": 21086
+    },
+    "catalog_registered_links_enabled": 0,
+    "catalog_registered_link_gating": "All 52 registered links remain marked download verification pending because the complete production receipt is absent.",
+    "keeper_registration_id": "mp4-006-0909b79a4552",
+    "keeper_delivery_status": "not_fully_verified; exact source recovered and decodes"
+  },
+  "temporary_upload_access": {
+    "environment_key": "ROOM_MEDIA_UPLOAD_TOKEN",
+    "removed": true,
+    "environment_revision": 4,
+    "environment_entry_count_after_removal": 0,
+    "applied_by_deployment_id": "appgdep_6acbb947db388191a45e6356b7647a77",
+    "applied_deployment_status": "succeeded"
+  },
+  "verification_boundaries": [
+    "Historical rendering recipes have not been executed by this publication step.",
+    "No physical-device or browser playback acceptance is claimed.",
+    "No artistic acceptance was added.",
+    "Further public media delivery requires explicit approval of the listed payload and destination."
+  ]
+}

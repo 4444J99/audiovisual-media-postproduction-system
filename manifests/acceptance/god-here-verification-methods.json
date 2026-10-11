@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "recorded_at_utc": "2026-10-11T15:39:52.932423+00:00",
+  "tools": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+    "ffprobe": "ffprobe version 6.1.1-3ubuntu5 Copyright (c) 2007-2023 the FFmpeg developers",
+    "Pillow": "12.3.0"
+  },
+  "av_probe_command": [
+    "ffprobe",
+    "-v",
+    "error",
+    "-show_format",
+    "-show_streams",
+    "-of",
+    "json",
+    "<SHA-verified input>"
+  ],
+  "av_full_decode_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-nostdin",
+    "-v",
+    "error",
+    "-xerror",
+    "-threads",
+    "1",
+    "-i",
+    "<SHA-verified input>",
+    "-map",
+    "0:v?",
+    "-map",
+    "0:a?",
+    "-f",
+    "null",
+    "-"
+  ],
+  "av_pass_condition": "Probe exits0; full decoder exits0 AND error-level stderr is empty. Nonempty error-level stderr is a failure even if ffmpeg returns0. Decode all video/audio streams from start through EOF. No rendered output is retained.",
+  "content_cache": "Full SHA-256 identifies validation results; successful and failed results are reusable by exact bytes, never filename. The canonical, evaluation and historical-site receipts share the final cache.",
+  "zip_integrity_method": "Open each member with Python zipfile.ZipFile.open and stream 1MiB chunks to EOF through hashlib.sha256. zipfile verifies member CRC32 during the read. Observed size must equal ZIP metadata. Reject unsafe absolute/traversal/drive/backslash paths, symlinks, encrypted members and duplicate names before filesystem extraction. Container SHA and every member SHA are recorded.",
+  "zip_extraction_method": "A single unique media member is temporarily extracted and its SHA rechecked before probe/decode; temporary extraction is removed immediately afterward. Final deferred checks used /dev/shm. Source containers and original attachments are not modified by auditing. Root separately authorized documented disposable-copy release.",
+  "image_validation_method": "For each retained source/pilot or evaluation image without an existing same-hash full-image FFmpeg receipt: open with Pillow.Image.open, call verify(), reopen, then call load(). Record dimensions/format/mode or exception. Other historical images retain checksum-only status.",
+  "scope_guards": [
+    "No historical renderer or recovered script was executed by this audit.",
+    "No new creative experiment, altered media, or replacement for a failed historical member was generated.",
+    "Artistic approval, whole-project render reproducibility and browser playback are independent of file decoding."
+  ],
+  "audit_helper_safety_checks": {
+    "passed": 9,
+    "failed": 0,
+    "receipt": "local-audit/audit-helper-safety-checks.json"
+  }
+}

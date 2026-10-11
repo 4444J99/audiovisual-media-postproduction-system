@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>God-here · Recovery register</title>
+  <link rel="stylesheet" href="recovery.css">
+</head>
+<body>
+  <header class="masthead"><a href="../" class="wordmark">GOD-HERE</a><span>Production archive · 11 October 2026</span><a href="https://github.com/4444J99/audiovisual-media-postproduction-system/pull/54">Recovery PR ↗</a></header>
+  <main>
+    <section class="intro" aria-labelledby="title">
+      <p class="eyebrow"><span class="dot"></span> Consolidation in progress</p>
+      <h1 id="title">Recovery register</h1>
+      <p class="lede">One place to find the work, inspect its identity, and see what remains unresolved.</p>
+      <p class="qualification">Preserved files, playable media, reproducible experiments and artistic acceptance are separate milestones. Historical recovery remains open.</p>
+    </section>
+
+    <section class="stats" aria-label="Verified inventory totals">
+      <div><strong id="objects-count">—</strong><span>Unique byte identities</span><small>Media, archives, code and records</small></div>
+      <div><strong id="decoded-count">—</strong><span>Audio/video decode passes</span><small>Complete stream checks</small></div>
+      <div><strong id="failed-count">—</strong><span>Audio/video decode failures</span><small>Preserved for diagnosis</small></div>
+      <div><strong id="pending-count">—</strong><span>Audio/video checks pending</span><small>Technical checks only</small></div>
+    </section>
+
+    <section class="workbench" aria-labelledby="workbench-title">
+      <div class="section-heading"><h2 id="workbench-title">Open the workbench</h2><span>Existing review surfaces</span></div>
+      <div class="destinations">
+        <a href="../"><span>01</span><strong>Five realities</strong><small>Interactive room and linear workprint</small><b aria-hidden="true">↗</b></a>
+        <a href="../fx/watch.html"><span>02</span><strong>FX films</strong><small>Native landscape and portrait playback</small><b aria-hidden="true">↗</b></a>
+        <a href="../fx/"><span>03</span><strong>FX workbench</strong><small>Patches, processors and composition</small><b aria-hidden="true">↗</b></a>
+        <a href="../review.html"><span>04</span><strong>Audio and excerpts</strong><small>Dialogue, room, foley and mask comparisons</small><b aria-hidden="true">↗</b></a>
+        <a href="../room-tone/"><span>05</span><strong>Room tone</strong><small>Stretched layers and context comparisons</small><b aria-hidden="true">↗</b></a>
+        <a href="../color-studies/"><span>06</span><strong>Color and close-ups</strong><small>Source frames and generated still studies</small><b aria-hidden="true">↗</b></a>
+      </div>
+      <p class="section-note">Device playback and artistic selections still require review. Private archives and performer references retain their existing access.</p>
+    </section>
+
+    <section class="inventory" aria-labelledby="inventory-title">
+      <div class="section-heading"><h2 id="inventory-title">Find an artifact</h2><span id="snapshot-date"></span></div>
+      <div class="view-buttons" role="group" aria-label="Choose inventory view">
+        <button id="show-objects" type="button" aria-pressed="true">Recovered objects</button>
+        <button id="show-expectations" type="button" aria-pressed="false">References and dependencies</button>
+      </div>
+      <p id="view-explanation">Each row represents one SHA-256 identity. Different revisions stay separate even when their filenames match.</p>
+      <form id="filters" class="filters" role="search">
+        <label class="search-label">Search names or a full hash<input id="search" type="search" placeholder="Dialogue, kitchen, study-05, SHA-256…" autocomplete="off"></label>
+        <label id="type-label">Type<select id="type"><option value="all">All types</option><option value="audio-video">Audio and video</option><option value="video">Video</option><option value="audio">Audio</option><option value="image">Images</option><option value="archive">Archives</option><option value="code">Code</option><option value="metadata">Metadata</option><option value="document">Documents</option><option value="model">Models</option></select></label>
+        <label>Verification<select id="verification"><option value="all">All statuses</option><option value="passed">Decode passed</option><option value="failed">Decode failed</option><option value="pending">Decode pending</option><option value="workbench">In this workbench</option></select></label>
+      </form>
+      <div class="result-heading"><p id="result-count" role="status" aria-live="polite">Loading the inventory…</p><button id="clear" type="button">Clear filters</button></div>
+      <div id="results" class="results" aria-busy="true"></div>
+      <div class="pagination"><button id="previous" type="button" disabled>← Previous</button><span id="page-label"></span><button id="next" type="button" disabled>Next →</button></div>
+      <noscript><p>This searchable index needs JavaScript. The existing players above and the <a href="https://github.com/4444J99/audiovisual-media-postproduction-system/pull/54">recovery register on GitHub</a> remain available.</p></noscript>
+    </section>
+
+    <section class="gates" aria-labelledby="gates-title">
+      <div class="section-heading"><h2 id="gates-title">Before production resumes</h2><span>Acceptance gates</span></div>
+      <ol>
+        <li><strong>Account for every known artifact</strong><span>Resolve exact historical identities or record the unavailable dependency and evidence.</span></li>
+        <li><strong>Reproduce retained experiments</strong><span>Bind recovered inputs, code, models, recipes and output checks to one revision.</span></li>
+        <li><strong>Reconcile the review system</strong><span>Integrate directed revisions and FX fixes while preserving historical render provenance.</span></li>
+        <li><strong>Record artistic acceptance</strong><span>Review sound, masks, moving coverage and playback in both orientations.</span></li>
+      </ol>
+      <p class="section-note">The 45-frame kitchen pilot and further cinematography remain downstream of these gates.</p>
+    </section>
+  </main>
+  <footer><span>Source picture clock: 3,360 frames · 30 fps · 112 seconds</span><a href="https://github.com/4444J99/audiovisual-media-postproduction-system/tree/inventory/god-here-project-reconciliation-20261011/manifests/artifacts">Full manifests ↗</a><details><summary>Catalog identity</summary><code id="catalog-hash">Loading…</code></details></footer>
+  <script type="module" src="recovery.js"></script>
+</body>
+</html>

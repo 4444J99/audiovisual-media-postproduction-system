@@ -1,0 +1,2773 @@
+{
+  "schema_version": "god-here.unresolved-checksum-identities.v1",
+  "generated_at_utc": "2026-10-11T15:44:58.305053+00:00",
+  "distinct_expected_hashes_unmatched": 194,
+  "qualification": "Unmatched checksum assertions across the recorded scopes. They include historical files, dependencies and intermediate artifacts; this is not a count of missing film editions. Names and reference IDs preserve context.",
+  "identities": [
+    {
+      "expected_sha256": "00b7b8803e7cbeb85ab4bab556c2b717f6209123c23e1a919085e42f53d3523f",
+      "logical_names": [
+        "C-shared-dry.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-ce5e31886a4ab92efefcff80",
+        "expectation-93a031daf59bb4494df330aa"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "02f409a9dadff51771f4f50aefe837e12edb9ac4e54935de6f4bc7de4d7f7f59",
+      "logical_names": [
+        "low.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-6c7fa111d53258e30d9fde3b",
+        "expectation-47cd40ac2c20b92d97ffc0bd"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "02f79de7a5eebdedd9940fb2797f8fd7299ce82811cc456d36aeb495416727a3",
+      "logical_names": [
+        "candidate-dtln100.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-c1a2280c59ee609a71596c5e"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "035030e3ca02ec05e90ab1b01ff10b825d8f3d2d671c703bb1e1ae1576b6712f",
+      "logical_names": [
+        "candidate-dtln100-pilot.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-f7c607c653b9d70c790335f1"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "04dbd1c4a2341270eb46a3ab90fbad9851a190cb4f3d30ca7fbeafe16fa75818",
+      "logical_names": [
+        "soundstage-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-7c20931ab2e40b30e91cb472"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "06d9931ffd11de5a3283fd992dbee200c019f5efa4632f28e74393b79170d925",
+      "logical_names": [
+        "audio-render-report.json",
+        "demo-exchange.render.json",
+        "demo-typography.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-dbc363e942c123a5083de47c",
+        "expectation-27624d004e70b11a9c1f5fd8",
+        "expectation-59a6a4bc34e9644c24148d92",
+        "expectation-7c9bd0bbc245034947bd3978"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "06f83d16146e35a2ccbb215ad2da75c77f57e5257c9a6c974f2ef140e638fa7d",
+      "logical_names": [
+        "V5R.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-33143b3a71d0c90826f4fa6e",
+        "expectation-1078f6720c18ca99f33a453e",
+        "expectation-a18f3c6be7fb2985e0257a43",
+        "expectation-e2d5b627b9cbc62caa90c76c"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "089c5743fa72242b941fb5ba918c1cc7d85b09f32d6e2667907ad3f977fb429e",
+      "logical_names": [
+        "room-refinement-report.json",
+        "stem-sum-validation.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-1788a228e2e6a5f2a6faf8f3",
+        "expectation-203be33fb5ad09f20b3c4979",
+        "expectation-495a2366609b1e6706483f81"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "08cf9d20bf1a7d2978e15ad889d846f5bdb0fd3583cd133d1ae63e1970f714ab",
+      "logical_names": [
+        "candidate-dtln70.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-ecca7d2dc7e5c28e0f239ec2"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "0bfbdddcd72a8d47b92a48b19bd31834ea4bf52fdbbc0dc9bf5b7892d3a9b3f7",
+      "logical_names": [
+        "demo-reverse.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-5e58565c1c610ea0f838b80b"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "0cfc3f5340d158a16609461742bb210e9a789fb8d6105a75a2c8c414b7bf19e1",
+      "logical_names": [
+        "V14.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-6da8c7707bb8d9fff53a3baa",
+        "expectation-9b889e4847a6b647a89a3233",
+        "expectation-9f0efd614bf0f72b2366aa6c",
+        "expectation-692c075f09be1b1071f64952"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "0f37c409b3b3fe7abeac98c8ddd68f11db8d99f734cf86645b0d8d430a8a593d",
+      "logical_names": [
+        "stem-sum-validation.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-5997b76901aee8ee2147f8f6"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "0fb0cab5d417a4d0c3f60885a99e5e54ebc8c83c7c21b971e8b45c85e2a4eb33",
+      "logical_names": [
+        "room-refinement-report.json",
+        "stem-sum-validation.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-edf7396adbdb4c7daae38718",
+        "expectation-eb71c34fc8c08a1e621c9339",
+        "expectation-adbbc27021743419e82cf3d8"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "10b18ade41a27068560cd6c878b416dd16f6c196fc22db22ea2e85d060c804e0",
+      "logical_names": [
+        "provenance.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-9d2da07fcef566646c7b5d00"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "116c7fc26d746e950074f7503e96cd5d4152336873ed15d4f984cf5723880025",
+      "logical_names": [
+        "correction-machine.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-059b4fd3afa149b6d91caf45"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "11d7c46932f2896229e6978fd01338e1f435645f29d0d64dede892efb6547cb2",
+      "logical_names": [
+        "V5-stack.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-a33f30f6c7d64920780f0725",
+        "expectation-5019559227b4dc42303245b9",
+        "expectation-094e128a365b1920ef8ee4e2",
+        "expectation-11345320a1657610ad63040f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "1348bc85e41897970b16ca5c4bdab1c96fe8a639fb708bc22476b536903c1026",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-80270187f65154dd2aa03a2d",
+        "expectation-393a689b3750929433b8d8d9"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "13e0d24dbe95f8492adc5e697a893ee5b280df90d0a1fbbb854ea7f898503410",
+      "logical_names": [
+        "patch-demo-room-takeover.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-ca46cffcb3a98156aa842978"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "15000f509fc8be66b7ab75f23d85101eeb738c1ff2721ea41f611adcc15cf04d",
+      "logical_names": [
+        "demo-exchange.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-6488e8e8790b8e812ab7a544"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "17951dc4ddf1c7b8ee4a7f6e59703bb6a0ba35e58a667eaed3b816e99e31d91c",
+      "logical_names": [
+        "audio-render-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-b58cd47301a79f729ca10ad6"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "194956cd44fea05861d42ed3d7e6bb3892d73a58c56106bb01c4f2e9f43da206",
+      "logical_names": [
+        "V28.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-07eb68e1dbf241c75fe97eef",
+        "expectation-4da1e8891f99916ccb70376b",
+        "expectation-e853de41e3c3a5698d2fe85b",
+        "expectation-b4937981259baafedf910f1c"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "1c032f0518e684968aabb32304476d9e33f2cf5c2e46f186e2bd2dd8e8f60a5a",
+      "logical_names": [
+        "audio-render-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-191285c9ccabcdfebe20605a"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "1daf8b62747e3f16a041550a893fa4fb639c49411057a2bbbecaba2508b36694",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-a19545efee70656d6561f53a",
+        "expectation-9dcf1848b49fbf1eebf66f58"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "1e3e460c0a01b50ef6fa66cb952a61970f5748da9bedaf76ec2b5ab0af05bf44",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-014d0bc2cd7a1ebeb01c0f4f",
+        "expectation-7bd70f0f9bc49f5b9a6b5331"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "2164376c42a6b503cf52c62a8d30fcb386f260950b4abc06a40128a66cf8fad7",
+      "logical_names": [
+        "demo-queue.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-a5f271558a05e8a444709b7f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "23e343a8cd4965f1aefdcf83c0b96d39451c58da6ba0b50951d49290ebfc1992",
+      "logical_names": [
+        "patch-demo-closed-inbox.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-ed9dff46e7dd8e50938ab799"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "2466bf794cbc8f33b9add16a116b9afbc2aba9aef7811b8a6c376b4cd8c8260b",
+      "logical_names": [
+        "audio-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-d538ff1ace4b301f67967faf"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "25faa29fa036c69ab5707e54976df856bdf92210d6d1c3c46b5f88842da5effe",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-bf356ed9316121d14f96d1f1",
+        "expectation-58801891bc895426b60694a4"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "27958d6ae17ad964ae2a366e6dd0d016cda9e27146060a31d07ddd8367ca6137",
+      "logical_names": [
+        "audio-render-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-ebff08998ac68bb7ae630154"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "2862b482da574991a10875283aa5a8ae114b0deb685cba3f4d40a11833801b56",
+      "logical_names": [
+        "historical-download-receipts-current.json"
+      ],
+      "categories": [
+        "native_register_unavailable"
+      ],
+      "reference_ids": [
+        "expectation-11a2539bfddf1cbdc4049fdd"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "28c61bc38c12505b5202fa25d39ab1ca858c4c0ca7d9918d9458d02b41c796e8",
+      "logical_names": [
+        "demo-displacement.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-d948320dde6dba6f71037fa2"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "29780dd067081e43223019826e647059ffb62959717a5537d54fbcd9f40d6c73",
+      "logical_names": [
+        "Postproduction System — Implementation & Integration.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-27b811aac90c993ea06d2ac1"
+      ],
+      "expected_bytes": [
+        8475
+      ]
+    },
+    {
+      "expected_sha256": "298b81ca0012ef1de0d8c7dd92d0decadf96eae9316ca00b31d6ca5f1146f367",
+      "logical_names": [
+        "V56.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-733e20b8022ef04877150ed8",
+        "expectation-ffddf94ee14f66b085f0ac0a",
+        "expectation-06b1ea195b5ba3072e8f14f0",
+        "expectation-a29b726893e529e64830159f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "29e9d9a8c58da531b97a9e81a46d89fd99b8c91fc98249d9702a7845546a0903",
+      "logical_names": [
+        "foley-main.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-fffdc741670fe15674d48a9d"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "2a12dd6dcea0cd792a06f11ef4095d8d5a2de18ee912a19909a02d7b01929dcd",
+      "logical_names": [
+        "P56.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-be45b495236f71fb579a1b66",
+        "expectation-161e00433a56922389d50253",
+        "expectation-ea565bdb86e9fc6a5e1a9a13",
+        "expectation-b1629a7e59942caa9b6160da"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "2a1f91feebd31bfda9a64be2f7d57986e2afa6e1a5f7d4ce8b174c5cd83daf4d",
+      "logical_names": [
+        "audio-render-report.json",
+        "demo-freeze.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-0e78e745dd4103cad9f59c24",
+        "expectation-e3f93e26b618f18f91adf61b"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "2b04d6f7c89b65c9b7e1d483bd94d6fe3d12692daa4ec3dc2545f2709142942e",
+      "logical_names": [
+        "mix-C-shared-dry.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-a4a60ef17dbb9f35c7a85e3c",
+        "expectation-4a734a2825e91830d4aa4ed6"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "2db8bccc9c0d8802dd7099fffca8ae309522d5a253b9588a8d6cd2f2fd71fb56",
+      "logical_names": [
+        "demo-granular.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-4ce9b6c61ff097369b0cbc7b"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "2f14dae9228fcfe21bdc95c968e2f59cb488a4ca5a00afedadc44c103dfaa4f8",
+      "logical_names": [
+        "mix-E-static-spectrum.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-71f2b8beca9b8d430f32dbf6",
+        "expectation-9a534983af13684d53b7a520"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "307b707947e2ea511a33bf53cfc3175545b16649a7c599f605d300c3e8e2598d",
+      "logical_names": [
+        "high.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e44e6aa3c49e72b6692f2352",
+        "expectation-32f2ab86b3b1ddd1e8851c2e"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "3106172c4b1c390f36d33f3a13f4a3ecfed3c0b2955979f8b36804d977298d5b",
+      "logical_names": [
+        "glass.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-4aff55df0204f3607b7497b2"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "33e8a9823af4fc55666b0bea1b2de05e5fe79008feb399b93ca83bb02197ef38",
+      "logical_names": [
+        "soundstage-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e74843b8062f4e4505283fbe"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "3567f0d5db2190aaa4bf8d86abd667934f9ad19ba24f2798e60073f3edb244e1",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-9e6aa9478725ef8cb351be2f",
+        "expectation-4844080d5048a13575171ed8"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "359bfa76bd738e7c7e641a6e95a44e51e8c9d1dd2b544e92a98aeb8c4f468957",
+      "logical_names": [
+        "V3-stack.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-b2d2fcb1b8d8f9a9fe603c3b",
+        "expectation-df3c783fd1d45c4051600c52",
+        "expectation-a9d50deaeb5e5367e498e7e1",
+        "expectation-02c2600d9b1ee663922f9b77"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "36f1f7c473822cf7451f28fc0b115d22b3504ae79052ecbd67e5aad30d0c3f27",
+      "logical_names": [
+        "Create Character Timeline.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-7c8d8b064a7082c3faffb452"
+      ],
+      "expected_bytes": [
+        17081
+      ]
+    },
+    {
+      "expected_sha256": "37071453c7703309baf955fd048722e1c54741ad8d2f689a378bb3d9333bc110",
+      "logical_names": [
+        "demo-stutter.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-ef65413b8c7988b8a69e7d52"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "37a314e5911b911c243ac82b385113730446f44d925681dd27429673a96c3895",
+      "logical_names": [
+        "stem-sum-validation.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-22be1d287e6be22cc70e8758"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "388f6544eaf690f1036db917fae86097ae65b34d88a6118dd9441f8e2f310970",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-be30eb7594f3fdf2ecc3c237",
+        "expectation-375362a050950c3da9eae4c3"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "3a06bbc9aa1619bb14a5f674c8485e61aeb73a599d47bbc6e7f8dcb5a413f229",
+      "logical_names": [
+        "P14.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-9cad8280c36bb7095f2fed23",
+        "expectation-9c3ddf81073273d05da3d7a7",
+        "expectation-5abd1a43dae2940c7eba09d1",
+        "expectation-e56a769ad74c1568cb9dace6"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "3af85ae27c260ade9df7d4914f1147b357c98ca2e1a171fdc6cb9bf2527f2a4d",
+      "logical_names": [
+        "demo-granular.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-4d32a4714de2d721191531b7"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "3c8a21a42d3b22ff33c6a6088aeabbb3fd72c0b899b5316fbada77587cae2050",
+      "logical_names": [
+        "Horizontal & Vertical Full-Canvas Composition.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-90e8ef0ad752376aa47dc7ab"
+      ],
+      "expected_bytes": [
+        931
+      ]
+    },
+    {
+      "expected_sha256": "3db4d70d00b8cc3cada5d43c34c06425944d15b8a9f2493808c35ef7d2e716ee",
+      "logical_names": [
+        "patch-demo-message-impact.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-9a8b4a985b79f7716f000ecc"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "3e03018ac987857016111f987e6e611e14ab7ae65c746cf81608c32b2fc5f4e5",
+      "logical_names": [
+        "god-here-horizontal-stacked-layouts-package.zip"
+      ],
+      "categories": [
+        "historical_file"
+      ],
+      "reference_ids": [
+        "expectation-752fae3cacd981c0c92507de"
+      ],
+      "expected_bytes": [
+        2277888
+      ]
+    },
+    {
+      "expected_sha256": "4234dfa7e676f5a7e97ba42647c7b0632971d68da5c858c220d15fd18a24f95f",
+      "logical_names": [
+        "audio-render-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-fe14cc8a2de85f64d620fcdd"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "42c69afb961f1fb48b8858b386e5cf15c7bec9310bf4756bfa45d71946326fd4",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e319258f9a772f243719f0b1",
+        "expectation-49ac38226b4efad696a02cfe"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "42ceb073c41c892a737ece7a08b16501e29523c6a11ea14ef438598e261ea09c",
+      "logical_names": [
+        "stem-sum-validation.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-2d021213bb9b576774cdf110"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "47079ef5db7a48e00e64c4af60ffe29134f8f8e15722e2af8e29dafabf87843a",
+      "logical_names": [
+        "room-refinement-report.json",
+        "stem-sum-validation.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-7ec3a24660cc967f45ac2537",
+        "expectation-600e5717957df2aac99a64d0",
+        "expectation-8d61ed5d7f4754580fa36daf"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "47190b5eb65fc6920c3b9c520549072a311c820df8a23ce511e0f7a6003ff722",
+      "logical_names": [
+        "P5-stack.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-1059f37f25294209b9b34765",
+        "expectation-83154323ddffe29cf07e3625",
+        "expectation-36bce26fdc2b75fca95d58f5",
+        "expectation-fcb4fe18b543b94020051033"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "513e80a933593bda58d52246791ff4300882f45fbd1e034ca171438f2d3dc189",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-6c852d9dfa31607a073e8e26",
+        "expectation-07bb70e901ca64b89c3e18de"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "514753833b4c8947720d170e51def8c70cc77dfe768d5d27391c4281720ed537",
+      "logical_names": [
+        "audio-render-report.json",
+        "closed-inbox.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-87ff598915bc49b5c683a5bc",
+        "expectation-4d7ea8c67b661fe2f836ffab"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "54cdcb9008ff68bb6ce1776e6fafe33bd4047e663ad8f6eee5f2086e4e04e496",
+      "logical_names": [
+        "V56.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-8e4bd4afa3dd0f38374ad517",
+        "expectation-ef0072d78c214740e906ae64",
+        "expectation-8c2ad6e61d28bcaa2b3c72cc",
+        "expectation-8d8d7f88ac0b0d63d52abbb7"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "5b23b79fe1160880c6753ab83f31a13b66f856b64fd289d2a836c514d845c5f5",
+      "logical_names": [
+        "P112.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-ad2370faef349e5b3a7abeeb",
+        "expectation-2bf60c2ba95c3be19646e78e",
+        "expectation-61c24b35cc272d58303244f5",
+        "expectation-1f98e8a843618225539dfe3c"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "5b241286ad8836d8ff76aaf1faa9a8be0c629486b6c002586b2fb7a29f338968",
+      "logical_names": [
+        "out-but-still-here.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-da2f945234e1eea097f0d7a8"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "5c7ad86aad03b514e75a212966f264eca06b17f7b8a8e3050017babcf8f42ad5",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-9d608a322ad07c547831c7c8",
+        "expectation-e4c5af29957d79c57f8b89b1"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "5e986f3e18c639be4e5f1e8c4d2965a00f50bdb1ddab503b4065798073d7f5b1",
+      "logical_names": [
+        "candidate-original-pilot.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-5c31b16039a1a1f3929bf634"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "606bc779dae6bbd4a84f5d13f1a793163472c76c7ddc39d08227f9a0616c1f39",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-49e7f25e70e40bf02d691a3c",
+        "expectation-ebee995cc472e2a63e402187"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "60a7f78714e994fb9ce1cc100ddd686a1b7db6fc477827a5949079b0f8baa06e",
+      "logical_names": [
+        "audio-render-report.json",
+        "demo-delay.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-41374a89854c168cb1bf8231",
+        "expectation-f42fd1ca0236166c088d395d"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "6115205b21d3e75c4cb45be4c5475699e53430efd107eeb7a58bc665e7d3bdf8",
+      "logical_names": [
+        "demo-routing.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-5feef671978bb77f700b4c97"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "640755eef322d15378d54e6155dd2d0d38fe2e58bc9cc663b935cb1442978b91",
+      "logical_names": [
+        "demo-routing.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-d26e44d8941680f4ca96f83f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "661f8d2a787eb1055fc262e41c82a5f2903da9106c1370a16e31ecd1d8d51e8d",
+      "logical_names": [
+        "D-sustained-mid-high.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-c7132580ad6884f34f01db14",
+        "expectation-c96b14d184e2ff40a174cbe2"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "66eff0881db51bf4b197ffde447c25232cd40a9e7971f0008c5d32fc9f806640",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-1caf8aeebee5c75aa0b58a0a",
+        "expectation-20b47a576a0d5892b29a5f84"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "67aa4ab25fc0175918734c9f941bcb00333faf7dbdc10ce25c23179d0f3d8e87",
+      "logical_names": [
+        "Multilayer Compositing — Actors, Objects & Room.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-fdfa18e57fb3a0439cf7c509"
+      ],
+      "expected_bytes": [
+        561
+      ]
+    },
+    {
+      "expected_sha256": "6809742aa09dd326f5ad1f765957bedbffc35d8f8392bb2ccca3ff89bc92da10",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-114c148c16c7421404d42c2b",
+        "expectation-d819e58da8da8cc005ea53d6"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "6af86334e34ce39525fcb66872c6f85329a502a51868d2f0832df06bb014e053",
+      "logical_names": [
+        "audio-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-5f1fef4b3d3341aa387d44d1"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "6b7645de0c6bcd410f89c6d6a9d7e1c8b0991c08b2f5b4e268a0ab529233684b",
+      "logical_names": [
+        "room-takeover.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e511e05caab23d808d204533"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "6c205dabd823df389bf73135de2d85bdbcffc1162281597981187832ab870a71",
+      "logical_names": [
+        "sip.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-d722a3f667e7e83dfcf5a2b0"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "6c8ea1a53afae7a4f58356add1c05a166eacce875ce36e27e896aa4530cad15b",
+      "logical_names": [
+        "closed-inbox.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-12b7f51ba2d752a6fa3e9424"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "6ded015bebb447329161a449b1544bb2e251538764181d4b54949c9958131729",
+      "logical_names": [
+        "god-here-linear-picture.mp4"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-460f01f9e9e0dc88f44d8a21"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "6e1be86a67fc29ea9645a1f5b8f3573e46123b7f1ce5692d907f9841d356fa5c",
+      "logical_names": [
+        "body-preserving-picture.mp4",
+        "segmentation-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e1434a7452593a1fc7d6e7ce",
+        "expectation-83eac162017da2a57b6f774f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "6ef5263c3bdc498a4247d0b96ff58b911a95eb650b39caadbe6344551b33a8dc",
+      "logical_names": [
+        "P84.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-d6d10c5c586872d39046de0e",
+        "expectation-600aebfe0fd02a260a6fd049",
+        "expectation-15a423a199874271e200cd7f",
+        "expectation-36c06c5fe305b17395700dab"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "6f0a4540dac223d2859df5d522779cf13ef47a2bda09c348294d2b44ed281861",
+      "logical_names": [
+        "low.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-ec339a6dfad9cda512891243",
+        "expectation-d5fcf2f3d2e901c6fde202e9"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "6f2d07335739afd00f51ec51148edd493493511db0b3c1e2f8b92d4209e542a1",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-9c8564074b6a4a03f1baacfc",
+        "expectation-9ae24408a5ed0ad71d6fe950"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "711c98b2e31994f13c902a64344d3fa815e7eeb7912a79ac3ce546d764021ff4",
+      "logical_names": [
+        "demo-reverse.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-a7f6b6ad95eab3daa32a2e82"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "726aeee8b6c497c8f9d4d464e27aeb960b29ece75fd3b9e10e34f9a47a46da08",
+      "logical_names": [
+        "V84.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-79bc3ec8b23d3120280756cc",
+        "expectation-14043ad4a9cf01993c7665cb",
+        "expectation-4efb18b06e868ad8690fd90c",
+        "expectation-4f663e74127840bdca57e245"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "72afe2c55f682c7fa3152f9ac921eeea034b477a2a581e6258b3e0d3d5f576ee",
+      "logical_names": [
+        "correction-machine.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-1ff35098dde0710847d7e15f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "72d05203391fc2baba71ff1d71fb112205b6edab612b1731f6e5d7d79336b20a",
+      "logical_names": [
+        "V1-stack.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-2bcf16e7aa45047e56b07b15",
+        "expectation-676b97203ec595ba2b105849",
+        "expectation-b6589b5368e372a0e8a12b75",
+        "expectation-6e626318b40a60169e275597"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "7334f1747e1342e84ec00f50904c67c2afc50478d5ee811c9e156b355a3352da",
+      "logical_names": [
+        "Expressive FX — Variations & Compositional Experiments.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-b92342afb5347f6a055a8072"
+      ],
+      "expected_bytes": [
+        2878
+      ]
+    },
+    {
+      "expected_sha256": "76750d0f1c9a462dedcebb08a536ec5508655bf8a37a21a9e26adaa2f42529fa",
+      "logical_names": [
+        "V14.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-8cad0dceb6c92d9382a2e0ea",
+        "expectation-21e2146a6a59fc5317b49a30",
+        "expectation-486ad32f1f232ee9f47dbb91",
+        "expectation-8479440c2a40fc57b793ac96"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "778d2041a9e989727e629483141c69255cc9befc0c7280efb50d88e40ef67b9b",
+      "logical_names": [
+        "movement.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-66aee32333315ff5e2c0f68c"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "78200c2252cb4a2c85b80913a462d6cceaced42b5d0a452547de092cfe38da86",
+      "logical_names": [
+        "V2-stack.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-db13e1254ff09821da575dcb",
+        "expectation-187003d1ace8c62e2a090e44",
+        "expectation-9a09cc4c7f61b05106677bcf",
+        "expectation-d9abaf896a21872000f7d68f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "7a0adcfdb1715d3b0ff0f61486d8a181c33f4a208343a5abfccbc6540e872d24",
+      "logical_names": [
+        "selfie-trial-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-4b70111a82b5a41dbcf7afae"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "7c4803fa97433c5d71dc88cf3d8dbb49bce664add6fd55e69379a6cf515882e8",
+      "logical_names": [
+        "patch-demo-out-but-still-here.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-6f815f59e01519a6eba4ddaa"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "7f33328e6b4d4cd21b45fa625791928c9407dc702db6780e56b09ca9a3ecaa67",
+      "logical_names": [
+        "NimbusSans-Bold.otf"
+      ],
+      "categories": [
+        "code_metadata_or_dependency"
+      ],
+      "reference_ids": [
+        "expectation-003ee55a73cad807ef32cf63"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "81e1632c891762eebbce8bd0b1708ebc2ce094c13b810de42b35af7e4eee1ea5",
+      "logical_names": [
+        "message-impact.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-8605f433abe033b86150d58a"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "82e635a77515f9385de561b876906ea65e61c58316384554f26be5efd21621ab",
+      "logical_names": [
+        "demo-delay.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-454e4b0843a7ef1202872ef5"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "87448cac35ae65826eaaff85d98eb8bcb3a4314b01825f752820c118cbb8dd4b",
+      "logical_names": [
+        "P28.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-703a0c8b5cbb0aa367041a1c",
+        "expectation-1edc6e1033ef26860b8f5f5c",
+        "expectation-38861d4935be6646a4bb0ec7",
+        "expectation-0b6445db536c00add4f5f00f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "88407577f1b54426b83e74880b9666f489f51ac435be8415674a1b783d6984c6",
+      "logical_names": [
+        "audio-render-report.json",
+        "out-but-still-here.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-80097e2e1a8c0b1e7819edef",
+        "expectation-5fa91a1188263b2bfc1f19e0"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "891add42bca750f6b4c133c35b2d287215f43dd0e3995b0f221f7c69bcea04f8",
+      "logical_names": [
+        "soundstage-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-002b0c75a7288253c830f8e8"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "8937f1c2942c6e61cb542874a00886eceb7760bac4efca4e1bc1e97b575da485",
+      "logical_names": [
+        "mix-A-existing-rack.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-201388a494cd6d30028c7517",
+        "expectation-8519503f49147ec929b1fe35"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "8bbe177b19d00a9cae083ee7535bc620b1fc0c17a047fe039b40a6c868b590b7",
+      "logical_names": [
+        "V28.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-c4c8c5fb0b2186af8e42a101",
+        "expectation-f709f0e18205526b27cd8f32",
+        "expectation-47c51a6b13559cd5891b591d",
+        "expectation-2dbf5639f00966033d6bdfbe"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "8f14e8770ff304b3710dc2da999761cf2624fb7a13b028e9679f1dc303803f4c",
+      "logical_names": [
+        "V4-stack.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-c9bc4ea4691ee187f31e9949",
+        "expectation-f35e4d940f27950656354677",
+        "expectation-193a11a7fbb5eab2cd991127",
+        "expectation-51b8a6bbf97baa0e44cda24d"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "8fdcd4cce9d302a6c9d54ec0ec2b80b80455368e2b618f6fd209b29b74febb56",
+      "logical_names": [
+        "audio-render-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-35c3ce88fe4c2d6113c7105f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "907bfe9c0c72b747b8aa9b4c6495909c44da2e034ed19c739323ee5f712ff0c9",
+      "logical_names": [
+        "room-refinement-report.json",
+        "stem-sum-validation.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-d40e3effe494147aae224c2d",
+        "expectation-6d7bbd1b65843e126e713a56",
+        "expectation-ceac7084117431b639cb2914",
+        "expectation-6b39a090efcfa7a68dffe954",
+        "expectation-898eb77c9b7c7656f2079458"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "90df69b53a4d8598834d79feb6efdfa4f7681715fa80e199e8e862679380baa0",
+      "logical_names": [
+        "mix-D-sustained-mid-high.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-883d048f9cfbf75fb92889c3",
+        "expectation-43cb797d4424516b48f2c065"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "911db35e0a43d5899cffeef045bad70d543a1139facc580b7a54a57b44abd0e6",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-2fd1614234704dba08212efb",
+        "expectation-a1b820d7a24c5c0134cc405b"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "98f2b0d67d83144690503eaf0616ea5837e0c56566b992d26525e8340b9d5dfe",
+      "logical_names": [
+        "V84.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-67b21cd79fadf1ae75b15e9f",
+        "expectation-4a443b38bb5b9f785163a299",
+        "expectation-f3d22998da68ce5b0ab168dd",
+        "expectation-d5383127fbecf723dab6e232"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "9c3039a55cf04f5a1f78b5beed4d602ef0734517f024a34c5dd16393e84a11d1",
+      "logical_names": [
+        "audio-render-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-3f266d4cd265479340512c80"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "9c9a28b2d4dfe1b71cbef9ad1ffaa67060574ef449a1ce25f022788c90de7901",
+      "logical_names": [
+        "stove.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-85461fcab00cef914f5cdbc5"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "9cf4a83f281cd6ef369dac0a4cb29b80fd645aefef4178b98860683832505b73",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-11c0a5a79164d5ec322912fa",
+        "expectation-f868b7ee3a55cda71623b9eb"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "9cfa7e5d5551ba909462ad546d37a08c2f84b04e4695f03a90ae258196288da1",
+      "logical_names": [
+        "audio-render-report.json",
+        "message-impact.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-c301a9e4420480ff01ce5d5d",
+        "expectation-58b8c460954ec780c89ccede"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "9da7bd71a687e10eae73bc86f5ab02e423398394d453ad7b51828a16f0f619e6",
+      "logical_names": [
+        "stem-sum-validation.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-a3d5df07acda72f71df43fa1"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "9e06b75d71b4f860969174d0dd06433070686450943d8304963cd40139af0400",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-620a261ee679c6429e979bbc",
+        "expectation-3086729180b3cfc9bbfd3258",
+        "expectation-81021b1c35833bf8f8ba28a4",
+        "expectation-e0673f52137673f3d50a0f96"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "9e16974ba819a157eb119ca711ba51ef64946efde192d341d971dc84baaea82c",
+      "logical_names": [
+        "P14.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-0fb46b715a5c0f955acc2081",
+        "expectation-2855a5a727d298f9953b7627",
+        "expectation-12bd38f09cc5bd2204614f94",
+        "expectation-b3142fccdf7252d9d82bb9da"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "9f0739857331aaa48ad56daaf001b10705f5a6e42a6805766ac1b0ef454710de",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e83c164b8563ce4fca9bc462",
+        "expectation-f393d3e97a340f398d9bcbb4"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "9fa27526e68f40c7594fde4d5c4310a2b711b80ac1927dd101f159527c898940",
+      "logical_names": [
+        "mid.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-25365b502450e32acab34106",
+        "expectation-ae82a5e741d75cd17e9da039"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "a026bc745bfdc7961a8d2e7eca38a381a4af071dcf0204760841e12d62ca7148",
+      "logical_names": [
+        "demo-damage.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-949e82d1752485cc0161fe16"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "a2db20f145ab07180b2384071d5c4bf62aa3b68e493662cc0855349262f87836",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-737313a30951a7c498de2c23",
+        "expectation-f692f80f00059e2a40e6596e"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "a53c4de867457f82bd49d1bf1ec4809807a8af81f0bc42e13f329092c1e01c7d",
+      "logical_names": [
+        "audio-render-report.json",
+        "demo-feedback.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-02a004f52af60dcf39f784da",
+        "expectation-2787dfef366d81ff0a1b1fe2"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "a76e7c81dc88302ad7982b479c33f466dfffea913c43993e909a290f0be8b0bd",
+      "logical_names": [
+        "patch-demo-out-but-still-here.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-de3730e47c5fa5e458f07a33"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "a782ee0acd8ae534676e5956b3a28bd1a2d3f9ba13a1b543e171acc8674b3ef1",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-8fabdb13df00ee1b2229df51",
+        "expectation-9150f237d2421eb03124345d"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "a7b117b796e0a7de548a131cbdb940bddb23ee3a5570daecb70b831cc651296e",
+      "logical_names": [
+        "stem-sum-validation.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-cd05551fd78af9eda161bd77"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "a857552620f39d9e259da3c60e95a2681d6d8672323f9d4b7c95e4bd0f5c9baf",
+      "logical_names": [
+        "demo-stutter.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-bc54e769f0b314224e69c985"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "a945354f54a1b94087e4067c3b7e5c7686eae1a5dddb4917cb70c764822a45fc",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-0732be87d713f63392354236",
+        "expectation-6da4915c39f4a539a0106941"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "aa38695abcd1a71c158f985c35857b6a0a08923957d5ca18b115f18225a9cc70",
+      "logical_names": [
+        "audio-render-report.json",
+        "room-takeover.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-8a77dddda940cd6d03f210e3",
+        "expectation-3d495cb6ddea221a48c1b3f4"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "aaaf1fa64436855dd7901e67641f0c943c3d873c80e3ef6e6e171b9798be26db",
+      "logical_names": [
+        "audio-render-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-03b8551bea9514d4fa57b379"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "aaec800e96e5f432e4a39747e3fc5689a983b1459153e753f9c6fb8a92b643d0",
+      "logical_names": [
+        "patch-demo-message-impact.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-62fe5ba814605cc6da9d0ccf"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "af19e1fb71c83d7e0fd3af1415c03ebb5376ca7cb7f5d1ca17f6d8ed40c25e01",
+      "logical_names": [
+        "Recreate Missing Sections.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-04ceeff95a3ea44bc657c29e"
+      ],
+      "expected_bytes": [
+        974
+      ]
+    },
+    {
+      "expected_sha256": "af2f93536da1bc16bd4c1bb89c7f8d0444ac81a084ef4499384551640a58fe4d",
+      "logical_names": [
+        "high.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-79d01ec37acc7ab90f205a30",
+        "expectation-a0449c98bb6e46a410419c2f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "afcc0ce94ec93d807469f25894f33893c48ff588eb9b31994c9f0d7381bf4b7d",
+      "logical_names": [
+        "soundstage-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-051bcdf3759778ff12aa59b3"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "b0a62579c1024b7dc659ecc123642534279c2e3ce09ec19d40bd74352e42715c",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-b3b84680fe6748ea13b8a566",
+        "expectation-b963c0e0aca13c21166970a2"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "b1d740c34879b29b707f54123a35a8af0989a8220ea01d39fe7490c50a8ed3c0",
+      "logical_names": [
+        "P56.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-728408ade14509dc8e8c98c0",
+        "expectation-3058fdbbff5ace51bae1b334",
+        "expectation-a972fd98e74005890c7bf727",
+        "expectation-8ae8cf81a908fe29a55d531d"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "b3855324d08e3da2064dd301c7ad5a5cb0c86c49b7585d7665af6516cce59852",
+      "logical_names": [
+        "audio-report.json",
+        "candidate-original.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-09105934a15569c642d501bb",
+        "expectation-6090d6e58a09d12c6e7feb2f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "b59591b43f10b2745473d5b614373b667a4d549d35652b012a068153cf2ab325",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-d7c0da7a83eb8e51cacbe62d",
+        "expectation-c4ce59d912dceee5d1ad6b3b"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "b6534f8685f4509332b09412e107f508eff6d58bedc88651cf5bd98cb9f00072",
+      "logical_names": [
+        "audio-render-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-7d7239353eccb098039caeea"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "b687133d6b1cceddc6a578edb50573ee80ea41bd68911855f0877752d9ac821b",
+      "logical_names": [
+        "Layered Animation Approach.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-887284f4bc64695fce7e7df8"
+      ],
+      "expected_bytes": [
+        985
+      ]
+    },
+    {
+      "expected_sha256": "b793fed6cd68dcab230fa7ea26dbf9c80bb24a59835311a16d5e34523e3d97cf",
+      "logical_names": [
+        "A-existing-rack.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-c2ae65b33b348f7d2446c0c0",
+        "expectation-5dfd822f1f08589da5a879f7"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "b7bab6d1abb22860fd006ba4207360cfcdbebf79a5eb4f4b7adba30f8eb8faad",
+      "logical_names": [
+        "Horizontal Layout Tests.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-42556762f638fee47508061b"
+      ],
+      "expected_bytes": [
+        4251
+      ]
+    },
+    {
+      "expected_sha256": "b7c3c822cb9409d0daed38952820d6d16eefddbce96aadbb6c4b97237ecde9cf",
+      "logical_names": [
+        "V112.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-f60b398e4e05deb85fc42f0e",
+        "expectation-e2ae8b9f1b11bc9c4484adbc",
+        "expectation-bee805bb474ff0464f674995",
+        "expectation-1026c8d39e7c6f18011129f3"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "b88fbd7d2bb6b7442aa77c0a251c0c1d72accd078379fb21a3787c844560c004",
+      "logical_names": [
+        "Review Project Sources.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-03259088f7b1d7d961d99d58"
+      ],
+      "expected_bytes": [
+        19610
+      ]
+    },
+    {
+      "expected_sha256": "b971be67a55e14a9a31fbfd71e590924b1ca891788a0de98f1900f668d1fe752",
+      "logical_names": [
+        "mix-B-shared-schedule.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-c9417d62790980f4e92cd95f",
+        "expectation-38f62e44ef610dd11c64bdfe"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "baf0dce91f056a657002236eac8b3d9d7c1c224e29c74e1f3aacbb63dd668593",
+      "logical_names": [
+        "mid.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-f78eb81da40a61d34c01184e",
+        "expectation-b82024a0ebbfc7806a31378d"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "bf97dd5cabdd36931d46fe897930410afe9741eaa8f511969dc9e5437be0e0ef",
+      "logical_names": [
+        "demo-queue.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-0305a4257c1c7ac488e8f46e"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "c2fb726cd21b5df43d4ab5006ad43567babcc238eda7691102fffd5028c5f8dc",
+      "logical_names": [
+        "candidate-dsp.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-99053740e7502ad89445ba8f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "c34d80f5e10de788d35de611c30f9367fdea2ba567ab4d88a0cb5109f383e95c",
+      "logical_names": [
+        "candidate-dtln70-pilot.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-7277c19ee519f68fe26a16af"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "c6a70f33acbb770f5085324aed00fd43db2f6f9f0e54b679b7f919fecda9bb1c",
+      "logical_names": [
+        "candidate-dsp-pilot.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-93b989493edf9d379b913292"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "c76d424c7994a67ef9467bb1bd600365fbd23445dacc3563d50a9af579d8f8fa",
+      "logical_names": [
+        "audio-render-report.json",
+        "demo-gate.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-6720a8aec149c23acd899824",
+        "expectation-63761f87f4ee478a1e172c8b"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "c82270b1816a9906b28f6e24673821cc1316f3188767421fe854eeac1f097eb5",
+      "logical_names": [
+        "high.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-49a6efa64d94e1c6fca593dc",
+        "expectation-7a97c51ab88197feb9c0809d"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "c8518c8be083f544a4171eb8a6f053e061a2d8be2cfc25e8889a380fe35c3647",
+      "logical_names": [
+        "soundstage-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-897883df5e711aa41e2e11ee"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "c9437ad4ec27b28a5a8c2fbdce10d27d9225d8462093515eab7dcabdb24c270a",
+      "logical_names": [
+        "Project Development Plan.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-4a856a226102177b899bcca9"
+      ],
+      "expected_bytes": [
+        1254
+      ]
+    },
+    {
+      "expected_sha256": "ca7d89ff6a6a4d6e6f7b576a9ded7cc83611b5daed4a3e3277e8b7546e9cb7e0",
+      "logical_names": [
+        "demo-displacement.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-63658af04aabdfb698dc91bb"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "cd1f9486fcb6de58976512528f3686e8996de9cb8bcdcc543e752f173f0e83ab",
+      "logical_names": [
+        "mid.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-520b16e85d7eae5daa69ee31",
+        "expectation-7fc54600784f8a2da60131a1"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "cdf1e5a0f6ab06676c1978d7c43f8d0810fe4bbae5bcb1b8b6a196491e2626fa",
+      "logical_names": [
+        "P112.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-75b10bac537a074a4e115180",
+        "expectation-3ce30e5b1e429fdc7197854a",
+        "expectation-503f9816099cb110062e86dc",
+        "expectation-10e2aa2b9ace3c93d032aa8d"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "d0e28d59cc4887350c93b5ab3e34cb4c9cdc94d41b1f1c9da4fb3e6ab1d57513",
+      "logical_names": [
+        "demo-damage.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-3a4faf8ca7730c87eeac8a3a"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "d3cdb84d8d032c52736bd742cd0674a5647e1910918fb0e0f29f524398d0e4f6",
+      "logical_names": [
+        "soundstage-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-92a83c32b5ba176171fcabd1"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "d41207834c55e97761c43903338076b715eb3c32764cd944d7ea43f22c8393b5",
+      "logical_names": [
+        "patch-demo-correction-machine.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e8c3e0e7354fb5e8c043e9a9"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "d62e45a65236724ba0aa4122bcd355724b488f8353eaf5e24f0c867531a506ef",
+      "logical_names": [
+        "room-tone-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-95134a840804f07c2e64c2f6"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "d6edb1e8c854c0110bdbc0c5ca9aa9ece751c565ffee88967264319a18f38f98",
+      "logical_names": [
+        "patch-demo-closed-inbox.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-69b83c6dfa3e6266960379ce"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "d82b58202afeac579f683fdd521aff36ddfea2e25504286aa6f2a4d96d71d718",
+      "logical_names": [
+        "mid.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-4f89e9c0d9d4bd9f0d1ad765",
+        "expectation-ed25becbf53fd1332a9ad90c"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "dab4fef1b202bed1a8f1916cc91f8c790501722884c2bf82da3c68dfa1bf99ee",
+      "logical_names": [
+        "low.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e91fc44b3cf6f5cc579d0d30",
+        "expectation-723229e0ffba1e82ec58cf71"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "de2ed1bc3266e83835e4ad3cd813a999c269f4730e99a34d041c4f3cb2ac1374",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-0d1bdbb1d7f50f51a16e1954",
+        "expectation-8e24150553546d5dec641ca1"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "df41ae9caa27ccd32fc1725e576cfba7b755a43418d32f598aa7014204a9f0fe",
+      "logical_names": [
+        "B-shared-schedule.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-a87337dc8bc0100ee35348c0",
+        "expectation-e0ca219b9fd078c2ff5bbbd5"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "dfc7454bba6c66d554b158bdfb02d83fd0ceb71db2a7f7bffa850431be863b9b",
+      "logical_names": [
+        "P84.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-12588a9a382fefc26c639766",
+        "expectation-a484b13fbfaaa67a67a672fe",
+        "expectation-c3675977455ee54323639216",
+        "expectation-9a9a616ff6e8e3372739a1d8"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e03be717c49f5add4fb0e82805b90b55fa6398d3e25af6700187ed85ffb55ff9",
+      "logical_names": [
+        "V112.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-aae9214d4f502411d1ac9879",
+        "expectation-e44c1f7b30053d857da6c65b",
+        "expectation-4d596545f04faaeda23581db",
+        "expectation-6404810fae1da7df577c8eb4"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e1520af05101a1ce56ecab0464ca1dcb9197e819d907405c83376264dc269981",
+      "logical_names": [
+        "room-refinement-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-d0b8cf1ed6fa2ecfe2e100e4",
+        "expectation-5a65bb270dc27a51211dbe4f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e2679a8633036bb72edc8fc8b57671e53c42390466a1e5d1c9796be38e27d1b7",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-42205420f77378725b114ace",
+        "expectation-df7933d1ed58dc5975fb44eb"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e282d2172b903f83f9f3e5899b30d09feccd69f4f941e882ffd1d99cb5b0777d",
+      "logical_names": [
+        "demo-feedback.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-117efa80a8b21c588774df6e"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e2c123db7edb9e2a048e755d9f6f32a46648e82bceee56a9fe5f586c560b5008",
+      "logical_names": [
+        "soundstage-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-fb1cee467a9550292da48b1e"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e38f9330f5684713afdda3f46dda9a5392c1920b9c7070ba3564c7c8fe15dfda",
+      "logical_names": [
+        "demo-typography.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-1e7bb58a025b111347242605"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e3d8ee069417a903a07be54647db2bbb8da6620a4b974337752467f065c2726d",
+      "logical_names": [
+        "high.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-5fb35d37d1c2f9743c4c710f",
+        "expectation-302efe328687439ad0f8a4de"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e43bdc392b4399f541052f4d2f252017485955ad403e9ac2d6d5fa620843f0c9",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-65c49afec6de04c2f2dab4eb",
+        "expectation-1bbdbfb04db49f97c1f67f2a"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e4a28cba217da9d284c8fb77e279b9cc1c6b7d2dec105a76aec6ce7adf49786c",
+      "logical_names": [
+        "P5R.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-4407d4997ed1bec7595cd9f3",
+        "expectation-ffcc170684660661987a261b",
+        "expectation-fd0ebee7ddf78c23ca57c257",
+        "expectation-0a5ddf10ffa9f93e337bf471"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e528be0e02c783a214771a2de65dadec2cd56c5470f3fc4177b284f00551b3f4",
+      "logical_names": [
+        "demo-freeze.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e0213bd4969802626a57d837"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "e5acfd9d2975fdcf1f695f9511160d7911ccad5469c7bc0a003df89528ac1992",
+      "logical_names": [
+        "P28.wav",
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-05e3ee26dabd67c38341d80e",
+        "expectation-421951cedd59a13e3f008a39",
+        "expectation-7249f85d3eaebaa51baa8551",
+        "expectation-38d987f02a83e5b1539d6039"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "ea202f6b1f15f478636e62b25cb74f77208bd003ffc5156527042caa38f50068",
+      "logical_names": [
+        "patch-demo-fractured-utterance.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-8363aea579c77624d37b07c6"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "eb61eba539405f8b687fdba98fa9fc7592053b846fe6824291a761d517612d54",
+      "logical_names": [
+        "patch-demo-room-takeover.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-012e7b9cbb14e9f8696305b7"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "ebb2f369d4f812ff7ba914261dedfbb9d58d09890f4d8cd335ebd42aa2f247ee",
+      "logical_names": [
+        "god-here-iteration-brief.md"
+      ],
+      "categories": [
+        "historical_file"
+      ],
+      "reference_ids": [
+        "expectation-539279812b10cc0f7ffc0cab"
+      ],
+      "expected_bytes": [
+        45387
+      ]
+    },
+    {
+      "expected_sha256": "ebf8fa8418c9fad4456527ceee4089f09cfa5d4e32fd5f546db84bd06e867b77",
+      "logical_names": [
+        "fractured-utterance.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e210ec31f9f68606bb51869e"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "ef237da75892315b7113bfbed0474fd41157ff669b1f1e42033d4066d89e23f6",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-23dbff6a350c241166757612",
+        "expectation-b6dbe99ba5c953e2860909e9"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f05e7591104f1c96014c46095f6c1ff97ecf3a6134013535ebbc5adf64a20f04",
+      "logical_names": [
+        "demo-gate.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-532cab7dbc632711da258a52"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f1667e1211c301c4441a3b0402c5717b411e3e0e0af3ed1c1957071ab5fd02d4",
+      "logical_names": [
+        "god-here-variation-43.mp4",
+        "variation-43.schedule.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-e943c1b75a55b9ca176c81f9",
+        "expectation-35d7e86a3eafa190bee3ac13"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f1ae03cecfe17061fb5239eea26ab419290a5698efed03b77d579340b3c67df3",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-2ba93e714870f06ff519a552",
+        "expectation-d8bc5fd1c6d5cb3e523ec7af"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f322e2b816501b9dfe88518f7742271f59719fcf46e7cbc42aff46c4f8eddcb5",
+      "logical_names": [
+        "segmentation-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-64b8adef9735b473d0944e7c"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f43cfe476823ca4215a3dc411faa16e4a7b778929c52964879086e257afd193e",
+      "logical_names": [
+        "Branch · Review Project Sources.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-d1f04d1445a82a97f85bccc1"
+      ],
+      "expected_bytes": [
+        7695
+      ]
+    },
+    {
+      "expected_sha256": "f4cba845302258aa331566dcafae3ea851a23f5f5f4484caaa3a20bfab52a2f1",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-613c9ed3a81f17ab6f9fe7e6",
+        "expectation-138499ecec7269d6353f0707"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f58f6682f12f251a4eb7d05c55b23a95050adcfcd7e67782eb772179435c58e2",
+      "logical_names": [
+        "E-static-spectrum.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-3f91564cc11450ebbd5613e5",
+        "expectation-d0e3db3d4d356330f1265fde"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f5f2ca470055c55f4f3f835b0469f4e75385544bd1f8bf7ab1cdccfc3dcf405c",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-a346a5d34420b95ca0b0e660",
+        "expectation-249b760d43285db77d511886",
+        "expectation-4cdbb8244c8cb54c19b0ee4b",
+        "expectation-69eb1a468b8f1b259ac20809"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f635633be3ddf9b552271a24beb34130140d47ac78f517da5fc0ed0820f02787",
+      "logical_names": [
+        "patch-demo-correction-machine.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-4f7e8e7e9f7f9b696411b805"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f7f901b9312c5f50226fa5829eacd3416252bf98253a356c21f4dfe0862722f4",
+      "logical_names": [
+        "foley-with-stove-option.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-d26ca3798752c1ac894026d9"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f86e6561cdfa34bef521612e70d8a9adf588d1d12130d86f42efc49b2979881c",
+      "logical_names": [
+        "audio-render-report.json",
+        "fractured-utterance.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-10bfbf72b1e8ff71381577d6",
+        "expectation-863233c93a31d415adaf5bef"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "f954d43a35c6f43c36652f22c7cbe9c82fe4ca71d8809d91dfe921b31f30a357",
+      "logical_names": [
+        "room-stretch-report.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-71831827722fb9c2bdbec26b",
+        "expectation-11a92db84564ab9739e07693"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "fc7d43b02a4c9de53464672a864645c6cface81485d496286030e85c2185414e",
+      "logical_names": [
+        "Branch · The rendered.txt"
+      ],
+      "categories": [
+        "historical_22_file_inventory"
+      ],
+      "reference_ids": [
+        "expectation-bb22190a2d45287c2795f29b"
+      ],
+      "expected_bytes": [
+        1627
+      ]
+    },
+    {
+      "expected_sha256": "fc897171b9b3d1927d8ce3d1ff9122a5c700643d6fe0d1f6088936c3a48b59a0",
+      "logical_names": [
+        "room-refinement-report.json",
+        "stem-sum-validation.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-cf139efa4c72bf589ebb7137",
+        "expectation-544d5b486ed19fdcad6a3bfa",
+        "expectation-d4f84da838480a665310dcf2"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "fdde49058d2c605ba63cdeab1164b3561d9314d4db08530ce7d9f9a3b00afe19",
+      "logical_names": [
+        "patch-demo-fractured-utterance.render.json"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-b751a77cb361df874fa7142f"
+      ],
+      "expected_bytes": []
+    },
+    {
+      "expected_sha256": "fe800bf3deac50c85be37e79d81155ee86f6b53ce891b0f00b272c16408c572e",
+      "logical_names": [
+        "low.wav"
+      ],
+      "categories": [
+        "production_or_documentary"
+      ],
+      "reference_ids": [
+        "expectation-fee7ad8ed36c0890c2d01b1f",
+        "expectation-b18bb8e20cc1b1bf4fd8c60f"
+      ],
+      "expected_bytes": []
+    }
+  ]
+}

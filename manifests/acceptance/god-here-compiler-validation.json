@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "checks": {
+    "original_catalog_checker": true,
+    "snapshot_replay_checker": true,
+    "snapshot_replay_all_semantic_counts": true,
+    "snapshot_replay_object_identities_and_verification": true,
+    "snapshot_replay_expectations": true,
+    "snapshot_replay_reference_records": true,
+    "negative_size_mutation_rejected": true,
+    "negative_name_to_exact_identity_promotion_rejected": true,
+    "negative_private_locator_injection_rejected": true,
+    "all_stored_input_hashes_and_sizes_match": true,
+    "no_signed_url_credentials_in_selected_private_snapshots": true,
+    "no_unrelated_library_sweep_or_runtime_dump_in_selected_snapshots": true,
+    "canonical_destination_keeper_bytes_match": true
+  },
+  "files": {
+    "compiler": {
+      "sha256": "dda613435fc3b61e8023e9bf9f7839cb3ba18e891eca7cce38fb3e1def57c893",
+      "bytes": 63681
+    },
+    "checker": {
+      "sha256": "ac2cb7c31cf757ea1eb0d9c2b08d95f3dbcbc2f59e684297c64258d929f3bf7f",
+      "bytes": 6104
+    },
+    "catalog": {
+      "sha256": "8843bba3e9b0d5937fe5fb93e02233fe8be69aa5f072349ad896011999ccb1e3",
+      "bytes": 6369347
+    },
+    "expectations": {
+      "sha256": "8493197c215cf7acd3c0e7024b6dde5d984e010f51bb123940aaa6946a65c004",
+      "bytes": 14064025
+    },
+    "document_register": {
+      "sha256": "7c0f09290f9fdf45c6def984695927ddbea97f1b42be7562d958a5f8e4d7dd72",
+      "bytes": 1191390
+    },
+    "private_custody": {
+      "sha256": "a1e167c57fcac2d303e3e3a168edaa6c979187a466df727c8ffdd9eec6aca5b4",
+      "bytes": 41393846
+    },
+    "snapshot_index": {
+      "sha256": "862fd6dc0b774ca93181d2445763b4f6afeeb4d79843b9b7d48e5cb49113c32c",
+      "bytes": 23024
+    }
+  },
+  "input_snapshot_count": 43,
+  "stored_snapshot_bytes": 24333520,
+  "snapshot_mismatch_inputs": [],
+  "snapshot_sensitive_url_inputs": [],
+  "scope": "Identity/count reconstruction verified; JSON timestamps, serialized-input hashes and locally observed availability can vary. Negative controls were executed against the unchanged checker."
+}

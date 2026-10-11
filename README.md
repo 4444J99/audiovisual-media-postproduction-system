@@ -4,6 +4,8 @@ A directable audiovisual postproduction system that translates creative notes in
 
 ## First implemented project: god-here
 
+**Current priority: consolidate and verify the existing project before further creative production.** Start with the [cross-session recovery register](docs/recovery/god-here-cross-session-register-2026-10-11.md), [content-addressed artifact catalog](manifests/artifacts/god-here-recovery-catalog.json), [historical identity expectations](manifests/artifacts/god-here-recovery-expectations.json), and [integration map](docs/architecture/god-here-consolidation-map.md). Preservation, successful decoding, reproducible rendering, publication and artistic acceptance have separate evidence. Historical recovery is not complete.
+
 This repository now contains a working Python renderer and a static interactive edition for **God's Ears**. The artist's sketch becomes five independently scored regions in the existing shared room. Each performer keeps a visual identity across the two camera views. The five authored trial vocabularies are pressure, lag, refraction, residue, and erosion.
 
 Implemented production outputs include source-length scored workprints, matched A–E excerpts, trained DTLN dialogue trials, learned person masks, a nonlooping source-pause room bed, 47 authored foley events, a manual arm-mask / responsive wall study, and three seeded source-unit edits. The browser edition uses one video clock, bounded shot-local history, attention selection, reduced motion, source-time score export/import, and a linear fallback.
@@ -34,7 +36,11 @@ Pass `--start` and `--end` for excerpts, `--layers` for the manual fine-layer va
 
 ## Browser edition
 
-[Open the private god-here production preview](https://god-here-five-realities.ajpadavano.chatgpt.site).
+[Open the god-here workbench](https://god-here-five-realities.ajpadavano.chatgpt.site) · [Recovery register](https://god-here-five-realities.ajpadavano.chatgpt.site/recovery/).
+
+The canonical Site was public when its access configuration was inspected on 2026-10-11. Private originals and performer references retain separate owner custody; the public repository holds their non-sensitive identities rather than their media bytes.
+
+The consolidation checkpoint is published as Site version 8, with 12 deployed text/redirect checks passing. Full delivery verification completed for 33 of 52 separately registered media files. Automatic approval review paused the remaining public-media operation; 19 registrations, including the exact dialogue-reference keeper, have no completed delivery receipts. Temporary upload access has been removed and that configuration deployed. See the [publication receipt](manifests/acceptance/god-here-workbench-publication.json) and [exact payload awaiting public-delivery approval](manifests/acceptance/god-here-public-media-delivery-review.json) before treating all playback dependencies as available.
 
 Copy `web/` to a static HTTP server. Supply these files under `web/media/`:
 
