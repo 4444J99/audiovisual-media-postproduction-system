@@ -703,6 +703,8 @@ export function renderAudio(patch, sourceChannels, sampleRate, duration = patch.
   if (!sourceChannels?.[0]) throw new Error('At least one decoded source channel is required');
   const n = Math.round(positive(duration, sourceChannels[0].length / sampleRate) * sampleRate);
   if (n > sampleRate * 60 * 30) throw new Error('Render exceeds the 30-minute in-memory guard');
+  const outputFrames = options.outputDuration === undefined ? n : Math.round(options.outputDuration * sampleRate);
+  if (options.outputDuration !== undefined && (!Number.isFinite(options.outputDuration) || options.outputDuration <= 0 || outputFrames < 1 || outputFrames > n)) throw new Error('outputDuration must select a positive prefix of the processing window');
   const source = copyStereo(sourceChannels, n), nodes = topologicalAudioOrder(patch);
   const outputs = new Map(), controls = new Map(), reports = [];
   const edges = patch.connections || [];
@@ -762,8 +764,11 @@ export function renderAudio(patch, sourceChannels, sampleRate, duration = patch.
   if (!sinks.length) throw new Error('Patch must contain an output node');
   let finalChannels = options.bypass ? source : sumAudio(sinks.map(node => ({ from: node.id, gain: 1 })), outputs, n);
   finalChannels = scaleChannels(finalChannels, finite(options.outputGain, 1));
+  // Temporal processors retain the complete source window. Only the emitted
+  // prefix participates in the final output peak measurement and attenuation.
+  if (outputFrames < n) finalChannels = finalChannels.map(channel => channel.slice(0, outputFrames));
   let peakBefore = 0, nonFinite = 0;
-  for (let c = 0; c < 2; c++) for (let i = 0; i < n; i++) {
+  for (let c = 0; c < 2; c++) for (let i = 0; i < outputFrames; i++) {
     if (!Number.isFinite(finalChannels[c][i])) { finalChannels[c][i] = 0; nonFinite++; }
     peakBefore = Math.max(peakBefore, Math.abs(finalChannels[c][i]));
   }
@@ -773,7 +778,7 @@ export function renderAudio(patch, sourceChannels, sampleRate, duration = patch.
   const result = {
     channels: finalChannels,
     report: {
-      engine: 'god-here-deterministic-audio-1', sampleRate, frames: n, duration: n / sampleRate,
+      engine: 'god-here-deterministic-audio-1', sampleRate, frames: outputFrames, duration: outputFrames / sampleRate,
       seed: patch.seed ?? 773, sourceInterpretation: 'one shared stereo recording; no isolated voice stems',
       graphOrder: nodes.map(node => node.id), modules: reports, solo,
       limiter: { applied: reduction < 1, kind: 'whole-render peak attenuation only', gain: reduction, peakBefore, peakAfter: peakBefore * reduction, ceiling },
@@ -782,14 +787,15 @@ export function renderAudio(patch, sourceChannels, sampleRate, duration = patch.
       timing: 'sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases',
     },
   };
+  if (outputFrames < n) result.report.renderWindow = {processingFrames: n, processingDuration: n / sampleRate, outputFrames, outputDuration: outputFrames / sampleRate, moduleDiagnosticsScope: 'complete processing window; final output peak and limiter describe the emitted prefix'};
   if (options.includeControlEnvelopes) {
     const controlFps = clamp(finite(options.controlFps, 12) || 12, 1, 240);
-    const count = Math.max(1, Math.ceil(n * controlFps / sampleRate));
+    const count = Math.max(1, Math.ceil(outputFrames * controlFps / sampleRate));
     const controlEnvelopes = {};
     for (const [id, signal] of controls) {
       const lane = new Float32Array(count);
       for (let frame = 0; frame < count; frame++) {
-        const index = Math.min(n - 1, Math.floor(frame * sampleRate / controlFps));
+        const index = Math.min(outputFrames - 1, Math.floor(frame * sampleRate / controlFps));
         lane[frame] = clamp(Number.isFinite(signal[index]) ? signal[index] : 0);
       }
       controlEnvelopes[id] = lane;

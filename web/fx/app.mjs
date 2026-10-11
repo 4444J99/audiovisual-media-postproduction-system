@@ -2,7 +2,7 @@ import {CATALOG, CATALOG_BY_TYPE, PATCH_CATALOG, createModule, createPatch, crea
 import {VisualEngine, paintViewport, clamp} from './visual-engine.mjs';
 import {GOD_HERE_OPTIONS,GOD_HERE_DEMO_MODULES} from './god-here.config.mjs';
 import {amplitudeEnvelope} from './audio-engine.mjs';
-import {removeProcessor, validateDecodedAudio, normalizeWorkbenchPatch} from './workbench-state.mjs';
+import {removeProcessor, validateDecodedAudio, normalizeWorkbenchPatch, toggleValue, bindRangeUndo, insertProcessorBeforeOutput} from './workbench-state.mjs';
 import {signalSignature} from './preview-key.mjs';
 
 const $=id=>document.getElementById(id);
@@ -56,10 +56,10 @@ function renderUI(){
 function regionOptions(value){return `<option value="all" ${value==='all'?'selected':''}>All addresses</option>`+assets.regions.items.map(r=>`<option value="${r.id}" ${r.id===value?'selected':''}>${escape(human(r.id))}${r.labelValue?'':' · rectangle'}</option>`).join('');}
 function renderRack(){
   $('rack').innerHTML=state.patch.nodes.filter(isFX).map(n=>{
-    const c=CATALOG_BY_TYPE[n.type],effective=evaluatedNode(n,position(),state.patch),custom=Object.hasOwn(state.patch.metadata.customModuleStates||{},n.id)?state.patch.metadata.customModuleStates[n.id]:null;
-    return `<article class="module-card ${state.selected===n.id?'selected':''} ${n.bypass?'bypassed':''}" data-node="${escape(n.id)}" style="--fx-color:${c.color}">
+    const t=position(),c=CATALOG_BY_TYPE[n.type],effective=evaluatedNode(n,t,state.patch),bypass=toggleValue(n,'bypass',t,state.patch),solo=toggleValue(n,'solo',t,state.patch),custom=Object.hasOwn(state.patch.metadata.customModuleStates||{},n.id)?state.patch.metadata.customModuleStates[n.id]:null;
+    return `<article class="module-card ${state.selected===n.id?'selected':''} ${bypass?'bypassed':''}" data-node="${escape(n.id)}" style="--fx-color:${c.color}">
       <div class="module-card-head" data-select="${escape(n.id)}"><span class="module-number">${c.code}</span><h3>${escape(c.name)}</h3><button data-action="up" aria-label="Move ${escape(c.name)} earlier">↑</button><button data-action="down" aria-label="Move ${escape(c.name)} later">↓</button><button data-action="remove" aria-label="Remove ${escape(c.name)}">×</button></div>
-      <div class="module-card-body"><div class="module-controls-top"><select data-preset aria-label="${escape(c.name)} preset">${c.presets.map(p=>`<option value="${p.id}" ${n.presetId===p.id?'selected':''}>${escape(p.name)}</option>`).join('')}${custom?'<option value="saved-custom">Saved custom setting</option>':''}</select><button class="toggle ${n.bypass?'on':''}" data-action="bypass" aria-pressed="${n.bypass}">Bypass</button><button class="toggle ${n.solo?'on':''}" data-action="solo" aria-pressed="${n.solo}">Solo</button></div>
+      <div class="module-card-body"><div class="module-controls-top"><select data-preset aria-label="${escape(c.name)} preset">${c.presets.map(p=>`<option value="${p.id}" ${n.presetId===p.id?'selected':''}>${escape(p.name)}</option>`).join('')}${custom?'<option value="saved-custom">Saved custom setting</option>':''}</select><button class="toggle ${bypass?'on':''}" data-action="bypass" aria-pressed="${bypass}">Bypass</button><button class="toggle ${solo?'on':''}" data-action="solo" aria-pressed="${solo}">Solo</button></div>
       <div class="slider-row intensity-row"><label>Intensity</label><input data-parameter="intensity" type="range" min="0" max="1" step=".01" value="${effective.intensity}" aria-label="${escape(c.name)} intensity"><output>${Math.round(effective.intensity*100)}%</output></div>
       <div class="slider-row"><label>Wet / dry</label><input data-parameter="wet" type="range" min="0" max="1" step=".01" value="${effective.wet}" aria-label="${escape(c.name)} wet mix"><output>${Math.round(effective.wet*100)}%</output></div>
       <div class="target-buttons">${['voice','picture','body','text','objects','room'].map(t=>`<button class="${n.targets.includes(t)?'on':''}" data-target="${t}" ${!c.targets.includes(t)?'disabled':''} aria-pressed="${n.targets.includes(t)}">${t}</button>`).join('')}</div>
@@ -78,7 +78,7 @@ function renderConnections(){
   $('connections').innerHTML=state.patch.connections.map((e,i)=>`<div class="connection"><strong>${escape(labelNode(e.from))} → ${escape(labelNode(e.to))}<br><small>${escape(e.role)}</small></strong><span class="port" style="--port-color:${portColors[e.port]}">${e.port}</span><input type="number" min="0" max="4" step=".05" value="${e.gain}" data-edge-gain="${i}" aria-label="Connection ${i+1} gain"><button data-remove-edge="${i}" aria-label="Remove connection ${i+1}">×</button></div>`).join('');
   $('connect-from').innerHTML=state.patch.nodes.filter(n=>n.type!=='output').map(n=>`<option value="${escape(n.id)}">${escape(labelNode(n.id))}</option>`).join('');
   $('connect-to').innerHTML=state.patch.nodes.filter(n=>n.type!=='source').map(n=>`<option value="${escape(n.id)}">${escape(labelNode(n.id))}</option>`).join('');
-  $('connect-to').value=state.selected||'output';
+  $('connect-to').value=state.selected||state.patch.nodes.find(n=>n.type==='output')?.id;
 }
 function renderAutomation(){
   const prev=$('auto-node').value;
@@ -254,8 +254,8 @@ document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>setTab(b.datase
 $('source-details').onclick=()=>{setTab('source');$('tab-source').scrollIntoView({behavior:'smooth',block:'nearest'});};
 $('patch-select').onchange=()=>{if($('patch-select').value!=='current')loadNamed($('patch-select').value);};
 $('module-library').onclick=e=>{const b=e.target.closest('[data-module]');if(b)single(b.dataset.module);};
-$('add-module').onchange=()=>{const type=$('add-module').value;if(!type)return;changeGraph(()=>{const id=`${type}-${Date.now().toString(36)}`;const node=createModule(type,{id});state.patch.nodes.splice(-1,0,node);for(const edge of state.patch.connections)if(edge.to==='output')edge.to=id;state.patch.connections.push(...buildSerialConnections([id,'output']));state.selected=id;});};
-$('rack').addEventListener('pointerdown',e=>{if(e.target.matches('input[type=range]'))snapshot();});
+$('add-module').onchange=()=>{const type=$('add-module').value;if(!type)return;changeGraph(()=>{const id=`${type}-${Date.now().toString(36)}`;insertProcessorBeforeOutput(state.patch,createModule(type,{id}));state.selected=id;});};
+bindRangeUndo($('rack'),snapshot);
 $('rack').addEventListener('input',e=>{
   const card=e.target.closest('[data-node]');if(!card)return;const n=state.patch.nodes.find(n=>n.id===card.dataset.node);const d=e.target.dataset;
   if(d.parameter){const value=Number(e.target.value);setParameter(n,d.parameter,value);const row=e.target.closest('.slider-row,.param-row');const out=row?.querySelector('output');if(out)out.textContent=d.parameter.startsWith('params.')?fmt(value):`${Math.round(value*100)}%`;}
@@ -276,7 +276,7 @@ $('rack').onclick=e=>{
   const target=e.target.closest('[data-target]')?.dataset.target;
   if(target){changeGraph(()=>{const next=n.targets.includes(target)?n.targets.filter(t=>t!==target):[...n.targets,target];if(!next.length)throw Error('Keep at least one target selected.');n.targets=next;rememberCustom(n);});return;}
   if(!action){if(e.target.closest('[data-select]')){state.selected=n.id;renderUI();}return;}
-  if(action==='bypass'||action==='solo'){snapshot();setParameter(n,action,!evaluatedNode(n,position(),state.patch)[action]);renderUI();}
+  if(action==='bypass'||action==='solo'){snapshot();setParameter(n,action,!toggleValue(n,action,position(),state.patch));renderUI();}
   else if(action==='up'||action==='down'){changeGraph(()=>{const effects=state.patch.nodes.filter(isFX);const i=effects.indexOf(n),j=i+(action==='up'?-1:1);if(j<0||j>=effects.length)return;const other=effects[j],a=state.patch.nodes.indexOf(n),b=state.patch.nodes.indexOf(other);[state.patch.nodes[a],state.patch.nodes[b]]=[state.patch.nodes[b],state.patch.nodes[a]];const swap=id=>id===n.id?other.id:id===other.id?n.id:id;state.patch.connections=state.patch.connections.map(edge=>edge.port==='control'?edge:{...edge,from:swap(edge.from),to:swap(edge.to)});});status('Processor positions exchanged. Buses and parallel branches are retained.');}
   else if(action==='remove')changeGraph(()=>{removeProcessor(state.patch,n.id);state.selected=state.patch.nodes.find(isFX)?.id;});
   else if(action==='reset-macro'){snapshot();n.macro=clonePatch(CATALOG_BY_TYPE[n.type].presets.find(p=>p.id===n.presetId)?.macro||CATALOG_BY_TYPE[n.type].macro);rememberCustom(n);renderUI();invalidate();}

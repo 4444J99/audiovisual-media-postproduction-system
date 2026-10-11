@@ -51,3 +51,26 @@ test('word persistence applies to both cue-based and authored word material', ()
   assert.equal(VisualEngine.prototype.word.call(fake, .1, authored, .2), 'HOW');
   assert.equal(VisualEngine.prototype.word.call(fake, .4, authored, .2), '');
 });
+
+test('named picture targets leave every pixel above, below and beside their rectangle untouched', () => {
+  const width = 100, height = 80;
+  function maskCanvas() {
+    const pixels = new Uint8Array(width * height);
+    const ctx = {
+      setTransform() {}, clearRect() {pixels.fill(0);},
+      fillRect(x, y, w, h) {
+        for (let row = 0; row < height; row++) for (let col = 0; col < width; col++) {
+          if (col >= x && col < x + w && row >= y && row < y + h) pixels[row * width + col] = 255;
+        }
+      },
+    };
+    return {width, height, pixels, getContext: () => ctx};
+  }
+  const engine = new VisualEngine({duration: 2, fps: 12}, {regions: {items: [{id: 'selected', bounds: [.2, .25, .4, .5]}]}}, {width, height, createCanvas: maskCanvas});
+  const selected = engine.mask({id: 'region', targets: ['picture'], region: 'selected'}, 0);
+  for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+    assert.equal(selected.pixels[y * width + x], x >= 20 && x < 60 && y >= 20 && y < 60 ? 255 : 0, `mask at ${x},${y}`);
+  }
+  const all = engine.mask({id: 'whole-frame', targets: ['picture'], region: 'all'}, 0);
+  assert.ok(all.pixels.every(value => value === 255));
+});

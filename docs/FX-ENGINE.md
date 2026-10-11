@@ -16,8 +16,8 @@ This is a working excerpt-based instrument. Its audio processing, routing, repla
 | [`web/fx/audio-worker.mjs`](../web/fx/audio-worker.mjs) | Browser adapter that receives decoded input and a patch, then returns rendered PCM and requested control lanes. |
 | [`web/fx/visual-engine.mjs`](../web/fx/visual-engine.mjs) | Random-access Canvas 2D composition of upstream picture, text and matte signals. A supplied canvas factory enables an offline renderer to use the same code. |
 | [`web/fx/app.mjs`](../web/fx/app.mjs) | Transport, rack editing, graph editing, automation recording, patch import/export, monitor selection and viewport presentation. |
-| [`web/fx/assets/manifest.json`](../web/fx/assets/manifest.json) | Excerpt duration, picture/matte atlas addressing, audio assets and source-clock relationships. |
-| [`web/fx/assets/provenance.json`](../web/fx/assets/provenance.json) | Source hashes and the qualifications attached to dialogue, cue, matte and room inputs. |
+| `web/fx/assets/manifest.json` (external media pack, not committed) | Excerpt duration, picture/matte atlas addressing, audio assets and source-clock relationships. |
+| `web/fx/assets/provenance.json` (external media pack, not committed) | Source hashes and the qualifications attached to dialogue, cue, matte and room inputs. |
 
 The rack is an additional surface under `web/fx/`. It does not replace the older Python renderer or `web/index.html` score edition. Their implementations and acceptance records remain separate.
 
@@ -204,7 +204,9 @@ Pass that array as `options.cues` or `options.events`. These options mean source
 | `stutterSourceTime`, `reverseSourceTime`, `freezeSourceTime`, `routingPosition` | Shared deterministic temporal/spatial helpers. A null Stutter time denotes its explicit gap. |
 | `sampleAutomation`, `topologicalAudioOrder`, `readSample`, `AUDIO_MODULES` | Low-level curve, graph, sample and module utilities. |
 
-The main options are `peakTarget`, `outputGain`, `bypass`, `controlSource`, `cues`/`events`, `includeControlEnvelopes`, `controlFps` and optional catalog `parameterDefinitions`. `controlSource` is a full-audio-rate array; exported visual lanes are downsampled outputs and should not be passed back as a full-rate source without resampling.
+The main options are `peakTarget`, `outputGain`, `outputDuration`, `bypass`, `controlSource`, `cues`/`events`, `includeControlEnvelopes`, `controlFps` and optional catalog `parameterDefinitions`. `controlSource` is a full-audio-rate array; exported visual lanes are downsampled outputs and should not be passed back as a full-rate source without resampling.
+
+`outputDuration` optionally selects a positive output prefix while preserving the complete processing window supplied by the duration argument. This lets Reverse and other temporal processors read the same later source samples as a full render. The selected prefix determines the output frame count, control-lane length and final peak attenuation. For partial renders, `report.renderWindow` distinguishes that output interval from the complete window used for module diagnostics.
 
 Use two Float32Array input channels. Mono input is duplicated. Requested output duration determines sample count; the low-level engine pads absent input positions with zero and rejects an in-memory request over 30 minutes. That guard is not a claim that an arbitrarily large graph will fit in a device's memory.
 
@@ -242,12 +244,14 @@ Render an exported patch to audio:
 ```bash
 mkdir -p outputs/fx
 node tools/render-fx-audio.mjs \
-  projects/god-here/fx/patches/demo-delay.json \
+  web/fx/fixtures/demo-delay.json \
   web/fx/assets/dialogue-candidate.wav \
   outputs/fx/demo-delay.wav
 ```
 
 The CLI writes the WAV and `demo-delay.wav.report.json`. It calls `renderRackAudio`, so exported demonstration bypass ranges retain the reference. The application exports patch JSON separately; audio rendering is not a screen recording and does not include picture frames. For audiovisual output, the offline adapter must evaluate `VisualEngine` at the declared frame times and mux the matching audio, preserving the source clock and patch revision.
+
+`tools/render-fx.mjs` snapshots the validated, normalized patch once before rendering audio or spawning frame workers. Every frame chunk and the exported `.patch.json` use that snapshot, even if the caller edits the input file during the job. In its report, `patchSha256` keeps the existing compact normalized-JSON meaning; `patchFileSha256` identifies the exact exported JSON bytes, and `inputPatchSha256` identifies the input bytes read at job start. Its `--duration` option selects an output prefix without changing the saved score or restricting temporal processors' source window. Previously rendered media and their receipts retain their original producing-code identities.
 
 ## Verification evidence and limits
 

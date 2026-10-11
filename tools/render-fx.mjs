@@ -25,6 +25,25 @@ const self=fileURLToPath(import.meta.url);
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const json=async filename=>JSON.parse(await fs.readFile(filename,'utf8'));
 const writeJson=(filename,value)=>fs.writeFile(filename,JSON.stringify(value,null,2)+'\n');
+
+/** All chunks and the exported score consume these same normalized bytes. */
+export async function snapshotRenderPatch(patch,directory){
+  const patchPath=path.join(directory,'patch.json');
+  const compact=JSON.stringify(patch),bytes=Buffer.from(JSON.stringify(patch,null,2)+'\n');
+  await fs.writeFile(patchPath,bytes,{flag:'wx',mode:0o444});
+  return {patchPath,patchSha256:sha(compact),patchFileSha256:sha(bytes)};
+}
+
+/** Render and describe exactly the requested prefix, including peak handling. */
+export function renderAudioPass(patch,decoded,duration,fps,backend){
+  const audio=backend.renderRackAudio(patch,decoded.channels,decoded.sampleRate,patch.duration,{outputDuration:duration,peakTarget:.92,includeControlEnvelopes:true,controlFps:fps});
+  if(!audio.controlEnvelopes||!audio.controlFps)throw Error('Audio backend lacks the shared controlEnvelopes API.');
+  const samples=Math.round(duration*decoded.sampleRate),channels=audio.channels;
+  if(channels.some(channel=>channel.length!==samples)||audio.report.frames!==samples)throw Error('Audio backend did not render the requested frame count.');
+  const controls={fps:audio.controlFps,lanes:Object.fromEntries(Object.entries(audio.controlEnvelopes).map(([id,lane])=>[id,Array.from(lane)]))};
+  return {audio,samples,channels,controls,wavBytes:Buffer.from(backend.encodeWav(channels,decoded.sampleRate))};
+}
+
 function args(argv) {
   const output={};
   for(let i=0;i<argv.length;i++){
@@ -118,7 +137,8 @@ async function main(options){
   const engineDir=path.resolve(options['engine-dir']),assetsDir=path.resolve(options['assets-dir']);
   const patchPath=path.resolve(options.patch),outputPath=path.resolve(options.output),outBase=outputPath.replace(/\.mp4$/i,'');
   if(!/\.mp4$/i.test(outputPath))throw Error('Output must end with .mp4');
-  const [media,rawPatch]=await Promise.all([json(path.join(assetsDir,'manifest.json')),json(patchPath)]);
+  const [media,inputPatchBytes]=await Promise.all([json(path.join(assetsDir,'manifest.json')),fs.readFile(patchPath)]);
+  const rawPatch=JSON.parse(inputPatchBytes.toString('utf8'));
   const duration=finite(options.duration??rawPatch.duration,'duration',{min:.001,max:rawPatch.duration});
   const width=finite(options.width??480,'width',{min:64,max:4096,integer:true}),height=finite(options.height??270,'height',{min:64,max:4096,integer:true});
   if(width%2||height%2)throw Error('H264 yuv420 dimensions must be even.');
@@ -141,6 +161,7 @@ async function main(options){
   const encoders=[];let worker=null;
   const before=performance.now();
   try{
+    const patchSnapshot=await snapshotRenderPatch(patch,tempDir);
     const {decodeWav,encodeWav,renderRackAudio}=await import(pathToFileURL(path.join(engineDir,'audio-engine.mjs')));
     const inputKind=options['audio-input']??'reference';if(!['reference','source'].includes(inputKind))throw Error('Audio input must be reference or source.');
     const inputPath=path.join(assetsDir,media.audio[inputKind]),inputBytes=await fs.readFile(inputPath),decoded=decodeWav(inputBytes);
@@ -148,15 +169,12 @@ async function main(options){
     const audioStart=performance.now();
     // Queue timing uses the backend's fixed source windows. Provisional text cue
     // in/out fields are not passed as gesture/word arrival events.
-    const audio=renderRackAudio(patch,decoded.channels,decoded.sampleRate,patch.duration,{peakTarget:.92,includeControlEnvelopes:true,controlFps:fps});
-    if(!audio.controlEnvelopes||!audio.controlFps)throw Error('Audio backend lacks the shared controlEnvelopes API.');
-    const controls={fps:audio.controlFps,lanes:Object.fromEntries(Object.entries(audio.controlEnvelopes).map(([id,lane])=>[id,Array.from(lane)]))};
+    const {audio,samples,channels,controls,wavBytes}=renderAudioPass(patch,decoded,duration,fps,{renderRackAudio,encodeWav});
     await writeJson(controlsPath,controls);
-    const samples=Math.round(duration*decoded.sampleRate),channels=audio.channels.map(c=>c.slice(0,samples));
-    const wavBytes=Buffer.from(encodeWav(channels,decoded.sampleRate));await fs.writeFile(audioPath,wavBytes);
+    await fs.writeFile(audioPath,wavBytes);
     const audioRenderMs=performance.now()-audioStart;
     const {GlobalFonts}=canvasPackage(),font=await configureFont(GlobalFonts,options.font?path.resolve(options.font):null);
-    const job={engineDir,assetsDir,patchPath,controlsPath,width,height,fps,portrait,overlay:overlayMode,title:options.title||patch.name,fontPath:font.path};
+    const job={engineDir,assetsDir,patchPath:patchSnapshot.patchPath,controlsPath,width,height,fps,portrait,overlay:overlayMode,title:options.title||patch.name,fontPath:font.path};
     await writeJson(jobPath,job);
     const views=[{output:outputPath,width,height,partial:partialVideo}];if(portrait)views.push({...portrait,partial:path.join(tempDir,'portrait.mp4')});
     for(const view of views){
@@ -199,12 +217,14 @@ async function main(options){
     }
     const codeHashes=Object.fromEntries(await Promise.all(['core.mjs','catalog.mjs','visual-engine.mjs','audio-engine.mjs'].map(async p=>[p,sha(await fs.readFile(path.join(engineDir,p)))])));
     const keepWav=Boolean(options['keep-wav']);if(keepWav)await fs.rename(audioPath,outBase+'.wav');
-    await fs.copyFile(patchPath,outBase+'.patch.json');
-    const report={schemaVersion:'1.0.0',patchId:patch.id,name:patch.name,output:outputs[0].file,bytes:outputs[0].bytes,sha256:outputs[0].sha256,outputs,width,height,fps,frameCount,duration,overlay:overlayMode,patchSha256:sha(JSON.stringify(patch)),source:patch.source,assetsManifestSha256:sha(await fs.readFile(path.join(assetsDir,'manifest.json'))),codeHashes,font,audio:{input:inputKind,inputSha256:sha(inputBytes),sampleRate:decoded.sampleRate,samples,channels:channels.length,pcmWavSha256:sha(wavBytes),file:keepWav?path.basename(outBase+'.wav'):null,controlFps:audio.controlFps,controlNodeIds:Object.keys(audio.controlEnvelopes),renderMs:audioRenderMs,report:audio.report},validation,chunks,elapsedSeconds:(performance.now()-before)/1000,probe:outputs[0].probe,limitations:['AAC/H264 previews are lossy encodes of the shared graph.','Text uses the recorded font substitute on the render host.','Inherited body masks and hybrid room plate remain workprint assets.','Machine-crosschecked speech cues and dialogue candidate await listener/artist acceptance.']};
+    await fs.copyFile(patchSnapshot.patchPath,outBase+'.patch.json');
+    const report={schemaVersion:'1.0.0',patchId:patch.id,name:patch.name,output:outputs[0].file,bytes:outputs[0].bytes,sha256:outputs[0].sha256,outputs,width,height,fps,frameCount,duration,overlay:overlayMode,patchSha256:patchSnapshot.patchSha256,patchFileSha256:patchSnapshot.patchFileSha256,inputPatchSha256:sha(inputPatchBytes),source:patch.source,assetsManifestSha256:sha(await fs.readFile(path.join(assetsDir,'manifest.json'))),codeHashes,font,audio:{input:inputKind,inputSha256:sha(inputBytes),sampleRate:decoded.sampleRate,samples,channels:channels.length,pcmWavSha256:sha(wavBytes),file:keepWav?path.basename(outBase+'.wav'):null,controlFps:audio.controlFps,controlNodeIds:Object.keys(audio.controlEnvelopes),renderMs:audioRenderMs,report:audio.report},validation,chunks,elapsedSeconds:(performance.now()-before)/1000,probe:outputs[0].probe,limitations:['AAC/H264 previews are lossy encodes of the shared graph.','Text uses the recorded font substitute on the render host.','Inherited body masks and hybrid room plate remain workprint assets.','Machine-crosschecked speech cues and dialogue candidate await listener/artist acceptance.']};
     await writeJson(outBase+'.render.json',report);await fs.rm(tempDir,{recursive:true,force:true});
     process.stdout.write(JSON.stringify({output:outputPath,report:outBase+'.render.json',frameCount,duration,bytes:report.bytes,seconds:report.elapsedSeconds})+'\n');
   }catch(error){worker?.kill('SIGKILL');for(const e of encoders)e.proc.kill('SIGKILL');await fs.rm(tempDir,{recursive:true,force:true});throw error;}
 }
 
-try{const options=args(process.argv.slice(2));if(options['frame-worker'])await frameWorker(options);else await main(options);}
-catch(error){process.stderr.write(`${error.stack||error}\n`);process.exitCode=1;}
+if(process.argv[1]&&path.resolve(process.argv[1])===self){
+  try{const options=args(process.argv.slice(2));if(options['frame-worker'])await frameWorker(options);else await main(options);}
+  catch(error){process.stderr.write(`${error.stack||error}\n`);process.exitCode=1;}
+}

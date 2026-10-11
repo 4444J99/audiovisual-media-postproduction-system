@@ -33,6 +33,113 @@ test('demonstration intervals must remain finite, ordered and inside the excerpt
   }
 });
 
+test('overlapping or out-of-order phases cannot select different audio and picture treatments', () => {
+  for (const phases of [
+    [{name: 'extreme', start: 0, end: 4}, {name: 'bypass', start: 3, end: 5}],
+    [{name: 'extreme', start: 0, end: 6}, {name: 'bypass', start: 2, end: 3}],
+    [{name: 'bypass', start: 5, end: 6}, {name: 'extreme', start: 0, end: 4}],
+  ]) {
+    const patch = freshPatch(); patch.metadata.demoPhases = phases;
+    assert.throws(() => normalize(patch), /ordered.*non-overlapping/i);
+  }
+});
+
+test('adjacent half-open demonstration phases and gaps remain valid without reordering', () => {
+  const patch = freshPatch();
+  patch.metadata.demoPhases = [
+    {name: 'bypass', start: 0, end: 2}, {name: 'extreme', start: 2, end: 5},
+    {name: 'bypass', start: 6, end: SOURCE.duration},
+  ];
+  assert.deepEqual(normalize(patch).metadata.demoPhases, patch.metadata.demoPhases);
+});
+
+test('clip inactivity and another solo do not prevent editing a node bypass toggle', () => {
+  for (const inactive of ['clip', 'solo']) {
+    const patch = freshPatch(), node = patch.nodes[1];
+    node.solo = false;
+    if (inactive === 'clip') node.scope = {type: 'clip', start: 3, end: 5};
+    else patch.nodes.push(core.createModule('gate', {id: 'soloed', solo: true}));
+    assert.equal(core.evaluatedNode(node, 1, patch).bypass, true);
+    assert.equal(workbench.toggleValue(node, 'bypass', 1, patch), false);
+    node.bypass = !workbench.toggleValue(node, 'bypass', 1, patch);
+    assert.equal(node.bypass, true);
+    node.bypass = !workbench.toggleValue(node, 'bypass', 1, patch);
+    assert.equal(node.bypass, false);
+  }
+});
+
+test('authored toggle replay uses the latest applicable event and follows backward seeks', () => {
+  for (const parameter of ['bypass', 'solo']) {
+    const patch = freshPatch(), node = patch.nodes[1];
+    node[parameter] = false;
+    node.scope = {type: 'clip', start: 3, end: 5};
+    patch.events = [
+      {nodeId: node.id, parameter, time: 4, value: false},
+      {nodeId: node.id, parameter, time: 1, value: true},
+      {nodeId: 'another', parameter, time: 2, value: false},
+      {nodeId: node.id, parameter, time: 4, value: true},
+      {nodeId: node.id, parameter, time: 7, value: false},
+    ];
+    assert.equal(workbench.toggleValue(node, parameter, 5, patch), true);
+    assert.equal(workbench.toggleValue(node, parameter, 0, patch), false);
+    assert.equal(workbench.toggleValue(node, parameter, 2, patch), true);
+    const next = !workbench.toggleValue(node, parameter, 2, patch);
+    patch.events.push({nodeId: node.id, parameter, time: 2, value: next});
+    assert.equal(workbench.toggleValue(node, parameter, 2, patch), false);
+    assert.equal(node[parameter], false, 'recorded toggles leave the base setting intact');
+  }
+});
+
+test('adding a processor uses the actual output ID and retains the existing upstream score', () => {
+  const patch = freshPatch();
+  for (const node of patch.nodes) if (node.type === 'output') node.id = 'main-out';
+  patch.connections = patch.connections.map(edge => ({...edge, to: edge.to === 'output' ? 'main-out' : edge.to}));
+  const output = patch.nodes.pop(); output.gain = .75; patch.nodes.unshift(output);
+  const original = core.clonePatch(patch), inserted = core.createModule('gate', {id: 'new-gate'});
+  workbench.insertProcessorBeforeOutput(patch, inserted);
+  assert.equal(core.validatePatch(patch).valid, true);
+  assert.equal(patch.nodes[patch.nodes.indexOf(output) - 1], inserted);
+  assert.equal(output.gain, .75);
+  assert.deepEqual(patch.events, original.events);
+  assert.deepEqual(patch.source, original.source);
+  for (const edge of original.connections) {
+    assert.ok(patch.connections.some(candidate => JSON.stringify(candidate) === JSON.stringify({...edge, to: edge.to === output.id ? inserted.id : edge.to})));
+  }
+  assert.deepEqual(patch.connections.filter(edge => edge.to === output.id), core.buildSerialConnections([inserted.id, output.id]));
+  assert.equal(patch.connections.some(edge => edge.from === 'output' || edge.to === 'output'), false);
+});
+
+function rangeHarness(snapshot) {
+  const handlers = new Map();
+  workbench.bindRangeUndo({addEventListener(type, callback) {handlers.set(type, callback);}}, snapshot);
+  return (type, fields = {}) => handlers.get(type)?.({target: {matches: () => true}, ...fields});
+}
+
+test('a held keyboard range gesture produces one undo snapshot before any values change', () => {
+  let patch = freshPatch(); const undo = [], emit = rangeHarness(() => undo.push(core.clonePatch(patch)));
+  const original = core.clonePatch(patch);
+  emit('keydown', {key: 'ArrowRight', repeat: false}); patch.nodes[1].intensity = .7;
+  emit('keydown', {key: 'ArrowRight', repeat: true}); patch.nodes[1].intensity = .8;
+  emit('keydown', {key: 'ArrowRight', repeat: true}); patch.nodes[1].intensity = .9;
+  assert.equal(undo.length, 1);
+  patch = undo.pop();
+  assert.deepEqual(patch, original);
+  emit('keydown', {key: 'ArrowLeft', repeat: false}); patch.nodes[1].wet = .4;
+  assert.equal(undo.length, 1, 'a later gesture receives its own snapshot');
+  assert.deepEqual(undo[0], original);
+});
+
+test('range undo covers keyboard navigation and pointer edits without capturing unrelated keys', () => {
+  let snapshots = 0; const emit = rangeHarness(() => snapshots++);
+  for (const key of ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown']) emit('keydown', {key, repeat: false});
+  assert.equal(snapshots, 8);
+  emit('keydown', {key: 'Tab'}); emit('keydown', {key: 'Escape'});
+  emit('keydown', {key: 'ArrowRight', target: {matches: () => false}});
+  assert.equal(snapshots, 8);
+  emit('pointerdown');
+  assert.equal(snapshots, 9);
+});
+
 test('optional display names and consumed metadata text are validated before display', () => {
   const invalidName = freshPatch(); invalidName.nodes[1].name = {toString: null, valueOf: null};
   assert.throws(() => normalize(invalidName), /name|string/i);

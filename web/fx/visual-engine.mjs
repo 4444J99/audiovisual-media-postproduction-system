@@ -120,7 +120,7 @@ export class VisualEngine {
       ctx.fillStyle = '#fff';
       const r = this.regionBounds(node.region);
       if(node.region === 'all' || !r) ctx.fillRect(0,0,W,H);
-      else ctx.fillRect(r[0]*W,0,r[2]*W,H);
+      else ctx.fillRect(r[0]*W,r[1]*H,r[2]*W,r[3]*H);
     } else if (node.targets.includes('objects')) {
       const r = node.objectRect || this.regions.find(r=>r.id === node.region)?.bounds || [.6,.62,.1,.18];
       ctx.fillStyle='#fff';ctx.fillRect(r[0]*W,r[1]*H,r[2]*W,r[3]*H);

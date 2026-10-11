@@ -1,4 +1,4 @@
-import {clonePatch,validatePatch,CATALOG_BY_TYPE} from './core.mjs';
+import {clonePatch,validatePatch,CATALOG_BY_TYPE,buildSerialConnections} from './core.mjs';
 
 /** Validate UI extensions before a portable patch can enter the workbench. */
 export function normalizeWorkbenchPatch(input,context={}) {
@@ -10,6 +10,7 @@ export function normalizeWorkbenchPatch(input,context={}) {
   if(m.words!=null&&(typeof m.words!=='string'||m.words.length>2000))throw Error('Authored words must be a string under 2,000 characters.');
   if(m.description!=null&&typeof m.description!=='string')throw Error('Patch description must be a string.');
   if(m.demoPhases!=null&&(!Array.isArray(m.demoPhases)||m.demoPhases.length>100||m.demoPhases.some(p=>!p||!Number.isFinite(p.start)||!Number.isFinite(p.end)||p.start<0||p.end>patch.duration+1e-6||p.end<=p.start||typeof p.name!=='string')))throw Error('Invalid demonstration phases.');
+  if(m.demoPhases?.some((phase,index)=>index>0&&phase.start<m.demoPhases[index-1].end))throw Error('Demonstration phases must be ordered and non-overlapping.');
   if((patch.nodes?.length||0)>64||(patch.connections?.length||0)>1024||(patch.events?.length||0)>5000)throw Error('This browser workbench supports up to 64 nodes, 1,024 cables and 5,000 recorded changes.');
   if(context.duration!=null&&(Math.abs(patch.duration-context.duration)>1e-6||Math.abs(patch.source?.duration-context.duration)>1e-6))throw Error('Patch duration does not match the loaded source passage.');
   const check=value=>{
@@ -34,6 +35,34 @@ export function normalizeWorkbenchPatch(input,context={}) {
     m.customModuleStates=safe;
   }
   return patch;
+}
+
+/** Read the authored toggle, independently of clip scope or another node's solo. */
+export function toggleValue(node,parameter,time,patch) {
+  if(!['bypass','solo'].includes(parameter))throw Error('Unknown processor toggle.');
+  let value=node[parameter],latest=-Infinity;
+  for(const event of patch.events||[])if(event.nodeId===node.id&&event.parameter===parameter&&event.time<=time&&event.time>=latest){
+    value=event.value;latest=event.time;
+  }
+  return value;
+}
+
+/** Capture one undo entry before a pointer drag or a held keyboard range gesture. */
+export function bindRangeUndo(element,snapshot) {
+  const isRange=event=>event.target.matches('input[type=range]');
+  element.addEventListener('pointerdown',event=>{if(isRange(event))snapshot();});
+  const keys=new Set(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','PageUp','PageDown']);
+  element.addEventListener('keydown',event=>{if(isRange(event)&&keys.has(event.key)&&!event.repeat)snapshot();});
+}
+
+/** Insert at the declared sink; portable graphs do not reserve the ID "output". */
+export function insertProcessorBeforeOutput(patch,node) {
+  const index=patch.nodes.findIndex(candidate=>candidate.type==='output');
+  if(index<0)throw Error('Patch has no output.');
+  const outputId=patch.nodes[index].id;
+  patch.nodes.splice(index,0,node);
+  for(const edge of patch.connections)if(edge.to===outputId)edge.to=node.id;
+  patch.connections.push(...buildSerialConnections([node.id,outputId]));
 }
 
 /** Preserve parallel signal amplitude while bypassing a removed processor. */
