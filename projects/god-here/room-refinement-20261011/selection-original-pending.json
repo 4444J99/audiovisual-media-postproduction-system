@@ -1,0 +1,97 @@
+{
+  "schema_version": "amps.room-selection.v1",
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "pause_inventory_sha256": "bb616355c6d328c93d19247fa01fa48d5ee2fa1b1ad2faac3bee315285acd788",
+  "listening_acceptance": "pending",
+  "purpose": "Preserve the existing pool while making each portion reviewable",
+  "portions": [
+    {
+      "portion_id": "PAUSE002-01",
+      "pause_id": "PAUSE002",
+      "source_start": 7.29,
+      "source_end": 7.56,
+      "action": "keep",
+      "selected_start": 7.29,
+      "selected_end": 7.56,
+      "status": "algorithmic_candidate",
+      "reason": "Retain original screened portion; perceptual qualification pending"
+    },
+    {
+      "portion_id": "PAUSE008-01",
+      "pause_id": "PAUSE008",
+      "source_start": 23.94,
+      "source_end": 24.72,
+      "action": "keep",
+      "selected_start": 23.94,
+      "selected_end": 24.72,
+      "status": "algorithmic_candidate",
+      "reason": "Retain original screened portion; perceptual qualification pending"
+    },
+    {
+      "portion_id": "PAUSE009-01",
+      "pause_id": "PAUSE009",
+      "source_start": 27.64,
+      "source_end": 29.17,
+      "action": "keep",
+      "selected_start": 27.64,
+      "selected_end": 29.17,
+      "status": "algorithmic_candidate",
+      "reason": "Retain original screened portion; perceptual qualification pending"
+    },
+    {
+      "portion_id": "PAUSE009-02",
+      "pause_id": "PAUSE009",
+      "source_start": 30.26,
+      "source_end": 30.8,
+      "action": "keep",
+      "selected_start": 30.26,
+      "selected_end": 30.8,
+      "status": "algorithmic_candidate",
+      "reason": "Retain original screened portion; perceptual qualification pending"
+    },
+    {
+      "portion_id": "PAUSE018-01",
+      "pause_id": "PAUSE018",
+      "source_start": 63.65,
+      "source_end": 64.04,
+      "action": "keep",
+      "selected_start": 63.65,
+      "selected_end": 64.04,
+      "status": "algorithmic_candidate",
+      "reason": "Retain original screened portion; perceptual qualification pending"
+    },
+    {
+      "portion_id": "PAUSE019-01",
+      "pause_id": "PAUSE019",
+      "source_start": 65.34,
+      "source_end": 65.75,
+      "action": "keep",
+      "selected_start": 65.34,
+      "selected_end": 65.75,
+      "status": "algorithmic_candidate",
+      "reason": "Retain original screened portion; perceptual qualification pending"
+    },
+    {
+      "portion_id": "PAUSE024-01",
+      "pause_id": "PAUSE024",
+      "source_start": 94.83,
+      "source_end": 94.97,
+      "action": "keep",
+      "selected_start": 94.83,
+      "selected_end": 94.97,
+      "status": "algorithmic_candidate",
+      "reason": "Retain original screened portion; perceptual qualification pending"
+    },
+    {
+      "portion_id": "PAUSE027-01",
+      "pause_id": "PAUSE027",
+      "source_start": 98.64,
+      "source_end": 99.0,
+      "action": "keep",
+      "selected_start": 98.64,
+      "selected_end": 99.0,
+      "status": "algorithmic_candidate",
+      "reason": "Retain original screened portion; perceptual qualification pending"
+    }
+  ]
+}

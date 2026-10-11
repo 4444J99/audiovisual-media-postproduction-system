@@ -28,6 +28,8 @@ amp generate --source outputs/god-here-linear-workprint-01.mp4 \
 
 For the trained sound/mask pass, install `python -m pip install -e '.[learned]'` and follow [the sound-pass recipe](docs/SOUND-PASS-02.md). Model weights are external, revision-pinned and checksum-checked; no GPU or new model training is required.
 
+For the report that the room bed sounds like activity, use the opt-in [room-tone refinement comparisons](docs/ROOM-REFINEMENT.md). This pass recovers the earlier rack, tests shared band timing and effect bypass, and renders sustained and stationary source-shaped textures. It includes cued source-pause reviews and matched listening comparisons; the existing production default remains available pending listening selection.
+
 Pass `--start` and `--end` for excerpts, `--layers` for the manual fine-layer variant, and `--mode soft` or `--mode spill` for authored boundary extensions. Hard boundaries are the baseline. The final source-length picture uses 3,360 frames at 30 fps. The pilot uses source frames 2,554–3,214 inclusive, 661 frames.
 
 `tools/finish_production.py` is the **god-here production recipe**, with its explicit 112-second baseline. `amp` holds reusable processing primitives; project-specific intervals, masks, styles, and scores live in `projects/god-here`. Original media are external inputs, not committed public assets. Source identities are recorded by SHA-256.

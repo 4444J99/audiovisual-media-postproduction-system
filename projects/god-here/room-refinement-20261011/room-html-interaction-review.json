@@ -1,0 +1,389 @@
+{
+  "method": "Actual generated player script executed in a DOM/media-event harness; media durations and bytes from FFprobe-verified packaged AAC. This checks interaction logic, not browser rendering or playback.",
+  "browser_playback_tested": false,
+  "browser_limitation": "Playwright package present but no Chromium binary installed; no browser installed for this task.",
+  "html_sha256": "ad263fc7bc1bae586a148e53dba949ff171d6cc1bc35e42aedb058dc2a605009",
+  "checks": [
+    {
+      "label": "initial A media and paused state",
+      "passed": true,
+      "data": {
+        "kind": "candidate",
+        "id": "A",
+        "mode": "room",
+        "source_offset": 28,
+        "time": 0,
+        "duration": 30,
+        "paused": true,
+        "position": "Source position 28.00 s"
+      }
+    },
+    {
+      "label": "five candidates",
+      "passed": true
+    },
+    {
+      "label": "six original contributions",
+      "passed": true
+    },
+    {
+      "label": "eight source portions",
+      "passed": true
+    },
+    {
+      "label": "version switch preserves position and paused state",
+      "passed": true,
+      "data": {
+        "kind": "candidate",
+        "id": "B",
+        "mode": "room",
+        "source_offset": 28,
+        "time": 9.75,
+        "duration": 30,
+        "paused": true,
+        "position": "Source position 37.75 s"
+      }
+    },
+    {
+      "label": "room/dialogue switch preserves position",
+      "passed": true,
+      "data": {
+        "kind": "candidate",
+        "id": "B",
+        "mode": "mix",
+        "source_offset": 28,
+        "time": 9.75,
+        "duration": 30,
+        "paused": true,
+        "position": "Source position 37.75 s"
+      }
+    },
+    {
+      "label": "core-only identity and source clock",
+      "passed": true,
+      "data": {
+        "kind": "dialogue-core",
+        "id": "dialogue-only",
+        "mode": "production",
+        "source_offset": 28,
+        "time": 9.75,
+        "duration": 30,
+        "paused": true,
+        "position": "Source position 37.75 s"
+      }
+    },
+    {
+      "label": "core note uses active identity",
+      "passed": true,
+      "data": {
+        "project": "god-here",
+        "study": "room-tone-refinement-20261011",
+        "track": {
+          "kind": "dialogue-core",
+          "id": "dialogue-only",
+          "mode": "production",
+          "source_offset": 28
+        },
+        "excerpt_time_seconds": 9.75,
+        "source_time_seconds": 37.75,
+        "notes": "Core review fixture",
+        "recorded_at": "2026-10-11T13:09:13.113Z",
+        "human_acceptance": "unspecified"
+      }
+    },
+    {
+      "label": "original contribution identity and position",
+      "passed": true,
+      "data": {
+        "kind": "original-contribution",
+        "id": "low-dry-contribution",
+        "mode": "shared-solo-gain",
+        "source_offset": 28,
+        "time": 9.75,
+        "duration": 30,
+        "paused": true,
+        "position": "Source position 37.75 s"
+      }
+    },
+    {
+      "label": "stem note uses active identity",
+      "passed": true,
+      "data": {
+        "project": "god-here",
+        "study": "room-tone-refinement-20261011",
+        "track": {
+          "kind": "original-contribution",
+          "id": "low-dry-contribution",
+          "mode": "shared-solo-gain",
+          "source_offset": 28
+        },
+        "excerpt_time_seconds": 9.75,
+        "source_time_seconds": 37.75,
+        "notes": "Core review fixture",
+        "recorded_at": "2026-10-11T13:09:13.115Z",
+        "human_acceptance": "unspecified"
+      }
+    },
+    {
+      "label": "pause identity, source offset and restart",
+      "passed": true,
+      "data": {
+        "kind": "source-portion",
+        "id": "PAUSE002-01",
+        "mode": "common-review-gain",
+        "source_offset": 6.29,
+        "selected_start": 1,
+        "selected_end": 1.27,
+        "time": 0,
+        "duration": 2.27,
+        "paused": true,
+        "position": "Source position 6.29 s · Selected portion 1.00–1.27 s in this excerpt · surrounding handle"
+      }
+    },
+    {
+      "label": "selected-portion boundary indicator",
+      "passed": true,
+      "data": {
+        "kind": "source-portion",
+        "id": "PAUSE002-01",
+        "mode": "common-review-gain",
+        "source_offset": 6.29,
+        "selected_start": 1,
+        "selected_end": 1.27,
+        "time": 1.1,
+        "duration": 2.27,
+        "paused": true,
+        "position": "Source position 7.39 s · Selected portion 1.00–1.27 s in this excerpt · INSIDE SELECTED PORTION"
+      }
+    },
+    {
+      "label": "pause note contains exact source time and no invented acceptance",
+      "passed": true,
+      "data": {
+        "project": "god-here",
+        "study": "room-tone-refinement-20261011",
+        "track": {
+          "kind": "source-portion",
+          "id": "PAUSE002-01",
+          "mode": "common-review-gain",
+          "source_offset": 6.29,
+          "selected_start": 1,
+          "selected_end": 1.27
+        },
+        "excerpt_time_seconds": 1.1,
+        "source_time_seconds": 7.390000000000001,
+        "notes": "Pause review fixture",
+        "recorded_at": "2026-10-11T13:09:13.116Z",
+        "human_acceptance": "unspecified"
+      }
+    },
+    {
+      "label": "return from pause resets candidate clock",
+      "passed": true,
+      "data": {
+        "kind": "candidate",
+        "id": "E",
+        "mode": "mix",
+        "source_offset": 28,
+        "time": 0,
+        "duration": 30,
+        "paused": true,
+        "position": "Source position 28.00 s"
+      }
+    },
+    {
+      "label": "switch while playing retains position and resumes",
+      "passed": true,
+      "data": {
+        "kind": "candidate",
+        "id": "C",
+        "mode": "room",
+        "source_offset": 28,
+        "time": 4.25,
+        "duration": 30,
+        "paused": false,
+        "position": "Source position 32.25 s"
+      }
+    },
+    {
+      "label": "restart begins playback at excerpt start",
+      "passed": true,
+      "data": {
+        "kind": "candidate",
+        "id": "C",
+        "mode": "room",
+        "source_offset": 28,
+        "time": 0,
+        "duration": 30,
+        "paused": false,
+        "position": "Source position 28.00 s"
+      }
+    },
+    {
+      "label": "candidate note descriptor and source clock",
+      "passed": true,
+      "data": {
+        "project": "god-here",
+        "study": "room-tone-refinement-20261011",
+        "track": {
+          "kind": "candidate",
+          "id": "C",
+          "mode": "room",
+          "source_offset": 28
+        },
+        "excerpt_time_seconds": 2,
+        "source_time_seconds": 30,
+        "notes": "Pause review fixture",
+        "recorded_at": "2026-10-11T13:09:13.118Z",
+        "human_acceptance": "unspecified"
+      }
+    },
+    {
+      "label": "all 25 embedded audio assets match packaged file bytes",
+      "passed": true,
+      "data": {
+        "count": 25,
+        "assets": [
+          {
+            "filename": "A-room-30s.m4a",
+            "duration": 30,
+            "sha256": "ca62d133d40f48290479cdf85644443afbe8254caaa62577cab01075917463d5"
+          },
+          {
+            "filename": "A-dialogue-30s.m4a",
+            "duration": 30,
+            "sha256": "6f4e072cadaade238a9d0cab1da0dad1300728275c651bb54977af348b6af1b7"
+          },
+          {
+            "filename": "B-room-30s.m4a",
+            "duration": 30,
+            "sha256": "83eb521157a7744e14c9109302a33a99d07aab2eb409748cfe14cf5f5d111ef5"
+          },
+          {
+            "filename": "B-dialogue-30s.m4a",
+            "duration": 30,
+            "sha256": "8aee2e9615d2fe11a2985019f072b9eb7b0e981e1ca02f0ace5367f2c27c31a8"
+          },
+          {
+            "filename": "C-room-30s.m4a",
+            "duration": 30,
+            "sha256": "23f75069f92b3569f3889050727e05983bf3947263684f89e3f75895d3c38336"
+          },
+          {
+            "filename": "C-dialogue-30s.m4a",
+            "duration": 30,
+            "sha256": "a2d464cfdfbc0ab2da5b15de5e73d1b5d85c235dab3a1a8e427b42aa29b30817"
+          },
+          {
+            "filename": "D-room-30s.m4a",
+            "duration": 30,
+            "sha256": "c77714ec2365e90a3224577c39d27883b211e24dbcb7e16605ad81ee4e871173"
+          },
+          {
+            "filename": "D-dialogue-30s.m4a",
+            "duration": 30,
+            "sha256": "72d2a5047e2f1cb707fe5581eebd1b70e40f301eab1b031325b6d0d96088267e"
+          },
+          {
+            "filename": "E-room-30s.m4a",
+            "duration": 30,
+            "sha256": "53528f966715b01da5e4001bbedbd0ea70ae97c7872b760897c13527ae8ef22e"
+          },
+          {
+            "filename": "E-dialogue-30s.m4a",
+            "duration": 30,
+            "sha256": "90343f3694c39df4b1cdfeaed38ee583d6baef24bf76c1332f621dd064856626"
+          },
+          {
+            "filename": "original-low-dry-contribution.m4a",
+            "duration": 30,
+            "sha256": "480c629d7bbe8fcb463402160f0d55f18e0d1aac8027fe28564b3a6b052f9851"
+          },
+          {
+            "filename": "original-low-fx-return.m4a",
+            "duration": 30,
+            "sha256": "71455b750307ec5a8e07565001c9fd975887fc818036d073c19dd1514d20dad9"
+          },
+          {
+            "filename": "original-mid-dry-contribution.m4a",
+            "duration": 30,
+            "sha256": "be2cdd0b8b0ea5143105439cc1857de40858d44c631479429d5bd82956d1aed7"
+          },
+          {
+            "filename": "original-mid-fx-return.m4a",
+            "duration": 30,
+            "sha256": "89b84788243cbe0fa2b02a6137757e1b79cbf4f08c133434f56f353ee4696fbe"
+          },
+          {
+            "filename": "original-high-dry-contribution.m4a",
+            "duration": 30,
+            "sha256": "85aa5da5961198b44c743ef058b7903a0a3e4601c7919b98d809f4e8841db204"
+          },
+          {
+            "filename": "original-high-fx-return.m4a",
+            "duration": 30,
+            "sha256": "4a91ca5bd7221e7890e927f5c6f9895bd2c47f5b07728e926e53db8171e1095d"
+          },
+          {
+            "filename": "PAUSE002-01-with-handles.m4a",
+            "duration": 2.27,
+            "sha256": "b8765567f6767f2a957e8542a880d2ab91c84d082a505a7ee18200256d0ae6d8"
+          },
+          {
+            "filename": "PAUSE008-01-with-handles.m4a",
+            "duration": 2.78,
+            "sha256": "f80fb59de51b5c4587ba5a0043612d7c9f0b8b11028bceae768b706124538681"
+          },
+          {
+            "filename": "PAUSE009-01-with-handles.m4a",
+            "duration": 3.53,
+            "sha256": "8cdb0e1a27434bbf5cd0667bbb1cd9bea0a88aa37b30b2b487bea06f3e5e63e8"
+          },
+          {
+            "filename": "PAUSE009-02-with-handles.m4a",
+            "duration": 2.54,
+            "sha256": "0c4ba321aae4cd35b43ffb6f8db08cb490d9b120d697fed8b8a1e20327f2a01f"
+          },
+          {
+            "filename": "PAUSE018-01-with-handles.m4a",
+            "duration": 2.39,
+            "sha256": "3b7f4662ddc709ca87c45e85a007919847e220ca1a816aeb0ae8f6296e742064"
+          },
+          {
+            "filename": "PAUSE019-01-with-handles.m4a",
+            "duration": 2.41,
+            "sha256": "048173cdce296bc15474e169a18d1cc190cfc5259287f361e3cfa7d62991e66b"
+          },
+          {
+            "filename": "PAUSE024-01-with-handles.m4a",
+            "duration": 2.14,
+            "sha256": "4fea7119bcf57861b3ce86fc673003431ecb5bf32d46c00512d9d65ac16a3ca5"
+          },
+          {
+            "filename": "PAUSE027-01-with-handles.m4a",
+            "duration": 2.36,
+            "sha256": "65cfafc222b02705e487a7876ca4ae39ef8af0c7ea241c87f213c53c74c69589"
+          },
+          {
+            "filename": "dialogue-only-30s.m4a",
+            "duration": 30,
+            "sha256": "f4d0dfa7ef9e958d438051598b914a5545b54501b1e60acb8c57471be2708a0f"
+          }
+        ]
+      }
+    },
+    {
+      "label": "embedded source audit PNG is complete",
+      "passed": true,
+      "data": {
+        "width": 1500,
+        "height": 2225
+      }
+    },
+    {
+      "label": "no runtime/media identity errors",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

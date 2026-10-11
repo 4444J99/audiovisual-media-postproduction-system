@@ -1,0 +1,162 @@
+[
+  {
+    "file": "PAUSE002-01-with-handles.m4a",
+    "sha256": "b8765567f6767f2a957e8542a880d2ab91c84d082a505a7ee18200256d0ae6d8",
+    "probe_exit_code": 0,
+    "probe_stderr": "",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "duration": "2.270000"
+        }
+      ],
+      "chapters": []
+    },
+    "decode_exit_code": 0,
+    "decode_stderr": ""
+  },
+  {
+    "file": "PAUSE008-01-with-handles.m4a",
+    "sha256": "f80fb59de51b5c4587ba5a0043612d7c9f0b8b11028bceae768b706124538681",
+    "probe_exit_code": 0,
+    "probe_stderr": "",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "duration": "2.780000"
+        }
+      ],
+      "chapters": []
+    },
+    "decode_exit_code": 0,
+    "decode_stderr": ""
+  },
+  {
+    "file": "PAUSE009-01-with-handles.m4a",
+    "sha256": "8cdb0e1a27434bbf5cd0667bbb1cd9bea0a88aa37b30b2b487bea06f3e5e63e8",
+    "probe_exit_code": 0,
+    "probe_stderr": "",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "duration": "3.530000"
+        }
+      ],
+      "chapters": []
+    },
+    "decode_exit_code": 0,
+    "decode_stderr": ""
+  },
+  {
+    "file": "PAUSE009-02-with-handles.m4a",
+    "sha256": "0c4ba321aae4cd35b43ffb6f8db08cb490d9b120d697fed8b8a1e20327f2a01f",
+    "probe_exit_code": 0,
+    "probe_stderr": "",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "duration": "2.540000"
+        }
+      ],
+      "chapters": []
+    },
+    "decode_exit_code": 0,
+    "decode_stderr": ""
+  },
+  {
+    "file": "PAUSE018-01-with-handles.m4a",
+    "sha256": "3b7f4662ddc709ca87c45e85a007919847e220ca1a816aeb0ae8f6296e742064",
+    "probe_exit_code": 0,
+    "probe_stderr": "",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "duration": "2.390000"
+        }
+      ],
+      "chapters": []
+    },
+    "decode_exit_code": 0,
+    "decode_stderr": ""
+  },
+  {
+    "file": "PAUSE019-01-with-handles.m4a",
+    "sha256": "048173cdce296bc15474e169a18d1cc190cfc5259287f361e3cfa7d62991e66b",
+    "probe_exit_code": 0,
+    "probe_stderr": "",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "duration": "2.410000"
+        }
+      ],
+      "chapters": []
+    },
+    "decode_exit_code": 0,
+    "decode_stderr": ""
+  },
+  {
+    "file": "PAUSE024-01-with-handles.m4a",
+    "sha256": "4fea7119bcf57861b3ce86fc673003431ecb5bf32d46c00512d9d65ac16a3ca5",
+    "probe_exit_code": 0,
+    "probe_stderr": "",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "duration": "2.140000"
+        }
+      ],
+      "chapters": []
+    },
+    "decode_exit_code": 0,
+    "decode_stderr": ""
+  },
+  {
+    "file": "PAUSE027-01-with-handles.m4a",
+    "sha256": "65cfafc222b02705e487a7876ca4ae39ef8af0c7ea241c87f213c53c74c69589",
+    "probe_exit_code": 0,
+    "probe_stderr": "",
+    "probe": {
+      "programs": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "duration": "2.360000"
+        }
+      ],
+      "chapters": []
+    },
+    "decode_exit_code": 0,
+    "decode_stderr": ""
+  }
+]

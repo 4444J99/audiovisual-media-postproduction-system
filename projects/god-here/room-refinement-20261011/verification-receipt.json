@@ -1,0 +1,46 @@
+{
+  "repository_check": {
+    "command": "python tools/check.py",
+    "exit_code": 0,
+    "python_tests": 48,
+    "project_validation": {
+      "shots": 6,
+      "cues": 20,
+      "valid": true
+    },
+    "node_transport_score_checks": "passed"
+  },
+  "reference_A": "recovered FLAC byte-identical after export; decoded PCM-identical",
+  "new_bed_loudness_lufs": {
+    "A": -40.37,
+    "B": -40.37,
+    "C": -40.37,
+    "D": -40.37,
+    "E": -40.37
+  },
+  "new_band_stems": 12,
+  "full_room_beds": 5,
+  "source_portions": 8,
+  "source_pool_seconds": 4.42,
+  "video_comparisons": {
+    "quick": {
+      "seconds": 60,
+      "frames": 1800
+    },
+    "dialogue": {
+      "seconds": 150,
+      "frames": 4500
+    }
+  },
+  "video_alignment_checks": {
+    "count": 30,
+    "all_offsets_samples": 0
+  },
+  "full_lossless_export_decode": "passed after repair; exact112s per channel",
+  "new_flac_stem_sum_max_abs_error": 2.384185791015625e-07,
+  "browser_playback_tested": false,
+  "browser_limitation": "Chromium executable unavailable; player logic checked by DOM/media-event harness",
+  "audio_audition_performed_by_assistant": false,
+  "human_listening_acceptance": "pending",
+  "original_roomrack_and_roomtone_and_soundstage_implementation_changed": false
+}
