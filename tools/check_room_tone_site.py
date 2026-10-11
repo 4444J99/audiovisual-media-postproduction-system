@@ -1,4 +1,4 @@
-"""Check hosted room-tone media contracts without claiming browser playback QA."""
+"""Check room-tone Site sources (static or Vinext/R2), without claiming live QA."""
 from __future__ import annotations
 
 import argparse
@@ -12,6 +12,7 @@ from urllib.parse import unquote, urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.package_room_refinement import validate_encoded
+from tools.package_room_stretch_site import site_targets, validate_static_assets
 
 
 def run(args):
@@ -26,18 +27,25 @@ def video_hash(path):
     return run(["ffmpeg", "-nostdin", "-v", "error", "-i", path, "-map", "0:v:0", "-c", "copy", "-f", "hash", "-hash", "sha256", "-"]).decode().strip()
 
 
-def resolve_url(base, value):
+def resolve_url(base, value, *, downloads=None):
     parsed = urlsplit(value)
     if parsed.scheme or parsed.netloc:
         raise ValueError(f"Room-tone manifest requires ordinary local media URLs: {value}")
-    path = (base / unquote(parsed.path)).resolve()
-    if not path.is_relative_to(base.resolve()) or not path.is_file() or path.stat().st_size == 0:
+    relative = unquote(parsed.path)
+    root = base
+    if downloads is not None and (relative == "downloads" or relative.startswith("downloads/")):
+        root = downloads
+        relative = relative[len("downloads"):].removeprefix("/")
+    path = (root / relative).resolve()
+    if not path.is_relative_to(root.resolve()) or not path.is_file() or path.stat().st_size == 0:
         raise ValueError(f"Missing or out-of-route asset: {value}")
     return path
 
 
 def check(site):
-    base = site / "dist/room-tone"
+    targets = site_targets(site)
+    validate_static_assets(targets)
+    base = targets.room
     manifest = json.loads((base / "media.json").read_text())
     if manifest["schemaVersion"] != 1 or manifest["inspectionGainDb"] != 14:
         raise ValueError("Unexpected manifest or inspection gain")
@@ -47,7 +55,7 @@ def check(site):
         raise ValueError(f"Unexpected track inventory: {keys}")
     if manifest["defaultTrack"] not in expected:
         raise ValueError("Unknown default track")
-    source = resolve_url(base, manifest["source"]["url"])
+    source = resolve_url(base, manifest["source"]["url"], downloads=targets.downloads)
     source_info = probe(source)
     picture_hash = video_hash(source)
     # One full picture decode plus equality of every copied H.264 packet stream.
@@ -59,7 +67,7 @@ def check(site):
         if item["duration"] != 112 or item["sourceStart"] != 0:
             raise ValueError("Full-film comparisons must retain the 112-second source clock")
         for mode, medium in item["media"].items():
-            path = resolve_url(base, medium["url"])
+            path = resolve_url(base, medium["url"], downloads=targets.downloads)
             data = probe(path)
             audio = [s for s in data["streams"] if s["codec_type"] == "audio"]
             if len(audio) != 1 or audio[0]["codec_name"] != "aac" or int(audio[0]["sample_rate"]) != 48000 or audio[0]["channels"] != 2:
@@ -83,7 +91,7 @@ def check(site):
                 movies.append({"id": item["id"], "file": medium["url"], "frames": 3360, "duration_seconds": 112, "audio_video_start_seconds": 0, "same_picture_packets": True})
     for group in ["pauses", "videos", "downloads"]:
         for item in manifest[group]:
-            path = resolve_url(base, item["url"])
+            path = resolve_url(base, item["url"], downloads=targets.downloads)
             verified.append(item["url"])
     for prefix in ["V", "P"]:
         periods = [next(item for item in manifest["tracks"] if item["id"] == f"{prefix}L{i}")["periodSeconds"] for i in range(1, 6)]
@@ -92,14 +100,12 @@ def check(site):
     if len(manifest["pauses"]) != 8:
         raise ValueError("The original eight portions must remain accessible")
     for route in ["index.html", "review.html"]:
-        if 'href="room-tone/"' not in (site / "dist" / route).read_text():
+        if 'href="room-tone/"' not in (targets.assets / route).read_text():
             raise ValueError(f"No discoverable room-tone link in {route}")
     if "data:audio/" in (base / "index.html").read_text():
         raise ValueError("Embedded base64 media reintroduced")
-    too_large = [p.relative_to(site).as_posix() for p in (site / "dist").rglob("*") if p.is_file() and p.stat().st_size > 25 * 1024 ** 2]
-    if too_large:
-        raise ValueError(f"Static asset limit exceeded: {too_large}")
     return {"track_count": len(keys), "unique_media_and_download_urls_verified": len(set(verified)), "context_movies": movies,
+            "static_source_root": str(targets.assets), "lossless_source_root": str(targets.downloads), "lossless_storage": targets.storage,
             "final_audio_decodes": final_audio_decodes,
             "source_picture_fully_decoded": True, "source_picture_packet_sha256": picture_hash,
             "all_context_movies_share_picture_and_source_clock": True,

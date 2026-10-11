@@ -1,8 +1,10 @@
-"""Publishable static media for the existing god-here room-tone workbench.
+"""Package media into the existing god-here room-tone Site's source layout.
 
 This only prepares files in an already opened Sites checkout. The Sites source
 workflow owns synchronization and publication. All context movies share one
 picture stream and one fixed dialogue gain; no JavaScript audio mix is required.
+Legacy static checkouts use dist/. Vinext/R2 checkouts keep browser assets in
+public/ and lossless downloads in room-media-source/, outside generated dist/.
 """
 from __future__ import annotations
 
@@ -15,7 +17,8 @@ import shutil
 import subprocess
 import sys
 import tempfile
-from pathlib import Path
+from dataclasses import dataclass
+from pathlib import Path, PurePosixPath
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np
@@ -29,6 +32,55 @@ SAMPLES = DURATION * RATE
 INSPECTION_DB = 14.0
 PERIODS = [112, 84, 56, 28, 14]
 SITE_ID = "appgprj_6ac71699c8fc81919b030dcf9ad112e4"
+
+
+@dataclass(frozen=True)
+class SiteTargets:
+    assets: Path
+    downloads: Path
+    storage: str
+
+    @property
+    def room(self):
+        return self.assets / "room-tone"
+
+
+def site_targets(site):
+    """Resolve only the two supported source layouts of the existing Site."""
+    hosting = json.loads((site / ".openai/hosting.json").read_text())
+    static = hosting.get("static") or {}
+    if hosting.get("project_id") == SITE_ID and isinstance(static, dict):
+        if static.get("directory") == "dist" and not hosting.get("r2"):
+            assets = site / "dist"
+            return SiteTargets(assets, assets / "room-tone/downloads", "static")
+        if not static and hosting.get("r2") == "ROOM_MEDIA":
+            return SiteTargets(site / "public", site / "room-media-source/room-tone/downloads", "r2")
+    raise ValueError("Expected the existing god-here Site with static.directory='dist' "
+                     "or a Worker using r2='ROOM_MEDIA'")
+
+
+def validate_static_assets(targets):
+    """Keep R2 source files out of the browser asset package; check its limits."""
+    files = sorted(path for path in targets.assets.rglob("*") if path.is_file())
+    if targets.storage == "r2":
+        lossless = [path.relative_to(targets.assets).as_posix()
+                    for path in files if path.suffix.lower() == ".flac"]
+        if lossless:
+            raise ValueError("Worker public assets contain FLACs; use room-media-source/room-tone/downloads: "
+                             + ", ".join(lossless))
+    oversize = [path.relative_to(targets.assets).as_posix()
+                for path in files if path.stat().st_size > 25 * 1024 ** 2]
+    if oversize:
+        raise ValueError("Assets exceed the 25 MiB static-file limit: " + ", ".join(oversize))
+
+
+def copy_lossless_download(source, relative, targets):
+    """Store the FLAC in its source tree while returning its unchanged URL."""
+    relative = PurePosixPath(relative)
+    if relative.is_absolute() or ".." in relative.parts or relative.suffix != ".flac":
+        raise ValueError("Lossless downloads require a relative FLAC path")
+    checked_copy(source, targets.downloads.joinpath(*relative.parts))
+    return "downloads/" + relative.as_posix()
 
 
 def run(args):
@@ -68,13 +120,12 @@ def checked_copy(source, target):
 
 
 def prepare(source, prior, site, working):
-    hosting = json.loads((site / ".openai/hosting.json").read_text())
-    if hosting.get("project_id") != SITE_ID or hosting.get("static", {}).get("directory") != "dist":
-        raise ValueError("Expected the existing god-here static Site")
+    targets = site_targets(site)
+    validate_static_assets(targets)
     report = json.loads((prior / "listening-package-report.json").read_text())
     if sha256(source) != report["source_sha256"]:
         raise ValueError("The source differs from the earlier room-tone source")
-    base = site / "dist/room-tone"
+    base = targets.room
     media, records = base / "media", base / "records"
     media.mkdir(parents=True, exist_ok=True)
     records.mkdir(exist_ok=True)
@@ -117,6 +168,7 @@ def prepare(source, prior, site, working):
     checked_copy(prior / "listening-package-report.json", records / "previous-listening-package-report.json")
     checked_copy(prior / "god-here-room-tone-processing-notes.md", records / "previous-processing-notes.md")
     (working / "prior-site-encodes.json").write_text(json.dumps(encodes, indent=2) + "\n")
+    validate_static_assets(targets)
     return base
 
 
@@ -163,7 +215,10 @@ def catalog(manifest):
 
 
 def finish(source, prior, stretch, site, working):
-    base, media, records = site / "dist/room-tone", site / "dist/room-tone/media", site / "dist/room-tone/records"
+    targets = site_targets(site)
+    validate_static_assets(targets)
+    base = targets.room
+    media, records = base / "media", base / "records"
     prior_report = json.loads((prior / "listening-package-report.json").read_text())
     report = json.loads((stretch / "room-stretch-report.json").read_text())
     if report["source_sha256"] != prior_report["source_sha256"]:
@@ -200,9 +255,8 @@ def finish(source, prior, stretch, site, working):
             checked_copy(stretch / entry[field], media / f"{mode}-{key}.m4a")
             track["media"][mode] = {"url": f"media/{mode}-{key}.m4a", "type": "audio/mp4"}
         lossless = stretch / entry["stem_flac"]
-        lossless_target = base / "downloads/stretched" / f"{key}.flac"
-        checked_copy(lossless, lossless_target)
-        manifest["downloads"].append({"title": f"{key} · {track['title']} · lossless FLAC", "url": lossless_target.relative_to(base).as_posix()})
+        lossless_url = copy_lossless_download(lossless, f"stretched/{key}.flac", targets)
+        manifest["downloads"].append({"title": f"{key} · {track['title']} · lossless FLAC", "url": lossless_url})
         if not is_layer:
             beds[key] = stretch / entry["stem_wav"]
         manifest["tracks"].append(track)
@@ -251,9 +305,8 @@ def finish(source, prior, stretch, site, working):
         for path in sorted((prior / folder).rglob("*.flac")):
             if any(part.startswith(".") for part in path.relative_to(prior).parts):
                 continue
-            target = base / "downloads/previous" / path.relative_to(prior)
-            checked_copy(path, target)
-            manifest["downloads"].append({"title": "Earlier lossless asset · " + path.relative_to(prior).as_posix(), "url": target.relative_to(base).as_posix()})
+            url = copy_lossless_download(path, PurePosixPath("previous") / path.relative_to(prior), targets)
+            manifest["downloads"].append({"title": "Earlier lossless asset · " + path.relative_to(prior).as_posix(), "url": url})
     checked_copy(stretch / "room-stretch-report.json", records / "room-stretch-report.json")
     for field in ["source_reel_raw", "source_reel_processed"]:
         path = stretch / report[field]["file"]
@@ -273,10 +326,9 @@ def finish(source, prior, stretch, site, working):
                "scene_envelope_seconds": [5.033333, 107.166667], "scene_envelope_fade_seconds": 0.35,
                "context_encoding": receipts, "browser_playback_verified": False, "listening_acceptance": "pending"}
     (records / "site-media-verification.json").write_text(json.dumps(receipt, indent=2) + "\n")
-    oversize = [path.relative_to(base).as_posix() for path in base.rglob("*") if path.is_file() and path.stat().st_size > 25 * 1024 ** 2]
-    if oversize:
-        raise ValueError("Assets exceed the 25 MiB static-file limit: " + ", ".join(oversize))
-    print(json.dumps({"tracks": len(manifest["tracks"]), "context_movies": len(receipts), "common_dialogue_trim_db": trim_db, "output": str(base)}, indent=2))
+    validate_static_assets(targets)
+    print(json.dumps({"tracks": len(manifest["tracks"]), "context_movies": len(receipts), "common_dialogue_trim_db": trim_db,
+                      "output": str(base), "lossless_output": str(targets.downloads), "lossless_storage": targets.storage}, indent=2))
 
 
 def main():
