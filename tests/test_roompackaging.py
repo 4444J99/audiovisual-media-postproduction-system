@@ -92,6 +92,8 @@ class RoomPackagingTests(unittest.TestCase):
         (output / "notes.md").write_text("Verified comparison notes")
         (output / "working").mkdir()
         (output / "working" / "intermediate.wav").write_bytes(b"working material")
+        (output / ".room-encode-interrupted").mkdir()
+        (output / ".room-encode-interrupted" / "partial.flac").write_bytes(b"staged material")
         target = packaging.archive_delivery(output)
         original = target.read_bytes()
         with zipfile.ZipFile(target) as archive:

@@ -289,6 +289,7 @@ def archive_delivery(out):
     def include(path):
         relative = path.relative_to(out)
         return (path.is_file() and path not in (target, manifest_path)
+                and not any(part.startswith(".") for part in relative.parts)
                 and relative.parts[0] != "working"
                 and not (relative.parts[0] == "auditions" and path.suffix == ".wav"))
     files = [p for p in sorted(out.rglob("*")) if include(p)]
