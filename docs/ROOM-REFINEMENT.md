@@ -100,7 +100,7 @@ This document records rendered-engine and audit evidence. Final export and brows
 
 ### Verification for the 11 October 2026 render
 
-`python tools/check.py` passed project validation, all 48 Python tests, and the Node transport/score checks. The actual 60/150-second MP4s fully decode to 1,800/4,500 video frames; audio and picture start at zero, and all 30 sampled alignment checks have zero sample offset. Every delivered full-length FLAC bed and band stem fully decodes to 112 seconds. The new 24-bit band stems sum within `2.3842e-7` maximum absolute error. A's delivered FLAC is byte-identical to the recovered reference.
+`python tools/check.py` passed project validation, all 49 Python tests, and the Node transport/score checks. The actual 60/150-second MP4s fully decode to 1,800/4,500 video frames; audio and picture start at zero, and all 30 sampled alignment checks have zero sample offset. Every delivered full-length FLAC bed and band stem fully decodes to 112 seconds. The new 24-bit band stems sum within `2.3842e-7` maximum absolute error. A's delivered FLAC is byte-identical to the recovered reference.
 
 The player passed 20 DOM/media-event checks, including all 25 embedded audio payloads and active-track/source-time note export. This is a logic and asset check: browser playback was not tested because the Chromium executable was unavailable. Numerical checks and picture inspection do not constitute audio audition.
 
@@ -116,3 +116,5 @@ The encoder stages each new audio file, fully decodes it, checks finite samples 
 | Recovered A, decoded float32 PCM | `907bfe9c0c72b747b8aa9b4c6495909c44da2e034ed19c739323ee5f712ff0c9` |
 
 Listen to A → C → D → E first. Use A/B and B/C to separate scheduling from effect changes. Then compare dialogue-plus-room against the unchanged dialogue core alone, followed by the six contributions and cued source portions where useful. D is the first hybrid candidate to try **by design**, because it keeps recorded low material while replacing middle/high event timing; it is not an auditioned recommendation. Activity in the core alone identifies a separate mixture-processing problem. The assistant has not auditioned these sounds; numerical and visual inspection cannot substitute for listening. Record specific source times and choices before changing the production default or closing issue #47.
+
+The complete ZIP is also built in a temporary location, checked by reading every member, and atomically published only after archive validation.

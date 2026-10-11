@@ -3,6 +3,7 @@ import json
 import subprocess
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 from unittest import mock
 
@@ -84,6 +85,24 @@ class RoomPackagingTests(unittest.TestCase):
             (directory / name).write_text(json.dumps({"source_sha256": "0" * 64}))
         with self.assertRaisesRegex(ValueError, "another source"):
             packaging.validate_inputs(self.source, refinement, audit, baseline, self.source)
+
+    def test_archive_is_verified_before_replacing_existing_delivery(self):
+        output = self.root / "delivery"
+        output.mkdir()
+        (output / "notes.md").write_text("Verified comparison notes")
+        (output / "working").mkdir()
+        (output / "working" / "intermediate.wav").write_bytes(b"working material")
+        target = packaging.archive_delivery(output)
+        original = target.read_bytes()
+        with zipfile.ZipFile(target) as archive:
+            self.assertIsNone(archive.testzip())
+            self.assertEqual(set(archive.namelist()), {"notes.md", "delivery-manifest.json"})
+        (output / "notes.md").write_text("New notes awaiting archive validation")
+        with mock.patch.object(zipfile.ZipFile, "testzip", return_value="notes.md"):
+            with self.assertRaisesRegex(ValueError, "Archive member failed validation"):
+                packaging.archive_delivery(output)
+        self.assertEqual(target.read_bytes(), original)
+        self.assertFalse(list(self.root.glob(".room-package-*")))
 
 
 if __name__ == "__main__":

@@ -296,11 +296,18 @@ def archive_delivery(out):
                 "files": [{"path": str(p.relative_to(out)), "bytes": p.stat().st_size,
                            "sha256": sha256(p)} for p in files]}
     write_json(manifest_path, manifest)
-    with zipfile.ZipFile(target, "w", allowZip64=True) as archive:
-        for path in [*files, manifest_path]:
-            compressed = path.suffix.lower() in {".flac", ".m4a", ".mp4", ".mp3", ".npz", ".png"}
-            archive.write(path, path.relative_to(out),
-                          compress_type=zipfile.ZIP_STORED if compressed else zipfile.ZIP_DEFLATED)
+    with tempfile.TemporaryDirectory(prefix=".room-package-", dir=out.parent) as directory:
+        staged = Path(directory) / target.name
+        with zipfile.ZipFile(staged, "w", allowZip64=True) as archive:
+            for path in [*files, manifest_path]:
+                compressed = path.suffix.lower() in {".flac", ".m4a", ".mp4", ".mp3", ".npz", ".png"}
+                archive.write(path, path.relative_to(out),
+                              compress_type=zipfile.ZIP_STORED if compressed else zipfile.ZIP_DEFLATED)
+        with zipfile.ZipFile(staged) as archive:
+            damaged_member = archive.testzip()
+            if damaged_member is not None:
+                raise ValueError(f"Archive member failed validation: {damaged_member}")
+        staged.replace(target)
     return target
 
 

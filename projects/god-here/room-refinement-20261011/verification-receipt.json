@@ -2,7 +2,7 @@
   "repository_check": {
     "command": "python tools/check.py",
     "exit_code": 0,
-    "python_tests": 48,
+    "python_tests": 49,
     "project_validation": {
       "shots": 6,
       "cues": 20,
@@ -42,5 +42,6 @@
   "browser_limitation": "Chromium executable unavailable; player logic checked by DOM/media-event harness",
   "audio_audition_performed_by_assistant": false,
   "human_listening_acceptance": "pending",
-  "original_roomrack_and_roomtone_and_soundstage_implementation_changed": false
+  "original_roomrack_and_roomtone_and_soundstage_implementation_changed": false,
+  "archive_publication": "staged, complete CRC validation, atomic replacement"
 }
