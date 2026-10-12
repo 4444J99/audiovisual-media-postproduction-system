@@ -39,7 +39,11 @@ def relative_path(url):
     u = urlsplit(url); p = unquote(u.path).lstrip('/')
     if not p or p.endswith('/'): p += 'index.html'
     if '..' in Path(p).parts: raise ValueError('Unsafe path')
-    return Path('sites') / u.netloc / p
+    path = Path(p)
+    if u.query:
+        digest = hashlib.sha256(u.query.encode('utf-8')).hexdigest()
+        path = path.with_name(f'{path.stem}--query-{digest}{path.suffix}')
+    return Path('sites') / u.netloc / path
 
 def references(text, content_type):
     if 'html' in content_type:

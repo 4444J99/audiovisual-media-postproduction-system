@@ -63,7 +63,8 @@ class RoomSitePackagingTests(unittest.TestCase):
         for directory in [prior, stretch]:
             if directory.exists():
                 shutil.rmtree(directory)
-        prior_report = {"source_sha256": sha256(source), "versions": {}}
+        inventory_hash = "a" * 64
+        prior_report = {"source_sha256": sha256(source), "pause_inventory_sha256": inventory_hash, "versions": {}}
         for key in "ABCDE":
             path = self.write(prior / "full-length" / f"{key}-room.flac", f"earlier bed {key}".encode())
             prior_report["versions"][key] = {"title": f"Earlier {key}", "description": key,
@@ -91,7 +92,8 @@ class RoomSitePackagingTests(unittest.TestCase):
                              "handle_end": index + 1, "source_start": index + .2, "source_end": index + .5,
                              "review_audio": {"path": review.name, "sha256": sha256(review)}})
         audit = self.write(prior / "source-pause-review/portion-review.json",
-                           json.dumps({"source_sha256": sha256(source), "portions": portions}).encode())
+                           json.dumps({"source_sha256": sha256(source), "pause_inventory_sha256": inventory_hash,
+                                       "portions": portions}).encode())
         prior_report["input_report_sha256"] = {"audit": sha256(audit)}
         self.write(prior / "listening-package-report.json", json.dumps(prior_report).encode())
         # This is an existing producer receipt, created before any mutation in
@@ -107,7 +109,8 @@ class RoomSitePackagingTests(unittest.TestCase):
                       for path in delivered],
         }).encode())
 
-        report = {"source_sha256": sha256(source), "layers": [], "stacks": [],
+        report = {"source_sha256": sha256(source), "pause_inventory_sha256": inventory_hash,
+                  "layers": [], "stacks": [],
                   "source_reel_raw": {"file": "source-reel-raw.wav"},
                   "source_reel_processed": {"file": "source-reel-seam-smoothed.wav"}}
         for field in ["source_reel_raw", "source_reel_processed"]:
@@ -207,6 +210,24 @@ class RoomSitePackagingTests(unittest.TestCase):
         self.assertTrue((worker / "public/room-tone/records/site-media-verification.json").is_file())
         for site, assets in [(legacy, "dist"), (worker, "public")]:
             preparation = json.loads((site / assets / "room-tone/records/site-preparation.json").read_text())
+            self.assertEqual(preparation["pause_inventory_sha256"], "a" * 64)
+            verification = json.loads((site / assets / "room-tone/records/site-media-verification.json").read_text())
+            self.assertEqual(verification["pause_inventory_sha256"], preparation["pause_inventory_sha256"])
+            for key, receipt in verification["context_encoding"].items():
+                self.assertEqual(receipt["track_id"], key)
+                self.assertEqual(receipt["url"], f"media/context-{key}.mp4")
+                self.assertEqual(receipt["mode"], "context")
+                self.assertEqual(receipt["source_sha256"], sha256(source))
+                self.assertEqual(receipt["source_picture_sha256"], preparation["files"]["media/source-picture.mp4"])
+                self.assertEqual(receipt["pause_inventory_sha256"], preparation["pause_inventory_sha256"])
+                self.assertEqual(receipt["dialogue_sha256"], sha256(prior / "full-length/dialogue-core.flac"))
+                self.assertEqual(receipt["dialogue_gain_db"], verification["common_dialogue_trim_db"])
+                bed = (prior / f"full-length/{key}-room.flac" if key in "ABCDE"
+                       else stretch / f"exports/{key}.wav")
+                self.assertEqual(receipt["bed_sha256"], None if key == "CORE" else sha256(bed))
+                targets = packaging.site_targets(site)
+                path = resolve_url(targets.room, receipt["url"], downloads=targets.downloads)
+                self.assertEqual(receipt["sha256"], sha256(path))
             self.assertEqual(preparation["comparison_receipt_sha256"], sha256(prior / "delivery-manifest.json"))
             copied_receipt = site / assets / "room-tone/records/previous-delivery-manifest.json"
             self.assertEqual(sha256(copied_receipt), preparation["comparison_receipt_sha256"])
@@ -280,6 +301,70 @@ class RoomSitePackagingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Comparison receipt changed"):
             self.package_fixtures(source, prior, stretch, site, "dist", before_finish=replace_receipt)
         self.assertEqual(self.rendered_contexts, [])
+
+    def test_finish_rejects_wrong_or_missing_pool_identity_before_copying_or_rendering(self):
+        for index, digest in enumerate(["b" * 64, None, "", "invalid", "g" * 64]):
+            with self.subTest(inventory=digest):
+                source, prior, stretch = self.render_fixtures()
+                site = self.site(f"pool-{index}", {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+                with mock.patch.object(packaging, "checked_copy", wraps=packaging.checked_copy) as copy:
+                    def replace_pool():
+                        path = stretch / "room-stretch-report.json"
+                        report = json.loads(path.read_text())
+                        if digest is None:
+                            report.pop("pause_inventory_sha256")
+                        else:
+                            report["pause_inventory_sha256"] = digest
+                        path.write_text(json.dumps(report))
+                        copy.reset_mock()
+
+                    with self.assertRaisesRegex(ValueError, "pause inventory"):
+                        self.package_fixtures(source, prior, stretch, site, "dist", before_finish=replace_pool)
+                    copy.assert_not_called()
+                self.assertEqual(self.rendered_contexts, [])
+                self.assertFalse((site / "dist/room-tone/media.json").exists())
+
+    def test_finish_authenticates_prior_report_before_comparing_inventory(self):
+        source, prior, stretch = self.render_fixtures()
+        site = self.site("report-tamper", {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+        with mock.patch.object(packaging, "checked_copy", wraps=packaging.checked_copy) as copy:
+            def replace_report():
+                # A matching replacement pool in both reports cannot legitimize
+                # an altered prior report that the delivery receipt did not bind.
+                for path in [prior / "listening-package-report.json", stretch / "room-stretch-report.json"]:
+                    report = json.loads(path.read_text())
+                    report["pause_inventory_sha256"] = "b" * 64
+                    path.write_text(json.dumps(report))
+                copy.reset_mock()
+
+            with self.assertRaisesRegex(ValueError, "Comparison film/report"):
+                self.package_fixtures(source, prior, stretch, site, "dist", before_finish=replace_report)
+            copy.assert_not_called()
+        self.assertEqual(self.rendered_contexts, [])
+
+    def test_prepare_requires_valid_matching_prior_and_audit_inventory(self):
+        for index, digest in enumerate([None, "", "invalid", "g" * 64, "b" * 64]):
+            with self.subTest(inventory=digest):
+                source, prior, _ = self.render_fixtures()
+                path = prior / "listening-package-report.json"
+                report = json.loads(path.read_text())
+                if digest is None:
+                    report.pop("pause_inventory_sha256")
+                else:
+                    report["pause_inventory_sha256"] = digest
+                path.write_text(json.dumps(report))
+                receipt_path = prior / "delivery-manifest.json"
+                receipt = json.loads(receipt_path.read_text())
+                next(entry for entry in receipt["files"]
+                     if entry["path"] == "listening-package-report.json")["sha256"] = sha256(path)
+                receipt_path.write_text(json.dumps(receipt))
+                site = self.site(f"prior-pool-{index}", {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+                with mock.patch.object(packaging, "run") as run, mock.patch.object(packaging, "checked_copy") as copy:
+                    with self.assertRaisesRegex(ValueError, "pause inventory"):
+                        packaging.prepare(source, prior, site, self.root / "working")
+                    run.assert_not_called()
+                    copy.assert_not_called()
+                self.assertFalse((site / "dist").exists())
 
     def test_prepare_replaces_stale_picture_and_regenerates_pause_aac_from_verified_wav(self):
         source, prior, stretch = self.render_fixtures()

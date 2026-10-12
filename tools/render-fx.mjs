@@ -25,10 +25,38 @@ const self=fileURLToPath(import.meta.url);
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const json=async filename=>JSON.parse(await fs.readFile(filename,'utf8'));
 const writeJson=(filename,value)=>fs.writeFile(filename,JSON.stringify(value,null,2)+'\n');
+const RENDER_CODE_FILES=['core.mjs','catalog.mjs','visual-engine.mjs','audio-engine.mjs','workbench-state.mjs','asset-pack.mjs'];
+
+async function fileLocation(filename,fileOps){
+  const resolved=path.resolve(filename);
+  async function canonical(value){
+    try{return await fileOps.realpath(value);}catch(error){
+      if(error.code!=='ENOENT')throw error;
+      const parent=path.dirname(value);if(parent===value)throw error;
+      return path.join(await canonical(parent),path.basename(value));
+    }
+  }
+  let stat;
+  try{stat=await fileOps.stat(resolved,{bigint:true});}catch(error){if(error.code!=='ENOENT')throw error;}
+  return {path:await canonical(resolved),stat};
+}
+
+/** Permit shared folders and derived replacements; reject actual input aliases. */
+export async function requireDistinctRenderOutputs(inputs,outputs,fileOps=fs){
+  const protectedFiles=await Promise.all(inputs.map(filename=>fileLocation(filename,fileOps)));
+  const destinations=[];
+  const aliases=(a,b)=>a.path===b.path||a.stat&&b.stat&&a.stat.dev===b.stat.dev&&a.stat.ino===b.stat.ino;
+  for(const filename of outputs){
+    const target=await fileLocation(filename,fileOps);
+    if(protectedFiles.some(source=>aliases(source,target)))throw Error('Render destination aliases an input; choose a distinct destination.');
+    if(destinations.some(other=>aliases(other,target)))throw Error('Render destinations must be distinct.');
+    destinations.push(target);
+  }
+}
 
 /** The complete local module closure consumed by the offline renderer. */
 export async function renderCodeHashes(engineDir){
-  return Object.fromEntries(await Promise.all(['core.mjs','catalog.mjs','visual-engine.mjs','audio-engine.mjs','workbench-state.mjs','asset-pack.mjs'].map(async name=>[name,sha(await fs.readFile(path.join(engineDir,name)))])));
+  return Object.fromEntries(await Promise.all(RENDER_CODE_FILES.map(async name=>[name,sha(await fs.readFile(path.join(engineDir,name)))])));
 }
 
 /**
@@ -37,9 +65,9 @@ export async function renderCodeHashes(engineDir){
  * The receipt is absent during replacement and published last as the commit
  * marker. A caught failure restores every old file and the old receipt.
  */
-export async function publishRenderSet(artifacts,receipt,fileOps=fs){
+export async function publishRenderSet(artifacts,receipt,fileOps=fs,protectedInputs=[]){
   const entries=[...artifacts,receipt].map(entry=>({...entry,destination:path.resolve(entry.destination)}));
-  if(new Set(entries.map(entry=>entry.destination)).size!==entries.length)throw Error('Render destinations must be distinct.');
+  await requireDistinctRenderOutputs(protectedInputs,entries.map(entry=>entry.destination),fileOps);
   const staged=[];let receiptRemoved=false,publishing=false,rollbackFailed=false;
   try{
     for(const entry of entries){
@@ -56,20 +84,30 @@ export async function publishRenderSet(artifacts,receipt,fileOps=fs){
         await fileOps.chmod(item.backup,stat.mode);
       }
     }
+    await requireDistinctRenderOutputs(protectedInputs,entries.map(entry=>entry.destination),fileOps);
     const marker=staged.at(-1);publishing=true;
     if(marker.existed){await fileOps.unlink(marker.destination);receiptRemoved=true;}
-    for(const item of staged){await fileOps.rename(item.incoming,item.destination);item.published=true;}
+    for(const item of staged){
+      await requireDistinctRenderOutputs(protectedInputs,[item.destination],fileOps);
+      await fileOps.rename(item.incoming,item.destination);item.published=true;
+    }
   }catch(error){
     const failures=[];
     if(publishing){
       // Restore the receipt only after all artifact rollbacks have succeeded.
       for(const item of staged.slice(0,-1).reverse())if(item.published){
-        try{if(item.existed)await fileOps.rename(item.backup,item.destination);else await fileOps.unlink(item.destination);}
+        try{
+          await requireDistinctRenderOutputs(protectedInputs,[item.destination],fileOps);
+          if(item.existed)await fileOps.rename(item.backup,item.destination);else await fileOps.unlink(item.destination);
+        }
         catch(failure){failures.push(failure);}
       }
       const marker=staged.at(-1);
       if(!failures.length&&(receiptRemoved||marker.published)){
-        try{if(marker.existed)await fileOps.rename(marker.backup,marker.destination);else await fileOps.unlink(marker.destination);}
+        try{
+          await requireDistinctRenderOutputs(protectedInputs,[marker.destination],fileOps);
+          if(marker.existed)await fileOps.rename(marker.backup,marker.destination);else await fileOps.unlink(marker.destination);
+        }
         catch(failure){failures.push(failure);}
       }
     }
@@ -82,7 +120,8 @@ export async function publishRenderSet(artifacts,receipt,fileOps=fs){
 }
 
 /** Validate every temporary variant before touching any published artifact. */
-export async function validateAndPublishRender({views,frameCount,artifacts,receiptPath,report,ffprobe='ffprobe'},fileOps=fs){
+export async function validateAndPublishRender({views,frameCount,artifacts,receiptPath,report,ffprobe='ffprobe',protectedInputs=[]},fileOps=fs){
+  await requireDistinctRenderOutputs(protectedInputs,[...views.map(view=>view.output),...artifacts.map(item=>item.destination),receiptPath],fileOps);
   const outputs=[];
   for(const view of views){
     const probe=JSON.parse(await run(ffprobe,['-v','error','-show_streams','-show_format','-of','json',view.partial]));
@@ -94,7 +133,7 @@ export async function validateAndPublishRender({views,frameCount,artifacts,recei
   const result={...report,output:outputs[0].file,bytes:outputs[0].bytes,sha256:outputs[0].sha256,outputs,probe:outputs[0].probe};
   const receiptSource=path.join(path.dirname(views[0].partial),'render.json');
   await writeJson(receiptSource,result);
-  await publishRenderSet([...views.map(view=>({source:view.partial,destination:view.output})),...artifacts],{source:receiptSource,destination:receiptPath},fileOps);
+  await publishRenderSet([...views.map(view=>({source:view.partial,destination:view.output})),...artifacts],{source:receiptSource,destination:receiptPath},fileOps,protectedInputs);
   return result;
 }
 
@@ -209,11 +248,17 @@ async function main(options){
   const engineDir=path.resolve(options['engine-dir']),assetsDir=path.resolve(options['assets-dir']);
   const patchPath=path.resolve(options.patch),outputPath=path.resolve(options.output),outBase=outputPath.replace(/\.mp4$/i,'');
   if(!/\.mp4$/i.test(outputPath))throw Error('Output must end with .mp4');
+  const keepWav=Boolean(options['keep-wav']);
+  const destinations=[outputPath,outBase+'.patch.json',outBase+'.render.json',...(keepWav?[outBase+'.wav']:[]),...(options['portrait-output']?[path.resolve(options['portrait-output'])]:[])];
+  const protectedInputs=[patchPath,path.join(assetsDir,'manifest.json'),self,...RENDER_CODE_FILES.map(name=>path.join(engineDir,name)),...(options.font?[path.resolve(options.font)]:[])];
+  await requireDistinctRenderOutputs(protectedInputs,destinations);
   const codeHashes=await renderCodeHashes(engineDir);
   const [manifestBytes,inputPatchBytes]=await Promise.all([fs.readFile(path.join(assetsDir,'manifest.json')),fs.readFile(patchPath)]);
   const media=JSON.parse(manifestBytes);
   const {assetPackIdentity,sameAssetPack}=await import(pathToFileURL(path.join(engineDir,'asset-pack.mjs')));
   const assetsIdentity=await assetPackIdentity(manifestBytes,file=>fs.readFile(path.join(assetsDir,file)));
+  protectedInputs.push(...assetsIdentity.files.map(file=>path.join(assetsDir,file.path)));
+  await requireDistinctRenderOutputs(protectedInputs,destinations);
   const rawPatch=JSON.parse(inputPatchBytes.toString('utf8'));
   const duration=finite(options.duration??rawPatch.duration,'duration',{min:.001,max:rawPatch.duration});
   const width=finite(options.width??480,'width',{min:64,max:4096,integer:true}),height=finite(options.height??270,'height',{min:64,max:4096,integer:true});
@@ -230,6 +275,9 @@ async function main(options){
   const patch=normalizeWorkbenchPatch(rawPatch,{sourceHash:provenance.source.sha256,source:{offset:media.sourceIn},regions:regions.items.map(r=>r.id)});
   const validation=validatePatch(patch,{regions:regions.items.map(r=>r.id)});
   if(patch.duration>media.duration+1e-6)throw Error('Patch exceeds available excerpt.');
+  const {GlobalFonts}=canvasPackage(),font=await configureFont(GlobalFonts,options.font?path.resolve(options.font):null);
+  if(font.path)protectedInputs.push(font.path);
+  await requireDistinctRenderOutputs(protectedInputs,destinations);
   await fs.mkdir(path.dirname(outputPath),{recursive:true});
   if(portrait)await fs.mkdir(path.dirname(portrait.output),{recursive:true});
   const tempDir=await fs.mkdtemp(path.join(path.dirname(outputPath),'.fx-render-'));
@@ -249,7 +297,6 @@ async function main(options){
     await writeJson(controlsPath,controls);
     await fs.writeFile(audioPath,wavBytes);
     const audioRenderMs=performance.now()-audioStart;
-    const {GlobalFonts}=canvasPackage(),font=await configureFont(GlobalFonts,options.font?path.resolve(options.font):null);
     const job={engineDir,assetsDir,patchPath:patchSnapshot.patchPath,controlsPath,width,height,fps,portrait,overlay:overlayMode,title:options.title||patch.name,fontPath:font.path};
     await writeJson(jobPath,job);
     const views=[{output:outputPath,width,height,partial:partialVideo}];if(portrait)views.push({...portrait,partial:path.join(tempDir,'portrait.mp4')});
@@ -287,11 +334,10 @@ async function main(options){
     const finalAssetsIdentity=await assetPackIdentity(await fs.readFile(path.join(assetsDir,'manifest.json')),file=>fs.readFile(path.join(assetsDir,file)));
     if(!sameAssetPack(assetsIdentity,finalAssetsIdentity))throw Error('Derived source assets changed during rendering; no preview receipt can be issued.');
     if(JSON.stringify(await renderCodeHashes(engineDir))!==JSON.stringify(codeHashes))throw Error('Rendering code changed during execution; no preview receipt can be issued.');
-    const keepWav=Boolean(options['keep-wav']);
     const reportFields={schemaVersion:'1.0.0',patchId:patch.id,name:patch.name,width,height,fps,frameCount,duration,overlay:overlayMode,patchSha256:patchSnapshot.patchSha256,patchFileSha256:patchSnapshot.patchFileSha256,inputPatchSha256:sha(inputPatchBytes),source:patch.source,assetsManifestSha256:assetsIdentity.manifestSha256,assetsIdentity,codeHashes,font,audio:{input:inputKind,inputSha256:sha(inputBytes),sampleRate:decoded.sampleRate,samples,channels:channels.length,pcmWavSha256:sha(wavBytes),file:keepWav?path.basename(outBase+'.wav'):null,controlFps:audio.controlFps,controlNodeIds:Object.keys(audio.controlEnvelopes),renderMs:audioRenderMs,report:audio.report},validation,chunks,elapsedSeconds:(performance.now()-before)/1000,limitations:['AAC/H264 previews are lossy encodes of the shared graph.','Text uses the recorded font substitute on the render host.','Inherited body masks and hybrid room plate remain workprint assets.','Machine-crosschecked speech cues and dialogue candidate await listener/artist acceptance.']};
     const artifacts=[{source:patchSnapshot.patchPath,destination:outBase+'.patch.json'}];
     if(keepWav)artifacts.push({source:audioPath,destination:outBase+'.wav'});
-    const report=await validateAndPublishRender({views:encoders,frameCount,artifacts,receiptPath:outBase+'.render.json',report:reportFields,ffprobe:options.ffprobe||'ffprobe'});
+    const report=await validateAndPublishRender({views:encoders,frameCount,artifacts,receiptPath:outBase+'.render.json',report:reportFields,ffprobe:options.ffprobe||'ffprobe',protectedInputs});
     await fs.rm(tempDir,{recursive:true,force:true}).catch(()=>{});
     process.stdout.write(JSON.stringify({output:outputPath,report:outBase+'.render.json',frameCount,duration,bytes:report.bytes,seconds:report.elapsedSeconds})+'\n');
   }catch(error){worker?.kill('SIGKILL');for(const e of encoders)e.proc.kill('SIGKILL');await fs.rm(tempDir,{recursive:true,force:true});throw error;}

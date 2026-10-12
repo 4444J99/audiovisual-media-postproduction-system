@@ -34,6 +34,12 @@ def main():
         destination = Path(args.output)
         if destination.is_dir() or not destination.suffix:
             parser.error("revision/replay --output must be a movie filename with an extension")
+    elif args.command == "track":
+        if args.output is None:
+            parser.error("track requires an explicit --output JSON file, for example outputs/track.json")
+        destination = Path(args.output)
+        if destination.is_dir() or destination.suffix.lower() != ".json":
+            parser.error("track --output must be a .json filename")
     elif args.output is None:
         args.output = "outputs"
     if args.command == "execute":
@@ -62,8 +68,8 @@ def main():
             return 2
         print(json.dumps(result, indent=2))
         return 0
-    from .audio import make_candidates, expressive_audio
-    from .core import generate_schedule, validate, write_json
+    from .audio import make_candidates, expressive_audio, expressive_output_paths
+    from .core import generate_schedule, validate, write_json, require_distinct_outputs
     from .render import render, remix
     project = Path(args.project)
     config = json.loads((project / "composition.json").read_text())
@@ -72,9 +78,11 @@ def main():
     elif args.command == "audio":
         if not args.source:
             parser.error("--source is required")
+        protected = (args.source, project / "composition.json", project / "transcript.provisional.json")
+        require_distinct_outputs(protected, expressive_output_paths(config, args.output))
         transcript = json.loads((project / "transcript.provisional.json").read_text())
-        record = make_candidates(args.source, transcript, args.output)
-        expressive_audio(Path(args.output) / "candidate-B.wav", config, args.output)
+        record = make_candidates(args.source, transcript, args.output, protected_inputs=protected)
+        expressive_audio(Path(args.output) / "candidate-B.wav", config, args.output, protected_inputs=protected)
         print(json.dumps(record))
     elif args.command == "render":
         if not args.source or not args.audio:

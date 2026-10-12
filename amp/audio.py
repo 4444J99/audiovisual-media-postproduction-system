@@ -11,7 +11,7 @@ import numpy as np
 from scipy import signal
 from scipy.io import wavfile
 
-from .core import run, write_json, sha256
+from .core import run, write_json, sha256, require_distinct_outputs
 
 RATE = 48000
 
@@ -22,9 +22,16 @@ def load_audio(path):
     return np.frombuffer(raw, "<f4").reshape(-1, 2).copy()
 
 
-def save_audio(path, samples):
-    Path(path).parent.mkdir(parents=True, exist_ok=True)
-    wavfile.write(str(path), RATE, np.asarray(samples, dtype=np.float32))
+def save_audio(path, samples, *, protected_inputs=()):
+    import tempfile
+    path = Path(path)
+    require_distinct_outputs(protected_inputs, [path])
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=".amp-audio-", dir=path.parent) as directory:
+        temporary = Path(directory) / path.name
+        wavfile.write(str(temporary), RATE, np.asarray(samples, dtype=np.float32))
+        require_distinct_outputs(protected_inputs, [path])
+        temporary.replace(path)
 
 
 def speech_mask(length, segments):
@@ -84,19 +91,40 @@ def match(samples, mask, target):
     return samples * 10 ** (gain_db / 20), before, gain_db
 
 
-def make_candidates(source, transcript, out):
+def candidate_output_paths(out):
     out = Path(out)
+    return [out / name for name in (
+        "reference-decoded.wav", "removed-residual.wav", "conservative-unmatched.wav",
+        "fft-denoise-unmatched.wav", "candidate-A.wav", "candidate-B.wav", "candidate-S.wav",
+        "candidate-F.wav", "audio-report.json")]
+
+
+def expressive_output_paths(config, out):
+    out = Path(out)
+    return [out / f"return-{pid}.wav" for pid in config["performers"]] + [
+        out / "expressive-returns.wav", out / "expressive-mix.wav", out / "expressive-report.json"]
+
+
+def make_candidates(source, transcript, out, *, protected_inputs=()):
+    import tempfile
+    out = Path(out)
+    protected = (source, *protected_inputs)
+    require_distinct_outputs(protected, candidate_output_paths(out))
     out.mkdir(parents=True, exist_ok=True)
     x = load_audio(source)
     segments = transcript["segments"]
     mask = speech_mask(len(x), segments)
-    save_audio(out / "reference-decoded.wav", x)
+    save_audio(out / "reference-decoded.wav", x, protected_inputs=protected)
     conservative = repair(x, segments, .55)
     stronger = repair(x, segments, 1.05)
-    save_audio(out / "removed-residual.wav", x - conservative)
-    save_audio(out / "conservative-unmatched.wav", conservative)
-    run(["ffmpeg", "-v", "error", "-y", "-i", out / "reference-decoded.wav", "-af",
-         "highpass=f=65,afftdn=nr=14:nf=-32:tn=1", "-c:a", "pcm_f32le", out / "fft-denoise-unmatched.wav"])
+    save_audio(out / "removed-residual.wav", x - conservative, protected_inputs=protected)
+    save_audio(out / "conservative-unmatched.wav", conservative, protected_inputs=protected)
+    with tempfile.TemporaryDirectory(prefix=".amp-denoise-", dir=out) as directory:
+        staged = Path(directory) / "fft-denoise-unmatched.wav"
+        run(["ffmpeg", "-v", "error", "-y", "-i", out / "reference-decoded.wav", "-af",
+             "highpass=f=65,afftdn=nr=14:nf=-32:tn=1", "-c:a", "pcm_f32le", staged])
+        require_distinct_outputs(protected, [out / "fft-denoise-unmatched.wav"])
+        staged.replace(out / "fft-denoise-unmatched.wav")
     candidates = {"A": x, "B": conservative, "S": stronger, "F": load_audio(out / "fft-denoise-unmatched.wav")}
     # Choose a common feasible target using peak headroom across every candidate.
     measured = {k: measure(v[mask]) for k, v in candidates.items()}
@@ -108,15 +136,17 @@ def make_candidates(source, transcript, out):
               "listening_acceptance": "pending", "provisional_workprint_choice": "B", "candidates": {}}
     for name, value in candidates.items():
         matched, before, gain = match(value, mask, target)
-        save_audio(out / f"candidate-{name}.wav", matched)
+        save_audio(out / f"candidate-{name}.wav", matched, protected_inputs=protected)
         record["candidates"][name] = {"gain_db": gain, "before_active": before,
                                      "after_active": measure(matched[mask]), "full_program": measure(matched),
                                      "samples": len(matched), "sha256": sha256(out / f"candidate-{name}.wav")}
-    write_json(out / "audio-report.json", record)
+    write_json(out / "audio-report.json", record, protected_inputs=protected)
     return record
 
 
-def expressive_audio(clean, config, out):
+def expressive_audio(clean, config, out, *, protected_inputs=()):
+    protected = (clean, *protected_inputs)
+    require_distinct_outputs(protected, expressive_output_paths(config, out))
     x = load_audio(clean)
     t = np.arange(len(x)) / RATE
     buses = {}
@@ -146,16 +176,16 @@ def expressive_audio(clean, config, out):
         bus[:, 0] *= 1 - max(0, pan)
         bus[:, 1] *= 1 + min(0, pan)
         buses[pid] = bus
-        save_audio(Path(out) / f"return-{pid}.wav", bus)
+        save_audio(Path(out) / f"return-{pid}.wav", bus, protected_inputs=protected)
     total = sum(buses.values())
-    save_audio(Path(out) / "expressive-returns.wav", total)
+    save_audio(Path(out) / "expressive-returns.wav", total, protected_inputs=protected)
     mix = x + total
     # Fixed global trim protects headroom without ducking the dialogue dynamically.
     peak = measure(mix)["input_tp"]
     trim = min(0, -1.1 - peak)
     mix *= 10 ** (trim / 20)
-    save_audio(Path(out) / "expressive-mix.wav", mix)
+    save_audio(Path(out) / "expressive-mix.wav", mix, protected_inputs=protected)
     write_json(Path(out) / "expressive-report.json", {"origin": "Shared repaired mixture, shot-local delays",
                "individual_voice_isolation": False, "global_trim_db": trim, "measurement": measure(mix),
-               "listening_acceptance": "pending"})
+               "listening_acceptance": "pending"}, protected_inputs=protected)
     return mix

@@ -1,10 +1,11 @@
 """Independent low/mid/high room-tone construction and stereo-linked dynamics."""
 from pathlib import Path
+import tempfile
 import numpy as np
 from scipy import signal
 from scipy.ndimage import gaussian_filter1d
 from .audio import RATE, load_audio, save_audio, measure
-from .core import write_json, sha256, run
+from .core import require_distinct_outputs, write_json, sha256, run
 from .roomtone import assemble
 
 BANDS = {
@@ -75,7 +76,15 @@ def effect(x, name, seed):
 
 def build(source, inventory_path, out):
     import json
-    out=Path(out);out.mkdir(parents=True,exist_ok=True)
+    out=Path(out)
+    protected_inputs=(source,inventory_path)
+    flac_stems=['low-layer','mid-layer','high-layer','room-tone-layered']+[f'{b}-{s}' for b in BANDS for s in ['dry-contribution','fx-return']]
+    outputs=[out/f'{band}-{kind}.wav' for band in BANDS for kind in
+             ['dry','compressed','fx-return','layer','dry-contribution']]
+    outputs += [out/'room-tone-layered.wav',out/'room-rack-report.json']
+    outputs += [out/f'{name}.flac' for name in flac_stems]
+    require_distinct_outputs(protected_inputs,outputs)
+    out.mkdir(parents=True,exist_ok=True)
     inventory=json.loads(Path(inventory_path).read_text())
     if sha256(source)!=inventory["source_sha256"]:raise ValueError("Pause inventory belongs to another source")
     portions=[p for gap in inventory["pauses"] for p in gap["usable_portions"]]
@@ -99,10 +108,10 @@ def build(source, inventory_path, out):
         wet=effect(compressed,name,config["seed"])
         # Parallel FX: preserve the compressed source bed in each frequency band.
         mixed=(.75*compressed+.25*wet)*10**(config["trim_db"]/20)
-        save_audio(out/f"{name}-dry.wav",assembled)
-        save_audio(out/f"{name}-compressed.wav",compressed)
-        save_audio(out/f"{name}-fx-return.wav",.25*wet*10**(config["trim_db"]/20))
-        save_audio(out/f"{name}-layer.wav",mixed)
+        save_audio(out/f"{name}-dry.wav",assembled,protected_inputs=protected_inputs)
+        save_audio(out/f"{name}-compressed.wav",compressed,protected_inputs=protected_inputs)
+        save_audio(out/f"{name}-fx-return.wav",.25*wet*10**(config["trim_db"]/20),protected_inputs=protected_inputs)
+        save_audio(out/f"{name}-layer.wav",mixed,protected_inputs=protected_inputs)
         final.append(mixed)
         report["bands"][name]={**config,"dynamics":dynamics,"source_band_pool_rms":target,
             "crossfade":"120–220 ms requested; capped to one third of each fragment; cosine amplitude ramps",
@@ -111,15 +120,19 @@ def build(source, inventory_path, out):
     # One gain for all layers gives -42 dBFS RMS and exact stem reconstruction.
     gain=10**(-42/20)/np.sqrt(np.mean(combined*combined))
     for name,value in zip(BANDS,final):
-        save_audio(out/f"{name}-layer.wav",value*gain)
+        save_audio(out/f"{name}-layer.wav",value*gain,protected_inputs=protected_inputs)
         wet=load_audio(out/f"{name}-fx-return.wav")*gain
         dry=load_audio(out/f"{name}-compressed.wav")*.75*10**(BANDS[name]['trim_db']/20)*gain
-        save_audio(out/f"{name}-fx-return.wav",wet)
-        save_audio(out/f"{name}-dry-contribution.wav",dry)
-    save_audio(out/'room-tone-layered.wav',combined*gain)
+        save_audio(out/f"{name}-fx-return.wav",wet,protected_inputs=protected_inputs)
+        save_audio(out/f"{name}-dry-contribution.wav",dry,protected_inputs=protected_inputs)
+    save_audio(out/'room-tone-layered.wav',combined*gain,protected_inputs=protected_inputs)
     report['common_output_gain_db']=float(20*np.log10(gain));report['output_rms_dbfs']=-42
     report['output_measurement']=measure(combined*gain)
-    for name in ['low-layer','mid-layer','high-layer','room-tone-layered']+[f'{b}-{s}' for b in BANDS for s in ['dry-contribution','fx-return']]:
-        run(['ffmpeg','-nostdin','-v','error','-y','-i',out/f'{name}.wav','-c:a','flac','-sample_fmt','s32',out/f'{name}.flac'])
-    write_json(out/'room-rack-report.json',report)
+    with tempfile.TemporaryDirectory(prefix='.room-rack-',dir=out) as directory:
+        for name in flac_stems:
+            target=out/f'{name}.flac';staged=Path(directory)/target.name
+            run(['ffmpeg','-nostdin','-v','error','-y','-i',out/f'{name}.wav','-c:a','flac','-sample_fmt','s32',staged])
+            require_distinct_outputs(protected_inputs,[target])
+            staged.replace(target)
+    write_json(out/'room-rack-report.json',report,protected_inputs=protected_inputs)
     return report

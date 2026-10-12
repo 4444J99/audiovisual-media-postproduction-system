@@ -20,7 +20,7 @@ from scipy import signal
 from scipy.io import wavfile
 
 from .audio import RATE, load_audio, save_audio
-from .core import sha256
+from .core import require_distinct_outputs, sha256
 from .roomrefine import inventory_portions, match_reference, measurements
 
 
@@ -46,12 +46,14 @@ def _integer(value, name, minimum=1):
     return int(value)
 
 
-def _write_json(path, value):
+def _write_json(path, value, *, protected_inputs=()):
     path = Path(path)
+    require_distinct_outputs(protected_inputs, (path,))
     path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".room-stretch-", dir=path.parent) as directory:
         temporary = Path(directory) / path.name
         temporary.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n")
+        require_distinct_outputs(protected_inputs, (path,))
         temporary.replace(path)
 
 
@@ -233,8 +235,9 @@ def cumulative_sum(layers):
     return output.astype(np.float32)
 
 
-def _save_wav(path, samples):
+def _save_wav(path, samples, *, protected_inputs=()):
     path = Path(path)
+    require_distinct_outputs(protected_inputs, (path,))
     samples = _audio(samples).astype(np.float32)
     path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".room-stretch-", dir=path.parent) as directory:
@@ -243,14 +246,16 @@ def _save_wav(path, samples):
         rate, decoded = wavfile.read(temporary)
         if rate != RATE or not np.array_equal(samples, decoded):
             raise ValueError(f"Float WAV verification failed: {path.name}")
+        require_distinct_outputs(protected_inputs, (path,))
         temporary.replace(path)
     return {"sha256": sha256(path), "pcm_sha256": pcm_sha256(samples),
             "samples_per_channel": len(samples), "duration_seconds": len(samples) / RATE,
             "full_decode_verified": True, "finite": True}
 
 
-def _encode(path, output, expected_samples, codec):
+def _encode(path, output, expected_samples, codec, *, protected_inputs=()):
     output = Path(output)
+    require_distinct_outputs(protected_inputs, (output,))
     output.parent.mkdir(parents=True, exist_ok=True)
     arguments = ["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(path),
                  "-map", "0:a:0", "-map_metadata", "-1", "-map_chapters", "-1",
@@ -283,6 +288,7 @@ def _encode(path, output, expected_samples, codec):
             error = float(np.max(np.abs(source - decoded)))
             if error > 2 ** -23 + 1e-9:
                 raise ValueError(f"Lossless render differs beyond PCM quantization: {output.name}")
+        require_distinct_outputs(protected_inputs, (output,))
         temporary.replace(output)
     return {"sha256": sha256(output), "bytes": output.stat().st_size,
             "source_samples": expected_samples, "decoded_samples": len(decoded),
@@ -291,23 +297,41 @@ def _encode(path, output, expected_samples, codec):
             "float_source_max_absolute_error": error}
 
 
-def _media(output, identifier, samples, *, kind, audition_boost_db):
-    """Publish a float stem/mix, quantized lossless copy and streaming variants."""
+def _media_paths(output, identifier, kind):
     folder = "stems" if kind == "layer" else "stacks"
-    wav = output / folder / f"{identifier}.wav"
-    flac = output / folder / f"{identifier}.flac"
-    production = output / "web" / f"{identifier}-production.m4a"
-    audition = output / "web" / f"{identifier}-audition.m4a"
+    return (output / folder / f"{identifier}.wav", output / folder / f"{identifier}.flac",
+            output / "web" / f"{identifier}-production.m4a", output / "web" / f"{identifier}-audition.m4a")
+
+
+def _native_output_paths(output, periods, spectral):
+    """Enumerate only destinations produced by the requested modes and periods."""
+    paths = [output / "source-reel-raw.wav", output / "source-reel-seam-smoothed.wav",
+             output / "room-stretch-report.json"]
+    for mode in ("V", "P") if spectral else ("V",):
+        for period in periods:
+            identifier = f"{mode}{period:g}"
+            paths.append(output / "raw-stems" / f"{identifier}.wav")
+            paths.extend(_media_paths(output, identifier, "layer"))
+        for count in range(1, len(periods) + 1) if mode == "V" else [len(periods)]:
+            paths.extend(_media_paths(output, f"{mode}{count}-stack", "stack"))
+        paths.extend(_media_paths(output, f"{mode}{len(periods)}R", "stack"))
+    return paths
+
+
+def _media(output, identifier, samples, *, kind, audition_boost_db, protected_inputs=()):
+    """Publish a float stem/mix, quantized lossless copy and streaming variants."""
+    wav, flac, production, audition = _media_paths(output, identifier, kind)
+    require_distinct_outputs(protected_inputs, (wav, flac, production, audition))
     raised = (samples * 10 ** (audition_boost_db / 20)).astype(np.float32)
     if np.max(np.abs(raised)) >= 10 ** (-1.5 / 20):
         raise ValueError("Common audition boost exceeds -1.5 dBFS headroom; choose a lower shared boost")
-    wav_receipt = _save_wav(wav, samples)
-    flac_receipt = _encode(wav, flac, len(samples), "flac")
-    production_receipt = _encode(wav, production, len(samples), "aac")
+    wav_receipt = _save_wav(wav, samples, protected_inputs=protected_inputs)
+    flac_receipt = _encode(wav, flac, len(samples), "flac", protected_inputs=protected_inputs)
+    production_receipt = _encode(wav, production, len(samples), "aac", protected_inputs=protected_inputs)
     with tempfile.TemporaryDirectory(prefix=".room-audition-", dir=output) as directory:
         raised_wav = Path(directory) / "audition.wav"
         save_audio(raised_wav, raised)
-        audition_receipt = _encode(raised_wav, audition, len(samples), "aac")
+        audition_receipt = _encode(raised_wav, audition, len(samples), "aac", protected_inputs=protected_inputs)
     return {"stem_wav": str(wav.relative_to(output)),
             "stem_flac": str(flac.relative_to(output)),
             **({"mix_wav": str(wav.relative_to(output)),
@@ -319,7 +343,7 @@ def _media(output, identifier, samples, *, kind, audition_boost_db):
                          "production_aac": production_receipt, "audition_aac": audition_receipt}}
 
 
-def original_gain_stacks(output, report, *, progress=None):
+def original_gain_stacks(output, report, *, progress=None, protected_inputs=()):
     """Add full-stack controls that preserve the raw layers' relative gains."""
     output = Path(output)
     reference = {"bs1770_integrated_lufs": report["production_target_lufs"], "rms_dbfs": -42.}
@@ -339,7 +363,7 @@ def original_gain_stacks(output, report, *, progress=None):
         summed = summed.astype(np.float32)
         stacked, gain = match_reference(summed, reference)
         media = _media(output, identifier, stacked, kind="stack",
-                       audition_boost_db=report["audition_boost_db"])
+                       audition_boost_db=report["audition_boost_db"], protected_inputs=protected_inputs)
         error = float(np.max(np.abs(stacked - summed * 10 ** (gain["gain_db"] / 20))))
         if error > 1e-7:
             raise ValueError("Original-relative-gain stack fails reconstruction")
@@ -354,7 +378,7 @@ def original_gain_stacks(output, report, *, progress=None):
                                  "stem_sum_max_absolute_error": error,
                                  "reconstruction": "sum raw_stem_wav files at unity, then apply mix_gain_db once",
                                  **media})
-        _write_json(output / "room-stretch-report.json", report)
+        _write_json(output / "room-stretch-report.json", report, protected_inputs=protected_inputs)
     return report
 
 
@@ -363,10 +387,6 @@ def build(source_path, inventory_path, output_dir, *, duration=112., periods=PER
           spectral=True, progress=None):
     """Render explicit varispeed/spectral comparisons from the existing pool."""
     source_path, inventory_path, output = map(Path, (source_path, inventory_path, output_dir))
-    inventory = json.loads(inventory_path.read_text())
-    source_hash, inventory_hash = sha256(source_path), sha256(inventory_path)
-    if inventory.get("source_sha256") != source_hash:
-        raise ValueError("Inventory identifies another source; refusing to render")
     if not math.isfinite(duration) or duration <= 0:
         raise ValueError("duration must be positive")
     if not math.isfinite(target_lufs) or not math.isfinite(audition_boost_db):
@@ -377,6 +397,12 @@ def build(source_path, inventory_path, output_dir, *, duration=112., periods=PER
         raise ValueError("Periods must be unique positive values no longer than the film")
     if len({round(period * RATE) for period in periods}) != len(periods) or len({f"{period:g}" for period in periods}) != len(periods):
         raise ValueError("Periods must have distinct sample counts and output identifiers")
+    protected_inputs = (source_path, inventory_path)
+    require_distinct_outputs(protected_inputs, _native_output_paths(output, periods, spectral))
+    inventory = json.loads(inventory_path.read_text())
+    source_hash, inventory_hash = sha256(source_path), sha256(inventory_path)
+    if inventory.get("source_sha256") != source_hash:
+        raise ValueError("Inventory identifies another source; refusing to render")
     source = load_audio(source_path)
     output_samples = round(duration * RATE)
     source_decoded_samples = len(source)
@@ -395,8 +421,8 @@ def build(source_path, inventory_path, output_dir, *, duration=112., periods=PER
     if any(round(period * RATE) < len(reel) for period in periods):
         raise ValueError("All periods must slow the source reel")
     output.mkdir(parents=True, exist_ok=True)
-    raw_receipt = _save_wav(output / "source-reel-raw.wav", raw_reel)
-    processed_receipt = _save_wav(output / "source-reel-seam-smoothed.wav", reel)
+    raw_receipt = _save_wav(output / "source-reel-raw.wav", raw_reel, protected_inputs=protected_inputs)
+    processed_receipt = _save_wav(output / "source-reel-seam-smoothed.wav", reel, protected_inputs=protected_inputs)
     reference = {"bs1770_integrated_lufs": target_lufs, "rms_dbfs": -42.}
     report = {"schema_version": "amps.room-stretch.v1", "sample_rate": RATE, "channels": 2,
               "source_sha256": source_hash, "pause_inventory_sha256": inventory_hash,
@@ -416,7 +442,7 @@ def build(source_path, inventory_path, output_dir, *, duration=112., periods=PER
               "environment": {"python": platform.python_version(), "numpy": np.__version__,
                               "scipy": scipy.__version__,
                               "ffmpeg": subprocess.check_output(["ffmpeg", "-version"], text=True).splitlines()[0]}}
-    write_report = lambda: _write_json(output / "room-stretch-report.json", report)
+    write_report = lambda: _write_json(output / "room-stretch-report.json", report, protected_inputs=protected_inputs)
     write_report()
     mode_layers = {}
     for mode in ("V", "P") if spectral else ("V",):
@@ -447,9 +473,9 @@ def build(source_path, inventory_path, output_dir, *, duration=112., periods=PER
             raw_layer[:edge] *= ramp[:, None]
             raw_layer[-edge:] *= ramp[::-1, None]
             raw_path = output / "raw-stems" / f"{identifier}.wav"
-            raw_receipt = _save_wav(raw_path, raw_layer)
+            raw_receipt = _save_wav(raw_path, raw_layer, protected_inputs=protected_inputs)
             layer, gain = match_reference(raw_layer, reference)
-            media = _media(output, identifier, layer, kind="layer", audition_boost_db=audition_boost_db)
+            media = _media(output, identifier, layer, kind="layer", audition_boost_db=audition_boost_db, protected_inputs=protected_inputs)
             record = {"id": identifier, "mode": "literal_varispeed" if mode == "V" else "spectral_stretch",
                       "period_seconds": period_samples / RATE, "period_samples": period_samples,
                       "film_fraction": period_samples / output_samples,
@@ -478,7 +504,7 @@ def build(source_path, inventory_path, output_dir, *, duration=112., periods=PER
             members = mode_layers[mode][:count]
             summed = cumulative_sum([layer for _, layer in members])
             stacked, gain = match_reference(summed, reference)
-            media = _media(output, f"{identifier}-stack", stacked, kind="stack", audition_boost_db=audition_boost_db)
+            media = _media(output, f"{identifier}-stack", stacked, kind="stack", audition_boost_db=audition_boost_db, protected_inputs=protected_inputs)
             reconstructed = cumulative_sum([layer for _, layer in members]) * 10 ** (gain["gain_db"] / 20)
             summation_error = float(np.max(np.abs(stacked - reconstructed)))
             if summation_error > 1e-7:
@@ -494,7 +520,7 @@ def build(source_path, inventory_path, output_dir, *, duration=112., periods=PER
                                      "reconstruction": "sum exported float production stems, then apply mix_gain_db once",
                                      **media})
             write_report()
-    original_gain_stacks(output, report, progress=progress)
+    original_gain_stacks(output, report, progress=progress, protected_inputs=protected_inputs)
     report["status"] = "rendered and technically verified; human listening pending"
     report["interpretation"] = [
         "Literal varispeed changes both duration and pitch; the longest layer moves much source energy below ordinary speech frequencies.",

@@ -254,6 +254,14 @@ def prepared_media_root(targets, relative):
     return targets.room
 
 
+def pause_inventory_identity(report, label):
+    digest = report.get("pause_inventory_sha256")
+    if (not isinstance(digest, str) or len(digest) != 64
+            or any(character not in "0123456789abcdefABCDEF" for character in digest)):
+        raise ValueError(f"{label} lacks a valid pause inventory SHA-256")
+    return digest.lower()
+
+
 def source_pause_inputs(prior, report):
     """The original review WAVs, rather than unreceipted AAC copies, are authoritative."""
     audit_path = authenticated_file(prior, "source-pause-review/portion-review.json",
@@ -261,6 +269,8 @@ def source_pause_inputs(prior, report):
     audit = json.loads(audit_path.read_text())
     if audit.get("source_sha256") != report["source_sha256"]:
         raise ValueError("Source-pause report belongs to another source")
+    if pause_inventory_identity(audit, "Source-pause report") != pause_inventory_identity(report, "Prior report"):
+        raise ValueError("Source-pause report differs from the prior pause inventory")
     sources = []
     for entry in audit["portions"]:
         key = entry["portion_id"]
@@ -308,9 +318,9 @@ def prepare(source, prior, site, working):
     report = json.loads((prior / "listening-package-report.json").read_text())
     if sha256(source) != report["source_sha256"]:
         raise ValueError("The source differs from the earlier room-tone source")
+    comparison_hashes, comparison_receipt_hash = prior_comparisons(prior)
     beds = prior_beds(prior, report)
     _, pause_sources = source_pause_inputs(prior, report)
-    comparison_hashes, comparison_receipt_hash = prior_comparisons(prior)
     base = targets.room
     media, records = base / "media", base / "records"
     media.mkdir(parents=True, exist_ok=True)
@@ -361,6 +371,7 @@ def prepare(source, prior, site, working):
     (working / "prior-site-encodes.json").write_text(json.dumps(encodes, indent=2) + "\n")
     validate_static_assets(targets)
     preparation = {"source_sha256": report["source_sha256"],
+                   "pause_inventory_sha256": pause_inventory_identity(report, "Prior report"),
                    "prior_report_sha256": sha256(prior / "listening-package-report.json"),
                    "comparison_receipt_sha256": comparison_receipt_hash,
                    "files": {"media/" + name: sha256(media / name)
@@ -423,10 +434,7 @@ def finish(source, prior, stretch, site, working):
     source_hash = sha256(source)
     if source_hash != prior_report["source_sha256"] or source_hash != report["source_sha256"]:
         raise ValueError("Stretch source differs from recovered room-tone source")
-    beds = prior_beds(prior, prior_report)
-    audit, _ = source_pause_inputs(prior, prior_report)
     comparison_hashes, comparison_receipt_hash = prior_comparisons(prior)
-    validate_stretch_assets(stretch, report)
     preparation_path = records / "site-preparation.json"
     if not preparation_path.is_file():
         raise ValueError("Run prepare first to authenticate the source picture and previews")
@@ -436,6 +444,16 @@ def finish(source, prior, stretch, site, working):
         raise ValueError("Prepared media belongs to another source or prior report; rerun prepare")
     if preparation.get("comparison_receipt_sha256") != comparison_receipt_hash:
         raise ValueError("Comparison receipt changed after preparation; rerun prepare")
+    # Authenticate the prior report above before using its pool identity. The
+    # same film can legitimately have several incompatible pause selections.
+    inventory_hash = pause_inventory_identity(prior_report, "Prior report")
+    if pause_inventory_identity(report, "Stretch report") != inventory_hash:
+        raise ValueError("Stretch pause inventory differs from the authenticated prior pause inventory")
+    if pause_inventory_identity(preparation, "Site preparation") != inventory_hash:
+        raise ValueError("Prepared media belongs to another pause inventory; rerun prepare")
+    beds = prior_beds(prior, prior_report)
+    audit, _ = source_pause_inputs(prior, prior_report)
+    validate_stretch_assets(stretch, report)
     prior_lossless = prior_lossless_inputs(prior, preparation["comparison_receipt_sha256"])
     validate_prior_download_root(targets)
     expected_prepared = {"media/source-picture.mp4", "media/room-poster.jpg"}
@@ -514,6 +532,13 @@ def finish(source, prior, stretch, site, working):
         relative = f"media/context-{key}.mp4"
         destination = targets.downloads.parent / relative if relative in R2_ROOM_MOVIE_URLS else base / relative
         receipts[key] = contextual_video(media / "source-picture.mp4", path, destination, scalar)
+        receipts[key].update({"sha256": sha256(destination), "url": relative, "track_id": key, "mode": "context",
+                              "source_sha256": source_hash,
+                              "source_picture_sha256": preparation["files"]["media/source-picture.mp4"],
+                              "pause_inventory_sha256": inventory_hash,
+                              "dialogue_sha256": prior_report["dialogue_file_sha256"],
+                              "bed_sha256": sha256(beds[key]) if key != "CORE" else None,
+                              "dialogue_gain_db": trim_db})
     for track in manifest["tracks"]:
         key = track["id"]
         if key in mix_paths:
@@ -543,6 +568,7 @@ def finish(source, prior, stretch, site, working):
     (base / "media.json").write_text(json.dumps(manifest, indent=2) + "\n")
     (base / "catalog.html").write_text(catalog(manifest))
     receipt = {"source_sha256": source_hash,
+               "pause_inventory_sha256": inventory_hash,
                "prior_report_sha256": sha256(prior / "listening-package-report.json"),
                "stretch_report_sha256": sha256(stretch / "room-stretch-report.json"),
                "preparation_receipt_sha256": sha256(preparation_path),

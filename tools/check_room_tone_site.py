@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import math
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -98,15 +98,18 @@ def verify_media_decode(path, samples, codec, *, video=False):
     return {**decoded, "audio_codec": actual_codec, "picture_fully_decoded": video}
 
 
-def verify_nontrack_media(base, manifest, *, downloads=None):
-    """Bind every pause, comparison and audio download to its producing receipt."""
+def receipt_digest(value, label):
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value):
+        raise ValueError("Missing or invalid receipt digest: " + label)
+    return value
+
+
+def load_media_receipts(base):
+    """Follow producer-owned identities, never promote current media hashes to evidence."""
     verification = json.loads(resolve_url(base, "records/site-media-verification.json").read_text())
     preparation = read_bound_record(base, "records/site-preparation.json", verification.get("preparation_receipt_sha256"))
     prior = read_bound_record(base, "records/previous-listening-package-report.json", verification.get("prior_report_sha256"))
     stretch = read_bound_record(base, "records/room-stretch-report.json", verification.get("stretch_report_sha256"))
-    if not verification.get("source_sha256") or any(record.get("source_sha256") != verification["source_sha256"]
-                                                   for record in [preparation, prior, stretch]):
-        raise ValueError("Media receipt source identities disagree")
     if preparation.get("prior_report_sha256") != verification["prior_report_sha256"]:
         raise ValueError("Prepared media and comparison report identities disagree")
     delivery = read_bound_record(base, "records/previous-delivery-manifest.json", preparation.get("comparison_receipt_sha256"))
@@ -121,8 +124,119 @@ def verify_nontrack_media(base, manifest, *, downloads=None):
     if prior_hashes.get("listening-package-report.json") != verification["prior_report_sha256"]:
         raise ValueError("Prior delivery receipt belongs to another comparison report")
     audit = read_bound_record(base, "records/source-pause-review/portion-review.json", prior.get("input_report_sha256", {}).get("audit"))
-    if audit.get("source_sha256") != verification["source_sha256"]:
-        raise ValueError("Source-pause receipt belongs to another source")
+    for field in ["source_sha256", "pause_inventory_sha256"]:
+        expected = receipt_digest(verification.get(field), "verification " + field)
+        for label, record in [("preparation", preparation), ("prior", prior), ("stretch", stretch), ("source-pause", audit)]:
+            if receipt_digest(record.get(field), label + " " + field) != expected:
+                raise ValueError("Media receipt identities disagree: " + label + " " + field)
+    return {"verification": verification, "preparation": preparation, "prior": prior,
+            "stretch": stretch, "audit": audit, "prior_hashes": prior_hashes}
+
+
+def stretch_track_entries(stretch):
+    """Map report IDs to public labels without allowing mislabeled periods or stacks."""
+    entries, raw_layers = {}, {}
+    for entry in stretch["layers"]:
+        raw_id, period = entry["id"], entry["period_seconds"]
+        if (period not in PERIODS or raw_id not in {f"V{period:g}", f"P{period:g}"} or
+                raw_id in raw_layers):
+            raise ValueError("Invalid or duplicate stretch layer identity")
+        key = raw_id[0] + "L" + str(PERIODS.index(period) + 1)
+        raw_layers[raw_id] = entry
+        entries[key] = entry
+    for entry in stretch["stacks"]:
+        key = entry["id"]
+        if key not in {"V1", "V2", "V3", "V4", "V5", "P5", "V5R", "P5R"} or key in entries:
+            raise ValueError("Invalid or duplicate stretch stack identity")
+        members = [f"{key[0]}{period:g}" for period in PERIODS[:int(key[1])]]
+        raw = entry.get("member_input_kind") == "raw_stems"
+        if entry.get("member_ids") != members or any(member not in raw_layers for member in members) or raw != key.endswith("R"):
+            raise ValueError("Stretch stack membership differs from its label: " + key)
+        entries[key] = entry
+    return entries
+
+
+def authenticate_track_media(base, manifest, records, *, downloads=None):
+    """Authenticate every label, input and output before any media probe or decode."""
+    verification, preparation, prior, stretch = (records[name] for name in ["verification", "preparation", "prior", "stretch"])
+    picture_url = "media/source-picture.mp4"
+    picture_digest = receipt_digest(preparation.get("files", {}).get(picture_url), "source picture")
+    if manifest["source"].get("url") != picture_url or manifest["source"].get("duration") != 112:
+        raise ValueError("Source picture URL/clock differs from preparation")
+    source = resolve_url(base, picture_url, downloads=downloads)
+    require_identity(source, picture_digest)
+    entries = stretch_track_entries(stretch)
+    context_keys = {"A", "B", "C", "D", "E", "CORE", *[key for key, entry in entries.items() if "period_seconds" not in entry]}
+    contexts = verification.get("context_encoding", {})
+    if set(contexts) != context_keys:
+        raise ValueError("Context producing receipt inventory differs from tracks")
+    trim = verification.get("common_dialogue_trim_db")
+    if not isinstance(trim, (int, float)) or not math.isfinite(trim) or trim > 0 or manifest.get("commonDialogueTrimDb") != trim:
+        raise ValueError("Context dialogue gain differs from producing receipt")
+    dialogue = receipt_digest(prior.get("dialogue_file_sha256"), "dialogue core")
+    media = {}
+    for item in manifest["tracks"]:
+        key = item["id"]
+        if item.get("duration") != 112 or item.get("sourceStart") != 0:
+            raise ValueError("Full-film comparisons must retain the 112-second source clock")
+        modes = {"room", "inspection"} if key != "CORE" else set()
+        if key in context_keys:
+            modes.add("context")
+        if set(item["media"]) != modes:
+            raise ValueError("Track media modes differ from producing receipts: " + key)
+        entry = entries.get(key)
+        if key in "ABCDE" and len(key) == 1:
+            version = prior.get("versions", {}).get(key, {})
+            for field in ["title", "description"]:
+                if field not in version or item.get(field) != version[field]:
+                    raise ValueError("Prior track label differs from producing receipt: " + key)
+            bed = receipt_digest(version.get("full_room_flac_sha256"), "prior bed " + key)
+        elif key == "CORE":
+            bed = None
+        elif entry is None:
+            raise ValueError("Track has no producing receipt: " + key)
+        elif "period_seconds" in entry:
+            if (item.get("periodSeconds") != entry["period_seconds"] or item.get("kind") != "layer" or
+                    item.get("title") != f"{entry['period_seconds']:g}-second layer"):
+                raise ValueError("Layer period/label differs from producing receipt: " + key)
+        else:
+            periods = [float(member[1:]) for member in entry["member_ids"]]
+            title = ("Five layers, original relative gain" if key.endswith("R") else
+                     f"{len(periods)} stacked layer{'s' if len(periods) != 1 else ''}")
+            if item.get("stackPeriods") != periods or item.get("kind") != "mix" or item.get("title") != title:
+                raise ValueError("Stack periods/label differ from producing receipt: " + key)
+            bed = receipt_digest(entry.get("receipts", {}).get("wav", {}).get("sha256"), "stretch bed " + key)
+        if entry and item.get("group") != ("varispeed" if key.startswith("V") else "spectral"):
+            raise ValueError("Stretch group differs from producing receipt: " + key)
+        for mode, medium in item["media"].items():
+            url = f"media/{mode}-{key}.{'mp4' if mode == 'context' else 'm4a'}"
+            if medium.get("url") != url or medium.get("type") != ("video/mp4" if mode == "context" else "audio/mp4"):
+                raise ValueError("Track URL/mode differs from producing receipt: " + key + " " + mode)
+            if mode == "context":
+                receipt = contexts[key]
+                bindings = {"url": url, "track_id": key, "mode": mode,
+                            "source_sha256": verification["source_sha256"], "source_picture_sha256": picture_digest,
+                            "pause_inventory_sha256": verification["pause_inventory_sha256"],
+                            "dialogue_sha256": dialogue, "bed_sha256": bed, "dialogue_gain_db": trim}
+                if any(field not in receipt or receipt[field] != value for field, value in bindings.items()):
+                    raise ValueError("Context input or label differs from producing receipt: " + key)
+                digest = receipt.get("sha256")
+            elif entry is not None:
+                field = "production_aac" if mode == "room" else "audition_aac"
+                digest = entry.get("receipts", {}).get(field, {}).get("sha256")
+            else:
+                digest = preparation.get("files", {}).get(url)
+            receipt_digest(digest, key + " " + mode)
+            path = resolve_url(base, url, downloads=downloads)
+            require_identity(path, digest)
+            media[(key, mode)] = (path, digest)
+    return source, media
+
+
+def verify_nontrack_media(base, manifest, *, downloads=None, records=None):
+    """Bind every pause, comparison and audio download to its producing receipt."""
+    records = records or load_media_receipts(base)
+    preparation, stretch, audit, prior_hashes = (records[name] for name in ["preparation", "stretch", "audit", "prior_hashes"])
     portions = {entry["portion_id"]: entry for entry in audit["portions"]}
     if len(portions) != len(audit["portions"]):
         raise ValueError("Ambiguous source-pause receipt")
@@ -192,8 +306,8 @@ def check(site):
         raise ValueError(f"Unexpected track inventory: {keys}")
     if manifest["defaultTrack"] not in expected:
         raise ValueError("Unknown default track")
-    source = resolve_url(base, manifest["source"]["url"], downloads=targets.downloads)
-    source_info = probe(source)
+    records = load_media_receipts(base)
+    source, authenticated_media = authenticate_track_media(base, manifest, records, downloads=targets.downloads)
     picture_hash = video_hash(source)
     # One full picture decode plus equality of every copied H.264 packet stream.
     result = subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-i", str(source), "-map", "0:v:0", "-f", "null", "-"], capture_output=True, check=True)
@@ -204,7 +318,7 @@ def check(site):
         if item["duration"] != 112 or item["sourceStart"] != 0:
             raise ValueError("Full-film comparisons must retain the 112-second source clock")
         for mode, medium in item["media"].items():
-            path = resolve_url(base, medium["url"], downloads=targets.downloads)
+            path, digest = authenticated_media[(item["id"], mode)]
             data = probe(path)
             audio = [s for s in data["streams"] if s["codec_type"] == "audio"]
             if len(audio) != 1 or audio[0]["codec_name"] != "aac" or int(audio[0]["sample_rate"]) != 48000 or audio[0]["channels"] != 2:
@@ -212,7 +326,8 @@ def check(site):
             if abs(float(audio[0]["duration"]) - 112) > .024 or abs(float(audio[0].get("start_time", 0))) > .001:
                 raise ValueError(f"Audio timeline mismatch: {path.name}")
             decoded = validate_encoded(path, 112 * 48000, "aac")
-            final_audio_decodes.append({"file": medium["url"], "sha256": hashlib.sha256(path.read_bytes()).hexdigest(), **decoded})
+            final_audio_decodes.append({"file": medium["url"], "sha256": digest,
+                                        "track_id": item["id"], "mode": mode, **decoded})
             verified.append(medium["url"])
             if mode == "context":
                 video = [s for s in data["streams"] if s["codec_type"] == "video"]
@@ -230,7 +345,7 @@ def check(site):
         for item in manifest[group]:
             path = resolve_url(base, item["url"], downloads=targets.downloads)
             verified.append(item["url"])
-    nontrack_media_decodes = verify_nontrack_media(base, manifest, downloads=targets.downloads)
+    nontrack_media_decodes = verify_nontrack_media(base, manifest, downloads=targets.downloads, records=records)
     for prefix in ["V", "P"]:
         periods = [next(item for item in manifest["tracks"] if item["id"] == f"{prefix}L{i}")["periodSeconds"] for i in range(1, 6)]
         if periods != [112, 84, 56, 28, 14]:

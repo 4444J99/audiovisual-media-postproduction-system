@@ -12,6 +12,7 @@ from fractions import Fraction
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -316,16 +317,24 @@ def audio_map(source_audio, recipe, directed, expressive, output):
     return dict(samples=len(samples), sample_rate=RATE, trim_db=20*math.log10(trim), pitch_preserving_method="FFmpeg atempo", padding="Each tempo segment padded/trimmed to its exact output sample count; join listening pending", expressive_shared_mix_return=bool(expressive and recipe["return_gain"] > 0), expressive_return_gain=recipe["return_gain"] if expressive else 0, source_isolated_voices=False)
 
 
+def require_fresh_direction_outputs(source, source_audio, output, font_path=None):
+    inputs = {Path(path).resolve() for path in (source, source_audio, font_path) if path is not None}
+    for target in (Path(output), Path(output).with_suffix('.render.json')):
+        require(not target.exists() and not target.is_symlink() and target.resolve() not in inputs,
+                'Direction requires fresh output and receipt paths; refusing overwrite')
+
+
 def render(source, source_audio, recipe, output, *, variant="directed", field_config=None, font_path=None):
     validate_recipe(recipe)
     require(variant in VARIANTS, "Unknown render variant")
     source, source_audio, output = Path(source), Path(source_audio), Path(output)
+    require_fresh_direction_outputs(source, source_audio, output, font_path)
     require(source.is_file() and source_audio.is_file(), "Source media unavailable")
-    require(not output.exists() and output.resolve() not in (source.resolve(),source_audio.resolve()), "Refusing overwrite")
     metadata = probe(source)
     video = next(s for s in metadata["streams"] if s["codec_type"]=="video")
     validate_recipe(recipe, validated_frame_count(source, video, recipe["fps"]))
     require(sha256(source)==recipe["source_sha256"], "Source checksum mismatch")
+    audio_digest = sha256(source_audio)
     require(float(probe(source_audio)["format"]["duration"])+1/recipe["fps"] >= recipe["source_span"][1]/recipe["fps"], "Audio must use full-source timing")
     directed = variant in ("directed","expressive")
     fields = variant in ("fields","directed","expressive") and recipe["field_gain"]>0
@@ -408,11 +417,15 @@ def render(source, source_audio, recipe, output, *, variant="directed", field_co
                 decoder.wait()
         subprocess.run(['ffmpeg','-v','error','-i',str(work/'render.mp4'),'-f','null','-'],check=True,timeout=180)
         require(sha256(source)==recipe['source_sha256'],"Source changed while rendering")
-        require(not output.exists(),"Output appeared during rendering")
-        (work/'render.mp4').replace(output)
-    report=dict(engine_version=VERSION,engine_sha256=sha256(__file__),core_sha256=sha256(Path(__file__).with_name("core.py")),variant=variant,source_sha256=recipe['source_sha256'],source_audio_sha256=sha256(source_audio),recipe_sha256=hashlib.sha256(json.dumps(recipe,sort_keys=True).encode()).hexdigest(),field_score_sha256=hashlib.sha256(json.dumps(field_config,sort_keys=True).encode()).hexdigest() if fields or (directed and recipe["camera"]) else None,font_sha256=sha256(font_path) if directed and recipe['typography'] else None,output_sha256=sha256(output),fps=recipe['fps'],output_frames=len(mapping),output_dimensions=[ow,oh],duration_seconds=len(mapping)/recipe['fps'],source_output_map=time_map(recipe,directed),audio=sound_report,tracks=tracks,crop_source_pixels=crops,detail_method='Lanczos resampling and restrained unsharp mask; no recovered or generated detail',review=dict(technical_decode='passed',perceptual_audio='pending',phrase_boundaries='pending',artistic_acceptance='pending'),tools=dict(ffmpeg=subprocess.check_output(['ffmpeg','-version'],text=True).splitlines()[0]))
-    report['field_score_source_binding'] = field_source_binding
-    write_json(output.with_suffix('.render.json'),report)
+        require(sha256(source_audio)==audio_digest,"Audio changed while rendering")
+        report=dict(engine_version=VERSION,engine_sha256=sha256(__file__),core_sha256=sha256(Path(__file__).with_name("core.py")),variant=variant,source_sha256=recipe['source_sha256'],source_audio_sha256=audio_digest,recipe_sha256=hashlib.sha256(json.dumps(recipe,sort_keys=True).encode()).hexdigest(),field_score_sha256=hashlib.sha256(json.dumps(field_config,sort_keys=True).encode()).hexdigest() if fields or (directed and recipe["camera"]) else None,font_sha256=sha256(font_path) if directed and recipe['typography'] else None,output_sha256=sha256(work/'render.mp4'),fps=recipe['fps'],output_frames=len(mapping),output_dimensions=[ow,oh],duration_seconds=len(mapping)/recipe['fps'],source_output_map=time_map(recipe,directed),audio=sound_report,tracks=tracks,crop_source_pixels=crops,detail_method='Lanczos resampling and restrained unsharp mask; no recovered or generated detail',review=dict(technical_decode='passed',perceptual_audio='pending',phrase_boundaries='pending',artistic_acceptance='pending'),tools=dict(ffmpeg=subprocess.check_output(['ffmpeg','-version'],text=True).splitlines()[0]))
+        report['field_score_source_binding'] = field_source_binding
+        write_json(work/'render.json', report)
+        require_fresh_direction_outputs(source, source_audio, output, font_path)
+        # Publish each staged artifact without replacing a file or symlink that
+        # appeared after the final path check.
+        os.link(work/'render.mp4', output)
+        os.link(work/'render.json', output.with_suffix('.render.json'))
     return report
 
 

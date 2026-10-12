@@ -35,14 +35,16 @@ def validate_session(session, config, duration):
     events = session.get('events')
     if not isinstance(events, list) or len(events) > 10000:
         raise ValueError('Invalid event count')
-    prior = -1
+    prior = 0
     for event in events:
         if not isinstance(event, dict):
             raise ValueError('Invalid session event')
         t, amount = event.get('source_time'), event.get('amount')
         if (type(t) not in (int, float) or not math.isfinite(t) or not prior <= t <= duration
                 or type(amount) not in (int, float) or not math.isfinite(amount) or not 0 <= amount <= 1
-                or event.get('selected') is not None and event['selected'] not in config['performers']):
+                or 'selected' not in event
+                or event['selected'] is not None and (not isinstance(event['selected'], str)
+                                                      or event['selected'] not in config['performers'])):
             raise ValueError('Invalid session event')
         prior = t
     return session

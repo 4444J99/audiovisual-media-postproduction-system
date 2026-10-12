@@ -88,6 +88,94 @@ class DirectionTests(unittest.TestCase):
 
 
 class DirectionClockAndRenderTests(unittest.TestCase):
+    def test_movie_and_receipt_paths_must_be_fresh_before_media_reads(self):
+        from unittest.mock import patch
+        r=json.loads((ROOT/'projects/god-here/direction-proof.json').read_text())
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);source=root/'source.mp4';audio=root/'take.render.json'
+            source.write_bytes(b'original movie');audio.write_bytes(b'original audio')
+            outputs=[root/'take.mp4']
+            for stem,target in (('receipt-hard',source),('receipt-link',audio),('receipt-dangling',None)):
+                out=root/(stem+'.mp4');receipt=out.with_suffix('.render.json')
+                if stem.endswith('hard'):os.link(target,receipt)
+                else:receipt.symlink_to(target or root/'absent')
+                outputs.append(out)
+            movie_link=root/'movie-link.mp4';movie_link.symlink_to(root/'absent-movie');outputs.append(movie_link)
+            existing=root/'existing.mp4';existing.with_suffix('.render.json').write_bytes(b'prior receipt');outputs.append(existing)
+            for output in outputs:
+                with self.subTest(output=output.name),patch('amp.direction.probe',side_effect=AssertionError('no media reads before path validation')) as probe:
+                    with self.assertRaisesRegex(ValueError,'fresh output'):
+                        render(source,audio,r,output)
+                    probe.assert_not_called()
+            self.assertEqual(source.read_bytes(),b'original movie')
+            self.assertEqual(audio.read_bytes(),b'original audio')
+            self.assertEqual(existing.with_suffix('.render.json').read_bytes(),b'prior receipt')
+
+    def test_direction_publication_preserves_inputs_when_movie_or_receipt_path_appears(self):
+        import shutil,subprocess
+        from unittest.mock import patch
+        from scipy.io import wavfile
+        from amp.core import sha256
+        if not shutil.which('ffmpeg') or not shutil.which('ffprobe'):self.skipTest('FFmpeg unavailable')
+        real_link=os.link
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);source=root/'source.mp4';audio=root/'audio.wav'
+            subprocess.run(['ffmpeg','-v','error','-f','lavfi','-i','testsrc2=size=320x180:rate=30:duration=0.1',
+                            '-c:v','libx264','-threads','1',str(source)],check=True)
+            wavfile.write(audio,48000,np.zeros((4800,2),dtype=np.float32))
+            before={path:sha256(path) for path in (source,audio)}
+            recipe=json.loads((ROOT/'projects/god-here/direction-proof.json').read_text())
+            recipe.update(source_sha256=before[source],source_span=[0,3],
+                          segments=[{'source_start':0,'source_end':3,'output_frames':3}],
+                          camera=[],typography=[],field_gain=0,detail_amount=0,return_gain=0,output_width=320)
+            for collision in (None,'movie','receipt'):
+                output=root/f'{collision or "fresh"}.mp4';receipt=output.with_suffix('.render.json')
+                def publish(staged,target):
+                    if collision=='movie' and Path(target)==output:output.symlink_to(source)
+                    if collision=='receipt' and Path(target)==receipt:receipt.symlink_to(audio)
+                    return real_link(staged,target)
+                with self.subTest(collision=collision),patch('amp.direction.os.link',side_effect=publish):
+                    if collision:
+                        with self.assertRaises(FileExistsError):render(source,audio,recipe,output,variant='reference')
+                        self.assertTrue((output if collision=='movie' else receipt).is_symlink())
+                    else:
+                        report=render(source,audio,recipe,output,variant='reference')
+                        self.assertEqual(report['output_sha256'],sha256(output))
+                        self.assertEqual(report['source_audio_sha256'],before[audio])
+                        self.assertEqual(json.loads(receipt.read_text()),report)
+                for path,digest in before.items():self.assertEqual(sha256(path),digest)
+            self.assertFalse(list(root.glob('amp-direction-*')))
+
+    def test_audio_changed_after_mapping_is_rejected_before_publication(self):
+        import shutil,subprocess
+        from unittest.mock import patch
+        from scipy.io import wavfile
+        from amp.core import sha256
+        from amp.direction import audio_map
+        if not shutil.which('ffmpeg') or not shutil.which('ffprobe'):self.skipTest('FFmpeg unavailable')
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);source=root/'source.mp4';audio=root/'audio.wav';output=root/'output.mp4'
+            subprocess.run(['ffmpeg','-v','error','-f','lavfi','-i','testsrc2=size=320x180:rate=30:duration=0.1',
+                            '-c:v','libx264','-threads','1',str(source)],check=True)
+            wavfile.write(audio,48000,np.zeros((4800,2),dtype=np.float32))
+            source_digest=sha256(source)
+            recipe=json.loads((ROOT/'projects/god-here/direction-proof.json').read_text())
+            recipe.update(source_sha256=source_digest,source_span=[0,3],
+                          segments=[{'source_start':0,'source_end':3,'output_frames':3}],
+                          camera=[],typography=[],field_gain=0,detail_amount=0,return_gain=0,output_width=320)
+            def map_then_change(*args,**kwargs):
+                report=audio_map(*args,**kwargs)
+                wavfile.write(audio,48000,np.full((4800,2),.25,dtype=np.float32))
+                return report
+            with patch('amp.direction.audio_map',side_effect=map_then_change), \
+                 patch('amp.direction.os.link',side_effect=AssertionError('changed audio must not publish')) as publish:
+                with self.assertRaisesRegex(ValueError,'Audio changed while rendering'):
+                    render(source,audio,recipe,output,variant='reference')
+                publish.assert_not_called()
+            self.assertEqual(sha256(source),source_digest)
+            self.assertFalse(output.exists());self.assertFalse(output.with_suffix('.render.json').exists())
+            self.assertFalse(list(root.glob('amp-direction-*')))
+
     def test_timestamp_validation_counts_frames_without_container_count(self):
         from io import StringIO
         from unittest.mock import MagicMock, patch

@@ -36,6 +36,27 @@ class RevisionTests(unittest.TestCase):
         self.assertAlmostEqual(session_state(self.session,13)['P01'],.192)
         self.assertEqual(session_state(self.session,15),{'P02':.6})
 
+    def test_session_events_require_explicit_selection_and_nonnegative_ordered_time(self):
+        for event in ({'source_time':0,'amount':.5},
+                      {'source_time':-.5,'amount':.5,'selected':None},
+                      {'source_time':0,'amount':.5,'selected':'unknown'},
+                      {'source_time':0,'amount':.5,'selected':[]}):
+            session=copy.deepcopy(self.session);session['events']=[event]
+            with self.subTest(event=event),self.assertRaisesRegex(ValueError,'Invalid session event'):
+                validate_session(session,CONFIG,112)
+        for times in ((1,0),(112,113)):
+            session=copy.deepcopy(self.session)
+            session['events']=[{'source_time':t,'amount':.5,'selected':None} for t in times]
+            with self.subTest(times=times),self.assertRaisesRegex(ValueError,'Invalid session event'):
+                validate_session(session,CONFIG,112)
+        session=copy.deepcopy(self.session)
+        session['events']=[{'source_time':0,'amount':.5,'selected':'P01'},
+                           {'source_time':0,'amount':.5,'selected':None},
+                           {'source_time':112,'amount':.5,'selected':'P02'}]
+        validate_session(session,CONFIG,112)
+        self.assertEqual(session_state(session,0),{'P01':.2})
+        self.assertEqual(session_state(session,112),{'P02':.5})
+
     def test_integer_map_no_drift_and_bounds(self):
         self.assertEqual(validate_recipe(self.recipe,CONFIG,3360),72)
         mapping=frame_map(self.recipe)
