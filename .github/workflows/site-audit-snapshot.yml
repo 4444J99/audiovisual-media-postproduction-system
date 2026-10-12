@@ -1,0 +1,42 @@
+name: Unified site audit snapshot
+
+"on":
+  push:
+    branches: [integration/unified-review-site-20261012]
+    paths: [.github/workflows/site-audit-snapshot.yml, tools/site_audit_snapshot.py]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unified-site-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - name: Preserve exact public repository sources
+        run: |
+          mkdir -p audit-output
+          git archive HEAD > audit-output/repository.tar
+          git rev-parse HEAD > audit-output/repository-head.txt
+      - name: Capture only the two approved public project sites
+        if: ${{ hashFiles('tools/site_audit_snapshot.py') != '' }}
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.57.0
+          python -m playwright install --with-deps chromium
+          python tools/site_audit_snapshot.py
+      - name: Upload source and read-only audit evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: unified-site-audit-${{ github.sha }}
+          path: audit-output/
+          retention-days: 7
+          if-no-files-found: error
