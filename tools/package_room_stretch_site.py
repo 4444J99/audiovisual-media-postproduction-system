@@ -286,6 +286,9 @@ def prepare(source, prior, site, working):
         if path.is_file():
             checked_copy(path, records / "previous-processing" / path.name)
     checked_copy(prior / "listening-package-report.json", records / "previous-listening-package-report.json")
+    checked_copy(prior / "delivery-manifest.json", records / "previous-delivery-manifest.json")
+    authenticated_file(records, "previous-delivery-manifest.json", comparison_receipt_hash,
+                       "Copied comparison delivery receipt")
     copy_processing_notes(prior, records, report)
     (working / "prior-site-encodes.json").write_text(json.dumps(encodes, indent=2) + "\n")
     validate_static_assets(targets)

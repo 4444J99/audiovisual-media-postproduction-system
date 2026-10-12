@@ -202,6 +202,8 @@ class RoomSitePackagingTests(unittest.TestCase):
         for site, assets in [(legacy, "dist"), (worker, "public")]:
             preparation = json.loads((site / assets / "room-tone/records/site-preparation.json").read_text())
             self.assertEqual(preparation["comparison_receipt_sha256"], sha256(prior / "delivery-manifest.json"))
+            copied_receipt = site / assets / "room-tone/records/previous-delivery-manifest.json"
+            self.assertEqual(sha256(copied_receipt), preparation["comparison_receipt_sha256"])
             for key in ["quick", "dialogue"]:
                 name = f"god-here-room-tone-{key}-comparison.mp4"
                 self.assertEqual(preparation["files"]["media/" + name], sha256(prior / name))

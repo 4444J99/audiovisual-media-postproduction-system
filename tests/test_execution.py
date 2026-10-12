@@ -275,6 +275,38 @@ class DispatchTests(unittest.TestCase):
         with patch('amp.core.shot_at',side_effect=AssertionError('dormant camera must not run')):
             self.assertEqual(self.plan().options['variant'],'fields')
 
+    def test_revision_track_input_matches_camera_use_exactly(self):
+        source_hash=self.inputs['source']['sha256']
+        config=read_json(REPO_ROOT/'projects/god-here/composition.json')
+        config['source_sha256']=source_hash
+        config_path=self.root/'composition.json';config_path.write_text(json.dumps(config))
+        self.inputs['composition']=file_identity(config_path,'composition')
+        self.locations['objects'][self.inputs['composition']['sha256']]=str(config_path)
+        track={'schema_version':'1.0','source_sha256':source_hash,'fps':30,'start_frame':0,'end_frame':2,
+               'method':'fixture','review_status':'pending',
+               'rows':[{'source_frame':i,'center':[.5,.5]} for i in range(2)]}
+        track_path=self.root/'track.json';track_path.write_text(json.dumps(track))
+        track_ref=file_identity(track_path,'track')
+        self.locations['objects'][track_ref['sha256']]=str(track_path)
+        self.binding.update(adapter='amp.revision.v1',options={'width':1280})
+        self.binding['upstream']['pull_request']=50
+        for camera_enabled,track_supplied in ((False,False),(True,True),(False,True),(True,False)):
+            recipe={'schema_version':'1.0','source_sha256':source_hash,
+                    'segments':[{'source_start_frame':0,'source_end_frame':2,'output_frames':2}]}
+            if camera_enabled:recipe['camera']={'start_frame':0,'end_frame':2,'max_zoom':1.4}
+            recipe_path=self.root/'recipe.json';recipe_path.write_text(json.dumps(recipe))
+            self.inputs['recipe']=file_identity(recipe_path,'recipe')
+            self.locations['objects'][self.inputs['recipe']['sha256']]=str(recipe_path)
+            if track_supplied:self.inputs['track']=track_ref
+            else:self.inputs.pop('track',None)
+            with self.subTest(camera=camera_enabled,track=track_supplied):
+                if camera_enabled!=track_supplied:
+                    with self.assertRaisesRegex(ContractError,'missing_or_unused_dependency'):
+                        self.plan()
+                else:
+                    plan=self.plan()
+                    self.assertEqual('--track' in plan.argv(self.root/'products'),track_supplied)
+
     def test_dry_run_verifies_inputs_and_records_clocks_without_output(self):
         plan = self.plan()
         result = plan.receipt()

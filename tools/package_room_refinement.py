@@ -14,7 +14,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np
@@ -183,6 +183,81 @@ def concatenate(paths, audio_paths, target):
          "-movflags", "+faststart", target])
 
 
+def audit_artifacts(audit, expected_report_sha256=None):
+    """Resolve only explicitly receipted audit files, without following links."""
+    audit = Path(audit).resolve()
+
+    def resolve(relative):
+        if (not isinstance(relative, str) or not relative or "\\" in relative
+                or ":" in relative or "\0" in relative
+                or any(part in ("", ".", "..") for part in relative.split("/"))):
+            raise ValueError(f"Unsafe audit artifact path: {relative!r}")
+        path = PurePosixPath(relative)
+        if path.is_absolute():
+            raise ValueError(f"Unsafe audit artifact path: {relative!r}")
+        candidate = audit
+        for part in path.parts:
+            candidate = candidate / part
+            if candidate.is_symlink():
+                raise ValueError(f"Audit artifact uses a symlink: {relative}")
+        if not candidate.is_file() or not candidate.resolve().is_relative_to(audit):
+            raise ValueError(f"Missing or escaping audit artifact: {relative}")
+        return candidate
+
+    report_path = resolve("portion-review.json")
+    report_hash = sha256(report_path)
+    if expected_report_sha256 is not None and report_hash != expected_report_sha256:
+        raise ValueError("Audit report changed after input validation")
+    report = json.loads(report_path.read_text())
+    if not isinstance(report, dict) or not isinstance(report.get("files"), list):
+        raise ValueError("Audit report has no artifact receipt list")
+    artifacts = {}
+    for item in report["files"]:
+        if not isinstance(item, dict):
+            raise ValueError("Invalid audit artifact receipt")
+        relative = item.get("path")
+        path = resolve(relative)
+        if relative == "portion-review.json" or relative in artifacts:
+            raise ValueError(f"Duplicate or reserved audit artifact path: {relative}")
+        digest = sha256(path)
+        if digest != item.get("sha256") or ("byte_size" in item and path.stat().st_size != item["byte_size"]):
+            raise ValueError(f"Audit artifact changed: {relative}")
+        artifacts[relative] = {"path": path, "sha256": digest}
+    for portion in report.get("portions", []):
+        review = portion["review_audio"]
+        artifact = artifacts.get(review["path"])
+        if artifact is None or artifact["sha256"] != review.get("sha256"):
+            raise ValueError(f"Source-pause audio lacks a matching audit receipt: {review['path']}")
+    return report, report_hash, artifacts
+
+
+def copy_audit_artifacts(audit, target, expected_report_sha256=None):
+    """Replace the managed audit export with an authenticated allowlist only."""
+    audit, target = Path(audit), Path(target)
+    _, report_hash, artifacts = audit_artifacts(audit, expected_report_sha256)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if target.is_symlink() or (target.exists() and not target.is_dir()):
+        raise ValueError("Audit export destination must be a real directory")
+    with tempfile.TemporaryDirectory(prefix=".room-audit-", dir=target.parent) as directory:
+        staged, backup = Path(directory) / "verified", Path(directory) / "previous"
+        staged.mkdir()
+        entries = {**artifacts, "portion-review.json": {"path": audit / "portion-review.json", "sha256": report_hash}}
+        for relative, item in entries.items():
+            destination = staged / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(item["path"], destination)
+            if sha256(destination) != item["sha256"]:
+                raise ValueError(f"Audit artifact changed during export: {relative}")
+        if target.exists():
+            target.replace(backup)
+        try:
+            staged.replace(target)
+        except OSError:
+            if backup.exists():
+                backup.replace(target)
+            raise
+
+
 def validate_inputs(source, refinement, audit, baseline, dialogue):
     """Bind the listening labels to the exact verified source and renders."""
     reports = {
@@ -209,9 +284,7 @@ def validate_inputs(source, refinement, audit, baseline, dialogue):
     context = data["refinement"].get("dialogue_context", {})
     if sha256(dialogue) != context.get("dialogue_sha256"):
         raise ValueError("Dialogue differs from the core used for the refinement context")
-    for item in data["audit"]["files"]:
-        if sha256(audit / item["path"]) != item["sha256"]:
-            raise ValueError(f"Audit artifact changed: {item['path']}")
+    audit_artifacts(audit, sha256(reports["audit"]))
     return {"source_sha256": source_hash,
             "input_report_sha256": {name: sha256(path) for name, path in reports.items()},
             "pause_inventory_sha256": data["refinement"]["pause_inventory_sha256"],
@@ -225,9 +298,9 @@ def write_player(out, layers, audit_path):
     Hosted comparisons now own interactive playback; direct media stays usable
     without its comparison script. Preserve handled AAC exports for the archive.
     """
-    audit = json.loads((audit_path / "portion-review.json").read_text())
+    audit, _, artifacts = audit_artifacts(audit_path)
     for portion in audit["portions"]:
-        encode(audit_path / portion["review_audio"]["path"],
+        encode(artifacts[portion["review_audio"]["path"]]["path"],
                out / "auditions" / f"{portion['portion_id']}-with-handles.m4a")
     write_hosted_gateway(out / "god-here-room-tone-review.html")
 
@@ -249,7 +322,8 @@ def write_hosted_gateway(path):
     Path(path).write_text(body)
 
 
-def export_edit_assets(refinement, audit, baseline, dialogue, out, expected_samples=112 * RATE):
+def export_edit_assets(refinement, audit, baseline, dialogue, out, expected_samples=112 * RATE,
+                       audit_report_sha256=None):
     """Retain source reviews and editable contributions with the comparison."""
     refinement, audit, baseline, dialogue, out = map(Path, (refinement, audit, baseline, dialogue, out))
     report = json.loads((refinement / "room-refinement-report.json").read_text())
@@ -265,7 +339,7 @@ def export_edit_assets(refinement, audit, baseline, dialogue, out, expected_samp
             target = out / "stems" / key / f"{band}.flac"
             receipt = encode(path, target, "flac", expected_samples)
             receipts[str(target.relative_to(out))] = receipt
-    shutil.copytree(audit, out / "source-pause-review", dirs_exist_ok=True)
+    copy_audit_artifacts(audit, out / "source-pause-review", audit_report_sha256)
     reference = out / "original-room-rack"
     reference.mkdir(exist_ok=True)
     for band in ("low", "mid", "high"):
@@ -417,7 +491,8 @@ def build(source, refinement, audit, baseline, dialogue, out):
                 out / "god-here-room-tone-dialogue-comparison.mp4")
     report["video_audio_assembly"] = "Single continuous AAC encode from exact-length PCM excerpts; video-only parts concatenated at exact frame boundaries"
     write_player(out, layer_paths, audit)
-    report.update(export_edit_assets(refinement, audit, baseline, dialogue, out, length))
+    report.update(export_edit_assets(refinement, audit, baseline, dialogue, out, length,
+                                    identity["input_report_sha256"]["audit"]))
     write_json(out / "listening-package-report.json", report)
     return report
 

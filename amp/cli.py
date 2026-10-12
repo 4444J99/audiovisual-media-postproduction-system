@@ -10,7 +10,7 @@ def main():
     parser.add_argument("--project", default="projects/god-here")
     parser.add_argument("--source")
     parser.add_argument("--audio")
-    parser.add_argument("--output", default="outputs")
+    parser.add_argument("--output")
     parser.add_argument("--start", type=float, default=0)
     parser.add_argument("--end", type=float)
     parser.add_argument("--width", type=int, default=1280)
@@ -28,6 +28,14 @@ def main():
     parser.add_argument("--locations")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
+    if args.command in ("revision", "replay"):
+        if args.output is None:
+            parser.error("revision/replay requires an explicit --output file, for example outputs/revision.mp4")
+        destination = Path(args.output)
+        if destination.is_dir() or not destination.suffix:
+            parser.error("revision/replay --output must be a movie filename with an extension")
+    elif args.output is None:
+        args.output = "outputs"
     if args.command == "execute":
         from .execution import execute, preflight
         from .media_resolver import ContractError, read_json

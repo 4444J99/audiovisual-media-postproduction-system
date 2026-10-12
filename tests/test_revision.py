@@ -87,13 +87,70 @@ class RevisionReviewRegressionTests(unittest.TestCase):
             with self.subTest(session=session),self.assertRaises(ValueError):
                 validate_session(session,CONFIG,112)
 
+    def test_revision_and_replay_require_explicit_output_file(self):
+        import io,tempfile
+        from contextlib import redirect_stderr,redirect_stdout
+        from unittest.mock import patch
+        from amp.cli import main
+        with tempfile.TemporaryDirectory() as tmp:
+            input_path=Path(tmp)/'input.json';input_path.write_text('{}')
+            for command,option in (('revision','--recipe'),('replay','--session')):
+                args=['amp',command,'--source','source.mp4','--audio','audio.wav',option,str(input_path)]
+                error=io.StringIO()
+                with self.subTest(command=command),patch('sys.argv',args),patch('amp.revision.render_revision',return_value={}) as renderer,patch('amp.revision.validate_session'),patch('amp.core.probe',return_value={'format':{'duration':'112'}}),redirect_stderr(error),redirect_stdout(io.StringIO()):
+                    with self.assertRaises(SystemExit) as stopped:main()
+                    self.assertEqual(stopped.exception.code,2)
+                    self.assertIn('explicit --output file',error.getvalue())
+                    renderer.assert_not_called()
+
+    def test_revision_and_replay_reject_directory_or_extensionless_output(self):
+        import io,tempfile
+        from contextlib import redirect_stderr
+        from unittest.mock import patch
+        from amp.cli import main
+        with tempfile.TemporaryDirectory() as tmp:
+            for command,option in (('revision','--recipe'),('replay','--session')):
+                for output in (tmp,str(Path(tmp)/'no-extension')):
+                    args=['amp',command,'--source','source.mp4','--audio','audio.wav',option,'input.json','--output',output]
+                    error=io.StringIO()
+                    with self.subTest(command=command,output=output),patch('sys.argv',args),redirect_stderr(error):
+                        with self.assertRaises(SystemExit) as stopped:main()
+                        self.assertEqual(stopped.exception.code,2)
+                        self.assertIn('movie filename with an extension',error.getvalue())
+
+    def test_revision_and_replay_pass_explicit_movie_output(self):
+        import io,tempfile
+        from contextlib import redirect_stdout
+        from unittest.mock import patch
+        from amp.cli import main
+        with tempfile.TemporaryDirectory() as tmp:
+            recipe=Path(tmp)/'recipe.json';recipe.write_text('{}')
+            session=Path(tmp)/'session.json';session.write_text(json.dumps({'schema_version':'1.0',
+                'project':CONFIG['project'],'score_version':CONFIG['score_version'],'source_sha256':CONFIG['source_sha256'],
+                'reduced_motion':False,'events':[]}))
+            for command,option,value in (('revision','--recipe',recipe),('replay','--session',session)):
+                output=str(Path(tmp)/f'{command}.mp4')
+                args=['amp',command,'--source','source.mp4','--audio','audio.wav',option,str(value),'--output',output]
+                with self.subTest(command=command),patch('sys.argv',args),patch('amp.core.probe',return_value={'format':{'duration':'112'}}),patch('amp.revision.render_revision',return_value={}) as renderer,redirect_stdout(io.StringIO()):
+                    main()
+                    self.assertEqual(renderer.call_args.args[4],output)
+
+    def test_audio_command_retains_its_directory_output_default(self):
+        import io
+        from contextlib import redirect_stdout
+        from unittest.mock import patch
+        from amp.cli import main
+        with patch('sys.argv',['amp','audio','--source','source.mp4']),patch('amp.audio.make_candidates',return_value={}) as prepare,patch('amp.audio.expressive_audio'),redirect_stdout(io.StringIO()):
+            main()
+        self.assertEqual(prepare.call_args.args[2],'outputs')
+
     def test_cli_rejects_explicit_null_replay_before_rendering(self):
         import tempfile
         from unittest.mock import patch
         from amp.cli import main
         with tempfile.TemporaryDirectory() as tmp:
             path=Path(tmp)/'session.json';path.write_text('null')
-            args=['amp','replay','--source','source.mp4','--audio','sound.wav','--session',str(path)]
+            args=['amp','replay','--source','source.mp4','--audio','sound.wav','--session',str(path),'--output',str(Path(tmp)/'replay.mp4')]
             with patch('sys.argv',args),patch('amp.core.probe',return_value={'format':{'duration':'112'}}),patch('amp.revision.render_revision') as render:
                 with self.assertRaisesRegex(ValueError,'Session must be an object'):main()
                 render.assert_not_called()

@@ -30,6 +30,39 @@ def timestamp():
     return datetime.datetime.now(datetime.timezone.utc).isoformat()
 
 
+def tracked_identities(repo):
+    tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=repo).decode().split("\0")
+    return {name: sha256(repo / name) for name in tracked if name}
+
+
+def completion_identity(repo, source, source_hash, tracked_hashes, commit):
+    """A successful subprocess exit cannot override changed production inputs."""
+    final = {"source_unchanged": False, "tracked_files_unchanged": False,
+             "worktree_finally_clean": False, "revision_unchanged": False,
+             "source_sha256_final": None, "tracked_file_sha256_final": None,
+             "commit_final": None, "identity_check_errors": []}
+    try:
+        final["source_sha256_final"] = sha256(source)
+        final["source_unchanged"] = final["source_sha256_final"] == source_hash
+    except OSError:
+        final["identity_check_errors"].append("source_unavailable")
+    try:
+        final["tracked_file_sha256_final"] = tracked_identities(repo)
+        final["tracked_files_unchanged"] = final["tracked_file_sha256_final"] == tracked_hashes
+    except (OSError, subprocess.SubprocessError):
+        final["identity_check_errors"].append("tracked_files_unavailable")
+    try:
+        final["commit_final"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip()
+        final["revision_unchanged"] = final["commit_final"] == commit
+        final["worktree_finally_clean"] = not subprocess.check_output(
+            ["git", "status", "--porcelain"], cwd=repo, text=True)
+    except (OSError, subprocess.SubprocessError):
+        final["identity_check_errors"].append("repository_state_unavailable")
+    final["execution_inputs_unchanged"] = all(final[key] is True for key in (
+        "source_unchanged", "tracked_files_unchanged", "worktree_finally_clean", "revision_unchanged"))
+    return final
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", required=True, type=Path)
@@ -54,8 +87,7 @@ def main():
     environment = os.environ.copy()
     for key in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
         environment[key] = "2"
-    tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=repo).decode().split("\0")
-    tracked_hashes = {name: sha256(repo / name) for name in tracked if name}
+    tracked_hashes = tracked_identities(repo)
     commands = [
         ("validate", [sys.executable, "-m", "amp.cli", "validate"]),
         ("audio", [sys.executable, "-m", "amp.cli", "audio", "--source", str(source),
@@ -114,12 +146,14 @@ def main():
             receipt.update(status="failed", failed_step=name, finished_at_utc=timestamp())
             save()
             return process.returncode
-    receipt.update(status="recipe_completed_validation_pending", finished_at_utc=timestamp(),
-                   source_unchanged=sha256(source) == source_hash,
-                   worktree_finally_clean=not subprocess.check_output(
-                       ["git", "status", "--porcelain"], cwd=repo, text=True))
+    receipt.update(completion_identity(repo, source, source_hash, tracked_hashes, commit))
+    receipt.update(status="recipe_completed_validation_pending" if receipt["execution_inputs_unchanged"] else "failed",
+                   finished_at_utc=timestamp())
+    if not receipt["execution_inputs_unchanged"]:
+        receipt["failed_step"] = "final_input_identity"
+        receipt["code_modified"] = not receipt["tracked_files_unchanged"] or not receipt["revision_unchanged"]
     save()
-    return 0
+    return 0 if receipt["execution_inputs_unchanged"] else 1
 
 
 if __name__ == "__main__":

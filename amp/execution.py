@@ -322,7 +322,7 @@ def preflight(binding_path, *, locations=None, inventories=(), repo_root=REPO_RO
         if "font" in inputs:
             # This native renderer has a fixed font; don't claim an unused font is consumed.
             resolver.verify(REVISION_FONT, inputs["font"], "native-fixed-font")
-        require(not recipe.get("camera") or "track" in inputs, "missing_dependency", "track")
+        require(("track" in inputs) == bool(recipe.get("camera")), "missing_or_unused_dependency", "track")
         if "track" in inputs:
             track = read_json(plan.paths["track"], role="track")
             native_validation(validate_track, track, recipe, binding["source_clock"], role="track")

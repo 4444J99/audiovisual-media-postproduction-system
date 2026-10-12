@@ -12,7 +12,10 @@ from urllib.parse import unquote, urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from tools.package_room_refinement import validate_encoded
-from tools.package_room_stretch_site import R2_ROOM_MOVIE_URLS, site_targets, validate_static_assets
+from tools.package_room_stretch_site import PERIODS, R2_ROOM_MOVIE_URLS, site_targets, validate_static_assets
+from amp.core import sha256
+
+RATE = 48000
 
 
 def run(args):
@@ -42,6 +45,138 @@ def resolve_url(base, value, *, downloads=None):
     if not path.is_relative_to(root.resolve()) or not path.is_file() or path.stat().st_size == 0:
         raise ValueError(f"Missing or out-of-route asset: {value}")
     return path
+
+
+def require_identity(path, expected):
+    if not expected or sha256(path) != expected:
+        raise ValueError(f"Media receipt missing or identity changed: {path.name}")
+
+
+def read_bound_record(base, relative, expected):
+    path = resolve_url(base, relative)
+    require_identity(path, expected)
+    return json.loads(path.read_text())
+
+
+def verify_media_decode(path, samples, codec, *, video=False):
+    """Inspect the clock/encoding and fully decode; a matching digest alone is insufficient."""
+    if not isinstance(samples, int) or samples <= 0:
+        raise ValueError(f"Missing expected sample count: {path.name}")
+    data = probe(path)
+    audio = [stream for stream in data["streams"] if stream["codec_type"] == "audio"]
+    pictures = [stream for stream in data["streams"] if stream["codec_type"] == "video"]
+    if (len(audio) != 1 or len(pictures) != int(video) or
+            int(audio[0].get("sample_rate", 0)) != RATE or audio[0].get("channels") != 2):
+        raise ValueError(f"Invalid media streams: {path.name}")
+    stream = audio[0]
+    actual_codec = stream.get("codec_name", "")
+    if actual_codec != codec and not (codec == "pcm" and actual_codec.startswith("pcm_")):
+        raise ValueError(f"Unexpected audio codec: {path.name}")
+    seconds = samples / RATE
+    duration = float(stream.get("duration", data.get("format", {}).get("duration", "nan")))
+    start = float(stream.get("start_time", 0))
+    tolerance = .024 if codec == "aac" else 1 / RATE
+    if not math.isfinite(duration) or not math.isfinite(start) or abs(duration - seconds) > tolerance or abs(start) > .001:
+        raise ValueError(f"Media timeline mismatch: {path.name}")
+    # validate_encoded treats FLAC as exact-length PCM. The same zero-padding
+    # rule applies to WAV exports, even though their probe codec is pcm_*.
+    decoded = validate_encoded(path, samples, "aac" if codec == "aac" else "flac")
+    if video:
+        picture = pictures[0]
+        picture_duration = float(picture.get("duration", "nan"))
+        picture_start = float(picture.get("start_time", 0))
+        if (picture.get("codec_name") != "h264" or picture.get("pix_fmt") != "yuv420p" or
+                picture.get("r_frame_rate") != "30/1" or int(picture.get("nb_frames", -1)) != round(seconds * 30) or
+                not math.isfinite(picture_duration) or abs(picture_duration - seconds) > .001 or
+                not math.isfinite(picture_start) or abs(picture_start) > .001):
+            raise ValueError(f"Comparison picture timeline/encoding mismatch: {path.name}")
+        result = subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-xerror", "-err_detect", "explode",
+                                 "-i", str(path), "-map", "0:v:0", "-f", "null", "-"],
+                                capture_output=True, check=True)
+        if result.stderr.strip():
+            raise ValueError(f"Comparison picture failed full decoding: {path.name}")
+    return {**decoded, "audio_codec": actual_codec, "picture_fully_decoded": video}
+
+
+def verify_nontrack_media(base, manifest, *, downloads=None):
+    """Bind every pause, comparison and audio download to its producing receipt."""
+    verification = json.loads(resolve_url(base, "records/site-media-verification.json").read_text())
+    preparation = read_bound_record(base, "records/site-preparation.json", verification.get("preparation_receipt_sha256"))
+    prior = read_bound_record(base, "records/previous-listening-package-report.json", verification.get("prior_report_sha256"))
+    stretch = read_bound_record(base, "records/room-stretch-report.json", verification.get("stretch_report_sha256"))
+    if not verification.get("source_sha256") or any(record.get("source_sha256") != verification["source_sha256"]
+                                                   for record in [preparation, prior, stretch]):
+        raise ValueError("Media receipt source identities disagree")
+    if preparation.get("prior_report_sha256") != verification["prior_report_sha256"]:
+        raise ValueError("Prepared media and comparison report identities disagree")
+    delivery = read_bound_record(base, "records/previous-delivery-manifest.json", preparation.get("comparison_receipt_sha256"))
+    if delivery.get("schema_version") != "amps.room-delivery.v1" or not isinstance(delivery.get("files"), list):
+        raise ValueError("Invalid prior delivery receipt")
+    prior_hashes = {}
+    for entry in delivery["files"]:
+        name = entry["path"]
+        if name in prior_hashes:
+            raise ValueError("Ambiguous prior delivery receipt: " + name)
+        prior_hashes[name] = entry.get("sha256")
+    if prior_hashes.get("listening-package-report.json") != verification["prior_report_sha256"]:
+        raise ValueError("Prior delivery receipt belongs to another comparison report")
+    audit = read_bound_record(base, "records/source-pause-review/portion-review.json", prior.get("input_report_sha256", {}).get("audit"))
+    if audit.get("source_sha256") != verification["source_sha256"]:
+        raise ValueError("Source-pause receipt belongs to another source")
+    portions = {entry["portion_id"]: entry for entry in audit["portions"]}
+    if len(portions) != len(audit["portions"]):
+        raise ValueError("Ambiguous source-pause receipt")
+    specs = {}
+    for item in manifest["pauses"]:
+        entry = portions.get(item["id"])
+        if entry is None:
+            raise ValueError("Pause has no source receipt: " + item["id"])
+        duration = entry["handle_end"] - entry["handle_start"]
+        for field, expected in [("duration", duration), ("handleStart", entry["handle_start"]),
+                                ("sourceStart", entry["source_start"]), ("sourceEnd", entry["source_end"])]:
+            if not math.isfinite(item[field]) or abs(item[field] - expected) > 1 / RATE:
+                raise ValueError("Source-pause clock differs from receipt: " + item["id"])
+        url = f"media/{item['id']}-with-handles.m4a"
+        if item["url"] != url:
+            raise ValueError("Source-pause URL differs from receipt: " + item["id"])
+        specs[url] = (preparation.get("files", {}).get(url), round(duration * RATE), "aac", False)
+    for item in manifest["videos"]:
+        seconds = {"quick": 60, "dialogue": 150}.get(item["id"])
+        name = f"god-here-room-tone-{item['id']}-comparison.mp4"
+        url = "media/" + name
+        if seconds is None or item["url"] != url:
+            raise ValueError("Unknown inherited comparison movie")
+        digest = prior_hashes.get(name)
+        if not digest or preparation.get("files", {}).get(url) != digest:
+            raise ValueError("Comparison movie receipt missing or disagrees: " + name)
+        specs[url] = (digest, seconds * RATE, "aac", True)
+    for entry in [*stretch["layers"], *stretch["stacks"]]:
+        key = entry["id"]
+        if "period_seconds" in entry:
+            key = key[0] + "L" + str(PERIODS.index(entry["period_seconds"]) + 1)
+        specs[f"downloads/stretched/{key}.flac"] = (entry.get("receipts", {}).get("flac", {}).get("sha256"), 112 * RATE, "flac", False)
+    for field in ["source_reel_raw", "source_reel_processed"]:
+        entry = stretch[field]
+        specs["records/" + Path(entry["file"]).name] = (entry.get("sha256"), entry.get("samples_per_channel"), "pcm", False)
+    for name, digest in prior_hashes.items():
+        if name.endswith(".flac") and name.split("/")[0] in {"full-length", "stems", "original-room-rack"}:
+            specs["downloads/previous/" + name] = (digest, 112 * RATE, "flac", False)
+        elif name.startswith("auditions/original-") and name.endswith(".m4a"):
+            specs["media/" + Path(name).name] = (digest, 30 * RATE, "aac", False)
+    decoded = []
+    for group in ["pauses", "videos", "downloads"]:
+        for item in manifest[group]:
+            url = item["url"]
+            path = resolve_url(base, url, downloads=downloads)
+            if path.suffix.lower() not in {".aac", ".m4a", ".mp3", ".mp4", ".wav", ".flac"}:
+                continue
+            if url not in specs:
+                raise ValueError("No producing receipt for media: " + url)
+            digest, samples, codec, is_video = specs[url]
+            require_identity(path, digest)
+            receipt = verify_media_decode(path, samples, codec, video=is_video)
+            decoded.append({"file": url, "sha256": digest, "expected_source_samples": samples, **receipt})
+    return decoded
 
 
 def check(site):
@@ -95,6 +230,7 @@ def check(site):
         for item in manifest[group]:
             path = resolve_url(base, item["url"], downloads=targets.downloads)
             verified.append(item["url"])
+    nontrack_media_decodes = verify_nontrack_media(base, manifest, downloads=targets.downloads)
     for prefix in ["V", "P"]:
         periods = [next(item for item in manifest["tracks"] if item["id"] == f"{prefix}L{i}")["periodSeconds"] for i in range(1, 6)]
         if periods != [112, 84, 56, 28, 14]:
@@ -109,6 +245,7 @@ def check(site):
     return {"track_count": len(keys), "unique_media_and_download_urls_verified": len(set(verified)), "context_movies": movies,
             "static_source_root": str(targets.assets), "lossless_source_root": str(targets.downloads), "lossless_storage": targets.storage,
             "final_audio_decodes": final_audio_decodes,
+            "nontrack_media_decodes": nontrack_media_decodes,
             "source_picture_fully_decoded": True, "source_picture_packet_sha256": picture_hash,
             "all_context_movies_share_picture_and_source_clock": True,
             "all_static_assets_under_25_mib": True,

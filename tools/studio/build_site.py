@@ -7,6 +7,7 @@ Protected recovered tools and project snapshots require an owner-only deployment
 """
 from __future__ import annotations
 import argparse
+import csv
 import hashlib
 import html
 import json
@@ -15,6 +16,7 @@ import shutil
 import zipfile
 
 SOURCE_SHA = 'bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225'
+CATALOG_PATH = Path(__file__).resolve().parents[2] / 'manifests/artifacts/god-here-recovery-catalog.json'
 MAIN = 'https://god-here-five-realities.ajpadavano.chatgpt.site/'
 LIBRARY_TOOLS = {
     'god-here-study-03-player.html': ('studies/study-03.html', 'study-03'),
@@ -23,6 +25,23 @@ LIBRARY_TOOLS = {
     'god-here-layer-study-03.html': ('studies/layers.html', 'layers'),
 }
 FONT_SUFFIXES = {'.ttf','.otf','.woff','.woff2','.eot'}
+REVIEW_ASSETS = (
+    'god-here-review-workbench.html',
+    'source/original-film.mp4',
+    'source/god-here-character-timeline.xlsx',
+    'source/workbook-values.json',
+    'source/god-here-character-timeline.json',
+    'source/god-here-character-timeline.csv',
+    'source/god-here-character-timeline.md',
+)
+LAYOUT_STUDIES = (
+    '01-unfolded-room', '02-five-territories', '03-sender-channel-receiver',
+    '04-opposing-angle-duplex', '05-face-body-world', '06-travelling-attention',
+    '07-temporal-accumulation', '08-architecture-of-vacancy',
+)
+LAYOUT_FILENAMES = frozenset(f'{study}-{orientation}.mp4'
+                           for study in LAYOUT_STUDIES
+                           for orientation in ('horizontal', 'vertical'))
 
 def allowed_asset(path: Path) -> bool:
     return path.suffix.lower() not in FONT_SUFFIXES and not path.is_symlink()
@@ -41,6 +60,51 @@ def copy_exact(src: Path, dest: Path) -> None:
     dest.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(src,dest)
     if sha256(src)!=sha256(dest): raise ValueError(f'Copy mismatch: {src.name}')
+
+def validate_review_package(work: Path, catalog_path: Path) -> dict[str, str]:
+    """Authenticate every mounted review artifact against repository-held evidence."""
+    objects = json.loads(catalog_path.read_text())['objects']
+    identities = {}
+    for relative in REVIEW_ASSETS:
+        src = work / relative
+        if not src.is_file() or not allowed_asset(src):
+            raise ValueError(f'Required source-review asset is missing or unsupported: {relative}')
+        retained = {(row['sha256'], row['bytes']) for row in objects
+                    if src.name in row.get('logical_names', [])}
+        if len(retained) != 1:
+            raise ValueError(f'Missing or ambiguous retained identity: {src.name}')
+        expected, size = retained.pop()
+        if src.stat().st_size != size:
+            raise ValueError(f'Identity mismatch: {src.name} (size)')
+        require_hash(src, expected)
+        identities[relative] = expected
+    if identities['source/original-film.mp4'] != SOURCE_SHA:
+        raise ValueError('Source-review package does not use the registered source film')
+    # The UI advertises this particular 174-record annotation pass. A future
+    # catalog update must not silently change the count or cross-file alignment.
+    timeline = json.loads((work / 'source/god-here-character-timeline.json').read_text())
+    if (timeline.get('metadata', {}).get('source_video_sha256') != SOURCE_SHA
+            or len(timeline.get('master_events', [])) != 174
+            or len(timeline.get('dialogue', [])) != 35
+            or len(timeline.get('performance', [])) != 139):
+        raise ValueError('Expected the registered 174-record source-review timeline')
+    event_ids = [row.get('event_id') for row in timeline['master_events']]
+    if any(not isinstance(identifier, str) or not identifier for identifier in event_ids) or len(set(event_ids)) != 174:
+        raise ValueError('Source-review timeline requires 174 unique event IDs')
+    with (work / 'source/god-here-character-timeline.csv').open(encoding='utf-8-sig', newline='') as stream:
+        csv_ids = [row.get('event_id') for row in csv.DictReader(stream)]
+    values = json.loads((work / 'source/workbook-values.json').read_text())
+    workbook_rows = values.get('Timeline', [])
+    workbook_ids = [row[0] if isinstance(row, list) and row else None
+                    for row in workbook_rows[6:]]
+    if csv_ids != event_ids or workbook_ids != event_ids:
+        raise ValueError('Source-review workbook/CSV must retain the same 174 timeline IDs in order')
+    return identities
+
+def copy_review_asset(work: Path, relative: str, dest: Path, identities: dict[str, str]) -> None:
+    copy_exact(work / relative, dest)
+    # Bind the actual mounted bytes too, including a source changed after preflight.
+    require_hash(dest, identities[relative])
 
 def mount_record(src: Path, href: str, kind: str, workspace: str|None=None) -> dict:
     row = {'sha256':sha256(src),'bytes':src.stat().st_size,'names':[src.name],'type':kind,
@@ -63,16 +127,53 @@ def patch_player(text: str, tool: str) -> str:
         text=text.replace(old,"try{"+old+"}catch{toast('Evaluation exported. Browser-local recovery is unavailable.');}")
     return text
 
-def extract_layouts(archive: Path, dest: Path) -> list[Path]:
+def retained_layout_identities(catalog_path: Path) -> dict[str, tuple[str, int]]:
+    """Select the early six-second edition, not later clips with the same names."""
+    catalog=json.loads(catalog_path.read_text())
+    packages={row['sha256'] for row in catalog['objects']
+              if 'god-here-eight-suggestions-package.zip' in row.get('logical_names', [])}
+    if len(packages)!=1:
+        raise ValueError('Missing or ambiguous retained layout package identity')
+    package=packages.pop()
+    members={row['origin_id']:Path(row['member_path']).name for row in catalog['origins']
+             if row.get('kind')=='archive_member' and row.get('container_sha256')==package
+             and row.get('member_path_safe') is True and row.get('container_identity_verified') is True
+             and Path(row['member_path']).suffix=='.mp4'}
+    identities={}
+    for row in catalog['objects']:
+        for origin in row.get('origin_ids', []):
+            if origin in members:
+                identities.setdefault(members[origin],set()).add((row['sha256'],row['bytes']))
+    if set(identities)!=LAYOUT_FILENAMES or any(len(values)!=1 for values in identities.values()):
+        raise ValueError('Retained layout package must identify the exact 16 unique clips')
+    return {name:values.pop() for name,values in identities.items()}
+
+def extract_layouts(archive: Path, dest: Path, catalog_path: Path=CATALOG_PATH) -> list[Path]:
     result=[]
     with zipfile.ZipFile(archive) as z:
+        selected={}
         for item in z.infolist():
             p=Path(item.filename)
             if p.is_absolute() or '..' in p.parts:raise ValueError('Unsafe archive member')
-            if p.suffix!='.mp4':continue
+            if item.is_dir() or p.suffix!='.mp4':continue
+            if p.name in selected:raise ValueError(f'Duplicate layout basename: {p.name}')
+            if item.file_size>16*1024*1024:raise ValueError('Unexpectedly large layout member')
+            selected[p.name]=item
+        if set(selected)!=LAYOUT_FILENAMES:
+            raise ValueError('Expected the exact 16 unique horizontal/vertical layout filenames')
+        identities=retained_layout_identities(catalog_path)
+        verified={}
+        for name,item in sorted(selected.items()):
+            expected,size=identities[name]
+            if item.file_size!=size:raise ValueError(f'Layout identity mismatch: {name} (size)')
             data=z.read(item)
             if len(data)>16*1024*1024:raise ValueError('Unexpectedly large layout member')
-            out=dest/p.name;out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(data);result.append(out)
+            if len(data)!=size or hashlib.sha256(data).hexdigest()!=expected:
+                raise ValueError(f'Layout identity mismatch: {name}')
+            verified[name]=data
+        # Reject an invalid package before writing even one playable clip.
+        for name,data in verified.items():
+            out=dest/name;out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(data);result.append(out)
     return result
 
 def write_json(path:Path,data:dict|list)->None:
@@ -87,9 +188,9 @@ def document_page(title:str,text:str)->str:
 def build(args:argparse.Namespace)->dict:
     repo=Path(__file__).resolve().parents[2];out=Path(args.output)
     if out.exists() and any(out.iterdir()):raise ValueError('Output must be empty; existing sites are never erased')
-    out.mkdir(parents=True,exist_ok=True)
     live=Path(args.live_capture);work=Path(args.review_package);lib=Path(args.library)
-    require_hash(work/'source/original-film.mp4',SOURCE_SHA)
+    review_identities=validate_review_package(work,repo/'manifests/artifacts/god-here-recovery-catalog.json')
+    out.mkdir(parents=True,exist_ok=True)
     mounts={};protected=[];documents=[];sources=[]
     # Current captured site files take precedence over repository snapshots.
     # Never overlay a live media path with a guessed or reconstructed substitute.
@@ -103,14 +204,14 @@ def build(args:argparse.Namespace)->dict:
     copy_exact(old,out/'experience.html')
     copy_exact(repo/'web/studio/index.template.html',old)
     player=work/'god-here-review-workbench.html'
-    copy_exact(player,out/'review-workbench/index.html')
+    copy_review_asset(work,'god-here-review-workbench.html',out/'review-workbench/index.html',review_identities)
     r=mount_record(player,'/review-workbench/index.html','code','review');mounts[r['sha256']]=r
     for name,kind in [('god-here-character-timeline.xlsx','data'),('workbook-values.json','data'),
                       ('original-film.mp4','video')]:
-        src=work/'source'/name;dest='review-workbench/source/'+name;copy_exact(src,out/dest)
+        src=work/'source'/name;dest='review-workbench/source/'+name;copy_review_asset(work,'source/'+name,out/dest,review_identities)
         r=mount_record(src,'/'+dest,kind,'review' if kind=='data' else None);mounts[r['sha256']]=r
     for name,kind in [('god-here-character-timeline.json','data'),('god-here-character-timeline.csv','data'),('god-here-character-timeline.md','document')]:
-        src=work/'source'/name;dest='review-workbench/source/'+name;copy_exact(src,out/dest)
+        src=work/'source'/name;dest='review-workbench/source/'+name;copy_review_asset(work,'source/'+name,out/dest,review_identities)
         r=mount_record(src,'/'+dest,kind,'review');mounts[r['sha256']]=r
     for name,(target,tool) in LIBRARY_TOOLS.items():
         src=lib/name
@@ -121,7 +222,6 @@ def build(args:argparse.Namespace)->dict:
         if r['sha256']!=sha256(src):
             original=mount_record(src,'/'+target,'code',tool);original['links']=[];original['availability']='privately_preserved';original['derivative_sha256']=r['sha256'];mounts[original['sha256']]=original
     layout_paths=extract_layouts(Path(args.layouts),out/'studio/layout-media')
-    if len(layout_paths)!=16:raise ValueError('Expected 16 layout studies; do not publish a partial selector')
     for src in layout_paths:
         r=mount_record(src,'/'+str(src.relative_to(out)),'video','layouts');mounts[r['sha256']]=r
     write_json(out/'studio/layouts.json',[{'filename':p.name,'href':'layout-media/'+p.name,'sha256':sha256(p)} for p in layout_paths])

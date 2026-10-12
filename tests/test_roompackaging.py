@@ -121,6 +121,7 @@ class RoomPackagingTests(unittest.TestCase):
         report = {"candidates": {key: {"stems": {band: item for band in ("low", "mid", "high")}}
                                  for key in ("B", "C", "D", "E")}}
         (refinement / "room-refinement-report.json").write_text(json.dumps(report))
+        (audit / "portion-review.json").write_text(json.dumps({"files": [], "portions": []}))
         (baseline / "room-rack-report.json").write_text("{}")
         stem = baseline / "low-dry-contribution.flac"
         packaging.encode(self.source, stem, "flac")
@@ -135,6 +136,60 @@ class RoomPackagingTests(unittest.TestCase):
         for audio_receipt in receipt["editable_audio_verification"].values():
             self.assertTrue(audio_receipt["full_decode_verified"])
             self.assertEqual(audio_receipt["decoded_samples"], RATE)
+
+    def test_audit_export_omits_unlisted_private_and_stale_files(self):
+        audit, target = self.root / "audit", self.root / "delivery/source-pause-review"
+        audit.mkdir()
+        (audit / "review.wav").write_bytes(self.source.read_bytes())
+        (audit / "private-notes.txt").write_text("Private material unrelated to the audit")
+        (audit / "external-link").symlink_to(self.source)
+        report = {"files": [{"path": "review.wav", "sha256": sha256(audit / "review.wav")}], "portions": []}
+        (audit / "portion-review.json").write_text(json.dumps(report))
+        target.mkdir(parents=True)
+        (target / "old-private.txt").write_text("Unlisted artifact from an earlier copy")
+        packaging.copy_audit_artifacts(audit, target, sha256(audit / "portion-review.json"))
+        self.assertEqual({p.name for p in target.iterdir()}, {"review.wav", "portion-review.json"})
+        self.assertEqual(sha256(target / "review.wav"), report["files"][0]["sha256"])
+        self.assertFalse(list(target.parent.glob(".room-audit-*")))
+
+    def test_tampered_listed_audit_file_is_rejected_without_replacing_export(self):
+        audit, target = self.root / "audit", self.root / "export"
+        audit.mkdir()
+        (audit / "review.wav").write_bytes(self.source.read_bytes())
+        report = {"files": [{"path": "review.wav", "sha256": sha256(audit / "review.wav")}], "portions": []}
+        (audit / "portion-review.json").write_text(json.dumps(report))
+        packaging.copy_audit_artifacts(audit, target)
+        original = (target / "review.wav").read_bytes()
+        (audit / "review.wav").write_bytes(b"replacement payload")
+        with self.assertRaisesRegex(ValueError, "Audit artifact changed"):
+            packaging.copy_audit_artifacts(audit, target)
+        self.assertEqual((target / "review.wav").read_bytes(), original)
+
+    def test_audit_receipts_cannot_traverse_or_follow_symlinks(self):
+        audit = self.root / "audit"
+        audit.mkdir()
+        (audit / "link.wav").symlink_to(self.source)
+        (audit / "linked-directory").symlink_to(self.root, target_is_directory=True)
+        for relative in ("../source.wav", str(self.source), "link.wav", "linked-directory/source.wav"):
+            with self.subTest(relative=relative):
+                report = {"files": [{"path": relative, "sha256": sha256(self.source)}], "portions": []}
+                (audit / "portion-review.json").write_text(json.dumps(report))
+                with self.assertRaisesRegex(ValueError, "Unsafe|symlink|escaping"):
+                    packaging.copy_audit_artifacts(audit, self.root / "export")
+                self.assertFalse((self.root / "export").exists())
+
+    def test_changed_audit_report_and_unlisted_pause_reference_are_rejected(self):
+        audit = self.root / "audit"
+        audit.mkdir()
+        report_path = audit / "portion-review.json"
+        report_path.write_text(json.dumps({"files": [], "portions": []}))
+        report_hash = sha256(report_path)
+        report = {"files": [], "portions": [{"review_audio": {"path": "private.wav", "sha256": "0" * 64}}]}
+        report_path.write_text(json.dumps(report))
+        with self.assertRaisesRegex(ValueError, "Audit report changed"):
+            packaging.copy_audit_artifacts(audit, self.root / "export", report_hash)
+        with self.assertRaisesRegex(ValueError, "lacks a matching audit receipt"):
+            packaging.copy_audit_artifacts(audit, self.root / "export")
 
     def test_shared_gain_bounds_coincident_stem_peaks(self):
         # Sparse coincident transients have enough crest factor for headroom,

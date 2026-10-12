@@ -7,12 +7,17 @@ import datetime
 import hashlib
 import json
 from pathlib import Path
+import re
 import subprocess
+import sys
 import time
 
 import numpy as np
 from scipy import signal
 from scipy.io import wavfile
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from tools.recovery.run_existing_recipe import EXPECTED_SOURCE_SHA256, PINNED_COMMIT, tracked_identities
 
 
 def sha256(path):
@@ -25,6 +30,33 @@ def sha256(path):
 
 def utc():
     return datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+
+def verify_execution_identity(execution, repo):
+    """Reject legacy or contradictory completion claims before inspecting media."""
+    flags = ("worktree_initially_clean", "source_unchanged", "tracked_files_unchanged",
+             "worktree_finally_clean", "revision_unchanged", "execution_inputs_unchanged")
+    identities = execution.get("tracked_file_sha256")
+    if (execution.get("status") != "recipe_completed_validation_pending"
+            or any(execution.get(key) is not True for key in flags)
+            or execution.get("identity_check_errors") != []
+            or execution.get("source_sha256") != EXPECTED_SOURCE_SHA256
+            or execution.get("source_sha256_final") != EXPECTED_SOURCE_SHA256
+            or execution.get("pinned_main_commit") != PINNED_COMMIT
+            or execution.get("commit_final") != PINNED_COMMIT
+            or not isinstance(identities, dict) or not identities
+            or execution.get("tracked_file_sha256_final") != identities
+            or any(not isinstance(value, str) or re.fullmatch(r"[0-9a-f]{64}", value) is None
+                   for value in identities.values())):
+        raise SystemExit("A completed recipe with unchanged source, tracked files, revision, and clean worktree is required.")
+    try:
+        current_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repo, text=True).strip()
+        clean = not subprocess.check_output(["git", "status", "--porcelain"], cwd=repo, text=True)
+        unchanged = tracked_identities(repo) == identities
+    except (OSError, subprocess.SubprocessError):
+        raise SystemExit("Cannot authenticate the repository used for independent validation.") from None
+    if current_commit != PINNED_COMMIT or not clean or not unchanged:
+        raise SystemExit("Repository changed after execution; independent validation is blocked.")
 
 
 def probe_and_decode(path):
@@ -107,8 +139,7 @@ def main():
     args = parser.parse_args()
     repo, output, evidence = (path.resolve() for path in (args.repo, args.output, args.evidence))
     execution = json.loads((evidence / "execution-receipt.json").read_text())
-    if execution["status"] != "recipe_completed_validation_pending":
-        raise SystemExit("Only a completed recipe can enter this validation gate.")
+    verify_execution_identity(execution, repo)
     historical = json.loads((repo / "projects/god-here/production-validation.json").read_text())
     expected = {item["name"]: item for item in historical["outputs"]}
     report = {
