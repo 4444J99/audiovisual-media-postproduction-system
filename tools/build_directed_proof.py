@@ -14,6 +14,18 @@ from amp.revision import render_revision, track_region, timing_map
 from amp.workstation import export_workstation
 
 
+def prepare_audio(source, transcript, config, audio):
+    """Resume audio preparation after either stage was interrupted."""
+    audio = Path(audio)
+    rebuild_candidates = not all((audio / name).is_file() for name in ('candidate-A.wav', 'candidate-B.wav', 'audio-report.json'))
+    if rebuild_candidates:
+        make_candidates(source, transcript, audio)
+    expressive_files = ['expressive-mix.wav', 'expressive-returns.wav', 'expressive-report.json']
+    expressive_files += [f'return-{pid}.wav' for pid in config['performers']]
+    if rebuild_candidates or not all((audio / name).is_file() for name in expressive_files):
+        expressive_audio(audio / 'candidate-B.wav', config, audio)
+
+
 def build(source, root):
     source=Path(source).resolve();root=Path(root).resolve();root.mkdir(parents=True,exist_ok=True)
     project=Path(__file__).resolve().parents[1]/'projects/god-here'
@@ -22,9 +34,7 @@ def build(source, root):
     if sha256(source)!=config['source_sha256']:
         raise ValueError('Incorrect supplied film')
     audio=root/'audio'
-    if not (audio/'candidate-B.wav').exists():
-        make_candidates(source,transcript,audio)
-        expressive_audio(audio/'candidate-B.wav',config,audio)
+    prepare_audio(source, transcript, config, audio)
     print('Audio candidates and independent effect returns prepared',flush=True)
     base={'schema_version':'1.0','source_sha256':config['source_sha256'],
           'original_note':'Let the closing disclosure register before the group resumes its word game.',

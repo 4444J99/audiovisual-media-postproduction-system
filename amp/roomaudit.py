@@ -310,6 +310,8 @@ def build_audit(source, inventory_path, out, *, handles=1., review_rms_dbfs=-24.
     if handles < 0 or handles > 10 or not -60 <= review_rms_dbfs <= -6:
         raise ValueError("Use 0-10 second handles and a -60 to -6 dBFS review target")
     source, inventory_path, out = Path(source), Path(inventory_path), Path(out)
+    if out.exists() and any(out.iterdir()):
+        raise ValueError("Audit output directory must be empty; preserve earlier audits separately")
     inventory = json.loads(inventory_path.read_text())
     source_hash, inventory_hash = sha256(source), sha256(inventory_path)
     if inventory.get("source_sha256") != source_hash:

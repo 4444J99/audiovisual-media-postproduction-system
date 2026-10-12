@@ -1,0 +1,235 @@
+{
+  "schema": "amps.foundation-crosswalk.v1",
+  "source_commit": "bb479256be5fd802ef536b6417f1fea445d596be",
+  "inspected_target_head": "06239ea898cc8430b8ced792732e6253e2c96372",
+  "epics": [
+    {
+      "foundation_epic": "FND",
+      "title": "Source custody and engineering foundation",
+      "mapping_kind": "scope crosswalk, not completion equivalence",
+      "related_task_ids": [
+        "GHERE-001",
+        "GHERE-002",
+        "GHERE-003",
+        "GHERE-004",
+        "GHERE-005"
+      ],
+      "current_paths": [
+        "projects/god-here/source-registration.json",
+        "projects/god-here/backlog.json",
+        "projects/god-here/github-issues.json",
+        "docs/recovery/god-here-cross-session-register-2026-10-11.md",
+        "docs/ENGINEERING-INTEGRATION.md",
+        "LICENSE"
+      ],
+      "disposition": "Source/issue/runtime records supersede foundation-only status; complete historical recovery, performer/phrase verification and final acceptance remain open.",
+      "work_items_preserved": 4,
+      "acceptance_criteria_preserved": 2
+    },
+    {
+      "foundation_epic": "DIR",
+      "title": "Creative notes to actionable revision proposals",
+      "mapping_kind": "scope crosswalk, not completion equivalence",
+      "related_task_ids": [
+        "GHERE-019",
+        "GHERE-020",
+        "GHERE-024"
+      ],
+      "current_paths": [
+        "amp/direction.py",
+        "amp/revision.py",
+        "docs/DIRECTION-PROOF.md",
+        "docs/DIRECTED-REVISIONS.md",
+        "web/direction-review.html",
+        "web/directed-review.html"
+      ],
+      "disposition": "Authored recipe and note-review paths exist. Generic natural-language interpretation, archived proposal-schema execution and automatic artistic acceptance are not claimed.",
+      "work_items_preserved": 3,
+      "acceptance_criteria_preserved": 2
+    },
+    {
+      "foundation_epic": "AUD",
+      "title": "Audio restoration and sound authorship",
+      "mapping_kind": "scope crosswalk, not completion equivalence",
+      "related_task_ids": [
+        "GHERE-006",
+        "GHERE-007",
+        "GHERE-008",
+        "GHERE-009",
+        "GHERE-010",
+        "GHERE-011",
+        "GHERE-012",
+        "GHERE-021",
+        "GHERE-039",
+        "GHERE-040"
+      ],
+      "current_paths": [
+        "amp/audio.py",
+        "amp/neural_audio.py",
+        "amp/roomrefine.py",
+        "amp/roomstretch.py",
+        "amp/foley.py",
+        "amp/soundstage.py",
+        "docs/SOUND-PASS-02.md"
+      ],
+      "disposition": "Processing/candidates exist; source-listened words, matched listening, full mix/room/foley and artistic selection remain gates.",
+      "work_items_preserved": 4,
+      "acceptance_criteria_preserved": 2
+    },
+    {
+      "foundation_epic": "PER",
+      "title": "Dialogue, performance, and editorial revision",
+      "mapping_kind": "scope crosswalk, not completion equivalence",
+      "related_task_ids": [
+        "GHERE-003",
+        "GHERE-019",
+        "GHERE-020",
+        "GHERE-027"
+      ],
+      "current_paths": [
+        "amp/direction.py",
+        "amp/revision.py",
+        "amp/core.py",
+        "docs/DIRECTED-REVISIONS.md"
+      ],
+      "disposition": "Paired timing and delayed gesture mechanisms exist. Qualified phrase edges, observed performance effect and reconstructed acting are not established by these mechanisms.",
+      "work_items_preserved": 4,
+      "acceptance_criteria_preserved": 2
+    },
+    {
+      "foundation_epic": "TXT",
+      "title": "Animated typography and motion design",
+      "mapping_kind": "scope crosswalk, not completion equivalence",
+      "related_task_ids": [
+        "GHERE-022",
+        "GHERE-024"
+      ],
+      "current_paths": [
+        "amp/direction.py",
+        "amp/revision.py",
+        "amp/core.py",
+        "projects/god-here/direction-proof.json"
+      ],
+      "disposition": "Authored typography is retained; verified captions, tracked-surface typography and final text score require their own acceptance.",
+      "work_items_preserved": 3,
+      "acceptance_criteria_preserved": 2
+    },
+    {
+      "foundation_epic": "CAM",
+      "title": "Tracked virtual cinematography and detail reconstruction",
+      "mapping_kind": "scope crosswalk, not completion equivalence",
+      "related_task_ids": [
+        "GHERE-019",
+        "GHERE-020",
+        "GHERE-025",
+        "GHERE-026",
+        "GHERE-028"
+      ],
+      "current_paths": [
+        "amp/direction.py",
+        "amp/revision.py",
+        "docs/DIRECTION-PROOF.md",
+        "docs/DIRECTED-REVISIONS.md"
+      ],
+      "disposition": "Related backlog links are partial, not one-to-one coverage. Tracking/crop diagnostics exist; stabilization, full coverage and reconstructed high-resolution detail remain distinct obligations. Resampling is not recovered detail.",
+      "work_items_preserved": 4,
+      "acceptance_criteria_preserved": 2
+    },
+    {
+      "foundation_epic": "VFX",
+      "title": "Compositing, character regions, and scene transformation",
+      "mapping_kind": "scope crosswalk, not completion equivalence",
+      "related_task_ids": [
+        "GHERE-013",
+        "GHERE-014",
+        "GHERE-015",
+        "GHERE-016",
+        "GHERE-017",
+        "GHERE-018",
+        "GHERE-025",
+        "GHERE-026",
+        "GHERE-027",
+        "GHERE-028",
+        "GHERE-029"
+      ],
+      "current_paths": [
+        "amp/core.py",
+        "amp/segmentation.py",
+        "docs/SEGMENTATION.md",
+        "web/fx/",
+        "projects/god-here/composition.json"
+      ],
+      "disposition": "Region/layer mechanisms exist; final contours, occlusion, room continuity, shadow/reflection separation and motion acceptance remain explicit.",
+      "work_items_preserved": 4,
+      "acceptance_criteria_preserved": 2
+    },
+    {
+      "foundation_epic": "RUN",
+      "title": "Processing execution, comparison, and linear editions",
+      "mapping_kind": "scope crosswalk, not completion equivalence",
+      "related_task_ids": [
+        "GHERE-019",
+        "GHERE-023",
+        "GHERE-024",
+        "GHERE-035",
+        "GHERE-037"
+      ],
+      "current_paths": [
+        "amp/execution.py",
+        "amp/media_resolver.py",
+        "amp/render.py",
+        "amp/workstation.py",
+        "docs/architecture/shared-execution-contract.md",
+        "tools/check.py",
+        "tools/finish_production.py"
+      ],
+      "disposition": "Bounded native dispatch, receipts and renders exist. General cancellation/cache/resume support, renderer equivalence, native handoff acceptance and final edition acceptance are not inferred.",
+      "work_items_preserved": 4,
+      "acceptance_criteria_preserved": 2
+    },
+    {
+      "foundation_epic": "GEN",
+      "title": "Generative recomposition and variant selection",
+      "mapping_kind": "scope crosswalk, not completion equivalence",
+      "related_task_ids": [
+        "GHERE-030",
+        "GHERE-031",
+        "GHERE-032",
+        "GHERE-033"
+      ],
+      "current_paths": [
+        "amp/core.py",
+        "amp/render.py",
+        "projects/god-here/units.json",
+        "projects/god-here/variation-17.schedule.json",
+        "projects/god-here/variation-29.schedule.json",
+        "projects/god-here/variation-43.schedule.json"
+      ],
+      "disposition": "Three seeded schedules and render evidence exist; eligible word/gesture qualification, dramatic evaluation and selected authored outcome remain acceptance work.",
+      "work_items_preserved": 3,
+      "acceptance_criteria_preserved": 2
+    },
+    {
+      "foundation_epic": "INT",
+      "title": "Interactive reception and installation delivery",
+      "mapping_kind": "scope crosswalk, not completion equivalence",
+      "related_task_ids": [
+        "GHERE-034",
+        "GHERE-035",
+        "GHERE-036",
+        "GHERE-037",
+        "GHERE-038"
+      ],
+      "current_paths": [
+        "web/",
+        "amp/revision.py",
+        "docs/DIRECTED-REVISIONS.md",
+        "tests/score.test.mjs"
+      ],
+      "disposition": "Shared-clock control schedules and replay exist. A score is not a complete wall-clock interaction recording. Hosted/mobile/Safari, audience evaluation, state migration and real venue calibration remain separate gates.",
+      "work_items_preserved": 4,
+      "acceptance_criteria_preserved": 2
+    }
+  ],
+  "note": "Current live issue and acceptance evidence governs closure. The historical planned flags and missing-import claims remain unchanged only inside the snapshot."
+}

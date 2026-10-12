@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {workbench, core, freshPatch, SOURCE, CONTEXT} from './runtime.mjs';
+import {renderAudio} from '../../web/fx/audio-engine.mjs';
 
 const {normalizeWorkbenchPatch} = workbench;
 const normalize = input => normalizeWorkbenchPatch(input, CONTEXT);
@@ -107,6 +108,36 @@ test('adding a processor uses the actual output ID and retains the existing upst
   }
   assert.deepEqual(patch.connections.filter(edge => edge.to === output.id), core.buildSerialConnections([inserted.id, output.id]));
   assert.equal(patch.connections.some(edge => edge.from === 'output' || edge.to === 'output'), false);
+});
+
+test('adding a bypassed processor preserves a parallel output bus and its sound', () => {
+  const patch=freshPatch('gate');patch.nodes[1].bypass=true;
+  patch.connections.push(...core.buildSerialConnections(['source','output']).map(edge=>({...edge,gain:.25,role:'send'})));
+  patch.nodes.push({id:'new-gate-input-mix',type:'mix',gain:1});
+  const before=core.clonePatch(patch),node=core.createModule('gate',{id:'new-gate',bypass:true});
+  assert.equal(core.validatePatch(before).valid,true);
+  workbench.insertProcessorBeforeOutput(patch,node);
+  assert.deepEqual(core.validatePatch(patch).errors,[]);
+  const mix=patch.nodes.find(candidate=>candidate.type==='mix'&&candidate.id!=='new-gate-input-mix');
+  assert.ok(mix,'parallel output inputs retain an explicit summing bus');
+  assert.equal(mix.gain,1);
+  for(const edge of before.connections.filter(edge=>edge.to==='output'))assert.ok(patch.connections.some(candidate=>JSON.stringify(candidate)===JSON.stringify({...edge,to:mix.id})));
+  assert.equal(patch.connections.filter(edge=>edge.to===node.id&&edge.port==='audio').length,1);
+  const duration=.1,sr=8000,input=[new Float32Array(800).fill(.02),new Float32Array(800).fill(.03)];
+  const render=p=>renderAudio(p,input,sr,duration,{peakTarget:1}).channels;
+  assert.deepEqual(render(patch),render(before),'inserting a bypassed processor must not change parallel gains');
+});
+
+test('source sidechain editing works with renamed portable source IDs', () => {
+  const patch=freshPatch(),node=patch.nodes[1],source=patch.nodes.find(candidate=>candidate.type==='source');
+  source.id='camera-audio';patch.connections=patch.connections.map(edge=>({...edge,from:edge.from==='source'?source.id:edge.from}));
+  const mediaEdges=core.clonePatch(patch.connections);
+  workbench.setSourceSidechain(patch,node,true);workbench.setSourceSidechain(patch,node,true);
+  assert.deepEqual(core.validatePatch(patch).errors,[]);
+  assert.deepEqual(patch.connections.filter(edge=>edge.port==='control'),[{from:'camera-audio',to:node.id,port:'control',gain:1,role:'sidechain'}]);
+  assert.equal(node.modulation.parameter,'intensity');
+  workbench.setSourceSidechain(patch,node,false);
+  assert.equal(node.modulation,undefined);assert.deepEqual(patch.connections,mediaEdges);
 });
 
 function rangeHarness(snapshot) {

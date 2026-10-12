@@ -60,9 +60,33 @@ export function insertProcessorBeforeOutput(patch,node) {
   const index=patch.nodes.findIndex(candidate=>candidate.type==='output');
   if(index<0)throw Error('Patch has no output.');
   const outputId=patch.nodes[index].id;
-  patch.nodes.splice(index,0,node);
-  for(const edge of patch.connections)if(edge.to===outputId)edge.to=node.id;
+  const incoming=patch.connections.filter(edge=>edge.to===outputId&&edge.port!=='control');
+  const ports=[...new Set(incoming.map(edge=>edge.port))];
+  let inputId=node.id;
+  if(incoming.length>ports.length){
+    // The sink is also a valid summing bus. Preserve that bus before inserting
+    // a processor, which accepts only one incoming stream per typed port.
+    const ids=new Set(patch.nodes.map(candidate=>candidate.id));ids.add(node.id);
+    const base=`${node.id}-input-mix`;let id=base,suffix=1;
+    while(ids.has(id))id=`${base}-${suffix++}`;
+    patch.nodes.splice(index,0,{id,type:'mix',gain:1});
+    inputId=id;
+    patch.connections.push(...buildSerialConnections([id,node.id],ports));
+  }
+  patch.nodes.splice(patch.nodes.findIndex(candidate=>candidate.id===outputId),0,node);
+  for(const edge of incoming)edge.to=inputId;
   patch.connections.push(...buildSerialConnections([node.id,outputId]));
+}
+
+/** Portable source IDs are not reserved names. */
+export function setSourceSidechain(patch,node,enabled) {
+  const source=enabled?patch.nodes.find(candidate=>candidate.type==='source'):null;
+  if(enabled&&!source)throw Error('Patch has no source.');
+  patch.connections=patch.connections.filter(edge=>!(edge.to===node.id&&edge.port==='control'));
+  if(enabled){
+    node.modulation={parameter:'intensity',amount:.6,mode:'add'};
+    patch.connections.push({from:source.id,to:node.id,port:'control',gain:1,role:'sidechain'});
+  }else delete node.modulation;
 }
 
 /** Preserve parallel signal amplitude while bypassing a removed processor. */

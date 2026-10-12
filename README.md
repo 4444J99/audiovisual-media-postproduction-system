@@ -2,6 +2,12 @@
 
 A directable audiovisual postproduction system that translates creative notes into reproducible edits: audio restoration and design, dialogue and performance revision, animated typography, tracked reframing, detail reconstruction, compositing, and new editions from existing media.
 
+## Current verification and finish line · 12 October 2026
+
+Start with the [current finish-line plan](docs/GOD-HERE-FINISH-LINE.md) and the [canonical Studio](https://god-here-five-realities.ajpadavano.chatgpt.site/). The Studio brings source review, comparisons, composition tools, catalogue and project records into one entry point. Private recovered applications and documents require owner sign-in; existing public media remain available. Test results, deployment, historical preservation and artistic acceptance remain separate gates.
+
+The older checkpoints below describe their dated evidence. Current review repairs and release verification supersede their test counts; they do not silently certify listening, final mattes, reconstructed shots, browser-local data migration or physical devices.
+
 ## Consolidation checkpoint · 11 October 2026
 
 **Current priority: consolidate and verify the existing project before further creative production.** Start with the [cross-session recovery register](docs/recovery/god-here-cross-session-register-2026-10-11.md), [content-addressed artifact catalog](manifests/artifacts/god-here-recovery-catalog.json), [historical identity expectations](manifests/artifacts/god-here-recovery-expectations.json), and [integration map](docs/architecture/god-here-consolidation-map.md). Preservation, successful decoding, reproducible rendering, publication and artistic acceptance have separate evidence. Historical recovery is not complete.

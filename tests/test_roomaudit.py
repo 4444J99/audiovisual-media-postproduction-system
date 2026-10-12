@@ -178,6 +178,20 @@ class RoomAuditTests(unittest.TestCase):
                 np.testing.assert_array_equal(actual[start:end], expected)
                 np.testing.assert_array_equal(actual[[0, -1]], np.zeros((2, 2)))
 
+    def test_reused_audit_directory_cannot_authenticate_stale_artifacts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            out = root / "review"
+            out.mkdir()
+            stale = out / "selection-subregions-candidate.json"
+            stale.write_text("previous selection")
+            with patch("amp.roomaudit.load_audio") as decode:
+                with self.assertRaisesRegex(ValueError, "must be empty"):
+                    build_audit(root / "source.wav", root / "inventory.json", out, mp3=False)
+                decode.assert_not_called()
+            self.assertEqual(stale.read_text(), "previous selection")
+            self.assertFalse((out / "portion-review.json").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

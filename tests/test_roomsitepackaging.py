@@ -81,16 +81,22 @@ class RoomSitePackagingTests(unittest.TestCase):
         portions = []
         for index in range(8):
             key = f"PAUSE{index:03d}-01"
-            self.write(prior / "auditions" / f"{key}-with-handles.m4a")
+            self.write(prior / "auditions" / f"{key}-with-handles.m4a", b"stale unverified AAC")
+            review = self.write(prior / "source-pause-review" / f"{key}-review.wav", key.encode())
             portions.append({"portion_id": key, "handle_start": index,
-                             "handle_end": index + 1, "source_start": index + .2, "source_end": index + .5})
-        self.write(prior / "source-pause-review/portion-review.json", json.dumps({"portions": portions}).encode())
+                             "handle_end": index + 1, "source_start": index + .2, "source_end": index + .5,
+                             "review_audio": {"path": review.name, "sha256": sha256(review)}})
+        audit = self.write(prior / "source-pause-review/portion-review.json",
+                           json.dumps({"source_sha256": sha256(source), "portions": portions}).encode())
+        prior_report["input_report_sha256"] = {"audit": sha256(audit)}
+        self.write(prior / "listening-package-report.json", json.dumps(prior_report).encode())
 
         report = {"source_sha256": sha256(source), "layers": [], "stacks": [],
                   "source_reel_raw": {"file": "source-reel-raw.wav"},
                   "source_reel_processed": {"file": "source-reel-seam-smoothed.wav"}}
         for field in ["source_reel_raw", "source_reel_processed"]:
-            self.write(stretch / report[field]["file"])
+            path = self.write(stretch / report[field]["file"])
+            report[field]["sha256"] = sha256(path)
         for prefix in ["V", "P"]:
             for period in [112, 84, 56, 28, 14]:
                 report["layers"].append({"id": f"{prefix}{period}", "period_seconds": period})
@@ -101,23 +107,28 @@ class RoomSitePackagingTests(unittest.TestCase):
             report["stacks"].append({"id": key, "member_ids": [f"{key[0]}{period}" for period in [112, 84, 56, 28, 14]],
                                      "member_input_kind": "raw_stems" if key.endswith("R") else "calibrated_production_stems"})
         for entry in report["layers"] + report["stacks"]:
+            entry["receipts"] = {}
             for field, suffix in [("production_aac", "-production.m4a"), ("audition_aac", "-audition.m4a"),
                                   ("stem_flac", ".flac"), ("stem_wav", ".wav")]:
                 entry[field] = "exports/" + entry["id"] + suffix
-                self.write(stretch / entry[field], entry[field].encode())
+                path = self.write(stretch / entry[field], entry[field].encode())
+                entry["receipts"][field.removeprefix("stem_")] = {"sha256": sha256(path)}
         self.write(stretch / "room-stretch-report.json", json.dumps(report).encode())
         return source, prior, stretch
 
-    def package_fixtures(self, source, prior, stretch, site, asset_directory):
+    def package_fixtures(self, source, prior, stretch, site, asset_directory, before_finish=None):
         assets = site / asset_directory
         self.write(assets / "room-tone/media/source-picture.mp4", b"shared picture")
         working = self.root / f"working-{site.name}"
 
+        self.rendered_contexts = []
+
         def encode(_source, target, **_options):
-            self.write(target, b"preview audio")
+            self.write(target, ("preview from " + sha256(_source)).encode())
             return {"full_decode_verified": True}
 
         def video(_picture, _wave, target, _scalar):
+            self.rendered_contexts.append(target)
             self.write(target, b"picture plus dialogue")
             return {"full_decode_verified": True}
 
@@ -129,9 +140,12 @@ class RoomSitePackagingTests(unittest.TestCase):
             stack.enter_context(mock.patch.object(packaging, "save_audio", side_effect=lambda path, _data: self.write(path)))
             stack.enter_context(mock.patch.object(packaging, "atomic_encode", side_effect=encode))
             stack.enter_context(mock.patch.object(packaging, "contextual_video", side_effect=video))
-            stack.enter_context(mock.patch.object(packaging, "run", side_effect=lambda command: self.write(Path(command[-1]))))
+            stack.enter_context(mock.patch.object(packaging, "run", side_effect=lambda command:
+                                                 self.write(Path(command[-1])) if command[-1] != "-" else None))
             stack.enter_context(contextlib.redirect_stdout(io.StringIO()))
             self.assertEqual(packaging.prepare(source, prior, site, working), assets / "room-tone")
+            if before_finish:
+                before_finish()
             packaging.finish(source, prior, stretch, site, working)
         return json.loads((assets / "room-tone/media.json").read_text())
 
@@ -175,6 +189,79 @@ class RoomSitePackagingTests(unittest.TestCase):
         self.assertTrue((worker / "room-media-source" / movie).is_file())
         self.assertTrue((worker / "public/room-tone/catalog.html").is_file())
         self.assertTrue((worker / "public/room-tone/records/site-media-verification.json").is_file())
+
+    def test_prepare_replaces_stale_picture_and_regenerates_pause_aac_from_verified_wav(self):
+        source, prior, stretch = self.render_fixtures()
+        site = self.site("legacy", {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+        self.package_fixtures(source, prior, stretch, site, "dist")
+        room = site / "dist/room-tone"
+        picture = room / "media/source-picture.mp4"
+        self.assertNotEqual(picture.read_bytes(), b"shared picture", "preexisting picture must be rebuilt")
+        preparation = json.loads((room / "records/site-preparation.json").read_text())
+        self.assertEqual(preparation["source_sha256"], sha256(source))
+        self.assertEqual(preparation["files"]["media/source-picture.mp4"], sha256(picture))
+        pause = room / "media/PAUSE000-01-with-handles.m4a"
+        wav = prior / "source-pause-review/PAUSE000-01-review.wav"
+        self.assertEqual(pause.read_text(), "preview from " + sha256(wav))
+        self.assertNotEqual(pause.read_bytes(), (prior / "auditions" / pause.name).read_bytes())
+
+    def test_fresh_package_without_handwritten_notes_keeps_the_existing_notes_url(self):
+        source, prior, stretch = self.render_fixtures()
+        (prior / "god-here-room-tone-processing-notes.md").unlink()
+        site = self.site("legacy", {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+        manifest = self.package_fixtures(source, prior, stretch, site, "dist")
+        notes = site / "dist/room-tone/records/previous-processing-notes.md"
+        self.assertIn(sha256(source), notes.read_text())
+        self.assertIn("Listening acceptance remains pending", notes.read_text())
+        self.assertIn("records/previous-processing-notes.md", [x["url"] for x in manifest["downloads"]])
+
+    def test_processing_notes_can_use_producer_reproduction_instructions(self):
+        source, prior, stretch = self.render_fixtures()
+        (prior / "god-here-room-tone-processing-notes.md").unlink()
+        instructions = self.write(prior / "reproduction/ROOM-REFINEMENT.md", b"producer instructions")
+        records = self.root / "records"
+        packaging.copy_processing_notes(prior, records, json.loads((prior / "listening-package-report.json").read_text()))
+        self.assertEqual((records / "previous-processing-notes.md").read_bytes(), instructions.read_bytes())
+
+    def test_finish_rejects_wrong_source_changed_bed_or_changed_prepared_media_before_rendering(self):
+        for name, location, error in [
+            ("source", "source.mp4", "source differs"),
+            ("bed", "prior/full-length/C-room.flac", "Earlier bed C"),
+            ("picture", "site/dist/room-tone/media/source-picture.mp4", "Prepared media"),
+            ("solo", "site/dist/room-tone/media/room-A.m4a", "Prepared media"),
+            ("pause", "site/dist/room-tone/media/PAUSE000-01-with-handles.m4a", "Prepared media"),
+        ]:
+            with self.subTest(name=name):
+                source, prior, stretch = self.render_fixtures()
+                site = self.site("site", {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+                with self.assertRaisesRegex(ValueError, error):
+                    self.package_fixtures(source, prior, stretch, site, "dist",
+                                          before_finish=lambda: self.write(self.root / location, b"changed after prepare"))
+                self.assertEqual(self.rendered_contexts, [])
+
+    def test_prepare_rejects_changed_audit_or_review_wav_before_writing_site_media(self):
+        for location, error in [("portion-review.json", "Source-pause report"),
+                                ("PAUSE000-01-review.wav", "Source-pause WAV")]:
+            with self.subTest(location=location):
+                source, prior, _ = self.render_fixtures()
+                self.write(prior / "source-pause-review" / location, b"replaced")
+                site = self.site(location, {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+                with mock.patch.object(packaging, "run") as run, self.assertRaisesRegex(ValueError, error):
+                    packaging.prepare(source, prior, site, self.root / "working")
+                run.assert_not_called()
+                self.assertFalse((site / "dist").exists())
+
+    def test_finish_authenticates_every_stretch_format_and_source_reel_before_rendering(self):
+        for field in ["stem_wav", "stem_flac", "production_aac", "audition_aac", "source_reel_raw", "source_reel_processed"]:
+            with self.subTest(field=field):
+                source, prior, stretch = self.render_fixtures()
+                report = json.loads((stretch / "room-stretch-report.json").read_text())
+                relative = report[field]["file"] if field.startswith("source_reel") else report["layers"][0][field]
+                site = self.site("site", {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+                with self.assertRaisesRegex(ValueError, "Stretch"):
+                    self.package_fixtures(source, prior, stretch, site, "dist",
+                                          before_finish=lambda: self.write(stretch / relative, b"replacement media"))
+                self.assertEqual(self.rendered_contexts, [])
 
     def test_worker_checker_never_uses_stale_static_downloads_or_crosses_source_roots(self):
         site = self.site("worker", {"project_id": packaging.SITE_ID, "r2": "ROOM_MEDIA"})

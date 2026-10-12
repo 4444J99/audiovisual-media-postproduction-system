@@ -85,4 +85,53 @@ class DirectionTests(unittest.TestCase):
             with self.assertRaises(ValueError): render(Path(temp)/'missing.mp4',Path(temp)/'missing.wav',self.r,Path(temp)/'out.mp4')
             self.assertFalse((Path(temp)/'out.mp4').exists())
 
+
+
+class DirectionClockAndRenderTests(unittest.TestCase):
+    def test_timestamp_validation_counts_frames_without_container_count(self):
+        from io import StringIO
+        from unittest.mock import MagicMock, patch
+        from amp.direction import validated_frame_count
+        process=MagicMock();process.stdout=StringIO('0.000000,\n\n0.033333\n0.066667\n')
+        process.wait.return_value=0;process.poll.return_value=0
+        with patch('amp.direction.subprocess.Popen',return_value=process):
+            self.assertEqual(validated_frame_count('clip.mkv',{'avg_frame_rate':'30/1','time_base':'1/1000'},30),3)
+
+    def test_matching_summary_rates_do_not_allow_irregular_frame_timestamps(self):
+        from io import StringIO
+        from unittest.mock import MagicMock, patch
+        from amp.direction import validated_frame_count
+        process=MagicMock();process.stdout=StringIO('0.000000\n0.033333\n0.100000\n')
+        process.wait.return_value=0;process.poll.return_value=0
+        with patch('amp.direction.subprocess.Popen',return_value=process):
+            with self.assertRaisesRegex(ValueError,'not CFR'):
+                validated_frame_count('vfr.mp4',{'avg_frame_rate':'30/1','r_frame_rate':'30/1','time_base':'1/90000'},30)
+
+    def test_camera_cuts_validated_with_zero_field_gain(self):
+        from unittest.mock import patch
+        r=json.loads((ROOT/'projects/god-here/direction-proof.json').read_text())
+        r['field_gain']=0
+        metadata={'streams':[{'codec_type':'video'}],'format':{'duration':'112'}}
+        with tempfile.TemporaryDirectory() as tmp:
+            source=Path(tmp)/'source.mp4';sound=Path(tmp)/'sound.wav'
+            source.touch();sound.touch()
+            with patch('amp.direction.probe',return_value=metadata),patch('amp.direction.validated_frame_count',return_value=3360),patch('amp.direction.sha256',return_value=r['source_sha256']):
+                with self.assertRaisesRegex(ValueError,'Field score is required'):
+                    render(source,sound,r,Path(tmp)/'output.mp4')
+                field_config={'fps':30,'history_frames':4}
+                with patch('amp.direction.validate_fields'),patch('amp.direction.shot_at',side_effect=[{'id':'A'},{'id':'B'}]):
+                    with self.assertRaisesRegex(ValueError,'crosses a source cut'):
+                        render(source,sound,r,Path(tmp)/'output.mp4',field_config=field_config)
+
+    def test_zero_expressive_return_is_reported_as_dry(self):
+        from unittest.mock import patch
+        from amp.direction import audio_map
+        r=json.loads((ROOT/'projects/god-here/direction-proof.json').read_text())
+        r['return_gain']=0
+        samples=np.zeros((685*1600,2),dtype='<f4').tobytes()
+        with patch('amp.direction.subprocess.check_output',return_value=samples),patch('amp.direction.subprocess.run'):
+            report=audio_map('sound.wav',r,True,True,'out.wav')
+        self.assertFalse(report['expressive_shared_mix_return'])
+        self.assertEqual(report['expressive_return_gain'],0)
+
 if __name__=='__main__': unittest.main()

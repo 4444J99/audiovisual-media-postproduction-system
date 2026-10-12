@@ -88,7 +88,7 @@ def main():
         record=track_region(args.source,round(args.start*config['fps']),round(args.end*config['fps']),args.roi,args.output,config['fps'])
         print(json.dumps({'tracked_frames':len(record['rows']),'output':args.output}))
     else:
-        from .revision import render_revision
+        from .revision import render_revision, validate_session
         if not args.source or not args.audio:
             parser.error('revision/replay requires --source and --audio')
         if args.command=='revision' and not args.recipe:
@@ -102,6 +102,9 @@ def main():
                          'output_frames':round(((args.end or 112)-args.start)*config['fps'])}],
             'animated_typography':True}
         session=json.loads(Path(args.session).read_text()) if args.session else None
+        if args.session:
+            from .core import probe
+            validate_session(session, config, float(probe(args.source)['format']['duration']))
         track=json.loads(Path(args.track).read_text()) if args.track else None
         print(json.dumps(render_revision(args.source,args.audio,config,recipe,args.output,session,track,args.width)))
 

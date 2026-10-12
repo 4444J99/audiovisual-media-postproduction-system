@@ -1,0 +1,44 @@
+{
+  "schema": "god-here.release-verification.v1",
+  "verified_at": "2026-10-12T16:20:02.962578+00:00",
+  "baseline_integration_head": "06239ea898cc8430b8ced792732e6253e2c96372",
+  "python_tests": 192,
+  "node_tests": {
+    "studio": 17,
+    "room": 28,
+    "fx": 103
+  },
+  "additional_nested_editor_cases": 6,
+  "execution_contract_recheck": 45,
+  "source_picture": {
+    "frames": 3360,
+    "fps": 30,
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225"
+  },
+  "overlay_hashes_checked": 276,
+  "local_standalone_media": {
+    "files": 224,
+    "bytes": 798249270,
+    "all_fully_decoded": true
+  },
+  "source_review": {
+    "records": 174,
+    "dialogue": 35,
+    "visual": 139
+  },
+  "historical_unmatched_hashes": 160,
+  "limits": [
+    "No hosted browser test in current environment: control-browser unavailable.",
+    "Owner browser-local evaluation data not migrated.",
+    "Physical Safari/iPhone, listening and artist acceptance remain pending.",
+    "Historical media was not rerendered under corrected engine code."
+  ],
+  "repairs": [
+    "FX fan-in, renamed-source sidechain, room-return isolation, discrete feedback reset",
+    "Native media ended-state handling",
+    "Directed recipe import/export, reversible timing, camera cuts, full frame timestamps, source-rate resampling, session/track guards",
+    "Source/keeper/packaging evidence, stale-output rejection, decoding, atomic receipt validation, summed headroom",
+    "Public/private routing separation and exact large-asset streaming delivery"
+  ],
+  "foundation_pr1": "Unique original planning preserved inert in docs/foundation-archive; active implementation remains authoritative."
+}

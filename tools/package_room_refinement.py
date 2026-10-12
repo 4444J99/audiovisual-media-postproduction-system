@@ -55,10 +55,14 @@ def validate_encoded(path, expected_samples, codec):
             "tail_padding_samples": len(samples) - expected_samples, "full_decode_verified": True}
 
 
-def encode(path, out, codec="aac"):
+def encode(path, out, codec="aac", expected_samples=None):
     path, out = Path(path), Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    expected_samples = len(load_audio(path))
+    source_audio = load_audio(path)
+    if expected_samples is None:
+        expected_samples = len(source_audio)
+    if len(source_audio) != expected_samples or not np.isfinite(source_audio).all():
+        raise ValueError(f"Source audio has invalid samples or the wrong full-length sample count: {path.name}")
     args = ["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", path,
             "-map", "0:a:0", "-map_chapters", "-1", "-vn", "-ar", RATE, "-ac", 2]
     if codec == "flac":
@@ -69,6 +73,20 @@ def encode(path, out, codec="aac"):
         staged = Path(directory) / out.name
         run(args + [staged])
         receipt = validate_encoded(staged, expected_samples, codec)
+        staged.replace(out)
+    return receipt
+
+
+def copy_verified_flac(path, out, expected_samples):
+    """Publish a retained lossless stem only after validating all its samples."""
+    path, out = Path(path), Path(out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=".room-copy-", dir=out.parent) as directory:
+        staged = Path(directory) / out.name
+        shutil.copy2(path, staged)
+        receipt = validate_encoded(staged, expected_samples, "flac")
+        if sha256(staged) != sha256(path):
+            raise ValueError(f"Retained audio changed while copying: {path.name}")
         staged.replace(out)
     return receipt
 
@@ -100,7 +118,10 @@ def audition(x, out, target_lufs=-24.):
 
 def font(size, bold=False):
     name = "DejaVuSans-Bold.ttf" if bold else "DejaVuSans.ttf"
-    return ImageFont.truetype(name, size)
+    try:
+        return ImageFont.truetype(name, size)
+    except OSError:
+        return ImageFont.load_default()
 
 
 def wrapped(draw, text, xy, width, size, fill, line_spacing=10):
@@ -228,10 +249,11 @@ def write_hosted_gateway(path):
     Path(path).write_text(body)
 
 
-def export_edit_assets(refinement, audit, baseline, dialogue, out):
+def export_edit_assets(refinement, audit, baseline, dialogue, out, expected_samples=112 * RATE):
     """Retain source reviews and editable contributions with the comparison."""
     refinement, audit, baseline, dialogue, out = map(Path, (refinement, audit, baseline, dialogue, out))
     report = json.loads((refinement / "room-refinement-report.json").read_text())
+    receipts = {}
     for key in ("B", "C", "D", "E"):
         stems = report["candidates"][key].get("stems", {})
         if set(stems) != {"low", "mid", "high"}:
@@ -240,19 +262,23 @@ def export_edit_assets(refinement, audit, baseline, dialogue, out):
             path = refinement / item["filename"]
             if sha256(path) != item["sha256"]:
                 raise ValueError(f"Stem {key}/{band} changed after rendering")
-            encode(path, out / "stems" / key / f"{band}.flac", "flac")
+            target = out / "stems" / key / f"{band}.flac"
+            receipt = encode(path, target, "flac", expected_samples)
+            receipts[str(target.relative_to(out))] = receipt
     shutil.copytree(audit, out / "source-pause-review", dirs_exist_ok=True)
     reference = out / "original-room-rack"
     reference.mkdir(exist_ok=True)
     for band in ("low", "mid", "high"):
         for kind in ("dry-contribution", "fx-return"):
             filename = f"{band}-{kind}.flac"
-            shutil.copy2(baseline / filename, reference / filename)
+            receipts[f"original-room-rack/{filename}"] = copy_verified_flac(
+                baseline / filename, reference / filename, expected_samples)
     shutil.copy2(baseline / "room-rack-report.json", reference / "room-rack-report.json")
     if dialogue.suffix.lower() == ".flac":
-        shutil.copy2(dialogue, out / "full-length" / "dialogue-core.flac")
+        receipt = copy_verified_flac(dialogue, out / "full-length" / "dialogue-core.flac", expected_samples)
     else:
-        encode(dialogue, out / "full-length" / "dialogue-core.flac", "flac")
+        receipt = encode(dialogue, out / "full-length" / "dialogue-core.flac", "flac", expected_samples)
+    receipts["full-length/dialogue-core.flac"] = receipt
     metadata = out / "reproduction"
     metadata.mkdir(exist_ok=True)
     for filename in ("room-refinement-report.json", "source-spectral-profiles.npz", "stem-sum-validation.json"):
@@ -261,6 +287,9 @@ def export_edit_assets(refinement, audit, baseline, dialogue, out):
     instructions = Path(__file__).resolve().parents[1] / "docs" / "ROOM-REFINEMENT.md"
     if instructions.exists():
         shutil.copy2(instructions, metadata / "ROOM-REFINEMENT.md")
+    return {"dialogue_source_sha256": sha256(dialogue),
+            "dialogue_file_sha256": sha256(out / "full-length" / "dialogue-core.flac"),
+            "editable_audio_verification": receipts}
 
 
 def archive_delivery(out):
@@ -278,20 +307,35 @@ def archive_delivery(out):
     manifest = {"schema_version": "amps.room-delivery.v1", "listening_acceptance": "pending",
                 "files": [{"path": str(p.relative_to(out)), "bytes": p.stat().st_size,
                            "sha256": sha256(p)} for p in files]}
-    write_json(manifest_path, manifest)
     with tempfile.TemporaryDirectory(prefix=".room-package-", dir=out.parent) as directory:
         staged = Path(directory) / target.name
+        staged_manifest = Path(directory) / manifest_path.name
+        write_json(staged_manifest, manifest)
         with zipfile.ZipFile(staged, "w", allowZip64=True) as archive:
-            for path in [*files, manifest_path]:
+            members = [(path, path.relative_to(out)) for path in files]
+            members.append((staged_manifest, Path(manifest_path.name)))
+            for path, relative in members:
                 compressed = path.suffix.lower() in {".flac", ".m4a", ".mp4", ".mp3", ".npz", ".png"}
-                archive.write(path, path.relative_to(out),
+                archive.write(path, relative,
                               compress_type=zipfile.ZIP_STORED if compressed else zipfile.ZIP_DEFLATED)
         with zipfile.ZipFile(staged) as archive:
             damaged_member = archive.testzip()
             if damaged_member is not None:
                 raise ValueError(f"Archive member failed validation: {damaged_member}")
         staged.replace(target)
+        staged_manifest.replace(manifest_path)
     return target
+
+
+def shared_stem_gain(raw_layers, reference):
+    """One gain keeps both isolated contributions and their sum below -1.5 dBTP."""
+    layers = list(raw_layers.values())
+    summed = sum(layers)
+    peak = max(measure(x)["input_tp"] for x in [summed, *layers])
+    gain = min(-24 - measure(reference)["input_i"], -1.5 - peak)
+    if not math.isfinite(gain):
+        raise ValueError("Cannot level-match silent or invalid original stems")
+    return gain
 
 
 def build(source, refinement, audit, baseline, dialogue, out):
@@ -311,7 +355,7 @@ def build(source, refinement, audit, baseline, dialogue, out):
     peak = max(measure(x)["input_tp"] for x in [core, *mixes.values()])
     trim = min(0., -1.5 - peak)
     scalar = 10 ** (trim / 20)
-    report = {**identity, "dialogue_file_sha256": sha256(dialogue),
+    report = {**identity, "dialogue_source_sha256": sha256(dialogue),
               "excerpt_source_seconds": [28, 58], "quick_excerpt_source_seconds": [28, 40],
               "common_dialogue_headroom_trim_db": trim, "listening_acceptance": "pending",
               "dialogue_note": "Recovered 70% DTLN / 30% original shared mixture; original room/activity remain in this core.",
@@ -341,8 +385,7 @@ def build(source, refinement, audit, baseline, dialogue, out):
     layer_names = [f"{band}-{kind}" for band in ("low", "mid", "high") for kind in ("dry-contribution", "fx-return")]
     raw_layers = {name: load_audio(baseline / f"{name}.flac")[a:b] for name in layer_names}
     # One scalar for all six contributions, bounded by headroom at their sum.
-    reference_level = measure(beds['A'][a:b])
-    layer_gain = min(-24 - reference_level['input_i'], -1.5 - max(measure(x)['input_tp'] for x in raw_layers.values()))
+    layer_gain = shared_stem_gain(raw_layers, beds['A'][a:b])
     layer_paths = {}
     for name, x in raw_layers.items():
         wav = out / "auditions" / f"original-{name}.wav"
@@ -374,8 +417,8 @@ def build(source, refinement, audit, baseline, dialogue, out):
                 out / "god-here-room-tone-dialogue-comparison.mp4")
     report["video_audio_assembly"] = "Single continuous AAC encode from exact-length PCM excerpts; video-only parts concatenated at exact frame boundaries"
     write_player(out, layer_paths, audit)
+    report.update(export_edit_assets(refinement, audit, baseline, dialogue, out, length))
     write_json(out / "listening-package-report.json", report)
-    export_edit_assets(refinement, audit, baseline, dialogue, out)
     return report
 
 

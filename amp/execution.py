@@ -29,7 +29,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 REVISION_FONT = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
 CODE_FILES = {
     "amp.direction.v1": ["amp/direction.py", "amp/core.py"],
-    "amp.revision.v1": ["amp/revision.py", "amp/core.py", "amp/render.py", "amp/audio.py"],
+    "amp.revision.v1": ["amp/revision.py", "amp/direction.py", "amp/core.py", "amp/render.py", "amp/audio.py"],
     "fx.rack.v1": ["tools/render-fx.mjs", "tools/validate-execution-fx.mjs", *[f"web/fx/{name}.mjs" for name in ("core", "catalog", "visual-engine", "audio-engine", "workbench-state")]],
     "amp.roomstretch.v1": ["tools/run_room_stretch.py", "amp/roomstretch.py", "amp/roomrefine.py", "amp/roomrack.py", "amp/roomtone.py", "amp/audio.py", "amp/core.py"],
 }

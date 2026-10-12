@@ -2,7 +2,7 @@ import {CATALOG, CATALOG_BY_TYPE, PATCH_CATALOG, createModule, createPatch, crea
 import {VisualEngine, paintViewport, clamp} from './visual-engine.mjs';
 import {GOD_HERE_OPTIONS,GOD_HERE_DEMO_MODULES} from './god-here.config.mjs';
 import {amplitudeEnvelope} from './audio-engine.mjs';
-import {removeProcessor, validateDecodedAudio, normalizeWorkbenchPatch, toggleValue, bindRangeUndo, insertProcessorBeforeOutput} from './workbench-state.mjs';
+import {removeProcessor, validateDecodedAudio, normalizeWorkbenchPatch, toggleValue, bindRangeUndo, insertProcessorBeforeOutput, setSourceSidechain} from './workbench-state.mjs';
 import {signalSignature} from './preview-key.mjs';
 import {readAsset} from './asset-loader.mjs';
 import {compatiblePreviewEntries} from './preview-provenance.mjs';
@@ -271,7 +271,7 @@ $('rack').addEventListener('change',e=>{
   else if('scope' in d){snapshot();n.scope=e.target.value==='track'?{type:'track'}:{type:'clip',start:2,end:Math.min(10,media.duration)};rememberCustom(n);renderUI();invalidate();}
   else if('scopeTime' in d){changeGraph(()=>{n.scope[d.scopeTime]=Number(e.target.value);rememberCustom(n);});}
   else if('macro' in d){changeGraph(()=>{const [i,key]=d.macro.split(':');n.macro[i][key]=Number(e.target.value);rememberCustom(n);});}
-  else if('sidechain' in d){changeGraph(()=>{state.patch.connections=state.patch.connections.filter(c=>!(c.to===n.id&&c.port==='control'));if(e.target.checked){n.modulation={parameter:'intensity',amount:.6,mode:'add'};state.patch.connections.push({from:'source',to:n.id,port:'control',gain:1,role:'sidechain'});}else delete n.modulation;rememberCustom(n);});}
+  else if('sidechain' in d){changeGraph(()=>{setSourceSidechain(state.patch,n,e.target.checked);rememberCustom(n);});}
 });
 $('rack').onclick=e=>{
   const card=e.target.closest('[data-node]');if(!card)return;const n=state.patch.nodes.find(n=>n.id===card.dataset.node);const action=e.target.closest('[data-action]')?.dataset.action;

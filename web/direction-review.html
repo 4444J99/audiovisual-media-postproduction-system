@@ -8,7 +8,7 @@
 <div class="screen"><video id="film" controls playsinline preload="metadata" src="E-expressive.mp4" aria-label="Selected proof version"></video></div>
 <nav aria-label="Comparison versions" id="variants"></nav>
 <div class="bar"><div><strong id="label">E · Integrated</strong><div class="muted" id="clock">Loading media…</div></div><button id="fullscreen">Full screen</button></div>
-<div class="layout"><section><h2>Direction and editable operations</h2><label for="note" class="muted">This note is descriptive. The controls below specify its implementation.</label><textarea id="note"></textarea>
+<div class="layout"><section><h2>Direction and editable operations</h2><label for="note" class="muted">This note is descriptive. The controls below specify its implementation.</label><textarea id="note" required maxlength="4000"></textarea>
 <label class="control"><span>Additional time in the selected beat <output id="paceValue"></output></span><input id="pace" type="range" min="0" max="60" step="1"></label>
 <label class="control"><span>Face framing <output id="zoomValue"></output></span><input id="zoom" type="range" min="1" max="3" step="0.05"></label>
 <label class="control"><span>Character-field intensity <output id="fieldValue"></output></span><input id="field" type="range" min="0" max="1" step="0.05"></label>
@@ -132,6 +132,7 @@
 <script>
 'use strict';
 const initial=JSON.parse(document.getElementById('initial').textContent);let recipe=structuredClone(initial);
+let typographyBaseline=structuredClone(recipe.typography);
 const video=document.getElementById('film');let current='expressive', serial=0;
 const choices=[['A','reference','Source'],['B','audio','Audio candidate'],['C','fields','Five fields'],['D','directed','Directed'],['E','expressive','Integrated']];
 function segments(directed){if(!directed)return [{source_start:initial.source_span[0],source_end:initial.source_span[1],output_frames:initial.source_span[1]-initial.source_span[0]}];return initial.segments;}
@@ -144,12 +145,76 @@ video.addEventListener('error',()=>{document.getElementById('clock').textContent
 document.getElementById('fullscreen').onclick=()=>{if(video.requestFullscreen)video.requestFullscreen().catch(()=>{});else if(video.webkitEnterFullscreen)video.webkitEnterFullscreen();};
 function show(){document.getElementById('note').value=recipe.note;document.getElementById('pace').value=recipe.segments[1].output_frames-(recipe.segments[1].source_end-recipe.segments[1].source_start);document.getElementById('zoom').value=recipe.camera[1].zoom;document.getElementById('field').value=recipe.field_gain;document.getElementById('type').value=recipe.typography[0].opacity;labels();}
 function labels(){document.getElementById('paceValue').value=`+${(Number(document.getElementById('pace').value)/recipe.fps).toFixed(2)} s`;document.getElementById('zoomValue').value=`${Number(document.getElementById('zoom').value).toFixed(2)}×`;document.getElementById('fieldValue').value=`${Math.round(recipe.field_gain*100)}%`;document.getElementById('typeValue').value=`${Math.round(recipe.typography[0].opacity*100)}%`;document.getElementById('json').textContent=JSON.stringify(recipe,null,2);}
-function changed(){recipe.note=document.getElementById('note').value;recipe.segments[1].output_frames=recipe.segments[1].source_end-recipe.segments[1].source_start+Number(document.getElementById('pace').value);recipe.camera[1].zoom=Number(document.getElementById('zoom').value);recipe.field_gain=Number(document.getElementById('field').value);for(const t of recipe.typography)t.opacity=Number(document.getElementById('type').value);const total=recipe.segments.reduce((a,s)=>a+s.output_frames,0);for(const t of recipe.typography)t.output_end=Math.min(t.output_end,total);labels();document.getElementById('state').textContent='Settings changed. The video is the previous render; export this recipe and render the revision.';}
+function validateRecipe(r){
+ const require=(ok,message)=>{if(!ok)throw Error(message);};
+ const objectKeys=(value,names)=>require(value!==null&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).sort().join(' ')===names.split(' ').sort().join(' '),'Unexpected or missing recipe fields');
+ const integer=(v,low,high)=>Number.isInteger(v)&&v>=low&&v<=high;
+ const finite=(v,low,high)=>typeof v==='number'&&Number.isFinite(v)&&v>=low&&v<=high;
+ const chars=v=>typeof v==='string'?Array.from(v).length:0;
+ objectKeys(r,'schema_version status note source_sha256 fps source_span segments camera typography field_gain detail_amount return_gain output_width');
+ require(r.schema_version==='amps.direction.v1'&&r.status==='workprint','Unsupported recipe or acceptance claim');
+ require(chars(r.note)>0&&chars(r.note)<=4000,'Note must contain 1–4,000 characters');
+ require(typeof r.source_sha256==='string'&&r.source_sha256.length===64&&/^[0-9a-f]{64}$/.test(r.source_sha256),'Source digest required');
+ require(integer(r.fps,1,60)&&48000%r.fps===0,'This adapter needs integer frame/sample alignment');
+ require(Array.isArray(r.source_span)&&r.source_span.length===2,'Invalid span');
+ const [a,b]=r.source_span;require(integer(a,0,1e9)&&integer(b,a+1,1e9)&&b-a<=120*r.fps,'Invalid source bounds');
+ require(Array.isArray(r.segments)&&r.segments.length>=1&&r.segments.length<=32,'Invalid segment count');
+ let cursor=a,total=0;
+ for(const segment of r.segments){
+  objectKeys(segment,'source_start source_end output_frames');
+  require(Number.isInteger(segment.source_start)&&segment.source_start===cursor,'Source intervals must be contiguous');
+  require(integer(segment.source_end,cursor+1,b),'Invalid source end');
+  const n=segment.source_end-cursor;
+  require(integer(segment.output_frames,Math.ceil(n/2),n*2),'Timing change outside 0.5x–2x');
+  cursor=segment.source_end;total+=segment.output_frames;
+ }
+ require(cursor===b&&total<=180*r.fps,'Incomplete source coverage or excessive output');
+ require(integer(r.output_width,320,1920)&&r.output_width%16===0,'Output width must be a multiple of 16, <=1920');
+ for(const [key,max]of [['field_gain',1],['detail_amount',.5],['return_gain',.15]])require(finite(r[key],0,max),'Invalid '+key);
+ require(Array.isArray(r.camera)&&r.camera.length<=12,'Too many camera cues');cursor=a;const ids=new Set();
+ for(const cue of r.camera){
+  objectKeys(cue,'id source_start source_end seed_roi zoom ramp_frames');
+  require(typeof cue.id==='string'&&cue.id.length>=1&&cue.id.length<=50&&!/[^a-zA-Z0-9_-]/.test(cue.id)&&!ids.has(cue.id),'Invalid or duplicate target id');ids.add(cue.id);
+  require(integer(cue.source_start,cursor,b-1)&&integer(cue.source_end,cue.source_start+2,b),'Overlapping/out-of-range camera cues');
+  require(finite(cue.zoom,1,3)&&integer(cue.ramp_frames,1,Math.floor((cue.source_end-cue.source_start)/2)),'Invalid camera zoom/ramp');
+  const q=cue.seed_roi;require(Array.isArray(q)&&q.length===4&&q.every(v=>finite(v,0,1)),'Invalid tracker seed');
+  require(q[2]>=.025&&q[3]>=.025&&q[0]+q[2]<=1&&q[1]+q[3]<=1,'ROI outside frame');cursor=cue.source_end;
+ }
+ require(Array.isArray(r.typography)&&r.typography.length<=24,'Too many text cues');
+ for(const cue of r.typography){
+  objectKeys(cue,'text output_start output_end position size opacity style provenance');
+  require(chars(cue.text)>0&&chars(cue.text)<=30&&!cue.text.includes('\n'),'Invalid text');
+  require(cue.provenance==='authored-graphic-not-caption','Typography is not verified dialogue');
+  require(integer(cue.output_start,0,total-1)&&integer(cue.output_end,cue.output_start+1,total),'Text outside output');
+  require(Array.isArray(cue.position)&&cue.position.length===2&&cue.position.every(v=>finite(v,.05,.95)),'Invalid text position');
+  require(finite(cue.size,.02,.15)&&finite(cue.opacity,0,1)&&['spread','rise','aperture'].includes(cue.style),'Invalid text style');
+ }
+ return total;
+}
+function validatePanelRecipe(r){
+ validateRecipe(r);
+ if(r.source_sha256!==initial.source_sha256||r.fps!==initial.fps||JSON.stringify(r.source_span)!==JSON.stringify(initial.source_span)||r.camera.length!==2||r.segments.length!==3||r.typography.length!==3)throw Error('Recipe does not match this proof');
+ const pace=r.segments[1].output_frames-(r.segments[1].source_end-r.segments[1].source_start);
+ if(pace<0||pace>60)throw Error('This proof panel supports 0–60 added frames; use the renderer for other timing');
+}
+function changed(event){
+ const id=event.target.id;
+ if(id==='note')recipe.note=document.getElementById('note').value;
+ if(id==='pace'){
+  recipe.segments[1].output_frames=recipe.segments[1].source_end-recipe.segments[1].source_start+Number(document.getElementById('pace').value);
+  const total=recipe.segments.reduce((a,s)=>a+s.output_frames,0);
+  recipe.typography.forEach((cue,i)=>{cue.output_end=Math.min(typographyBaseline[i].output_end,total);cue.output_start=Math.min(typographyBaseline[i].output_start,cue.output_end-1);});
+ }
+ if(id==='zoom')recipe.camera[1].zoom=Number(document.getElementById('zoom').value);
+ if(id==='field')recipe.field_gain=Number(document.getElementById('field').value);
+ if(id==='type')for(const t of recipe.typography)t.opacity=Number(document.getElementById('type').value);
+ labels();document.getElementById('state').textContent='Settings changed. The video is the previous render; export this recipe and render the revision.';
+}
 for(const id of ['note','pace','zoom','field','type'])document.getElementById(id).addEventListener('input',changed);
 function save(name,value){const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)+'\n'],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-document.getElementById('export').onclick=()=>save('direction-export.json',recipe);
-document.getElementById('reset').onclick=()=>{recipe=structuredClone(initial);show();document.getElementById('state').textContent='Initial recipe restored. No media was overwritten.';};
-document.getElementById('import').onchange=async(event)=>{try{const f=event.target.files[0];if(!f||f.size>1048576)throw Error('Missing or oversized JSON');const r=JSON.parse(await f.text());if(r.schema_version!=='amps.direction.v1'||r.status!=='workprint'||r.source_sha256!==initial.source_sha256||r.camera?.length!==2||r.segments?.length!==3||r.typography?.length!==3)throw Error('Recipe does not match this proof; offline validation is required');recipe=r;show();document.getElementById('state').textContent='Recipe imported. The displayed video has not changed; render the exported recipe offline.';}catch(e){document.getElementById('state').textContent=e.message;}};
+document.getElementById('export').onclick=()=>{try{validatePanelRecipe(recipe);save('direction-export.json',recipe);}catch(e){document.getElementById('state').textContent='Cannot export: '+e.message;}};
+document.getElementById('reset').onclick=()=>{recipe=structuredClone(initial);typographyBaseline=structuredClone(recipe.typography);show();document.getElementById('state').textContent='Initial recipe restored. No media was overwritten.';};
+document.getElementById('import').onchange=async(event)=>{try{const f=event.target.files[0];if(!f||f.size>1048576)throw Error('Missing or oversized JSON');const candidate=JSON.parse(await f.text());validatePanelRecipe(candidate);recipe=candidate;typographyBaseline=structuredClone(recipe.typography);show();document.getElementById('state').textContent='Recipe imported. The displayed video has not changed; render the exported recipe offline.';}catch(e){document.getElementById('state').textContent=e.message;}finally{event.target.value='';}};
 document.getElementById('saveReview').onclick=()=>save('direction-review-notes.json',{schema_version:'amps.review-notes.v1',source_sha256:recipe.source_sha256,variant:current,source_seconds:toSource(video.currentTime||0,current)/initial.fps,observations:document.getElementById('review').value,status:'observations-only',artistic_acceptance:'pending'});
-show();window.directionReview={getRecipe:()=>structuredClone(recipe),toSource,fromSource};
+show();window.directionReview={getRecipe:()=>structuredClone(recipe),validateRecipe,toSource,fromSource};
 </script></main></body></html>

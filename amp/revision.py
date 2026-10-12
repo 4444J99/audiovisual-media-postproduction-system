@@ -17,9 +17,12 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 from .core import composite, probe, sha256, shot_at, validate, write_json, run
+from .direction import validated_frame_count
 
 
 def validate_session(session, config, duration):
+    if not isinstance(session, dict):
+        raise ValueError('Session must be an object')
     for key, expected in [('schema_version', '1.0'), ('project', config['project']),
                           ('score_version', config['score_version']),
                           ('source_sha256', config['source_sha256'])]:
@@ -32,6 +35,8 @@ def validate_session(session, config, duration):
         raise ValueError('Invalid event count')
     prior = -1
     for event in events:
+        if not isinstance(event, dict):
+            raise ValueError('Invalid session event')
         t, amount = event.get('source_time'), event.get('amount')
         if (type(t) not in (int, float) or not math.isfinite(t) or not prior <= t <= duration
                 or type(amount) not in (int, float) or not math.isfinite(amount) or not 0 <= amount <= 1
@@ -113,7 +118,7 @@ def retime_audio(audio, recipe, fps, output):
     for i, s in enumerate(timing_map(recipe, fps)):
         speed = s['audio_speed']
         n = round((s['output_end']-s['output_start']) * 48000)
-        filters.append(f"[0:a]atrim=start_sample={round(s['source_start']*48000)}:end_sample={round(s['source_end']*48000)},"
+        filters.append(f"[0:a]aresample=48000,atrim=start_sample={round(s['source_start']*48000)}:end_sample={round(s['source_end']*48000)},"
                        f"asetpts=PTS-STARTPTS,atempo={speed:.12g},apad,atrim=end_sample={n}[a{i}]")
         links.append(f'[a{i}]')
     filters.append(''.join(links)+f"concat=n={len(links)}:v=0:a=1[out]")
@@ -180,6 +185,9 @@ def animated_word(image, config, t):
     shot=shot_at(config,t)
     if not shot:
         return image
+    layout = config.get('layouts', {}).get(shot['layout'])
+    if not layout or not layout.get('registered', False):
+        return image
     out=image.copy(); w,h=image.size
     for word in config.get('typography',[]):
         if not word['start']<=t<word['end']:
@@ -188,7 +196,8 @@ def animated_word(image, config, t):
         elapsed=t-word['start']; duration=word['end']-word['start']
         entrance=min(1,elapsed/.6); entrance=entrance*entrance*(3-2*entrance)
         alpha=min(1,elapsed/.18,(duration-elapsed)/.45)
-        font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',max(12,round(w*.028)))
+        font_path=Path('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf')
+        font=ImageFont.truetype(str(font_path),max(12,round(w*.028))) if font_path.is_file() else ImageFont.load_default()
         layer=Image.new('RGBA',out.size); draw=ImageDraw.Draw(layer)
         x=w*(field['span'][0]+.012); y=h*(.17-.10*entrance)
         draw.text((x,y),word['text'],font=font,fill=(255,248,225,round(220*max(0,alpha))))
@@ -199,21 +208,42 @@ def animated_word(image, config, t):
     return out
 
 
+def validate_camera_track(track, camera, config, source_frames):
+    if not isinstance(track, dict):
+        raise ValueError('Camera operation requires a real source-addressed track')
+    a, b = track.get('start_frame'), track.get('end_frame')
+    if (track.get('source_sha256') != config['source_sha256'] or track.get('fps') != config['fps']
+            or type(a) is not int or type(b) is not int or not 0 <= a < b <= source_frames
+            or a > camera['start_frame'] or b < camera['end_frame']):
+        raise ValueError('Track must cover the complete camera interval on the source clock')
+    rows = track.get('rows')
+    if not isinstance(rows, list) or len(rows) != b - a:
+        raise ValueError('Track rows must cover every frame in the declared interval')
+    for frame, row in enumerate(rows, a):
+        if not isinstance(row, dict) or row.get('source_frame') != frame:
+            raise ValueError('Track rows must be contiguous and source-addressed')
+        center = row.get('center')
+        if (not isinstance(center, list) or len(center) != 2
+                or any(type(v) not in (int, float) or not math.isfinite(v) or not 0 <= v <= 1 for v in center)):
+            raise ValueError('Invalid track center')
+
+
 def render_revision(source, audio, config, recipe, output, session=None, track=None, width=1280):
     metadata=probe(source); stream=next(s for s in metadata['streams'] if s['codec_type']=='video')
-    fps=config['fps']; duration=float(metadata['format']['duration']); source_frames=int(stream['nb_frames'])
+    fps=config['fps']; duration=float(metadata['format']['duration'])
+    source_frames=validated_frame_count(source,stream,fps)
     validate(config,duration); validate_recipe(recipe,config,source_frames)
     numerator,denominator=map(int,stream['avg_frame_rate'].split('/'))
     if numerator/denominator!=fps:
         raise ValueError('Source frame rate differs from composition clock')
     if sha256(source)!=config['source_sha256']:
         raise ValueError('Source content differs from registered source')
-    if session:
+    if session is not None:
         validate_session(session,config,duration)
     if track and track['source_sha256']!=config['source_sha256']:
         raise ValueError('Track belongs to another source')
-    if recipe.get('camera') and not track:
-        raise ValueError('Camera operation requires a real source-addressed track')
+    if recipe.get('camera'):
+        validate_camera_track(track, recipe['camera'], config, source_frames)
     if width<160 or width>3840 or width%2:
         raise ValueError('Width must be an even integer from 160 to 3840')
     mapping=frame_map(recipe); wanted=set(mapping)
@@ -240,7 +270,7 @@ def render_revision(source, audio, config, recipe, output, session=None, track=N
             if frame not in wanted:
                 continue
             overrides=None
-            if session:
+            if session is not None:
                 from .core import state_at
                 controls=session_state(session,t); values=state_at(config,t)
                 for p,value in controls.items():

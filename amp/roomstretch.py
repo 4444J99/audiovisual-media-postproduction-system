@@ -298,12 +298,12 @@ def _media(output, identifier, samples, *, kind, audition_boost_db):
     flac = output / folder / f"{identifier}.flac"
     production = output / "web" / f"{identifier}-production.m4a"
     audition = output / "web" / f"{identifier}-audition.m4a"
-    wav_receipt = _save_wav(wav, samples)
-    flac_receipt = _encode(wav, flac, len(samples), "flac")
-    production_receipt = _encode(wav, production, len(samples), "aac")
     raised = (samples * 10 ** (audition_boost_db / 20)).astype(np.float32)
     if np.max(np.abs(raised)) >= 10 ** (-1.5 / 20):
         raise ValueError("Common audition boost exceeds -1.5 dBFS headroom; choose a lower shared boost")
+    wav_receipt = _save_wav(wav, samples)
+    flac_receipt = _encode(wav, flac, len(samples), "flac")
+    production_receipt = _encode(wav, production, len(samples), "aac")
     with tempfile.TemporaryDirectory(prefix=".room-audition-", dir=output) as directory:
         raised_wav = Path(directory) / "audition.wav"
         save_audio(raised_wav, raised)
@@ -375,6 +375,8 @@ def build(source_path, inventory_path, output_dir, *, duration=112., periods=PER
     if not periods or len(set(periods)) != len(periods) or any(
             not math.isfinite(value) or not 0 < value <= duration for value in periods):
         raise ValueError("Periods must be unique positive values no longer than the film")
+    if len({round(period * RATE) for period in periods}) != len(periods) or len({f"{period:g}" for period in periods}) != len(periods):
+        raise ValueError("Periods must have distinct sample counts and output identifiers")
     source = load_audio(source_path)
     output_samples = round(duration * RATE)
     source_decoded_samples = len(source)

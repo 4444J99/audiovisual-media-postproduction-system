@@ -21,7 +21,7 @@ class FakeMedia {
   removeEventListener(name, callback) { this.listeners.get(name)?.delete(callback); }
   emit(name) { for (const callback of [...(this.listeners.get(name) || [])]) callback(); }
   pause() { this.paused = true; this.emit('pause'); }
-  load() { this.currentTime = 0; this.duration = NaN; this.readyState = 0; this.pause(); }
+  load() { this.currentTime = 0; this.duration = NaN; this.ended = false; this.readyState = 0; this.pause(); }
   play() {
     this.playCalls++;
     if (this.failure) {
@@ -160,6 +160,54 @@ test('selecting a new track after the previous one ends starts at zero', () => {
   video.ended = false;
   video.metadata();
   assert.equal(video.currentTime, 0);
+});
+
+test('natural completion clears play intent even when the element is not paused', async () => {
+  const {video, transport, problems} = setup();
+  transport.play();
+  const pending = video.waiting.at(-1);
+  video.currentTime = video.duration;
+  video.ended = true;
+  assert.equal(video.paused, false, 'ended and paused are independent native states');
+  video.emit('ended');
+  assert.equal(transport.snapshot().playing, false);
+  assert.equal(transport.snapshot().wantsPlay, false);
+
+  // A late settlement must not restore playback intent or display an error.
+  pending.reject(Object.assign(new Error('completed playback'), {name: 'NotAllowedError'}));
+  await flush();
+  assert.equal(problems.length, 0);
+  assert.equal(transport.snapshot().wantsPlay, false);
+
+  const callsBeforeSelection = video.playCalls;
+  transport.use(track('B'));
+  video.metadata();
+  assert.equal(video.playCalls, callsBeforeSelection, 'selecting another track does not autoplay');
+  assert.equal(video.currentTime, 0);
+  assert.equal(video.paused, true);
+  assert.equal(transport.snapshot().playing, false);
+});
+
+test('adopting an ended element does not report active playback', () => {
+  const {video, transport} = setup();
+  video.currentTime = video.duration;
+  video.ended = true;
+  transport.adopt(track('A'));
+  assert.equal(transport.snapshot().wantsPlay, false);
+  assert.equal(transport.snapshot().playing, false);
+});
+
+test('a play promise settling before the ended event does not revive playback', async () => {
+  const {video, transport} = setup();
+  transport.play();
+  video.currentTime = video.duration;
+  video.ended = true;
+  video.waiting.at(-1).resolve();
+  await flush();
+  assert.equal(transport.snapshot().wantsPlay, false);
+  assert.equal(transport.snapshot().playing, false);
+  video.emit('playing');
+  assert.equal(transport.snapshot().wantsPlay, false, 'a queued playing event is stale after completion');
 });
 
 test('native pause during metadata load cancels intent for the next selection', () => {

@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0",
+  "status": "planned",
+  "project": "audiovisual-media-postproduction-system",
+  "historical_backlog_imported": false,
+  "github_issues_created": false,
+  "dependency_semantics": "Entry prerequisites, not a requirement to close entire upstream epics.",
+  "epics": [
+    {
+      "id": "FND",
+      "title": "Source custody and engineering foundation",
+      "first_circle": 0,
+      "depends_on": [],
+      "status": "planned",
+      "github_issue_number": null,
+      "work_items": [
+        "Register authorized immutable assets, digests, timebases, source truth, and controlled locators.",
+        "Verify transcript/performer/camera mappings and create media-free synthetic fixtures.",
+        "Reconcile the prior workprint and 38-task package without inventing provenance or importing private media publicly.",
+        "Review sibling interfaces, target GES adoption, native gates, software licensing, and separate media/model publication decisions."
+      ],
+      "acceptance_criteria": [
+        "Registered inputs are inspectable; uncertainty and rights states are explicit.",
+        "Foundation checks pass; native enforcement is claimed only after separate verification."
+      ]
+    },
+    {
+      "id": "DIR",
+      "title": "Creative notes to actionable revision proposals",
+      "first_circle": 0,
+      "depends_on": [
+        "FND"
+      ],
+      "status": "planned",
+      "github_issue_number": null,
+      "work_items": [
+        "Bind a note to intended outcomes, source spans, entities, preserved constraints, and acceptance criteria.",
+        "Propose alternative typed operation graphs; retain assumptions and block unbound or unsupported execution.",
+        "Record comparison feedback and accepted/rejected revisions with reviewer roles and lineage."
+      ],
+      "acceptance_criteria": [
+        "One note becomes an executed and reviewed revision in the combined proof.",
+        "Notes cannot execute commands, grant provider access, or approve their own outputs."
+      ]
+    },
+    {
+      "id": "AUD",
+      "title": "Audio restoration and sound authorship",
+      "first_circle": 1,
+      "depends_on": [
+        "FND"
+      ],
+      "status": "planned",
+      "github_issue_number": null,
+      "work_items": [
+        "Diagnose representative speech, overlap, quiet replies, transients, and room intervals.",
+        "Compare restrained and stronger repairs at matched loudness and preserve intelligibility/voice character.",
+        "Build qualified dialogue, room, incidental, and expressive layers; diarization is not separation.",
+        "Finish and listen through the full-scene mix with clean-dialogue reference and receipts."
+      ],
+      "acceptance_criteria": [
+        "Matched-level listening demonstrates a substantial improvement; defects and uncertainties are reported.",
+        "Expressive processing remains separately controllable; no invented words are labeled recovered."
+      ]
+    },
+    {
+      "id": "PER",
+      "title": "Dialogue, performance, and editorial revision",
+      "first_circle": 1,
+      "depends_on": [
+        "FND"
+      ],
+      "status": "planned",
+      "github_issue_number": null,
+      "work_items": [
+        "Implement constrained pause/onset/overlap edits with source/output maps.",
+        "Implement reaction and gesture timing edits with audiovisual continuity checks.",
+        "Develop editorial alternatives and full-scene performance direction.",
+        "Evaluate explicitly approved performance reconstruction when source editing is insufficient."
+      ],
+      "acceptance_criteria": [
+        "A note produces a perceptible performance change without a new recording.",
+        "Preserved-word constraints, synchronization, continuity, and reconstruction provenance are checked."
+      ]
+    },
+    {
+      "id": "TXT",
+      "title": "Animated typography and motion design",
+      "first_circle": 1,
+      "depends_on": [
+        "FND"
+      ],
+      "status": "planned",
+      "github_issue_number": null,
+      "work_items": [
+        "Implement timed words, word apertures, and expressive motion parameters.",
+        "Attach text to tracked regions/surfaces and coordinate independent timing with sound/performance.",
+        "Compose the full text score and separately readable captions."
+      ],
+      "acceptance_criteria": [
+        "The proof contains authored text animation beyond subtitles.",
+        "Readability, timing, movement, and font-use permissions are reviewed."
+      ]
+    },
+    {
+      "id": "CAM",
+      "title": "Tracked virtual cinematography and detail reconstruction",
+      "first_circle": 1,
+      "depends_on": [
+        "FND"
+      ],
+      "status": "planned",
+      "github_issue_number": null,
+      "work_items": [
+        "Track faces, objects, and movements with reviewable correction points.",
+        "Render authored reframing, push-ins, stabilization, and source pixel-budget diagnostics.",
+        "Compare source-supported enhancement and reconstructed high-resolution close-ups on moving sequences.",
+        "Compose full-scene framing and evaluate advanced detail reconstruction with identity/occlusion checks."
+      ],
+      "acceptance_criteria": [
+        "A tracked face/object/movement close-up works in motion at its intended display size.",
+        "Source limits, invented detail, flicker, identity drift, object shape, and sync are reviewed explicitly."
+      ]
+    },
+    {
+      "id": "VFX",
+      "title": "Compositing, character regions, and scene transformation",
+      "first_circle": 1,
+      "depends_on": [
+        "FND"
+      ],
+      "status": "planned",
+      "github_issue_number": null,
+      "work_items": [
+        "Calibrate view-specific hard regions and cross-shot performer continuity.",
+        "Author distinct expression behavior, including silent listening, neutral states, and boundary tests.",
+        "Add soft transitions and authored spill only after hard-region control is demonstrated.",
+        "Develop finer masks, independent bodies/objects/room, and reviewed environmental transformations."
+      ],
+      "acceptance_criteria": [
+        "Five god-here regions operate independently without unintentional spill.",
+        "Advanced layers retain occlusion/temporal continuity; scene treatment remains project configuration."
+      ]
+    },
+    {
+      "id": "RUN",
+      "title": "Processing execution, comparison, and linear editions",
+      "first_circle": 0,
+      "depends_on": [
+        "FND"
+      ],
+      "status": "planned",
+      "github_issue_number": null,
+      "work_items": [
+        "Implement explicit time mapping, typed operator registry, dependency planning, and authorized execution.",
+        "Add bounded jobs, caching, cancellation, resumability, resource/error reporting, and render receipts.",
+        "Build a phone-readable A–E comparison with phrase alignment for retimed variants.",
+        "Integrate the directed proof, then deliver the complete linear edition with stems, text, decisions, and receipts."
+      ],
+      "acceptance_criteria": [
+        "A–E media is actually rendered and reviewed, not just specified.",
+        "Deterministic runs reproduce; generative nondeterminism is disclosed; failure is not hidden."
+      ]
+    },
+    {
+      "id": "GEN",
+      "title": "Generative recomposition and variant selection",
+      "first_circle": 5,
+      "depends_on": [
+        "DIR",
+        "RUN"
+      ],
+      "status": "planned",
+      "github_issue_number": null,
+      "work_items": [
+        "Define addressable utterances, gestures, text, room intervals, and allowed transition rules.",
+        "Produce three meaningfully different seeded compositions with complete cue graphs and renders.",
+        "Review narrative/formal results and retain the selected edition and rejected-variant rationale."
+      ],
+      "acceptance_criteria": [
+        "Seeds/recipes and source/output mappings remain inspectable.",
+        "Rule validity alone does not establish an artistically successful composition."
+      ]
+    },
+    {
+      "id": "INT",
+      "title": "Interactive reception and installation delivery",
+      "first_circle": 6,
+      "depends_on": [
+        "DIR",
+        "RUN"
+      ],
+      "status": "planned",
+      "github_issue_number": null,
+      "work_items": [
+        "Map audience attention to audibility, field intensity, or persistence without replacing the composition with arbitrary controls.",
+        "Implement shared-clock playback, mobile lifecycle/recovery, and a stable linear fallback.",
+        "Capture interactions for repeatable playback and offline rendering.",
+        "Calibrate installation output, device/venue behavior, and publication permissions."
+      ],
+      "acceptance_criteria": [
+        "A recorded interaction can be replayed and rendered as a linear edition.",
+        "Mobile/installation recovery and synchronization are verified; no monitoring is enabled by default."
+      ]
+    }
+  ]
+}

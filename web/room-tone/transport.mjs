@@ -29,7 +29,7 @@ export class MediaTransport {
     this.selection = selection;
     this.active = this.target(selection);
     this.position = Number.isFinite(this.active.currentTime) ? this.active.currentTime : 0;
-    this.wantsPlay = !this.active.paused;
+    this.wantsPlay = !this.active.paused && !this.active.ended;
     this.loading = false;
     this.notify();
   }
@@ -39,21 +39,23 @@ export class MediaTransport {
     const time = this.loading ? this.position : (Number.isFinite(this.active?.currentTime) ? this.active.currentTime : this.position);
     return {selection: this.selection, time, duration, sourceTime: time + (this.selection?.sourceStart || 0),
       loading: this.loading, wantsPlay: this.wantsPlay, problem: this.problem,
-      playing: !!this.active && !this.active.paused && !this.loading};
+      playing: !!this.active && !this.active.paused && !this.active.ended && !this.loading};
   }
 
   notify() { this.onChange(this.snapshot()); }
 
   nativeEvent(element, event) {
     if (element !== this.active) return;
-    if (event === 'play' || event === 'playing') {
+    if ((event === 'play' || event === 'playing') && !element.paused && !element.ended) {
       this.wantsPlay = true;
       if (event === 'playing') this.problem = null;
       (element === this.video ? this.audio : this.video).pause();
     }
     // A real native Pause still cancels playback while metadata is pending.
-    // Ignore load()-related pauses and stale queued pause events after Play.
-    if ((event === 'pause' || event === 'ended') && element.paused && !this.changingSource) {
+    // Ended playback can leave paused=false. Check each event's current state
+    // to ignore load()-related pauses and stale events after a later Play.
+    const stopped = (event === 'pause' && element.paused) || (event === 'ended' && element.ended);
+    if (stopped && !this.changingSource) {
       this.wantsPlay = false;
       this.playRequest++;
     }
@@ -134,7 +136,7 @@ export class MediaTransport {
     catch (error) { this.playRejected(error, token, request); return; }
     if (promise?.then) promise.then(() => {
       if (token !== this.generation || request !== this.playRequest) return;
-      this.wantsPlay = !element.paused;
+      this.wantsPlay = !element.paused && !element.ended;
       this.problem = null;
       this.notify();
     }, error => this.playRejected(error, token, request));

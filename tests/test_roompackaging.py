@@ -8,6 +8,7 @@ from pathlib import Path
 from unittest import mock
 
 import numpy as np
+from PIL import Image
 
 from amp.audio import RATE, save_audio
 from amp.core import sha256
@@ -76,6 +77,94 @@ class RoomPackagingTests(unittest.TestCase):
         self.assertTrue(packaging.validate_encoded(target, RATE, "flac")["full_decode_verified"])
         self.assertFalse(list(self.root.glob(".room-encode-*")))
 
+    def test_copied_stem_rejects_missing_tail_and_preserves_existing_target(self):
+        source = self.root / "original.flac"
+        target = self.root / "retained.flac"
+        packaging.encode(self.source, source, "flac")
+        packaging.copy_verified_flac(source, target, RATE)
+        original = target.read_bytes()
+        # A valid shorter file still cannot stand in for a full-length stem.
+        with self.assertRaisesRegex(ValueError, "truncated or invalid"):
+            packaging.copy_verified_flac(source, target, 2 * RATE)
+        self.assertEqual(target.read_bytes(), original)
+        self.assertFalse(list(self.root.glob(".room-copy-*")))
+
+    def test_expected_full_length_mismatch_preserves_existing_encoded_target(self):
+        target = self.root / "full-length.flac"
+        packaging.encode(self.source, target, "flac")
+        original = target.read_bytes()
+        with self.assertRaisesRegex(ValueError, "wrong full-length sample count"):
+            packaging.encode(self.source, target, "flac", expected_samples=2 * RATE)
+        self.assertEqual(target.read_bytes(), original)
+        self.assertFalse(list(self.root.glob(".room-encode-*")))
+
+    def test_copied_stem_rejects_nonfinite_complete_decode(self):
+        source = self.root / "original.flac"
+        packaging.encode(self.source, source, "flac")
+        invalid = self.samples.copy()
+        invalid[-1, 0] = np.nan
+        decoded = subprocess.CompletedProcess([], 0, invalid.astype("<f4").tobytes(), b"")
+        target = self.root / "retained.flac"
+        with mock.patch.object(packaging.subprocess, "run", return_value=decoded):
+            with self.assertRaisesRegex(ValueError, "truncated or invalid"):
+                packaging.copy_verified_flac(source, target, RATE)
+        self.assertFalse(target.exists())
+
+    def test_export_records_transcoded_core_identity_and_validates_retained_stems(self):
+        refinement, audit, baseline, output = [self.root / name for name in
+                                              ("refinement", "audit", "baseline", "output")]
+        for path in (refinement, audit, baseline, output):
+            path.mkdir()
+        source_stem = refinement / "stem.wav"
+        source_stem.write_bytes(self.source.read_bytes())
+        item = {"filename": "stem.wav", "sha256": sha256(source_stem)}
+        report = {"candidates": {key: {"stems": {band: item for band in ("low", "mid", "high")}}
+                                 for key in ("B", "C", "D", "E")}}
+        (refinement / "room-refinement-report.json").write_text(json.dumps(report))
+        (baseline / "room-rack-report.json").write_text("{}")
+        stem = baseline / "low-dry-contribution.flac"
+        packaging.encode(self.source, stem, "flac")
+        for band in ("low", "mid", "high"):
+            for kind in ("dry-contribution", "fx-return"):
+                (baseline / f"{band}-{kind}.flac").write_bytes(stem.read_bytes())
+        receipt = packaging.export_edit_assets(refinement, audit, baseline, self.source, output, RATE)
+        self.assertEqual(receipt["dialogue_source_sha256"], sha256(self.source))
+        self.assertEqual(receipt["dialogue_file_sha256"], sha256(output / "full-length/dialogue-core.flac"))
+        self.assertNotEqual(receipt["dialogue_file_sha256"], receipt["dialogue_source_sha256"])
+        self.assertEqual(len(receipt["editable_audio_verification"]), 19)
+        for audio_receipt in receipt["editable_audio_verification"].values():
+            self.assertTrue(audio_receipt["full_decode_verified"])
+            self.assertEqual(audio_receipt["decoded_samples"], RATE)
+
+    def test_shared_gain_bounds_coincident_stem_peaks(self):
+        # Sparse coincident transients have enough crest factor for headroom,
+        # rather than the -24 LUFS listening target, to determine the gain.
+        layer = np.zeros((RATE, 2), dtype=np.float32)
+        layer[100:148] = .25
+        stems = {str(i): layer for i in range(6)}
+        summed = sum(stems.values())
+        gain = packaging.shared_stem_gain(stems, summed)
+        measured = packaging.measure(summed * 10 ** (gain / 20))
+        self.assertLessEqual(measured["input_tp"], -1.49)
+        old_gain = min(-24 - packaging.measure(summed)["input_i"],
+                       -1.5 - packaging.measure(layer)["input_tp"])
+        self.assertGreater(old_gain, gain + 1)
+
+    def test_poster_falls_back_when_dejavu_is_unavailable(self):
+        truetype = packaging.ImageFont.truetype
+
+        def missing_dejavu(name, *args, **kwargs):
+            if isinstance(name, str) and name.startswith("DejaVuSans"):
+                raise OSError("DejaVu is not installed")
+            return truetype(name, *args, **kwargs)
+
+        output = self.root / "poster.png"
+        with mock.patch.object(packaging.ImageFont, "truetype", side_effect=missing_dejavu):
+            packaging.poster(output, Image.new("RGB", (640, 360)), "A", "Existing room rack",
+                             "Recorded room tone", "ROOM ONLY", "00:28-00:40")
+        with Image.open(output) as rendered:
+            self.assertEqual(rendered.size, (1280, 720))
+
     def test_source_identity_mismatch_is_rejected_before_render_lookup(self):
         refinement, audit, baseline = [self.root / name for name in ("refinement", "audit", "baseline")]
         for directory, name in ((refinement, "room-refinement-report.json"),
@@ -96,6 +185,7 @@ class RoomPackagingTests(unittest.TestCase):
         (output / ".room-encode-interrupted" / "partial.flac").write_bytes(b"staged material")
         target = packaging.archive_delivery(output)
         original = target.read_bytes()
+        original_manifest = (output / "delivery-manifest.json").read_bytes()
         with zipfile.ZipFile(target) as archive:
             self.assertIsNone(archive.testzip())
             self.assertEqual(set(archive.namelist()), {"notes.md", "delivery-manifest.json"})
@@ -104,7 +194,18 @@ class RoomPackagingTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Archive member failed validation"):
                 packaging.archive_delivery(output)
         self.assertEqual(target.read_bytes(), original)
+        self.assertEqual((output / "delivery-manifest.json").read_bytes(), original_manifest)
         self.assertFalse(list(self.root.glob(".room-package-*")))
+
+    def test_failed_first_archive_does_not_publish_a_manifest(self):
+        output = self.root / "delivery"
+        output.mkdir()
+        (output / "notes.md").write_text("Unverified comparison notes")
+        with mock.patch.object(zipfile.ZipFile, "testzip", return_value="notes.md"):
+            with self.assertRaisesRegex(ValueError, "Archive member failed validation"):
+                packaging.archive_delivery(output)
+        self.assertFalse((output / "delivery-manifest.json").exists())
+        self.assertFalse((output / "god-here-room-tone-processing-comparisons.zip").exists())
 
 
 if __name__ == "__main__":

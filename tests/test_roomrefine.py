@@ -9,7 +9,7 @@ import numpy as np
 from amp.audio import RATE
 from amp.core import sha256
 from amp.roomrack import split_bands
-from amp.roomrefine import (build, inventory_portions, match_reference, rms,
+from amp.roomrefine import (_reference, build, inventory_portions, match_reference, rms,
                             shared_layers, spectral_profiles, spectral_texture)
 
 
@@ -90,6 +90,42 @@ class RoomRefinementTests(unittest.TestCase):
                 decode.assert_not_called()
             self.assertFalse(out.exists())
             self.assertNotEqual(sha256(source), "0" * 64)
+
+    def reference_fixture(self, root):
+        path = root / "room-tone-layered.wav"
+        path.write_bytes(b"preserved baseline fixture")
+        (root / "room-rack-report.json").write_text(json.dumps({
+            "source_sha256": "a" * 64, "pause_inventory_sha256": "b" * 64,
+            "source_portions": [{"start": .1, "end": .5}],
+            "sample_rate": RATE, "channels": 2, "duration_seconds": .01}))
+        return path, [{"start": .1, "end": .5}]
+
+    def test_recovered_reference_requires_independent_identity_before_decoding(self):
+        with tempfile.TemporaryDirectory() as directory, mock.patch("amp.roomrefine.DURATION", .01):
+            root = Path(directory)
+            path, portions = self.reference_fixture(root)
+            expected = sha256(path)
+            with mock.patch("amp.roomrefine.load_audio") as decode:
+                with self.assertRaisesRegex(ValueError, "independent"):
+                    _reference(root, "a" * 64, "b" * 64, portions)
+                path.write_bytes(b"same-length but replaced baseline")
+                with self.assertRaisesRegex(ValueError, "expected SHA-256"):
+                    _reference(root, "a" * 64, "b" * 64, portions, expected_audio_sha256=expected)
+                decode.assert_not_called()
+
+    def test_reconstructed_reference_rejects_same_length_changed_audio(self):
+        with tempfile.TemporaryDirectory() as directory, mock.patch("amp.roomrefine.DURATION", .01):
+            root = Path(directory)
+            _, portions = self.reference_fixture(root)
+            expected = np.full((480, 2), .01, np.float32)
+            with mock.patch("amp.roomrefine.load_audio", return_value=expected * 2):
+                with self.assertRaisesRegex(ValueError, "independent source reconstruction"):
+                    _reference(root, "a" * 64, "b" * 64, portions, expected_pcm=expected)
+            with mock.patch("amp.roomrefine.load_audio", return_value=expected):
+                actual, receipt = _reference(root, "a" * 64, "b" * 64, portions, expected_pcm=expected)
+            np.testing.assert_array_equal(actual, expected)
+            self.assertIn("independent unchanged-engine", receipt["authentication"])
+            self.assertEqual(receipt["decoded_float32_pcm_sha256"], receipt["reconstructed_pcm_sha256"])
 
     def test_invalid_or_empty_portions_are_rejected(self):
         inventory = {"sample_rate": RATE, "channels": 2, "pauses": []}

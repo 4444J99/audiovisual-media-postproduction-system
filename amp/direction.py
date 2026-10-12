@@ -93,6 +93,43 @@ def validate_recipe(r, frame_count=None):
     return total
 
 
+def validated_frame_count(source, video, fps):
+    """Verify the decoded clock and count frames even when nb_frames is absent.
+
+    Container rate summaries are not a CFR guarantee. Account only for timestamp
+    quantization (at most a quarter frame), and reject missing/irregular clocks.
+    """
+    require(Fraction(video["avg_frame_rate"]) == fps, "CFR source/fps mismatch")
+    tolerance = max(1e-5, min(float(Fraction(video.get("time_base", "1/1000000"))) + 1e-6, .25 / fps))
+    decoder = subprocess.Popen([
+        'ffprobe', '-v', 'error', '-select_streams', 'v:0',
+        '-show_entries', 'frame=best_effort_timestamp_time', '-of', 'csv=p=0', str(source)
+    ], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
+    count, origin = 0, None
+    try:
+        for line in decoder.stdout:
+            value = line.strip().split(',')[0]
+            if not value:
+                continue  # ffprobe may emit a blank side-data separator.
+            try:
+                timestamp = float(value)
+            except ValueError:
+                raise ValueError('Source frame timestamp unavailable') from None
+            require(math.isfinite(timestamp), 'Source frame timestamp unavailable')
+            if origin is None:
+                origin = timestamp
+            require(abs(timestamp - origin - count / fps) <= tolerance,
+                    'Source is not CFR; normalize frame timestamps before rendering')
+            count += 1
+        require(decoder.wait(timeout=180) == 0 and count > 0, 'Source frame-clock decode failed')
+    finally:
+        decoder.stdout.close()
+        if decoder.poll() is None:
+            decoder.terminate()
+        decoder.wait(timeout=30)
+    return count
+
+
 def frame_map(recipe, directed=True):
     """Integer map; source intervals are half-open, all input time is retained."""
     if not directed:
@@ -250,7 +287,7 @@ def audio_map(source_audio, recipe, directed, expressive, output):
     trim = min(1.0,10**(-2/20)/max(peak,1e-9))
     samples *= trim
     subprocess.run(['ffmpeg','-v','error','-f','f32le','-ar',str(RATE),'-ac','2','-i','-','-c:a','pcm_s24le',str(output)],input=samples.astype('<f4').tobytes(),check=True,timeout=180)
-    return dict(samples=len(samples), sample_rate=RATE, trim_db=20*math.log10(trim), pitch_preserving_method="FFmpeg atempo", padding="Each tempo segment padded/trimmed to its exact output sample count; join listening pending", expressive_shared_mix_return=expressive, source_isolated_voices=False)
+    return dict(samples=len(samples), sample_rate=RATE, trim_db=20*math.log10(trim), pitch_preserving_method="FFmpeg atempo", padding="Each tempo segment padded/trimmed to its exact output sample count; join listening pending", expressive_shared_mix_return=bool(expressive and recipe["return_gain"] > 0), expressive_return_gain=recipe["return_gain"] if expressive else 0, source_isolated_voices=False)
 
 
 def render(source, source_audio, recipe, output, *, variant="directed", field_config=None, font_path=None):
@@ -261,18 +298,17 @@ def render(source, source_audio, recipe, output, *, variant="directed", field_co
     require(not output.exists() and output.resolve() not in (source.resolve(),source_audio.resolve()), "Refusing overwrite")
     metadata = probe(source)
     video = next(s for s in metadata["streams"] if s["codec_type"]=="video")
-    require(Fraction(video["avg_frame_rate"]) == recipe["fps"] and video["r_frame_rate"] == video["avg_frame_rate"], "CFR source/fps mismatch")
-    validate_recipe(recipe, int(video["nb_frames"]))
+    validate_recipe(recipe, validated_frame_count(source, video, recipe["fps"]))
     require(sha256(source)==recipe["source_sha256"], "Source checksum mismatch")
     require(float(probe(source_audio)["format"]["duration"])+1/recipe["fps"] >= recipe["source_span"][1]/recipe["fps"], "Audio must use full-source timing")
     directed = variant in ("directed","expressive")
     fields = variant in ("fields","directed","expressive") and recipe["field_gain"]>0
-    if fields:
-        require(field_config is not None, "Field score is required; never silently omit fields")
+    if fields or (directed and recipe["camera"]):
+        require(field_config is not None, "Field score is required for fields and camera cut validation")
         validate_fields(field_config,float(metadata["format"]["duration"]))
         require(field_config["fps"] == recipe["fps"], "Field score clock mismatch")
         require(integer(field_config["history_frames"], 0, 120), "Excessive field history")
-        for c in recipe["camera"]:
+        for c in (recipe["camera"] if directed else []):
             a = shot_at(field_config,c["source_start"]/recipe["fps"])
             b = shot_at(field_config,(c["source_end"]-1)/recipe["fps"])
             require(a is not None and a==b, "Tracker cue crosses a source cut")
@@ -346,7 +382,7 @@ def render(source, source_audio, recipe, output, *, variant="directed", field_co
         require(sha256(source)==recipe['source_sha256'],"Source changed while rendering")
         require(not output.exists(),"Output appeared during rendering")
         (work/'render.mp4').replace(output)
-    report=dict(engine_version=VERSION,engine_sha256=sha256(__file__),core_sha256=sha256(Path(__file__).with_name("core.py")),variant=variant,source_sha256=recipe['source_sha256'],source_audio_sha256=sha256(source_audio),recipe_sha256=hashlib.sha256(json.dumps(recipe,sort_keys=True).encode()).hexdigest(),field_score_sha256=hashlib.sha256(json.dumps(field_config,sort_keys=True).encode()).hexdigest() if fields else None,font_sha256=sha256(font_path) if directed and recipe['typography'] else None,output_sha256=sha256(output),fps=recipe['fps'],output_frames=len(mapping),output_dimensions=[ow,oh],duration_seconds=len(mapping)/recipe['fps'],source_output_map=time_map(recipe,directed),audio=sound_report,tracks=tracks,crop_source_pixels=crops,detail_method='Lanczos resampling and restrained unsharp mask; no recovered or generated detail',review=dict(technical_decode='passed',perceptual_audio='pending',phrase_boundaries='pending',artistic_acceptance='pending'),tools=dict(ffmpeg=subprocess.check_output(['ffmpeg','-version'],text=True).splitlines()[0]))
+    report=dict(engine_version=VERSION,engine_sha256=sha256(__file__),core_sha256=sha256(Path(__file__).with_name("core.py")),variant=variant,source_sha256=recipe['source_sha256'],source_audio_sha256=sha256(source_audio),recipe_sha256=hashlib.sha256(json.dumps(recipe,sort_keys=True).encode()).hexdigest(),field_score_sha256=hashlib.sha256(json.dumps(field_config,sort_keys=True).encode()).hexdigest() if fields or (directed and recipe["camera"]) else None,font_sha256=sha256(font_path) if directed and recipe['typography'] else None,output_sha256=sha256(output),fps=recipe['fps'],output_frames=len(mapping),output_dimensions=[ow,oh],duration_seconds=len(mapping)/recipe['fps'],source_output_map=time_map(recipe,directed),audio=sound_report,tracks=tracks,crop_source_pixels=crops,detail_method='Lanczos resampling and restrained unsharp mask; no recovered or generated detail',review=dict(technical_decode='passed',perceptual_audio='pending',phrase_boundaries='pending',artistic_acceptance='pending'),tools=dict(ffmpeg=subprocess.check_output(['ffmpeg','-version'],text=True).splitlines()[0]))
     write_json(output.with_suffix('.render.json'),report)
     return report
 

@@ -1,6 +1,6 @@
 """Reproduce a matched source/FFT-denoise trial; not restoration acceptance."""
 import argparse
-import hashlib
+import sys
 import json
 from pathlib import Path
 import re
@@ -8,6 +8,9 @@ import subprocess
 import numpy as np
 from scipy import signal
 from scipy.io import wavfile
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from amp.core import sha256
 
 RATE=48000
 
@@ -27,7 +30,7 @@ def measure(samples):
 
 def prepare(source,recipe,output):
     if output.exists(): raise ValueError('Output directory already exists')
-    digest=hashlib.sha256(source.read_bytes()).hexdigest()
+    digest=sha256(source)
     if digest!=recipe['source_sha256']: raise ValueError('Source checksum mismatch')
     chain='highpass=f=65,afftdn=nr=14:nf=-32:tn=1'
     original=decode(source);candidate=decode(source,chain)
@@ -52,7 +55,7 @@ def prepare(source,recipe,output):
     for name,value in values.items():
         gain=target-stats[name]['before']['input_i'];matched=value*10**(gain/20)
         path=output/f'{name}-full.wav';wavfile.write(str(path),RATE,matched.astype(np.float32))
-        stats[name].update(gain_db=gain,after=measure(matched[a:b]),sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+        stats[name].update(gain_db=gain,after=measure(matched[a:b]),sha256=sha256(path))
     report={'source_sha256':digest,'method':chain,'common_target_lufs':target,'sample_rate':RATE,'estimated_lag_samples_by_window':lags,'compensation_samples':lag,'measurements':stats,'normalization_basis':'Complete excerpt, not certified active speech','restoration_accepted':False,'speech_verified':False,'neural_enhancement':False}
     (output/'audio-preparation.json').write_text(json.dumps(report,indent=2)+'\n')
     return report

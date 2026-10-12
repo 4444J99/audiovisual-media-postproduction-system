@@ -18,7 +18,16 @@ def validate_outputs(root):
               'god-here-directed-full-workprint.mp4':3378}
     rows=[]
     for name,frames in expected.items():
-        path=root/name;info=probe(path)
+        path=root/name
+        suffix='.render.json' if name.startswith('proof-') else '.revision.json'
+        receipt=path.with_suffix(suffix)
+        if not receipt.is_file():
+            raise ValueError(f'Missing render receipt: {name}')
+        data=json.loads(receipt.read_text())
+        digest=sha256(path)
+        if data.get('output_sha256')!=digest:
+            raise ValueError(f'Delivery changed after render receipt: {name}')
+        info=probe(path)
         video=next(s for s in info['streams'] if s['codec_type']=='video')
         if int(video['nb_frames'])!=frames or [video['width'],video['height']]!=[1280,720]:
             raise ValueError(f'Incorrect delivered frame count/geometry: {name}')
@@ -28,11 +37,6 @@ def validate_outputs(root):
         wave=load_audio(path);audio=measure(wave)
         if audio['input_tp']>=0:
             raise ValueError(f'Delivered true peak lacks headroom: {name}')
-        receipt=path.with_suffix('.revision.json')
-        if receipt.exists():
-            data=json.loads(receipt.read_text())
-            if data['output_sha256']!=sha256(path):
-                raise ValueError(f'Delivery changed after render receipt: {name}')
         rows.append({'file':name,'frames':frames,'duration':float(video['duration']),
                      'dimensions':[1280,720],'sha256':sha256(path),'full_decode':'passed',
                      'delivered_audio':audio})

@@ -1,5 +1,11 @@
 # Production status
 
+## October 12: current release and production plan
+
+The [current verification and finish-line plan](GOD-HERE-FINISH-LINE.md) governs the next release. The prior Studio overlay has been recovered and hash-checked; source review retains 174 records and the original film/workbook identities. Review of the combined code exposed additional routing, transport, directed-revision and evidence-validation defects, now addressed with targeted regressions in the integration branch. Deployment and current test receipts are tracked separately from this narrative. The dated reports below remain historical evidence; their test counts and publication state are not a current release certificate.
+
+Outstanding artistic gates remain listening-certified dialogue, sound selection, full-film color/matte/occlusion review, reconstructed-shot acceptance, captions and final master approval. The 160 unmatched historical hashes and original-browser evaluation records also remain explicitly unresolved.
+
 ## October 11: recovery and engineering consolidation
 
 The [engineering integration record](ENGINEERING-INTEGRATION.md) describes the four retained branch heads now combined, the resolved conflicts, and the complete existing test suites exercised together. The source-length baseline was reproduced separately at its preserved revision; that evidence does not certify renders from later integrated code or select an artistic treatment.

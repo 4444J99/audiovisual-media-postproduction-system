@@ -1,13 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {visual, core} from './runtime.mjs';
+import {renderAudio} from '../../web/fx/audio-engine.mjs';
 
 const {VisualEngine} = visual;
 function canvasStub(draws = []) {
   const ctx = {
     globalAlpha: 1,
     drawImage(image) {draws.push({image, alpha: this.globalAlpha, operation: this.globalCompositeOperation});},
-    fillRect() {}, clearRect() {}, setTransform() {}, save() {}, restore() {},
+    fillRect() {}, clearRect() {}, setTransform() {}, save() {}, restore() {},translate(){},rotate(){},scale(){},
   };
   return {width: 32, height: 18, getContext: () => ctx};
 }
@@ -22,6 +23,61 @@ test('a sole unity-gain body return applies its alpha isolation', () => {
   };
   VisualEngine.prototype.input.call(fake, {id: 'output', type: 'output'}, 'picture', 4);
   assert.equal(maskCalls, 1);
+});
+
+test('room-only parallel returns preserve the dry performer pixels', () => {
+  function pixels(values=[0,0],alphas=[0,0]){
+    const image={values:[...values],alphas:[...alphas]},ctx={globalAlpha:1,globalCompositeOperation:'source-over',
+      fillRect(){image.values.fill(0);image.alphas.fill(1);},
+      drawImage(source){for(let i=0;i<2;i++){
+        const a=source.alphas[i]*this.globalAlpha;
+        if(this.globalCompositeOperation==='destination-in'){image.alphas[i]*=a;continue;}
+        if(this.globalCompositeOperation==='lighter'){image.values[i]+=source.values[i]*a;image.alphas[i]=Math.min(1,image.alphas[i]+a);}
+        else{image.values[i]=source.values[i]*a+image.values[i]*(1-a);image.alphas[i]=a+image.alphas[i]*(1-a);}
+      }}};image.getContext=()=>ctx;return image;
+  }
+  const dry=pixels([40,20],[1,1]),returned=pixels([40,100],[1,1]),roomMask=pixels([0,0],[0,1]);
+  const fake={width:2,height:1,canvas:()=>pixels(),copy:image=>pixels(image.values,image.alphas),
+    inputs:()=>[{from:'dry',port:'picture',gain:1,role:'insert'},{from:'room',port:'picture',gain:1,role:'return'}],
+    signal:id=>({image:id==='dry'?dry:returned,active:true}),
+    branchDescriptor:()=>({id:'room',targets:['room'],region:'all'}),mask:()=>roomMask};
+  const result=VisualEngine.prototype.input.call(fake,{id:'output'},'picture',2).image;
+  assert.deepEqual(result.values,[40,100],'only the background pixel is replaced by the return');
+});
+
+function feedbackEngine(node,patch={nodes:[node],connections:[],events:[],seed:1}){
+  const draws=[],engine=new VisualEngine({duration:4,fps:12},{},{width:32,height:18,createCanvas:()=>canvasStub(draws)});
+  engine.patch=patch;engine.nodeMap=new Map(patch.nodes.map(n=>[n.id,n]));
+  return {engine,patch,draws};
+}
+
+test('feedback reset ramps rebuild picture returns after a single crossing', () => {
+  const node=core.createModule('feedback',{macro:[],params:{time:.25,repeats:8,reset:0},automation:[{parameter:'params.reset',interpolation:'linear',keyframes:[{time:0,value:0},{time:4,value:4}]}]});
+  const {engine,patch,draws}=feedbackEngine(node);
+  assert.equal(engine.feedbackEpoch(node,2),0);
+  engine.effect(core.evaluatedNode(node,2,patch),2,'picture',()=>canvasStub());
+  assert.equal(draws.length,9,'dry frame and eight feedback returns survive the reset ramp');
+});
+
+test('picture feedback follows audio reset crossings and is stable across backward seeks', () => {
+  const node=core.createModule('feedback',{macro:[],params:{reset:1},automation:[{parameter:'params.reset',interpolation:'linear',keyframes:[{time:0,value:1},{time:3,value:2}]}]});
+  const patch=core.createSingleModulePatch('feedback',{duration:3,demonstration:false});
+  node.id=patch.nodes[1].id;patch.nodes[1]=node;
+  const {engine}=feedbackEngine(node,patch);
+  const sr=8000,input=[new Float32Array(sr*3).fill(.1),new Float32Array(sr*3).fill(.1)];
+  const resets=renderAudio(patch,input,sr,3).report.modules[0].resetTimes;
+  assert.equal(resets.length,1);assert.ok(Math.abs(resets[0]-1.5)<.001);
+  assert.equal(engine.feedbackEpoch(node,2.75),1.5);
+  assert.equal(engine.feedbackEpoch(node,1),0);
+  assert.equal(engine.feedbackEpoch(node,2),1.5);
+});
+
+test('feedback resets again only after automation becomes inactive and crosses again', () => {
+  const node=core.createModule('feedback',{macro:[],params:{reset:0},automation:[{parameter:'params.reset',interpolation:'step',keyframes:[{time:0,value:0},{time:1,value:3},{time:2,value:2}]}]});
+  const {engine}=feedbackEngine(node);
+  assert.equal(engine.feedbackEpoch(node,2.5),2);
+  assert.equal(engine.feedbackEpoch(node,1.5),0);
+  assert.equal(engine.feedbackEpoch(node,.5),0);
 });
 
 test('visual gate detector responds to the supplied control envelope and threshold', () => {

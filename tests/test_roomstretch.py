@@ -7,7 +7,7 @@ from unittest import mock
 import numpy as np
 
 from amp.audio import RATE
-from amp.roomstretch import (build, cumulative_sum, loop_to_duration, original_gain_stacks,
+from amp.roomstretch import (_media, build, cumulative_sum, loop_to_duration, original_gain_stacks,
                              smooth_seams, source_reel, spectral_cycle,
                              varispeed_cycle)
 
@@ -124,6 +124,29 @@ class RoomStretchTests(unittest.TestCase):
             with mock.patch("amp.roomstretch.load_audio") as decode:
                 with self.assertRaisesRegex(ValueError, "another source"):
                     build(source, inventory, output)
+                decode.assert_not_called()
+            self.assertFalse(output.exists())
+
+    def test_failed_audition_headroom_does_not_publish_partial_media(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            with mock.patch("amp.roomstretch._save_wav") as save, mock.patch("amp.roomstretch._encode") as encode:
+                with self.assertRaisesRegex(ValueError, "headroom"):
+                    _media(root, "V1", np.full((100, 2), .5, np.float32), kind="layer", audition_boost_db=14)
+                save.assert_not_called()
+                encode.assert_not_called()
+            self.assertEqual(list(root.iterdir()), [])
+
+    def test_nearby_periods_cannot_overwrite_the_same_output_identifier(self):
+        from amp.core import sha256
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source, inventory, output = root / "source.wav", root / "inventory.json", root / "out"
+            source.write_bytes(b"source identity fixture")
+            inventory.write_text(json.dumps({"source_sha256": sha256(source)}))
+            with mock.patch("amp.roomstretch.load_audio") as decode:
+                with self.assertRaisesRegex(ValueError, "distinct sample counts and output identifiers"):
+                    build(source, inventory, output, periods=[10.000001, 10.00002])
                 decode.assert_not_called()
             self.assertFalse(output.exists())
 

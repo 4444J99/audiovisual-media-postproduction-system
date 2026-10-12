@@ -19,6 +19,7 @@ export class VisualEngine {
     this.cues = assets.cues || {words:[], phrases:[]};
     this.pool = []; this.poolIndex = 0; this.cache = new Map(); this.maskCache = new Map();
     this.temporalCache = new Map(); this.temporalCacheLimit = options.cacheFrames || 192;
+    this.feedbackEpochs = new Map();
     this.freeTemporal = []; this.retiredTemporal = [];
     this.control = options.control || (() => 0);
     this.controlLane = options.controlLane || null;
@@ -83,7 +84,7 @@ export class VisualEngine {
       if (port === 'text' && !input.active) continue;
       let image=input.image;
       const branch=port==='picture'&&edge.role==='return'?this.branchDescriptor(edge.from):null;
-      const isolated=branch&&!branch.targets.includes('picture')&&branch.targets.some(t=>['body','objects'].includes(t)) || branch?.targets.includes('picture')&&branch.region!=='all';
+      const isolated=branch&&!branch.targets.includes('picture')&&branch.targets.some(t=>['body','room','objects'].includes(t)) || branch?.targets.includes('picture')&&branch.region!=='all';
       if(isolated){
         image=this.copy(image);const ic=image.getContext('2d');
         const labels=this.signal(edge.from,'matte',t).image;
@@ -110,6 +111,21 @@ export class VisualEngine {
     if(node?.type === 'source') return this.control(clamp(t,0,this.media.duration),'source');
     const edges=this.inputs(id,'control');
     return clamp(edges.reduce((sum,e)=>sum + (this.controlLane?.(e.from,t) ?? this.envelope(e.from,t,new Set(visited))) * (e.gain ?? 1),0));
+  }
+  feedbackEpoch(node,t) {
+    // Resolve crossings on the picture clock, independently of seek order.
+    // A ramp which remains active must not clear the history every frame.
+    let history=this.feedbackEpochs.get(node.id);
+    if(!history){history={epochs:[],active:false,epoch:0};this.feedbackEpochs.set(node.id,history);}
+    const authored=this.nodeMap.get(node.id)||node,fps=this.media.fps;
+    const frame=Math.floor(clamp(t,0,this.media.duration-1e-6)*fps+1e-6);
+    for(let i=history.epochs.length;i<=frame;i++){
+      const time=i/fps,reset=evaluatedNode(authored,time,this.patch,this.envelope(node.id,time)).params.reset;
+      const active=time+1e-9>=reset;
+      if(active&&!history.active)history.epoch=time;
+      history.active=active;history.epochs.push(history.epoch);
+    }
+    return history.epochs[frame];
   }
   mask(node,t, labels) {
     const W = this.width,H = this.height;
@@ -275,7 +291,7 @@ export class VisualEngine {
         const dx=active?Math.sin(t*7)*W*p.motion:0;ctx.drawImage(sample(st),dx,0);break;
       }
       case 'feedback': {
-        const reset=t>=p.reset?p.reset:0;
+        const reset=this.feedbackEpoch(n,t);
         ctx.drawImage(frame(),0,0);
         const passes=Math.min(Math.round(p.repeats),Math.floor((t-reset)/p.time));
         for(let k=1;k<=passes;k++) {
@@ -345,7 +361,7 @@ export class VisualEngine {
   renderLayers(patch,t,options={}) {
     this.freeTemporal.push(...this.retiredTemporal);this.retiredTemporal=[];
     const signature=JSON.stringify(patch)+Boolean(options.bypass);
-    if(signature!==this.cacheSignature){for(const entry of this.temporalCache.values())this.freeTemporal.push(entry.image);this.temporalCache.clear();this.cacheSignature=signature;}
+    if(signature!==this.cacheSignature){for(const entry of this.temporalCache.values())this.freeTemporal.push(entry.image);this.temporalCache.clear();this.feedbackEpochs.clear();this.cacheSignature=signature;}
     this.patch=patch;this.nodeMap=new Map(patch.nodes.map(n=>[n.id,n]));this.bypass=options.bypass||false;
     this.solo=patch.nodes.some(n=>n.solo);this.poolIndex=0;this.cache.clear();this.maskCache.clear();
     const phase=patch.metadata?.demoPhases?.find(p=>t>=p.start&&t<p.end);

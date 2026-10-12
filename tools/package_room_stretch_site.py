@@ -138,41 +138,107 @@ def checked_copy(source, target):
         raise ValueError(f"Copy changed {source.name}")
 
 
+def authenticated_file(root, relative, expected, label):
+    """Resolve a recorded asset only inside its package and check its identity."""
+    relative = PurePosixPath(relative)
+    path = root.joinpath(*relative.parts)
+    if relative.is_absolute() or ".." in relative.parts or not path.resolve().is_relative_to(root.resolve()):
+        raise ValueError(f"Unsafe recorded path: {relative}")
+    if not expected or not path.is_file() or sha256(path) != expected:
+        raise ValueError(f"{label} changed or lacks an authenticated receipt")
+    return path
+
+
+def prior_beds(prior, report):
+    return {key: authenticated_file(prior, f"full-length/{key}-room.flac",
+                                    report["versions"][key].get("full_room_flac_sha256"),
+                                    f"Earlier bed {key}") for key in "ABCDE"}
+
+
+def source_pause_inputs(prior, report):
+    """The original review WAVs, rather than unreceipted AAC copies, are authoritative."""
+    audit_path = authenticated_file(prior, "source-pause-review/portion-review.json",
+                                    report.get("input_report_sha256", {}).get("audit"), "Source-pause report")
+    audit = json.loads(audit_path.read_text())
+    if audit.get("source_sha256") != report["source_sha256"]:
+        raise ValueError("Source-pause report belongs to another source")
+    sources = []
+    for entry in audit["portions"]:
+        key = entry["portion_id"]
+        if not key or PurePosixPath(key).name != key or "\\" in key or key in {".", ".."}:
+            raise ValueError("Invalid source-pause identifier")
+        record = entry["review_audio"]
+        path = authenticated_file(prior / "source-pause-review", record["path"], record.get("sha256"),
+                                  f"Source-pause WAV {key}")
+        sources.append((key, path))
+    return audit, sources
+
+
+def copy_processing_notes(prior, records, report):
+    target = records / "previous-processing-notes.md"
+    for candidate in [prior / "god-here-room-tone-processing-notes.md",
+                      prior / "reproduction/ROOM-REFINEMENT.md"]:
+        if candidate.is_file():
+            checked_copy(candidate, target)
+            return
+    # Fresh producer output need not contain the historical hand-written notes.
+    # Keep the established URL useful using facts from its generated report.
+    lines = ["# Earlier room-tone processing", "", "Generated from listening-package-report.json.", "",
+             f"Source SHA-256: `{report['source_sha256']}`", "",
+             "Listening acceptance remains pending.", ""]
+    for key, entry in report["versions"].items():
+        lines.append(f"- {key} — {entry['title']}: {entry['description']}")
+    lines += ["", "Full measurements and processing provenance: previous-listening-package-report.json.", ""]
+    target.write_text("\n".join(lines))
+
+
+def validate_stretch_assets(stretch, report):
+    for entry in [*report["layers"], *report["stacks"]]:
+        for field, receipt_key in [("stem_wav", "wav"), ("stem_flac", "flac"),
+                                   ("production_aac", "production_aac"), ("audition_aac", "audition_aac")]:
+            expected = entry.get("receipts", {}).get(receipt_key, {}).get("sha256")
+            authenticated_file(stretch, entry[field], expected, f"Stretch {entry['id']} {field}")
+    for field in ["source_reel_raw", "source_reel_processed"]:
+        record = report[field]
+        authenticated_file(stretch, record["file"], record.get("sha256"), f"Stretch {field}")
+
+
 def prepare(source, prior, site, working):
     targets = site_targets(site)
     validate_static_assets(targets)
     report = json.loads((prior / "listening-package-report.json").read_text())
     if sha256(source) != report["source_sha256"]:
         raise ValueError("The source differs from the earlier room-tone source")
+    beds = prior_beds(prior, report)
+    _, pause_sources = source_pause_inputs(prior, report)
     base = targets.room
     media, records = base / "media", base / "records"
     media.mkdir(parents=True, exist_ok=True)
     records.mkdir(exist_ok=True)
     working.mkdir(parents=True, exist_ok=True)
     picture = media / "source-picture.mp4"
-    if not picture.exists():
-        with tempfile.TemporaryDirectory(prefix=".picture-", dir=media) as temp:
-            stage = Path(temp) / picture.name
-            run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", source,
-                 "-map", "0:v:0", "-an", "-vf", "scale=854:480,setsar=1",
-                 "-t", DURATION, "-r", 30, "-c:v", "libx264", "-preset", "veryfast",
-                 "-crf", 27, "-pix_fmt", "yuv420p", "-movflags", "+faststart", stage])
-            run(["ffmpeg", "-nostdin", "-v", "error", "-i", stage, "-f", "null", "-"])
-            stage.replace(picture)
+    # Existence is not provenance: rebuild even when a previous source left a
+    # cached picture, then bind the result to this invocation's source below.
+    with tempfile.TemporaryDirectory(prefix=".picture-", dir=media) as temp:
+        stage = Path(temp) / picture.name
+        run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", source,
+             "-map", "0:v:0", "-an", "-vf", "scale=854:480,setsar=1",
+             "-t", DURATION, "-r", 30, "-c:v", "libx264", "-preset", "veryfast",
+             "-crf", 27, "-pix_fmt", "yuv420p", "-movflags", "+faststart", stage])
+        run(["ffmpeg", "-nostdin", "-v", "error", "-i", stage, "-f", "null", "-"])
+        stage.replace(picture)
     run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", 35, "-i", source,
          "-frames:v", 1, "-vf", "scale=854:480,setsar=1", "-q:v", 3, media / "room-poster.jpg"])
     tasks = []
-    for key in "ABCDE":
-        path = prior / "full-length" / f"{key}-room.flac"
-        if sha256(path) != report["versions"][key]["full_room_flac_sha256"]:
-            raise ValueError(f"Earlier bed {key} has changed")
+    for key, path in beds.items():
         for mode, gain in [("room", 0), ("inspection", INSPECTION_DB)]:
             tasks.append((path, media / f"{mode}-{key}.m4a", gain))
     encodes = {}
     for src, dst, gain in tasks:
         encodes[dst.name] = atomic_encode(src, dst, gain_db=gain)
-    for path in sorted((prior / "auditions").glob("PAUSE*-with-handles.m4a")):
-        checked_copy(path, media / path.name)
+    for key, path in pause_sources:
+        target = media / f"{key}-with-handles.m4a"
+        encodes[target.name] = atomic_encode(path, target)
     for path in sorted((prior / "auditions").glob("original-*.m4a")):
         checked_copy(path, media / path.name)
     for name in ["god-here-room-tone-quick-comparison.mp4", "god-here-room-tone-dialogue-comparison.mp4"]:
@@ -186,9 +252,14 @@ def prepare(source, prior, site, working):
         if path.is_file():
             checked_copy(path, records / "previous-processing" / path.name)
     checked_copy(prior / "listening-package-report.json", records / "previous-listening-package-report.json")
-    checked_copy(prior / "god-here-room-tone-processing-notes.md", records / "previous-processing-notes.md")
+    copy_processing_notes(prior, records, report)
     (working / "prior-site-encodes.json").write_text(json.dumps(encodes, indent=2) + "\n")
     validate_static_assets(targets)
+    preparation = {"source_sha256": report["source_sha256"],
+                   "prior_report_sha256": sha256(prior / "listening-package-report.json"),
+                   "files": {"media/" + name: sha256(media / name)
+                             for name in [picture.name, "room-poster.jpg", *encodes]}}
+    (records / "site-preparation.json").write_text(json.dumps(preparation, indent=2) + "\n")
     return base
 
 
@@ -242,14 +313,28 @@ def finish(source, prior, stretch, site, working):
     media, records = base / "media", base / "records"
     prior_report = json.loads((prior / "listening-package-report.json").read_text())
     report = json.loads((stretch / "room-stretch-report.json").read_text())
-    if report["source_sha256"] != prior_report["source_sha256"]:
+    source_hash = sha256(source)
+    if source_hash != prior_report["source_sha256"] or source_hash != report["source_sha256"]:
         raise ValueError("Stretch source differs from recovered room-tone source")
+    beds = prior_beds(prior, prior_report)
+    audit, _ = source_pause_inputs(prior, prior_report)
+    validate_stretch_assets(stretch, report)
+    preparation_path = records / "site-preparation.json"
+    if not preparation_path.is_file():
+        raise ValueError("Run prepare first to authenticate the source picture and previews")
+    preparation = json.loads(preparation_path.read_text())
+    if (preparation.get("source_sha256") != source_hash or
+            preparation.get("prior_report_sha256") != sha256(prior / "listening-package-report.json")):
+        raise ValueError("Prepared media belongs to another source or prior report; rerun prepare")
+    expected_prepared = {"media/source-picture.mp4", "media/room-poster.jpg"}
+    expected_prepared.update(f"media/{mode}-{key}.m4a" for key in "ABCDE" for mode in ["room", "inspection"])
+    expected_prepared.update(f"media/{entry['portion_id']}-with-handles.m4a" for entry in audit["portions"])
+    for relative in expected_prepared:
+        authenticated_file(base, relative, preparation.get("files", {}).get(relative), "Prepared media " + relative)
     manifest = {"schemaVersion": 1, "source": {"url": "media/source-picture.mp4", "posterUrl": "media/room-poster.jpg", "duration": DURATION},
                 "defaultTrack": "V5R", "inspectionGainDb": INSPECTION_DB, "tracks": [], "pauses": [], "videos": [], "downloads": []}
-    beds = {}
     for key in "ABCDE":
         entry = prior_report["versions"][key]
-        beds[key] = prior / "full-length" / f"{key}-room.flac"
         manifest["tracks"].append({"id": key, "group": "rack", "kind": "mix", "title": entry["title"], "description": entry["description"],
                                    "sourceStart": 0, "duration": DURATION, "media": {}})
     # The rendering report owns filenames and gains; no guessed filesystem glob.
@@ -315,7 +400,6 @@ def finish(source, prior, stretch, site, working):
         key = track["id"]
         if key in mix_paths:
             track["media"]["context"] = {"url": f"media/context-{key}.mp4", "type": "video/mp4"}
-    audit = json.loads((prior / "source-pause-review/portion-review.json").read_text())
     for entry in audit["portions"]:
         key = entry["portion_id"]
         manifest["pauses"].append({"id": key, "title": key, "url": f"media/{key}-with-handles.m4a", "duration": entry["handle_end"] - entry["handle_start"],
@@ -345,7 +429,11 @@ def finish(source, prior, stretch, site, working):
     manifest["commonDialogueTrimDb"] = trim_db
     (base / "media.json").write_text(json.dumps(manifest, indent=2) + "\n")
     (base / "catalog.html").write_text(catalog(manifest))
-    receipt = {"source_sha256": sha256(source), "common_dialogue_trim_db": trim_db, "identical_dialogue_gain": True,
+    receipt = {"source_sha256": source_hash,
+               "prior_report_sha256": sha256(prior / "listening-package-report.json"),
+               "stretch_report_sha256": sha256(stretch / "room-stretch-report.json"),
+               "preparation_receipt_sha256": sha256(preparation_path),
+               "common_dialogue_trim_db": trim_db, "identical_dialogue_gain": True,
                "scene_envelope_seconds": [5.033333, 107.166667], "scene_envelope_fade_seconds": 0.35,
                "context_encoding": receipts, "browser_playback_verified": False, "listening_acceptance": "pending"}
     (records / "site-media-verification.json").write_text(json.dumps(receipt, indent=2) + "\n")

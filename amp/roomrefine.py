@@ -300,7 +300,8 @@ def spectral_texture(frequencies, profiles, length, *, seed, mode):
     }
 
 
-def _reference(baseline_dir, source_hash, inventory_hash, portions):
+def _reference(baseline_dir, source_hash, inventory_hash, portions, *, expected_audio_sha256=None,
+               expected_pcm=None):
     baseline_dir = Path(baseline_dir)
     report_path = baseline_dir / "room-rack-report.json"
     report = json.loads(report_path.read_text())
@@ -317,10 +318,25 @@ def _reference(baseline_dir, source_hash, inventory_hash, portions):
                  if (baseline_dir / name).is_file()), None)
     if path is None:
         raise ValueError("Baseline rack audio is unavailable")
+    if expected_audio_sha256 is None and expected_pcm is None:
+        raise ValueError("Baseline audio needs an independent expected hash or source reconstruction")
+    actual_hash = sha256(path)
+    if expected_audio_sha256 is not None and actual_hash != expected_audio_sha256:
+        raise ValueError("Baseline audio differs from its independently expected SHA-256")
     value = _finite_audio(load_audio(path), "Baseline rack", round(DURATION * RATE))
+    if expected_pcm is not None:
+        expected_pcm = _finite_audio(expected_pcm, "Reconstructed baseline", len(value))
+        # The recovered FLAC may quantize the unchanged float baseline to 24 bits.
+        tolerance = 2 ** -23 + 1e-9 if path.suffix.lower() == ".flac" else 0
+        error = float(np.max(np.abs(value.astype(np.float64) - expected_pcm)))
+        if error > tolerance:
+            raise ValueError("Baseline audio differs from independent source reconstruction")
     return value, {
-        "audio_filename": path.name, "audio_sha256": sha256(path),
+        "audio_filename": path.name, "audio_sha256": actual_hash,
         "decoded_float32_pcm_sha256": pcm_sha256(value), "report_sha256": sha256(report_path),
+        "authentication": "independently supplied expected SHA-256" if expected_audio_sha256 is not None else "decoded samples match independent unchanged-engine source reconstruction",
+        "expected_audio_sha256": expected_audio_sha256,
+        "reconstructed_pcm_sha256": pcm_sha256(expected_pcm) if expected_pcm is not None else None,
         "pause_inventory_sha256": report["pause_inventory_sha256"],
         "source_sha256": report["source_sha256"], "reference_samples_preserved": True,
         "original_report": report,
@@ -332,7 +348,7 @@ def _sum_layers(layers):
 
 
 def build(source, inventory_path, out, *, baseline_dir=None, dialogue_path=None,
-          selection_path=None, write_stems=False):
+          selection_path=None, write_stems=False, baseline_sha256=None):
     source, inventory_path, out = Path(source), Path(inventory_path), Path(out)
     inventory = json.loads(inventory_path.read_text())
     source_hash, inventory_hash = sha256(source), sha256(inventory_path)
@@ -358,14 +374,22 @@ def build(source, inventory_path, out, *, baseline_dir=None, dialogue_path=None,
     selection_changed = [(p["portion_id"], p["start"], p["end"]) for p in selected] != [
         (p["portion_id"], p["start"], p["end"]) for p in originals]
     out.mkdir(parents=True, exist_ok=True)
-    if baseline_dir is None:
+    if baseline_dir is None or baseline_sha256 is None:
         from .roomrack import build as build_original
         with tempfile.TemporaryDirectory(prefix="roomrefine-baseline-") as directory:
             build_original(source, inventory_path, directory)
-            reference, reference_info = _reference(directory, source_hash, inventory_hash, originals)
-        reference_info["origin"] = "Fresh execution of unchanged amp.roomrack.build"
+            produced_path = Path(directory) / "room-tone-layered.wav"
+            if baseline_dir is None:
+                reference, reference_info = _reference(directory, source_hash, inventory_hash, originals,
+                                                       expected_audio_sha256=sha256(produced_path))
+                reference_info["authentication"] = "produced within this invocation by unchanged amp.roomrack.build"
+            else:
+                reference, reference_info = _reference(baseline_dir, source_hash, inventory_hash, originals,
+                                                       expected_pcm=load_audio(produced_path))
+        reference_info["origin"] = "Fresh execution of unchanged amp.roomrack.build" if baseline_dir is None else "Recovered existing rack; verified against independent source reconstruction"
     else:
-        reference, reference_info = _reference(baseline_dir, source_hash, inventory_hash, originals)
+        reference, reference_info = _reference(baseline_dir, source_hash, inventory_hash, originals,
+                                               expected_audio_sha256=baseline_sha256)
         reference_info["origin"] = "Recovered existing rack; decoded without level or effect changes"
     reference_measurement = measurements(reference)
     filtered = signal.sosfiltfilt(signal.butter(2, 25, "highpass", fs=RATE, output="sos"), x, axis=0)

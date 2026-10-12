@@ -79,4 +79,66 @@ class RevisionTests(unittest.TestCase):
         self.assertTrue(np.array_equal(out[:,:,0],np.asarray(mask)))
 
 
-if __name__=='__main__':unittest.main()
+
+
+class RevisionReviewRegressionTests(unittest.TestCase):
+    def test_falsy_sessions_are_invalid(self):
+        for session in (None,{},False,0,[], ''):
+            with self.subTest(session=session),self.assertRaises(ValueError):
+                validate_session(session,CONFIG,112)
+
+    def test_cli_rejects_explicit_null_replay_before_rendering(self):
+        import tempfile
+        from unittest.mock import patch
+        from amp.cli import main
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'session.json';path.write_text('null')
+            args=['amp','replay','--source','source.mp4','--audio','sound.wav','--session',str(path)]
+            with patch('sys.argv',args),patch('amp.core.probe',return_value={'format':{'duration':'112'}}),patch('amp.revision.render_revision') as render:
+                with self.assertRaisesRegex(ValueError,'Session must be an object'):main()
+                render.assert_not_called()
+
+    def test_tracking_must_cover_every_camera_frame(self):
+        from amp.revision import validate_camera_track
+        track={'source_sha256':CONFIG['source_sha256'],'fps':30,'start_frame':10,'end_frame':15,
+               'rows':[{'source_frame':i,'center':[.5,.5]} for i in range(10,15)]}
+        camera={'start_frame':10,'end_frame':15}
+        validate_camera_track(track,camera,CONFIG,3360)
+        for mutation in (lambda t:t.update(end_frame=14),lambda t:t['rows'].pop(),lambda t:t['rows'][2].update(source_frame=14)):
+            broken=copy.deepcopy(track);mutation(broken)
+            with self.assertRaises(ValueError):validate_camera_track(broken,camera,CONFIG,3360)
+
+    def test_unregistered_typography_is_untouched(self):
+        from amp.revision import animated_word
+        cfg=copy.deepcopy(CONFIG)
+        for layout in cfg['layouts'].values():layout['registered']=False
+        image=Image.new('RGB',(160,90),(45,76,80))
+        self.assertEqual(animated_word(image,cfg,98).tobytes(),image.tobytes())
+
+    def test_typography_works_without_debian_font(self):
+        from amp.revision import animated_word
+        from unittest.mock import patch
+        cfg=copy.deepcopy(CONFIG)
+        image=Image.new('RGB',(160,90),(45,76,80))
+        with patch('amp.revision.Path.is_file',return_value=False):
+            result=animated_word(image,cfg,98)
+        self.assertEqual(result.size,image.size)
+        self.assertTrue(result.tobytes()!=image.tobytes())
+
+    def test_44100hz_audio_is_trimmed_on_source_time(self):
+        import shutil,tempfile
+        from scipy.io import wavfile
+        from amp.revision import retime_audio
+        if not shutil.which('ffmpeg'):self.skipTest('FFmpeg unavailable')
+        rate=44100;t=np.arange(rate*3)/rate
+        audio=np.repeat((t*.1).astype(np.float32)[:,None],2,axis=1)
+        recipe={'segments':[{'source_start_frame':30,'source_end_frame':60,'output_frames':30}]}
+        with tempfile.TemporaryDirectory() as tmp:
+            source=Path(tmp)/'source.wav';out=Path(tmp)/'retimed.wav'
+            wavfile.write(source,rate,audio);retime_audio(source,recipe,30,out)
+            sr,samples=wavfile.read(out)
+        self.assertEqual(sr,48000);self.assertEqual(len(samples),48000)
+        # Average source amplitude around 1.1 s. The old native-sample trim starts at 1.088 s.
+        self.assertAlmostEqual(float(samples[4000:6000].mean()),.1104167,places=3)
+
+if __name__=='__main__': unittest.main()
