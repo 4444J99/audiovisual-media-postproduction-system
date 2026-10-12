@@ -1,0 +1,29 @@
+{
+  "checks": [
+    {
+      "path": "/experience",
+      "status": 200,
+      "bytes": 3198,
+      "sha256": "55ec6024ee32d6639fb97a4880090da6de4b686ad68156481f63c21796fa77fc",
+      "expected_sha256": "55ec6024ee32d6639fb97a4880090da6de4b686ad68156481f63c21796fa77fc",
+      "passed": true
+    },
+    {
+      "path": "/review",
+      "status": 200,
+      "bytes": 6726,
+      "sha256": "fb79a4bd1b47e401dd3e51ac0f3a41136d51e2886cd8c20def32a7ac128059cf",
+      "expected_sha256": "fb79a4bd1b47e401dd3e51ac0f3a41136d51e2886cd8c20def32a7ac128059cf",
+      "passed": true
+    },
+    {
+      "path": "/fx/app.mjs",
+      "status": 200,
+      "bytes": 43938,
+      "sha256": "5a5fc6407a3d722281d64c7d97abd69606eeb923027cd055e270c6892dae81aa",
+      "expected_sha256": "5a5fc6407a3d722281d64c7d97abd69606eeb923027cd055e270c6892dae81aa",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

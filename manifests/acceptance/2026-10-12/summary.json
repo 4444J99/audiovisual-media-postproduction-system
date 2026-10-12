@@ -2,12 +2,12 @@
   "schema": "god-here.release-verification.v1",
   "verified_at": "2026-10-12T16:20:02.962578+00:00",
   "baseline_integration_head": "06239ea898cc8430b8ced792732e6253e2c96372",
-  "python_tests": 192,
+  "python_tests": 217,
   "node_tests": {
     "studio": 18,
     "directed_media": 7,
     "room": 28,
-    "fx": 103
+    "fx": 110
   },
   "additional_nested_editor_cases": 6,
   "execution_contract_recheck": 45,
@@ -47,5 +47,31 @@
     "bytes": 80750196,
     "known_damaged_extra_excluded": "proof-D.mp4",
     "all_requested_files_recovered": true
+  },
+  "verified_integration_code_commit": "0435e34973c261db4a77d525e0e2b0f5a0265b2f",
+  "hosting_tests": {
+    "node": 80,
+    "python": 37,
+    "scope": "73 hosting/build Node checks rerun at final source plus7 editor cases;37 Python seeding/inventory checks. Separate from public-repository test counts."
+  },
+  "site_source_commit": "beca02effe664122d727d95b887151a868c94da8",
+  "latest_review_repairs": [
+    "Directed camera field dependency and optional tracking imports",
+    "Early camera receipt metadata checks and direction-code binding",
+    "Derived asset bytes bound to cached preview eligibility",
+    "Directed delivery source/audio/recipe/session/track/code authentication",
+    "Audio cache receipt/full-decode authentication",
+    "Inherited comparison-film authentication through packaging"
+  ],
+  "site_version": 15,
+  "current_publication": "manifests/acceptance/god-here-studio-publication.json",
+  "publication_checks": {
+    "v13_http": 30,
+    "v14_http": 12,
+    "v15_http": 12,
+    "v15_exact_public_text": 3,
+    "legacy_registered_full_downloads": 52,
+    "studio_registered_full_downloads": 41,
+    "admin_disabled": true
   }
 }

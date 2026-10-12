@@ -1,0 +1,45 @@
+{
+  "reviewed_code_commit": "0435e34973c261db4a77d525e0e2b0f5a0265b2f",
+  "threads": [
+    {
+      "id": "PRRT_kwDOVAYltM6ri-GH",
+      "path": "amp/execution.py",
+      "disposition": "Fixed in the reviewed code commit, with new regression coverage."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6ri-GP",
+      "path": "tools/check.py",
+      "disposition": "Already exercised by Python discovery via tests/test_direction_tools.py, which runs all six direction-review Node cases."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6ri-GX",
+      "path": "amp/direction.py",
+      "disposition": "Fixed in the reviewed code commit, with new regression coverage."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6ri-Ga",
+      "path": "amp/revision.py",
+      "disposition": "Fixed in the reviewed code commit, with new regression coverage."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6ri-Gf",
+      "path": "web/fx/preview-provenance.mjs",
+      "disposition": "Fixed in the reviewed code commit, with new regression coverage."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6ri-Gh",
+      "path": "tools/validate_directed.py",
+      "disposition": "Fixed in the reviewed code commit, with new regression coverage."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6ri-Gm",
+      "path": "tools/package_room_stretch_site.py",
+      "disposition": "Fixed in the reviewed code commit, with new regression coverage."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6ri-Gp",
+      "path": "tools/build_directed_proof.py",
+      "disposition": "Fixed in the reviewed code commit, with new regression coverage."
+    }
+  ]
+}

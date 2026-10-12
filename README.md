@@ -4,19 +4,23 @@ A directable audiovisual postproduction system that translates creative notes in
 
 ## Current verification and finish line · 12 October 2026
 
-Start with the [current finish-line plan](docs/GOD-HERE-FINISH-LINE.md) and the [canonical Studio](https://god-here-five-realities.ajpadavano.chatgpt.site/). The Studio brings source review, comparisons, composition tools, catalogue and project records into one entry point. Private recovered applications and documents require owner sign-in; existing public media remain available. Test results, deployment, historical preservation and artistic acceptance remain separate gates.
+Start with the [current finish-line plan](docs/GOD-HERE-FINISH-LINE.md), [release verification](manifests/acceptance/2026-10-12/summary.json), and [canonical site](https://god-here-five-realities.ajpadavano.chatgpt.site/). The published Studio brings source review, comparisons, composition tools, catalogue and project records into one entry point. Its current checks pass **217 Python tests and 163 Node tests**; six additional editor cases run inside the Python suite.
+
+Fresh media verification completed **241 full-decode file-path checks**: [224 prepared paths](manifests/acceptance/2026-10-12/prepared-media-decode.json) plus [17 recovered directed-media paths](manifests/acceptance/2026-10-12/directed-media-recovery.json). These are scoped checks, not a claim of 241 distinct historical works. The known damaged extra `proof-D.mp4` remains recorded and excluded from delivery.
+
+The published Studio routes require owner sign-in. Small protected assets are served from server-only storage; large protected assets use a fixed R2 asset map behind the access check. Protected applications, source review and documents are absent from the public static build. Existing public media routes and their 52 fixed registrations are retained. **Version 15 is live**, from Site source `beca02effe664122d727d95b887151a868c94da8`. Both suites passed on code `0435e34973c261db4a77d525e0e2b0f5a0265b2f`. The [current publication receipt](manifests/acceptance/god-here-studio-publication.json) records production access checks, full-download verification of 52 public and 41 protected registrations, and explicit shutdown of temporary upload administration. Owner-session browser controls and physical-device acceptance remain open.
 
 The older checkpoints below describe their dated evidence. Current review repairs and release verification supersede their test counts; they do not silently certify listening, final mattes, reconstructed shots, browser-local data migration or physical devices.
 
 ## Consolidation checkpoint · 11 October 2026
 
-**Current priority: consolidate and verify the existing project before further creative production.** Start with the [cross-session recovery register](docs/recovery/god-here-cross-session-register-2026-10-11.md), [content-addressed artifact catalog](manifests/artifacts/god-here-recovery-catalog.json), [historical identity expectations](manifests/artifacts/god-here-recovery-expectations.json), and [integration map](docs/architecture/god-here-consolidation-map.md). Preservation, successful decoding, reproducible rendering, publication and artistic acceptance have separate evidence. Historical recovery is not complete.
+**Priority at this checkpoint: consolidate and verify the existing project before further creative production.** Start with the [cross-session recovery register](docs/recovery/god-here-cross-session-register-2026-10-11.md), [content-addressed artifact catalog](manifests/artifacts/god-here-recovery-catalog.json), [historical identity expectations](manifests/artifacts/god-here-recovery-expectations.json), and [integration map](docs/architecture/god-here-consolidation-map.md). Preservation, successful decoding, reproducible rendering, publication and artistic acceptance have separate evidence. Historical recovery is not complete.
 
 The [engineering integration record](docs/ENGINEERING-INTEGRATION.md) identifies the retained directed-recipe, directed-revision, repaired FX, and room-study heads combined in this tree. The existing `amp` entry point and each native recipe format remain available. Source identity is shared; each renderer's timing and image-processing semantics stay explicit. The [shared execution contract](docs/architecture/shared-execution-contract.md) adds `amp execute`, with five exact-input bindings across the four retained native families. It verifies content hashes, records native clocks and producing code, and checks complete output sets without translating the original recipes.
 
 All five bound treatments now have verified actual outputs: directed and reference proofs, the integrated excerpt, the FX delay demonstration and the complete room-stretch set. Their [retained-execution addendum](manifests/artifacts/god-here-retained-execution-availability.json) accounts for 95 distinct required outputs, including 89 fully decoded media files. Sixty identities already had verified custody; 35 new identities are now privately preserved. The later room verification preserves the original producing revision and records that it performed no rerender. The combined code passes 150 Python, 25 room and 97 FX tests, with a verified package build and [hosted CI evidence](manifests/acceptance/god-here-corrected-code-hosted-ci.json).
 
-The [canonical publication receipt](https://github.com/4444J99/audiovisual-media-postproduction-system/blob/inventory/god-here-project-reconciliation-20261011/manifests/acceptance/god-here-workbench-publication.json) records the workbench deployment and media-delivery status. Repository integration, a saved deployment, complete media decoding, and artistic acceptance are separate gates.
+The [publication receipt](manifests/acceptance/god-here-workbench-publication.json) records the earlier workbench deployment and media-delivery status; [current release verification](manifests/acceptance/2026-10-12/summary.json) records this revision’s checks. Repository integration, a saved deployment, complete media decoding, and artistic acceptance are separate gates.
 
 ## Audiovisual FX workbench
 
@@ -78,15 +82,15 @@ python -m amp.cli replay --source /path/to/source.mp4 --audio outputs/audio/cand
   --session god-here-attention-score.json --output outputs/attention-film.mp4
 ```
 
-## Hosted browser edition
+## Earlier hosted browser edition
 
 [Open the god-here workbench](https://god-here-five-realities.ajpadavano.chatgpt.site) · [Recovery register](https://god-here-five-realities.ajpadavano.chatgpt.site/recovery/).
 
 The canonical Site was public when its access configuration was inspected on 2026-10-11. Private originals and performer references retain separate owner custody; the public repository holds their non-sensitive identities rather than their media bytes.
 
-The canonical workbench is published with all 52 registered media files verified by response metadata, actual byte ranges and complete-download SHA-256. The keeper is available at its original URL, and temporary upload access has been removed. The reconciled FX runtime preserves the Site loader and the producing-code identity of earlier films. The unchanged baseline recipe has been reproduced: all 11 generated MP4s match retained hashes and all 67 generated audio/video files pass full decoding. The [publication receipt](manifests/acceptance/god-here-workbench-publication.json), [approved media payload](manifests/acceptance/god-here-public-media-delivery-review.json), and [reproduction evidence](manifests/acceptance/god-here-baseline-reproduction.json) record the exact current scope. Browser/device and artistic acceptance remain open.
+The earlier publication receipt verifies all 52 registered media files by response metadata, actual byte ranges and complete-download SHA-256. The keeper is available at its original URL, and temporary upload access has been removed. The reconciled FX runtime preserves the Site loader and the producing-code identity of earlier films. The unchanged baseline recipe has been reproduced: all 11 generated MP4s match retained hashes and all 67 generated audio/video files pass full decoding. The [publication receipt](manifests/acceptance/god-here-workbench-publication.json), [approved media payload](manifests/acceptance/god-here-public-media-delivery-review.json), and [reproduction evidence](manifests/acceptance/god-here-baseline-reproduction.json) record the scope of that earlier publication. They do not certify deployment of the revised Studio. Browser/device and artistic acceptance remain open.
 
-Copy `web/` to a static HTTP server. Supply these files under `web/media/`:
+For the legacy browser-only edition, serve its public `web/` assets from a static HTTP server. The authenticated Studio additionally requires its server routes and protected asset delivery; a static copy does not provide those features. Supply the legacy media under `web/media/`:
 
 - `interactive-source.mp4`: source picture with trained-dialogue, room bed and foley support for the live shader.
 - `dialogue-reference.mp4`: source picture with the provisional trained-dialogue blend.
@@ -107,7 +111,7 @@ Saved attention scores are source-time control schedules, not video recordings o
 python tools/check.py
 ```
 
-This runs project validation, all Python tests, the score/transport checks, the room-tone browser checks, and the repaired FX regression suites. Set `AMP_TEST_FONT` to an installed font file to exercise the two typography tests when their default test font is unavailable. `npm test` runs all JavaScript families. No model download is required for these checks.
+This runs project validation, all Python tests, the score/transport checks, the room-tone browser checks, and the repaired FX regression suites. Set `AMP_TEST_FONT` to an installed font file to exercise the two typography tests when their default test font is unavailable. `npm test` runs the FX, room and score families; `tools/check.py` also runs the Studio and directed-media checks. No model download is required for these checks.
 
 Tests cover neutral pass-through, containment, shared-space preservation, identity remapping, fallback layouts, invalid geometry, deterministic permitted transitions, attention residue, session validation, explicit retiming, and source-layout packaging. Production verification additionally fully decodes delivered videos, counts frames, checks loudness in the delivered audio encodes, and measures repaired waveform alignment.
 

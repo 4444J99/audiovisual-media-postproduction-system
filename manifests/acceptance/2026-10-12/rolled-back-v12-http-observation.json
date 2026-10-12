@@ -1,0 +1,85 @@
+{
+  "scope": "HTTP HEAD through authorized Sites dispatch without fabricated user identity",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": null,
+      "seconds": 5.447
+    },
+    {
+      "path": "/studio/coverage.json",
+      "status": 200,
+      "content_type": "application/json",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": null,
+      "seconds": 7.451
+    },
+    {
+      "path": "/documents/finish-line.html",
+      "status": 307,
+      "content_type": null,
+      "cache_control": null,
+      "bytes": null,
+      "seconds": 4.14
+    },
+    {
+      "path": "/review-workbench/source/original-film.mp4",
+      "status": 401,
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": null,
+      "seconds": 5.564
+    },
+    {
+      "path": "/experience.html",
+      "status": 307,
+      "content_type": null,
+      "cache_control": null,
+      "bytes": null,
+      "seconds": 4.188
+    },
+    {
+      "path": "/fx/",
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": null,
+      "seconds": 3.794
+    },
+    {
+      "path": "/room-tone/",
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": null,
+      "seconds": 4.076
+    },
+    {
+      "path": "/color-studies/",
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": null,
+      "seconds": 3.449
+    },
+    {
+      "path": "/fx/app.mjs",
+      "status": 200,
+      "content_type": "text/javascript",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": null,
+      "seconds": 3.703
+    },
+    {
+      "path": "/review.html",
+      "status": 307,
+      "content_type": null,
+      "cache_control": null,
+      "bytes": null,
+      "seconds": 3.475
+    }
+  ]
+}

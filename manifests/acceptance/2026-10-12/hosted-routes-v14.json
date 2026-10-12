@@ -1,0 +1,151 @@
+{
+  "scope": "HTTP GET/HEAD through authorized Sites dispatch without a user session or fabricated identity; owner browser still untested",
+  "checked_at": "2026-10-12T16:56:25Z",
+  "passed": true,
+  "checks": [
+    {
+      "path": "/",
+      "method": "GET",
+      "expected_private": true,
+      "status": 401,
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": "680",
+      "location": null,
+      "seconds": 5.417,
+      "passed": true
+    },
+    {
+      "path": "/",
+      "method": "HEAD",
+      "expected_private": true,
+      "status": 401,
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": null,
+      "location": null,
+      "seconds": 5.422,
+      "passed": true
+    },
+    {
+      "path": "/index.html",
+      "method": "GET",
+      "expected_private": true,
+      "status": 401,
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": "690",
+      "location": null,
+      "seconds": 7.073,
+      "passed": true
+    },
+    {
+      "path": "/index.html",
+      "method": "HEAD",
+      "expected_private": true,
+      "status": 401,
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": null,
+      "location": null,
+      "seconds": 7.051,
+      "passed": true
+    },
+    {
+      "path": "/studio/coverage.json",
+      "method": "GET",
+      "expected_private": true,
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": "145",
+      "location": null,
+      "seconds": 6.133,
+      "passed": true
+    },
+    {
+      "path": "/studio/coverage.json",
+      "method": "HEAD",
+      "expected_private": true,
+      "status": 401,
+      "content_type": "application/json; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": null,
+      "location": null,
+      "seconds": 5.875,
+      "passed": true
+    },
+    {
+      "path": "/documents/finish-line.html",
+      "method": "GET",
+      "expected_private": true,
+      "status": 401,
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": "708",
+      "location": null,
+      "seconds": 5.481,
+      "passed": true
+    },
+    {
+      "path": "/documents/finish-line.html",
+      "method": "HEAD",
+      "expected_private": true,
+      "status": 401,
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": null,
+      "location": null,
+      "seconds": 5.226,
+      "passed": true
+    },
+    {
+      "path": "/review-workbench/source/original-film.mp4",
+      "method": "GET",
+      "expected_private": true,
+      "status": 401,
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": "725",
+      "location": null,
+      "seconds": 7.271,
+      "passed": true
+    },
+    {
+      "path": "/review-workbench/source/original-film.mp4",
+      "method": "HEAD",
+      "expected_private": true,
+      "status": 401,
+      "content_type": "text/html; charset=utf-8",
+      "cache_control": "private, no-store",
+      "bytes": null,
+      "location": null,
+      "seconds": 4.577,
+      "passed": true
+    },
+    {
+      "path": "/fx/",
+      "method": "HEAD",
+      "expected_private": false,
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": null,
+      "location": null,
+      "seconds": 6.072,
+      "passed": true
+    },
+    {
+      "path": "/room-tone/",
+      "method": "HEAD",
+      "expected_private": false,
+      "status": 200,
+      "content_type": "text/html",
+      "cache_control": "public, max-age=0, must-revalidate",
+      "bytes": null,
+      "location": null,
+      "seconds": 4.967,
+      "passed": true
+    }
+  ]
+}

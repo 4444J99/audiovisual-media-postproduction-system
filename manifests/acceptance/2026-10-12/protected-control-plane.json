@@ -1,0 +1,75 @@
+{
+  "site_version": {
+    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_7b555cf234848191b987a4160c50ecc9",
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "version_number": 13,
+    "source": {
+      "commit_sha": "44999c5e386db4002a551b06095527738665ad05"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "content_hash": "sha256:2f29d802c001a91d80bae6749cdaa8387b68f7d3e401098211613bae389bce00",
+      "size_bytes": 265246720,
+      "file_count": 393
+    },
+    "deployment_id": null
+  },
+  "source": {
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "checkout_path": "/workspace/scratch/4c2ac7bee972/site-main",
+    "commit_sha": "44999c5e386db4002a551b06095527738665ad05",
+    "archive": "/workspace/scratch/4c2ac7bee972/verification/god-here-protected-site.tar"
+  },
+  "initial_deployment": {
+    "id": "appgdep_6acd0d385170819197a812ee61bd408f",
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "title": "god-here · Five realities",
+    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_7b555cf234848191b987a4160c50ecc9",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6ac71699c8fc81919b030dcf9ad112e4",
+    "failure_message": null,
+    "env_set_revision": 7,
+    "updated_at": "2026-10-12T16:40:16.664336+00:00"
+  },
+  "rollback_from_version_12": {
+    "failed_deployment": {
+      "id": "appgdep_6acd09af54788191b1b45c4491c889b4",
+      "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+      "title": "god-here · Five realities",
+      "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_b6a789ae72ec8191b6f561b5b3001e7f",
+      "type": "publish",
+      "status": "succeeded",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+      "has_mcp": false,
+      "screenshot_asset_pointer": null,
+      "provider_deployment_id": "site---6ac71699c8fc81919b030dcf9ad112e4",
+      "failure_message": null,
+      "env_set_revision": 7,
+      "updated_at": "2026-10-12T16:24:29.079361+00:00"
+    },
+    "rollback_deployment": {
+      "id": "appgdep_6acd0a5e659c8191afdedeb44e14761a",
+      "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+      "title": "god-here · Five realities",
+      "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_eca98bb75f9c819192ba7fbe79750a74",
+      "type": "publish",
+      "status": "succeeded",
+      "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+      "has_mcp": false,
+      "screenshot_asset_pointer": null,
+      "provider_deployment_id": "site---6ac71699c8fc81919b030dcf9ad112e4",
+      "failure_message": null,
+      "env_set_revision": 7,
+      "updated_at": "2026-10-12T16:27:25.911186+00:00"
+    },
+    "reason": "Hosted tests showed private static assets bypassed the Worker guard; restored v11, moved all protected assets out of provider-static delivery, then deployed v13."
+  },
+  "hosting_tests": {
+    "node": 79,
+    "python": 37
+  }
+}

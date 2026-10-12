@@ -1,0 +1,181 @@
+{
+  "schema_version": "god-here.studio-publication.v1",
+  "status": "published_access_and_bytes_verified_browser_acceptance_open",
+  "updated_at_utc": "2026-10-12T17:02:42.525001+00:00",
+  "production_url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+  "audience": "public_unchanged; Studio routes require verified owner identity",
+  "code_commit": "0435e34973c261db4a77d525e0e2b0f5a0265b2f",
+  "source_commit": "beca02effe664122d727d95b887151a868c94da8",
+  "site_version": {
+    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_f31678e9a0848191a6b3bd6f7fa472be",
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "version_number": 15,
+    "source": {
+      "commit_sha": "beca02effe664122d727d95b887151a868c94da8"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "content_hash": "sha256:fcb7d7c2163a203485973ff970e338a6988a361dd966eb0b1aa0d74ba0e2a438",
+      "size_bytes": 265256960,
+      "file_count": 394
+    },
+    "deployment_id": null
+  },
+  "current_deployment": {
+    "id": "appgdep_6acd12a03cd88191931ed39fb2b98a8a",
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "title": "god-here \u00b7 Five realities",
+    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_f31678e9a0848191a6b3bd6f7fa472be",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6ac71699c8fc81919b030dcf9ad112e4",
+    "failure_message": null,
+    "env_set_revision": 9,
+    "updated_at": "2026-10-12T17:02:42.525001+00:00"
+  },
+  "environment": {
+    "revision": 9,
+    "retained_keys": [
+      "STUDIO_MEDIA_UPLOAD_ENABLED",
+      "STUDIO_OWNER_EMAIL"
+    ],
+    "STUDIO_MEDIA_UPLOAD_ENABLED": "false",
+    "studio_token_removed_from_control_plane": true,
+    "qualification": "Earlier removal alone did not revoke provider runtime access. Explicit default-off source gate is the effective shutdown."
+  },
+  "prior_frozen_checkpoint": "manifests/acceptance/god-here-workbench-publication.json",
+  "prior_checkpoint_scope": "Version11 historical checkpoint and negative-probe contracts remain unchanged. This Studio receipt is the current publication authority.",
+  "protected_static_paths": 0,
+  "small_server_only_assets": 61,
+  "registered_delivery": {
+    "public": {
+      "count": 52,
+      "bytes": 540442474,
+      "manifest_sha256": "e351c99497b30bb81810ac08f0db03c7114da414f17936c4fef8f23527bd81b2",
+      "evidence": {
+        "path": "manifests/acceptance/2026-10-12/legacy-media-delivery.json",
+        "bytes": 39064,
+        "sha256": "d02c2f4b2aec2261d601bf4f116c386cb9508583ba3b87d8499c700cdea8e4d1"
+      }
+    },
+    "protected": {
+      "count": 41,
+      "bytes": 194239924,
+      "manifest_sha256": "512afafe0c43a17a9391d731a8d22a7d5e05b954058008a6e55194f9cf5cdac5",
+      "evidence": {
+        "path": "manifests/acceptance/2026-10-12/studio-media-delivery.json",
+        "bytes": 34905,
+        "sha256": "e1835eb169a2050b5bb5f03247a18489457cc5636b0c5e3df0a428fa6dc7945a"
+      },
+      "scope": "Full bytes, HEAD and range checks through fixed-object administration, then administration disabled. Owner-session end-user playback remains untested."
+    }
+  },
+  "verification": {
+    "python_tests": 217,
+    "node_tests": 163,
+    "site_node_tests": 80,
+    "site_python_tests": 37,
+    "decoded_media_path_checks": 241,
+    "final_http_checks": 12,
+    "final_exact_public_text_checks": 3,
+    "upload_administration_disabled": true
+  },
+  "evidence": {
+    "summary.json": {
+      "path": "manifests/acceptance/2026-10-12/summary.json",
+      "bytes": 3043,
+      "sha256": "1c5cd2062200b9ae1d5c17e3451a03a8404cdbb7f2a49c4576d09798ad37f0b1"
+    },
+    "final-control-plane.json": {
+      "path": "manifests/acceptance/2026-10-12/final-control-plane.json",
+      "bytes": 1688,
+      "sha256": "1807c0f730b260171da7de9b0b49015192747cbd584ac22ba33ae2e1aacaa750"
+    },
+    "final-build.json": {
+      "path": "manifests/acceptance/2026-10-12/final-build.json",
+      "bytes": 367,
+      "sha256": "a57bf74a1ff3852677a7e2c7f50907d01bbfa02abb7a2383023fc4c6bb226785"
+    },
+    "site-build-v15.log": {
+      "path": "manifests/acceptance/2026-10-12/site-build-v15.log",
+      "bytes": 1447,
+      "sha256": "c803ae01b104db546811eed1148731f800d68c68a688be6501b192342c39ba4b"
+    },
+    "site-tests-v15.log": {
+      "path": "manifests/acceptance/2026-10-12/site-tests-v15.log",
+      "bytes": 6971,
+      "sha256": "2846eeb0daec3ef1ec356f741488cda4d039a5d5111ef8050c10a8d33ac4b0e7"
+    },
+    "hosted-routes-v15.json": {
+      "path": "manifests/acceptance/2026-10-12/hosted-routes-v15.json",
+      "bytes": 3961,
+      "sha256": "cd7ff7e9b53db75dbf88a2160c68665702966a8481edc3f7b55f60e06fea2811"
+    },
+    "public-text-v15.json": {
+      "path": "manifests/acceptance/2026-10-12/public-text-v15.json",
+      "bytes": 882,
+      "sha256": "e44eaa9081f80640f9bcc4dfe520ef3d33d26d6a94a5e453ecf19a8c4f1b2104"
+    },
+    "admin-disabled-v15.json": {
+      "path": "manifests/acceptance/2026-10-12/admin-disabled-v15.json",
+      "bytes": 284,
+      "sha256": "08d561b715e863f53dd38f66b66db1421148e399a970e079715291c6834e9b1d"
+    },
+    "final-review-dispositions.json": {
+      "path": "manifests/acceptance/2026-10-12/final-review-dispositions.json",
+      "bytes": 1575,
+      "sha256": "64715cb03c4938426a0efbd0eb1becd40ae54ee43d5795b79bd64cfa6b1c41f7"
+    },
+    "code-ci.json": {
+      "path": "manifests/acceptance/2026-10-12/code-ci.json",
+      "bytes": 979,
+      "sha256": "5b476986194b5a958fc95a15f8123b863cf4afd80b045bc454f38bbbf1bf3a88"
+    }
+  },
+  "privacy_correction": {
+    "summary": "Version12 provider-static routing bypassed the intended Worker guard and was immediately rolled back to11. Corrected versions exclude every protected file from provider-static delivery and return401/no-store without owner identity.",
+    "evidence": {
+      "path": "manifests/acceptance/2026-10-12/protected-control-plane.json",
+      "bytes": 3136,
+      "sha256": "6223bf5e57620c54ce3f448485f2eb7b1c8cf0e4adc573c2cc5c5eb1dbedf29b"
+    },
+    "failed_http_observation": {
+      "path": "manifests/acceptance/2026-10-12/rolled-back-v12-http-observation.json",
+      "bytes": 2085,
+      "sha256": "19fd72dad6aa3966eaf9c79230cbfad71f70009f937dc231edfae07e23c8630e"
+    },
+    "do_not_redeploy_version": 12
+  },
+  "administration_correction": {
+    "summary": "Control-plane removal did not revoke the old token in v14. Administration now requires an explicit true enable flag; revision9 sets false. Final live checks with the old valid token return503.",
+    "observation": {
+      "path": "manifests/acceptance/2026-10-12/admin-retained-v14-observation.json",
+      "bytes": 255,
+      "sha256": "aeef07a2fa2cb79e8c115dfacc39cff82c6a4966a34fe99e10d79f0597fb9d7d"
+    },
+    "control_plane": {
+      "path": "manifests/acceptance/2026-10-12/v14-control-plane.json",
+      "bytes": 1449,
+      "sha256": "ae393d59ca2de96bbdbc63154caf867e3541471b76225658a98c0be44294a582"
+    },
+    "verified_shutdown": {
+      "path": "manifests/acceptance/2026-10-12/admin-disabled-v15.json",
+      "bytes": 284,
+      "sha256": "08d561b715e863f53dd38f66b66db1421148e399a970e079715291c6834e9b1d"
+    }
+  },
+  "remaining_gates": [
+    "Hosted owner-session browser controls and playback",
+    "Physical Safari/iPhone and audience sessions",
+    "Original-browser review export/import",
+    "Performed-language listening and sound/picture acceptance",
+    "Fresh selected-treatment renders under corrected engines",
+    "Full-film mattes/occlusion and30 reconstructed coverage options",
+    "Horizontal/vertical masters, captions, native handoff",
+    "160 unmatched historical hashes and all37 preserved foundation scope dispositions"
+  ],
+  "finish_line_plan": "docs/GOD-HERE-FINISH-LINE.md"
+}
