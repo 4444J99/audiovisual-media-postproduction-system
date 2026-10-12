@@ -27,6 +27,7 @@ jobs:
     timeout-minutes: 15
     env:
       AMP_TEST_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+      AMP_NODE_MODULES: ${{ github.workspace }}/node_modules
       OPENBLAS_NUM_THREADS: "2"
       OMP_NUM_THREADS: "2"
       MKL_NUM_THREADS: "2"
@@ -58,6 +59,7 @@ jobs:
           sudo apt-get install --yes --no-install-recommends ffmpeg fonts-dejavu-core
           python -m pip install --disable-pip-version-check --no-input setuptools==84.0.0 wheel==0.48.0
           python -m pip install --disable-pip-version-check --no-input --no-build-isolation --editable . --requirement requirements-direction.txt
+          npm ci --ignore-scripts --no-audit --no-fund
           test -s "$AMP_TEST_FONT"
           ffmpeg -version
           ffprobe -version
@@ -66,8 +68,8 @@ jobs:
       # suite. Dispatcher additions to tools/check.py use this same gate.
       # Tests use temporary/synthetic fixtures, without private source media,
       # provider credentials, model downloads, or production publication.
-      # Current Node regressions use the built-in runner; no npm install or
-      # lockfile-dependent npm ci is needed for this verification scope.
+      # Installed-wheel preflights exercise the native FX canvas dependency
+      # outside the source checkout as well as the built-in Node test runner.
       - name: Run the complete project checks
         env:
           PIP_NO_INDEX: "1"

@@ -2,6 +2,7 @@
 import contextlib
 import io
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -59,6 +60,9 @@ class RoomSitePackagingTests(unittest.TestCase):
         """Build the complete export inventory without generating audio/video."""
         source = self.write(self.root / "source.mp4", b"source identity fixture")
         prior, stretch = self.root / "prior", self.root / "stretch"
+        for directory in [prior, stretch]:
+            if directory.exists():
+                shutil.rmtree(directory)
         prior_report = {"source_sha256": sha256(source), "versions": {}}
         for key in "ABCDE":
             path = self.write(prior / "full-length" / f"{key}-room.flac", f"earlier bed {key}".encode())
@@ -95,9 +99,11 @@ class RoomSitePackagingTests(unittest.TestCase):
         delivered = [prior / "listening-package-report.json",
                      prior / "god-here-room-tone-quick-comparison.mp4",
                      prior / "god-here-room-tone-dialogue-comparison.mp4"]
+        delivered += sorted(path for folder in ["full-length", "stems", "original-room-rack"]
+                            for path in (prior / folder).rglob("*.flac"))
         self.write(prior / "delivery-manifest.json", json.dumps({
             "schema_version": "amps.room-delivery.v1",
-            "files": [{"path": path.name, "bytes": path.stat().st_size, "sha256": sha256(path)}
+            "files": [{"path": path.relative_to(prior).as_posix(), "bytes": path.stat().st_size, "sha256": sha256(path)}
                       for path in delivered],
         }).encode())
 
@@ -230,9 +236,10 @@ class RoomSitePackagingTests(unittest.TestCase):
                     path.unlink()
                 else:
                     if problem == "missing":
-                        receipt["files"].pop()
+                        receipt["files"] = [entry for entry in receipt["files"]
+                                            if entry["path"] != "god-here-room-tone-dialogue-comparison.mp4"]
                     elif problem == "duplicate":
-                        receipt["files"].append(receipt["files"][-1])
+                        receipt["files"].append(receipt["files"][2])
                     else:
                         receipt["files"][0]["sha256"] = "0" * 64
                     path.write_text(json.dumps(receipt))
@@ -346,6 +353,93 @@ class RoomSitePackagingTests(unittest.TestCase):
                     self.package_fixtures(source, prior, stretch, site, "dist",
                                           before_finish=lambda: self.write(stretch / relative, b"replacement media"))
                 self.assertEqual(self.rendered_contexts, [])
+
+    def test_prior_lossless_publication_omits_unlisted_files_and_removes_stale_managed_output(self):
+        for storage in ["static", "r2"]:
+            with self.subTest(storage=storage):
+                source, prior, stretch = self.render_fixtures()
+                self.write(prior / "stems/private-notes.flac", b"private unlisted audio")
+                self.write(prior / "full-length/scratch.flac", b"unlisted scratch")
+                config = {"project_id": packaging.SITE_ID}
+                config.update({"r2": "ROOM_MEDIA"} if storage == "r2" else {"static": {"directory": "dist"}})
+                site = self.site(storage, config)
+                targets = packaging.site_targets(site)
+                stale = self.write(targets.downloads / "previous/stems/private-notes.flac", b"stale leak")
+                removed = self.write(targets.downloads / "previous/full-length/deleted-bed.flac", b"obsolete bed")
+                preserved = self.write(targets.downloads / "stretched/unrelated.flac", b"separate owner")
+                manifest = self.package_fixtures(source, prior, stretch, site, "public" if storage == "r2" else "dist")
+                urls = [item["url"] for item in manifest["downloads"]]
+                self.assertFalse(any("private-notes" in url or "scratch.flac" in url or "deleted-bed" in url for url in urls))
+                self.assertFalse(stale.exists())
+                self.assertFalse(removed.exists())
+                self.assertFalse((targets.downloads / "previous/full-length/scratch.flac").exists())
+                self.assertEqual(preserved.read_bytes(), b"separate owner")
+                self.assertEqual(len(list((targets.downloads / "previous").rglob("*.flac"))), 24)
+
+    def test_changed_listed_prior_stems_fail_before_context_rendering_or_output_replacement(self):
+        for relative in ["stems/B/low.flac", "original-room-rack/high-fx-return.flac"]:
+            with self.subTest(relative=relative):
+                source, prior, stretch = self.render_fixtures()
+                site = self.site("legacy", {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+                sentinel = self.write(site / "dist/room-tone/downloads/previous/old.flac", b"previous valid delivery")
+                with self.assertRaisesRegex(ValueError, "Prior lossless"):
+                    self.package_fixtures(source, prior, stretch, site, "dist",
+                                          before_finish=lambda: self.write(prior / relative, b"replaced stem"))
+                self.assertEqual(self.rendered_contexts, [])
+                self.assertEqual(sentinel.read_bytes(), b"previous valid delivery")
+
+    def test_prior_lossless_rejects_malformed_duplicate_and_escaping_receipt_paths(self):
+        for relative in ["stems/../../outside.flac", "/outside.flac", "stems\\outside.flac",
+                         "stems/%2e%2e/outside.flac", "stems/./alias.flac", "private/audio.flac", "duplicate", "missing-path"]:
+            with self.subTest(relative=relative):
+                source, prior, stretch = self.render_fixtures()
+                path = prior / "delivery-manifest.json"
+                receipt = json.loads(path.read_text())
+                item = {"path": relative, "sha256": "a" * 64}
+                if relative == "duplicate":
+                    item = next(entry for entry in receipt["files"] if entry["path"] == "stems/B/low.flac")
+                elif relative == "missing-path":
+                    item.pop("path")
+                receipt["files"].append(item)
+                path.write_text(json.dumps(receipt))
+                site = self.site("legacy", {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+                with self.assertRaisesRegex(ValueError, "Prior lossless|recorded path|delivery path"):
+                    self.package_fixtures(source, prior, stretch, site, "dist")
+                self.assertEqual(self.rendered_contexts, [])
+
+    def test_prior_lossless_rejects_source_and_destination_symlink_escapes(self):
+        for location in ["source", "destination", "downloads-parent", "r2-parent"]:
+            with self.subTest(location=location):
+                source, prior, stretch = self.render_fixtures()
+                config = {"project_id": packaging.SITE_ID}
+                config.update({"r2": "ROOM_MEDIA"} if location == "r2-parent" else {"static": {"directory": "dist"}})
+                site = self.site(location, config)
+                outside = self.write(self.root / "outside/keep.flac", b"external data")
+
+                def replace_with_link():
+                    if location == "source":
+                        path = prior / "stems/B/low.flac"
+                        original = path.read_bytes()
+                        outside.write_bytes(original)
+                        path.unlink()
+                        path.symlink_to(outside)
+                    else:
+                        if location == "r2-parent":
+                            path = site / "room-media-source/room-tone"
+                            path.replace(self.root / "saved-r2-parent")
+                        elif location == "downloads-parent":
+                            path = site / "dist/room-tone/downloads"
+                        else:
+                            path = site / "dist/room-tone/downloads/previous"
+                        path.parent.mkdir(parents=True, exist_ok=True)
+                        path.symlink_to(outside.parent, target_is_directory=True)
+
+                with self.assertRaisesRegex(ValueError, "recorded path|managed lossless"):
+                    self.package_fixtures(source, prior, stretch, site, "public" if location == "r2-parent" else "dist",
+                                          before_finish=replace_with_link)
+                self.assertEqual(self.rendered_contexts, [])
+                self.assertTrue(outside.is_file())
+                self.assertEqual(list(outside.parent.iterdir()), [outside])
 
     def test_worker_checker_never_uses_stale_static_downloads_or_crosses_source_roots(self):
         site = self.site("worker", {"project_id": packaging.SITE_ID, "r2": "ROOM_MEDIA"})

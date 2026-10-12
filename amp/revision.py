@@ -10,6 +10,8 @@ import math
 import subprocess
 import hashlib
 import platform
+import os
+import tempfile
 from collections import deque
 from pathlib import Path
 
@@ -235,7 +237,16 @@ def validate_camera_track(track, camera, config, source_frames):
             raise ValueError('Invalid track center')
 
 
+def require_fresh_revision_outputs(source, audio, output):
+    inputs = {Path(source).resolve(), Path(audio).resolve()}
+    for target in (Path(output), Path(output).with_suffix('.revision.json')):
+        if target.exists() or target.is_symlink() or target.resolve() in inputs:
+            raise ValueError('Revision requires fresh output and receipt paths; refusing overwrite')
+
+
 def render_revision(source, audio, config, recipe, output, session=None, track=None, width=1280):
+    source, audio, output = Path(source), Path(audio), Path(output)
+    require_fresh_revision_outputs(source, audio, output)
     metadata=probe(source); stream=next(s for s in metadata['streams'] if s['codec_type']=='video')
     fps=config['fps']; duration=float(metadata['format']['duration'])
     source_frames=validated_frame_count(source,stream,fps)
@@ -243,7 +254,8 @@ def render_revision(source, audio, config, recipe, output, session=None, track=N
     numerator,denominator=map(int,stream['avg_frame_rate'].split('/'))
     if numerator/denominator!=fps:
         raise ValueError('Source frame rate differs from composition clock')
-    if sha256(source)!=config['source_sha256']:
+    source_digest, audio_digest = sha256(source), sha256(audio)
+    if source_digest!=config['source_sha256']:
         raise ValueError('Source content differs from registered source')
     if session is not None:
         validate_session(session,config,duration)
@@ -257,58 +269,65 @@ def render_revision(source, audio, config, recipe, output, session=None, track=N
         raise ValueError('Width must be an even integer from 160 to 3840')
     mapping=frame_map(recipe); wanted=set(mapping)
     height=round(width*9/16);height+=height%2
-    output=Path(output);output.parent.mkdir(parents=True,exist_ok=True)
-    picture=output.with_name(output.stem+'.picture.mp4');wave=output.with_name(output.stem+'.retimed.wav')
-    decoder=subprocess.Popen(['ffmpeg','-v','error','-i',str(source),'-vf',f'scale={width}:{height}',
-                              '-an','-pix_fmt','rgb24','-f','rawvideo','-'],stdout=subprocess.PIPE)
-    encoder=subprocess.Popen(['ffmpeg','-v','error','-y','-f','rawvideo','-pix_fmt','rgb24',
-                              '-s',f'{width}x{height}','-r',str(fps),'-i','-','-an','-c:v','libx264',
-                              '-preset','fast','-crf','19','-threads','2','-pix_fmt','yuv420p',str(picture)],stdin=subprocess.PIPE)
-    cursor=0
-    history=deque(maxlen=config['history_frames']+1); previous=None
-    try:
-        for frame in range(max(mapping)+1):
-            buf=decoder.stdout.read(width*height*3)
-            if len(buf)!=width*height*3:
-                raise RuntimeError(f'Short decode at {frame}')
-            image=Image.frombytes('RGB',(width,height),buf); t=frame/fps
-            shot=shot_at(config,t); sid=shot['id'] if shot else None
-            if sid!=previous:
-                history.clear();previous=sid
-            history.append(image)
-            if frame not in wanted:
-                continue
-            overrides=None
-            if session is not None:
-                from .core import state_at
-                controls=session_state(session,t); values=state_at(config,t)
-                for p,value in controls.items():
-                    values[p]=max(values[p],value)
-                overrides={p:min(.12,value) if session['reduced_motion'] else value for p,value in values.items()}
-            out=composite(image,list(history),config,t,overrides=overrides,layers=recipe.get('fine_layers',False))
-            if recipe.get('animated_typography',False):
-                out=animated_word(out,config,t)
-            camera=recipe.get('camera')
-            if camera and camera['start_frame']<=frame<camera['end_frame']:
-                phase=(frame-camera['start_frame'])/(camera['end_frame']-camera['start_frame'])
-                amount=math.sin(math.pi*phase)**2
-                out=reframe(out,track,frame,1+(camera['max_zoom']-1)*amount)
-            while cursor<len(mapping) and mapping[cursor]==frame:
-                encoder.stdin.write(out.tobytes())
-                cursor+=1
-    finally:
-        decoder.stdout.close()
-        if decoder.poll() is None:
-            decoder.terminate()
-        decoder.wait()
-        encoder.stdin.close()
-    if encoder.wait() or cursor!=len(mapping):
-        raise RuntimeError('Revision encode failed')
-    retime_audio(audio,recipe,fps,wave)
-    run(['ffmpeg','-v','error','-y','-i',picture,'-i',wave,'-map','0:v','-map','1:a','-c:v','copy',
-         '-c:a','aac','-b:a','192k','-t',str(len(mapping)/fps),'-movflags','+faststart',output])
-    picture.unlink();wave.unlink()
-    receipt={'source_sha256':sha256(source),'audio_sha256':sha256(audio),'recipe':recipe,
+    output.parent.mkdir(parents=True,exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='amp-revision-',dir=output.parent) as work:
+        work=Path(work);picture=work/'picture.mp4';wave=work/'retimed.wav'
+        staged=work/('render'+(output.suffix or '.mp4'))
+        decoder=subprocess.Popen(['ffmpeg','-v','error','-i',str(source),'-vf',f'scale={width}:{height}',
+                                  '-an','-pix_fmt','rgb24','-f','rawvideo','-'],stdout=subprocess.PIPE)
+        encoder=subprocess.Popen(['ffmpeg','-v','error','-y','-f','rawvideo','-pix_fmt','rgb24',
+                                  '-s',f'{width}x{height}','-r',str(fps),'-i','-','-an','-c:v','libx264',
+                                  '-preset','fast','-crf','19','-threads','2','-pix_fmt','yuv420p',str(picture)],stdin=subprocess.PIPE)
+        cursor=0
+        history=deque(maxlen=config['history_frames']+1); previous=None
+        try:
+            for frame in range(max(mapping)+1):
+                buf=decoder.stdout.read(width*height*3)
+                if len(buf)!=width*height*3:
+                    raise RuntimeError(f'Short decode at {frame}')
+                image=Image.frombytes('RGB',(width,height),buf); t=frame/fps
+                shot=shot_at(config,t); sid=shot['id'] if shot else None
+                if sid!=previous:
+                    history.clear();previous=sid
+                history.append(image)
+                if frame not in wanted:
+                    continue
+                overrides=None
+                if session is not None:
+                    from .core import state_at
+                    controls=session_state(session,t); values=state_at(config,t)
+                    for p,value in controls.items():
+                        values[p]=max(values[p],value)
+                    overrides={p:min(.12,value) if session['reduced_motion'] else value for p,value in values.items()}
+                out=composite(image,list(history),config,t,overrides=overrides,layers=recipe.get('fine_layers',False))
+                if recipe.get('animated_typography',False):
+                    out=animated_word(out,config,t)
+                camera=recipe.get('camera')
+                if camera and camera['start_frame']<=frame<camera['end_frame']:
+                    phase=(frame-camera['start_frame'])/(camera['end_frame']-camera['start_frame'])
+                    amount=math.sin(math.pi*phase)**2
+                    out=reframe(out,track,frame,1+(camera['max_zoom']-1)*amount)
+                while cursor<len(mapping) and mapping[cursor]==frame:
+                    encoder.stdin.write(out.tobytes())
+                    cursor+=1
+        finally:
+            decoder.stdout.close()
+            if decoder.poll() is None:
+                decoder.terminate()
+            decoder.wait()
+            encoder.stdin.close()
+        if encoder.wait() or cursor!=len(mapping):
+            raise RuntimeError('Revision encode failed')
+        retime_audio(audio,recipe,fps,wave)
+        run(['ffmpeg','-v','error','-y','-i',picture,'-i',wave,'-map','0:v','-map','1:a','-c:v','copy',
+             '-c:a','aac','-b:a','192k','-t',str(len(mapping)/fps),'-movflags','+faststart',staged])
+        if sha256(source)!=source_digest or sha256(audio)!=audio_digest:
+            raise ValueError('Source media changed during rendering')
+        require_fresh_revision_outputs(source, audio, output)
+        # Same-filesystem hard-link publication is atomic and refuses existing paths,
+        # including a symlink introduced after the final freshness check.
+        os.link(staged, output)
+    receipt={'source_sha256':source_digest,'audio_sha256':audio_digest,'recipe':recipe,
              'session':session,'tracking':{'method':track['method'],'review_status':track['review_status']} if track else None,
              'output_sha256':sha256(output),'frames':len(mapping),'fps':fps,'time_map':timing_map(recipe,fps),
              'picture_time_sampling':'source frame nearest lower; masks and fields use the same source clock',
@@ -325,5 +344,6 @@ def render_revision(source, audio, config, recipe, output, session=None, track=N
                     'direction_code_sha256':sha256(Path(__file__).with_name('direction.py')),
                     'python_version':platform.python_version(),'numpy_version':np.__version__,
                     'ffmpeg_version':subprocess.check_output(['ffmpeg','-version'],text=True).splitlines()[0]})
-    write_json(output.with_suffix('.revision.json'),receipt)
+    with output.with_suffix('.revision.json').open('x', encoding='utf-8') as stream:
+        stream.write(json.dumps(receipt, indent=2)+'\n')
     return receipt

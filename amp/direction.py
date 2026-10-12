@@ -26,6 +26,15 @@ VERSION = "1.0.0"
 RATE = 48000
 VARIANTS = ("reference", "audio", "fields", "directed", "expressive")
 
+# Compatibility for one immutable historical score whose source identity was
+# recorded separately. Provenance: manifests/acceptance/
+# god-here-direction-exact-input-recovery.json, original_semantic_hashes and
+# inputs[source]. Never infer a binding for an edited or unknown legacy score.
+LEGACY_FIELD_SCORE_SOURCES = {
+    "e1da8a7b912fbda4f808b12f338999fce15cda42709a2fa5db9ce30bbeee7889":
+        "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+}
+
 
 def require(condition, message):
     if not condition:
@@ -91,6 +100,23 @@ def validate_recipe(r, frame_count=None):
         require(finite(t["size"], .02, .15) and finite(t["opacity"], 0, 1), "Invalid text style")
         require(t["style"] in ("spread", "rise", "aperture"), "Unsupported operation")
     return total
+
+
+def validate_field_source(config, source_sha256):
+    """Require a source identity, preserving only the exact registered legacy score."""
+    require(isinstance(config, dict), 'Field score source binding requires an object')
+    require(isinstance(source_sha256, str) and re.fullmatch(r'[0-9a-f]{64}', source_sha256),
+            'Field score source binding requires a valid expected source digest')
+    if 'source_sha256' in config:
+        bound_source = config['source_sha256']
+        method = 'explicit-source-sha256'
+    else:
+        semantic = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()
+        bound_source = LEGACY_FIELD_SCORE_SOURCES.get(semantic)
+        method = 'registered-legacy-semantic-sha256'
+    require(bound_source == source_sha256,
+            'Field score source mismatch or missing source_sha256; new scores require an explicit source identity')
+    return {'source_sha256': bound_source, 'method': method}
 
 
 def validated_frame_count(source, video, fps):
@@ -303,8 +329,10 @@ def render(source, source_audio, recipe, output, *, variant="directed", field_co
     require(float(probe(source_audio)["format"]["duration"])+1/recipe["fps"] >= recipe["source_span"][1]/recipe["fps"], "Audio must use full-source timing")
     directed = variant in ("directed","expressive")
     fields = variant in ("fields","directed","expressive") and recipe["field_gain"]>0
+    field_source_binding = None
     if fields or (directed and recipe["camera"]):
         require(field_config is not None, "Field score is required for fields and camera cut validation")
+        field_source_binding = validate_field_source(field_config, recipe["source_sha256"])
         validate_fields(field_config,float(metadata["format"]["duration"]))
         require(field_config["fps"] == recipe["fps"], "Field score clock mismatch")
         require(integer(field_config["history_frames"], 0, 120), "Excessive field history")
@@ -383,6 +411,7 @@ def render(source, source_audio, recipe, output, *, variant="directed", field_co
         require(not output.exists(),"Output appeared during rendering")
         (work/'render.mp4').replace(output)
     report=dict(engine_version=VERSION,engine_sha256=sha256(__file__),core_sha256=sha256(Path(__file__).with_name("core.py")),variant=variant,source_sha256=recipe['source_sha256'],source_audio_sha256=sha256(source_audio),recipe_sha256=hashlib.sha256(json.dumps(recipe,sort_keys=True).encode()).hexdigest(),field_score_sha256=hashlib.sha256(json.dumps(field_config,sort_keys=True).encode()).hexdigest() if fields or (directed and recipe["camera"]) else None,font_sha256=sha256(font_path) if directed and recipe['typography'] else None,output_sha256=sha256(output),fps=recipe['fps'],output_frames=len(mapping),output_dimensions=[ow,oh],duration_seconds=len(mapping)/recipe['fps'],source_output_map=time_map(recipe,directed),audio=sound_report,tracks=tracks,crop_source_pixels=crops,detail_method='Lanczos resampling and restrained unsharp mask; no recovered or generated detail',review=dict(technical_decode='passed',perceptual_audio='pending',phrase_boundaries='pending',artistic_acceptance='pending'),tools=dict(ffmpeg=subprocess.check_output(['ffmpeg','-version'],text=True).splitlines()[0]))
+    report['field_score_source_binding'] = field_source_binding
     write_json(output.with_suffix('.render.json'),report)
     return report
 

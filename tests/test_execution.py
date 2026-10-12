@@ -275,6 +275,22 @@ class DispatchTests(unittest.TestCase):
         with patch('amp.core.shot_at',side_effect=AssertionError('dormant camera must not run')):
             self.assertEqual(self.plan().options['variant'],'fields')
 
+    def test_direction_fields_must_bind_to_the_same_source_despite_matching_clock(self):
+        self.direction_camera_binding()
+        fields_path=self.root/'fields.json'
+        fields=read_json(fields_path)
+        for source in ('0'*64,None):
+            if source is None:
+                fields.pop('source_sha256',None)
+                fields['history_frames']+=1
+            else:
+                fields['source_sha256']=source
+            fields_path.write_text(json.dumps(fields))
+            self.inputs['fields']=file_identity(fields_path,'fields')
+            self.locations['objects'][self.inputs['fields']['sha256']]=str(fields_path)
+            with self.subTest(source=source),self.assertRaisesRegex(ContractError,'native_schema_mismatch'):
+                self.plan()
+
     def test_revision_track_input_matches_camera_use_exactly(self):
         source_hash=self.inputs['source']['sha256']
         config=read_json(REPO_ROOT/'projects/god-here/composition.json')

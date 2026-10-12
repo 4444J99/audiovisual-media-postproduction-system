@@ -1,0 +1,9 @@
+include tools/render-fx.mjs
+include tools/validate-execution-fx.mjs
+include tools/run_room_stretch.py
+include web/fx/core.mjs
+include web/fx/catalog.mjs
+include web/fx/visual-engine.mjs
+include web/fx/audio-engine.mjs
+include web/fx/workbench-state.mjs
+include web/fx/asset-pack.mjs

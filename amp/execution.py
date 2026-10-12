@@ -22,6 +22,7 @@ import subprocess
 import sys
 
 from .media_resolver import ContractError, MediaResolver, file_identity, read_json
+from .runtime import runtime_path
 
 SCHEMA = "amps.execution.v1"
 ADAPTERS = ("amp.direction.v1", "amp.revision.v1", "fx.rack.v1", "amp.roomstretch.v1")
@@ -30,10 +31,10 @@ REVISION_FONT = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
 CODE_FILES = {
     "amp.direction.v1": ["amp/direction.py", "amp/core.py"],
     "amp.revision.v1": ["amp/revision.py", "amp/direction.py", "amp/core.py", "amp/render.py", "amp/audio.py"],
-    "fx.rack.v1": ["tools/render-fx.mjs", "tools/validate-execution-fx.mjs", *[f"web/fx/{name}.mjs" for name in ("core", "catalog", "visual-engine", "audio-engine", "workbench-state")]],
+    "fx.rack.v1": ["tools/render-fx.mjs", "tools/validate-execution-fx.mjs", *[f"web/fx/{name}.mjs" for name in ("core", "catalog", "visual-engine", "audio-engine", "workbench-state", "asset-pack")]],
     "amp.roomstretch.v1": ["tools/run_room_stretch.py", "amp/roomstretch.py", "amp/roomrefine.py", "amp/roomrack.py", "amp/roomtone.py", "amp/audio.py", "amp/core.py"],
 }
-COMMON_CODE = ["amp/__init__.py", "amp/cli.py", "amp/execution.py", "amp/media_resolver.py"]
+COMMON_CODE = ["amp/__init__.py", "amp/cli.py", "amp/execution.py", "amp/media_resolver.py", "amp/runtime.py"]
 
 
 def require(condition, code, role=None):
@@ -244,12 +245,12 @@ class ExecutionPlan:
                     result += ["--" + role, str(paths[role])]
             return result
         if adapter == "fx.rack.v1":
-            return ["node", str(self.repo_root / "tools/render-fx.mjs"), "--engine-dir", str(self.repo_root / "web/fx"),
+            return ["node", str(runtime_path(self.repo_root, "tools/render-fx.mjs")), "--engine-dir", str(runtime_path(self.repo_root, "web/fx")),
                     "--assets-dir", str(assets), "--patch", str(paths["recipe"]), "--output", str(products / "render.mp4"),
                     "--font", str(paths["font"]), "--duration", str(self.options["duration"]), "--width", str(self.options["width"]),
                     "--height", str(self.options["height"]), "--fps", str(self.options["fps"]), "--overlay", self.options["overlay"],
                     "--audio-input", self.options["audio_input"], "--keep-wav"]
-        result = [sys.executable, str(self.repo_root / "tools/run_room_stretch.py"), "--source", str(paths["source"]),
+        result = [sys.executable, str(runtime_path(self.repo_root, "tools/run_room_stretch.py")), "--source", str(paths["source"]),
                   "--inventory", str(paths["inventory"]), "--output", str(products), "--duration", str(self.options["duration"]),
                   "--periods", *map(str, self.options["periods"]), "--target-lufs", str(self.options["target_lufs"]),
                   "--audition-boost-db", str(self.options["audition_boost_db"])]
@@ -303,6 +304,8 @@ def preflight(binding_path, *, locations=None, inventories=(), repo_root=REPO_RO
         if needs_fields:
             from .core import validate, shot_at
             config = read_json(plan.paths["fields"], role="fields")
+            from .direction import validate_field_source
+            native_validation(validate_field_source, config, binding["source_clock"]["sha256"], role="fields")
             native_validation(validate, config, container_duration, role="fields")
             require(config["fps"] == recipe["fps"] and type(config["history_frames"]) is int and 0 <= config["history_frames"] <= 120, "native_clock_mismatch", "fields")
             for cue in (recipe["camera"] if tracking else []):
@@ -343,7 +346,7 @@ def preflight(binding_path, *, locations=None, inventories=(), repo_root=REPO_RO
             raise ContractError("schema_mismatch", "asset_manifest") from None
         plan.asset_root = resolver.collection(inputs["asset_receipt"], required_members)
         plan.asset_members = tuple(sorted(set(required_members)))
-        validation = command_output(["node", str(plan.repo_root / "tools/validate-execution-fx.mjs")], role="fx-native-preflight", cwd=plan.repo_root,
+        validation = command_output(["node", str(runtime_path(plan.repo_root, "tools/validate-execution-fx.mjs"))], role="fx-native-preflight", cwd=plan.repo_root,
                                     input_text=json.dumps({"assets": str(root), "recipe": str(plan.paths["recipe"]), "font": str(plan.paths["font"]),
                                                            "options": options, "source_clock": binding["source_clock"]}))
         try:
@@ -394,7 +397,7 @@ def validate_track(track, recipe, source_clock):
 
 
 def code_provenance(repo_root, adapter):
-    files = [{"path": path, **file_identity(repo_root / path, "producing_code")} for path in COMMON_CODE + CODE_FILES[adapter]]
+    files = [{"path": path, **file_identity(runtime_path(repo_root, path), "producing_code")} for path in COMMON_CODE + CODE_FILES[adapter]]
     try:
         head = command_output(["git", "rev-parse", "HEAD"], role="git", cwd=repo_root, timeout=10).strip()
         if re.fullmatch(r"[0-9a-f]{40}", head) is None:
@@ -482,7 +485,7 @@ def expected_products(plan, products):
                 and report["audio"].get("samples") == output["pcm_samples_per_channel"]
                 and report["audio"].get("pcmWavSha256") == file_identity(products / "render.wav", "output")["sha256"], "native_report_binding_mismatch")
         require(all(report.get("codeHashes", {}).get(name) == code.get("web/fx/" + name)
-                    for name in ("core.mjs", "catalog.mjs", "visual-engine.mjs", "audio-engine.mjs")), "native_code_binding_mismatch")
+                    for name in ("core.mjs", "catalog.mjs", "visual-engine.mjs", "audio-engine.mjs", "workbench-state.mjs", "asset-pack.mjs")), "native_code_binding_mismatch")
     else:
         semantic = hashlib.sha256(json.dumps(read_json(plan.paths["recipe"], role="recipe"), sort_keys=True).encode()).hexdigest()
         audio_key = "source_audio_sha256" if adapter == "amp.direction.v1" else "audio_sha256"

@@ -26,6 +26,78 @@ const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const json=async filename=>JSON.parse(await fs.readFile(filename,'utf8'));
 const writeJson=(filename,value)=>fs.writeFile(filename,JSON.stringify(value,null,2)+'\n');
 
+/** The complete local module closure consumed by the offline renderer. */
+export async function renderCodeHashes(engineDir){
+  return Object.fromEntries(await Promise.all(['core.mjs','catalog.mjs','visual-engine.mjs','audio-engine.mjs','workbench-state.mjs','asset-pack.mjs'].map(async name=>[name,sha(await fs.readFile(path.join(engineDir,name)))])));
+}
+
+/**
+ * Stage the whole set beside its destinations, then replace with rollback.
+ * Staging beside each destination makes every replacement an atomic rename.
+ * The receipt is absent during replacement and published last as the commit
+ * marker. A caught failure restores every old file and the old receipt.
+ */
+export async function publishRenderSet(artifacts,receipt,fileOps=fs){
+  const entries=[...artifacts,receipt].map(entry=>({...entry,destination:path.resolve(entry.destination)}));
+  if(new Set(entries.map(entry=>entry.destination)).size!==entries.length)throw Error('Render destinations must be distinct.');
+  const staged=[];let receiptRemoved=false,publishing=false,rollbackFailed=false;
+  try{
+    for(const entry of entries){
+      const directory=await fileOps.mkdtemp(path.join(path.dirname(entry.destination),'.fx-publish-'));
+      const item={...entry,directory,incoming:path.join(directory,'incoming'),backup:path.join(directory,'previous'),existed:false,published:false};
+      staged.push(item);
+      await fileOps.copyFile(entry.source,item.incoming);
+      let stat;
+      try{stat=await fileOps.lstat(entry.destination);}catch(error){if(error.code!=='ENOENT')throw error;}
+      if(stat){
+        if(!stat.isFile())throw Error('Render destination must be a regular file.');
+        item.existed=true;
+        await fileOps.copyFile(entry.destination,item.backup);
+        await fileOps.chmod(item.backup,stat.mode);
+      }
+    }
+    const marker=staged.at(-1);publishing=true;
+    if(marker.existed){await fileOps.unlink(marker.destination);receiptRemoved=true;}
+    for(const item of staged){await fileOps.rename(item.incoming,item.destination);item.published=true;}
+  }catch(error){
+    const failures=[];
+    if(publishing){
+      // Restore the receipt only after all artifact rollbacks have succeeded.
+      for(const item of staged.slice(0,-1).reverse())if(item.published){
+        try{if(item.existed)await fileOps.rename(item.backup,item.destination);else await fileOps.unlink(item.destination);}
+        catch(failure){failures.push(failure);}
+      }
+      const marker=staged.at(-1);
+      if(!failures.length&&(receiptRemoved||marker.published)){
+        try{if(marker.existed)await fileOps.rename(marker.backup,marker.destination);else await fileOps.unlink(marker.destination);}
+        catch(failure){failures.push(failure);}
+      }
+    }
+    if(failures.length){rollbackFailed=true;throw new AggregateError([error,...failures],`Render publication rollback failed; recovery copies retained in ${staged.map(item=>item.directory).join(', ')}`);}
+    throw error;
+  }finally{
+    // Cleanup cannot turn an already committed, valid set into a failed render.
+    if(!rollbackFailed)await Promise.all(staged.map(item=>fileOps.rm(item.directory,{recursive:true,force:true}).catch(()=>{})));
+  }
+}
+
+/** Validate every temporary variant before touching any published artifact. */
+export async function validateAndPublishRender({views,frameCount,artifacts,receiptPath,report,ffprobe='ffprobe'},fileOps=fs){
+  const outputs=[];
+  for(const view of views){
+    const probe=JSON.parse(await run(ffprobe,['-v','error','-show_streams','-show_format','-of','json',view.partial]));
+    const video=probe.streams.find(stream=>stream.codec_type==='video'),audio=probe.streams.find(stream=>stream.codec_type==='audio');
+    if(Number(video?.nb_frames)!==frameCount||!audio||Number(video.width)!==view.width||Number(video.height)!==view.height)throw Error('Output media validation failed.');
+    const bytes=await fs.readFile(view.partial);
+    outputs.push({file:path.basename(view.output),width:view.width,height:view.height,sha256:sha(bytes),bytes:bytes.length,probe:{video,audio,duration:Number(probe.format.duration)}});
+  }
+  const result={...report,output:outputs[0].file,bytes:outputs[0].bytes,sha256:outputs[0].sha256,outputs,probe:outputs[0].probe};
+  const receiptSource=path.join(path.dirname(views[0].partial),'render.json');
+  await writeJson(receiptSource,result);
+  await publishRenderSet([...views.map(view=>({source:view.partial,destination:view.output})),...artifacts],{source:receiptSource,destination:receiptPath},fileOps);
+  return result;
+}
+
 /** All chunks and the exported score consume these same normalized bytes. */
 export async function snapshotRenderPatch(patch,directory){
   const patchPath=path.join(directory,'patch.json');
@@ -67,7 +139,7 @@ async function run(binary,argv){
 function canvasPackage(){
   const req=createRequire(import.meta.url);
   try{return req('@napi-rs/canvas');}catch(error){
-    const modules=process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES;
+    const modules=process.env.AMP_NODE_MODULES||process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES;
     if(!modules)throw error;return createRequire(path.join(modules,'package.json'))('@napi-rs/canvas');
   }
 }
@@ -137,6 +209,7 @@ async function main(options){
   const engineDir=path.resolve(options['engine-dir']),assetsDir=path.resolve(options['assets-dir']);
   const patchPath=path.resolve(options.patch),outputPath=path.resolve(options.output),outBase=outputPath.replace(/\.mp4$/i,'');
   if(!/\.mp4$/i.test(outputPath))throw Error('Output must end with .mp4');
+  const codeHashes=await renderCodeHashes(engineDir);
   const [manifestBytes,inputPatchBytes]=await Promise.all([fs.readFile(path.join(assetsDir,'manifest.json')),fs.readFile(patchPath)]);
   const media=JSON.parse(manifestBytes);
   const {assetPackIdentity,sameAssetPack}=await import(pathToFileURL(path.join(engineDir,'asset-pack.mjs')));
@@ -213,18 +286,13 @@ async function main(options){
     await Promise.all(encoders.map(async e=>{try{await e.done;}catch(error){throw Error(`${error.message}: ${e.stderr}`);}}));
     const finalAssetsIdentity=await assetPackIdentity(await fs.readFile(path.join(assetsDir,'manifest.json')),file=>fs.readFile(path.join(assetsDir,file)));
     if(!sameAssetPack(assetsIdentity,finalAssetsIdentity))throw Error('Derived source assets changed during rendering; no preview receipt can be issued.');
-    const outputs=[];
-    for(const e of encoders){
-      const probe=JSON.parse(await run(options.ffprobe||'ffprobe',['-v','error','-show_streams','-show_format','-of','json',e.partial]));
-      const video=probe.streams.find(s=>s.codec_type==='video'),sound=probe.streams.find(s=>s.codec_type==='audio');
-      if(Number(video?.nb_frames)!==frameCount||!sound||Number(video.width)!==e.width||Number(video.height)!==e.height)throw Error('Output media validation failed.');
-      await fs.rename(e.partial,e.output);outputs.push({file:path.basename(e.output),width:e.width,height:e.height,sha256:sha(await fs.readFile(e.output)),bytes:(await fs.stat(e.output)).size,probe:{video,audio:sound,duration:Number(probe.format.duration)}});
-    }
-    const codeHashes=Object.fromEntries(await Promise.all(['core.mjs','catalog.mjs','visual-engine.mjs','audio-engine.mjs'].map(async p=>[p,sha(await fs.readFile(path.join(engineDir,p)))])));
-    const keepWav=Boolean(options['keep-wav']);if(keepWav)await fs.rename(audioPath,outBase+'.wav');
-    await fs.copyFile(patchSnapshot.patchPath,outBase+'.patch.json');
-    const report={schemaVersion:'1.0.0',patchId:patch.id,name:patch.name,output:outputs[0].file,bytes:outputs[0].bytes,sha256:outputs[0].sha256,outputs,width,height,fps,frameCount,duration,overlay:overlayMode,patchSha256:patchSnapshot.patchSha256,patchFileSha256:patchSnapshot.patchFileSha256,inputPatchSha256:sha(inputPatchBytes),source:patch.source,assetsManifestSha256:assetsIdentity.manifestSha256,assetsIdentity,codeHashes,font,audio:{input:inputKind,inputSha256:sha(inputBytes),sampleRate:decoded.sampleRate,samples,channels:channels.length,pcmWavSha256:sha(wavBytes),file:keepWav?path.basename(outBase+'.wav'):null,controlFps:audio.controlFps,controlNodeIds:Object.keys(audio.controlEnvelopes),renderMs:audioRenderMs,report:audio.report},validation,chunks,elapsedSeconds:(performance.now()-before)/1000,probe:outputs[0].probe,limitations:['AAC/H264 previews are lossy encodes of the shared graph.','Text uses the recorded font substitute on the render host.','Inherited body masks and hybrid room plate remain workprint assets.','Machine-crosschecked speech cues and dialogue candidate await listener/artist acceptance.']};
-    await writeJson(outBase+'.render.json',report);await fs.rm(tempDir,{recursive:true,force:true});
+    if(JSON.stringify(await renderCodeHashes(engineDir))!==JSON.stringify(codeHashes))throw Error('Rendering code changed during execution; no preview receipt can be issued.');
+    const keepWav=Boolean(options['keep-wav']);
+    const reportFields={schemaVersion:'1.0.0',patchId:patch.id,name:patch.name,width,height,fps,frameCount,duration,overlay:overlayMode,patchSha256:patchSnapshot.patchSha256,patchFileSha256:patchSnapshot.patchFileSha256,inputPatchSha256:sha(inputPatchBytes),source:patch.source,assetsManifestSha256:assetsIdentity.manifestSha256,assetsIdentity,codeHashes,font,audio:{input:inputKind,inputSha256:sha(inputBytes),sampleRate:decoded.sampleRate,samples,channels:channels.length,pcmWavSha256:sha(wavBytes),file:keepWav?path.basename(outBase+'.wav'):null,controlFps:audio.controlFps,controlNodeIds:Object.keys(audio.controlEnvelopes),renderMs:audioRenderMs,report:audio.report},validation,chunks,elapsedSeconds:(performance.now()-before)/1000,limitations:['AAC/H264 previews are lossy encodes of the shared graph.','Text uses the recorded font substitute on the render host.','Inherited body masks and hybrid room plate remain workprint assets.','Machine-crosschecked speech cues and dialogue candidate await listener/artist acceptance.']};
+    const artifacts=[{source:patchSnapshot.patchPath,destination:outBase+'.patch.json'}];
+    if(keepWav)artifacts.push({source:audioPath,destination:outBase+'.wav'});
+    const report=await validateAndPublishRender({views:encoders,frameCount,artifacts,receiptPath:outBase+'.render.json',report:reportFields,ffprobe:options.ffprobe||'ffprobe'});
+    await fs.rm(tempDir,{recursive:true,force:true}).catch(()=>{});
     process.stdout.write(JSON.stringify({output:outputPath,report:outBase+'.render.json',frameCount,duration,bytes:report.bytes,seconds:report.elapsedSeconds})+'\n');
   }catch(error){worker?.kill('SIGKILL');for(const e of encoders)e.proc.kill('SIGKILL');await fs.rm(tempDir,{recursive:true,force:true});throw error;}
 }

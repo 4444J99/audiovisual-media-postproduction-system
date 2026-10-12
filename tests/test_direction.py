@@ -9,7 +9,7 @@ import unittest
 import numpy as np
 from PIL import Image
 
-from amp.direction import validate_recipe, frame_map, time_map, camera_box, add_type, render
+from amp.direction import validate_recipe, validate_field_source, frame_map, time_map, camera_box, add_type, render
 
 ROOT=Path(__file__).resolve().parents[1]
 FONT=Path(os.environ.get('AMP_TEST_FONT', '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf'))
@@ -118,7 +118,7 @@ class DirectionClockAndRenderTests(unittest.TestCase):
             with patch('amp.direction.probe',return_value=metadata),patch('amp.direction.validated_frame_count',return_value=3360),patch('amp.direction.sha256',return_value=r['source_sha256']):
                 with self.assertRaisesRegex(ValueError,'Field score is required'):
                     render(source,sound,r,Path(tmp)/'output.mp4')
-                field_config={'fps':30,'history_frames':4}
+                field_config={'fps':30,'history_frames':4,'source_sha256':r['source_sha256']}
                 with patch('amp.direction.validate_fields'),patch('amp.direction.shot_at',side_effect=[{'id':'A'},{'id':'B'}]):
                     with self.assertRaisesRegex(ValueError,'crosses a source cut'):
                         render(source,sound,r,Path(tmp)/'output.mp4',field_config=field_config)
@@ -136,6 +136,47 @@ class DirectionClockAndRenderTests(unittest.TestCase):
                     with self.assertRaisesRegex(RuntimeError,'reached audio rendering'):
                         render(source,sound,r,Path(tmp)/'output.mp4',variant=variant)
                 tracker.assert_not_called()
+
+    def test_field_score_wrong_source_is_rejected_even_with_matching_clock(self):
+        from unittest.mock import patch
+        r=json.loads((ROOT/'projects/god-here/direction-proof.json').read_text())
+        r['typography']=[]
+        cfg=json.loads((ROOT/'projects/god-here/direction-field-score.json').read_text())
+        cfg['source_sha256']='0'*64
+        metadata={'streams':[{'codec_type':'video','width':320,'height':180}],'format':{'duration':'112'}}
+        with tempfile.TemporaryDirectory() as tmp:
+            source=Path(tmp)/'source.mp4';audio=Path(tmp)/'audio.wav';source.touch();audio.touch()
+            with patch('amp.direction.probe',return_value=metadata),patch('amp.direction.validated_frame_count',return_value=3360),patch('amp.direction.sha256',return_value=r['source_sha256']),patch('amp.direction.track_camera',side_effect=AssertionError('no tracking before source binding')),patch('amp.direction.audio_map',side_effect=AssertionError('no audio processing before source binding')):
+                for variant,field_gain in (('fields',.4),('directed',0),('expressive',0)):
+                    r['field_gain']=field_gain
+                    with self.subTest(variant=variant),self.assertRaisesRegex(ValueError,'Field score source'):
+                        render(source,audio,r,Path(tmp)/'out.mp4',variant=variant,field_config=cfg)
+
+    def test_retained_field_score_has_exact_documented_legacy_source_binding(self):
+        import hashlib
+        cfg=json.loads((ROOT/'projects/god-here/direction-field-score.json').read_text())
+        provenance=json.loads((ROOT/'manifests/acceptance/god-here-direction-exact-input-recovery.json').read_text())
+        source=next(item['sha256'] for item in provenance['inputs'] if item['role']=='source')
+        semantic=hashlib.sha256(json.dumps(cfg,sort_keys=True).encode()).hexdigest()
+        self.assertEqual(semantic,provenance['original_semantic_hashes']['fields_semantic_sha256'])
+        self.assertNotIn('source_sha256',cfg)
+        self.assertEqual(validate_field_source(cfg,source),{'source_sha256':source,'method':'registered-legacy-semantic-sha256'})
+        with self.assertRaisesRegex(ValueError,'Field score source'):
+            validate_field_source(cfg,'0'*64)
+
+    def test_changed_or_unknown_unbound_scores_cannot_reuse_legacy_source_binding(self):
+        cfg=json.loads((ROOT/'projects/god-here/direction-field-score.json').read_text())
+        source=json.loads((ROOT/'projects/god-here/direction-proof.json').read_text())['source_sha256']
+        cfg['history_frames']+=1
+        for unbound in (cfg,{},None):
+            with self.subTest(config=unbound),self.assertRaisesRegex(ValueError,'Field score source'):
+                validate_field_source(unbound,source)
+        cfg['source_sha256']=source
+        self.assertEqual(validate_field_source(cfg,source)['method'],'explicit-source-sha256')
+        for digest in (None,'0'*64,False):
+            cfg['source_sha256']=digest
+            with self.subTest(digest=digest),self.assertRaisesRegex(ValueError,'Field score source'):
+                validate_field_source(cfg,source)
 
     def test_zero_expressive_return_is_reported_as_dry(self):
         from unittest.mock import patch

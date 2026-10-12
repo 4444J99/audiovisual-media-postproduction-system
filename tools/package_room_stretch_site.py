@@ -179,6 +179,74 @@ def prior_comparisons(prior):
     return {name: expected[name] for name in COMPARISON_MOVIES}, sha256(receipt_path)
 
 
+def prior_lossless_inputs(prior, receipt_hash):
+    """Only explicitly receipted prior FLACs may enter the download tree."""
+    receipt_path = authenticated_file(prior, "delivery-manifest.json", receipt_hash, "Prior lossless delivery receipt")
+    receipt = json.loads(receipt_path.read_text())
+    allowed, seen = {}, set()
+    for entry in receipt["files"]:
+        name = entry.get("path") if isinstance(entry, dict) else None
+        if not isinstance(name, str) or not name:
+            raise ValueError("Malformed prior delivery path")
+        relative = PurePosixPath(name)
+        if (relative.is_absolute() or relative.as_posix() != name or ".." in relative.parts or
+                any(character in name for character in "\\%?#") or
+                any(part.startswith(".") for part in relative.parts)):
+            raise ValueError("Unsafe prior delivery path: " + name)
+        if name in seen:
+            raise ValueError("Prior lossless delivery receipt has a duplicate path: " + name)
+        seen.add(name)
+        if relative.suffix.lower() != ".flac":
+            continue
+        if relative.suffix != ".flac" or relative.parts[0] not in {"full-length", "stems", "original-room-rack"}:
+            raise ValueError("Prior lossless path is outside its managed folders: " + name)
+        digest = entry.get("sha256")
+        path = authenticated_file(prior, name, digest, "Prior lossless asset " + name)
+        allowed[name] = (path, digest)
+    return allowed
+
+
+def validate_prior_download_root(targets):
+    destination = targets.downloads / "previous"
+    site_root = targets.assets.parent
+    if not destination.resolve().is_relative_to(site_root.resolve()):
+        raise ValueError("Unsafe managed lossless output: " + str(destination))
+    component = site_root
+    for part in destination.relative_to(site_root).parts:
+        component = component / part
+        if component.is_symlink():
+            raise ValueError("Unsafe managed lossless output symlink: " + str(component))
+    if destination.exists() and not destination.is_dir():
+        raise ValueError("Unsafe managed lossless output: " + str(destination))
+    return destination
+
+
+def publish_prior_lossless(allowed, targets):
+    """Replace only downloads/previous after verifying a complete staged allowlist."""
+    destination = validate_prior_download_root(targets)
+    targets.downloads.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=".prior-lossless-", dir=targets.downloads) as directory:
+        staged = Path(directory) / "previous"
+        staged.mkdir()
+        for relative, (source, digest) in sorted(allowed.items()):
+            target = staged.joinpath(*PurePosixPath(relative).parts)
+            checked_copy(source, target)
+            authenticated_file(staged, relative, digest, "Prior lossless staged copy " + relative)
+        # Replacing the managed subtree also removes old unlisted files and
+        # nested symlinks; downloads/stretched and other siblings are untouched.
+        old = Path(directory) / "previous-old"
+        if destination.exists():
+            destination.replace(old)
+        try:
+            staged.replace(destination)
+        except BaseException:
+            if old.exists():
+                old.replace(destination)
+            raise
+    return [{"title": "Earlier lossless asset · " + relative,
+             "url": "downloads/previous/" + relative} for relative in sorted(allowed)]
+
+
 def prepared_media_root(targets, relative):
     """Registered movies keep their public URL while living in the R2 source tree."""
     if targets.storage == "r2" and relative in R2_ROOM_MOVIE_URLS:
@@ -368,6 +436,8 @@ def finish(source, prior, stretch, site, working):
         raise ValueError("Prepared media belongs to another source or prior report; rerun prepare")
     if preparation.get("comparison_receipt_sha256") != comparison_receipt_hash:
         raise ValueError("Comparison receipt changed after preparation; rerun prepare")
+    prior_lossless = prior_lossless_inputs(prior, preparation["comparison_receipt_sha256"])
+    validate_prior_download_root(targets)
     expected_prepared = {"media/source-picture.mp4", "media/room-poster.jpg"}
     expected_prepared.update(f"media/{mode}-{key}.m4a" for key in "ABCDE" for mode in ["room", "inspection"])
     expected_prepared.update(f"media/{entry['portion_id']}-with-handles.m4a" for entry in audit["portions"])
@@ -456,12 +526,7 @@ def finish(source, prior, stretch, site, working):
         manifest["videos"].append({"id": key, "title": title, "url": f"media/god-here-room-tone-{key}-comparison.mp4", "description": f"{seconds} seconds. Earlier room-only excerpts use their original louder inspection level."})
     for path in sorted((media).glob("original-*.m4a")):
         manifest["downloads"].append({"title": "Earlier rack contribution: " + path.stem.removeprefix("original-"), "url": f"media/{path.name}"})
-    for folder in ["full-length", "stems", "original-room-rack"]:
-        for path in sorted((prior / folder).rglob("*.flac")):
-            if any(part.startswith(".") for part in path.relative_to(prior).parts):
-                continue
-            url = copy_lossless_download(path, PurePosixPath("previous") / path.relative_to(prior), targets)
-            manifest["downloads"].append({"title": "Earlier lossless asset · " + path.relative_to(prior).as_posix(), "url": url})
+    manifest["downloads"].extend(publish_prior_lossless(prior_lossless, targets))
     checked_copy(stretch / "room-stretch-report.json", records / "room-stretch-report.json")
     for field in ["source_reel_raw", "source_reel_processed"]:
         path = stretch / report[field]["file"]

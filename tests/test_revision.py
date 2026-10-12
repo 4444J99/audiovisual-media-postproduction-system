@@ -82,6 +82,54 @@ class RevisionTests(unittest.TestCase):
 
 
 class RevisionReviewRegressionTests(unittest.TestCase):
+    def test_existing_output_aliases_are_rejected_before_media_reads(self):
+        import os,tempfile
+        from unittest.mock import patch
+        from amp.revision import render_revision
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);source=root/'source.mp4';audio=root/'sound.wav'
+            source.write_bytes(b'original movie');audio.write_bytes(b'original audio')
+            hard=root/'hard.mp4';os.link(source,hard)
+            link=root/'link.mp4';link.symlink_to(audio)
+            dangling=root/'dangling.mp4';dangling.symlink_to(root/'absent')
+            old=root/'existing.mp4';old.write_bytes(b'earlier render')
+            (root/'new.revision.json').write_bytes(b'earlier receipt')
+            (root/'sub').mkdir()
+            outputs=(source,audio,hard,link,dangling,old,root/'sub'/'..'/'source.mp4',root/'new.mp4')
+            before={path:path.read_bytes() for path in (source,audio,hard,old,root/'new.revision.json')}
+            for output in outputs:
+                with self.subTest(output=output.name),patch('amp.revision.probe',side_effect=AssertionError('must not read media')) as probe:
+                    with self.assertRaisesRegex(ValueError,'fresh output'):
+                        render_revision(source,audio,{}, {},output)
+                    probe.assert_not_called()
+            for path,content in before.items():self.assertEqual(path.read_bytes(),content)
+            self.assertTrue(link.is_symlink());self.assertTrue(dangling.is_symlink())
+            # Even a final receipt path must never replace a supplied input.
+            with patch('amp.revision.probe',side_effect=AssertionError('must not read media')):
+                with self.assertRaisesRegex(ValueError,'fresh output'):
+                    render_revision(source,root/'new.revision.json',{}, {},root/'new.mp4')
+
+    def test_private_intermediates_preserve_inputs_with_old_temporary_names(self):
+        import shutil,tempfile
+        from scipy.io import wavfile
+        from amp.core import sha256
+        from amp.revision import render_revision
+        if not shutil.which('ffmpeg') or not shutil.which('ffprobe'):self.skipTest('FFmpeg unavailable')
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);source=root/'new.picture.mp4';audio=root/'new.retimed.wav';output=root/'new.mp4'
+            subprocess.run(['ffmpeg','-v','error','-f','lavfi','-i','testsrc2=size=160x90:rate=30:duration=0.1',
+                            '-c:v','libx264','-threads','1',str(source)],check=True)
+            wavfile.write(audio,48000,np.zeros((4800,2),dtype=np.float32))
+            before={path:sha256(path) for path in (source,audio)}
+            config=copy.deepcopy(CONFIG);config.update(source_sha256=before[source],shots=[],cues=[],layers=[],typography=[])
+            recipe={'schema_version':'1.0','source_sha256':before[source],
+                    'segments':[{'source_start_frame':0,'source_end_frame':3,'output_frames':3}]}
+            receipt=render_revision(source,audio,config,recipe,output,width=160)
+            self.assertEqual(receipt['frames'],3)
+            for path,digest in before.items():self.assertEqual(sha256(path),digest)
+            self.assertTrue(output.is_file());self.assertTrue(output.with_suffix('.revision.json').is_file())
+            self.assertFalse(list(root.glob('amp-revision-*')))
+
     def test_falsy_sessions_are_invalid(self):
         for session in (None,{},False,0,[], ''):
             with self.subTest(session=session),self.assertRaises(ValueError):

@@ -20,8 +20,9 @@ function canvasPackage() {
   let req = createRequire(import.meta.url);
   try { return {canvas: req('@napi-rs/canvas'), version: req('@napi-rs/canvas/package.json').version}; }
   catch (error) {
-    if (!process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES) throw error;
-    req = createRequire(path.join(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES, 'package.json'));
+    const modules = process.env.AMP_NODE_MODULES || process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES;
+    if (!modules) throw error;
+    req = createRequire(path.join(modules, 'package.json'));
     return {canvas: req('@napi-rs/canvas'), version: req('@napi-rs/canvas/package.json').version};
   }
 }

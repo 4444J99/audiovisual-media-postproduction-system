@@ -18,3 +18,4 @@ amp = "amp.cli:main"
 
 [tool.setuptools]
 packages = ["amp"]
+include-package-data = false
