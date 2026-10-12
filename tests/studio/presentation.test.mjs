@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {installPresentation, contentHeight, reviewView} from '../../web/studio/presentation.mjs';
+import {installPresentation, contentHeight, reviewView, fitMobileFrame} from '../../web/studio/presentation.mjs';
 
 // Small DOM contract fixture: checks moved controls retain identity/listeners,
 // responsive disclosure state, and height measurement. No browser/layout claims.
@@ -61,4 +61,17 @@ test('content measurement excludes hidden/fixed overlays and can shrink',()=>{
   const hidden=new Element();hidden.hidden=true;hidden.rect.bottom=6000;d.body.append(hidden);
   assert.equal(contentHeight(d),924);d.main.rect.bottom=300;assert.equal(contentHeight(d),324);
   d.defaultView.scrollY=50;d.main.style.marginBottom='10';assert.equal(contentHeight(d),384);
+});
+test('immersive viewport sizing is stable and ordinary content can shrink',()=>{
+  const original={window:globalThis.window,ResizeObserver:globalThis.ResizeObserver,requestAnimationFrame:globalThis.requestAnimationFrame};
+  const d=fixture();const query={matches:true,addEventListener(){},removeEventListener(){}};let callback;
+  globalThis.window={innerHeight:800,matchMedia:()=>query};
+  globalThis.requestAnimationFrame=f=>f();
+  globalThis.ResizeObserver=class{constructor(f){callback=f;}observe(){}disconnect(){}};
+  const frame=new Element('iframe');frame.contentDocument=d;frame.isConnected=true;frame.dataset.tool='experience';frame.style.removeProperty=key=>delete frame.style[key];frame.rect.height=700;d.addEventListener=()=>{};
+  try{
+    fitMobileFrame(frame);assert.equal(frame.style.height,'640px');callback();assert.equal(frame.style.height,'640px');
+    frame.dataset.tool='review';d.main.rect.bottom=900;callback();assert.equal(frame.style.height,'924px');
+    d.main.rect.bottom=300;callback();assert.equal(frame.style.height,'324px');query.matches=false;callback();assert.equal(frame.style.height,undefined);
+  }finally{Object.assign(globalThis,original);}
 });
