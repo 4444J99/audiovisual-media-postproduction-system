@@ -1,0 +1,14 @@
+/* Same-site presentation adapter: no processors, controls or scores removed. */
+body.studio-embedded{margin:0;overflow-x:hidden;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.studio-embedded *, .studio-embedded *::before,.studio-embedded *::after{box-sizing:border-box}
+.studio-embedded button,.studio-embedded select,.studio-embedded input:not([type=range]):not([type=checkbox]){min-height:38px;max-width:100%;font-family:inherit}
+.studio-embedded button:focus-visible,.studio-embedded a:focus-visible,.studio-embedded input:focus-visible,.studio-embedded select:focus-visible{outline:3px solid #91bcb5;outline-offset:2px}
+.studio-embedded h1{font-size:clamp(24px,3.1vw,42px);line-height:1.1;margin:10px 0 14px;letter-spacing:-.04em}
+.studio-embedded header:not(#toolbar){padding-top:16px;padding-bottom:16px}
+.studio-embedded .hero{padding-top:18px;padding-bottom:18px;min-height:0}
+.studio-embedded main:not(#stage){max-width:1440px;margin-left:auto;margin-right:auto;min-width:0}
+.studio-embedded pre,.studio-embedded code{overflow-wrap:anywhere;white-space:pre-wrap}
+.studio-embedded img{max-width:100%}
+.studio-embedded .table-wrap,.studio-embedded .table-scroll{overflow-x:auto;max-width:100%}
+.studio-embedded details{max-width:100%}.studio-embedded summary{cursor:pointer;min-height:40px;padding-top:10px;padding-bottom:10px}
+@media(max-width:600px){.studio-embedded button,.studio-embedded select{min-height:44px}.studio-embedded main:not(#stage){padding-left:12px;padding-right:12px;width:100%}.studio-embedded header{padding:16px 12px}.studio-embedded h1{font-size:30px}.studio-embedded .row,.studio-embedded .toolbar,.studio-embedded .controls{flex-wrap:wrap;min-width:0}.studio-embedded .card,.studio-embedded section,.studio-embedded aside,.studio-embedded .panel{min-width:0;max-width:100%}.studio-embedded table{display:block;overflow-x:auto;max-width:100%}.studio-embedded input[type=search]{min-width:0;width:100%}.studio-embedded .filters{flex-wrap:wrap;min-width:0}.studio-embedded .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}

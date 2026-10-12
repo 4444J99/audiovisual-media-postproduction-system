@@ -1,0 +1,25 @@
+/** Pure navigation and inventory rules. Availability is not artistic acceptance. */
+export const TOOLS = Object.freeze({
+  review:{mode:'review',title:'Source review',path:'/review-workbench/index.html',description:'Film, sound, 174 source records and your time/region-linked directions.'},
+  audio:{mode:'compare',title:'Dialogue & sound',path:'/review.html',description:'Five aligned picture versions, four blind speech trials, room and foley.'},
+  color:{mode:'compare',title:'Color & detail',path:'/color-studies/',description:'Full-frame source/color comparisons and photographic reference studies.'},
+  'fx-films':{mode:'compare',title:'FX demonstrations',path:'/fx/watch.html',description:'13 processors and six patches, in landscape and portrait.'},
+  layouts:{mode:'compare',title:'Eight compositions',path:'/studio/layouts.html',description:'Recovered six-second spatial studies in both orientations.'},
+  room:{mode:'compose',title:'Room-tone rack',path:'/room-tone/',description:'Existing sound beds, stretched layers, combinations and listening notes.'},
+  fx:{mode:'compose',title:'Audiovisual FX',path:'/fx/',description:'Editable processors, signal routes, automation and saved patches.'},
+  experience:{mode:'compose',title:'Five realities',path:'/experience.html',description:'The original interactive room; attention, residue and source playback.'},
+  'study-03':{mode:'compose',title:'Independent time · 03',path:'/studies/study-03.html',description:'Recovered player with independent voice, body, word and room clocks.'},
+  'study-04':{mode:'compose',title:'Independent time · 04',path:'/studies/study-04.html',description:'Recovered neural repair, role assignments and audience choices.'},
+  evaluation:{mode:'compose',title:'Evaluation · Study 05',path:'/evaluation/index.html',description:'Recovered saved version: phrase review, audience choices and device checks.'},
+  layers:{mode:'compose',title:'Actor & object layers',path:'/studies/layers.html',description:'Recovered layer-study compositor with independently timed actors and objects.'},
+  recovery:{mode:'project',title:'Original recovery register',path:'/recovery/',description:'Detailed preserved manifests and historical dependencies.'}
+});
+const MODES=new Set(['review','compare','compose','library','project']);
+export function parseRoute(hash){const [part,tool]=String(hash||'').replace(/^#/,'').split('/');const mode=MODES.has(part)?part:'review';return {mode,tool:TOOLS[tool]?.mode===mode?tool:null};}
+export function toolForPath(path){if(typeof path!=='string'||!path.startsWith('/')||path.startsWith('//'))return null;const clean=path.split('?')[0].split('#')[0];return Object.entries(TOOLS).find(([,t])=>t.path===clean)?.[0]||null;}
+export function sourceMoment(tool,position){if(!Number.isFinite(position)||position<0)return null;if(tool==='audio')return position<=22.033333334?85.133333333+position:null;if(tool==='experience'||tool==='review')return position<=112?position:null;if(tool==='fx')return position<=12.166666667?95+position:null;return null;}
+const FONT=/\.(ttf|otf|woff2?)(?:$|[?#])/i;
+export function mediaLink(object){if(object.type==='font'||object.names?.some(n=>FONT.test(n)))return null;for(const l of object.links||[]){const href=typeof l==='string'?l:l?.href;if(typeof href!=='string'||/^(?:javascript|data|file):/i.test(href))continue;try{const u=new URL(href,'https://god-here-five-realities.ajpadavano.chatgpt.site/recovery/');if(u.origin!=='https://god-here-five-realities.ajpadavano.chatgpt.site'||FONT.test(u.pathname))continue;return u.pathname+u.search+u.hash;}catch{}}return null;}
+export function availability(object){const href=mediaLink(object);if(object.decode==='failed')return {key:'failed',label:'Preserved · decode failed',playable:false,href:null};if(object.type==='font'||object.names?.some(n=>FONT.test(n)))return {key:'recorded',label:'Dependency record only',playable:false,href:null};if(href)return {key:'available',label:'Available on site',playable:['video','audio','image'].includes(object.type),href};if(object.availability==='privately_preserved')return {key:'preserved',label:'Privately preserved',playable:false,href:null};return {key:'recorded',label:'Registered · not mounted',playable:false,href:null};}
+export function normalizeCatalog(catalog){const all=new Map();for(const group of ['objects','reproductions','retained_outputs','retained_inputs'])for(const o of catalog[group]||[]){if(!/^[a-f0-9]{64}$/.test(o.sha256||''))throw Error('Invalid artifact identity');if(!all.has(o.sha256))all.set(o.sha256,{...o,names:[...(o.names||[])],links:[...(o.links||[])]});else{const old=all.get(o.sha256);old.names=[...new Set([...old.names,...o.names||[]])];old.links=[...old.links,...o.links||[]];}}return [...all.values()];}
+export function filterObjects(objects,q='',type='all',status='all'){const s=q.toLowerCase().trim();return objects.filter(o=>(!s||[o.sha256,...o.names].join(' ').toLowerCase().includes(s))&&(type==='all'||o.type===type)&&(status==='all'||availability(o).key===status));}
