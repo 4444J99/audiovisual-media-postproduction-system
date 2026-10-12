@@ -7,6 +7,8 @@ export const TOOLS = Object.freeze({
   layouts:{mode:'compare',title:'Eight compositions',path:'/studio/layouts.html',description:'Recovered six-second spatial studies in both orientations.'},
   room:{mode:'compose',title:'Room-tone rack',path:'/room-tone/',description:'Existing sound beds, stretched layers, combinations and listening notes.'},
   fx:{mode:'compose',title:'Audiovisual FX',path:'/fx/',description:'Editable processors, signal routes, automation and saved patches.'},
+  direction:{mode:'compose',title:'Direction recipe',path:'/direction-review.html',description:'Editable direction recipes, proof variants and source/output timing. Media availability is checked on load.'},
+  directed:{mode:'compose',title:'Directed comparisons',path:'/directed-review.html',description:'Reference and directed treatments with time-linked review notes. Unavailable renders retain an explicit recovery state.'},
   experience:{mode:'compose',title:'Five realities',path:'/experience.html',description:'The original interactive room; attention, residue and source playback.'},
   'study-03':{mode:'compose',title:'Independent time · 03',path:'/studies/study-03.html',description:'Recovered player with independent voice, body, word and room clocks.'},
   'study-04':{mode:'compose',title:'Independent time · 04',path:'/studies/study-04.html',description:'Recovered neural repair, role assignments and audience choices.'},

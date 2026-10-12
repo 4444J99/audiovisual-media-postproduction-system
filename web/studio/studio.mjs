@@ -27,7 +27,7 @@ function bindFrame(id,frame){const w=api(frame);if(!w)return;try{const doc=w.doc
   const p=doc.querySelector('.brand p');if(p)p.textContent='Your annotations stay in this browser until exported.';
  }
  // Retain all native controls. Only navigation to another known workspace is intercepted.
- doc.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.hasAttribute('download')||a.target==='_blank'||e.metaKey||e.ctrlKey)return;let url;try{url=new URL(a.href);}catch{return;}if(url.origin!==location.origin)return;const target=url.pathname==='/'?'review':toolForPath(url.pathname);if(target){e.preventDefault();location.hash=target==='review'?'review':TOOLS[target].mode+'/'+target;}});
+ doc.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.hasAttribute('download')||a.target==='_blank'||e.metaKey||e.ctrlKey)return;let url;try{url=new URL(a.href);}catch{return;}if(url.origin!==location.origin)return;const target=['/','/index.html'].includes(url.pathname)?'review':toolForPath(url.pathname);if(target){e.preventDefault();location.hash=target==='review'?'review':TOOLS[target].mode+'/'+target;}});
  doc.addEventListener('play',()=>{if(active!==id){pauseFrame(frame);return;}for(const [key,f] of frames)if(key!==id)pauseFrame(f);},true);
  }catch(e){say('This tool must be served on the same origin to integrate its controls.');}}
 function createFrame(id){const frame=document.createElement('iframe');frame.className='tool-frame';frame.title=TOOLS[id].title;frame.allow='autoplay; fullscreen';frame.setAttribute('allowfullscreen','');frame.dataset.tool=id;frame.src=TOOLS[id].path;frame.hidden=true;frame.addEventListener('load',()=>bindFrame(id,frame));$('frame-mount').append(frame);frames.set(id,frame);return frame;}

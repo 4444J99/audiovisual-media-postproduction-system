@@ -4,7 +4,8 @@
   "baseline_integration_head": "06239ea898cc8430b8ced792732e6253e2c96372",
   "python_tests": 192,
   "node_tests": {
-    "studio": 17,
+    "studio": 18,
+    "directed_media": 7,
     "room": 28,
     "fx": 103
   },
@@ -40,5 +41,11 @@
     "Source/keeper/packaging evidence, stale-output rejection, decoding, atomic receipt validation, summed headroom",
     "Public/private routing separation and exact large-asset streaming delivery"
   ],
-  "foundation_pr1": "Unique original planning preserved inert in docs/foundation-archive; active implementation remains authoritative."
+  "foundation_pr1": "Unique original planning preserved inert in docs/foundation-archive; active implementation remains authoritative.",
+  "directed_recovery": {
+    "fresh_files_passed": 17,
+    "bytes": 80750196,
+    "known_damaged_extra_excluded": "proof-D.mp4",
+    "all_requested_files_recovered": true
+  }
 }

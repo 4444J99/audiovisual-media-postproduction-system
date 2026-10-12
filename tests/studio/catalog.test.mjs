@@ -20,3 +20,5 @@ test('non-finite media times have no source conversion',()=>assert.equal(sourceM
 test('negative source position is rejected',()=>assert.equal(sourceMoment('audio',-1),null));
 test('previous root experience remains discoverable',()=>assert.equal(toolForPath('/experience.html'),'experience'));
 test('URLs cannot sneak into the tool list',()=>assert.equal(toolForPath('https://evil.test/review.html'),null));
+
+test('both recovered direction editors remain available in Compose',()=>{assert.deepEqual(parseRoute('#compose/direction'),{mode:'compose',tool:'direction'});assert.deepEqual(parseRoute('#compose/directed'),{mode:'compose',tool:'directed'});assert.equal(toolForPath('/direction-review.html'),'direction');assert.equal(toolForPath('/directed-review.html'),'directed');});

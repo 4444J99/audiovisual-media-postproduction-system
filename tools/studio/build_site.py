@@ -170,8 +170,8 @@ def build(args:argparse.Namespace)->dict:
       'documents':documents,'directly_copied_text_sources':sources,
       'canonical_identities':len(ids),'new_identity_count':len(additional),'mounted_files':len(mounts),
       'gaps':[
-       {'title':'Live main-site publication','detail':'No main-site write route is available in this session. This is an owner-only prepared integration, not a deployed replacement. Preserve existing R2 registrations, media and redirects during rollout.'},
-       {'title':'Protected evaluation state','detail':'The saved Study05 application is byte-verified and mounted for owner review. The current owner-only site returns401; its current user state, saved audience responses and browser annotations were not retrieved or copied.'},
+       {'title':'Live main-site publication','detail':'This builder creates a prepared overlay. Consult the current canonical publication receipt for deployed source and hosted verification. Preserve existing media registrations and routes during rollout.'},
+       {'title':'Protected evaluation state','detail':'The saved Study05 application is byte-verified and mounted for owner review. Browser-local reviews and audience responses require explicit export from the original browser/origin and import; application recovery does not migrate them.'},
        {'title':'Unrecovered original sessions and files','detail':'160 inherited content hashes remain unmatched. Some located Library files have no authorized raw-byte materialization path. Filename matches and registered references do not close these gaps.'},
        {'title':'Control and device acceptance','detail':'Consult the new verification receipt for the exact tested workflows. Tests are not a blanket claim about every legacy button or physical iPhone/Safari playback.'},
        {'title':'Performance, sound and artistic selection','detail':'Listening-certified words, masks, foley naturalness, reconstructed detail, full-frame editions and artistic acceptance retain their existing unresolved states. Directions never silently mutate source evidence.'},

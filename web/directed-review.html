@@ -6,25 +6,31 @@
 </style>
 <main><p>GOD-HERE · DIRECTED WORKPRINT</p><h1>What happens before the answer?</h1>
 <video id="picture" controls playsinline preload="metadata"></video>
+<p id="mediaStatus" role="status" aria-live="polite">Loading the original reference. Notes can be saved after the film is ready.</p><button id="retryMedia" type="button" hidden>Retry selected video</button>
 <label for="variant">Compare treatments</label><select id="variant">
-<option value="proof-A.mp4">A · Original reference</option><option value="proof-B.mp4">B · Dialogue repair candidate</option>
+<option value="proof-A.mp4" selected>A · Original reference</option><option value="proof-B.mp4">B · Dialogue repair candidate</option>
 <option value="proof-C.mp4">C · Five realities</option><option value="directed-gap.mp4">D1 · More time to receive</option>
 <option value="directed-reaction.mp4">D2 · Follow a reaction</option><option value="directed-integrated.mp4">D3 · Timing, reaction, words</option>
-<option value="god-here-directed-passage.mp4" selected>E · Combined expressive passage</option>
+<option value="god-here-directed-passage.mp4">E · Combined expressive passage</option>
 <option value="attention-replay.mp4">Attention score rendered as film</option><option value="god-here-directed-full-workprint.mp4">Complete directed workprint</option>
 </select><p><output id="clock">Source —</output></p>
 <p>The longer treatments add 0.6 seconds near the closing exchange. Switching treatments keeps the same source moment. Dialogue repair and the artistic choices are open for review.</p>
 <label for="notes">Your observations</label><textarea id="notes" placeholder="What is easier to hear? Does the extra time change the exchange? Where does an effect distract?"></textarea>
-<div class="row"><button id="save">Save review</button><a href="index.html">Compose attention</a></div><p id="status" role="status"></p></main>
+<div class="row"><button id="save" disabled>Save review</button><a href="/experience.html">Compose attention</a></div><p id="status" role="status"></p></main>
 <script type="module">
 const video=document.getElementById('picture'),select=document.getElementById('variant'),clock=document.getElementById('clock');
 const base=2554/30, gapStart=98.5,gapEnd=99.3,speed=24/42;
 const elongated=new Set(['directed-gap.mp4','directed-integrated.mp4','god-here-directed-passage.mp4','god-here-directed-full-workprint.mp4']);
 function sourceTime(file,t){const offset=file==='god-here-directed-full-workprint.mp4'?0:base;let s=t+offset;if(!elongated.has(file))return s;if(s<gapStart)return s;if(s<gapStart+1.4)return gapStart+(s-gapStart)*speed;return s-.6;}
 function outputTime(file,s){const offset=file==='god-here-directed-full-workprint.mp4'?0:base;let t=s;if(elongated.has(file)){if(s>=gapEnd)t=s+.6;else if(s>=gapStart)t=gapStart+(s-gapStart)/speed;}return Math.max(0,t-offset);}
-let active=select.value;video.src='media/'+active;
-select.onchange=()=>{const source=sourceTime(active,video.currentTime),playing=!video.paused;active=select.value;video.src='media/'+active;video.onloadedmetadata=()=>{video.currentTime=Math.min(video.duration-.04,outputTime(active,source));if(playing)video.play().catch(()=>{});};};
-video.ontimeupdate=()=>{clock.value='Source '+sourceTime(active,video.currentTime).toFixed(2)+' s';};
-video.onerror=()=>{document.getElementById('status').textContent='This video could not load. Open the MP4 files from the review package.';};
-document.getElementById('save').onclick=()=>{const data={project:'god-here',variant:active,source_time:sourceTime(active,video.currentTime),observations:document.getElementById('notes').value,decision:'observations recorded; no automatic artistic acceptance',recorded_at:new Date().toISOString()};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='god-here-directed-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);document.getElementById('status').textContent='Review downloaded.';};
+let active=select.value,mediaReady=false;
+function mediaState(ready,message){mediaReady=ready;document.getElementById('save').disabled=!ready;document.getElementById('mediaStatus').textContent=message;document.getElementById('retryMedia').hidden=ready||!video.error;video.hidden=!ready&&Boolean(video.error);if(!ready)clock.value='Source time unavailable';}
+video.addEventListener('loadedmetadata',()=>{if(!Number.isFinite(video.duration)||video.duration<=0)return;mediaState(true,'Video ready. Review notes will include its corresponding source time.');clock.value='Source '+sourceTime(active,video.currentTime||0).toFixed(2)+' s';});
+video.addEventListener('loadstart',()=>mediaState(false,'Loading the selected video. Notes can be saved when the film is ready.'));
+video.src='/studies/directed-production/review/media/'+active;
+document.getElementById('retryMedia').onclick=()=>{mediaState(false,'Retrying the selected video…');video.load();};
+select.onchange=()=>{const source=mediaReady?sourceTime(active,video.currentTime):null,playing=mediaReady&&!video.paused;active=select.value;mediaState(false,'Loading the selected video. Notes can be saved when the film is ready.');video.src='/studies/directed-production/review/media/'+active;video.onloadedmetadata=()=>{video.currentTime=source===null?0:Math.max(0,Math.min(video.duration-.04,outputTime(active,source)));if(playing)video.play().catch(()=>{});};};
+video.ontimeupdate=()=>{if(!mediaReady)return;clock.value='Source '+sourceTime(active,video.currentTime).toFixed(2)+' s';};
+video.onerror=()=>{mediaState(false,'This selected render is not available on the site. Try another treatment, or retry when it has been recovered. Your written notes remain here.');};
+document.getElementById('save').onclick=()=>{if(!mediaReady||video.readyState<1||!Number.isFinite(video.duration)){mediaState(false,'Load a video before saving a note with a source time. Your written notes remain here.');return;}const data={project:'god-here',variant:active,source_time:sourceTime(active,video.currentTime),observations:document.getElementById('notes').value,decision:'observations recorded; no automatic artistic acceptance',recorded_at:new Date().toISOString()};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='god-here-directed-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);document.getElementById('status').textContent='Review downloaded.';};
 </script></html>
