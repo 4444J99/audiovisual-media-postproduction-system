@@ -1,0 +1,170 @@
+Command: node --test --test-reporter=tap tests/room-media.test.mjs
+Working directory: WORKBENCH_CHECKOUT
+Started: 2026-10-11T16:03:30.387370+00:00
+
+TAP version 13
+# Subtest: production manifest preserves all 42 FLAC registrations and adds exactly five original MP4s
+ok 1 - production manifest preserves all 42 FLAC registrations and adds exactly five original MP4s
+  ---
+  duration_ms: 10.267487
+  type: 'test'
+  ...
+# Subtest: manifest rejects traversal, aliases, duplicate keys, bad sizes and bad hashes
+ok 2 - manifest rejects traversal, aliases, duplicate keys, bad sizes and bad hashes
+  ---
+  duration_ms: 0.592892
+  type: 'test'
+  ...
+# Subtest: missing or incorrect upload authorization never reaches R2
+ok 3 - missing or incorrect upload authorization never reaches R2
+  ---
+  duration_ms: 4.964939
+  type: 'test'
+  ...
+# Subtest: only exact registered paths reach R2; no prefix alias, listing or delete route
+ok 4 - only exact registered paths reach R2; no prefix alias, listing or delete route
+  ---
+  duration_ms: 1.770623
+  type: 'test'
+  ...
+# Subtest: PUT requires declared length equal to the registered length before reading storage
+ok 5 - PUT requires declared length equal to the registered length before reading storage
+  ---
+  duration_ms: 0.978381
+  type: 'test'
+  ...
+# Subtest: PUT streams the exact bytes to the registered key with provider SHA256 enforcement
+ok 6 - PUT streams the exact bytes to the registered key with provider SHA256 enforcement
+  ---
+  duration_ms: 1.323641
+  type: 'test'
+  ...
+# Subtest: same-length tampering fails checksum validation without creating or replacing a file
+ok 7 - same-length tampering fails checksum validation without creating or replacing a file
+  ---
+  duration_ms: 2.742395
+  type: 'test'
+  ...
+# Subtest: identical repeat uploads validate again and use a conditional same-object update
+ok 8 - identical repeat uploads validate again and use a conditional same-object update
+  ---
+  duration_ms: 0.606693
+  type: 'test'
+  ...
+# Subtest: unexpected objects cannot be overwritten, including a forged custom checksum
+ok 9 - unexpected objects cannot be overwritten, including a forged custom checksum
+  ---
+  duration_ms: 0.380282
+  type: 'test'
+  ...
+# Subtest: a conditional upload race produces a retryable conflict without a success receipt
+ok 10 - a conditional upload race produces a retryable conflict without a success receipt
+  ---
+  duration_ms: 0.457868
+  type: 'test'
+  ...
+# Subtest: GET returns the original bytes and registered FLAC download metadata
+ok 11 - GET returns the original bytes and registered FLAC download metadata
+  ---
+  duration_ms: 1.273947
+  type: 'test'
+  ...
+# Subtest: HEAD reports full length, ignores Range and never fetches an object body
+ok 12 - HEAD reports full length, ignores Range and never fetches an object body
+  ---
+  duration_ms: 0.329065
+  type: 'test'
+  ...
+# Subtest: single byte ranges return exact slices, bounded lengths, and Content-Range
+ok 13 - single byte ranges return exact slices, bounded lengths, and Content-Range
+  ---
+  duration_ms: 2.675355
+  type: 'test'
+  ...
+# Subtest: unsatisfiable ranges return 416 with total size and no body fetch
+ok 14 - unsatisfiable ranges return 416 with total size and no body fetch
+  ---
+  duration_ms: 1.127777
+  type: 'test'
+  ...
+# Subtest: unsupported multiple ranges, units, and malformed syntax fall back to a full response
+ok 15 - unsupported multiple ranges, units, and malformed syntax fall back to a full response
+  ---
+  duration_ms: 1.30325
+  type: 'test'
+  ...
+# Subtest: conditional reads honor strong If-Match, weak If-None-Match and their precedence
+ok 16 - conditional reads honor strong If-Match, weak If-None-Match and their precedence
+  ---
+  duration_ms: 1.079354
+  type: 'test'
+  ...
+# Subtest: HTTP dates are compared at HTTP second precision and malformed dates are ignored
+ok 17 - HTTP dates are compared at HTTP second precision and malformed dates are ignored
+  ---
+  duration_ms: 1.094086
+  type: 'test'
+  ...
+# Subtest: If-Range requires an exact strong ETag or exact Last-Modified date
+ok 18 - If-Range requires an exact strong ETag or exact Last-Modified date
+  ---
+  duration_ms: 2.046168
+  type: 'test'
+  ...
+# Subtest: not-modified HEAD has no body; unavailable HEAD is a bodyless 404
+ok 19 - not-modified HEAD has no body; unavailable HEAD is a bodyless 404
+  ---
+  duration_ms: 0.371759
+  type: 'test'
+  ...
+# Subtest: read integrity relies on provider checksum, not forgeable custom metadata
+ok 20 - read integrity relies on provider checksum, not forgeable custom metadata
+  ---
+  duration_ms: 0.483948
+  type: 'test'
+  ...
+# Subtest: a changed object between head and get cannot escape the read precondition
+ok 21 - a changed object between head and get cannot escape the read precondition
+  ---
+  duration_ms: 0.23261
+  type: 'test'
+  ...
+# Subtest: storage exceptions are sanitized and never reflected to the caller
+ok 22 - storage exceptions are sanitized and never reflected to the caller
+  ---
+  duration_ms: 0.552451
+  type: 'test'
+  ...
+# Subtest: video registrations admit only the five exact public paths and preserve sibling static routing
+ok 23 - video registrations admit only the five exact public paths and preserve sibling static routing
+  ---
+  duration_ms: 0.675316
+  type: 'test'
+  ...
+# Subtest: video PUT retains streamed checksum enforcement and stores inline MP4 metadata at each original key
+ok 24 - video PUT retains streamed checksum enforcement and stores inline MP4 metadata at each original key
+  ---
+  duration_ms: 2.429515
+  type: 'test'
+  ...
+# Subtest: video uploads reject altered bytes and unexpected stored objects without replacing originals
+ok 25 - video uploads reject altered bytes and unexpected stored objects without replacing originals
+  ---
+  duration_ms: 0.732052
+  type: 'test'
+  ...
+# Subtest: each registered video serves inline GET, HEAD, byte ranges, and ETag-conditioned seeking
+ok 26 - each registered video serves inline GET, HEAD, byte ranges, and ETag-conditioned seeking
+  ---
+  duration_ms: 4.609545
+  type: 'test'
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 137.779327

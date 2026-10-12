@@ -1,0 +1,44 @@
+{
+  "site_version": {
+    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_78a47039b4a08191b0236f3faebb3704",
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "version_number": 18,
+    "source": {
+      "commit_sha": "4d70e621e754f27d57359adabc93c0cfa5e91ab2"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "content_hash": "sha256:15c327635faa2b5a9b0014c3cd7912604b942ec2cfa3a34611961effa3229abc",
+      "size_bytes": 265256960,
+      "file_count": 394
+    },
+    "deployment_id": null
+  },
+  "source_commit": "4d70e621e754f27d57359adabc93c0cfa5e91ab2",
+  "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+  "deployment": {
+    "id": "appgdep_6acd20d461a8819187cd651a7c5be614",
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "title": "god-here · Five realities",
+    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_78a47039b4a08191b0236f3faebb3704",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6ac71699c8fc81919b030dcf9ad112e4",
+    "failure_message": null,
+    "env_set_revision": 9,
+    "updated_at": "2026-10-12T18:03:28.071033+00:00"
+  },
+  "environment": {
+    "revision": 9,
+    "retained_keys": [
+      "STUDIO_MEDIA_UPLOAD_ENABLED",
+      "STUDIO_OWNER_EMAIL"
+    ],
+    "STUDIO_MEDIA_UPLOAD_ENABLED": "false",
+    "studio_token_removed_from_control_plane": true,
+    "qualification": "Earlier removal alone did not revoke provider runtime access. Explicit default-off source gate is the effective shutdown."
+  }
+}

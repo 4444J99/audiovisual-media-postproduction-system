@@ -1,0 +1,1878 @@
+{
+  "started": "2026-10-08T05:58:35.622Z",
+  "browser": "Playwright WebKit, local headless desktop engine; viewport emulation only",
+  "checks": [
+    {
+      "name": "Range server returns 206 and accurate lengths",
+      "pass": true,
+      "ms": 167,
+      "detail": {
+        "partial": "bytes 100-199/990850",
+        "suffix": "bytes 990825-990849/990850"
+      }
+    },
+    {
+      "name": "Ready waits for the exact latest audio revision",
+      "pass": true,
+      "ms": 1866,
+      "detail": {
+        "ready": true,
+        "playing": false,
+        "time": 0,
+        "audioBusy": false,
+        "audioRevision": 1,
+        "audioDesired": 1,
+        "preview": "rendered",
+        "report": {
+          "engine": "god-here-deterministic-audio-1",
+          "sampleRate": 24000,
+          "frames": 292000,
+          "duration": 12.166666666666666,
+          "seed": 773,
+          "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+          "graphOrder": [
+            "source",
+            "travel",
+            "giant-word",
+            "impact-echo",
+            "impact-field",
+            "sum",
+            "output"
+          ],
+          "modules": [
+            {
+              "id": "travel",
+              "type": "routing",
+              "target": "shared voice recording",
+              "active": true,
+              "latency": "authored time change; no automatic compensation",
+              "parameterRate": "per sample"
+            },
+            {
+              "id": "giant-word",
+              "type": "typography",
+              "target": "audio pass-through",
+              "active": false,
+              "reason": "visual-only typography"
+            },
+            {
+              "id": "impact-echo",
+              "type": "delay",
+              "target": "shared voice recording",
+              "active": true,
+              "latency": "authored time change; no automatic compensation",
+              "parameterRate": "per sample"
+            },
+            {
+              "id": "impact-field",
+              "type": "displacement",
+              "target": "audio pass-through",
+              "active": false,
+              "reason": "voice target not selected"
+            }
+          ],
+          "solo": false,
+          "limiter": {
+            "applied": false,
+            "kind": "whole-render peak attenuation only",
+            "gain": 1,
+            "peakBefore": 0.4991093575954437,
+            "peakAfter": 0.4991093575954437,
+            "ceiling": 0.92
+          },
+          "mixing": {
+            "dryWetControl": "wet only",
+            "intensityRole": "editable parameter macro only; no added dry signal",
+            "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+          },
+          "nonFiniteSamplesReplaced": 0,
+          "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+        }
+      }
+    },
+    {
+      "name": "Factory cache message-impact",
+      "pass": true,
+      "ms": 937,
+      "detail": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "time": 3.3,
+          "audioBusy": false,
+          "audioRevision": 2,
+          "audioDesired": 2,
+          "preview": "rendered",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "travel",
+              "giant-word",
+              "impact-echo",
+              "impact-field",
+              "sum",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "travel",
+                "type": "routing",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "giant-word",
+                "type": "typography",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "visual-only typography"
+              },
+              {
+                "id": "impact-echo",
+                "type": "delay",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "impact-field",
+                "type": "displacement",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "voice target not selected"
+              }
+            ],
+            "solo": false,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.4991093575954437,
+              "peakAfter": 0.4991093575954437,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "video": {
+          "src": "http://127.0.0.1:9380/fx/assets/renders/message-impact.mp4",
+          "readyState": 4,
+          "width": 480,
+          "height": 270,
+          "currentTime": 0,
+          "duration": 12.167
+        },
+        "label": "Rendered preset",
+        "signalSignatureMatched": true
+      }
+    },
+    {
+      "name": "Factory cache closed-inbox",
+      "pass": true,
+      "ms": 1361,
+      "detail": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "time": 3.3,
+          "audioBusy": false,
+          "audioRevision": 3,
+          "audioDesired": 3,
+          "preview": "rendered",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "inbox",
+              "recurrence",
+              "closed",
+              "prior-returns",
+              "sum",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "inbox",
+                "type": "queue",
+                "target": "shared voice recording",
+                "active": true,
+                "arrivals": 86,
+                "distinctDeliveredEvents": 80,
+                "overflowBursts": 10,
+                "pendingAtEnd": 5,
+                "sourceEvents": "distinct fixed source windows; not verified speech units",
+                "eventSchedule": [
+                  {
+                    "id": "window-0",
+                    "at": 0.8333333333333333,
+                    "sourceStart": 0,
+                    "sourceEnd": 0.12142857142857141,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-1",
+                    "at": 1.1214285714285712,
+                    "sourceStart": 0.14285714285714285,
+                    "sourceEnd": 0.26428571428571423,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-2",
+                    "at": 1.1764285714285712,
+                    "sourceStart": 0.2857142857142857,
+                    "sourceEnd": 0.40714285714285714,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-3",
+                    "at": 1.2314285714285713,
+                    "sourceStart": 0.42857142857142855,
+                    "sourceEnd": 0.5499999999999999,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-4",
+                    "at": 1.2864285714285713,
+                    "sourceStart": 0.5714285714285714,
+                    "sourceEnd": 0.6928571428571428,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-5",
+                    "at": 1.3414285714285712,
+                    "sourceStart": 0.7142857142857142,
+                    "sourceEnd": 0.8357142857142856,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-6",
+                    "at": 1.3964285714285714,
+                    "sourceStart": 0.857142857142857,
+                    "sourceEnd": 0.9785714285714284,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-7",
+                    "at": 1.4514285714285713,
+                    "sourceStart": 0.9999999999999998,
+                    "sourceEnd": 1.1214285714285712,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-8",
+                    "at": 1.6666666666666665,
+                    "sourceStart": 1.1428571428571426,
+                    "sourceEnd": 1.264285714285714,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-9",
+                    "at": 2.264285714285714,
+                    "sourceStart": 1.2857142857142854,
+                    "sourceEnd": 1.4071428571428568,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-10",
+                    "at": 2.319285714285714,
+                    "sourceStart": 1.4285714285714282,
+                    "sourceEnd": 1.5499999999999996,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-11",
+                    "at": 2.3742857142857137,
+                    "sourceStart": 1.571428571428571,
+                    "sourceEnd": 1.6928571428571424,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-12",
+                    "at": 2.429285714285714,
+                    "sourceStart": 1.7142857142857137,
+                    "sourceEnd": 1.8357142857142852,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-13",
+                    "at": 2.484285714285714,
+                    "sourceStart": 1.8571428571428565,
+                    "sourceEnd": 1.978571428571428,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-14",
+                    "at": 2.5392857142857137,
+                    "sourceStart": 1.9999999999999993,
+                    "sourceEnd": 2.1214285714285706,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-15",
+                    "at": 2.594285714285714,
+                    "sourceStart": 2.1428571428571423,
+                    "sourceEnd": 2.264285714285714,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-16",
+                    "at": 2.5,
+                    "sourceStart": 2.285714285714285,
+                    "sourceEnd": 2.4071428571428566,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-17",
+                    "at": 3.333333333333333,
+                    "sourceStart": 2.428571428571428,
+                    "sourceEnd": 2.5499999999999994,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-18",
+                    "at": 3.4,
+                    "sourceStart": 2.5714285714285707,
+                    "sourceEnd": 2.692857142857142,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-19",
+                    "at": 3.455,
+                    "sourceStart": 2.7142857142857135,
+                    "sourceEnd": 2.835714285714285,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-20",
+                    "at": 3.51,
+                    "sourceStart": 2.8571428571428563,
+                    "sourceEnd": 2.9785714285714278,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-21",
+                    "at": 3.565,
+                    "sourceStart": 2.999999999999999,
+                    "sourceEnd": 3.1214285714285706,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-22",
+                    "at": 3.62,
+                    "sourceStart": 3.142857142857142,
+                    "sourceEnd": 3.2642857142857133,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-23",
+                    "at": 4.166666666666666,
+                    "sourceStart": 3.2857142857142847,
+                    "sourceEnd": 3.407142857142856,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-24",
+                    "at": 4.407142857142856,
+                    "sourceStart": 3.4285714285714275,
+                    "sourceEnd": 3.549999999999999,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-25",
+                    "at": 4.462142857142855,
+                    "sourceStart": 3.5714285714285703,
+                    "sourceEnd": 3.6928571428571417,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-26",
+                    "at": 4.517142857142856,
+                    "sourceStart": 3.714285714285713,
+                    "sourceEnd": 3.8357142857142845,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-27",
+                    "at": 4.572142857142856,
+                    "sourceStart": 3.857142857142856,
+                    "sourceEnd": 3.9785714285714273,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-28",
+                    "at": 4.6271428571428554,
+                    "sourceStart": 3.9999999999999987,
+                    "sourceEnd": 4.12142857142857,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-29",
+                    "at": 4.682142857142856,
+                    "sourceStart": 4.1428571428571415,
+                    "sourceEnd": 4.2642857142857125,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-30",
+                    "at": 4.737142857142856,
+                    "sourceStart": 4.285714285714285,
+                    "sourceEnd": 4.407142857142856,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-31",
+                    "at": 4.999999999999999,
+                    "sourceStart": 4.428571428571428,
+                    "sourceEnd": 4.549999999999999,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-32",
+                    "at": 5.550000000000002,
+                    "sourceStart": 4.571428571428571,
+                    "sourceEnd": 4.692857142857142,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-33",
+                    "at": 5.605000000000001,
+                    "sourceStart": 4.714285714285714,
+                    "sourceEnd": 4.835714285714285,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-34",
+                    "at": 5.660000000000002,
+                    "sourceStart": 4.857142857142858,
+                    "sourceEnd": 4.978571428571429,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-35",
+                    "at": 5.715000000000002,
+                    "sourceStart": 5.000000000000001,
+                    "sourceEnd": 5.121428571428572,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-36",
+                    "at": 5.770000000000001,
+                    "sourceStart": 5.142857142857144,
+                    "sourceEnd": 5.264285714285715,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-37",
+                    "at": 5.825000000000002,
+                    "sourceStart": 5.285714285714287,
+                    "sourceEnd": 5.407142857142858,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-38",
+                    "at": 5.880000000000002,
+                    "sourceStart": 5.428571428571431,
+                    "sourceEnd": 5.550000000000002,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-39",
+                    "at": 5.833333333333332,
+                    "sourceStart": 5.571428571428574,
+                    "sourceEnd": 5.692857142857145,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-40",
+                    "at": 6.666666666666665,
+                    "sourceStart": 5.714285714285717,
+                    "sourceEnd": 5.835714285714288,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-41",
+                    "at": 6.8,
+                    "sourceStart": 5.85714285714286,
+                    "sourceEnd": 5.978571428571431,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-42",
+                    "at": 6.8549999999999995,
+                    "sourceStart": 6.0000000000000036,
+                    "sourceEnd": 6.1214285714285745,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-43",
+                    "at": 6.91,
+                    "sourceStart": 6.142857142857147,
+                    "sourceEnd": 6.264285714285718,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-44",
+                    "at": 6.965,
+                    "sourceStart": 6.28571428571429,
+                    "sourceEnd": 6.407142857142861,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-45",
+                    "at": 7.02,
+                    "sourceStart": 6.428571428571433,
+                    "sourceEnd": 6.550000000000004,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-46",
+                    "at": 7.075,
+                    "sourceStart": 6.5714285714285765,
+                    "sourceEnd": 6.6928571428571475,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-47",
+                    "at": 7.499999999999998,
+                    "sourceStart": 6.71428571428572,
+                    "sourceEnd": 6.835714285714291,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-48",
+                    "at": 7.835714285714293,
+                    "sourceStart": 6.857142857142863,
+                    "sourceEnd": 6.978571428571434,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-49",
+                    "at": 7.890714285714293,
+                    "sourceStart": 7.000000000000006,
+                    "sourceEnd": 7.121428571428577,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-50",
+                    "at": 7.945714285714294,
+                    "sourceStart": 7.1428571428571495,
+                    "sourceEnd": 7.2642857142857205,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-51",
+                    "at": 8.000714285714293,
+                    "sourceStart": 7.285714285714293,
+                    "sourceEnd": 7.407142857142864,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-52",
+                    "at": 8.055714285714293,
+                    "sourceStart": 7.428571428571436,
+                    "sourceEnd": 7.550000000000007,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-53",
+                    "at": 8.110714285714293,
+                    "sourceStart": 7.571428571428579,
+                    "sourceEnd": 7.69285714285715,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-54",
+                    "at": 8.165714285714293,
+                    "sourceStart": 7.714285714285722,
+                    "sourceEnd": 7.835714285714293,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-55",
+                    "at": 8.333333333333332,
+                    "sourceStart": 7.857142857142866,
+                    "sourceEnd": 7.978571428571437,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-56",
+                    "at": 8.978571428571435,
+                    "sourceStart": 8.000000000000009,
+                    "sourceEnd": 8.12142857142858,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-57",
+                    "at": 9.033571428571435,
+                    "sourceStart": 8.142857142857151,
+                    "sourceEnd": 8.264285714285723,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-58",
+                    "at": 9.088571428571434,
+                    "sourceStart": 8.285714285714294,
+                    "sourceEnd": 8.407142857142865,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-59",
+                    "at": 9.143571428571434,
+                    "sourceStart": 8.428571428571436,
+                    "sourceEnd": 8.550000000000008,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-60",
+                    "at": 9.198571428571436,
+                    "sourceStart": 8.571428571428578,
+                    "sourceEnd": 8.69285714285715,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-61",
+                    "at": 9.253571428571435,
+                    "sourceStart": 8.71428571428572,
+                    "sourceEnd": 8.835714285714293,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-62",
+                    "at": 9.308571428571435,
+                    "sourceStart": 8.857142857142863,
+                    "sourceEnd": 8.978571428571435,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-63",
+                    "at": 9.166666666666666,
+                    "sourceStart": 9.000000000000005,
+                    "sourceEnd": 9.121428571428577,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-64",
+                    "at": 10,
+                    "sourceStart": 9.142857142857148,
+                    "sourceEnd": 9.26428571428572,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-65",
+                    "at": 10.2,
+                    "sourceStart": 9.28571428571429,
+                    "sourceEnd": 9.407142857142862,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-66",
+                    "at": 10.254999999999999,
+                    "sourceStart": 9.428571428571432,
+                    "sourceEnd": 9.550000000000004,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-67",
+                    "at": 10.309999999999999,
+                    "sourceStart": 9.571428571428575,
+                    "sourceEnd": 9.692857142857147,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-68",
+                    "at": 10.364999999999998,
+                    "sourceStart": 9.714285714285717,
+                    "sourceEnd": 9.835714285714289,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-69",
+                    "at": 10.42,
+                    "sourceStart": 9.85714285714286,
+                    "sourceEnd": 9.978571428571431,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-70",
+                    "at": 10.475,
+                    "sourceStart": 10.000000000000002,
+                    "sourceEnd": 10.121428571428574,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-71",
+                    "at": 10.833333333333334,
+                    "sourceStart": 10.142857142857144,
+                    "sourceEnd": 10.264285714285716,
+                    "speed": 1
+                  },
+                  {
+                    "id": "window-72",
+                    "at": 11.264285714285712,
+                    "sourceStart": 10.285714285714286,
+                    "sourceEnd": 10.407142857142858,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-73",
+                    "at": 11.319285714285712,
+                    "sourceStart": 10.428571428571429,
+                    "sourceEnd": 10.55,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-74",
+                    "at": 11.374285714285712,
+                    "sourceStart": 10.571428571428571,
+                    "sourceEnd": 10.692857142857143,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-75",
+                    "at": 11.429285714285712,
+                    "sourceStart": 10.714285714285714,
+                    "sourceEnd": 10.835714285714285,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-76",
+                    "at": 11.484285714285713,
+                    "sourceStart": 10.857142857142856,
+                    "sourceEnd": 10.978571428571428,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-77",
+                    "at": 11.539285714285713,
+                    "sourceStart": 10.999999999999998,
+                    "sourceEnd": 11.12142857142857,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-78",
+                    "at": 11.594285714285713,
+                    "sourceStart": 11.14285714285714,
+                    "sourceEnd": 11.264285714285712,
+                    "speed": 2.5
+                  },
+                  {
+                    "id": "window-79",
+                    "at": 11.666666666666668,
+                    "sourceStart": 11.285714285714283,
+                    "sourceEnd": 11.407142857142855,
+                    "speed": 1
+                  }
+                ],
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "recurrence",
+                "type": "feedback",
+                "target": "shared voice recording",
+                "active": true,
+                "feedbackTopology": "cross-channel delayed processed-output recursion with bounded return ages",
+                "maximumReturnGain": 0.965,
+                "maximumReturns": 10,
+                "reset": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "closed",
+                "type": "gate",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": false,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.6064144372940063,
+              "peakAfter": 0.6064144372940063,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "video": {
+          "src": "http://127.0.0.1:9380/fx/assets/renders/closed-inbox.mp4",
+          "readyState": 4,
+          "width": 480,
+          "height": 270,
+          "currentTime": 0,
+          "duration": 12.167
+        },
+        "label": "Rendered preset",
+        "signalSignatureMatched": true
+      }
+    },
+    {
+      "name": "Factory cache out-but-still-here",
+      "pass": true,
+      "ms": 774,
+      "detail": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "time": 3.3,
+          "audioBusy": false,
+          "audioRevision": 4,
+          "audioDesired": 4,
+          "preview": "rendered",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "erase-territory",
+              "voice-word-return",
+              "held-gesture",
+              "sum",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "erase-territory",
+                "type": "gate",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "voice target not selected"
+              },
+              {
+                "id": "voice-word-return",
+                "type": "delay",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "held-gesture",
+                "type": "freeze",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "voice target not selected"
+              }
+            ],
+            "solo": false,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.3713621497154236,
+              "peakAfter": 0.3713621497154236,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "video": {
+          "src": "http://127.0.0.1:9380/fx/assets/renders/out-but-still-here.mp4",
+          "readyState": 4,
+          "width": 480,
+          "height": 270,
+          "currentTime": 3.3,
+          "duration": 12.167
+        },
+        "label": "Rendered preset",
+        "signalSignatureMatched": true
+      }
+    },
+    {
+      "name": "Factory cache correction-machine",
+      "pass": true,
+      "ms": 563,
+      "detail": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "time": 3.3,
+          "audioBusy": false,
+          "audioRevision": 5,
+          "audioDesired": 5,
+          "preview": "rendered",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "question-stutter",
+              "correction-word",
+              "ownership",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "question-stutter",
+                "type": "stutter",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "correction-word",
+                "type": "typography",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "visual-only typography"
+              },
+              {
+                "id": "ownership",
+                "type": "exchange",
+                "target": "shared voice recording",
+                "active": true,
+                "exchangeMeaning": "shared stereo recording to alternating audio addresses; no speaker stems",
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": false,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.6569135785102844,
+              "peakAfter": 0.6569135785102844,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "video": {
+          "src": "http://127.0.0.1:9380/fx/assets/renders/correction-machine.mp4",
+          "readyState": 4,
+          "width": 480,
+          "height": 270,
+          "currentTime": 0,
+          "duration": 12.167
+        },
+        "label": "Rendered preset",
+        "signalSignatureMatched": true
+      }
+    },
+    {
+      "name": "Factory cache fractured-utterance",
+      "pass": true,
+      "ms": 1225,
+      "detail": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "time": 3.3,
+          "audioBusy": false,
+          "audioRevision": 6,
+          "audioDesired": 6,
+          "preview": "rendered",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "fracture-capture",
+              "fragment-cloud",
+              "backward-units",
+              "residue",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "fracture-capture",
+                "type": "stutter",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "fragment-cloud",
+                "type": "granular",
+                "target": "shared voice recording",
+                "active": true,
+                "grains": 365,
+                "randomSource": "seeded xorshift32",
+                "parameterRate": "grain onsets for grain shape",
+                "latency": "authored time change; no automatic compensation"
+              },
+              {
+                "id": "backward-units",
+                "type": "reverse",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "residue",
+                "type": "freeze",
+                "target": "shared voice recording",
+                "active": true,
+                "holdMethod": "two overlapped Hann-windowed grains; not spectral voice reconstruction",
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": false,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.533894419670105,
+              "peakAfter": 0.533894419670105,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "video": {
+          "src": "http://127.0.0.1:9380/fx/assets/renders/fractured-utterance.mp4",
+          "readyState": 4,
+          "width": 480,
+          "height": 270,
+          "currentTime": 0,
+          "duration": 12.167
+        },
+        "label": "Rendered preset",
+        "signalSignatureMatched": true
+      }
+    },
+    {
+      "name": "Factory cache room-takeover",
+      "pass": true,
+      "ms": 978,
+      "detail": {
+        "status": {
+          "ready": true,
+          "playing": false,
+          "time": 3.3,
+          "audioBusy": false,
+          "audioRevision": 7,
+          "audioDesired": 7,
+          "preview": "rendered",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "body-anchor",
+              "room-address",
+              "room-field",
+              "room-recurrence",
+              "sum",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "body-anchor",
+                "type": "gate",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "voice target not selected"
+              },
+              {
+                "id": "room-address",
+                "type": "routing",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "room-field",
+                "type": "displacement",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "voice target not selected"
+              },
+              {
+                "id": "room-recurrence",
+                "type": "feedback",
+                "target": "shared voice recording",
+                "active": true,
+                "feedbackTopology": "cross-channel delayed processed-output recursion with bounded return ages",
+                "maximumReturnGain": 0.965,
+                "maximumReturns": 8,
+                "reset": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": false,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.39787283539772034,
+              "peakAfter": 0.39787283539772034,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "video": {
+          "src": "http://127.0.0.1:9380/fx/assets/renders/room-takeover.mp4",
+          "readyState": 4,
+          "width": 480,
+          "height": 270,
+          "currentTime": 0,
+          "duration": 12.167
+        },
+        "label": "Rendered preset",
+        "signalSignatureMatched": true
+      }
+    },
+    {
+      "name": "Intensity edit switches to editable; fresh session restores factory cache",
+      "pass": true,
+      "ms": 2491,
+      "detail": {
+        "edited": {
+          "ready": true,
+          "playing": false,
+          "time": 0,
+          "audioBusy": false,
+          "audioRevision": 9,
+          "audioDesired": 9,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "travel",
+              "giant-word",
+              "impact-echo",
+              "impact-field",
+              "sum",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "travel",
+                "type": "routing",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "giant-word",
+                "type": "typography",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "visual-only typography"
+              },
+              {
+                "id": "impact-echo",
+                "type": "delay",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              },
+              {
+                "id": "impact-field",
+                "type": "displacement",
+                "target": "audio pass-through",
+                "active": false,
+                "reason": "voice target not selected"
+              }
+            ],
+            "solo": false,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.5206243395805359,
+              "peakAfter": 0.5206243395805359,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        },
+        "restored": {
+          "status": {
+            "ready": true,
+            "playing": false,
+            "time": 0,
+            "audioBusy": false,
+            "audioRevision": 1,
+            "audioDesired": 1,
+            "preview": "rendered",
+            "report": {
+              "engine": "god-here-deterministic-audio-1",
+              "sampleRate": 24000,
+              "frames": 292000,
+              "duration": 12.166666666666666,
+              "seed": 773,
+              "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+              "graphOrder": [
+                "source",
+                "travel",
+                "giant-word",
+                "impact-echo",
+                "impact-field",
+                "sum",
+                "output"
+              ],
+              "modules": [
+                {
+                  "id": "travel",
+                  "type": "routing",
+                  "target": "shared voice recording",
+                  "active": true,
+                  "latency": "authored time change; no automatic compensation",
+                  "parameterRate": "per sample"
+                },
+                {
+                  "id": "giant-word",
+                  "type": "typography",
+                  "target": "audio pass-through",
+                  "active": false,
+                  "reason": "visual-only typography"
+                },
+                {
+                  "id": "impact-echo",
+                  "type": "delay",
+                  "target": "shared voice recording",
+                  "active": true,
+                  "latency": "authored time change; no automatic compensation",
+                  "parameterRate": "per sample"
+                },
+                {
+                  "id": "impact-field",
+                  "type": "displacement",
+                  "target": "audio pass-through",
+                  "active": false,
+                  "reason": "voice target not selected"
+                }
+              ],
+              "solo": false,
+              "limiter": {
+                "applied": false,
+                "kind": "whole-render peak attenuation only",
+                "gain": 1,
+                "peakBefore": 0.4991093575954437,
+                "peakAfter": 0.4991093575954437,
+                "ceiling": 0.92
+              },
+              "mixing": {
+                "dryWetControl": "wet only",
+                "intensityRole": "editable parameter macro only; no added dry signal",
+                "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+              },
+              "nonFiniteSamplesReplaced": 0,
+              "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+            }
+          },
+          "video": {
+            "src": "http://127.0.0.1:9380/fx/assets/renders/message-impact.mp4",
+            "readyState": 4,
+            "width": 480,
+            "height": 270,
+            "currentTime": 0,
+            "duration": 12.167
+          },
+          "label": "Rendered preset"
+        }
+      }
+    },
+    {
+      "name": "Two factory auditions restore the complete saved custom setting",
+      "pass": true,
+      "ms": 3131,
+      "detail": {
+        "custom": {
+          "id": "fx-1",
+          "type": "delay",
+          "name": "Delay / Echo",
+          "presetId": "extreme",
+          "bypass": false,
+          "solo": true,
+          "wet": 0.64,
+          "intensity": 0.43,
+          "targets": [
+            "voice",
+            "text",
+            "body"
+          ],
+          "region": "light-gray-shirt",
+          "scope": {
+            "type": "clip",
+            "start": 2,
+            "end": 10
+          },
+          "params": {
+            "time": 0.48,
+            "taps": 5,
+            "decay": 0.68,
+            "spread": 0.78,
+            "scale": 0.84
+          },
+          "macro": [
+            {
+              "parameter": "taps",
+              "min": 1,
+              "max": 5,
+              "curve": "linear"
+            },
+            {
+              "parameter": "decay",
+              "min": 0.2,
+              "max": 0.68,
+              "curve": "linear"
+            },
+            {
+              "parameter": "spread",
+              "min": 0.08,
+              "max": 0.78,
+              "curve": "linear"
+            }
+          ],
+          "automation": []
+        },
+        "alternate": {
+          "presetId": "ping-pong",
+          "targets": [
+            "voice",
+            "text",
+            "body"
+          ]
+        },
+        "extreme": {
+          "presetId": "extreme",
+          "targets": [
+            "voice",
+            "text",
+            "body"
+          ]
+        },
+        "restored": {
+          "id": "fx-1",
+          "type": "delay",
+          "name": "Delay / Echo",
+          "presetId": "extreme",
+          "bypass": false,
+          "solo": true,
+          "wet": 0.64,
+          "intensity": 0.43,
+          "targets": [
+            "voice",
+            "text",
+            "body"
+          ],
+          "region": "light-gray-shirt",
+          "scope": {
+            "type": "clip",
+            "start": 2,
+            "end": 10
+          },
+          "params": {
+            "time": 0.48,
+            "taps": 5,
+            "decay": 0.68,
+            "spread": 0.78,
+            "scale": 0.84
+          },
+          "macro": [
+            {
+              "parameter": "taps",
+              "min": 1,
+              "max": 5,
+              "curve": "linear"
+            },
+            {
+              "parameter": "decay",
+              "min": 0.2,
+              "max": 0.68,
+              "curve": "linear"
+            },
+            {
+              "parameter": "spread",
+              "min": 0.08,
+              "max": 0.78,
+              "curve": "linear"
+            }
+          ],
+          "automation": []
+        }
+      }
+    },
+    {
+      "name": "Actual imports reject invalid metadata, false phases, and non-object nodes without mutation",
+      "pass": true,
+      "ms": 694,
+      "detail": [
+        {
+          "case": "metadata false",
+          "message": "Import rejected: Patch metadata must be an object."
+        },
+        {
+          "case": "metadata string",
+          "message": "Import rejected: Patch metadata must be an object."
+        },
+        {
+          "case": "demoPhases false",
+          "message": "Import rejected: Invalid demonstration phases."
+        },
+        {
+          "case": "string node",
+          "message": "Import rejected: Every node must be an object. · Connection source → fx-1 names a missing node. · Connection source → fx-1 names a missing node."
+        },
+        {
+          "case": "bad node name",
+          "message": "Import rejected: Processor names must be strings."
+        },
+        {
+          "case": "bad saved node name",
+          "message": "Import rejected: Processor names must be strings."
+        }
+      ]
+    },
+    {
+      "name": "Valid import with missing metadata normalizes and renders",
+      "pass": true,
+      "ms": 398,
+      "detail": {
+        "message": "Patch loaded.",
+        "metadata": {},
+        "status": {
+          "ready": true,
+          "playing": false,
+          "time": 0,
+          "audioBusy": false,
+          "audioRevision": 13,
+          "audioDesired": 13,
+          "preview": "editable",
+          "report": {
+            "engine": "god-here-deterministic-audio-1",
+            "sampleRate": 24000,
+            "frames": 292000,
+            "duration": 12.166666666666666,
+            "seed": 773,
+            "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+            "graphOrder": [
+              "source",
+              "fx-1",
+              "output"
+            ],
+            "modules": [
+              {
+                "id": "fx-1",
+                "type": "gate",
+                "target": "shared voice recording",
+                "active": true,
+                "latency": "authored time change; no automatic compensation",
+                "parameterRate": "per sample"
+              }
+            ],
+            "solo": true,
+            "limiter": {
+              "applied": false,
+              "kind": "whole-render peak attenuation only",
+              "gain": 1,
+              "peakBefore": 0.40167236328125,
+              "peakAfter": 0.40167236328125,
+              "ceiling": 0.92
+            },
+            "mixing": {
+              "dryWetControl": "wet only",
+              "intensityRole": "editable parameter macro only; no added dry signal",
+              "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+            },
+            "nonFiniteSamplesReplaced": 0,
+            "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases"
+          }
+        }
+      }
+    },
+    {
+      "name": "Export download round-trip imports the same patch",
+      "pass": true,
+      "ms": 1395,
+      "detail": {
+        "suggestedFilename": "god-here-demo-gate.json",
+        "saved": "/workspace/scratch/558050fdfb0c/browser-qa/exported-roundtrip.patch.json",
+        "source": {
+          "id": "god-here-second-draft",
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "offset": 95,
+          "duration": 12.166666666666671
+        },
+        "events": 0
+      }
+    },
+    {
+      "name": "Sidechain UI adds a typed control cable, supports amount and removes cable",
+      "pass": true,
+      "ms": 2614,
+      "detail": {
+        "removed": true
+      }
+    },
+    {
+      "name": "Connections form authors a control sidechain and clip scope persists",
+      "pass": true,
+      "ms": 2809,
+      "detail": {
+        "clipEvaluation": [
+          {
+            "t": 1,
+            "bypass": true
+          },
+          {
+            "t": 2,
+            "bypass": false
+          },
+          {
+            "t": 8,
+            "bypass": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "First audio gesture starts a full-screen module demonstration",
+      "pass": true,
+      "ms": 1713,
+      "detail": {
+        "ready": true,
+        "playing": true,
+        "time": 0.05804988662131516,
+        "audioBusy": false,
+        "audioRevision": 27,
+        "audioDesired": 27,
+        "preview": "editable",
+        "report": {
+          "engine": "god-here-deterministic-audio-1",
+          "sampleRate": 24000,
+          "frames": 292000,
+          "duration": 12.166666666666666,
+          "seed": 773,
+          "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+          "graphOrder": [
+            "source",
+            "fx-1",
+            "output"
+          ],
+          "modules": [
+            {
+              "id": "fx-1",
+              "type": "damage",
+              "target": "shared voice recording",
+              "active": true,
+              "latency": "authored time change; no automatic compensation",
+              "parameterRate": "per sample"
+            }
+          ],
+          "solo": true,
+          "limiter": {
+            "applied": false,
+            "kind": "whole-render peak attenuation only",
+            "gain": 1,
+            "peakBefore": 0.412994384765625,
+            "peakAfter": 0.412994384765625,
+            "ceiling": 0.92
+          },
+          "mixing": {
+            "dryWetControl": "wet only",
+            "intensityRole": "editable parameter macro only; no added dry signal",
+            "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+          },
+          "nonFiniteSamplesReplaced": 0,
+          "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases",
+          "demonstrationBypass": {
+            "route": "exact reference input after rack mixing and attenuation",
+            "ranges": [
+              {
+                "start": 0,
+                "end": 2,
+                "samples": 48000
+              },
+              {
+                "start": 10,
+                "end": 12.166666666666666,
+                "samples": 52000
+              }
+            ]
+          },
+          "finalPeak": 0.412994384765625
+        }
+      }
+    },
+    {
+      "name": "Module demonstration uses cached movie and all four phases",
+      "pass": true,
+      "ms": 1234,
+      "detail": {
+        "cached": {
+          "status": {
+            "ready": true,
+            "playing": false,
+            "time": 0.8,
+            "audioBusy": false,
+            "audioRevision": 27,
+            "audioDesired": 27,
+            "preview": "rendered",
+            "report": {
+              "engine": "god-here-deterministic-audio-1",
+              "sampleRate": 24000,
+              "frames": 292000,
+              "duration": 12.166666666666666,
+              "seed": 773,
+              "sourceInterpretation": "one shared stereo recording; no isolated voice stems",
+              "graphOrder": [
+                "source",
+                "fx-1",
+                "output"
+              ],
+              "modules": [
+                {
+                  "id": "fx-1",
+                  "type": "damage",
+                  "target": "shared voice recording",
+                  "active": true,
+                  "latency": "authored time change; no automatic compensation",
+                  "parameterRate": "per sample"
+                }
+              ],
+              "solo": true,
+              "limiter": {
+                "applied": false,
+                "kind": "whole-render peak attenuation only",
+                "gain": 1,
+                "peakBefore": 0.412994384765625,
+                "peakAfter": 0.412994384765625,
+                "ceiling": 0.92
+              },
+              "mixing": {
+                "dryWetControl": "wet only",
+                "intensityRole": "editable parameter macro only; no added dry signal",
+                "levelPolicy": "fixed authoring gain, then attenuation-only whole-render peak handling; no upward normalization"
+              },
+              "nonFiniteSamplesReplaced": 0,
+              "timing": "sample-accurate intensity/wet/parameter automation; granular decisions at grain onset; queue decisions at arrivals/releases",
+              "demonstrationBypass": {
+                "route": "exact reference input after rack mixing and attenuation",
+                "ranges": [
+                  {
+                    "start": 0,
+                    "end": 2,
+                    "samples": 48000
+                  },
+                  {
+                    "start": 10,
+                    "end": 12.166666666666666,
+                    "samples": 52000
+                  }
+                ]
+              },
+              "finalPeak": 0.412994384765625
+            }
+          },
+          "video": {
+            "src": "http://127.0.0.1:9380/fx/assets/renders/demo-damage.mp4",
+            "readyState": 4,
+            "width": 480,
+            "height": 270,
+            "currentTime": 0.8,
+            "duration": 12.167
+          },
+          "label": "Rendered preset"
+        },
+        "phases": [
+          {
+            "t": 0.8,
+            "label": "BYPASS",
+            "active": 0
+          },
+          {
+            "t": 3.3,
+            "label": "EXTREME",
+            "active": 1
+          },
+          {
+            "t": 8,
+            "label": "PARAMETER SWEEP",
+            "active": 2
+          },
+          {
+            "t": 11,
+            "label": "BYPASS",
+            "active": 3
+          }
+        ],
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1000
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        }
+      }
+    },
+    {
+      "name": "390 × 844 has no horizontal overflow on all panels and fills full view",
+      "pass": true,
+      "ms": 2730,
+      "detail": {
+        "layouts": [
+          {
+            "tab": "rack",
+            "scroll": 390,
+            "width": 390,
+            "bodyScroll": 390,
+            "offenders": []
+          },
+          {
+            "tab": "routing",
+            "scroll": 390,
+            "width": 390,
+            "bodyScroll": 390,
+            "offenders": []
+          },
+          {
+            "tab": "automation",
+            "scroll": 390,
+            "width": 390,
+            "bodyScroll": 390,
+            "offenders": []
+          },
+          {
+            "tab": "source",
+            "scroll": 390,
+            "width": 390,
+            "bodyScroll": 390,
+            "offenders": []
+          }
+        ],
+        "fullView": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "video": {
+          "src": "http://127.0.0.1:9380/fx/assets/renders/demo-damage-portrait.mp4",
+          "readyState": 4,
+          "width": 270,
+          "height": 480,
+          "currentTime": 3.3,
+          "duration": 12.167
+        },
+        "viewportOnly": true
+      }
+    },
+    {
+      "name": "Final desktop workbench screenshot",
+      "pass": true,
+      "ms": 3838,
+      "detail": {
+        "path": "/workspace/scratch/558050fdfb0c/browser-qa/final-desktop-workbench.png"
+      }
+    },
+    {
+      "name": "No uncaught browser exceptions",
+      "pass": true,
+      "ms": 0,
+      "detail": {
+        "pageErrors": [],
+        "consoleErrors": []
+      }
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "requests": {
+    "partial": 2,
+    "full": 143,
+    "missing": []
+  },
+  "finished": "2026-10-08T05:59:07.505Z",
+  "passed": 20,
+  "failed": 0
+}

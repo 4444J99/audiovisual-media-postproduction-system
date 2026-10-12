@@ -1,0 +1,79 @@
+{
+  "ok": true,
+  "checkout": "/workspace/scratch/578c9e040e40/god-here-site-media-transfer",
+  "scope": "Local committed source, generated build, and final archive; no deployment or audio decode.",
+  "git": {
+    "commit": "8027a1ee28f0d8c1319dd7e3b6c53ceec4f3670b",
+    "expected_commit": "8027a1ee28f0d8c1319dd7e3b6c53ceec4f3670b",
+    "tree": "2e9f855561f37719709db58e7fd2ddd982da8bd2",
+    "tracked_files": 513,
+    "tracked_clean": true
+  },
+  "static_assets": {
+    "public_files": 338,
+    "public_bytes": 275192702,
+    "client_files": 350,
+    "public_client_hash_matches": 338,
+    "r2_assets_in_public_or_client": 0,
+    "retained_routes": [
+      "index.html",
+      "fx/index.html",
+      "review.html",
+      "room-tone/index.html",
+      "color-studies/index.html"
+    ]
+  },
+  "r2_source": {
+    "files": 47,
+    "bytes": 511299017,
+    "hash_matches": 47,
+    "flacs": 42,
+    "flac_bytes": 473661122,
+    "mp4s": 5,
+    "mp4_bytes": 37637895,
+    "manifest_sha256": "d288208b0f91091c2de2a2084263d23133787a531d4e160658c68acb165f0362",
+    "original_urls_preserved": true
+  },
+  "original_asset_mapping": {
+    "baseline": "/workspace/scratch/578c9e040e40/analysis/room-media-storage-plan.json",
+    "baseline_sha256": "1413316168bb8b4297d4fd0b6e51b8ede3e0bc1ec9eba00214856b1f35dc6a9d",
+    "source_commit": "fb1723c4f161a9745376582d9f813f0947c2ec6b",
+    "files": 385,
+    "bytes": 786491719,
+    "hash_matches": 385,
+    "missing": 0,
+    "extra": 0,
+    "overlap": 0
+  },
+  "worker": {
+    "hosting": {
+      "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+      "d1": null,
+      "r2": "ROOM_MEDIA"
+    },
+    "main": "dist/server/index.js",
+    "assets": {
+      "binding": "ASSETS",
+      "html_handling": "none",
+      "not_found_handling": "none",
+      "run_worker_first": true,
+      "directory": "../client"
+    },
+    "r2_bindings": [
+      "ROOM_MEDIA"
+    ],
+    "no_bundle": true,
+    "server_files": 39
+  },
+  "archive": {
+    "path": "/workspace/scratch/578c9e040e40/god-here-room-media-site.tar.gz",
+    "bytes": 258507026,
+    "limit_bytes": 268435456,
+    "files": 391,
+    "build_hash_matches": 391,
+    "complete_gzip_stream": true,
+    "hosting_included": true,
+    "worker_main_included": true
+  },
+  "elapsed_seconds": 2.595
+}

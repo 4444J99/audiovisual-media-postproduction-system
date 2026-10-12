@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "status": "blocked",
+  "recorded_at": "2026-10-11T16:01:45.903169+00:00",
+  "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+  "site_origin": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+  "audience": "public",
+  "source": {
+    "commit_sha": "8027a1ee28f0d8c1319dd7e3b6c53ceec4f3670b",
+    "tree": "2e9f855561f37719709db58e7fd2ddd982da8bd2",
+    "pushed": true
+  },
+  "publication_attempt": {
+    "stage": "save_site_version",
+    "new_version_created": false,
+    "new_deployment_created": false,
+    "error_code": "INVALID_ARGUMENT",
+    "http_code": 400,
+    "error_message": "Sites archive exceeds the 256 MiB expanded archive limit. Package only the required build output or configured static assets. Remove unused files or reduce large media, then package and upload again.",
+    "hard_limit_bytes": 268435456,
+    "compressed_archive_bytes": 258507026,
+    "expanded_file_content_bytes": 276323758,
+    "build_directory_file_bytes": 276323758,
+    "archive_sha256": "a64249482601db199f3e50770aa408105d02c10ce1802883bfe00bdc94852fc5"
+  },
+  "preserved_live_publication": {
+    "version_number": 6,
+    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_6b31a7b7924881919d21e1484b2d7fbb",
+    "deployment_id": "appgdep_6acaa190be0c8191b156b7bbabe82939",
+    "source_commit": "8ceb7a9ff5d03acb542efc638ac5c1e3abc43b6f"
+  },
+  "latest_saved_version_number": 7,
+  "prepared_media": {
+    "source_reel_seconds": 4.42,
+    "film_seconds": 112,
+    "period_seconds": [
+      112,
+      84,
+      56,
+      28,
+      14
+    ],
+    "new_room_renders": 18,
+    "individual_layers": 10,
+    "stacks": 8,
+    "workbench_tracks": 24,
+    "context_movies": 14,
+    "r2_registered_flacs": 42,
+    "r2_registered_mp4s": 5,
+    "r2_source_bytes": 511299017,
+    "source_assets_preserved": 385
+  },
+  "verification": {
+    "local_package": "package-verification.json",
+    "source_layout_tests_passed": 6,
+    "r2_node_tests_passed": 26,
+    "uploader_python_tests_passed": 26,
+    "all_original_asset_hashes_match": true,
+    "new_live_http_checks_performed": false,
+    "r2_files_uploaded": 0,
+    "perceptual_audition_performed": false,
+    "browser_or_device_playback_verified": false
+  },
+  "cleanup": {
+    "unused_upload_token_removed": true,
+    "environment_configuration_revision": 2,
+    "live_site_redeployed": false
+  },
+  "remaining_work": [
+    "Resolve the production expanded-bundle limit through a supported path before another publication attempt.",
+    "After a permitted publication, seed and verify the registered media at their original URLs.",
+    "Verify hosted pages, video/audio responses, and byte ranges.",
+    "Replace the failed HTML item only after its hosted targets are available."
+  ],
+  "publication_attempts_stopped": true
+}

@@ -1,0 +1,39 @@
+test_bad_dimensions_rejected (test_direction.DirectionTests.test_bad_dimensions_rejected) ... ok
+test_bad_source_hash_rejected (test_direction.DirectionTests.test_bad_source_hash_rejected) ... ok
+test_bool_is_not_integer (test_direction.DirectionTests.test_bool_is_not_integer) ... ok
+test_camera_neutral_at_endpoints (test_direction.DirectionTests.test_camera_neutral_at_endpoints) ... ok
+test_camera_never_samples_outside_source (test_direction.DirectionTests.test_camera_never_samples_outside_source) ... ok
+test_camera_overlap_rejected (test_direction.DirectionTests.test_camera_overlap_rejected) ... ok
+test_complete_source_frame_coverage (test_direction.DirectionTests.test_complete_source_frame_coverage) ... ok
+test_directed_frames (test_direction.DirectionTests.test_directed_frames) ... ok
+test_duplicate_tracker_id_rejected (test_direction.DirectionTests.test_duplicate_tracker_id_rejected) ... ok
+test_excessive_speed_rejected (test_direction.DirectionTests.test_excessive_speed_rejected) ... ok
+test_false_zoom_rejected (test_direction.DirectionTests.test_false_zoom_rejected) ... ok
+test_forged_acceptance_rejected (test_direction.DirectionTests.test_forged_acceptance_rejected) ... ok
+test_infinite_rejected (test_direction.DirectionTests.test_infinite_rejected) ... ok
+test_invented_caption_rejected (test_direction.DirectionTests.test_invented_caption_rejected) ... ok
+test_json_export_roundtrip (test_direction.DirectionTests.test_json_export_roundtrip) ... ok
+test_map_endpoints (test_direction.DirectionTests.test_map_endpoints) ... ok
+test_missing_media_rejected (test_direction.DirectionTests.test_missing_media_rejected) ... ok
+test_nan_rejected (test_direction.DirectionTests.test_nan_rejected) ... ok
+test_offscreen_roi_rejected (test_direction.DirectionTests.test_offscreen_roi_rejected) ... ok
+test_output_map_contiguous (test_direction.DirectionTests.test_output_map_contiguous) ... ok
+test_patch_changes_timing (test_direction.DirectionTests.test_patch_changes_timing) ... ok
+test_recipe_valid (test_direction.DirectionTests.test_recipe_valid) ... ok
+test_reference_frames (test_direction.DirectionTests.test_reference_frames) ... ok
+test_shell_operation_rejected (test_direction.DirectionTests.test_shell_operation_rejected) ... ok
+test_source_gap_rejected (test_direction.DirectionTests.test_source_gap_rejected) ... ok
+test_source_incomplete_rejected (test_direction.DirectionTests.test_source_incomplete_rejected) ... ok
+test_source_length_rejected (test_direction.DirectionTests.test_source_length_rejected) ... ok
+test_source_monotonic (test_direction.DirectionTests.test_source_monotonic) ... ok
+test_source_reversal_rejected (test_direction.DirectionTests.test_source_reversal_rejected) ... ok
+test_text_outside_output_rejected (test_direction.DirectionTests.test_text_outside_output_rejected) ... ok
+test_typography_moves_independently (test_direction.DirectionTests.test_typography_moves_independently) ... skipped 'installed test font unavailable'
+test_typography_outside_cue_is_neutral (test_direction.DirectionTests.test_typography_outside_cue_is_neutral) ... skipped 'installed test font unavailable'
+test_unbounded_zoom_rejected (test_direction.DirectionTests.test_unbounded_zoom_rejected) ... ok
+test_unknown_nested_operation_rejected (test_direction.DirectionTests.test_unknown_nested_operation_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 0.008s
+
+OK (skipped=2)

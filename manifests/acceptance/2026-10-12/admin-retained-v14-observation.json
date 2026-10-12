@@ -1,0 +1,8 @@
+{
+  "path": "/_studio-media-upload/studio-022-2c929408fcb7",
+  "method": "HEAD",
+  "status": 200,
+  "expected": 503,
+  "passed": false,
+  "scope": "Previously authorized administration token cannot access registered object after runtime token removal."
+}

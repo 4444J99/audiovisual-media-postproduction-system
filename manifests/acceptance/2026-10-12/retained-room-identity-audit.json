@@ -1,0 +1,1080 @@
+{
+  "schema_version": "amps.retained-room-identity-audit.v1",
+  "created_at_utc": "2026-10-12T17:44:47.577500+00:00",
+  "status": "no_observed_identity_mismatch_with_legacy_producer_evidence_gaps",
+  "source_tree": "site-main",
+  "observation_basis": "Earlier read-only pass rehashed all 60 retained track media and six prior lossless inputs and compared named native/retained receipts. This serialization uses the captured matching results and retained metadata; no additional media hashing, decoding, rendering, or historical metadata writes.",
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "pause_inventory_sha256": "bb616355c6d328c93d19247fa01fa48d5ee2fa1b1ad2faac3bee315285acd788",
+  "pool_identity": {
+    "prior_report": "bb616355c6d328c93d19247fa01fa48d5ee2fa1b1ad2faac3bee315285acd788",
+    "stretch_report": "bb616355c6d328c93d19247fa01fa48d5ee2fa1b1ad2faac3bee315285acd788",
+    "source_pause_audit": "bb616355c6d328c93d19247fa01fa48d5ee2fa1b1ad2faac3bee315285acd788",
+    "all_equal": true,
+    "all_source_identities_equal": true,
+    "source_pause_audit_hash_matches_prior_input_receipt": true,
+    "source_pause_audit_sha256": "ef0cb99815fc8956b2f89466197a98ee35247348f40fde56572065e67236dea3"
+  },
+  "summary": {
+    "track_count": 24,
+    "track_media_count": 60,
+    "retained_url_hash_matches": 60,
+    "native_label_mode_aac_hash_matches": 36,
+    "applicable_label_metadata_matches": 23,
+    "prior_lossless_input_hash_matches": 6,
+    "observed_mismatches": 0,
+    "new_producer_gate_passed": false
+  },
+  "legacy_evidence_gaps": {
+    "missing_records": [
+      "public/room-tone/records/site-preparation.json",
+      "public/room-tone/records/previous-delivery-manifest.json"
+    ],
+    "context_movies_missing_complete_producer_hash_bindings": 14,
+    "prior_aac_previews_missing_complete_producer_hash_bindings": 10,
+    "affected_prior_aac_tracks": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "affected_context_tracks": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "V1",
+      "V2",
+      "V3",
+      "V4",
+      "V5",
+      "P5",
+      "V5R",
+      "P5R",
+      "CORE"
+    ],
+    "conclusion": "The future strict producer gate rejects this legacy package. Retained byte custody and the matching pool/native stretch identities do not retroactively certify missing producer input/output bindings."
+  },
+  "prior_lossless_inputs": [
+    {
+      "track_id": "A",
+      "sha256": "f698436264d7d4b0131d7d55937ff14f51579e14a60ee6f41be4897eefd39bd9",
+      "retained_path": "room-media-source/room-tone/downloads/previous/full-length/A-room.flac",
+      "native_hash_match": true
+    },
+    {
+      "track_id": "B",
+      "sha256": "0f806592222746193afd3cf832c36cc7b41c6fb5c502644a5ade6dd50782cfed",
+      "retained_path": "room-media-source/room-tone/downloads/previous/full-length/B-room.flac",
+      "native_hash_match": true
+    },
+    {
+      "track_id": "C",
+      "sha256": "8722bbe9f78541c9ba7c4e725eb13a405695a0859a577ca8fdd6edeee21a5d83",
+      "retained_path": "room-media-source/room-tone/downloads/previous/full-length/C-room.flac",
+      "native_hash_match": true
+    },
+    {
+      "track_id": "D",
+      "sha256": "b32f6ee3eee6028e19bd89f60cd8147ce15a263138c6b60b4bc08fb1c854dc6b",
+      "retained_path": "room-media-source/room-tone/downloads/previous/full-length/D-room.flac",
+      "native_hash_match": true
+    },
+    {
+      "track_id": "E",
+      "sha256": "3212764cbe233efad0609c3799eafd31962948e73e95669ad9e34d0294c5eb25",
+      "retained_path": "room-media-source/room-tone/downloads/previous/full-length/E-room.flac",
+      "native_hash_match": true
+    },
+    {
+      "track_id": "CORE",
+      "sha256": "7e895a03e68522e0aafdb1a518c9c9bdbb7f953935be62ba2db9781f0ab84bc1",
+      "retained_path": "room-media-source/room-tone/downloads/previous/full-length/dialogue-core.flac",
+      "native_hash_match": true
+    }
+  ],
+  "label_checks": [
+    {
+      "track_id": "A",
+      "title": "Existing room rack",
+      "description": "Original separate band sequences and effects",
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "B",
+      "title": "Shared timing",
+      "description": "One source sequence across all three bands; same effects",
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "C",
+      "title": "Shared timing / dry",
+      "description": "Same sequence as B; the room effects are bypassed",
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "D",
+      "title": "Sustained middle and air",
+      "description": "Recorded low band; slowly evolving synthesized mid and high",
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "E",
+      "title": "Stationary room texture",
+      "description": "A continuous synthesized texture shaped by the source pauses",
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "VL1",
+      "native_id": "V112",
+      "period_seconds": 112.0,
+      "member_ids": null,
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "VL2",
+      "native_id": "V84",
+      "period_seconds": 84.0,
+      "member_ids": null,
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "VL3",
+      "native_id": "V56",
+      "period_seconds": 56.0,
+      "member_ids": null,
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "VL4",
+      "native_id": "V28",
+      "period_seconds": 28.0,
+      "member_ids": null,
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "VL5",
+      "native_id": "V14",
+      "period_seconds": 14.0,
+      "member_ids": null,
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "PL1",
+      "native_id": "P112",
+      "period_seconds": 112.0,
+      "member_ids": null,
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "PL2",
+      "native_id": "P84",
+      "period_seconds": 84.0,
+      "member_ids": null,
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "PL3",
+      "native_id": "P56",
+      "period_seconds": 56.0,
+      "member_ids": null,
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "PL4",
+      "native_id": "P28",
+      "period_seconds": 28.0,
+      "member_ids": null,
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "PL5",
+      "native_id": "P14",
+      "period_seconds": 14.0,
+      "member_ids": null,
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "V1",
+      "native_id": "V1",
+      "period_seconds": null,
+      "member_ids": [
+        "V112"
+      ],
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "V2",
+      "native_id": "V2",
+      "period_seconds": null,
+      "member_ids": [
+        "V112",
+        "V84"
+      ],
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "V3",
+      "native_id": "V3",
+      "period_seconds": null,
+      "member_ids": [
+        "V112",
+        "V84",
+        "V56"
+      ],
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "V4",
+      "native_id": "V4",
+      "period_seconds": null,
+      "member_ids": [
+        "V112",
+        "V84",
+        "V56",
+        "V28"
+      ],
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "V5",
+      "native_id": "V5",
+      "period_seconds": null,
+      "member_ids": [
+        "V112",
+        "V84",
+        "V56",
+        "V28",
+        "V14"
+      ],
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "P5",
+      "native_id": "P5",
+      "period_seconds": null,
+      "member_ids": [
+        "P112",
+        "P84",
+        "P56",
+        "P28",
+        "P14"
+      ],
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "V5R",
+      "native_id": "V5R",
+      "period_seconds": null,
+      "member_ids": [
+        "V112",
+        "V84",
+        "V56",
+        "V28",
+        "V14"
+      ],
+      "label_metadata_matches_native": true
+    },
+    {
+      "track_id": "P5R",
+      "native_id": "P5R",
+      "period_seconds": null,
+      "member_ids": [
+        "P112",
+        "P84",
+        "P56",
+        "P28",
+        "P14"
+      ],
+      "label_metadata_matches_native": true
+    }
+  ],
+  "track_media": [
+    {
+      "track_id": "A",
+      "mode": "room",
+      "url": "media/room-A.m4a",
+      "retained_path": "public/room-tone/media/room-A.m4a",
+      "observed_sha256": "94f86844088c8caf28ebacd198864e229795d89ab83b945f8deb90609113cf42",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "A",
+      "mode": "inspection",
+      "url": "media/inspection-A.m4a",
+      "retained_path": "public/room-tone/media/inspection-A.m4a",
+      "observed_sha256": "6a4f8d1755d5a58d1b1542e0dd749c9cc866262619f34b9e18784ee6a499282d",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "A",
+      "mode": "context",
+      "url": "media/context-A.mp4",
+      "retained_path": "public/room-tone/media/context-A.mp4",
+      "observed_sha256": "cdb9ede7a24896494d42179e8ede4c13f6fd2d4b48ebc4afcb8ffd7ac48efa83",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "B",
+      "mode": "room",
+      "url": "media/room-B.m4a",
+      "retained_path": "public/room-tone/media/room-B.m4a",
+      "observed_sha256": "bb3731d0aeae8c6de78754a587bfc4a69995ddfaf0bc743da7fab5970221dd27",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "B",
+      "mode": "inspection",
+      "url": "media/inspection-B.m4a",
+      "retained_path": "public/room-tone/media/inspection-B.m4a",
+      "observed_sha256": "6aeeba77b74f4ed760bb6fd02b4be4077285c8f27ef6990951e95de40a293d0f",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "B",
+      "mode": "context",
+      "url": "media/context-B.mp4",
+      "retained_path": "public/room-tone/media/context-B.mp4",
+      "observed_sha256": "360f6cc5d1b1fc1fab3f606e336e354d977190d585412e61942cf90ff596b7a6",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "C",
+      "mode": "room",
+      "url": "media/room-C.m4a",
+      "retained_path": "public/room-tone/media/room-C.m4a",
+      "observed_sha256": "18157052d53a5ee3bb792643bc69f020851ee77ddc0f1f1729457d5e865485d9",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "C",
+      "mode": "inspection",
+      "url": "media/inspection-C.m4a",
+      "retained_path": "public/room-tone/media/inspection-C.m4a",
+      "observed_sha256": "0105cf4f028ee15f7fc05c97f27c585c10177099c6df2672d291f62e2ffad282",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "C",
+      "mode": "context",
+      "url": "media/context-C.mp4",
+      "retained_path": "public/room-tone/media/context-C.mp4",
+      "observed_sha256": "3f4d63e7ae0d92a1c692165421d8a82c17f3b22cbc5c619cffd2feb7e24776dd",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "D",
+      "mode": "room",
+      "url": "media/room-D.m4a",
+      "retained_path": "public/room-tone/media/room-D.m4a",
+      "observed_sha256": "ee869e4ea82f0b8db8e4be1e63379826e1f1cfc85227ce03266f04f12300189e",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "D",
+      "mode": "inspection",
+      "url": "media/inspection-D.m4a",
+      "retained_path": "public/room-tone/media/inspection-D.m4a",
+      "observed_sha256": "6826423bc5c604d336e65bf6c0ccdf4bab6515df927505b0bef9dae0e177f007",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "D",
+      "mode": "context",
+      "url": "media/context-D.mp4",
+      "retained_path": "public/room-tone/media/context-D.mp4",
+      "observed_sha256": "99962f23875ef0ab4d61a943c9011c4ad625f6c1ebc250d2bdef3d580c23c8c8",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "E",
+      "mode": "room",
+      "url": "media/room-E.m4a",
+      "retained_path": "public/room-tone/media/room-E.m4a",
+      "observed_sha256": "25194a633fd19b3f18428c51f38b0f2ebd82374e9a46337f4e0ce82c51f46aa3",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "E",
+      "mode": "inspection",
+      "url": "media/inspection-E.m4a",
+      "retained_path": "public/room-tone/media/inspection-E.m4a",
+      "observed_sha256": "4af1a934c9603145aa5f121b2d18ff579428acc889cca5436f609f8be2fb3b60",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "E",
+      "mode": "context",
+      "url": "media/context-E.mp4",
+      "retained_path": "public/room-tone/media/context-E.mp4",
+      "observed_sha256": "d7a43c1d1637778d601bbb7c901ca72925c247f7f85a1a46aca218ba22beb849",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "VL1",
+      "mode": "room",
+      "url": "media/room-VL1.m4a",
+      "retained_path": "public/room-tone/media/room-VL1.m4a",
+      "observed_sha256": "45b44421a094ed5f108325f06911bf1cc1e92c74a97e462b641539836f87a387",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "45b44421a094ed5f108325f06911bf1cc1e92c74a97e462b641539836f87a387",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "VL1",
+      "mode": "inspection",
+      "url": "media/inspection-VL1.m4a",
+      "retained_path": "public/room-tone/media/inspection-VL1.m4a",
+      "observed_sha256": "027f05761b9b5f7a99c1974aabf131a0e43d5b9e21c1126d1d477c128cb111c1",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "027f05761b9b5f7a99c1974aabf131a0e43d5b9e21c1126d1d477c128cb111c1",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "VL2",
+      "mode": "room",
+      "url": "media/room-VL2.m4a",
+      "retained_path": "public/room-tone/media/room-VL2.m4a",
+      "observed_sha256": "37481652c7bb5da209b17d835a3bad2344f9462ba7a212f298e4e3c6015d5608",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "37481652c7bb5da209b17d835a3bad2344f9462ba7a212f298e4e3c6015d5608",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "VL2",
+      "mode": "inspection",
+      "url": "media/inspection-VL2.m4a",
+      "retained_path": "public/room-tone/media/inspection-VL2.m4a",
+      "observed_sha256": "d54d1d7b99a43fee3764cb8df89624495860e62341a8e0b335d41c5cb8631000",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "d54d1d7b99a43fee3764cb8df89624495860e62341a8e0b335d41c5cb8631000",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "VL3",
+      "mode": "room",
+      "url": "media/room-VL3.m4a",
+      "retained_path": "public/room-tone/media/room-VL3.m4a",
+      "observed_sha256": "2d46387dd51b9c407d982651958e46cd51802c171ee63a24ed9d924ebff0be96",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "2d46387dd51b9c407d982651958e46cd51802c171ee63a24ed9d924ebff0be96",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "VL3",
+      "mode": "inspection",
+      "url": "media/inspection-VL3.m4a",
+      "retained_path": "public/room-tone/media/inspection-VL3.m4a",
+      "observed_sha256": "5260c7f957102f7e65eae9705572c265f571e58a8c33709b50d74eb9768c2a02",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "5260c7f957102f7e65eae9705572c265f571e58a8c33709b50d74eb9768c2a02",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "VL4",
+      "mode": "room",
+      "url": "media/room-VL4.m4a",
+      "retained_path": "public/room-tone/media/room-VL4.m4a",
+      "observed_sha256": "468a57cabfb3bab76e95bf9bc65390db1c29b1affea6ba0ff7b98b00eee50ec9",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "468a57cabfb3bab76e95bf9bc65390db1c29b1affea6ba0ff7b98b00eee50ec9",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "VL4",
+      "mode": "inspection",
+      "url": "media/inspection-VL4.m4a",
+      "retained_path": "public/room-tone/media/inspection-VL4.m4a",
+      "observed_sha256": "f0e225602d70ddd85434bbe2f0896326b119d1d595753f9392a18b139a00d479",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "f0e225602d70ddd85434bbe2f0896326b119d1d595753f9392a18b139a00d479",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "VL5",
+      "mode": "room",
+      "url": "media/room-VL5.m4a",
+      "retained_path": "public/room-tone/media/room-VL5.m4a",
+      "observed_sha256": "5e8566f2d5a6644588a75c656b93375d3fcc48fc210ea6669f0a5a1e349d8fce",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "5e8566f2d5a6644588a75c656b93375d3fcc48fc210ea6669f0a5a1e349d8fce",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "VL5",
+      "mode": "inspection",
+      "url": "media/inspection-VL5.m4a",
+      "retained_path": "public/room-tone/media/inspection-VL5.m4a",
+      "observed_sha256": "cdb21a8d4e7ad4d0a3c8d6770e2a6e4c3637fe5bf41ca431e0f3ee2f2a5a91de",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "cdb21a8d4e7ad4d0a3c8d6770e2a6e4c3637fe5bf41ca431e0f3ee2f2a5a91de",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "PL1",
+      "mode": "room",
+      "url": "media/room-PL1.m4a",
+      "retained_path": "public/room-tone/media/room-PL1.m4a",
+      "observed_sha256": "482bb15dbfee5d4e447b5614e7980f9d86e7023cb252f76863a1c2869b566fcb",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "482bb15dbfee5d4e447b5614e7980f9d86e7023cb252f76863a1c2869b566fcb",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "PL1",
+      "mode": "inspection",
+      "url": "media/inspection-PL1.m4a",
+      "retained_path": "public/room-tone/media/inspection-PL1.m4a",
+      "observed_sha256": "b3780bf0050943a264695249f679ba203b703c6a3a95998a8c00519d95682629",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "b3780bf0050943a264695249f679ba203b703c6a3a95998a8c00519d95682629",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "PL2",
+      "mode": "room",
+      "url": "media/room-PL2.m4a",
+      "retained_path": "public/room-tone/media/room-PL2.m4a",
+      "observed_sha256": "1ffc3ff740d63a96c48103808ad35d1dd774751b3ed29e75f511bc9dffc8f0f7",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "1ffc3ff740d63a96c48103808ad35d1dd774751b3ed29e75f511bc9dffc8f0f7",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "PL2",
+      "mode": "inspection",
+      "url": "media/inspection-PL2.m4a",
+      "retained_path": "public/room-tone/media/inspection-PL2.m4a",
+      "observed_sha256": "0fc2d84c3abd78cb43232866367f5311b07a1e71bd7cc61818d84e5cc465c06a",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "0fc2d84c3abd78cb43232866367f5311b07a1e71bd7cc61818d84e5cc465c06a",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "PL3",
+      "mode": "room",
+      "url": "media/room-PL3.m4a",
+      "retained_path": "public/room-tone/media/room-PL3.m4a",
+      "observed_sha256": "5432e88176bfa422c594052b0f819f69301a441eca83674289ae5d0e16ec2ed6",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "5432e88176bfa422c594052b0f819f69301a441eca83674289ae5d0e16ec2ed6",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "PL3",
+      "mode": "inspection",
+      "url": "media/inspection-PL3.m4a",
+      "retained_path": "public/room-tone/media/inspection-PL3.m4a",
+      "observed_sha256": "62c617b8778e804393db998df9a1cf19a685740f5b04e81679fc9ae903a45a0f",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "62c617b8778e804393db998df9a1cf19a685740f5b04e81679fc9ae903a45a0f",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "PL4",
+      "mode": "room",
+      "url": "media/room-PL4.m4a",
+      "retained_path": "public/room-tone/media/room-PL4.m4a",
+      "observed_sha256": "96b356871efe31da3556f40de796be32da11da4e42e674780ae1327cdcb450fd",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "96b356871efe31da3556f40de796be32da11da4e42e674780ae1327cdcb450fd",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "PL4",
+      "mode": "inspection",
+      "url": "media/inspection-PL4.m4a",
+      "retained_path": "public/room-tone/media/inspection-PL4.m4a",
+      "observed_sha256": "b67cee41d454c030856ab6ac714fd50b6318d94a560aa4ac231337a0ae31009b",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "b67cee41d454c030856ab6ac714fd50b6318d94a560aa4ac231337a0ae31009b",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "PL5",
+      "mode": "room",
+      "url": "media/room-PL5.m4a",
+      "retained_path": "public/room-tone/media/room-PL5.m4a",
+      "observed_sha256": "8cc532eb406ce890b46eab110cb1eea9010920f54ffbb0c503a7e62657ae3416",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "8cc532eb406ce890b46eab110cb1eea9010920f54ffbb0c503a7e62657ae3416",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "PL5",
+      "mode": "inspection",
+      "url": "media/inspection-PL5.m4a",
+      "retained_path": "public/room-tone/media/inspection-PL5.m4a",
+      "observed_sha256": "2c3792c4ec7ac5ee808ca8103e0f4057c596fd87d0e3b39fbb8d88d33c1f02f7",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "2c3792c4ec7ac5ee808ca8103e0f4057c596fd87d0e3b39fbb8d88d33c1f02f7",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V1",
+      "mode": "room",
+      "url": "media/room-V1.m4a",
+      "retained_path": "public/room-tone/media/room-V1.m4a",
+      "observed_sha256": "5841d8f1559ef4711970a9799afd9477c72757711fa01f852bb0f47b52592591",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "5841d8f1559ef4711970a9799afd9477c72757711fa01f852bb0f47b52592591",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V1",
+      "mode": "inspection",
+      "url": "media/inspection-V1.m4a",
+      "retained_path": "public/room-tone/media/inspection-V1.m4a",
+      "observed_sha256": "7cc1f459bd30464a85f724090eb81fac337b3ea1279efd331dd2783733ddd644",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "7cc1f459bd30464a85f724090eb81fac337b3ea1279efd331dd2783733ddd644",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V1",
+      "mode": "context",
+      "url": "media/context-V1.mp4",
+      "retained_path": "room-media-source/room-tone/media/context-V1.mp4",
+      "observed_sha256": "b3146602af2ed7f7820fd2c1039c605609b732421e6cb82f7949d857d0e3da0f",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "V2",
+      "mode": "room",
+      "url": "media/room-V2.m4a",
+      "retained_path": "public/room-tone/media/room-V2.m4a",
+      "observed_sha256": "a9bdf2019d2b6ca7c87e99d27979cf2e8d6b3971ee68917b5b8c91f88800fe78",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "a9bdf2019d2b6ca7c87e99d27979cf2e8d6b3971ee68917b5b8c91f88800fe78",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V2",
+      "mode": "inspection",
+      "url": "media/inspection-V2.m4a",
+      "retained_path": "public/room-tone/media/inspection-V2.m4a",
+      "observed_sha256": "04543e8231819c61177bb9a6706eb165d07b1d85355c8080d41540490aa6bc6b",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "04543e8231819c61177bb9a6706eb165d07b1d85355c8080d41540490aa6bc6b",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V2",
+      "mode": "context",
+      "url": "media/context-V2.mp4",
+      "retained_path": "room-media-source/room-tone/media/context-V2.mp4",
+      "observed_sha256": "a59fc7ebafb2c60f06f9b23c2b8092d58554144ccabece7dfa7a366a0fcd8a0a",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "V3",
+      "mode": "room",
+      "url": "media/room-V3.m4a",
+      "retained_path": "public/room-tone/media/room-V3.m4a",
+      "observed_sha256": "458bf0bf6bbdb3f02c46be08c6e2629c5c3f54caa4f3b2f96185582af408bceb",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "458bf0bf6bbdb3f02c46be08c6e2629c5c3f54caa4f3b2f96185582af408bceb",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V3",
+      "mode": "inspection",
+      "url": "media/inspection-V3.m4a",
+      "retained_path": "public/room-tone/media/inspection-V3.m4a",
+      "observed_sha256": "b5c0241b3b58812e169e545bffe37300f40eb9ec6d1c3c04d5106ab2bdab1d46",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "b5c0241b3b58812e169e545bffe37300f40eb9ec6d1c3c04d5106ab2bdab1d46",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V3",
+      "mode": "context",
+      "url": "media/context-V3.mp4",
+      "retained_path": "room-media-source/room-tone/media/context-V3.mp4",
+      "observed_sha256": "64390ccad0dc5c311597e0d8621fa2ec7ebf9ed2282d8360dbae968a9ff0704e",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "V4",
+      "mode": "room",
+      "url": "media/room-V4.m4a",
+      "retained_path": "public/room-tone/media/room-V4.m4a",
+      "observed_sha256": "322aa6d145ad9a0cf230845bec1bb9fdd8b595fd25343644bf2f67c27e4bda87",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "322aa6d145ad9a0cf230845bec1bb9fdd8b595fd25343644bf2f67c27e4bda87",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V4",
+      "mode": "inspection",
+      "url": "media/inspection-V4.m4a",
+      "retained_path": "public/room-tone/media/inspection-V4.m4a",
+      "observed_sha256": "237cda13893985e76964654055dd9b909507f6d21e1cb17e8b2d3122dada0de1",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "237cda13893985e76964654055dd9b909507f6d21e1cb17e8b2d3122dada0de1",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V4",
+      "mode": "context",
+      "url": "media/context-V4.mp4",
+      "retained_path": "room-media-source/room-tone/media/context-V4.mp4",
+      "observed_sha256": "7b457f31585d8c67074aea410bf009c4c60c8e913e3733845307852931e9b64c",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "V5",
+      "mode": "room",
+      "url": "media/room-V5.m4a",
+      "retained_path": "public/room-tone/media/room-V5.m4a",
+      "observed_sha256": "86e122a85b066837df8d067cca988540cf3f25fd3620f0782fdf0f1144a1c150",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "86e122a85b066837df8d067cca988540cf3f25fd3620f0782fdf0f1144a1c150",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V5",
+      "mode": "inspection",
+      "url": "media/inspection-V5.m4a",
+      "retained_path": "public/room-tone/media/inspection-V5.m4a",
+      "observed_sha256": "57097f1f02d69d1aed4cc2503310425dfd688b6f7d78deff0ea13ce6a92f8424",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "57097f1f02d69d1aed4cc2503310425dfd688b6f7d78deff0ea13ce6a92f8424",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V5",
+      "mode": "context",
+      "url": "media/context-V5.mp4",
+      "retained_path": "public/room-tone/media/context-V5.mp4",
+      "observed_sha256": "9b1d29915d97043b71870cf92d49b0ccfd7530da3114625e7823015b70c63c12",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "P5",
+      "mode": "room",
+      "url": "media/room-P5.m4a",
+      "retained_path": "public/room-tone/media/room-P5.m4a",
+      "observed_sha256": "d7a9eefcf4bb8d6235e8b0b3c10f0068226ef2c3be645ba9ec7ec45648935ff8",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "d7a9eefcf4bb8d6235e8b0b3c10f0068226ef2c3be645ba9ec7ec45648935ff8",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "P5",
+      "mode": "inspection",
+      "url": "media/inspection-P5.m4a",
+      "retained_path": "public/room-tone/media/inspection-P5.m4a",
+      "observed_sha256": "67d59165faafeaccfa729d2b1cfaa1305a7d3e808aac2a5fde000c376acff394",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "67d59165faafeaccfa729d2b1cfaa1305a7d3e808aac2a5fde000c376acff394",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "P5",
+      "mode": "context",
+      "url": "media/context-P5.mp4",
+      "retained_path": "public/room-tone/media/context-P5.mp4",
+      "observed_sha256": "e03867221e1b13dbdf0ee75461a64255d7b6bf994ee002c27a2c0642f560dbc6",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "V5R",
+      "mode": "room",
+      "url": "media/room-V5R.m4a",
+      "retained_path": "public/room-tone/media/room-V5R.m4a",
+      "observed_sha256": "fd70b524020d21cd610e9685937e011bb2c72416baa60b25a046a4a690407e5d",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "fd70b524020d21cd610e9685937e011bb2c72416baa60b25a046a4a690407e5d",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V5R",
+      "mode": "inspection",
+      "url": "media/inspection-V5R.m4a",
+      "retained_path": "public/room-tone/media/inspection-V5R.m4a",
+      "observed_sha256": "3601ade70fba8307e11ba6bebab0b82eefea1d8b75925174c6fd1232d492936a",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "3601ade70fba8307e11ba6bebab0b82eefea1d8b75925174c6fd1232d492936a",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "V5R",
+      "mode": "context",
+      "url": "media/context-V5R.mp4",
+      "retained_path": "public/room-tone/media/context-V5R.mp4",
+      "observed_sha256": "045ef6e8410b0dfcb428937732aaa7a5544cb2123ed9ff61ca34f082f8fc61dc",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "P5R",
+      "mode": "room",
+      "url": "media/room-P5R.m4a",
+      "retained_path": "public/room-tone/media/room-P5R.m4a",
+      "observed_sha256": "8f41269d66d7e1b8e00b25b0131650eb8bc64c809480a7f111ba85451f814172",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "8f41269d66d7e1b8e00b25b0131650eb8bc64c809480a7f111ba85451f814172",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "P5R",
+      "mode": "inspection",
+      "url": "media/inspection-P5R.m4a",
+      "retained_path": "public/room-tone/media/inspection-P5R.m4a",
+      "observed_sha256": "75cf5d43f272d9544c4ce376121ed2e13c0781f9e3d005d89f13cf9ee93b9371",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": "75cf5d43f272d9544c4ce376121ed2e13c0781f9e3d005d89f13cf9ee93b9371",
+      "native_hash_match": true,
+      "producer_binding_status": "native_label_and_mode_hash_match",
+      "limitation": null
+    },
+    {
+      "track_id": "P5R",
+      "mode": "context",
+      "url": "media/context-P5R.mp4",
+      "retained_path": "public/room-tone/media/context-P5R.mp4",
+      "observed_sha256": "51b1c9c7174927198e03c88bf55015a6f64f0309123e88c8fc1b7b314f2ce199",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    },
+    {
+      "track_id": "CORE",
+      "mode": "context",
+      "url": "media/context-CORE.mp4",
+      "retained_path": "public/room-tone/media/context-CORE.mp4",
+      "observed_sha256": "d676e39f8ea5675639ca33ba3e4c4dfc3d4fd24d05481dd87fc43e7a96d27bff",
+      "retained_url_receipt": "public/room-tone/records/site-integration-verification.json",
+      "retained_url_hash_match": true,
+      "native_expected_sha256": null,
+      "native_hash_match": null,
+      "producer_binding_status": "legacy_input_binding_gap",
+      "limitation": "Named-byte custody matches retained URL receipt; no complete contemporaneous label/input/output producer binding."
+    }
+  ],
+  "limits": [
+    "No decoding, signal comparison, or perceptual listening was part of this identity audit.",
+    "No retained asset was rerendered, replaced, or given a fabricated producer receipt."
+  ]
+}

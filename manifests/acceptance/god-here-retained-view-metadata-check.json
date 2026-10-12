@@ -1,0 +1,3010 @@
+{
+  "schema_version": "god-here.reproduction-view-metadata-check.v1",
+  "status": "passed",
+  "scope": "Node execution of the current JS with a minimal DOM fixture derived from actual HTML and the current JSON; no browser, media or network verification.",
+  "input_sha256": {
+    "web/recovery/index.html": "d421430fb40a648a2f02ba472586fe92b395ace330ad38ff6b9afa7614a578c8",
+    "web/recovery/recovery.js": "3a6030c5ea23a917cf07de66d0e90d275d2f49471d4b789371452bd96c6d0c05",
+    "web/recovery/catalog.json": "30c0cf7667142129264b439e32f5a27c457a66a995437214d199c9fae3326440"
+  },
+  "script_sha256": "79b697d34bbf2df7f55d97df295d2c7b9070182d0b1e0059ba5b4d8102b0bba1",
+  "checks": 749,
+  "assertions": [
+    {
+      "check": "Frozen object count remains 3151",
+      "passed": true
+    },
+    {
+      "check": "Supplement summary and tab are visible",
+      "passed": true
+    },
+    {
+      "check": "Baseline summary retains its scoped 24 new and 189 unmatched",
+      "passed": true
+    },
+    {
+      "check": "Reproduction mode contains 24 rows",
+      "passed": true
+    },
+    {
+      "check": "No supplemental playback or download links exist",
+      "passed": true
+    },
+    {
+      "check": "Exact reproduction filter shows complete baseline and retained reference coverage",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to the correct exact supplemental layer",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference rows have the exact expected distinct identity count",
+      "passed": true
+    },
+    {
+      "check": "Five baseline expected-hash matches remain unchanged",
+      "passed": true
+    },
+    {
+      "check": "Retained execution section and tab are visible",
+      "passed": true
+    },
+    {
+      "check": "Retained summary separates 95 required, 60 existing and 35 new outputs",
+      "passed": true
+    },
+    {
+      "check": "Retained summary reports exact 29-hash/114-row gains and 160 remainder",
+      "passed": true
+    },
+    {
+      "check": "Scoped union labels supporting inputs separately",
+      "passed": true
+    },
+    {
+      "check": "All five native bindings have separate summary cards",
+      "passed": true
+    },
+    {
+      "check": "Actual producing and verification revisions remain visible",
+      "passed": true
+    },
+    {
+      "check": "Room later verification does not rewrite its original execution or invent a rerender",
+      "passed": true
+    },
+    {
+      "check": "Native evidence links use only the two immutable public code anchors",
+      "passed": true
+    },
+    {
+      "check": "Three supporting inputs expose identities without media links",
+      "passed": true
+    },
+    {
+      "check": "Font retrieval is qualified as dependency distribution bytes",
+      "passed": true
+    },
+    {
+      "check": "Initial failure and excluded incidental files remain explicit",
+      "passed": true
+    },
+    {
+      "check": "Retained output mode contains exactly 35 new identities across pagination",
+      "passed": true
+    },
+    {
+      "check": "No newly retained private output has a playback or download link",
+      "passed": true
+    },
+    {
+      "check": "Twenty-nine later expected hashes navigate to retained outputs",
+      "passed": true
+    },
+    {
+      "check": "Switching back retains the frozen denominator",
+      "passed": true
+    }
+  ]
+}

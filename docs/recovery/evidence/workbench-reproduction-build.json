@@ -1,0 +1,23 @@
+{
+  "schema_version": "god-here.site-build-observation.v1",
+  "observed_at_utc": "2026-10-11T19:44:41.124066+00:00",
+  "workflow": "sites/1.0.0/scripts/site-workflow.mjs",
+  "preparation_command": [
+    "node",
+    "sites/1.0.0/scripts/build-site.mjs"
+  ],
+  "workflow_exit_code": 0,
+  "framework_build_observed": "vinext/Vite build completed; all five build phases succeeded",
+  "source_commit": "e1632852f8b7cedd1623a36fb314589a7257dafa",
+  "source_push_and_readback": "completed by the Sites workflow helper",
+  "archive": {
+    "archive_bytes": 243795714,
+    "expanded_regular_file_bytes": 263348289,
+    "members": 424,
+    "archive_sha256": "f30a239deea48ede41b10fcb07fee93c1e7f97e979b1bd99ffa1e55c3371ef26",
+    "limit_bytes": 268435456,
+    "both_limits_passed": true,
+    "unsafe_members": []
+  },
+  "qualification": "Structured observation of successful helper output and independent local archive inspection; not a complete stdout transcript."
+}

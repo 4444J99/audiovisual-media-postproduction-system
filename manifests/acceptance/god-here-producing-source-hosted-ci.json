@@ -1,0 +1,53 @@
+{
+  "schema_version": "god-here.hosted-ci.v1",
+  "source_commit": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+  "status": "passed",
+  "scope": "Hosted GitHub Actions on the preserved producing-source checkpoint, before the separate retained-room verifier correction.",
+  "runs": [
+    {
+      "id": 38171387900,
+      "name": "Verify production system",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/actions/runs/38171387900",
+      "started_at": "2026-10-11T20:14:49Z",
+      "updated_at": "2026-10-11T20:15:49Z"
+    },
+    {
+      "id": 38171387947,
+      "name": "Recovery integrity",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/actions/runs/38171387947",
+      "started_at": "2026-10-11T20:14:49Z",
+      "updated_at": "2026-10-11T20:18:57Z"
+    },
+    {
+      "id": 38171384884,
+      "name": "Verify production system",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/actions/runs/38171384884",
+      "started_at": "2026-10-11T20:14:46Z",
+      "updated_at": "2026-10-11T20:15:40Z"
+    },
+    {
+      "id": 38171384774,
+      "name": "Recovery integrity",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "08ff7f287eaea4d6bae1cd54de3b8dcebe6ab1f0",
+      "url": "https://github.com/4444J99/audiovisual-media-postproduction-system/actions/runs/38171384774",
+      "started_at": "2026-10-11T20:14:46Z",
+      "updated_at": "2026-10-11T20:18:42Z"
+    }
+  ],
+  "artistic_acceptance": "not_assessed"
+}

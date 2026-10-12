@@ -1,0 +1,242 @@
+{
+  "schema_version": "god-here.consolidated-execution-wheel.v1",
+  "started_at_utc": "2026-10-11T20:05:36.566530+00:00",
+  "scope": "Offline wheel build from a temporary exact copy of the package source checked by the consolidated gate; canonical source is not modified by setuptools. Smoke import and metadata/content verification only, not production execution from an installed wheel.",
+  "checked_source_fingerprint": "18216ab8aa2ffc0e76008c1b8ee8b98d649a3bf9b70e8061966fb5c1d5da4121",
+  "checked_source_git_context": {
+    "head": "81899b8e99cc1d3fa1bc8110999a88ce8e0fbd38",
+    "branch": "inventory/god-here-project-reconciliation-20261011",
+    "working_tree_dirty_before_check": true
+  },
+  "build_inputs": [
+    {
+      "path": "pyproject.toml",
+      "bytes": 547,
+      "sha256": "49542c08601f0716941e4e8ec31ef5d4eaccaee3074694680219b12f49ca4128",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/__init__.py",
+      "bytes": 79,
+      "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/audio.py",
+      "bytes": 7762,
+      "sha256": "7fa1e4dfcf0f7be4166939dd997fbb800df19e5efa90a197ee0fab175d9759a9",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/cli.py",
+      "bytes": 6354,
+      "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/core.py",
+      "bytes": 11990,
+      "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/direction.py",
+      "bytes": 22405,
+      "sha256": "96f3537160b1bca111602117fb908b38fb1cfb024bef0604eeeb10f104e5b5b4",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/execution.py",
+      "bytes": 43265,
+      "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/foley.py",
+      "bytes": 10391,
+      "sha256": "b14ea954f61c02e5a58414fcd57e23bc3e6848c989bc7274d9822f1ce0720168",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/media_resolver.py",
+      "bytes": 7223,
+      "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/neural_audio.py",
+      "bytes": 5428,
+      "sha256": "ab702bcaba8b39b79bd4cfede1f602962a16d30de55f1c07d2f40d70e372b595",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/render.py",
+      "bytes": 4956,
+      "sha256": "3ed4cf6bba5cab1f6862b815e1d76ad3eb02f3e2c2271a3e0b92d6788e30d5d9",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/revision.py",
+      "bytes": 15828,
+      "sha256": "00d0b8695df79dbcaf2413c05d4d4e42e33c9cbc4f8c709ccf87523306656c73",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/roomaudit.py",
+      "bytes": 26499,
+      "sha256": "33e1ae59aa25afa8da948be0030196503bcd7c8270f1fbed9d9a252504ab5815",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/roomrack.py",
+      "bytes": 7040,
+      "sha256": "6dbd5b0cb3767618cf4c79e13ee24b79549f2c600475b51ff32b7c0d1855f363",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/roomrefine.py",
+      "bytes": 24579,
+      "sha256": "1049b9365db7a811b86c1f5f24e58c83c9254dd18373d06835495700baca4be7",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/roomstretch.py",
+      "bytes": 29246,
+      "sha256": "3616cdf5c4bbac41cc30747a75aebbd0ae3e18467f3a556284cbf8c235a40a5a",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/roomtone.py",
+      "bytes": 9569,
+      "sha256": "6dabcaf3effd2a56830adf948fbe4a684f0281f2f9d2f9c05f3d6bd5fa867374",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/segmentation.py",
+      "bytes": 6270,
+      "sha256": "8378214dddffeaf83f08592340c29e9d21ac2a173d846532587cca57ab18778c",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/soundstage.py",
+      "bytes": 3334,
+      "sha256": "2f447cba5a717ecddcb3f101e3ace8827835d2822b09d6f6727f104eefaf9155",
+      "matches_checked_source": true
+    },
+    {
+      "path": "amp/workstation.py",
+      "bytes": 4169,
+      "sha256": "1743e69d0fe281fd67af598d985d57cfe288545d1d2f7bcfadee5dc88ef03d2f",
+      "matches_checked_source": true
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1064,
+      "sha256": "6d319436c6a6428d1cfa592e3386aef31cb02e04d67731a577b68395c5e963fc",
+      "role": "packaging license metadata"
+    }
+  ],
+  "build_command": [
+    "python",
+    "-m",
+    "pip",
+    "wheel",
+    "--no-index",
+    "--no-deps",
+    "--no-build-isolation",
+    "--wheel-dir",
+    "../dist",
+    "."
+  ],
+  "build_cwd": "temporary source snapshot",
+  "environment": {
+    "PIP_NO_INDEX": "1",
+    "PIP_DISABLE_PIP_VERSION_CHECK": "1",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "versions": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "setuptools": "84.0.0",
+    "wheel": "0.48.0",
+    "pip": "26.2.1"
+  },
+  "build_exit_code": 0,
+  "build_stdout_bytes": 804,
+  "build_stderr_bytes": 0,
+  "status": "passed",
+  "wheel": {
+    "file_name": "audiovisual_media_postproduction_system-0.2.0-py3-none-any.whl",
+    "bytes": 86401,
+    "sha256": "8ce6ebba6ff4069779921b5d3836dd422672a90a8d8c6e4bcf82747e1e3f741f",
+    "python_modules": [
+      "amp/__init__.py",
+      "amp/audio.py",
+      "amp/cli.py",
+      "amp/core.py",
+      "amp/direction.py",
+      "amp/execution.py",
+      "amp/foley.py",
+      "amp/media_resolver.py",
+      "amp/neural_audio.py",
+      "amp/render.py",
+      "amp/revision.py",
+      "amp/roomaudit.py",
+      "amp/roomrack.py",
+      "amp/roomrefine.py",
+      "amp/roomstretch.py",
+      "amp/roomtone.py",
+      "amp/segmentation.py",
+      "amp/soundstage.py",
+      "amp/workstation.py"
+    ],
+    "module_count": 19,
+    "entry_point": "amp=amp.cli:main",
+    "version": "0.2.0",
+    "optional_extras": [
+      "learned",
+      "tracking"
+    ],
+    "all_packaged_module_bytes_match_checked_source": true,
+    "all_member_crc_passed": true
+  },
+  "smoke": {
+    "command_template": [
+      "python",
+      "-I",
+      "-c",
+      "explicit import and callable checks with wheel prepended to sys.path",
+      "BUILT_WHEEL"
+    ],
+    "exit_code": 0,
+    "stdout_bytes": 150,
+    "stderr_bytes": 0,
+    "result": {
+      "status": "passed",
+      "loaded_from_built_wheel": true,
+      "modules": [
+        "amp.cli",
+        "amp.execution",
+        "amp.media_resolver"
+      ],
+      "cli_entrypoint_callable": true
+    }
+  },
+  "source_unchanged_during_build": true,
+  "finished_at_utc": "2026-10-11T20:05:37.315187+00:00",
+  "logs": {
+    "stdout": {
+      "file": "consolidated-execution-wheel.stdout.log",
+      "bytes": 954,
+      "sha256": "dcf57f71f4e6456bc8b6fed38b83d8b2277235e77dcdae4983e8c6b285e3068e"
+    },
+    "stderr": {
+      "file": "consolidated-execution-wheel.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "limitations": [
+    "An installed wheel alone does not include the source repository tooling, recipes or private media required by the four production adapters.",
+    "This gate checks package inclusion, exact module bytes, metadata and isolated imports. Retained rendering, numerical parity, device playback and artistic acceptance have separate evidence."
+  ]
+}

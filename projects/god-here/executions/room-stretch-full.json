@@ -1,0 +1,34 @@
+{
+  "schema_version": "amps.execution.v1",
+  "id": "room-stretch-full",
+  "adapter": "amp.roomstretch.v1",
+  "upstream": {
+    "pull_request": 53,
+    "commit": "e7594031c566066a1c68edc0095c4ccb426ad586"
+  },
+  "source_clock": {
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "frame_rate": {
+      "num": 30,
+      "den": 1
+    },
+    "frames": 3360
+  },
+  "inputs": {
+    "parameter_report": {
+      "sha256": "84dd4043b36d90f78ee2f5ccec595daf438fcf1514e8a763f906e8b02897843c",
+      "bytes": 87992,
+      "repo_path": "projects/god-here/room-stretch-20261011/room-stretch-report.json"
+    },
+    "inventory": {
+      "sha256": "bb616355c6d328c93d19247fa01fa48d5ee2fa1b1ad2faac3bee315285acd788",
+      "bytes": 71000,
+      "repo_path": "projects/god-here/room-tone-report.json"
+    },
+    "source": {
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "bytes": 12636527
+    }
+  },
+  "options": {}
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": "god-here.retained-availability-review.v1",
+  "status": "metadata_and_preservation_verified_publication_pending",
+  "scope": "Bounded retained-execution availability and recovery UI extension. Frozen and baseline layers retain their exact identities. No native execution, media read/decode, network check or artistic approval was performed by this review.",
+  "addendum": {
+    "path": "manifests/artifacts/god-here-retained-execution-availability.json",
+    "sha256": "d78fbd0381d9b55f975bf8dedab9bbafa0980175af7744ef6d77f0f19d17bf77",
+    "bytes": 191301
+  },
+  "source_evidence": {
+    "baseline": {
+      "path": "manifests/artifacts/god-here-reproduction-availability.json",
+      "sha256": "d7665c3bd4185ab1858aceb549823eca23d82ba44b653b4b1e13a1a949fba28e",
+      "bytes": 49752
+    },
+    "identity": {
+      "path": "manifests/acceptance/god-here-retained-execution-identities.json",
+      "sha256": "713af406a881adbdf5d1b014a728947a017c2a7c9bb8b04aa00a1f81dec9a3a6",
+      "bytes": 160696
+    },
+    "preservation": {
+      "path": "manifests/acceptance/god-here-retained-execution-preservation.json",
+      "sha256": "7f4f7092a15a11d2c6df842d00890ec5d15885ba31b26e6e25d25bb6d5101a44",
+      "bytes": 33522
+    },
+    "inputs": {
+      "path": "manifests/acceptance/god-here-direction-exact-input-recovery.json",
+      "sha256": "dd9ad2cd19307b4088b7db55f3ac6a1560d52c258cd414759b3bc568b567844b",
+      "bytes": 7380
+    },
+    "equivalence": {
+      "path": "manifests/acceptance/god-here-retained-execution-code-equivalence.json",
+      "sha256": "63d139dc79245798ce81aba4737d2bcee9973bb475968de30e01c8fde777700e",
+      "bytes": 20765
+    }
+  },
+  "counts": {
+    "frozen_catalog_unique_objects": 3151,
+    "frozen_catalog_file_occurrences": 4609,
+    "baseline_additional_unique_outputs": 24,
+    "additional_exact_pr49_input_identities": 3,
+    "bound_retained_recipes": 5,
+    "native_renderer_families": 4,
+    "native_execution_attempts": 6,
+    "successful_required_product_sets": 5,
+    "required_output_occurrences": 95,
+    "unique_required_output_identities": 95,
+    "fully_decoded_required_media": 89,
+    "existing_custody_matches": 60,
+    "new_required_output_identities": 35,
+    "new_required_output_bytes": 1210784607,
+    "new_required_outputs_by_type": {
+      "audio": 29,
+      "metadata": 4,
+      "video": 2
+    },
+    "new_required_media_decode_passes": 31,
+    "frozen_unmatched_expected_hashes": 194,
+    "unmatched_after_baseline_reproduction": 189,
+    "additional_expected_hashes_reproduced": 29,
+    "expectation_rows_updated": 114,
+    "remaining_unmatched_expected_hashes": 160,
+    "frozen_baseline_pr49_retained_scoped_identity_union": 3213,
+    "historical_original_outputs_retrieved_by_this_operation": 0,
+    "new_public_output_links": 0,
+    "artistic_acceptance_added": 0
+  },
+  "unchanged_projection_layers": {
+    "objects": true,
+    "reproductions": true,
+    "reproduction_availability": true,
+    "counts": true,
+    "source_catalog_sha256": true,
+    "source_expectations_sha256": true,
+    "delivery": true,
+    "image_validation": true
+  },
+  "verification": [
+    {
+      "path": "manifests/acceptance/god-here-retained-availability-probes.json",
+      "sha256": "ef343891cd39bc89c8d51e4c3dfc526b1aad6dc907f748931c355c0fd34b35ac",
+      "bytes": 33998
+    },
+    {
+      "path": "manifests/acceptance/god-here-retained-view-metadata-check.json",
+      "sha256": "952e513263346b53552a9b601ce1d9b799ceddaf4ced053e208c0bd2489215c3",
+      "bytes": 82156
+    }
+  ],
+  "probe_counts": {
+    "positive_controls": 2,
+    "invalid_metadata_cases_rejected": 132,
+    "all_metadata_cases_passed": 134,
+    "ui_metadata_assertions_passed": 749
+  },
+  "frozen_input_files": [
+    {
+      "path": "manifests/artifacts/god-here-recovery-catalog.json",
+      "sha256": "8843bba3e9b0d5937fe5fb93e02233fe8be69aa5f072349ad896011999ccb1e3",
+      "bytes": 6369347
+    },
+    {
+      "path": "manifests/artifacts/god-here-recovery-expectations.json",
+      "sha256": "8493197c215cf7acd3c0e7024b6dde5d984e010f51bb123940aaa6946a65c004",
+      "bytes": 14064025
+    },
+    {
+      "path": "manifests/artifacts/god-here-reproduction-availability.json",
+      "sha256": "d7665c3bd4185ab1858aceb549823eca23d82ba44b653b4b1e13a1a949fba28e",
+      "bytes": 49752
+    },
+    {
+      "path": "manifests/acceptance/god-here-baseline-reproduction.json",
+      "sha256": "3b6211279610e75ada8fbb94b2328f727629d9de17dfa538af685b7358527789",
+      "bytes": 34297
+    },
+    {
+      "path": "manifests/acceptance/god-here-direction-exact-input-recovery.json",
+      "sha256": "dd9ad2cd19307b4088b7db55f3ac6a1560d52c258cd414759b3bc568b567844b",
+      "bytes": 7380
+    }
+  ],
+  "checked_code_files": [
+    {
+      "path": "tools/recovery/retained_execution_availability.py",
+      "sha256": "3cace21a58c1711b7c0a30bb3be7b149934162f67c20625b2da33fa6e5860932",
+      "bytes": 43447
+    },
+    {
+      "path": "tools/recovery/reproduction_availability.py",
+      "sha256": "dffff5f36559657e3e11fe8ab02f047cf4a730fa48048d56a34e9adbb7e0ff07",
+      "bytes": 21922
+    },
+    {
+      "path": "tools/recovery/build_workbench_index.py",
+      "sha256": "359161a34f5fce18ec710cffdd5387d1abe2ed9f9ceaed0be958706eb66ea742",
+      "bytes": 14553
+    },
+    {
+      "path": "tools/recovery/verify_checkpoint.py",
+      "sha256": "f8a4c77e1d865e961a779d14b6ddca8be94ace761d15bba4980c3afee6e24e83",
+      "bytes": 19035
+    },
+    {
+      "path": "tools/recovery/probe_retained_availability.py",
+      "sha256": "5b0cf0d8f4a1740c4c8dd10edd4a5199921a16f49a99affc52795d4240a956b0",
+      "bytes": 16487
+    },
+    {
+      "path": "tools/recovery/probe_checkpoint_negatives.py",
+      "sha256": "b0c589e584f5a859cf2e3205f354acdf51cb0123afc997d962ecbeff3b0a56af",
+      "bytes": 30992
+    },
+    {
+      "path": "tools/recovery/probe_reproduction_view.mjs",
+      "sha256": "79b697d34bbf2df7f55d97df295d2c7b9070182d0b1e0059ba5b4d8102b0bba1",
+      "bytes": 10056
+    },
+    {
+      "path": ".github/workflows/recovery-integrity.yml",
+      "sha256": "35d73060db792c471e9c6ac20f5f565652dd7505ee8a2056256acfa9541528a1",
+      "bytes": 2452
+    }
+  ],
+  "prepared_recovery_assets": [
+    {
+      "path": "web/recovery/index.html",
+      "sha256": "d421430fb40a648a2f02ba472586fe92b395ace330ad38ff6b9afa7614a578c8",
+      "bytes": 8572
+    },
+    {
+      "path": "web/recovery/recovery.js",
+      "sha256": "3a6030c5ea23a917cf07de66d0e90d275d2f49471d4b789371452bd96c6d0c05",
+      "bytes": 20264
+    },
+    {
+      "path": "web/recovery/catalog.json",
+      "sha256": "30c0cf7667142129264b439e32f5a27c457a66a995437214d199c9fae3326440",
+      "bytes": 2605692
+    },
+    {
+      "path": "web/recovery/recovery.css",
+      "sha256": "e97e0f1472c6a8082d13f9a93711f9c960699f6f0d42fba461938d7da16c9acf",
+      "bytes": 7517
+    }
+  ],
+  "publication": "Prepared metadata and interface changes await a real Site deployment and fresh text/source bindings. Prior v10 HTTP evidence is unchanged; this receipt does not claim v11 is live.",
+  "privacy": "35 new private outputs and3 supporting inputs expose hash/size/provenance metadata only. Native run cards link only to public code commits with equal declared code files; complete Git-tree equivalence is not asserted.",
+  "artistic_acceptance": "pending"
+}

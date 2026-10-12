@@ -1,0 +1,134 @@
+{
+  "schema": "amps.foundation-archive.v1",
+  "source_pr": 1,
+  "source_branch": "foundation/directable-postproduction",
+  "source_commit": "bb479256be5fd802ef536b6417f1fea445d596be",
+  "inspected_target_head": "06239ea898cc8430b8ced792732e6253e2c96372",
+  "snapshot_date": "2026-10-12",
+  "status": "preserved_and_mapped; not branch merge or acceptance",
+  "all_source_files_preserved": true,
+  "file_count": 12,
+  "files": [
+    {
+      "original_path": ".gitignore",
+      "archive_path": "snapshot/.gitignore.txt",
+      "source_git_blob": "a5b06f78db580b059df9e89caecdd811b1072a5b",
+      "source_git_mode": "100644",
+      "bytes": 343,
+      "sha256": "adc1bcf0b692695f8f03d25fb18ef7444adc264a4150a8b35842326112cd302b",
+      "current_path_state": "different",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "AGENTS.md",
+      "archive_path": "snapshot/AGENTS.md.txt",
+      "source_git_blob": "ea2b0d8a56918adf976fef79beb798062034f77d",
+      "source_git_mode": "100644",
+      "bytes": 3071,
+      "sha256": "b3c358d1ae0c5e54ab2e786561254b77c750914013b0073622d2248ea0f82c23",
+      "current_path_state": "absent",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "README.md",
+      "archive_path": "snapshot/README.md.txt",
+      "source_git_blob": "8ae7c048173ece51f88bad3fbba17376cd3b4512",
+      "source_git_mode": "100644",
+      "bytes": 3744,
+      "sha256": "7250a5ea4e2145ec5fe1c0aae8a4ea061a76ac9697fcc36fe1b4f34e3cb8d75e",
+      "current_path_state": "different",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "docs/architecture.md",
+      "archive_path": "snapshot/docs/architecture.md.txt",
+      "source_git_blob": "75aae50c649d3fbd5b3f1196faba6f37a0cbd3e3",
+      "source_git_mode": "100644",
+      "bytes": 6352,
+      "sha256": "71889a2b3caba1ce9c8c85f7b966abd99b1ad0ef0f5d88dc106856805586b7a5",
+      "current_path_state": "absent",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "docs/roadmap.md",
+      "archive_path": "snapshot/docs/roadmap.md.txt",
+      "source_git_blob": "f4a63ebdc6dde61752ee1a6f3fe876ea072f4f18",
+      "source_git_mode": "100644",
+      "bytes": 5555,
+      "sha256": "04547739b61ca193efbae3c977dbd53849eb35152be13f13d94345d66a54fdff",
+      "current_path_state": "absent",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "docs/standards-adoption.md",
+      "archive_path": "snapshot/docs/standards-adoption.md.txt",
+      "source_git_blob": "004e4792ea1020cb0b9f126e251d05aff9b16634",
+      "source_git_mode": "100644",
+      "bytes": 2825,
+      "sha256": "a017e27ffb0047b82854214cd38a8a89b7327e5840cc60eb44dd2237feaba0be",
+      "current_path_state": "absent",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "examples/revision-proposal.json",
+      "archive_path": "snapshot/examples/revision-proposal.json.txt",
+      "source_git_blob": "573bd7e6932e83046a05eef254ef7232f4d7a244",
+      "source_git_mode": "100644",
+      "bytes": 2033,
+      "sha256": "4a75f2647f77f7a67fe914238df443bd4b3a43850a555e8ebe470c4dabead739",
+      "current_path_state": "absent",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "planning/epics.json",
+      "archive_path": "snapshot/planning/epics.json.txt",
+      "source_git_blob": "93da8764975a1e53277793e568cec6b0ee165edd",
+      "source_git_mode": "100644",
+      "bytes": 9028,
+      "sha256": "b03de71ad19bc3a2df852af3cfbea44814269b9b3458223930f081569124acdf",
+      "current_path_state": "absent",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "projects/god-here/README.md",
+      "archive_path": "snapshot/projects/god-here/README.md.txt",
+      "source_git_blob": "58dcb544b17f440b9f26976bdf05b7869cd22c7f",
+      "source_git_mode": "100644",
+      "bytes": 4816,
+      "sha256": "ffda8c59b1c6f1f5f10e2a9a326181b8a7ee87d27845e476fc2c8208048a99cc",
+      "current_path_state": "absent",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "requirements-dev.txt",
+      "archive_path": "snapshot/requirements-dev.txt.txt",
+      "source_git_blob": "3ee1ea1a4270a73d0a83859fefca415177450121",
+      "source_git_mode": "100644",
+      "bytes": 19,
+      "sha256": "756cc9e506ae4ee1a6f6c0507088b5cfc0dc8ba350fb2d2d46f1ffa72033adb6",
+      "current_path_state": "absent",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "schemas/revision-proposal.schema.json",
+      "archive_path": "snapshot/schemas/revision-proposal.schema.json.txt",
+      "source_git_blob": "57e35cc8114b1ca42d2d289d25dca8503383f241",
+      "source_git_mode": "100644",
+      "bytes": 4090,
+      "sha256": "55ef92b1a7e355b35922287576e14901176bd7e63a7da1979173df9ee8d56178",
+      "current_path_state": "absent",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    },
+    {
+      "original_path": "tools/validate_foundation.py",
+      "archive_path": "snapshot/tools/validate_foundation.py.txt",
+      "source_git_blob": "4f6cba0cc3ce9bfd54f5de869d07dceb08f778a9",
+      "source_git_mode": "100644",
+      "bytes": 5195,
+      "sha256": "2ff2a16cb10f8b9fbe27d1fc156afe41edd6ff88d95e0f5570c59dd87a8b76f1",
+      "current_path_state": "absent",
+      "disposition": "exact historical text; inactive snapshot, not installed"
+    }
+  ],
+  "validation_scope": "Each snapshot payload compared byte-for-byte to git show at the pinned source commit. Historical validator was not executed or activated; no active dependencies or runtime files changed."
+}

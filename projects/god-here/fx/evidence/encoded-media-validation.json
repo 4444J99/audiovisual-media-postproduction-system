@@ -1,0 +1,1080 @@
+{
+  "schemaVersion": "1.0.0",
+  "checkedPreviews": 25,
+  "checks": [
+    {
+      "id": "message-impact",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.5008622407913208,
+        "correlationToPCM": 0.9953586697755645,
+        "bestLagSamples": 0,
+        "bypassSections": []
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ]
+      }
+    },
+    {
+      "id": "closed-inbox",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.602302610874176,
+        "correlationToPCM": 0.9926608419295925,
+        "bestLagSamples": 0,
+        "bypassSections": []
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ]
+      }
+    },
+    {
+      "id": "out-but-still-here",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.3592941164970398,
+        "correlationToPCM": 0.9955075120956154,
+        "bestLagSamples": 0,
+        "bypassSections": []
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ]
+      }
+    },
+    {
+      "id": "correction-machine",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.6569930911064148,
+        "correlationToPCM": 0.9994041715322177,
+        "bestLagSamples": 0,
+        "bypassSections": []
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ]
+      }
+    },
+    {
+      "id": "fractured-utterance",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.5400087237358093,
+        "correlationToPCM": 0.9984305285618031,
+        "bestLagSamples": 0,
+        "bypassSections": []
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ]
+      }
+    },
+    {
+      "id": "room-takeover",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.3956336975097656,
+        "correlationToPCM": 0.9982369535759992,
+        "bestLagSamples": 0,
+        "bypassSections": []
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ]
+      }
+    },
+    {
+      "id": "demo-routing",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.4906216263771057,
+        "correlationToPCM": 0.9990940533141549,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.758888888888889
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.715439814814815
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-delay",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.5322843790054321,
+        "correlationToPCM": 0.9992898800733657,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7606095679012346
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.715439814814815
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-stutter",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.46335673332214355,
+        "correlationToPCM": 0.9992979234853105,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.725054012345679
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7670267489711935
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-granular",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.4246331751346588,
+        "correlationToPCM": 0.9988269110659014,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.757337962962963
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.715439814814815
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-reverse",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.46103963255882263,
+        "correlationToPCM": 0.9974146465817852,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.708155864197531
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7396219135802469
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-freeze",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.466547429561615,
+        "correlationToPCM": 0.9994279488208169,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7071759259259258
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7419444444444445
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-feedback",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.41151463985443115,
+        "correlationToPCM": 0.9994855956199876,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.741820987654321
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.760730452674897
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-queue",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.5751947164535522,
+        "correlationToPCM": 0.9989983864593238,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7596373456790124
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7123456790123457
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-gate",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.4513314366340637,
+        "correlationToPCM": 0.9994225651082198,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.760300925925926
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7874974279835392
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-displacement",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.44855695962905884,
+        "correlationToPCM": 0.9985448565053925,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7587345679012345
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7123456790123457
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-exchange",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.46578919887542725,
+        "correlationToPCM": 0.9994930328267856,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7530478395061728
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7855787037037036
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-typography",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.46578919887542725,
+        "correlationToPCM": 0.9994930328267856,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.759182098765432
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.715439814814815
+          }
+        ]
+      }
+    },
+    {
+      "id": "demo-damage",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.41234463453292847,
+        "correlationToPCM": 0.9984555416763875,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7576080246913581
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7123456790123457
+          }
+        ]
+      }
+    },
+    {
+      "id": "patch-demo-message-impact",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.5170378684997559,
+        "correlationToPCM": 0.9992863724676937,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7597608024691358
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7123456790123457
+          }
+        ]
+      }
+    },
+    {
+      "id": "patch-demo-closed-inbox",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.5008068680763245,
+        "correlationToPCM": 0.9989664177812617,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.742608024691358
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7599794238683129
+          }
+        ]
+      }
+    },
+    {
+      "id": "patch-demo-out-but-still-here",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.40887635946273804,
+        "correlationToPCM": 0.9990857133596109,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7343827160493828
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.768233024691358
+          }
+        ]
+      }
+    },
+    {
+      "id": "patch-demo-correction-machine",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.5572924017906189,
+        "correlationToPCM": 0.9991236019044176,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7600694444444445
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7123456790123457
+          }
+        ]
+      }
+    },
+    {
+      "id": "patch-demo-fractured-utterance",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.43170619010925293,
+        "correlationToPCM": 0.9954507847576414,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7650385802469135
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7123456790123457
+          }
+        ]
+      }
+    },
+    {
+      "id": "patch-demo-room-takeover",
+      "audio": {
+        "samples": 292000,
+        "aacDecodedSamplesIncludingTail": 292864,
+        "sampleRate": 24000,
+        "channels": 2,
+        "encodedPeak": 0.4127454161643982,
+        "correlationToPCM": 0.9990685664808077,
+        "bestLagSamples": 0,
+        "bypassSections": [
+          {
+            "start": 0,
+            "end": 2,
+            "maxPCM16Difference": 0
+          },
+          {
+            "start": 10,
+            "end": 12.166666667,
+            "maxPCM16Difference": 0
+          }
+        ]
+      },
+      "video": {
+        "frameCount": 146,
+        "fps": 12,
+        "landscape": [
+          480,
+          270
+        ],
+        "portrait": [
+          270,
+          480
+        ],
+        "encodedBypass": [
+          {
+            "frame": 6,
+            "meanAbsoluteRGB": 1.7544058641975309
+          },
+          {
+            "frame": 132,
+            "meanAbsoluteRGB": 1.7123456790123457
+          }
+        ]
+      }
+    }
+  ],
+  "reels": [
+    {
+      "file": "god-here-13-processors-landscape.mp4",
+      "frames": 1898,
+      "duration": 158.16666667099997,
+      "samples": 3796000,
+      "perChapterAudioLagSamples": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "file": "god-here-13-processors-portrait.mp4",
+      "frames": 1898,
+      "duration": 158.16666667099997,
+      "samples": 3796000,
+      "perChapterAudioLagSamples": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "AAC and H264 are lossy; picture comparison allows codec/scaler error.",
+    "Bypass PCM is checked exactly before AAC encoding.",
+    "Machine-crosschecked cue text, source masks and dialogue candidate are not artist-accepted."
+  ]
+}

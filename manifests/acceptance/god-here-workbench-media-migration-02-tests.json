@@ -1,0 +1,93 @@
+{
+  "schema_version": "god-here.focused-source-verification.v1",
+  "checked_at_utc": "2026-10-11T16:03:30.652764+00:00",
+  "root": "WORKBENCH_CHECKOUT",
+  "start_head": "0c892006e82e3e13e199dbcdf8efbac7560ba556",
+  "end_head": "0c892006e82e3e13e199dbcdf8efbac7560ba556",
+  "working_tree_modified_at_start": false,
+  "start_status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "node_version": "v24.19.0",
+  "python_version": "Python 3.12.14",
+  "source_sha256_before": {
+    "tests/room-media.test.mjs": "51fcd5cd6449fc32f49434e8e1eba5f8a928f6d7d26d90cbf163de3555f250d8",
+    "tests/test_room_media_seed.py": "20dbd254a59fa7e34ed2f43df639eeaa99843c13d8f1db9d4ad5c15b85fe6ff6",
+    "scripts/room_media_seed.py": "97984d5285f5f2ece1c7699e98df8176c75c1a68f07bee70710c06d479197118",
+    "lib/room-media.mjs": "867d46a6895816627bae58fb16b47d2d84b64a0ff3d22c52c506229e784c841d",
+    "lib/room-media-manifest.json": "d288208b0f91091c2de2a2084263d23133787a531d4e160658c68acb165f0362",
+    "lib/room-media-manifest.mjs": "8803e6e3076fe725a6a5029ebf14bd223008747bcd53dd829d3a0f2e542a6efa"
+  },
+  "source_sha256_after": {
+    "tests/room-media.test.mjs": "51fcd5cd6449fc32f49434e8e1eba5f8a928f6d7d26d90cbf163de3555f250d8",
+    "tests/test_room_media_seed.py": "20dbd254a59fa7e34ed2f43df639eeaa99843c13d8f1db9d4ad5c15b85fe6ff6",
+    "scripts/room_media_seed.py": "97984d5285f5f2ece1c7699e98df8176c75c1a68f07bee70710c06d479197118",
+    "lib/room-media.mjs": "867d46a6895816627bae58fb16b47d2d84b64a0ff3d22c52c506229e784c841d",
+    "lib/room-media-manifest.json": "d288208b0f91091c2de2a2084263d23133787a531d4e160658c68acb165f0362",
+    "lib/room-media-manifest.mjs": "8803e6e3076fe725a6a5029ebf14bd223008747bcd53dd829d3a0f2e542a6efa"
+  },
+  "tested_sources_unchanged_during_execution": true,
+  "results": [
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "tests/room-media.test.mjs"
+      ],
+      "started_at_utc": "2026-10-11T16:03:30.387370+00:00",
+      "finished_at_utc": "2026-10-11T16:03:30.593747+00:00",
+      "elapsed_seconds": 0.206,
+      "exit_code": 0,
+      "passed": true,
+      "counts": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "log_path": "RECOVERY_WORKSPACE/repo-audit/concurrent-migration/8027a1e/focused-node-tests.log",
+      "log_sha256": "64197717f9b30a5706287b99e6422f94c6542a48269408e1816c9bd17b437e08",
+      "original_log_sha256": "64197717f9b30a5706287b99e6422f94c6542a48269408e1816c9bd17b437e08",
+      "log_sha256_scope": "original_log_bytes_before_public_path_redaction",
+      "public_log_path": "docs/recovery/evidence/migration-02-focused-node-tests.log",
+      "public_log_sha256": "687b1f3853b0e8daaf053923a05816f40262ace79c2d9e2e4bb81cdd83db3870",
+      "public_log_bytes": 6190
+    },
+    {
+      "name": "python",
+      "command": [
+        "env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_room_media_seed.py",
+        "-v"
+      ],
+      "started_at_utc": "2026-10-11T16:03:30.387981+00:00",
+      "finished_at_utc": "2026-10-11T16:03:30.652202+00:00",
+      "elapsed_seconds": 0.264,
+      "exit_code": 0,
+      "passed": true,
+      "counts": {
+        "tests": 26
+      },
+      "log_path": "RECOVERY_WORKSPACE/repo-audit/concurrent-migration/8027a1e/focused-python-tests.log",
+      "log_sha256": "c5c3c04ad311bc0f01e772fb69e073929c96a33838bfa89878b63a15bd192f63",
+      "original_log_sha256": "c5c3c04ad311bc0f01e772fb69e073929c96a33838bfa89878b63a15bd192f63",
+      "log_sha256_scope": "original_log_bytes_before_public_path_redaction",
+      "public_log_path": "docs/recovery/evidence/migration-02-focused-python-tests.log",
+      "public_log_sha256": "a857c44c7aa58e798518e820b3fbadd1ec30fdd906120ae3866e3d5d67779948",
+      "public_log_bytes": 3696
+    }
+  ],
+  "passed": true,
+  "scope": "Dependency-free unit and DOM contract checks; no real network, R2 bucket, browser decoder, dependency installation, or framework build. Python bytecode writes disabled; test fixtures use temporary directories."
+}

@@ -1,0 +1,334 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "correction-machine",
+  "name": "Correction machine",
+  "seed": 773,
+  "duration": 12.166666667,
+  "source": {
+    "id": "god-here-second-draft",
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "offset": 95,
+    "duration": 12.166666667
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "type": "source"
+    },
+    {
+      "id": "question-stutter",
+      "type": "stutter",
+      "name": "Stutter",
+      "presetId": "hammer",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "window": 0.095,
+        "repeats": 24,
+        "rate": 1,
+        "gap": 0.012,
+        "release": 0.008,
+        "capture": 6.14
+      },
+      "macro": [
+        {
+          "parameter": "window",
+          "min": 0.32,
+          "max": 0.095,
+          "curve": "linear"
+        },
+        {
+          "parameter": "repeats",
+          "min": 4,
+          "max": 24,
+          "curve": "linear"
+        },
+        {
+          "parameter": "gap",
+          "min": 0.07,
+          "max": 0.012,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "correction-word",
+      "type": "typography",
+      "name": "Typography",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "text",
+        "picture"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "size": 1.3,
+        "copies": 3,
+        "persistence": 3.2,
+        "fragment": 0.65,
+        "mode": 0,
+        "drift": 0.55
+      },
+      "macro": [
+        {
+          "parameter": "size",
+          "min": 0.12,
+          "max": 1.05,
+          "curve": "linear"
+        },
+        {
+          "parameter": "copies",
+          "min": 1,
+          "max": 9,
+          "curve": "linear"
+        },
+        {
+          "parameter": "fragment",
+          "min": 0,
+          "max": 0.65,
+          "curve": "linear"
+        },
+        {
+          "parameter": "drift",
+          "min": 0,
+          "max": 0.55,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "ownership",
+      "type": "exchange",
+      "name": "Exchange",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "all",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "offset": 1,
+        "transition": 0.05,
+        "interval": 0.72,
+        "timeOffset": 0.45,
+        "mode": 2
+      },
+      "macro": [
+        {
+          "parameter": "interval",
+          "min": 3,
+          "max": 0.72,
+          "curve": "linear"
+        },
+        {
+          "parameter": "transition",
+          "min": 0.6,
+          "max": 0.05,
+          "curve": "linear"
+        },
+        {
+          "parameter": "timeOffset",
+          "min": 0,
+          "max": 0.45,
+          "curve": "linear"
+        }
+      ],
+      "automation": [
+        {
+          "parameter": "params.offset",
+          "interpolation": "step",
+          "keyframes": [
+            {
+              "time": 0,
+              "value": 1
+            },
+            {
+              "time": 4.01500000011,
+              "value": 2
+            },
+            {
+              "time": 8.03000000022,
+              "value": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "gain": 1
+    }
+  ],
+  "connections": [
+    {
+      "from": "source",
+      "to": "question-stutter",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "question-stutter",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "question-stutter",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "question-stutter",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "question-stutter",
+      "to": "correction-word",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "question-stutter",
+      "to": "correction-word",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "question-stutter",
+      "to": "correction-word",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "question-stutter",
+      "to": "correction-word",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "correction-word",
+      "to": "ownership",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "correction-word",
+      "to": "ownership",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "correction-word",
+      "to": "ownership",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "correction-word",
+      "to": "ownership",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "ownership",
+      "to": "output",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "ownership",
+      "to": "output",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "ownership",
+      "to": "output",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "ownership",
+      "to": "output",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    }
+  ],
+  "events": [],
+  "metadata": {
+    "sourceClock": "seconds relative to excerpt",
+    "voiceInput": "shared recording; performer isolation is not claimed",
+    "project": "god-here",
+    "originalPictureInterval": [
+      95,
+      107.166666667
+    ],
+    "identityPolicy": "Appearance labels, not certified performer names.",
+    "dialogueReference": {
+      "sha256": "24817c4f076a1c9fca43ebcf9825964610fc2956c1755501547de7477d173254",
+      "method": "Inherited DeepFilterNet v0.5.6 candidate; shared stereo recording; artist/listening acceptance remains pending."
+    },
+    "wordMaterial": [
+      "how",
+      "why",
+      "what"
+    ],
+    "layerStatus": "Guided classical segmentation workprint; fine roto is not accepted.",
+    "roomStatus": "Hybrid generated hidden-room fill; source-shot registration remains approximate.",
+    "objectStatus": "Authored object regions, not segmented object tracks.",
+    "patchMacro": "Authority cycles",
+    "description": "Stutter → Typography → Exchange; how / why / what become forceful correction units.",
+    "sourceSelections": "Workprint intervals; checked speech cues must carry their own provenance.",
+    "wordMode": "authored",
+    "words": "HOW WHY WHAT",
+    "wordProvenance": "HOW and WHAT have provisional ASR positions in this excerpt; WHY is authored screenplay text, not performed dialogue in this excerpt."
+  }
+}

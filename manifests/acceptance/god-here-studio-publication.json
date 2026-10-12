@@ -1,0 +1,186 @@
+{
+  "schema_version": "god-here.studio-publication.v1",
+  "status": "published_access_and_bytes_verified_browser_acceptance_open",
+  "updated_at_utc": "2026-10-12T18:03:28.071033+00:00",
+  "production_url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+  "audience": "public_unchanged; Studio routes require verified owner identity",
+  "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+  "source_commit": "4d70e621e754f27d57359adabc93c0cfa5e91ab2",
+  "site_version": {
+    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_78a47039b4a08191b0236f3faebb3704",
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "version_number": 18,
+    "source": {
+      "commit_sha": "4d70e621e754f27d57359adabc93c0cfa5e91ab2"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "content_hash": "sha256:15c327635faa2b5a9b0014c3cd7912604b942ec2cfa3a34611961effa3229abc",
+      "size_bytes": 265256960,
+      "file_count": 394
+    },
+    "deployment_id": null
+  },
+  "current_deployment": {
+    "id": "appgdep_6acd20d461a8819187cd651a7c5be614",
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "title": "god-here \u00b7 Five realities",
+    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_78a47039b4a08191b0236f3faebb3704",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6ac71699c8fc81919b030dcf9ad112e4",
+    "failure_message": null,
+    "env_set_revision": 9,
+    "updated_at": "2026-10-12T18:03:28.071033+00:00"
+  },
+  "environment": {
+    "revision": 9,
+    "retained_keys": [
+      "STUDIO_MEDIA_UPLOAD_ENABLED",
+      "STUDIO_OWNER_EMAIL"
+    ],
+    "STUDIO_MEDIA_UPLOAD_ENABLED": "false",
+    "studio_token_removed_from_control_plane": true,
+    "qualification": "Earlier removal alone did not revoke provider runtime access. Explicit default-off source gate is the effective shutdown."
+  },
+  "prior_frozen_checkpoint": "manifests/acceptance/god-here-workbench-publication.json",
+  "prior_checkpoint_scope": "Version11 historical checkpoint and negative-probe contracts remain unchanged. This Studio receipt is the current publication authority.",
+  "protected_static_paths": 0,
+  "small_server_only_assets": 61,
+  "registered_delivery": {
+    "public": {
+      "count": 52,
+      "bytes": 540442474,
+      "manifest_sha256": "e351c99497b30bb81810ac08f0db03c7114da414f17936c4fef8f23527bd81b2",
+      "evidence": {
+        "path": "manifests/acceptance/2026-10-12/legacy-media-delivery.json",
+        "bytes": 39064,
+        "sha256": "d02c2f4b2aec2261d601bf4f116c386cb9508583ba3b87d8499c700cdea8e4d1"
+      }
+    },
+    "protected": {
+      "count": 41,
+      "bytes": 194239924,
+      "manifest_sha256": "512afafe0c43a17a9391d731a8d22a7d5e05b954058008a6e55194f9cf5cdac5",
+      "evidence": {
+        "path": "manifests/acceptance/2026-10-12/studio-media-delivery.json",
+        "bytes": 34905,
+        "sha256": "e1835eb169a2050b5bb5f03247a18489457cc5636b0c5e3df0a428fa6dc7945a"
+      },
+      "scope": "Full bytes, HEAD and range checks through fixed-object administration, then administration disabled. Owner-session end-user playback remains untested."
+    }
+  },
+  "verification": {
+    "python_tests": 318,
+    "node_tests": 241,
+    "site_node_tests": 80,
+    "site_python_tests": 37,
+    "decoded_media_path_checks": 241,
+    "final_http_checks": 12,
+    "final_exact_public_text_checks": 3,
+    "upload_administration_disabled": true
+  },
+  "evidence": {
+    "summary.json": {
+      "path": "manifests/acceptance/2026-10-12/summary.json",
+      "bytes": 7209,
+      "sha256": "03e9c7d42bd9c41893be2ac289755aa081b8cf807c178aacf2a5419f5bef4c89"
+    },
+    "final-control-plane.json": {
+      "path": "manifests/acceptance/2026-10-12/final-control-plane.json",
+      "bytes": 1688,
+      "sha256": "ab1595b37767ce66a51aae17a769d3a94f1f4ba9913124a3cd981c23ef0ca010"
+    },
+    "final-build.json": {
+      "path": "manifests/acceptance/2026-10-12/final-build.json",
+      "bytes": 367,
+      "sha256": "1e719c5a97740bb1b45714aa3818de6911d9103f6d19df837c90acd6d3e9bf72"
+    },
+    "site-build-v18.log": {
+      "path": "manifests/acceptance/2026-10-12/site-build-v18.log",
+      "bytes": 1408,
+      "sha256": "52427a6a0f8d0adbfc4fa023b1d3d61d67308e4b741a27a00839b14f7bcc46ed"
+    },
+    "site-tests-v18.log": {
+      "path": "manifests/acceptance/2026-10-12/site-tests-v18.log",
+      "bytes": 6977,
+      "sha256": "441a702f480426da0fc48d632b935ef58496817880d84b990d7800221e57278f"
+    },
+    "hosted-routes-v18.json": {
+      "path": "manifests/acceptance/2026-10-12/hosted-routes-v18.json",
+      "bytes": 3957,
+      "sha256": "b10e6ae3423d06ef1da5283fc0617e3be2854924c4c24102629350c77bfc9194"
+    },
+    "public-text-v18.json": {
+      "path": "manifests/acceptance/2026-10-12/public-text-v18.json",
+      "bytes": 882,
+      "sha256": "e44eaa9081f80640f9bcc4dfe520ef3d33d26d6a94a5e453ecf19a8c4f1b2104"
+    },
+    "admin-disabled-v18.json": {
+      "path": "manifests/acceptance/2026-10-12/admin-disabled-v18.json",
+      "bytes": 279,
+      "sha256": "489539e9adca9fcf0fa357dc5ef4c936db054e8be943b70609f0639991412305"
+    },
+    "final-review-dispositions.json": {
+      "path": "manifests/acceptance/2026-10-12/final-review-dispositions.json",
+      "bytes": 12463,
+      "sha256": "5e65152240449d7ae831535bb6d7c5863d245bed23ab37e5b7df0d068dabf223"
+    },
+    "code-ci.json": {
+      "path": "manifests/acceptance/2026-10-12/code-ci.json",
+      "bytes": 984,
+      "sha256": "29ee9b54e3b5f93e801ac6ea26c01e927b88640442d026f6bb59e9d26d3e4bb7"
+    },
+    "project-checks-final.log": {
+      "path": "manifests/acceptance/2026-10-12/project-checks-final.log",
+      "bytes": 70733,
+      "sha256": "31008c7ea8d84fb198c351dc9fe530b35fa273b28819b6aae0d3d4b952fc84a9"
+    }
+  },
+  "privacy_correction": {
+    "summary": "Version12 provider-static routing bypassed the intended Worker guard and was immediately rolled back to11. Corrected versions exclude every protected file from provider-static delivery and return401/no-store without owner identity.",
+    "evidence": {
+      "path": "manifests/acceptance/2026-10-12/protected-control-plane.json",
+      "bytes": 3136,
+      "sha256": "6223bf5e57620c54ce3f448485f2eb7b1c8cf0e4adc573c2cc5c5eb1dbedf29b"
+    },
+    "failed_http_observation": {
+      "path": "manifests/acceptance/2026-10-12/rolled-back-v12-http-observation.json",
+      "bytes": 2085,
+      "sha256": "19fd72dad6aa3966eaf9c79230cbfad71f70009f937dc231edfae07e23c8630e"
+    },
+    "do_not_redeploy_version": 12
+  },
+  "administration_correction": {
+    "summary": "Control-plane removal did not revoke the old token in v14. Administration now requires an explicit true enable flag; revision9 sets false. Final live checks with the old valid token return503.",
+    "observation": {
+      "path": "manifests/acceptance/2026-10-12/admin-retained-v14-observation.json",
+      "bytes": 255,
+      "sha256": "aeef07a2fa2cb79e8c115dfacc39cff82c6a4966a34fe99e10d79f0597fb9d7d"
+    },
+    "control_plane": {
+      "path": "manifests/acceptance/2026-10-12/v14-control-plane.json",
+      "bytes": 1449,
+      "sha256": "ae393d59ca2de96bbdbc63154caf867e3541471b76225658a98c0be44294a582"
+    },
+    "verified_shutdown": {
+      "path": "manifests/acceptance/2026-10-12/admin-disabled-v18.json",
+      "bytes": 279,
+      "sha256": "489539e9adca9fcf0fa357dc5ef4c936db054e8be943b70609f0639991412305"
+    }
+  },
+  "remaining_gates": [
+    "Hosted owner-session browser controls and playback",
+    "Physical Safari/iPhone and audience sessions",
+    "Original-browser review export/import",
+    "Performed-language listening and sound/picture acceptance",
+    "Fresh selected-treatment renders under corrected engines",
+    "Full-film mattes/occlusion and30 reconstructed coverage options",
+    "Horizontal/vertical masters, captions, native handoff",
+    "160 unmatched historical hashes and all37 preserved foundation scope dispositions"
+  ],
+  "finish_line_plan": "docs/GOD-HERE-FINISH-LINE.md"
+}

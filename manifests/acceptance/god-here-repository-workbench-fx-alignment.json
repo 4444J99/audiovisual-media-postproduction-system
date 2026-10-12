@@ -1,0 +1,82 @@
+{
+  "schema_version": "god-here.repository-workbench-fx-alignment.v1",
+  "recorded_at_utc": "2026-10-11T19:50:01.192345+00:00",
+  "published_site_source": "e1632852f8b7cedd1623a36fb314589a7257dafa",
+  "repaired_runtime_public_commit": "c6656685603022193617405c87b831d28f570299",
+  "scope": "Bring the already-published application loading and preview-provenance gates into the canonical repository. Native rendering modules and authored fixtures remain unchanged.",
+  "changed_application_files": [
+    {
+      "source_path": "web/fx/app.mjs",
+      "bytes": 43341,
+      "sha256": "cb85b2c6869a1f52d110b60ac03db91b136ee465ecece0e656374c3be0b6446a",
+      "prior_repository_sha256": "288a6aaf63daa61842791e47dc736e8abc92ba17bd6597f3af7d4e67d8d42726"
+    },
+    {
+      "source_path": "web/fx/asset-loader.mjs",
+      "bytes": 1088,
+      "sha256": "d17c7e844e0d7eb2355be7be34b5ce3d167e251e0817d700a5d93036e0f5e0d0",
+      "prior_repository_sha256": null
+    },
+    {
+      "source_path": "web/fx/engine-provenance.json",
+      "bytes": 2769,
+      "sha256": "af521365130a3cb23b98abb15ce485f412d18bfad4d43c828307ab1bf7e291e8",
+      "prior_repository_sha256": null
+    },
+    {
+      "source_path": "web/fx/index.html",
+      "bytes": 10588,
+      "sha256": "dcfdcede1c19947be5ab0cadcc860be34ee2e39ba488b666382325abf5118789",
+      "prior_repository_sha256": "3f8b4f2aa566d3b58436634e7326a0d725d176c13b518bc2f0be4c36fee8bb30"
+    },
+    {
+      "source_path": "web/fx/preview-provenance.mjs",
+      "bytes": 1270,
+      "sha256": "44a3e1c53a04d97ca75bd8cbd89760ee2df754e73667980cd45ba524aa639f8d",
+      "prior_repository_sha256": null
+    },
+    {
+      "source_path": "web/fx/watch.html",
+      "bytes": 6462,
+      "sha256": "8626205d43e9854e6de37b544d9727453cc2a29ca2aa895eca79897d657c27de",
+      "prior_repository_sha256": "6bb11f2d590dbfa2d2c011b4e5afa6e0b2c65c28474f61b0b938cec4535b4a57"
+    }
+  ],
+  "top_level_fx_source_files_matching_site": [
+    "app.mjs",
+    "asset-loader.mjs",
+    "audio-engine.mjs",
+    "audio-worker.mjs",
+    "catalog.mjs",
+    "core.mjs",
+    "engine-provenance.json",
+    "god-here.config.mjs",
+    "index.html",
+    "preview-key.mjs",
+    "preview-provenance.mjs",
+    "rack.schema.json",
+    "schema.mjs",
+    "visual-engine.mjs",
+    "watch.css",
+    "watch.html",
+    "watch.js",
+    "workbench-state.mjs",
+    "workbench.css"
+  ],
+  "preserved_factory_metadata": {
+    "source_path": "projects/god-here/fx/evidence/preserved-factory-render-manifest.json",
+    "bytes": 200092,
+    "sha256": "4ac6004775c790f0ee8dc61da34ea0784d410b0e305d3dc6a335d6f11301d387"
+  },
+  "media_binaries_added": 0,
+  "artistic_approvals_added": 0,
+  "test_scope": "Four preview-provenance regressions and six asset-loader regressions reused from the verified Site with repository-relative source paths; current GitHub CI discovers all ten.",
+  "focused_verification": {
+    "status": "passed",
+    "tests": 10,
+    "failed": 0,
+    "skipped": 0,
+    "command": "node --test tests/fx/asset-loader.test.mjs tests/fx/preview-provenance.test.mjs",
+    "observed_at_utc": "2026-10-11T19:51:33.467193+00:00"
+  }
+}

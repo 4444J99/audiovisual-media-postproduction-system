@@ -1,0 +1,10 @@
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: audiovisual-media-postproduction-system
+  Building wheel for audiovisual-media-postproduction-system (pyproject.toml): started
+  Building wheel for audiovisual-media-postproduction-system (pyproject.toml): finished with status 'done'
+  Created wheel for audiovisual-media-postproduction-system: filename=audiovisual_media_postproduction_system-0.2.0-py3-none-any.whl size=87370 sha256=dbe99892782780c9d19e77c55116107b79c7dd79ad8de79a3c9e24b8de876ed4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-er6w1hgx/wheels/95/9b/8e/27d5458ddb253ef557c7423ac65b420e8e0aed017d49bcbe48
+Successfully built audiovisual-media-postproduction-system
+{"status": "passed", "loaded_from_built_wheel": true, "modules": ["amp.cli", "amp.execution", "amp.media_resolver"], "cli_entrypoint_callable": true, "corrected_output_verifier_imported": true}

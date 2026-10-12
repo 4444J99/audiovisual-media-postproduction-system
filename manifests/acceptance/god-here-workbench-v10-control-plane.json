@@ -1,0 +1,26 @@
+{
+  "site_version": {
+    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_60177a8b16f081918a2b2773d996086f",
+    "version_number": 10,
+    "source": {
+      "commit_sha": "e1632852f8b7cedd1623a36fb314589a7257dafa"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "content_hash": "sha256:8993c9beca5f25ee7374987339e9a20e64f9d8b64c0fce0983d8907690b77237",
+      "file_count": 393,
+      "size_bytes": 263659520
+    }
+  },
+  "deployment": {
+    "id": "appgdep_6acbe775d0f08191bb5f4e741c61b0cc",
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_60177a8b16f081918a2b2773d996086f",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+    "env_set_revision": 6,
+    "updated_at": "2026-10-11T19:46:23.665968+00:00",
+    "failure_message": null
+  }
+}

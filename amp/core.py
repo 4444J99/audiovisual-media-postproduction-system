@@ -14,10 +14,26 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 STYLES = {"pressure", "lag", "refraction", "residue", "erosion"}
 
 
-def write_json(path, data):
+def require_distinct_outputs(inputs, outputs):
+    """Reject only output paths that would replace or modify protected inputs."""
+    protected = [Path(path) for path in inputs if path is not None]
+    for output in outputs:
+        target = Path(output)
+        for source in protected:
+            if target.resolve() == source.resolve() or (target.exists() and source.exists() and target.samefile(source)):
+                raise ValueError("Output would overwrite an input; choose a distinct destination")
+
+
+def write_json(path, data, *, protected_inputs=()):
+    import tempfile
     path = Path(path)
+    require_distinct_outputs(protected_inputs, [path])
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2) + "\n")
+    with tempfile.TemporaryDirectory(prefix=".amp-json-", dir=path.parent) as directory:
+        temporary = Path(directory) / path.name
+        temporary.write_text(json.dumps(data, indent=2) + "\n")
+        require_distinct_outputs(protected_inputs, [path])
+        temporary.replace(path)
 
 
 def sha256(path):
@@ -198,6 +214,12 @@ def composite(image, history, config, t, *, mode="hard", overrides=None, layers=
             ImageDraw.Draw(mask).polygon(poly, fill=255)
             if layer["kind"] == "gesture":
                 old = history[max(0, len(history) - 1 - layer["delay_frames"])]
+                # Geometry must follow the same source time as the delayed picture.
+                effective_delay=min(layer['delay_frames'],len(history)-1)
+                source_time=t-effective_delay/config['fps']
+                mask=Image.new('L',image.size)
+                poly=[(round(x*w),round(y*h)) for x,y in polygon_at(layer,source_time)]
+                ImageDraw.Draw(mask).polygon(poly,fill=255)
                 out.paste(old, (0, 0), mask)
             else:
                 # An authored planar texture, never a claim of recovered hidden space.

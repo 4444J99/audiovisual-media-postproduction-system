@@ -1,0 +1,188 @@
+{
+  "started": "2026-10-08T06:19:46.740Z",
+  "root": "/workspace/scratch/558050fdfb0c/god-here-site/dist",
+  "browser": "Local headless Playwright WebKit; phone viewport 390\u00d7844; not physical iOS Safari",
+  "sourceHashes": {
+    "watch.html": "6bb11f2d590dbfa2d2c011b4e5afa6e0b2c65c28474f61b0b938cec4535b4a57",
+    "watch.js": "3d6fabe3ca03cf9c49f955d7c0153382672701db02b0fd6ec756670b01cc7b87",
+    "watch.css": "e319eb0d60db858617be89d29e994de5cdaedf701688329f70d03c74b80b0cc6"
+  },
+  "checks": [
+    {
+      "name": "Phone catalogue has six patches, thirteen demos, portrait assets and no header overflow",
+      "detail": {
+        "patches": 6,
+        "demos": 13,
+        "validPortraitLinks": 19,
+        "layout": {
+          "viewport": 390,
+          "document": 390,
+          "body": 390,
+          "header": [
+            {
+              "element": "HEADER",
+              "left": 0,
+              "right": 390
+            },
+            {
+              "element": "A",
+              "left": 13,
+              "right": 225.1875
+            },
+            {
+              "element": "STRONG",
+              "left": 82.84574890136719,
+              "right": 225.18324279785156
+            },
+            {
+              "element": "A",
+              "left": 13,
+              "right": 177.296875
+            }
+          ]
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "Play starts native picture and non-muted audio from the portrait patch",
+      "detail": {
+        "src": "/fx/assets/renders/message-impact-portrait.mp4",
+        "paused": false,
+        "muted": false,
+        "volume": 1,
+        "controls": true,
+        "playsInline": true,
+        "readyState": 4,
+        "currentTime": 0.273856029,
+        "width": 270,
+        "height": 480,
+        "audioTracks": 1
+      },
+      "pass": true
+    },
+    {
+      "name": "Selecting a processor immediately plays its native portrait demonstration",
+      "detail": {
+        "video": {
+          "src": "/fx/assets/renders/demo-damage-portrait.mp4",
+          "paused": false,
+          "muted": false,
+          "volume": 1,
+          "controls": true,
+          "playsInline": true,
+          "readyState": 4,
+          "currentTime": 0.058390739,
+          "width": 270,
+          "height": 480,
+          "audioTracks": 1
+        },
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 270,
+            "height": 480
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "channels": 2
+          }
+        ]
+      },
+      "pass": true
+    },
+    {
+      "name": "Full screen fills 390\u00d7844 and its Exit button restores the page",
+      "detail": {
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "videoBounds": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "exited": {
+          "expanded": false,
+          "bodyFull": false,
+          "fullscreen": false
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "Edit this patch opens the selected demonstration in the editable rack",
+      "detail": {
+        "query": "?demo=damage",
+        "id": "demo-damage",
+        "processor": "damage",
+        "phases": [
+          "bypass",
+          "extreme",
+          "parameter sweep",
+          "bypass"
+        ],
+        "ready": true
+      },
+      "pass": true
+    },
+    {
+      "name": "Native player still plays when constructing a Worker would throw",
+      "detail": {
+        "workerCalls": 0,
+        "video": {
+          "src": "/fx/assets/renders/message-impact-portrait.mp4",
+          "paused": false,
+          "muted": false,
+          "volume": 1,
+          "controls": true,
+          "playsInline": true,
+          "readyState": 4,
+          "currentTime": 0.093070289,
+          "width": 270,
+          "height": 480,
+          "audioTracks": 1
+        }
+      },
+      "pass": true
+    },
+    {
+      "name": "With JavaScript disabled, native controls and all direct movie links remain usable",
+      "detail": {
+        "video": {
+          "src": "/fx/assets/renders/message-impact.mp4",
+          "paused": true,
+          "muted": false,
+          "volume": 1,
+          "controls": true,
+          "playsInline": true,
+          "readyState": 4,
+          "currentTime": 0,
+          "width": 480,
+          "height": 270,
+          "audioTracks": 1
+        },
+        "validMovieLinks": 22,
+        "noscriptVisible": true
+      },
+      "pass": true
+    },
+    {
+      "name": "No uncaught exceptions during native player scenarios",
+      "detail": {
+        "pageErrors": []
+      },
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "finished": "2026-10-08T06:19:52.558Z",
+  "passed": 8,
+  "failed": 0
+}

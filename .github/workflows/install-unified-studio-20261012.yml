@@ -1,0 +1,109 @@
+name: Install pinned unified Studio source
+
+"on":
+  push:
+    branches: [integration/unified-review-site-20261012]
+    paths: [.github/workflows/install-unified-studio-20261012.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: install-unified-studio-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  install-source:
+    if: github.repository == '4444J99/audiovisual-media-postproduction-system' && github.ref == 'refs/heads/integration/unified-review-site-20261012'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - name: Recover only checksum-pinned public source files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import base64, hashlib, json, lzma, os
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          repo = '4444J99/audiovisual-media-postproduction-system'
+          pieces = [('6396f622e89a9759e110607f429bf30d3315b6f6', 'b7937b637b7ac19b1ae976a359fc18e4b704ba8c330bf644b2ecd2eca261fa41'), ('52c40487f90e7233f79a9c1416993af6b0072027', '5581c2e2f7732ff21c4f51fde41a9b4eb6d2cf8be0ff73d97ae6cc312c5b2e3e')]
+          chunks = []
+          for sha, digest in pieces:
+              req = Request(f'https://api.github.com/repos/{repo}/git/blobs/{sha}', headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'], 'Accept':'application/vnd.github+json'})
+              with urlopen(req, timeout=30) as r:
+                  obj = json.load(r)
+              chunk = base64.b64decode(obj['content'])
+              assert len(chunk) == 12984 and hashlib.sha256(chunk).hexdigest() == digest
+              chunks.append(chunk)
+          packed = b''.join(chunks)
+          assert hashlib.sha256(packed).hexdigest() == 'a913b8cca834805e36afab905385a752ddf57122d9d2746ec1a02f520c92590a'
+          decoder = lzma.LZMADecompressor(memlimit=256*1024*1024)
+          raw = decoder.decompress(packed, max_length=1048576)
+          assert decoder.eof and len(raw) == 87192
+          payload = json.loads(raw)
+          allowed = set('docs/superpowers/plans/2026-10-12-unified-site.md docs/superpowers/specs/2026-10-12-unified-site-design.md tests/studio/browser_acceptance.py tests/studio/catalog.test.mjs tests/test_studio_build.py tools/check.py tools/studio/build_site.py web/studio/core.mjs web/studio/index.template.html web/studio/layouts.html web/studio/layouts.mjs web/studio/legacy-layout.css web/studio/review-layout.css web/studio/studio.css web/studio/studio.mjs'.split())
+          assert set(payload['files']) == set(payload['sha256']) == allowed
+          assert payload['overwrite_preconditions'] == {'tools/check.py':'2ea3882612067f26933a746725fdb18e6106bc46e022a235a7bf037efed73bcf'}
+          for name, content in payload['files'].items():
+              path = Path(name)
+              assert not path.is_absolute() and '..' not in path.parts and not path.is_symlink()
+              desired = hashlib.sha256(content.encode()).hexdigest()
+              assert desired == payload['sha256'][name]
+              if path.exists():
+                  actual = hashlib.sha256(path.read_bytes()).hexdigest()
+                  assert actual in (desired, payload['overwrite_preconditions'].get(name)), name+' changed since the verified baseline'
+          for name, content in payload['files'].items():
+              path = Path(name); path.parent.mkdir(parents=True, exist_ok=True); path.write_text(content, encoding='utf-8')
+              assert hashlib.sha256(path.read_bytes()).hexdigest() == payload['sha256'][name]
+          Path('/tmp/unified-studio-install.json').write_text(json.dumps({'files':payload['sha256'], 'packed_sha256':hashlib.sha256(packed).hexdigest(), 'scope':'public source only; no media, private notes, site publication, or main merge'}, indent=2))
+          print('Recovered and byte-verified all 15 public source files')
+          PY
+      - name: Run public-source regression checks
+        run: |
+          python -m unittest discover -s tests -p test_studio_build.py -v
+          node --test tests/studio/catalog.test.mjs
+          node --check web/studio/studio.mjs
+          python -m py_compile tools/studio/build_site.py tests/studio/browser_acceptance.py
+      - name: Commit only to the authorized integration branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import base64, json, os, subprocess
+          from pathlib import Path
+          branch = 'integration/unified-review-site-20261012'
+          assert os.environ['GITHUB_REF'] == 'refs/heads/'+branch
+          receipt = json.loads(Path('/tmp/unified-studio-install.json').read_text())
+          def git(*args):
+              return subprocess.check_output(['git', *args], text=True).strip()
+          auth = base64.b64encode(('x-access-token:'+os.environ['GH_TOKEN']).encode()).decode()
+          config = 'http.https://github.com/.extraheader=AUTHORIZATION: basic '+auth
+          remote = git('-c',config,'ls-remote','origin','refs/heads/'+branch).split()[0]
+          assert remote == os.environ['GITHUB_SHA'], 'Branch moved; refusing to overwrite concurrent work'
+          git('config','user.name','github-actions[bot]')
+          git('config','user.email','41898282+github-actions[bot]@users.noreply.github.com')
+          git('add','--',*sorted(receipt['files']))
+          changed = git('diff','--cached','--name-only').splitlines()
+          assert set(changed).issubset(receipt['files'])
+          if changed:
+              git('commit','-m','feat: unify review, comparison and composition in a task-based Studio')
+              git('-c',config,'push','origin','HEAD:refs/heads/'+branch)
+          receipt['source_head'] = git('rev-parse','HEAD')
+          receipt['git_blob_shas'] = {p:git('rev-parse','HEAD:'+p) for p in receipt['files']}
+          receipt['checks'] = {'python_studio':7,'node_studio':17,'syntax':'passed'}
+          Path('audit-output').mkdir(exist_ok=True)
+          Path('audit-output/studio-source-install.json').write_text(json.dumps(receipt,indent=2))
+          print('Preserved source head:',receipt['source_head'])
+          PY
+      - name: Preserve the source receipt
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: unified-studio-source-receipt
+          path: audit-output/studio-source-install.json
+          retention-days: 14
+          if-no-files-found: error

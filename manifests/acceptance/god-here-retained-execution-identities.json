@@ -1,0 +1,4634 @@
+{
+  "schema_version": "amps.retained-execution-identity-addendum.v1",
+  "created_at_utc": "2026-10-11T20:18:43.720020+00:00",
+  "scope": "Five retained native bindings across four renderer families; original recipes and inputs preserved. This is separate from the frozen historical catalog and baseline reproduction view.",
+  "artistic_acceptance": "pending",
+  "numerical_parity_claimed": false,
+  "runs": [
+    {
+      "binding_id": "direction-proof-directed",
+      "adapter": "amp.direction.v1",
+      "native_execution_receipt": {
+        "sha256": "f54f11c97eab9f438d5caaa51dff8ceccfed31ad65792200ce8273e7a026d588",
+        "bytes": 6266
+      },
+      "original_execution_status": "render_verified",
+      "native_render_executed": true,
+      "producing_code": {
+        "git_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "files": [
+          {
+            "path": "amp/__init__.py",
+            "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+            "bytes": 79
+          },
+          {
+            "path": "amp/cli.py",
+            "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+            "bytes": 6354
+          },
+          {
+            "path": "amp/execution.py",
+            "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661",
+            "bytes": 43265
+          },
+          {
+            "path": "amp/media_resolver.py",
+            "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+            "bytes": 7223
+          },
+          {
+            "path": "amp/direction.py",
+            "sha256": "96f3537160b1bca111602117fb908b38fb1cfb024bef0604eeeb10f104e5b5b4",
+            "bytes": 22405
+          },
+          {
+            "path": "amp/core.py",
+            "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849",
+            "bytes": 11990
+          }
+        ],
+        "identity_policy": "Current consumed code bytes are authoritative; upstream identifies the retained workstream, not an old producing engine."
+      },
+      "runtime": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "PIL": "12.3.0",
+        "cv2": "5.0.0",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "ffprobe": "6.1.1-3ubuntu5"
+      },
+      "binding": {
+        "sha256": "6ed3555cbe1b39410fa52329707d9f649261040d59165e591dc0da5a8037d302",
+        "bytes": 1106
+      },
+      "clocks": {
+        "source": {
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 3360
+        },
+        "output": {
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 685,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "audio_sample_rate": 48000,
+          "pcm_samples_per_channel": 1096000
+        },
+        "source_output_map": [
+          {
+            "source_start": 2554,
+            "source_end": 2880,
+            "output_frames": 326,
+            "output_start": 0,
+            "output_end": 326
+          },
+          {
+            "source_start": 2880,
+            "source_end": 3000,
+            "output_frames": 144,
+            "output_start": 326,
+            "output_end": 470
+          },
+          {
+            "source_start": 3000,
+            "source_end": 3215,
+            "output_frames": 215,
+            "output_start": 470,
+            "output_end": 685
+          }
+        ],
+        "frame_sampling": "native integer floor within contiguous half-open source segments",
+        "camera_clock": "full-source frames",
+        "typography_clock": "output frames",
+        "audio_mapping": "native source-sample trims and segment atempo, padded/trimmed to each output interval"
+      },
+      "native_options": {
+        "variant": "directed"
+      },
+      "technical_status": "required_native_outputs_verified",
+      "new_native_execution_for_later_verification": false,
+      "verification_receipt": {
+        "sha256": "f54f11c97eab9f438d5caaa51dff8ceccfed31ad65792200ce8273e7a026d588",
+        "bytes": 6266
+      },
+      "verification_code": {
+        "git_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "files": [
+          {
+            "path": "amp/__init__.py",
+            "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+            "bytes": 79
+          },
+          {
+            "path": "amp/cli.py",
+            "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+            "bytes": 6354
+          },
+          {
+            "path": "amp/execution.py",
+            "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661",
+            "bytes": 43265
+          },
+          {
+            "path": "amp/media_resolver.py",
+            "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+            "bytes": 7223
+          },
+          {
+            "path": "amp/direction.py",
+            "sha256": "96f3537160b1bca111602117fb908b38fb1cfb024bef0604eeeb10f104e5b5b4",
+            "bytes": 22405
+          },
+          {
+            "path": "amp/core.py",
+            "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849",
+            "bytes": 11990
+          }
+        ],
+        "identity_policy": "Current consumed code bytes are authoritative; upstream identifies the retained workstream, not an old producing engine."
+      },
+      "required_output_count": 2,
+      "decoded_media_count": 1
+    },
+    {
+      "binding_id": "directed-integrated-excerpt",
+      "adapter": "amp.revision.v1",
+      "native_execution_receipt": {
+        "sha256": "fef72d8d08e0641b43cc037f95367d4c472bf53c6fbd8bd1f10bccc1b1909e16",
+        "bytes": 7544
+      },
+      "original_execution_status": "render_verified",
+      "native_render_executed": true,
+      "producing_code": {
+        "git_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "files": [
+          {
+            "path": "amp/__init__.py",
+            "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+            "bytes": 79
+          },
+          {
+            "path": "amp/cli.py",
+            "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+            "bytes": 6354
+          },
+          {
+            "path": "amp/execution.py",
+            "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661",
+            "bytes": 43265
+          },
+          {
+            "path": "amp/media_resolver.py",
+            "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+            "bytes": 7223
+          },
+          {
+            "path": "amp/revision.py",
+            "sha256": "00d0b8695df79dbcaf2413c05d4d4e42e33c9cbc4f8c709ccf87523306656c73",
+            "bytes": 15828
+          },
+          {
+            "path": "amp/core.py",
+            "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849",
+            "bytes": 11990
+          },
+          {
+            "path": "amp/render.py",
+            "sha256": "3ed4cf6bba5cab1f6862b815e1d76ad3eb02f3e2c2271a3e0b92d6788e30d5d9",
+            "bytes": 4956
+          },
+          {
+            "path": "amp/audio.py",
+            "sha256": "7fa1e4dfcf0f7be4166939dd997fbb800df19e5efa90a197ee0fab175d9759a9",
+            "bytes": 7762
+          }
+        ],
+        "identity_policy": "Current consumed code bytes are authoritative; upstream identifies the retained workstream, not an old producing engine."
+      },
+      "runtime": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "PIL": "12.3.0",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "ffprobe": "6.1.1-3ubuntu5"
+      },
+      "binding": {
+        "sha256": "d8efc58a920352be60e47d590a652c4d517075035d2e67f105b5bd73ddd5bbc6",
+        "bytes": 1289
+      },
+      "clocks": {
+        "source": {
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 3360
+        },
+        "output": {
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 679,
+          "dimensions": [
+            1280,
+            720
+          ],
+          "audio_sample_rate": 48000,
+          "pcm_samples_per_channel": 1086400
+        },
+        "source_output_map": [
+          {
+            "output_start_frame": 0,
+            "output_end_frame": 401,
+            "source_start_frame": 2554,
+            "source_end_frame": 2955,
+            "audio_speed": 1.0,
+            "output_start": 0.0,
+            "output_end": 13.366666666666667,
+            "source_start": 85.13333333333334,
+            "source_end": 98.5
+          },
+          {
+            "output_start_frame": 401,
+            "output_end_frame": 443,
+            "source_start_frame": 2955,
+            "source_end_frame": 2979,
+            "audio_speed": 0.5714285714285714,
+            "output_start": 13.366666666666667,
+            "output_end": 14.766666666666667,
+            "source_start": 98.5,
+            "source_end": 99.3
+          },
+          {
+            "output_start_frame": 443,
+            "output_end_frame": 679,
+            "source_start_frame": 2979,
+            "source_end_frame": 3215,
+            "audio_speed": 1.0,
+            "output_start": 14.766666666666667,
+            "output_end": 22.633333333333333,
+            "source_start": 99.3,
+            "source_end": 107.16666666666667
+          }
+        ],
+        "frame_sampling": "native float division then integer truncation within chronological disjoint half-open source segments",
+        "camera_clock": "full-source frames",
+        "typography_clock": "full-source seconds",
+        "attention_clock": "full-source seconds",
+        "audio_mapping": "native source-sample trims and segment atempo, padded/trimmed to each output interval"
+      },
+      "native_options": {
+        "width": 1280
+      },
+      "technical_status": "required_native_outputs_verified",
+      "new_native_execution_for_later_verification": false,
+      "verification_receipt": {
+        "sha256": "fef72d8d08e0641b43cc037f95367d4c472bf53c6fbd8bd1f10bccc1b1909e16",
+        "bytes": 7544
+      },
+      "verification_code": {
+        "git_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "files": [
+          {
+            "path": "amp/__init__.py",
+            "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+            "bytes": 79
+          },
+          {
+            "path": "amp/cli.py",
+            "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+            "bytes": 6354
+          },
+          {
+            "path": "amp/execution.py",
+            "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661",
+            "bytes": 43265
+          },
+          {
+            "path": "amp/media_resolver.py",
+            "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+            "bytes": 7223
+          },
+          {
+            "path": "amp/revision.py",
+            "sha256": "00d0b8695df79dbcaf2413c05d4d4e42e33c9cbc4f8c709ccf87523306656c73",
+            "bytes": 15828
+          },
+          {
+            "path": "amp/core.py",
+            "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849",
+            "bytes": 11990
+          },
+          {
+            "path": "amp/render.py",
+            "sha256": "3ed4cf6bba5cab1f6862b815e1d76ad3eb02f3e2c2271a3e0b92d6788e30d5d9",
+            "bytes": 4956
+          },
+          {
+            "path": "amp/audio.py",
+            "sha256": "7fa1e4dfcf0f7be4166939dd997fbb800df19e5efa90a197ee0fab175d9759a9",
+            "bytes": 7762
+          }
+        ],
+        "identity_policy": "Current consumed code bytes are authoritative; upstream identifies the retained workstream, not an old producing engine."
+      },
+      "required_output_count": 2,
+      "decoded_media_count": 1
+    },
+    {
+      "binding_id": "fx-demo-delay",
+      "adapter": "fx.rack.v1",
+      "native_execution_receipt": {
+        "sha256": "d795d2342b63059f2170b0998d47e6a3cba14c262d42252e11ceb66f60e43104",
+        "bytes": 12665
+      },
+      "original_execution_status": "render_verified",
+      "native_render_executed": true,
+      "producing_code": {
+        "git_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "files": [
+          {
+            "path": "amp/__init__.py",
+            "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+            "bytes": 79
+          },
+          {
+            "path": "amp/cli.py",
+            "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+            "bytes": 6354
+          },
+          {
+            "path": "amp/execution.py",
+            "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661",
+            "bytes": 43265
+          },
+          {
+            "path": "amp/media_resolver.py",
+            "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+            "bytes": 7223
+          },
+          {
+            "path": "tools/render-fx.mjs",
+            "sha256": "7d3b703d1d38f8ee389dff22c8dc07224cf68ac56d8149786fd708b61f037382",
+            "bytes": 18485
+          },
+          {
+            "path": "tools/validate-execution-fx.mjs",
+            "sha256": "813dc0b74b0555afb9b1b403732799379fa490c7e174d9db703f8291ec910571",
+            "bytes": 4279
+          },
+          {
+            "path": "web/fx/core.mjs",
+            "sha256": "2127a48b62c507082ccf783937fc0ffb3222bab158d31d4768ea1d5439b9b0af",
+            "bytes": 31251
+          },
+          {
+            "path": "web/fx/catalog.mjs",
+            "sha256": "7f3659b58b446e9aae932b2fc9a2246524b67ec9d70f7730c37d409ab914adfd",
+            "bytes": 14108
+          },
+          {
+            "path": "web/fx/visual-engine.mjs",
+            "sha256": "42be9510643e71595a088faa1fe0ca616297b8a45f0723f19acd2abff75f34b1",
+            "bytes": 24864
+          },
+          {
+            "path": "web/fx/audio-engine.mjs",
+            "sha256": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f",
+            "bytes": 46902
+          },
+          {
+            "path": "web/fx/workbench-state.mjs",
+            "sha256": "f77e43155c3aa9db1c61a4f41a9df7369b0438b154e82a8cf20fe44d6ce15fbf",
+            "bytes": 5965
+          }
+        ],
+        "identity_policy": "Current consumed code bytes are authoritative; upstream identifies the retained workstream, not an old producing engine."
+      },
+      "runtime": {
+        "python": "3.12.14",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "ffprobe": "6.1.1-3ubuntu5",
+        "node": "24.19.0",
+        "@napi-rs/canvas": "0.1.100"
+      },
+      "binding": {
+        "sha256": "6d28498399a023459ca668d6d31b9ed88480cd67195739e2c66aeca0da5cbc1e",
+        "bytes": 998
+      },
+      "clocks": {
+        "source": {
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 3360
+        },
+        "source_consumption": "Derived asset collection; original movie hash is lineage, not a consumed input.",
+        "excerpt": {
+          "source_in_seconds": 95,
+          "source_out_seconds": 107.16666666666667,
+          "proxy_frame_rate": 12,
+          "proxy_frames": 146,
+          "proxy_frame_addressing": {
+            "page": "floor(index/16)",
+            "column": "index%4",
+            "row": "floor((index%16)/4)",
+            "index": "min(145,floor(localSeconds*12))",
+            "sourceFrame": "2850+floor(index*2.5+0.5)"
+          }
+        },
+        "output": {
+          "frame_rate": {
+            "num": 12,
+            "den": 1
+          },
+          "frames": 146,
+          "dimensions": [
+            480,
+            270
+          ],
+          "audio_sample_rate": 24000,
+          "pcm_samples_per_channel": 292000
+        },
+        "automation_clock": "excerpt-relative output seconds",
+        "output_frame_rounding": "Math.ceil(duration * fps - 1e-6)",
+        "audio_sample_rounding": "Math.round(duration * sampleRate)",
+        "source_output_map": "Graph-dependent source resampling/loops/reversal; no single linear source-event map is asserted."
+      },
+      "native_options": {
+        "width": 480,
+        "height": 270,
+        "fps": 12,
+        "duration": 12.166666667,
+        "overlay": "none",
+        "audio_input": "reference"
+      },
+      "technical_status": "required_native_outputs_verified",
+      "new_native_execution_for_later_verification": false,
+      "verification_receipt": {
+        "sha256": "d795d2342b63059f2170b0998d47e6a3cba14c262d42252e11ceb66f60e43104",
+        "bytes": 12665
+      },
+      "verification_code": {
+        "git_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "files": [
+          {
+            "path": "amp/__init__.py",
+            "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+            "bytes": 79
+          },
+          {
+            "path": "amp/cli.py",
+            "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+            "bytes": 6354
+          },
+          {
+            "path": "amp/execution.py",
+            "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661",
+            "bytes": 43265
+          },
+          {
+            "path": "amp/media_resolver.py",
+            "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+            "bytes": 7223
+          },
+          {
+            "path": "tools/render-fx.mjs",
+            "sha256": "7d3b703d1d38f8ee389dff22c8dc07224cf68ac56d8149786fd708b61f037382",
+            "bytes": 18485
+          },
+          {
+            "path": "tools/validate-execution-fx.mjs",
+            "sha256": "813dc0b74b0555afb9b1b403732799379fa490c7e174d9db703f8291ec910571",
+            "bytes": 4279
+          },
+          {
+            "path": "web/fx/core.mjs",
+            "sha256": "2127a48b62c507082ccf783937fc0ffb3222bab158d31d4768ea1d5439b9b0af",
+            "bytes": 31251
+          },
+          {
+            "path": "web/fx/catalog.mjs",
+            "sha256": "7f3659b58b446e9aae932b2fc9a2246524b67ec9d70f7730c37d409ab914adfd",
+            "bytes": 14108
+          },
+          {
+            "path": "web/fx/visual-engine.mjs",
+            "sha256": "42be9510643e71595a088faa1fe0ca616297b8a45f0723f19acd2abff75f34b1",
+            "bytes": 24864
+          },
+          {
+            "path": "web/fx/audio-engine.mjs",
+            "sha256": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f",
+            "bytes": 46902
+          },
+          {
+            "path": "web/fx/workbench-state.mjs",
+            "sha256": "f77e43155c3aa9db1c61a4f41a9df7369b0438b154e82a8cf20fe44d6ce15fbf",
+            "bytes": 5965
+          }
+        ],
+        "identity_policy": "Current consumed code bytes are authoritative; upstream identifies the retained workstream, not an old producing engine."
+      },
+      "required_output_count": 4,
+      "decoded_media_count": 2
+    },
+    {
+      "binding_id": "direction-proof-reference",
+      "adapter": "amp.direction.v1",
+      "native_execution_receipt": {
+        "sha256": "37cf119c8e3c0387dbf4018989218a9b135461c74d778d35acf0e5fc9e52363a",
+        "bytes": 5689
+      },
+      "original_execution_status": "render_verified",
+      "native_render_executed": true,
+      "producing_code": {
+        "git_commit": "994a24550e9ba9d1969db47292c0610ebc96566b",
+        "files": [
+          {
+            "path": "amp/__init__.py",
+            "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+            "bytes": 79
+          },
+          {
+            "path": "amp/cli.py",
+            "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+            "bytes": 6354
+          },
+          {
+            "path": "amp/execution.py",
+            "sha256": "49f5e544a0a0170c4fe44f9ea70eede6c2f3fc7e257e0018062ed33687ff9946",
+            "bytes": 46693
+          },
+          {
+            "path": "amp/media_resolver.py",
+            "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+            "bytes": 7223
+          },
+          {
+            "path": "amp/direction.py",
+            "sha256": "96f3537160b1bca111602117fb908b38fb1cfb024bef0604eeeb10f104e5b5b4",
+            "bytes": 22405
+          },
+          {
+            "path": "amp/core.py",
+            "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849",
+            "bytes": 11990
+          }
+        ],
+        "identity_policy": "Current consumed code bytes are authoritative; upstream identifies the retained workstream, not an old producing engine."
+      },
+      "runtime": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "PIL": "12.3.0",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "ffprobe": "6.1.1-3ubuntu5"
+      },
+      "binding": {
+        "sha256": "81b4e42779db6ffcaf8aec98f74c40a94104fdfa01d6182fbc07b8532181de72",
+        "bytes": 854
+      },
+      "clocks": {
+        "source": {
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 3360
+        },
+        "output": {
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 661,
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "audio_sample_rate": 48000,
+          "pcm_samples_per_channel": 1057600
+        },
+        "source_output_map": [
+          {
+            "source_start": 2554,
+            "source_end": 3215,
+            "output_frames": 661,
+            "output_start": 0,
+            "output_end": 661
+          }
+        ],
+        "frame_sampling": "native integer floor within contiguous half-open source segments",
+        "camera_clock": "full-source frames",
+        "typography_clock": "output frames",
+        "audio_mapping": "native source-sample trims and segment atempo, padded/trimmed to each output interval"
+      },
+      "native_options": {
+        "variant": "reference"
+      },
+      "technical_status": "required_native_outputs_verified",
+      "new_native_execution_for_later_verification": false,
+      "verification_receipt": {
+        "sha256": "37cf119c8e3c0387dbf4018989218a9b135461c74d778d35acf0e5fc9e52363a",
+        "bytes": 5689
+      },
+      "verification_code": {
+        "git_commit": "994a24550e9ba9d1969db47292c0610ebc96566b",
+        "files": [
+          {
+            "path": "amp/__init__.py",
+            "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+            "bytes": 79
+          },
+          {
+            "path": "amp/cli.py",
+            "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+            "bytes": 6354
+          },
+          {
+            "path": "amp/execution.py",
+            "sha256": "49f5e544a0a0170c4fe44f9ea70eede6c2f3fc7e257e0018062ed33687ff9946",
+            "bytes": 46693
+          },
+          {
+            "path": "amp/media_resolver.py",
+            "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+            "bytes": 7223
+          },
+          {
+            "path": "amp/direction.py",
+            "sha256": "96f3537160b1bca111602117fb908b38fb1cfb024bef0604eeeb10f104e5b5b4",
+            "bytes": 22405
+          },
+          {
+            "path": "amp/core.py",
+            "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849",
+            "bytes": 11990
+          }
+        ],
+        "identity_policy": "Current consumed code bytes are authoritative; upstream identifies the retained workstream, not an old producing engine."
+      },
+      "required_output_count": 2,
+      "decoded_media_count": 1
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "adapter": "amp.roomstretch.v1",
+      "native_execution_receipt": {
+        "sha256": "080165cb7f8d8952429c19de78aff69d499449dfbac7cb393b3075ab2fe9a9d5",
+        "bytes": 6510
+      },
+      "original_execution_status": "execution_failed",
+      "native_render_executed": true,
+      "producing_code": {
+        "git_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+        "files": [
+          {
+            "path": "amp/__init__.py",
+            "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+            "bytes": 79
+          },
+          {
+            "path": "amp/cli.py",
+            "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+            "bytes": 6354
+          },
+          {
+            "path": "amp/execution.py",
+            "sha256": "ee476546d083d818ed6cfd6334d21a5c5c143c4adb2783b2aa259e973a27c661",
+            "bytes": 43265
+          },
+          {
+            "path": "amp/media_resolver.py",
+            "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+            "bytes": 7223
+          },
+          {
+            "path": "tools/run_room_stretch.py",
+            "sha256": "fa1579f43071588b29667d6ff086164218ad378c48497654a5e336a3a7da513f",
+            "bytes": 1594
+          },
+          {
+            "path": "amp/roomstretch.py",
+            "sha256": "3616cdf5c4bbac41cc30747a75aebbd0ae3e18467f3a556284cbf8c235a40a5a",
+            "bytes": 29246
+          },
+          {
+            "path": "amp/roomrefine.py",
+            "sha256": "1049b9365db7a811b86c1f5f24e58c83c9254dd18373d06835495700baca4be7",
+            "bytes": 24579
+          },
+          {
+            "path": "amp/roomrack.py",
+            "sha256": "6dbd5b0cb3767618cf4c79e13ee24b79549f2c600475b51ff32b7c0d1855f363",
+            "bytes": 7040
+          },
+          {
+            "path": "amp/roomtone.py",
+            "sha256": "6dabcaf3effd2a56830adf948fbe4a684f0281f2f9d2f9c05f3d6bd5fa867374",
+            "bytes": 9569
+          },
+          {
+            "path": "amp/audio.py",
+            "sha256": "7fa1e4dfcf0f7be4166939dd997fbb800df19e5efa90a197ee0fab175d9759a9",
+            "bytes": 7762
+          },
+          {
+            "path": "amp/core.py",
+            "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849",
+            "bytes": 11990
+          }
+        ],
+        "identity_policy": "Current consumed code bytes are authoritative; upstream identifies the retained workstream, not an old producing engine."
+      },
+      "runtime": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "PIL": "12.3.0",
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "ffprobe": "6.1.1-3ubuntu5"
+      },
+      "binding": {
+        "sha256": "f763af6c93da53f6be80d74f3d5158e506adc48ba3796d54e73e74457005b404",
+        "bytes": 979
+      },
+      "clocks": {
+        "source": {
+          "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+          "frame_rate": {
+            "num": 30,
+            "den": 1
+          },
+          "frames": 3360
+        },
+        "output": {
+          "sample_rate": 48000,
+          "samples_per_channel": 5376000,
+          "channels": 2
+        },
+        "source_reel_map": [
+          {
+            "source_start_sample": 349920,
+            "source_end_sample": 362880,
+            "reel_start_sample": 0,
+            "reel_end_sample": 12960
+          },
+          {
+            "source_start_sample": 1149120,
+            "source_end_sample": 1186560,
+            "reel_start_sample": 12960,
+            "reel_end_sample": 50400
+          },
+          {
+            "source_start_sample": 1326720,
+            "source_end_sample": 1400160,
+            "reel_start_sample": 50400,
+            "reel_end_sample": 123840
+          },
+          {
+            "source_start_sample": 1452480,
+            "source_end_sample": 1478400,
+            "reel_start_sample": 123840,
+            "reel_end_sample": 149760
+          },
+          {
+            "source_start_sample": 3055200,
+            "source_end_sample": 3073920,
+            "reel_start_sample": 149760,
+            "reel_end_sample": 168480
+          },
+          {
+            "source_start_sample": 3136320,
+            "source_end_sample": 3156000,
+            "reel_start_sample": 168480,
+            "reel_end_sample": 188160
+          },
+          {
+            "source_start_sample": 4551840,
+            "source_end_sample": 4558560,
+            "reel_start_sample": 188160,
+            "reel_end_sample": 194880
+          },
+          {
+            "source_start_sample": 4734720,
+            "source_end_sample": 4752000,
+            "reel_start_sample": 194880,
+            "reel_end_sample": 212160
+          }
+        ],
+        "source_reel_samples": 212160,
+        "layer_periods": [
+          {
+            "mode": "literal_varispeed",
+            "samples": 5376000
+          },
+          {
+            "mode": "literal_varispeed",
+            "samples": 4032000
+          },
+          {
+            "mode": "literal_varispeed",
+            "samples": 2688000
+          },
+          {
+            "mode": "literal_varispeed",
+            "samples": 1344000
+          },
+          {
+            "mode": "literal_varispeed",
+            "samples": 672000
+          },
+          {
+            "mode": "spectral_stretch",
+            "samples": 5376000
+          },
+          {
+            "mode": "spectral_stretch",
+            "samples": 4032000
+          },
+          {
+            "mode": "spectral_stretch",
+            "samples": 2688000
+          },
+          {
+            "mode": "spectral_stretch",
+            "samples": 1344000
+          },
+          {
+            "mode": "spectral_stretch",
+            "samples": 672000
+          }
+        ],
+        "event_mapping": "selected-material lineage only; spectral phase randomization has no invertible source-event map",
+        "loop_clock": "output samples at 48000 Hz; full cycles then native truncated final cycle",
+        "source_tail_policy": "native AAC codec-frame tail allowance only; final execution must verify decoded sample count"
+      },
+      "native_options": {
+        "duration": 112.0,
+        "periods": [
+          112.0,
+          84.0,
+          56.0,
+          28.0,
+          14.0
+        ],
+        "target_lufs": -40.37,
+        "audition_boost_db": 14.0,
+        "spectral": true
+      },
+      "technical_status": "required_native_outputs_verified",
+      "new_native_execution_for_later_verification": false,
+      "verification_receipt": {
+        "sha256": "f82c7ee7e4c18d7d3e0ce531ee72fd2950953f75691622be897fd2b257c2ab64",
+        "bytes": 112583
+      },
+      "verification_code": {
+        "git_commit": "994a24550e9ba9d1969db47292c0610ebc96566b",
+        "files": [
+          {
+            "path": "amp/__init__.py",
+            "sha256": "73726923f5d8e55376c0c8ed67d8f1a8101fb3c74f4125ca60916a173cfe4d85",
+            "bytes": 79
+          },
+          {
+            "path": "amp/cli.py",
+            "sha256": "a3df2c67874752a5768020df5de3e8f0e996716aa26c4617a93387eeacbe69b1",
+            "bytes": 6354
+          },
+          {
+            "path": "amp/execution.py",
+            "sha256": "49f5e544a0a0170c4fe44f9ea70eede6c2f3fc7e257e0018062ed33687ff9946",
+            "bytes": 46693
+          },
+          {
+            "path": "amp/media_resolver.py",
+            "sha256": "ed1255d647758de20f797635a41ca9e62df3d46f1af6d26ca07abc77ca33d69c",
+            "bytes": 7223
+          },
+          {
+            "path": "tools/run_room_stretch.py",
+            "sha256": "fa1579f43071588b29667d6ff086164218ad378c48497654a5e336a3a7da513f",
+            "bytes": 1594
+          },
+          {
+            "path": "amp/roomstretch.py",
+            "sha256": "3616cdf5c4bbac41cc30747a75aebbd0ae3e18467f3a556284cbf8c235a40a5a",
+            "bytes": 29246
+          },
+          {
+            "path": "amp/roomrefine.py",
+            "sha256": "1049b9365db7a811b86c1f5f24e58c83c9254dd18373d06835495700baca4be7",
+            "bytes": 24579
+          },
+          {
+            "path": "amp/roomrack.py",
+            "sha256": "6dbd5b0cb3767618cf4c79e13ee24b79549f2c600475b51ff32b7c0d1855f363",
+            "bytes": 7040
+          },
+          {
+            "path": "amp/roomtone.py",
+            "sha256": "6dabcaf3effd2a56830adf948fbe4a684f0281f2f9d2f9c05f3d6bd5fa867374",
+            "bytes": 9569
+          },
+          {
+            "path": "amp/audio.py",
+            "sha256": "7fa1e4dfcf0f7be4166939dd997fbb800df19e5efa90a197ee0fab175d9759a9",
+            "bytes": 7762
+          },
+          {
+            "path": "amp/core.py",
+            "sha256": "81d4dd53a79fa16c6b1015d8b46401dc40c259ed07d49b78092cb6b8244ff849",
+            "bytes": 11990
+          }
+        ],
+        "identity_policy": "Current consumed code bytes are authoritative; upstream identifies the retained workstream, not an old producing engine."
+      },
+      "required_output_count": 85,
+      "decoded_media_count": 84
+    }
+  ],
+  "outputs": [
+    {
+      "binding_id": "direction-proof-directed",
+      "file": "render.mp4",
+      "sha256": "cad78c8dbee1c79143d6729949a826612581ded392a63bd8a30a31f47f2a7061",
+      "bytes": 3937689,
+      "picture_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 22.833333333333332,
+        "expected_end_seconds": 22.833333333333332,
+        "start_tolerance_seconds": 6.510416666666667e-05,
+        "end_tolerance_seconds": 6.510416666666667e-05,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 22.833,
+        "expected_end_seconds": 22.833333333333332,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 1096000,
+        "decoded_samples_per_channel": 1096704,
+        "codec_tail_padding_samples": 704,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "avg_frame_rate": "30/1",
+          "nb_read_frames": "685",
+          "duration": "22.833333",
+          "duration_ts": 350720,
+          "time_base": "1/15360"
+        },
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "nb_read_frames": "1071",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "22.833000",
+          "duration_ts": 1095984,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "direction-proof-directed",
+      "file": "render.render.json",
+      "sha256": "d6825ace7451defef4956e621803adc6c5325e2f7c9c95b8b09470fd0f6eeacd",
+      "bytes": 94546,
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "directed-integrated-excerpt",
+      "file": "render.mp4",
+      "sha256": "e0dc42c51b42cdaa8cad003da56925da08a8bf4324d7d2a30df282d9c90ddf34",
+      "bytes": 4244723,
+      "picture_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 22.633333333333333,
+        "expected_end_seconds": 22.633333333333333,
+        "start_tolerance_seconds": 6.510416666666667e-05,
+        "end_tolerance_seconds": 6.510416666666667e-05,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 22.633,
+        "expected_end_seconds": 22.633333333333333,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 1086400,
+        "decoded_samples_per_channel": 1086464,
+        "codec_tail_padding_samples": 64,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720,
+          "avg_frame_rate": "30/1",
+          "nb_read_frames": "679",
+          "duration": "22.633333",
+          "duration_ts": 347648,
+          "time_base": "1/15360"
+        },
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "nb_read_frames": "1061",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "22.633000",
+          "duration_ts": 1086384,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "directed-integrated-excerpt",
+      "file": "render.revision.json",
+      "sha256": "e25d30d918b6c2eebce865b62e2dedee13c873f84bc69be2bec067485ddf785e",
+      "bytes": 3540,
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "fx-demo-delay",
+      "file": "render.mp4",
+      "sha256": "c3dad9395acac5b57ec3fc80e8e268389fdb9b9f63b946cf1d06d689d030a013",
+      "bytes": 478554,
+      "picture_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 12.166666666666666,
+        "expected_end_seconds": 12.166666666666666,
+        "start_tolerance_seconds": 8.138020833333333e-05,
+        "end_tolerance_seconds": 8.138020833333333e-05,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 12.167,
+        "expected_end_seconds": 12.166666666666666,
+        "start_tolerance_seconds": 4.1666666666666665e-05,
+        "end_tolerance_seconds": 0.042666666666666665,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 24000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 292000,
+        "decoded_samples_per_channel": 292864,
+        "codec_tail_padding_samples": 864,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 480,
+          "height": 270,
+          "avg_frame_rate": "12/1",
+          "nb_read_frames": "146",
+          "duration": "12.166667",
+          "duration_ts": 149504,
+          "time_base": "1/12288"
+        },
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "nb_read_frames": "286",
+          "sample_rate": "24000",
+          "channels": 2,
+          "duration": "12.167000",
+          "duration_ts": 292008,
+          "time_base": "1/24000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "fx-demo-delay",
+      "file": "render.patch.json",
+      "sha256": "8258efc263c9c9aae9903ba3e384d8a2c98ffcf0f8a336b5eed128a78e1265aa",
+      "bytes": 5130,
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "fx-demo-delay",
+      "file": "render.render.json",
+      "sha256": "91442474df179db3049c20ff76b0b6851ef80da3e7af9d14abe11dc99533dfaf",
+      "bytes": 14824,
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "fx-demo-delay",
+      "file": "render.wav",
+      "sha256": "60a7f78714e994fb9ce1cc100ddd686a1b7db6fc477827a5949079b0f8baa06e",
+      "bytes": 1168044,
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 24000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 292000,
+        "decoded_samples_per_channel": 292000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_s16le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "24000",
+          "channels": 2,
+          "duration": "12.166667",
+          "duration_ts": 292000,
+          "time_base": "1/24000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "direction-proof-reference",
+      "file": "render.mp4",
+      "sha256": "9c179c3aa8b00d1c1f38a117f32583ffe42d013dacf337a1181d7fb6c8127ae0",
+      "bytes": 1205953,
+      "picture_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 22.033333333333335,
+        "expected_end_seconds": 22.033333333333335,
+        "start_tolerance_seconds": 6.510416666666667e-05,
+        "end_tolerance_seconds": 6.510416666666667e-05,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 22.033,
+        "expected_end_seconds": 22.033333333333335,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 1057600,
+        "decoded_samples_per_channel": 1057792,
+        "codec_tail_padding_samples": 192,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "video",
+          "codec_name": "h264",
+          "width": 1920,
+          "height": 1080,
+          "avg_frame_rate": "30/1",
+          "nb_read_frames": "661",
+          "duration": "22.033333",
+          "duration_ts": 338432,
+          "time_base": "1/15360"
+        },
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "nb_read_frames": "1033",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "22.033000",
+          "duration_ts": 1057584,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "direction-proof-reference",
+      "file": "render.render.json",
+      "sha256": "30b00893bdf4172cdeec9e01dd04472475c6cd0bfcf330346756a1446b72ca31",
+      "bytes": 49935,
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P112.wav",
+      "sha256": "cdf1e5a0f6ab06676c1978d7c43f8d0810fe4bbae5bcb1b8b6a196491e2626fa",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P14.wav",
+      "sha256": "9e16974ba819a157eb119ca711ba51ef64946efde192d341d971dc84baaea82c",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P28.wav",
+      "sha256": "87448cac35ae65826eaaff85d98eb8bcb3a4314b01825f752820c118cbb8dd4b",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P56.wav",
+      "sha256": "2a12dd6dcea0cd792a06f11ef4095d8d5a2de18ee912a19909a02d7b01929dcd",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/P84.wav",
+      "sha256": "6ef5263c3bdc498a4247d0b96ff58b911a95eb650b39caadbe6344551b33a8dc",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V112.wav",
+      "sha256": "e03be717c49f5add4fb0e82805b90b55fa6398d3e25af6700187ed85ffb55ff9",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V14.wav",
+      "sha256": "0cfc3f5340d158a16609461742bb210e9a789fb8d6105a75a2c8c414b7bf19e1",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V28.wav",
+      "sha256": "194956cd44fea05861d42ed3d7e6bb3892d73a58c56106bb01c4f2e9f43da206",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V56.wav",
+      "sha256": "298b81ca0012ef1de0d8c7dd92d0decadf96eae9316ca00b31d6ca5f1146f367",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "raw-stems/V84.wav",
+      "sha256": "726aeee8b6c497c8f9d4d464e27aeb960b29ece75fd3b9e10e34f9a47a46da08",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "room-stretch-report.json",
+      "sha256": "0c4a82bba9d46062595f420644273045a8bdcfbd8671c14bdfe48b0df3d06ca7",
+      "bytes": 87992,
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "source-reel-raw.wav",
+      "sha256": "8862ab9b5d3c82afb7fae3e2ebadf5f84028057676b6e2bc76379261e5cef996",
+      "bytes": 1697338,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 212160,
+        "decoded_samples_per_channel": 212160,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "4.420000",
+          "duration_ts": 212160,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "source-reel-seam-smoothed.wav",
+      "sha256": "de39bde617d1a892e31af22a5eadb7c81cbbef8895bb98983297a8e475b6df3b",
+      "bytes": 1697338,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 212160,
+        "decoded_samples_per_channel": 212160,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "4.420000",
+          "duration_ts": 212160,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/P5-stack.flac",
+      "sha256": "42577c53ee2b3219102544c8855d84a3743e16ce7992661d86ddfc705d956144",
+      "bytes": 19162441,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/P5-stack.wav",
+      "sha256": "47190b5eb65fc6920c3b9c520549072a311c820df8a23ce511e0f7a6003ff722",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/P5R.flac",
+      "sha256": "787f26b60225a69521435de4c1f099c9513f556fe97102385d599e55ecff8f3f",
+      "bytes": 19162815,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/P5R.wav",
+      "sha256": "e4a28cba217da9d284c8fb77e279b9cc1c6b7d2dec105a76aec6ce7adf49786c",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V1-stack.flac",
+      "sha256": "5762c6868ca32253baa0e4bb48af23c18af99c5a144494154427e2d2913b34c1",
+      "bytes": 4968075,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V1-stack.wav",
+      "sha256": "72d05203391fc2baba71ff1d71fb112205b6edab612b1731f6e5d7d79336b20a",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V2-stack.flac",
+      "sha256": "50bd2cee80f67a20a05f6d3e4af6517222f87942f47617f219d121f82fbbf2ac",
+      "bytes": 5050223,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V2-stack.wav",
+      "sha256": "78200c2252cb4a2c85b80913a462d6cceaced42b5d0a452547de092cfe38da86",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V3-stack.flac",
+      "sha256": "5f3a51c5864d85b03a9c7e596e68e9b6139dffedbf9f54dd2011539e177e4d6c",
+      "bytes": 5359633,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V3-stack.wav",
+      "sha256": "359bfa76bd738e7c7e641a6e95a44e51e8c9d1dd2b544e92a98aeb8c4f468957",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V4-stack.flac",
+      "sha256": "b52948467e361416290722cc042ae02d34281de5c01d67192790a84eb14c6196",
+      "bytes": 6131664,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V4-stack.wav",
+      "sha256": "8f14e8770ff304b3710dc2da999761cf2624fb7a13b028e9679f1dc303803f4c",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V5-stack.flac",
+      "sha256": "b67906a568c712f2d41ee5041a81ed785c15ae088f9a94dc87718d10dc02b925",
+      "bytes": 7984593,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V5-stack.wav",
+      "sha256": "11d7c46932f2896229e6978fd01338e1f435645f29d0d64dede892efb6547cb2",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V5R.flac",
+      "sha256": "79880e8f16fecb0dd216e1cc081c8a4adc1fd51df20f4bd462707c5c88a6317a",
+      "bytes": 8113403,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stacks/V5R.wav",
+      "sha256": "06f83d16146e35a2ccbb215ad2da75c77f57e5257c9a6c974f2ef140e638fa7d",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P112.flac",
+      "sha256": "45f30cd4f38d03143988d663b4297491510197216efe79d58a3495cfdadf2a77",
+      "bytes": 18919340,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P112.wav",
+      "sha256": "5b23b79fe1160880c6753ab83f31a13b66f856b64fd289d2a836c514d845c5f5",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P14.flac",
+      "sha256": "5dc5f8ab268c85107a17e168e5f8cb55dadc64befed406a4eb87fe6166720484",
+      "bytes": 18897252,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P14.wav",
+      "sha256": "3a06bbc9aa1619bb14a5f674c8485e61aeb73a599d47bbc6e7f8dcb5a413f229",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P28.flac",
+      "sha256": "5ac9c5bde9871c243e547c76e78291ebcb333f972533c0ccb6384400b133aa16",
+      "bytes": 18929081,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P28.wav",
+      "sha256": "e5acfd9d2975fdcf1f695f9511160d7911ccad5469c7bc0a003df89528ac1992",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P56.flac",
+      "sha256": "8ddfbfaa7974669797ebf95cd82458ba41aeee353eb554f4ac91573fc330c086",
+      "bytes": 18921741,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P56.wav",
+      "sha256": "b1d740c34879b29b707f54123a35a8af0989a8220ea01d39fe7490c50a8ed3c0",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P84.flac",
+      "sha256": "efbe921cebed107ea62b302283fd894f7db937e32af8ea30d1a5d1ad366f0f43",
+      "bytes": 19105629,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/P84.wav",
+      "sha256": "dfc7454bba6c66d554b158bdfb02d83fd0ceb71db2a7f7bffa850431be863b9b",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V112.flac",
+      "sha256": "fa58d7f6e09fff549010566eb8777cb7046dfd99dd82c5438c5406779fea0a6a",
+      "bytes": 4967420,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V112.wav",
+      "sha256": "b7c3c822cb9409d0daed38952820d6d16eefddbce96aadbb6c4b97237ecde9cf",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V14.flac",
+      "sha256": "dbdc99e1105344b60f6fea32d62e4377c11be436ca210cb797fafb8b30016cc7",
+      "bytes": 8273973,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V14.wav",
+      "sha256": "76750d0f1c9a462dedcebb08a536ec5508655bf8a37a21a9e26adaa2f42529fa",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V28.flac",
+      "sha256": "aa0034a2dc0e041b0a937101b4ae753d119f444e930cd06d02c7fcfebd208e35",
+      "bytes": 6204924,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V28.wav",
+      "sha256": "8bbe177b19d00a9cae083ee7535bc620b1fc0c17a047fe039b40a6c868b590b7",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V56.flac",
+      "sha256": "fc7817a697f843c451ff24647a0d6b039a066243914e0ca51e568cfae38b92ca",
+      "bytes": 5319922,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V56.wav",
+      "sha256": "54cdcb9008ff68bb6ce1776e6fafe33bd4047e663ad8f6eee5f2086e4e04e496",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V84.flac",
+      "sha256": "0a819ad7d841a1fafe6c3eb850aa055f15adf322fcff44dc69887f23a6da024a",
+      "bytes": 5034389,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "flac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "stems/V84.wav",
+      "sha256": "98f2b0d67d83144690503eaf0616ea5837e0c56566b992d26525e8340b9d5dfe",
+      "bytes": 43008058,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "basis": "decoded sample-domain WAV/FLAC; no container start timestamp required"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "pcm_f32le",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": false,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P112-audition.m4a",
+      "sha256": "b3780bf0050943a264695249f679ba203b703c6a3a95998a8c00519d95682629",
+      "bytes": 2714877,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P112-production.m4a",
+      "sha256": "482bb15dbfee5d4e447b5614e7980f9d86e7023cb252f76863a1c2869b566fcb",
+      "bytes": 2715407,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P14-audition.m4a",
+      "sha256": "2c3792c4ec7ac5ee808ca8103e0f4057c596fd87d0e3b39fbb8d88d33c1f02f7",
+      "bytes": 2714963,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P14-production.m4a",
+      "sha256": "8cc532eb406ce890b46eab110cb1eea9010920f54ffbb0c503a7e62657ae3416",
+      "bytes": 2715409,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P28-audition.m4a",
+      "sha256": "b67cee41d454c030856ab6ac714fd50b6318d94a560aa4ac231337a0ae31009b",
+      "bytes": 2714415,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P28-production.m4a",
+      "sha256": "96b356871efe31da3556f40de796be32da11da4e42e674780ae1327cdcb450fd",
+      "bytes": 2714990,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P5-stack-audition.m4a",
+      "sha256": "67d59165faafeaccfa729d2b1cfaa1305a7d3e808aac2a5fde000c376acff394",
+      "bytes": 2714783,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P5-stack-production.m4a",
+      "sha256": "d7a9eefcf4bb8d6235e8b0b3c10f0068226ef2c3be645ba9ec7ec45648935ff8",
+      "bytes": 2715086,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P56-audition.m4a",
+      "sha256": "62c617b8778e804393db998df9a1cf19a685740f5b04e81679fc9ae903a45a0f",
+      "bytes": 2715039,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P56-production.m4a",
+      "sha256": "5432e88176bfa422c594052b0f819f69301a441eca83674289ae5d0e16ec2ed6",
+      "bytes": 2714850,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P5R-audition.m4a",
+      "sha256": "75cf5d43f272d9544c4ce376121ed2e13c0781f9e3d005d89f13cf9ee93b9371",
+      "bytes": 2714987,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P5R-production.m4a",
+      "sha256": "8f41269d66d7e1b8e00b25b0131650eb8bc64c809480a7f111ba85451f814172",
+      "bytes": 2714697,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P84-audition.m4a",
+      "sha256": "0fc2d84c3abd78cb43232866367f5311b07a1e71bd7cc61818d84e5cc465c06a",
+      "bytes": 2715038,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/P84-production.m4a",
+      "sha256": "1ffc3ff740d63a96c48103808ad35d1dd774751b3ed29e75f511bc9dffc8f0f7",
+      "bytes": 2714886,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V1-stack-audition.m4a",
+      "sha256": "7cc1f459bd30464a85f724090eb81fac337b3ea1279efd331dd2783733ddd644",
+      "bytes": 2764636,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V1-stack-production.m4a",
+      "sha256": "5841d8f1559ef4711970a9799afd9477c72757711fa01f852bb0f47b52592591",
+      "bytes": 2193346,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V112-audition.m4a",
+      "sha256": "027f05761b9b5f7a99c1974aabf131a0e43d5b9e21c1126d1d477c128cb111c1",
+      "bytes": 2763981,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V112-production.m4a",
+      "sha256": "45b44421a094ed5f108325f06911bf1cc1e92c74a97e462b641539836f87a387",
+      "bytes": 2190916,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V14-audition.m4a",
+      "sha256": "cdb21a8d4e7ad4d0a3c8d6770e2a6e4c3637fe5bf41ca431e0f3ee2f2a5a91de",
+      "bytes": 2714067,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V14-production.m4a",
+      "sha256": "5e8566f2d5a6644588a75c656b93375d3fcc48fc210ea6669f0a5a1e349d8fce",
+      "bytes": 2710371,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V2-stack-audition.m4a",
+      "sha256": "04543e8231819c61177bb9a6706eb165d07b1d85355c8080d41540490aa6bc6b",
+      "bytes": 2757535,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V2-stack-production.m4a",
+      "sha256": "a9bdf2019d2b6ca7c87e99d27979cf2e8d6b3971ee68917b5b8c91f88800fe78",
+      "bytes": 2235550,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V28-audition.m4a",
+      "sha256": "f0e225602d70ddd85434bbe2f0896326b119d1d595753f9392a18b139a00d479",
+      "bytes": 2713593,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V28-production.m4a",
+      "sha256": "468a57cabfb3bab76e95bf9bc65390db1c29b1affea6ba0ff7b98b00eee50ec9",
+      "bytes": 2373608,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V3-stack-audition.m4a",
+      "sha256": "b5c0241b3b58812e169e545bffe37300f40eb9ec6d1c3c04d5106ab2bdab1d46",
+      "bytes": 2740452,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V3-stack-production.m4a",
+      "sha256": "458bf0bf6bbdb3f02c46be08c6e2629c5c3f54caa4f3b2f96185582af408bceb",
+      "bytes": 2238170,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V4-stack-audition.m4a",
+      "sha256": "237cda13893985e76964654055dd9b909507f6d21e1cb17e8b2d3122dada0de1",
+      "bytes": 2716418,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V4-stack-production.m4a",
+      "sha256": "322aa6d145ad9a0cf230845bec1bb9fdd8b595fd25343644bf2f67c27e4bda87",
+      "bytes": 2511259,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V5-stack-audition.m4a",
+      "sha256": "57097f1f02d69d1aed4cc2503310425dfd688b6f7d78deff0ea13ce6a92f8424",
+      "bytes": 2713048,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V5-stack-production.m4a",
+      "sha256": "86e122a85b066837df8d067cca988540cf3f25fd3620f0782fdf0f1144a1c150",
+      "bytes": 2709805,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V56-audition.m4a",
+      "sha256": "5260c7f957102f7e65eae9705572c265f571e58a8c33709b50d74eb9768c2a02",
+      "bytes": 2730759,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V56-production.m4a",
+      "sha256": "2d46387dd51b9c407d982651958e46cd51802c171ee63a24ed9d924ebff0be96",
+      "bytes": 2130811,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V5R-audition.m4a",
+      "sha256": "3601ade70fba8307e11ba6bebab0b82eefea1d8b75925174c6fd1232d492936a",
+      "bytes": 2713676,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V5R-production.m4a",
+      "sha256": "fd70b524020d21cd610e9685937e011bb2c72416baa60b25a046a4a690407e5d",
+      "bytes": 2709805,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V84-audition.m4a",
+      "sha256": "d54d1d7b99a43fee3764cb8df89624495860e62341a8e0b335d41c5cb8631000",
+      "bytes": 2747409,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    },
+    {
+      "binding_id": "room-stretch-full",
+      "file": "web/V84-production.m4a",
+      "sha256": "37481652c7bb5da209b17d835a3bad2344f9462ba7a212f298e4e3c6015d5608",
+      "bytes": 2175334,
+      "native_report_identity": "matched",
+      "audio_presentation": {
+        "start_seconds": 0.0,
+        "end_seconds": 112.0,
+        "expected_end_seconds": 112.0,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "end_tolerance_seconds": 0.021333333333333333,
+        "basis": "presentation timestamps; AAC end allows one codec frame; start allows one timebase tick or 1 us rounding"
+      },
+      "audio_decode": {
+        "sample_rate": 48000,
+        "channels": 2,
+        "expected_pcm_samples_per_channel": 5376000,
+        "decoded_samples_per_channel": 5376000,
+        "codec_tail_padding_samples": 0,
+        "finite": true
+      },
+      "full_decode": "passed",
+      "streams": [
+        {
+          "codec_type": "audio",
+          "codec_name": "aac",
+          "avg_frame_rate": "0/0",
+          "sample_rate": "48000",
+          "channels": 2,
+          "duration": "112.000000",
+          "duration_ts": 5376000,
+          "time_base": "1/48000"
+        }
+      ],
+      "existing_exact_custody_recorded": true,
+      "existing_technical_status_conflict": false
+    }
+  ],
+  "incidental_outputs": {
+    "binding_id": "room-stretch-full",
+    "required_output_count": 85,
+    "observed_file_count": 125,
+    "incidental_outputs": [
+      {
+        "file": ".room-audition-2vezgjxn/audition.wav",
+        "sha256": "5c3aff43dadfcc65cd97eed489eeb37e36f54dda96d2bfb8b82db80cf99ce1da",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-3u6u8ak5/audition.wav",
+        "sha256": "4c558756f9e1d431039ed602584b926ca71e748e72080534a5a1a0b11ce0fcc1",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-5i58fn1_/audition.wav",
+        "sha256": "2ec27beb3ed6288d9f7d2e6916758244e52300f3577867ffc942854dc17a37fe",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-6p7kofoc/audition.wav",
+        "sha256": "105ea6cd29cbf91061e9e910257aaab40bef109623c6097aaad909e7f7cf98be",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-7ulpvr14/audition.wav",
+        "sha256": "3923091cb3eb5019d52318ac3087c4def57e7faeee38ae5c92b9b193877ba032",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-dv08rc2v/audition.wav",
+        "sha256": "6c12a24247d954be79c59db91f4e53ee9a050fa9e321a04a8fcabf5df48eb58a",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-dy7s9ony/audition.wav",
+        "sha256": "bbafbb233dcd8438aa6b395e15d6456fb981064a39e9527bca480316e087780e",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-e9zqrf78/audition.wav",
+        "sha256": "7c2ab459536afeaf5788d3a0c3214ada7ec9e2a9fccc53a9f607d8714cc12069",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-ifs3ulm4/audition.wav",
+        "sha256": "5accef70bf355371b5768d62c65d2fc01c7266315181a1c31400dc49c897016d",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-irc5il66/audition.wav",
+        "sha256": "c9a029d49f0b684e6771efda9dc49152c7569e3f6b582d1641a537f2c92a8bb6",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-n2p2usri/audition.wav",
+        "sha256": "7bdd23cd4a0efb17fa1eebfcf752aa8d9ce01aa7078794073df7b78d4bb74cb8",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-of_m_clk/audition.wav",
+        "sha256": "e07b22dc29ca666ae7b2da64019193cfd9cee2c035b8fe2b189584114b198aff",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-wng8zqxb/audition.wav",
+        "sha256": "bfa1c6a1cd20fa94830f606dc4aa13c37f1f7fc3e9cc653f43fcfe8266bb5ba7",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": ".room-audition-woyn70wa/audition.wav",
+        "sha256": "469d6ceb58d9de4a1f7f6bac98a4ae8da88620d3411ee8842a057028cf37731a",
+        "bytes": 43008058,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "stacks/.room-stretch-y5yqufr9/V3-stack.flac",
+        "sha256": "5f3a51c5864d85b03a9c7e596e68e9b6139dffedbf9f54dd2011539e177e4d6c",
+        "bytes": 5359633,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-2hgnjyik/P28-audition.m4a",
+        "sha256": "89553efde0d785c7e6b89d9a9c546fcdd82dd98632a05d0c497d1c0ae6b69ab6",
+        "bytes": 1310764,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-2wudjzh3/V5R-production.m4a",
+        "sha256": "e13a59ad16b8617b57dae661e247a25972e55ef7d2b8a5da84c2ce76aeeb498e",
+        "bytes": 786476,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-3fcldda0/P5-stack-audition.m4a",
+        "sha256": "1b872110170662cfda6f8f08f1d3613ce2a5b847c381225f704a9b385cbeb231",
+        "bytes": 1572908,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-81tlqero/V4-stack-audition.m4a",
+        "sha256": "f1f3332dfa5cb0ba3f9c5da7b361b2ff3d1c1357650eea1f74c51783779b86f0",
+        "bytes": 2359340,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-_57lssda/V14-production.m4a",
+        "sha256": "803813d0f53717af6645a304ff8277890f47b02d8e799a2417e6156e2b9ce784",
+        "bytes": 524332,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-_o2s1xwd/V5R-audition.m4a",
+        "sha256": "9114bf4d9c82dd6f5d98d31f149c2ba8ab079429ea3554a3e86f4b0783a9caad",
+        "bytes": 2359340,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-bo7l5zcn/P56-production.m4a",
+        "sha256": "b06ffbcdd22dd9a99823a55ff75348c01eb7fcca2c47c3d55c3befacd6041ee5",
+        "bytes": 1048620,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-cg4tocye/P84-audition.m4a",
+        "sha256": "a766cabc3ba2792e6a60b15d29ad549ae7ebb6c8245a0652b753caf1ec7b430a",
+        "bytes": 1310764,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-d8w3uzk8/P84-production.m4a",
+        "sha256": "26e97ff9ac1070362691f41c84d6e2e285009ed9f0cbbfa8f335d09f76e55ea4",
+        "bytes": 524332,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-fvb531d4/P112-production.m4a",
+        "sha256": "1896b83d48b24761e25ae6c585efa7b359fd0b0dfbfd5d2654e2af40672ce87c",
+        "bytes": 524332,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-gvx0zrcp/P5R-audition.m4a",
+        "sha256": "fd69b242f356e29f4a84e870dcee6e68e05b05f9dc37e01b3eb924678c941753",
+        "bytes": 1835052,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-gw7k7624/P14-audition.m4a",
+        "sha256": "9135ff1113c02834be10c017f7033b95044c8c2c5e39db40bbd2d9e88661d74f",
+        "bytes": 1572908,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-jl0gnlds/P5-stack-production.m4a",
+        "sha256": "707713ae4416bec6d3f84cdf6ed2eca6de47e7e2aaf78e0e6dbce7fa0d5c9fb1",
+        "bytes": 786476,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-kyrgrmyj/V4-stack-production.m4a",
+        "sha256": "322aa6d145ad9a0cf230845bec1bb9fdd8b595fd25343644bf2f67c27e4bda87",
+        "bytes": 2511259,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-lkl7vwpy/P56-audition.m4a",
+        "sha256": "4a57256f01b40e646aa196fd17afeebcd7f857824e9e74f32ded1f3f1c677c34",
+        "bytes": 1572908,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-n2b87x71/V28-audition.m4a",
+        "sha256": "f8494cb3129911923e9162b7535f6fa2342fe3055796de07740301eb28f92199",
+        "bytes": 1835052,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-ntioc0jx/V5-stack-audition.m4a",
+        "sha256": "c6db46d9577725b946467ff97236c463b2995bd87ee8a1023250083198c6a824",
+        "bytes": 2097196,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-pj4bddj7/P112-audition.m4a",
+        "sha256": "eeea7b080cce078dcca60c6104d82d419dacb51a4b39da5780787501a1cbbdc9",
+        "bytes": 1835052,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-ppyimnyx/P14-production.m4a",
+        "sha256": "e9a3b43257e3ee14b46c1c42aee286564303212d533ee6da6eda7b88af2e9ca0",
+        "bytes": 524332,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-s30a82fs/P5R-production.m4a",
+        "sha256": "dfbbcaab1ddfd7a2ab15e3b079b21c865ad553baca6a8ed33bc91e250481cbb6",
+        "bytes": 786476,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-shqa30ta/P28-production.m4a",
+        "sha256": "d54b9a29e3504f50933a5779406135baa20e603009007ec436f6e40447db367f",
+        "bytes": 524332,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-ulc4gkaq/V56-audition.m4a",
+        "sha256": "0b652022d54fcdc61036467b02932d3813a7330b6b352d38783016320f7a79a6",
+        "bytes": 1310764,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-v13p0h4r/V2-stack-audition.m4a",
+        "sha256": "27444f9bcaf0d3de2ca627fd86877696901336c6f06a706c81d6fbf959b8f6f6",
+        "bytes": 1310764,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-wngmc72w/V14-audition.m4a",
+        "sha256": "cdb21a8d4e7ad4d0a3c8d6770e2a6e4c3637fe5bf41ca431e0f3ee2f2a5a91de",
+        "bytes": 2714067,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      },
+      {
+        "file": "web/.room-stretch-xansq5yb/V5-stack-production.m4a",
+        "sha256": "e9007106e58d2b051ffe99938f7902e53ec701f53ac76f7a8b3d235b80cd3cde",
+        "bytes": 786476,
+        "classification": "native_temporary_file",
+        "full_decode": "not_checked_not_a_required_deliverable",
+        "disposition": "reconstructible_intermediate_not_retained",
+        "accepted_for_delivery": false
+      }
+    ]
+  },
+  "failed_native_attempts": [
+    {
+      "binding_id": "directed-integrated-excerpt",
+      "execution_receipt": {
+        "sha256": "7781a1f13aae46f81555c69e64cf2004c29d9b702cfbf3513b02504878afb8e0",
+        "bytes": 5571
+      },
+      "integrity_observation": {
+        "sha256": "c56f6fc23d3347cab1d4b7725d4dac9517cef370daffa0c11b16bb06dc3664c6",
+        "bytes": 833
+      },
+      "observed_file": {
+        "sha256": "a37b01b9865af34f679435130f71166d1313938ad6b3e3f6e1c36a8e166ea9dd",
+        "bytes": 2359344
+      },
+      "status": "failed_not_accepted",
+      "cause": "not established",
+      "fresh_retry": "verified separately; original native recipe and inputs unchanged"
+    }
+  ],
+  "counts": {
+    "bound_retained_recipes": 5,
+    "native_renderer_families": 4,
+    "native_execution_attempts": 6,
+    "successful_required_product_sets": 5,
+    "required_output_occurrences": 95,
+    "unique_required_output_identities": 95,
+    "fully_decoded_required_media": 89,
+    "existing_custody_matches": 60,
+    "new_required_output_identities": 35,
+    "new_required_output_bytes": 1210784607,
+    "incidental_files": 40,
+    "incidental_bytes": 641796767
+  },
+  "preservation_status": "New required identities and receipts pending durable package save; matched SHA+bytes objects resolve by existing custody. Incidental temporary bytes are not retained."
+}

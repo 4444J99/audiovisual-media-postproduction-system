@@ -1,0 +1,3 @@
+# Add-on to the repository's existing NumPy/SciPy/Pillow dependencies.
+# Optical-flow API exercised with this exact version; no model weights required.
+opencv-python-headless==4.13.0.92

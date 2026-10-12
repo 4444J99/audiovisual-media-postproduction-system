@@ -1,0 +1,10 @@
+{
+  "source_commit": "44999c5e386db4002a551b06095527738665ad05",
+  "build_log": "site-build-protected-clean.log",
+  "archive_sha256": "71a71d730386ab7c0985444a70fb615a89ee3ae2fa738e8a0cea4dc49de4d94f",
+  "archive_bytes": 244190991,
+  "built_bytes": 264931399,
+  "protected_static_paths": 0,
+  "small_private_registry_files": 61,
+  "server_sha256": "fefcfa04b1a25493130aa7ff2f653aae1cf39f0dee4796f321f034164f5f1505"
+}

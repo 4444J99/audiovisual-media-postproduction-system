@@ -1,0 +1,661 @@
+{
+  "schemaVersion": "1.0.0",
+  "width": 384,
+  "height": 216,
+  "codeHashes": {
+    "core.mjs": "5a612bf593ed93daf77d41810a01adb7592b5cd23308c6c651a90a4aa6bf9ac7",
+    "catalog.mjs": "7f3659b58b446e9aae932b2fc9a2246524b67ec9d70f7730c37d409ab914adfd",
+    "visual-engine.mjs": "50b805d3cb3ec375d546d71fb2370ad6dd0e25843beddcae40cb10b3b8a35269",
+    "audio-engine.mjs": "99a073b2bfecf1f8f814c791d9f40fb94fa4e7da686215af2839c575c61d365e"
+  },
+  "checks": [
+    {
+      "type": "routing",
+      "extreme": {
+        "meanAbsoluteRGB": 90.62351707175925,
+        "max": 232,
+        "changedFraction": 0.9950327932098766,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "delay",
+      "extreme": {
+        "meanAbsoluteRGB": 57.74194637345679,
+        "max": 255,
+        "changedFraction": 0.9638792438271605,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "stutter",
+      "extreme": {
+        "meanAbsoluteRGB": 38.072048611111114,
+        "max": 241,
+        "changedFraction": 0.4294945987654321,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "granular",
+      "extreme": {
+        "meanAbsoluteRGB": 103.94169158307614,
+        "max": 255,
+        "changedFraction": 0.9932484567901234,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "reverse",
+      "extreme": {
+        "meanAbsoluteRGB": 0.5088975694444444,
+        "max": 110,
+        "changedFraction": 0.041449652777777776,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "freeze",
+      "extreme": {
+        "meanAbsoluteRGB": 0.8189501350308642,
+        "max": 110,
+        "changedFraction": 0.06025752314814815,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "feedback",
+      "extreme": {
+        "meanAbsoluteRGB": 69.61320489326131,
+        "max": 236,
+        "changedFraction": 0.6677155671296297,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "queue",
+      "extreme": {
+        "meanAbsoluteRGB": 111.10645736882717,
+        "max": 255,
+        "changedFraction": 0.9918740354938271,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "gate",
+      "extreme": {
+        "meanAbsoluteRGB": 102.41015625,
+        "max": 255,
+        "changedFraction": 1,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "displacement",
+      "extreme": {
+        "meanAbsoluteRGB": 74.02552324459876,
+        "max": 240,
+        "changedFraction": 0.9576340663580247,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "exchange",
+      "extreme": {
+        "meanAbsoluteRGB": 77.27344955632717,
+        "max": 240,
+        "changedFraction": 0.9757908950617284,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "typography",
+      "extreme": {
+        "meanAbsoluteRGB": 74.25339184670781,
+        "max": 241,
+        "changedFraction": 0.9371262538580247,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    },
+    {
+      "type": "damage",
+      "extreme": {
+        "meanAbsoluteRGB": 88.19311824845678,
+        "max": 255,
+        "changedFraction": 1,
+        "count": 82944
+      },
+      "repeat": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "bypass": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "wetZero": {
+        "meanAbsoluteRGB": 0,
+        "max": 0,
+        "changedFraction": 0,
+        "count": 82944
+      },
+      "demonstrationBypass": [
+        {
+          "time": 0.5,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        },
+        {
+          "time": 11,
+          "diff": {
+            "meanAbsoluteRGB": 0,
+            "max": 0,
+            "changedFraction": 0,
+            "count": 82944
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Headless Skia pixel checks do not certify a physical phone or artist acceptance.",
+    "Workprint masks, provisional text positions and hybrid room plate remain qualified."
+  ],
+  "orderDifference": {
+    "meanAbsoluteRGB": 1.4967568479938271,
+    "max": 89,
+    "changedFraction": 0.18482349537037038,
+    "count": 82944
+  },
+  "bodyReturnOutsideMask": {
+    "meanAbsoluteRGB": 0,
+    "max": 0,
+    "changedFraction": 0,
+    "count": 72007
+  },
+  "soleUnityBodyReturnOutsideMask": {
+    "meanAbsoluteRGB": 0,
+    "max": 0,
+    "changedFraction": 0,
+    "count": 72007
+  },
+  "categoricalMatteMix": {
+    "meanAbsoluteRGB": 0,
+    "max": 0,
+    "changedFraction": 0,
+    "count": 82944
+  },
+  "portrait": {
+    "width": 270,
+    "height": 480,
+    "opaqueFraction": 0.9969212962962963,
+    "coveredFraction": 1,
+    "minAlpha": 182,
+    "textActive": true
+  },
+  "failures": []
+}

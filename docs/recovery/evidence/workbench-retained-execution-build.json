@@ -1,0 +1,28 @@
+{
+  "schema_version": "god-here.site-build-observation.v1",
+  "observed_at_utc": "2026-10-11T20:43:24.350705+00:00",
+  "workflow": "sites/1.0.0/scripts/site-workflow.mjs",
+  "preparation_command": [
+    "node",
+    "sites/1.0.0/scripts/build-site.mjs"
+  ],
+  "workflow_exit_code": 0,
+  "framework_build_observed": "vinext/Vite build completed; all five build phases succeeded",
+  "source_commit": "807e4864f89c7b5909010a7336adc16409d03875",
+  "source_push_and_readback": "completed by the Sites workflow helper; clean local source verified afterward",
+  "archive": {
+    "archive_bytes": 243805561,
+    "expanded_regular_file_bytes": 263450225,
+    "members": 424,
+    "archive_sha256": "4d819355ce04894977cfa0d499272b911f39342fdd9caa5983397e9f259d5b3b",
+    "limit_bytes": 268435456,
+    "unsafe_members": [],
+    "both_limits_passed": true
+  },
+  "stdout": {
+    "path": "docs/recovery/evidence/workbench-retained-execution-build.stdout.log",
+    "bytes": 3994,
+    "sha256": "c99f934178045c56efd5b6b33e12bc4948b0f7e6a35c7a9cc319667369830170"
+  },
+  "qualification": "Complete returned stdout chunks retained. ANSI terminal controls and carriage returns normalized; scratch directory prefixes replaced with descriptive placeholders. No build messages omitted. This is not browser or device verification."
+}

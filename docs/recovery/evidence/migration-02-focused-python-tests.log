@@ -1,0 +1,35 @@
+Command: env PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s tests -p test_room_media_seed.py -v
+Working directory: WORKBENCH_CHECKOUT
+Started: 2026-10-11T16:03:30.387981+00:00
+
+test_access_denial_is_not_retried_or_body_logged (test_room_media_seed.SeedTests.test_access_denial_is_not_retried_or_body_logged) ... ok
+test_corrupt_full_download_fails (test_room_media_seed.SeedTests.test_corrupt_full_download_fails) ... ok
+test_duplicate_manifest_and_boolean_size_are_rejected (test_room_media_seed.SeedTests.test_duplicate_manifest_and_boolean_size_are_rejected) ... ok
+test_five_explicit_mp4_paths_are_accepted_with_unchanged_flacs (test_room_media_seed.SeedTests.test_five_explicit_mp4_paths_are_accepted_with_unchanged_flacs) ... ok
+test_head_range_and_full_download_match_original_bytes (test_room_media_seed.SeedTests.test_head_range_and_full_download_match_original_bytes) ... ok
+test_manifest_is_validated_and_smallest_is_first (test_room_media_seed.SeedTests.test_manifest_is_validated_and_smallest_is_first) ... ok
+test_mp4_local_checksum_is_checked_before_network (test_room_media_seed.SeedTests.test_mp4_local_checksum_is_checked_before_network) ... ok
+test_mp4_namespace_and_id_type_are_bounded (test_room_media_seed.SeedTests.test_mp4_namespace_and_id_type_are_bounded) ... ok
+test_mp4_response_requires_video_mime_and_inline_disposition (test_room_media_seed.SeedTests.test_mp4_response_requires_video_mime_and_inline_disposition) ... ok
+test_mp4_upload_head_range_and_full_get_use_exact_bytes_and_mime (test_room_media_seed.SeedTests.test_mp4_upload_head_range_and_full_get_use_exact_bytes_and_mime) ... ok
+test_path_traversal_and_percent_paths_are_rejected (test_room_media_seed.SeedTests.test_path_traversal_and_percent_paths_are_rejected) ... ok
+test_raw_binary_upload_and_separate_auth_headers (test_room_media_seed.SeedTests.test_raw_binary_upload_and_separate_auth_headers) ... ok
+test_real_pty_hides_json_credentials (test_room_media_seed.SeedTests.test_real_pty_hides_json_credentials) ... ok
+test_receipt_must_not_overwrite_manifest_or_flac (test_room_media_seed.SeedTests.test_receipt_must_not_overwrite_manifest_or_flac) ... ok
+test_redirect_is_refused (test_room_media_seed.SeedTests.test_redirect_is_refused) ... ok
+test_secret_cannot_be_copied_from_etag_into_receipt (test_room_media_seed.SeedTests.test_secret_cannot_be_copied_from_etag_into_receipt) ... ok
+test_select_uses_registered_id (test_room_media_seed.SeedTests.test_select_uses_registered_id) ... ok
+test_smallest_failure_stops_before_other_uploads (test_room_media_seed.SeedTests.test_smallest_failure_stops_before_other_uploads) ... ok
+test_source_changed_after_validation_is_rejected (test_room_media_seed.SeedTests.test_source_changed_after_validation_is_rejected) ... ok
+test_symlink_escape_is_rejected (test_room_media_seed.SeedTests.test_symlink_escape_is_rejected) ... ok
+test_transient_retry_reopens_full_upload_stream (test_room_media_seed.SeedTests.test_transient_retry_reopens_full_upload_stream) ... ok
+test_untrusted_origins_are_rejected (test_room_media_seed.SeedTests.test_untrusted_origins_are_rejected) ... ok
+test_upload_receipt_checksum_must_match (test_room_media_seed.SeedTests.test_upload_receipt_checksum_must_match) ... ok
+test_wrong_local_hash_is_rejected_before_network (test_room_media_seed.SeedTests.test_wrong_local_hash_is_rejected_before_network) ... ok
+test_wrong_local_length_is_rejected (test_room_media_seed.SeedTests.test_wrong_local_length_is_rejected) ... ok
+test_wrong_range_bytes_fail (test_room_media_seed.SeedTests.test_wrong_range_bytes_fail) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 0.172s
+
+OK

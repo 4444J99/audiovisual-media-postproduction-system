@@ -1,0 +1,887 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "url": "media/source-picture.mp4",
+    "posterUrl": "media/room-poster.jpg",
+    "duration": 112
+  },
+  "defaultTrack": "V5R",
+  "inspectionGainDb": 14.0,
+  "tracks": [
+    {
+      "id": "A",
+      "group": "rack",
+      "kind": "mix",
+      "title": "Existing room rack",
+      "description": "Original separate band sequences and effects",
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-A.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-A.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-A.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "B",
+      "group": "rack",
+      "kind": "mix",
+      "title": "Shared timing",
+      "description": "One source sequence across all three bands; same effects",
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-B.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-B.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-B.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "C",
+      "group": "rack",
+      "kind": "mix",
+      "title": "Shared timing / dry",
+      "description": "Same sequence as B; the room effects are bypassed",
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-C.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-C.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-C.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "D",
+      "group": "rack",
+      "kind": "mix",
+      "title": "Sustained middle and air",
+      "description": "Recorded low band; slowly evolving synthesized mid and high",
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-D.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-D.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-D.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "E",
+      "group": "rack",
+      "kind": "mix",
+      "title": "Stationary room texture",
+      "description": "A continuous synthesized texture shaped by the source pauses",
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-E.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-E.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-E.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "VL1",
+      "group": "varispeed",
+      "kind": "layer",
+      "title": "112-second layer",
+      "description": "Literal slowdown; pitch falls with speed. Repeated to fill the 112-second film.",
+      "periodSeconds": 112.0,
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-VL1.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-VL1.m4a",
+          "type": "audio/mp4"
+        }
+      }
+    },
+    {
+      "id": "VL2",
+      "group": "varispeed",
+      "kind": "layer",
+      "title": "84-second layer",
+      "description": "Literal slowdown; pitch falls with speed. Repeated to fill the 112-second film.",
+      "periodSeconds": 84.0,
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-VL2.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-VL2.m4a",
+          "type": "audio/mp4"
+        }
+      }
+    },
+    {
+      "id": "VL3",
+      "group": "varispeed",
+      "kind": "layer",
+      "title": "56-second layer",
+      "description": "Literal slowdown; pitch falls with speed. Repeated to fill the 112-second film.",
+      "periodSeconds": 56.0,
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-VL3.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-VL3.m4a",
+          "type": "audio/mp4"
+        }
+      }
+    },
+    {
+      "id": "VL4",
+      "group": "varispeed",
+      "kind": "layer",
+      "title": "28-second layer",
+      "description": "Literal slowdown; pitch falls with speed. Repeated to fill the 112-second film.",
+      "periodSeconds": 28.0,
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-VL4.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-VL4.m4a",
+          "type": "audio/mp4"
+        }
+      }
+    },
+    {
+      "id": "VL5",
+      "group": "varispeed",
+      "kind": "layer",
+      "title": "14-second layer",
+      "description": "Literal slowdown; pitch falls with speed. Repeated to fill the 112-second film.",
+      "periodSeconds": 14.0,
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-VL5.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-VL5.m4a",
+          "type": "audio/mp4"
+        }
+      }
+    },
+    {
+      "id": "PL1",
+      "group": "spectral",
+      "kind": "layer",
+      "title": "112-second layer",
+      "description": "Spectral stretch retains the frequency range and generates new phase. Repeated to fill the 112-second film.",
+      "periodSeconds": 112.0,
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-PL1.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-PL1.m4a",
+          "type": "audio/mp4"
+        }
+      }
+    },
+    {
+      "id": "PL2",
+      "group": "spectral",
+      "kind": "layer",
+      "title": "84-second layer",
+      "description": "Spectral stretch retains the frequency range and generates new phase. Repeated to fill the 112-second film.",
+      "periodSeconds": 84.0,
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-PL2.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-PL2.m4a",
+          "type": "audio/mp4"
+        }
+      }
+    },
+    {
+      "id": "PL3",
+      "group": "spectral",
+      "kind": "layer",
+      "title": "56-second layer",
+      "description": "Spectral stretch retains the frequency range and generates new phase. Repeated to fill the 112-second film.",
+      "periodSeconds": 56.0,
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-PL3.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-PL3.m4a",
+          "type": "audio/mp4"
+        }
+      }
+    },
+    {
+      "id": "PL4",
+      "group": "spectral",
+      "kind": "layer",
+      "title": "28-second layer",
+      "description": "Spectral stretch retains the frequency range and generates new phase. Repeated to fill the 112-second film.",
+      "periodSeconds": 28.0,
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-PL4.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-PL4.m4a",
+          "type": "audio/mp4"
+        }
+      }
+    },
+    {
+      "id": "PL5",
+      "group": "spectral",
+      "kind": "layer",
+      "title": "14-second layer",
+      "description": "Spectral stretch retains the frequency range and generates new phase. Repeated to fill the 112-second film.",
+      "periodSeconds": 14.0,
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-PL5.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-PL5.m4a",
+          "type": "audio/mp4"
+        }
+      }
+    },
+    {
+      "id": "V1",
+      "group": "varispeed",
+      "kind": "mix",
+      "title": "1 stacked layer",
+      "description": "112 s. Individually calibrated layers, with one final loudness adjustment.",
+      "stackPeriods": [
+        112.0
+      ],
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-V1.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-V1.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-V1.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "V2",
+      "group": "varispeed",
+      "kind": "mix",
+      "title": "2 stacked layers",
+      "description": "112 s + 84 s. Individually calibrated layers, with one final loudness adjustment.",
+      "stackPeriods": [
+        112.0,
+        84.0
+      ],
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-V2.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-V2.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-V2.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "V3",
+      "group": "varispeed",
+      "kind": "mix",
+      "title": "3 stacked layers",
+      "description": "112 s + 84 s + 56 s. Individually calibrated layers, with one final loudness adjustment.",
+      "stackPeriods": [
+        112.0,
+        84.0,
+        56.0
+      ],
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-V3.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-V3.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-V3.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "V4",
+      "group": "varispeed",
+      "kind": "mix",
+      "title": "4 stacked layers",
+      "description": "112 s + 84 s + 56 s + 28 s. Individually calibrated layers, with one final loudness adjustment.",
+      "stackPeriods": [
+        112.0,
+        84.0,
+        56.0,
+        28.0
+      ],
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-V4.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-V4.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-V4.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "V5",
+      "group": "varispeed",
+      "kind": "mix",
+      "title": "5 stacked layers",
+      "description": "112 s + 84 s + 56 s + 28 s + 14 s. Individually calibrated layers, with one final loudness adjustment.",
+      "stackPeriods": [
+        112.0,
+        84.0,
+        56.0,
+        28.0,
+        14.0
+      ],
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-V5.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-V5.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-V5.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "P5",
+      "group": "spectral",
+      "kind": "mix",
+      "title": "5 stacked layers",
+      "description": "112 s + 84 s + 56 s + 28 s + 14 s. Individually calibrated layers, with one final loudness adjustment.",
+      "stackPeriods": [
+        112.0,
+        84.0,
+        56.0,
+        28.0,
+        14.0
+      ],
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-P5.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-P5.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-P5.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "V5R",
+      "group": "varispeed",
+      "kind": "mix",
+      "title": "Five layers, original relative gain",
+      "description": "112 s + 84 s + 56 s + 28 s + 14 s. Original source-level layers at equal gain; one final loudness adjustment.",
+      "stackPeriods": [
+        112.0,
+        84.0,
+        56.0,
+        28.0,
+        14.0
+      ],
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-V5R.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-V5R.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-V5R.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "P5R",
+      "group": "spectral",
+      "kind": "mix",
+      "title": "Five layers, original relative gain",
+      "description": "112 s + 84 s + 56 s + 28 s + 14 s. Original source-level layers at equal gain; one final loudness adjustment.",
+      "stackPeriods": [
+        112.0,
+        84.0,
+        56.0,
+        28.0,
+        14.0
+      ],
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "room": {
+          "url": "media/room-P5R.m4a",
+          "type": "audio/mp4"
+        },
+        "inspection": {
+          "url": "media/inspection-P5R.m4a",
+          "type": "audio/mp4"
+        },
+        "context": {
+          "url": "media/context-P5R.mp4",
+          "type": "video/mp4"
+        }
+      }
+    },
+    {
+      "id": "CORE",
+      "group": "control",
+      "kind": "mix",
+      "title": "Dialogue only",
+      "description": "The same recovered 70% enhanced / 30% original dialogue core, with no added room bed.",
+      "sourceStart": 0,
+      "duration": 112,
+      "media": {
+        "context": {
+          "url": "media/context-CORE.mp4",
+          "type": "video/mp4"
+        }
+      }
+    }
+  ],
+  "pauses": [
+    {
+      "id": "PAUSE002-01",
+      "title": "PAUSE002-01",
+      "url": "media/PAUSE002-01-with-handles.m4a",
+      "duration": 2.2700000000000005,
+      "sourceStart": 7.29,
+      "sourceEnd": 7.56,
+      "handleStart": 6.29
+    },
+    {
+      "id": "PAUSE008-01",
+      "title": "PAUSE008-01",
+      "url": "media/PAUSE008-01-with-handles.m4a",
+      "duration": 2.7799999999999976,
+      "sourceStart": 23.94,
+      "sourceEnd": 24.72,
+      "handleStart": 22.94
+    },
+    {
+      "id": "PAUSE009-01",
+      "title": "PAUSE009-01",
+      "url": "media/PAUSE009-01-with-handles.m4a",
+      "duration": 3.530000000000001,
+      "sourceStart": 27.64,
+      "sourceEnd": 29.17,
+      "handleStart": 26.64
+    },
+    {
+      "id": "PAUSE009-02",
+      "title": "PAUSE009-02",
+      "url": "media/PAUSE009-02-with-handles.m4a",
+      "duration": 2.539999999999999,
+      "sourceStart": 30.26,
+      "sourceEnd": 30.8,
+      "handleStart": 29.26
+    },
+    {
+      "id": "PAUSE018-01",
+      "title": "PAUSE018-01",
+      "url": "media/PAUSE018-01-with-handles.m4a",
+      "duration": 2.3900000000000077,
+      "sourceStart": 63.65,
+      "sourceEnd": 64.04,
+      "handleStart": 62.65
+    },
+    {
+      "id": "PAUSE019-01",
+      "title": "PAUSE019-01",
+      "url": "media/PAUSE019-01-with-handles.m4a",
+      "duration": 2.4099999999999966,
+      "sourceStart": 65.34,
+      "sourceEnd": 65.75,
+      "handleStart": 64.34
+    },
+    {
+      "id": "PAUSE024-01",
+      "title": "PAUSE024-01",
+      "url": "media/PAUSE024-01-with-handles.m4a",
+      "duration": 2.1400000000000006,
+      "sourceStart": 94.83,
+      "sourceEnd": 94.97,
+      "handleStart": 93.83
+    },
+    {
+      "id": "PAUSE027-01",
+      "title": "PAUSE027-01",
+      "url": "media/PAUSE027-01-with-handles.m4a",
+      "duration": 2.3599999999999994,
+      "sourceStart": 98.64,
+      "sourceEnd": 99.0,
+      "handleStart": 97.64
+    }
+  ],
+  "videos": [
+    {
+      "id": "quick",
+      "title": "Earlier A\u2013E room-only comparison",
+      "url": "media/god-here-room-tone-quick-comparison.mp4",
+      "description": "60 seconds. Earlier room-only excerpts use their original louder inspection level."
+    },
+    {
+      "id": "dialogue",
+      "title": "Earlier A\u2013E dialogue comparison",
+      "url": "media/god-here-room-tone-dialogue-comparison.mp4",
+      "description": "150 seconds. Earlier room-only excerpts use their original louder inspection level."
+    }
+  ],
+  "downloads": [
+    {
+      "title": "VL1 \u00b7 112-second layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/VL1.flac"
+    },
+    {
+      "title": "VL2 \u00b7 84-second layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/VL2.flac"
+    },
+    {
+      "title": "VL3 \u00b7 56-second layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/VL3.flac"
+    },
+    {
+      "title": "VL4 \u00b7 28-second layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/VL4.flac"
+    },
+    {
+      "title": "VL5 \u00b7 14-second layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/VL5.flac"
+    },
+    {
+      "title": "PL1 \u00b7 112-second layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/PL1.flac"
+    },
+    {
+      "title": "PL2 \u00b7 84-second layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/PL2.flac"
+    },
+    {
+      "title": "PL3 \u00b7 56-second layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/PL3.flac"
+    },
+    {
+      "title": "PL4 \u00b7 28-second layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/PL4.flac"
+    },
+    {
+      "title": "PL5 \u00b7 14-second layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/PL5.flac"
+    },
+    {
+      "title": "V1 \u00b7 1 stacked layer \u00b7 lossless FLAC",
+      "url": "downloads/stretched/V1.flac"
+    },
+    {
+      "title": "V2 \u00b7 2 stacked layers \u00b7 lossless FLAC",
+      "url": "downloads/stretched/V2.flac"
+    },
+    {
+      "title": "V3 \u00b7 3 stacked layers \u00b7 lossless FLAC",
+      "url": "downloads/stretched/V3.flac"
+    },
+    {
+      "title": "V4 \u00b7 4 stacked layers \u00b7 lossless FLAC",
+      "url": "downloads/stretched/V4.flac"
+    },
+    {
+      "title": "V5 \u00b7 5 stacked layers \u00b7 lossless FLAC",
+      "url": "downloads/stretched/V5.flac"
+    },
+    {
+      "title": "P5 \u00b7 5 stacked layers \u00b7 lossless FLAC",
+      "url": "downloads/stretched/P5.flac"
+    },
+    {
+      "title": "V5R \u00b7 Five layers, original relative gain \u00b7 lossless FLAC",
+      "url": "downloads/stretched/V5R.flac"
+    },
+    {
+      "title": "P5R \u00b7 Five layers, original relative gain \u00b7 lossless FLAC",
+      "url": "downloads/stretched/P5R.flac"
+    },
+    {
+      "title": "Earlier rack contribution: high-dry-contribution",
+      "url": "media/original-high-dry-contribution.m4a"
+    },
+    {
+      "title": "Earlier rack contribution: high-fx-return",
+      "url": "media/original-high-fx-return.m4a"
+    },
+    {
+      "title": "Earlier rack contribution: low-dry-contribution",
+      "url": "media/original-low-dry-contribution.m4a"
+    },
+    {
+      "title": "Earlier rack contribution: low-fx-return",
+      "url": "media/original-low-fx-return.m4a"
+    },
+    {
+      "title": "Earlier rack contribution: mid-dry-contribution",
+      "url": "media/original-mid-dry-contribution.m4a"
+    },
+    {
+      "title": "Earlier rack contribution: mid-fx-return",
+      "url": "media/original-mid-fx-return.m4a"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 full-length/A-room.flac",
+      "url": "downloads/previous/full-length/A-room.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 full-length/B-room.flac",
+      "url": "downloads/previous/full-length/B-room.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 full-length/C-room.flac",
+      "url": "downloads/previous/full-length/C-room.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 full-length/D-room.flac",
+      "url": "downloads/previous/full-length/D-room.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 full-length/E-room.flac",
+      "url": "downloads/previous/full-length/E-room.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 full-length/dialogue-core.flac",
+      "url": "downloads/previous/full-length/dialogue-core.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/B/high.flac",
+      "url": "downloads/previous/stems/B/high.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/B/low.flac",
+      "url": "downloads/previous/stems/B/low.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/B/mid.flac",
+      "url": "downloads/previous/stems/B/mid.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/C/high.flac",
+      "url": "downloads/previous/stems/C/high.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/C/low.flac",
+      "url": "downloads/previous/stems/C/low.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/C/mid.flac",
+      "url": "downloads/previous/stems/C/mid.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/D/high.flac",
+      "url": "downloads/previous/stems/D/high.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/D/low.flac",
+      "url": "downloads/previous/stems/D/low.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/D/mid.flac",
+      "url": "downloads/previous/stems/D/mid.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/E/high.flac",
+      "url": "downloads/previous/stems/E/high.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/E/low.flac",
+      "url": "downloads/previous/stems/E/low.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 stems/E/mid.flac",
+      "url": "downloads/previous/stems/E/mid.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 original-room-rack/high-dry-contribution.flac",
+      "url": "downloads/previous/original-room-rack/high-dry-contribution.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 original-room-rack/high-fx-return.flac",
+      "url": "downloads/previous/original-room-rack/high-fx-return.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 original-room-rack/low-dry-contribution.flac",
+      "url": "downloads/previous/original-room-rack/low-dry-contribution.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 original-room-rack/low-fx-return.flac",
+      "url": "downloads/previous/original-room-rack/low-fx-return.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 original-room-rack/mid-dry-contribution.flac",
+      "url": "downloads/previous/original-room-rack/mid-dry-contribution.flac"
+    },
+    {
+      "title": "Earlier lossless asset \u00b7 original-room-rack/mid-fx-return.flac",
+      "url": "downloads/previous/original-room-rack/mid-fx-return.flac"
+    },
+    {
+      "title": "4.42-second source reel, exact original portions (WAV)",
+      "url": "records/source-reel-raw.wav"
+    },
+    {
+      "title": "4.42-second source reel, joins smoothed for stretching (WAV)",
+      "url": "records/source-reel-seam-smoothed.wav"
+    },
+    {
+      "title": "Stretch construction and measurements",
+      "url": "records/room-stretch-report.json"
+    },
+    {
+      "title": "Earlier processing notes",
+      "url": "records/previous-processing-notes.md"
+    },
+    {
+      "title": "Earlier A\u2013E measurements",
+      "url": "records/previous-listening-package-report.json"
+    },
+    {
+      "title": "Source portions: waveform and spectrum",
+      "url": "media/source-portions-diagnostics.png"
+    },
+    {
+      "title": "Stretch experiment: method and measured results",
+      "url": "records/room-stretch-notes.md"
+    },
+    {
+      "title": "Stretch export verification",
+      "url": "records/room-stretch-verification.json"
+    }
+  ],
+  "commonDialogueTrimDb": -0.07000000000000006
+}

@@ -1,0 +1,711 @@
+{
+  "schema": "god-here.directed-media-recovery.v1",
+  "verified_at": "2026-10-12T16:26:09.912248+00:00",
+  "catalog": "manifests/artifacts/god-here-recovery-catalog.json",
+  "archives": [
+    {
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here/god-here-directed-revision-package.zip",
+      "family": "pr49",
+      "sha256": "23d802f55163e8c7cf0d6cb4cc2078180d4511be8702c3010dc7489d6c2b1d2a",
+      "bytes": 34567821,
+      "matches_repository_catalog": true
+    },
+    {
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "family": "pr50",
+      "sha256": "0a46230a373b196d208afa34ae0c11f41edcd865b76dedf8f98f23f030d5c727",
+      "bytes": 145931302,
+      "matches_repository_catalog": true
+    }
+  ],
+  "media": [
+    {
+      "family": "pr49",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here/god-here-directed-revision-package.zip",
+      "archive_member": "god-here-direction-proof/A-reference.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr49/god-here-direction-proof/A-reference.mp4",
+      "name": "A-reference.mp4",
+      "bytes": 1205951,
+      "sha256": "f849bbf19204c7883a5c0d490ebe4be8630000d3850b3a28dc13927ff9c23de5",
+      "zip_member_crc32": "d72d47e9",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "duration": "22.033333",
+            "nb_frames": "661"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.033000",
+            "nb_frames": "1034"
+          }
+        ],
+        "format": {
+          "duration": "22.033333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr49",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here/god-here-directed-revision-package.zip",
+      "archive_member": "god-here-direction-proof/B-audio.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr49/god-here-direction-proof/B-audio.mp4",
+      "name": "B-audio.mp4",
+      "bytes": 1206174,
+      "sha256": "cb5bc9b88a0237cc2063f4e44814e443036959502376b116612c74dd732233de",
+      "zip_member_crc32": "51e2fad5",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "duration": "22.033333",
+            "nb_frames": "661"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.033000",
+            "nb_frames": "1034"
+          }
+        ],
+        "format": {
+          "duration": "22.033333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr49",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here/god-here-directed-revision-package.zip",
+      "archive_member": "god-here-direction-proof/C-fields.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr49/god-here-direction-proof/C-fields.mp4",
+      "name": "C-fields.mp4",
+      "bytes": 2046696,
+      "sha256": "b0b8143cebad2db90280c01926696893c8f4352c81cc117295171ca4bfd943e4",
+      "zip_member_crc32": "044e9014",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "duration": "22.033333",
+            "nb_frames": "661"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.033000",
+            "nb_frames": "1034"
+          }
+        ],
+        "format": {
+          "duration": "22.033333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr49",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here/god-here-directed-revision-package.zip",
+      "archive_member": "god-here-direction-proof/D-directed.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr49/god-here-direction-proof/D-directed.mp4",
+      "name": "D-directed.mp4",
+      "bytes": 3937781,
+      "sha256": "ff45ed5b8179dfcbfd6ff3c06ffe29e00fd4e74611a5f2f2cbbcd227f4d39f5e",
+      "zip_member_crc32": "63c5aefe",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "duration": "22.833333",
+            "nb_frames": "685"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.833000",
+            "nb_frames": "1072"
+          }
+        ],
+        "format": {
+          "duration": "22.833333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr49",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here/god-here-directed-revision-package.zip",
+      "archive_member": "god-here-direction-proof/E-expressive.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr49/god-here-direction-proof/E-expressive.mp4",
+      "name": "E-expressive.mp4",
+      "bytes": 3938245,
+      "sha256": "f5811b162452acd0ad0c81ed9f5f0890db87b8b94b875e613260f86ef8e0d877",
+      "zip_member_crc32": "a0ce5cb8",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "duration": "22.833333",
+            "nb_frames": "685"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.833000",
+            "nb_frames": "1072"
+          }
+        ],
+        "format": {
+          "duration": "22.833333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr49",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here/god-here-directed-revision-package.zip",
+      "archive_member": "god-here-direction-proof/F-exported-revision.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr49/god-here-direction-proof/F-exported-revision.mp4",
+      "name": "F-exported-revision.mp4",
+      "bytes": 3989923,
+      "sha256": "baa1a6667bf00bed2332f9fa0a190f808a82b30124bd53af554c019e9c9a6826",
+      "zip_member_crc32": "5dc6b869",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "duration": "23.533333",
+            "nb_frames": "706"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "23.533000",
+            "nb_frames": "1105"
+          }
+        ],
+        "format": {
+          "duration": "23.533333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr49",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here/god-here-directed-revision-package.zip",
+      "archive_member": "god-here-direction-proof/god-here-directed-before-after.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr49/god-here-direction-proof/god-here-directed-before-after.mp4",
+      "name": "god-here-directed-before-after.mp4",
+      "bytes": 5039739,
+      "sha256": "82d0668e8f7686556409bf6aadbb5550239194b4b555c1918d7abca1081ba121",
+      "zip_member_crc32": "35930b9c",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "duration": "44.866667",
+            "nb_frames": "1346"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "44.885000",
+            "nb_frames": "2105"
+          }
+        ],
+        "format": {
+          "duration": "44.885000"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/attention-replay.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/attention-replay.mp4",
+      "name": "attention-replay.mp4",
+      "bytes": 3270148,
+      "sha256": "42a19eebe2f1f5a646bc1de56ec4678831ca8ab986080b81434dc97069ffb704",
+      "zip_member_crc32": "e49d8196",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration": "22.033333",
+            "nb_frames": "661"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.033000",
+            "nb_frames": "1034"
+          }
+        ],
+        "format": {
+          "duration": "22.033333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/dialogue-reference.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/dialogue-reference.mp4",
+      "name": "dialogue-reference.mp4",
+      "bytes": 13616094,
+      "sha256": "7efc7beab0905de8f95ab7bac416c621b79f580f52f0baea6af17a52e48a1dff",
+      "zip_member_crc32": "b3b72429",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration": "112.000000",
+            "nb_frames": "3360"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "112.000000",
+            "nb_frames": "5251"
+          }
+        ],
+        "format": {
+          "duration": "112.000000"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/directed-gap.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/directed-gap.mp4",
+      "name": "directed-gap.mp4",
+      "bytes": 3379823,
+      "sha256": "20710407c17e676dae95aa5e80f9eeb542fb7ffaa27915ee1403f48a24df5555",
+      "zip_member_crc32": "f4a4baa8",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration": "22.633333",
+            "nb_frames": "679"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.633000",
+            "nb_frames": "1062"
+          }
+        ],
+        "format": {
+          "duration": "22.633333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/directed-integrated.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/directed-integrated.mp4",
+      "name": "directed-integrated.mp4",
+      "bytes": 4244723,
+      "sha256": "e0dc42c51b42cdaa8cad003da56925da08a8bf4324d7d2a30df282d9c90ddf34",
+      "zip_member_crc32": "807de6f2",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration": "22.633333",
+            "nb_frames": "679"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.633000",
+            "nb_frames": "1062"
+          }
+        ],
+        "format": {
+          "duration": "22.633333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/directed-reaction.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/directed-reaction.mp4",
+      "name": "directed-reaction.mp4",
+      "bytes": 4184025,
+      "sha256": "e5326655a1a825dc941f8a9d60331ac1361553aac517c294660a2dfb65a2fc3e",
+      "zip_member_crc32": "34e94219",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration": "22.033333",
+            "nb_frames": "661"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.033000",
+            "nb_frames": "1034"
+          }
+        ],
+        "format": {
+          "duration": "22.033333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/god-here-directed-full-workprint.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/god-here-directed-full-workprint.mp4",
+      "name": "god-here-directed-full-workprint.mp4",
+      "bytes": 17050685,
+      "sha256": "4b8356ba7c3d3e22340cb411db6a0dc7720385a9ec570df1e48b4d5295d4befc",
+      "zip_member_crc32": "c9a7a984",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration": "112.600000",
+            "nb_frames": "3378"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "112.600000",
+            "nb_frames": "5280"
+          }
+        ],
+        "format": {
+          "duration": "112.600000"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/god-here-directed-passage.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/god-here-directed-passage.mp4",
+      "name": "god-here-directed-passage.mp4",
+      "bytes": 4244731,
+      "sha256": "76121fb83c962a15cf9a6ad544a0a316a3403a79c5ba24c60b575889f9915f0a",
+      "zip_member_crc32": "ceee180b",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration": "22.633333",
+            "nb_frames": "679"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.633000",
+            "nb_frames": "1062"
+          }
+        ],
+        "format": {
+          "duration": "22.633333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/proof-A.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/proof-A.mp4",
+      "name": "proof-A.mp4",
+      "bytes": 3046351,
+      "sha256": "641f8eaa629ef88260ee8c6a8d44bc7fd60deb1667ff1745dddeb8da24eb4d66",
+      "zip_member_crc32": "27dadce3",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration": "22.033333",
+            "nb_frames": "661"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.033000",
+            "nb_frames": "1034"
+          }
+        ],
+        "format": {
+          "duration": "22.033333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/proof-B.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/proof-B.mp4",
+      "name": "proof-B.mp4",
+      "bytes": 3046393,
+      "sha256": "e4753e6ba06a01d68d024925c96e3016307dc50841d9f7a2aa807a28a60bd9b5",
+      "zip_member_crc32": "79d9f395",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration": "22.033333",
+            "nb_frames": "661"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.033000",
+            "nb_frames": "1034"
+          }
+        ],
+        "format": {
+          "duration": "22.033333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/proof-C.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/proof-C.mp4",
+      "name": "proof-C.mp4",
+      "bytes": 3302714,
+      "sha256": "9302bc7f1930cba6c49996197a549bfb60d5b6ab0b3ac9ccd3b76456357646d0",
+      "zip_member_crc32": "b5247cf1",
+      "matches_repository_catalog": true,
+      "historical_decode": "passed",
+      "probe_returncode": 0,
+      "probe_stderr": "",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration": "22.033333",
+            "nb_frames": "661"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "duration": "22.033000",
+            "nb_frames": "1034"
+          }
+        ],
+        "format": {
+          "duration": "22.033333"
+        }
+      },
+      "decode_returncode": 0,
+      "decode_stderr": "",
+      "fresh_decode": "passed"
+    },
+    {
+      "family": "pr50",
+      "archive_path": "/workspace/scratch/4c2ac7bee972/directed-recovery/god-here-directed-production-package.zip",
+      "archive_member": "god-here-directed-production/review/media/proof-D.mp4",
+      "path": "/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/proof-D.mp4",
+      "name": "proof-D.mp4",
+      "bytes": 2359344,
+      "sha256": "88837f2f6b3490d033b6eb1c85b57107bade2544754b1c8d303932fd1c9b2c15",
+      "zip_member_crc32": "4a3c2d16",
+      "matches_repository_catalog": true,
+      "historical_decode": "failed",
+      "probe_returncode": 1,
+      "probe_stderr": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x55fc21da1740] moov atom not found\n/workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/proof-D.mp4: Invalid data found when processing input\n",
+      "probe": {},
+      "decode_returncode": 183,
+      "decode_stderr": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x55b4e8b98d00] moov atom not found\n[in#0 @ 0x55b4e8b98c00] Error opening input: Invalid data found when processing input\nError opening input file /workspace/scratch/4c2ac7bee972/directed-recovery/pr50/god-here-directed-production/review/media/proof-D.mp4.\nError opening input files: Invalid data found when processing input\n",
+      "fresh_decode": "failed"
+    }
+  ],
+  "summary": {
+    "media": 18,
+    "catalog_matches": 18,
+    "passed": 17,
+    "failed": 1,
+    "total_bytes": 83109540
+  }
+}

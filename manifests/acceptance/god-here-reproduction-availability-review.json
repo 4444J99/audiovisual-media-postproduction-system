@@ -1,0 +1,56 @@
+{
+  "schema_version": "god-here.reproduction-availability-review.v1",
+  "recorded_at_utc": "2026-10-11T19:58:02.577261+00:00",
+  "status": "technical_integrity_checks_passed",
+  "scope": "Receipt-bound additive availability for the retained baseline reproduction, plus current published recovery text and metadata-only UI/integrity regression checks. Frozen recovery inputs remain unchanged.",
+  "frozen_catalog": {
+    "path": "manifests/artifacts/god-here-recovery-catalog.json",
+    "sha256": "8843bba3e9b0d5937fe5fb93e02233fe8be69aa5f072349ad896011999ccb1e3",
+    "bytes": 6369347
+  },
+  "frozen_expectations": {
+    "path": "manifests/artifacts/god-here-recovery-expectations.json",
+    "sha256": "8493197c215cf7acd3c0e7024b6dde5d984e010f51bb123940aaa6946a65c004",
+    "bytes": 14064025
+  },
+  "baseline_execution_receipt": {
+    "path": "manifests/acceptance/god-here-baseline-reproduction.json",
+    "sha256": "3b6211279610e75ada8fbb94b2328f727629d9de17dfa538af685b7358527789",
+    "bytes": 34297
+  },
+  "availability_addendum": {
+    "path": "manifests/artifacts/god-here-reproduction-availability.json",
+    "sha256": "d7665c3bd4185ab1858aceb549823eca23d82ba44b653b4b1e13a1a949fba28e",
+    "bytes": 49752
+  },
+  "view_interaction_receipt": {
+    "path": "manifests/acceptance/god-here-reproduction-view-metadata-check.json",
+    "sha256": "b05f3906d40001e42be517b31d7167e99d0ed85083b8d7e9780fa7f6f221c401",
+    "bytes": 6019
+  },
+  "metadata_negative_probe_receipt": {
+    "path": "manifests/acceptance/god-here-reproduction-availability-probes.json",
+    "sha256": "303bf455e22ce0c5817856e3d10337bed0d905870388b37ccc4ebc35dfb4f92d",
+    "bytes": 123063
+  },
+  "published_text_receipt": {
+    "path": "manifests/acceptance/god-here-workbench-v10-text-verification.json",
+    "bytes": 10772,
+    "sha256": "aa4ce90354d1aa5b18fb526ab346e2fe4aaa7b0dec32ea97bf44023ad08e34cc"
+  },
+  "published_source_commit": "e1632852f8b7cedd1623a36fb314589a7257dafa",
+  "publication_version": 10,
+  "environment_revision": 6,
+  "interpretation": [
+    "Exact reproduced identities are privately preserved; this evidence does not assert historical-original retrieval or add public media links.",
+    "The browser-facing addendum preserves the frozen object denominator and exposes supplemental outputs separately.",
+    "The UI checks execute the actual script against a minimal DOM fixture and current JSON. They do not certify browser, device, audiovisual or artistic acceptance.",
+    "An initial negative-probe run already rejected every invalid fixture, but one missing-layer test encountered a secondary diagnostic. The verifier now retains the direct missing-binding diagnostic; the final complete run passes all cases.",
+    "Hosted GitHub Actions are configured to repeat these checks. This review records local execution and does not claim a hosted Actions result."
+  ],
+  "commands": [
+    "python3 tools/recovery/verify_checkpoint.py --root REPOSITORY",
+    "python3 tools/recovery/probe_checkpoint_negatives.py --root REPOSITORY --scratch-root TEMP_DIRECTORY --output TEMP_DIRECTORY/checkpoint-probes.json",
+    "node tools/recovery/probe_reproduction_view.mjs --root REPOSITORY --output TEMP_DIRECTORY/view-check.json"
+  ]
+}

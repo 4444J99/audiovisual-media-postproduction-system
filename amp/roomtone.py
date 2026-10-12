@@ -11,7 +11,7 @@ from scipy import signal
 from scipy.ndimage import maximum_filter1d, uniform_filter1d
 
 from .audio import RATE, load_audio, save_audio
-from .core import sha256, write_json
+from .core import require_distinct_outputs, sha256, write_json
 
 
 def runs(mask):
@@ -149,18 +149,22 @@ def assemble(samples, regions, *, duration, seed=6971, step=.01,
 
 def create_roomtone(source, transcript, model, out, *, duration=112, seed=6971):
     out = Path(out)
+    protected_inputs = (source, model)
+    require_distinct_outputs(protected_inputs, [out / name for name in (
+        "room-tone-nonlooping.wav", "source-pause-audition.wav", "vad-probabilities.json", "room-tone-report.json")])
     out.mkdir(parents=True, exist_ok=True)
     x = load_audio(source)
     probabilities, hop = speech_probabilities(x, model)
     regions, inventory, settings = pause_inventory(x, transcript["segments"], probabilities, hop)
     bed, edits = assemble(x, regions, duration=duration, seed=seed, step=settings["step_seconds"])
-    save_audio(out / "room-tone-nonlooping.wav", bed)
+    save_audio(out / "room-tone-nonlooping.wav", bed, protected_inputs=protected_inputs)
     # Diagnostic plays the eligible pauses once, separated by 150 ms silence.
     audition = []
     for a, b in regions:
         audition.extend([x[round(a * .01 * RATE):round(b * .01 * RATE)], np.zeros((7200, 2), np.float32)])
-    save_audio(out / "source-pause-audition.wav", np.concatenate(audition))
-    write_json(out / "vad-probabilities.json", {"hop_seconds": hop, "probabilities": probabilities.tolist()})
+    save_audio(out / "source-pause-audition.wav", np.concatenate(audition), protected_inputs=protected_inputs)
+    write_json(out / "vad-probabilities.json", {"hop_seconds": hop, "probabilities": probabilities.tolist()},
+               protected_inputs=protected_inputs)
     record = {"source_sha256": sha256(source), "model_sha256": sha256(model), "vad_model": "Silero VAD ONNX",
               "sample_rate": RATE, "channels": 2, "duration_seconds": len(bed) / RATE, "seed": seed,
               "construction": "Crossfaded source-pause montage; random order without adjacent reuse; bounded playback-speed/gain variation",
@@ -171,5 +175,5 @@ def create_roomtone(source, transcript, model, out, *, duration=112, seed=6971):
               "settings": settings, "pauses": inventory, "edit_map": edits,
               "sha256": sha256(out / "room-tone-nonlooping.wav"),
               "listening_acceptance": "pending: screen for quiet words, breaths, clinks and audible joins"}
-    write_json(out / "room-tone-report.json", record)
+    write_json(out / "room-tone-report.json", record, protected_inputs=protected_inputs)
     return record

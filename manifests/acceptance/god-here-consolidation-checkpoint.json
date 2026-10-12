@@ -1,0 +1,593 @@
+{
+  "schema_version": "god-here.consolidation-checkpoint.v1",
+  "generated_at_utc": "2026-10-11T15:44:58.305053+00:00",
+  "status": "bounded_recovery_checkpoint; full_historical_recovery_and_production_acceptance_open",
+  "catalog_sha256": "8843bba3e9b0d5937fe5fb93e02233fe8be69aa5f072349ad896011999ccb1e3",
+  "expectations_sha256": "8493197c215cf7acd3c0e7024b6dde5d984e010f51bb123940aaa6946a65c004",
+  "catalog_counts": {
+    "unique_sha256_objects": 3151,
+    "file_occurrences": 4609,
+    "unique_object_bytes": 7260492676,
+    "file_occurrence_bytes": 9087861682,
+    "objects_by_type": {
+      "archive": 35,
+      "audio": 399,
+      "code": 298,
+      "data": 37,
+      "document": 165,
+      "image": 1353,
+      "metadata": 429,
+      "mixed_extension_identity": 4,
+      "model": 5,
+      "other": 24,
+      "video": 402
+    },
+    "occurrences_by_origin_kind": {
+      "archive_member": 3276,
+      "canonical_working_tree_file": 1,
+      "github_blob": 603,
+      "historical_github_blob": 27,
+      "historical_site_source_file": 30,
+      "preserved_file": 220,
+      "site_source_file": 449,
+      "supplied_file": 3
+    },
+    "unique_audio_video_objects": 801,
+    "unique_media_objects_including_images": 2154,
+    "unique_image_objects": 1353,
+    "unique_code_objects": 298,
+    "unique_archive_objects": 35,
+    "archive_objects_with_crc_receipts": 35,
+    "audio_video_full_decode_passes": 791,
+    "audio_video_full_decode_failures": 10,
+    "audio_video_full_decode_pending": 0,
+    "image_decode_passes": 117,
+    "image_decode_pending": 1236,
+    "artistic_accepted_objects": 0,
+    "historical_and_reference_expectation_records": 3846,
+    "repository_reference_records": 1607,
+    "canonical_site_reference_records": 1440,
+    "private_evaluation_site_reference_records": 181,
+    "separate_parameterized_reference_occurrences": 73,
+    "reachable_historical_git_reference_records_inspected": 168,
+    "historical_site_reference_records_inspected": 41,
+    "recovered_document_records": 823,
+    "recovered_document_reference_records": 508,
+    "embedded_media_markers_in_document_occurrences": 346,
+    "unhashed_materialization_records": 0
+  },
+  "historical_112_path_statuses": {
+    "unavailable": 4,
+    "exact_hash_recovered": 58,
+    "identity_unresolved_name_candidates": 50
+  },
+  "earlier_22_file_statuses": {
+    "exact_hash_recovered": 10,
+    "unavailable": 12
+  },
+  "tests": [
+    {
+      "scope": "main-production-code",
+      "code_commit": "b8c9b3c6ac5fc428c8895b56f4dcfcf8989766f0",
+      "command": "python3 -m unittest discover -s tests -v",
+      "passed": 23,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/recovery/evidence/main-python-tests.log"
+    },
+    {
+      "scope": "main-score-transport",
+      "code_commit": "b8c9b3c6ac5fc428c8895b56f4dcfcf8989766f0",
+      "command": "node tests/score.test.mjs",
+      "status": "passed",
+      "evidence_path": "docs/recovery/evidence/main-score-tests.log"
+    },
+    {
+      "scope": "main-project-registration",
+      "code_commit": "b8c9b3c6ac5fc428c8895b56f4dcfcf8989766f0",
+      "command": "python3 -m amp.cli validate",
+      "valid": true,
+      "shots": 6,
+      "cues": 20,
+      "evidence_path": "docs/recovery/evidence/main-project-validation.json"
+    },
+    {
+      "scope": "PR51-focused-FX",
+      "code_commit": "fe65c9809808e7fe2bf05e16d510f365ad3b886f",
+      "passed": 75,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/recovery/evidence/pr51-fx-tests.log"
+    },
+    {
+      "scope": "PR49-focused-direction",
+      "code_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "passed": 32,
+      "failed": 0,
+      "skipped": 2,
+      "skip_reason": "Configured test font absent",
+      "evidence_path": "docs/recovery/evidence/pr49-direction-tests.log"
+    },
+    {
+      "scope": "canonical-Site-loader-and-room-tone",
+      "code_commit": "fb1723c4f161a9745376582d9f813f0947c2ec6b",
+      "command": "node --test tests/asset-loader.test.mjs tests/room-tone-*.test.mjs",
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/recovery/evidence/canonical-workbench-tests.log"
+    },
+    {
+      "scope": "current-workbench-static-and-media",
+      "status": "passed",
+      "passed": 70,
+      "failed": 0,
+      "skipped": 0,
+      "source_fingerprints": "manifests/acceptance/god-here-workbench-migration-tests.json",
+      "evidence_path": "docs/recovery/evidence/focused-node-tests.log"
+    },
+    {
+      "scope": "current-workbench-media-seeding-client",
+      "status": "passed",
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "source_fingerprints": "manifests/acceptance/god-here-workbench-migration-tests.json",
+      "evidence_path": "docs/recovery/evidence/focused-python-tests.log"
+    },
+    {
+      "scope": "media-delivery-migration-02",
+      "code_commit": "8027a1ee28f0d8c1319dd7e3b6c53ceec4f3670b",
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "source_fingerprints": "manifests/acceptance/god-here-workbench-media-migration-02-tests.json",
+      "evidence_path": "docs/recovery/evidence/migration-02-focused-node-tests.log"
+    },
+    {
+      "scope": "media-seed-client-migration-02",
+      "code_commit": "8027a1ee28f0d8c1319dd7e3b6c53ceec4f3670b",
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "source_fingerprints": "manifests/acceptance/god-here-workbench-media-migration-02-tests.json",
+      "evidence_path": "docs/recovery/evidence/migration-02-focused-python-tests.log"
+    },
+    {
+      "scope": "keeper-delivery-handler",
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "source_fingerprints": "manifests/acceptance/god-here-keeper-delivery-tests.json",
+      "evidence_path": "docs/recovery/evidence/keeper-delivery-focused-node-tests.log"
+    },
+    {
+      "scope": "keeper-seeding-client",
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "source_fingerprints": "manifests/acceptance/god-here-keeper-delivery-tests.json",
+      "evidence_path": "docs/recovery/evidence/keeper-delivery-focused-python-tests.log"
+    },
+    {
+      "scope": "expanded-archive-media-handler",
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "source_fingerprints": "manifests/acceptance/god-here-expanded-archive-delivery-tests.json",
+      "evidence_path": "docs/recovery/evidence/expanded-archive-focused-node-tests.log"
+    },
+    {
+      "scope": "expanded-archive-seeding-client",
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "source_fingerprints": "manifests/acceptance/god-here-expanded-archive-delivery-tests.json",
+      "evidence_path": "docs/recovery/evidence/expanded-archive-focused-python-tests.log"
+    },
+    {
+      "scope": "PR51-consolidation-FX",
+      "code_commit": "c6656685603022193617405c87b831d28f570299",
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/recovery/evidence/pr51-consolidation-fx-tests.log"
+    },
+    {
+      "scope": "canonical-Site-FX-integration",
+      "code_commit": "dc04e85989c4d52ac1269949a16d19c60a680115",
+      "passed": 94,
+      "failed": 0,
+      "skipped": 0,
+      "source_fingerprints": "manifests/acceptance/god-here-workbench-fx-integration.json",
+      "evidence_path": "docs/recovery/evidence/workbench-fx-runtime-and-loading.log",
+      "qualification": "93 runtime/loading checks and one separate preserved-WAV binding check; same tested files retained in final publication."
+    },
+    {
+      "scope": "combined-native-python",
+      "code_commit": "3074a1431b72a7250826ae21a2a9318027d0379b",
+      "commit_scope": "Local native integration before shared dispatcher; exact file identities are in native_engineering_integration.",
+      "passed": 105,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/engineering-integration/combined-check.stderr.log"
+    },
+    {
+      "scope": "combined-native-room-javascript",
+      "code_commit": "3074a1431b72a7250826ae21a2a9318027d0379b",
+      "commit_scope": "Local native integration before shared dispatcher; exact file identities are in native_engineering_integration.",
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/engineering-integration/combined-check.stdout.log"
+    },
+    {
+      "scope": "combined-native-fx-javascript",
+      "code_commit": "3074a1431b72a7250826ae21a2a9318027d0379b",
+      "commit_scope": "Local native integration before shared dispatcher; exact file identities are in native_engineering_integration.",
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0,
+      "evidence_path": "docs/engineering-integration/combined-check.stdout.log"
+    }
+  ],
+  "canonical_site_media": {
+    "file_occurrences": 240,
+    "unique_content_sha256": 239,
+    "registered_byte_matches": 240,
+    "full_decode_pass_occurrences": 240,
+    "fresh_unique_decodes": 180,
+    "failed_occurrences": 0,
+    "scope": "Preserved source media, independent of deployment. Source migrations and final delivery are qualified in the separate addenda and publication receipt.",
+    "current_source_static_paths": 188,
+    "current_source_registered_paths": 52,
+    "registered_bytes": 540442474
+  },
+  "canonical_site_baseline": {
+    "source_commit": "fb1723c4f161a9745376582d9f813f0947c2ec6b",
+    "dist_files": 385,
+    "bytes": 786491719,
+    "saved_version": 7,
+    "deployment_status": "failed_at_initial_audit",
+    "prior_successful_version": 6
+  },
+  "exact_playback_repair": {
+    "path": "dist/media/dialogue-reference.mp4",
+    "sha256": "0909b79a45521c37d478ca28df5cf192a380b46d5f151208f0cc2a7c21da021b",
+    "bytes": 13619707,
+    "origin": "sound-pass-02 archive member",
+    "method": "exact-byte recovery; no picture/audio transformation",
+    "full_decode": "passed",
+    "current_source_path": "room-media-source/media/dialogue-reference.mp4",
+    "public_url_path": "/media/dialogue-reference.mp4",
+    "registration_id": "mp4-006-0909b79a4552",
+    "deployed_delivery": "full_download_verified"
+  },
+  "subsequent_publication_receipt": "god-here-workbench-publication.json",
+  "remaining_gates": [
+    "Unavailable historical identities and access to unmounted original session material",
+    "Historical images lacking individual decode receipts",
+    "Further retained-experiment reproduction beyond the verified baseline and five initial retained bindings",
+    "Remaining experiment bindings and playable review packages in the canonical workbench",
+    "Native external application imports",
+    "Deployed browser and physical-phone playback in both orientations",
+    "User artistic acceptance"
+  ],
+  "post_snapshot_source_delta": "god-here-post-snapshot-source-delta.json",
+  "post_snapshot_source_deltas": [
+    "god-here-post-snapshot-source-delta.json",
+    "god-here-post-snapshot-source-delta-02.json",
+    "god-here-post-snapshot-source-delta-03.json",
+    "god-here-post-snapshot-source-delta-04.json",
+    "god-here-post-snapshot-source-delta-05.json"
+  ],
+  "current_workbench_delivery": {
+    "source_commit": "807e4864f89c7b5909010a7336adc16409d03875",
+    "version_number": 11,
+    "deployment_status": "succeeded",
+    "deployed_environment_revision": 6,
+    "text_checks_passed": 22,
+    "registered_media_verified": 52,
+    "registered_media_unverified": 0,
+    "registered_media_delivery_status": "verified",
+    "temporary_upload_key_removed_and_applied": true,
+    "publication_receipt": "god-here-workbench-publication.json",
+    "reviewable_payload": "god-here-public-media-delivery-review.json",
+    "retained_execution_view": "Published with exact response hashes; five bound runs, 35 new private outputs and three separate exact inputs. No new private-media playback links."
+  },
+  "updated_at_utc": "2026-10-11T20:44:23.798374+00:00",
+  "image_validation_supplement": {
+    "path": "manifests/acceptance/god-here-image-validation-supplement.json",
+    "bytes": 566706,
+    "sha256": "dcc9a1ff22a197d9b62f91cba899c2d7c1064d0993e68a8bed9b017a553eaa3a"
+  },
+  "current_image_validation": {
+    "passed": 813,
+    "failed": 0,
+    "checksum_only": 540,
+    "qualification": "696 new decode passes supplement the frozen 117; no artistic acceptance."
+  },
+  "fx_review_repairs": {
+    "path": "manifests/acceptance/god-here-fx-review-repairs.json",
+    "bytes": 6524,
+    "sha256": "d4045b2e7daf385a318d0fa135252aec39ee379af1e3c443031275719744d820"
+  },
+  "baseline_reproduction": {
+    "path": "manifests/acceptance/god-here-baseline-reproduction.json",
+    "sha256": "3b6211279610e75ada8fbb94b2328f727629d9de17dfa538af685b7358527789",
+    "bytes": 34297
+  },
+  "exact_gap_recheck": {
+    "path": "manifests/acceptance/god-here-exact-gap-recheck.json",
+    "bytes": 4443,
+    "sha256": "602aff16f8ddcef0dca4fe54b553244157d68a159ce5bea077b9dc67ed426734"
+  },
+  "workbench_fx_integration": {
+    "path": "manifests/acceptance/god-here-workbench-fx-integration.json",
+    "sha256": "fd6c25f4ef19482871642cd06842ff1df49a63c57ec0adf59439f89fb79228ad",
+    "bytes": 9381
+  },
+  "checkpoint_negative_probes": {
+    "path": "manifests/acceptance/god-here-checkpoint-negative-probes.json",
+    "sha256": "0336398cc71814b2fcecd55d71bd63b2c12e9210d4844258d28edee0ca2b574f",
+    "bytes": 102907
+  },
+  "native_engineering_integration": {
+    "path": "manifests/acceptance/god-here-native-engineering-integration.json",
+    "bytes": 35015,
+    "sha256": "5fc4dc608264ab1d97f327b1bd36cc26eea5081ce413b667be23ec78785a6dab"
+  },
+  "reproduction_availability": {
+    "path": "manifests/artifacts/god-here-reproduction-availability.json",
+    "bytes": 49752,
+    "sha256": "d7665c3bd4185ab1858aceb549823eca23d82ba44b653b4b1e13a1a949fba28e"
+  },
+  "current_available_objects": {
+    "frozen_catalog_unique_objects": 3151,
+    "frozen_catalog_file_occurrences": 4609,
+    "reproduced_output_file_occurrences": 76,
+    "reproduced_unique_output_hashes": 76,
+    "reproduced_media_file_occurrences": 67,
+    "reproduced_output_file_bytes": 767651153,
+    "reproduced_identities_already_in_frozen_catalog": 52,
+    "supplemental_new_unique_outputs": 24,
+    "supplemental_new_output_bytes": 622158294,
+    "supplemental_new_outputs_by_type": {
+      "audio": 20,
+      "metadata": 2,
+      "video": 2
+    },
+    "supplemental_new_audio_video_decode_passes": 22,
+    "frozen_plus_this_reproduction_unique_objects": 3175,
+    "frozen_unmatched_expected_hashes": 194,
+    "previously_unmatched_hashes_now_reproduced": 5,
+    "remaining_unmatched_expected_hashes": 189,
+    "expectation_records_with_availability_updates": 7,
+    "historical_originals_retrieved_by_this_operation": 0,
+    "new_output_playback_links": 0,
+    "artistic_acceptance_added": 0
+  },
+  "repository_workbench_fx_alignment": {
+    "path": "manifests/acceptance/god-here-repository-workbench-fx-alignment.json",
+    "bytes": 3127,
+    "sha256": "64957b7f271dc037cc7a8e8a292164636b6a8aac6a9382d1354c534f2414a9bf"
+  },
+  "reproduction_availability_review": {
+    "path": "manifests/acceptance/god-here-reproduction-availability-review.json",
+    "bytes": 3229,
+    "sha256": "cf23eed041eca64d2891794bc70251df4401d570a0a696ae9fce8acab65ded5d"
+  },
+  "direction_exact_input_recovery": {
+    "path": "manifests/acceptance/god-here-direction-exact-input-recovery.json",
+    "bytes": 7380,
+    "sha256": "dd9ad2cd19307b4088b7db55f3ac6a1560d52c258cd414759b3bc568b567844b"
+  },
+  "shared_execution_review": {
+    "path": "manifests/acceptance/god-here-execution-independent-review.json",
+    "bytes": 8968,
+    "sha256": "014eb5ae5ec5bd9e1b1b2b5ad7bd21296c5763e3481e14e2d7fe62627162706a"
+  },
+  "shared_execution_contract": {
+    "entry_point": "python -m amp.cli execute",
+    "documentation": "docs/architecture/shared-execution-contract.md",
+    "reviewed_local_source_commit": "994a24550e9ba9d1969db47292c0610ebc96566b",
+    "native_adapter_families": 4,
+    "concrete_bindings": 5,
+    "focused_tests_passed": 45,
+    "focused_test_evidence": {
+      "path": "docs/recovery/evidence/final-consolidated-check.stderr.log",
+      "bytes": 20716,
+      "sha256": "ea0204f49cf3d810c0ae6eda23ec8bc9ea9f7d036f84b564af18177199686dc2"
+    },
+    "render_execution_evidence_status": "All five bound recipes have verified actual required outputs. Sixty required identities have recorded existing custody; 35 new required identities are durably preserved. The separate retained-execution addendum records current availability. Room products were rendered at 7469ea42 and verified later at 994a2455 without rerender.",
+    "artistic_acceptance": "pending",
+    "focused_test_evidence_scope": "The complete150-test Python suite includes all45 execution tests; the earlier standalone41-test evidence remains historical.",
+    "historical_focused_test_evidence": {
+      "path": "docs/recovery/evidence/execution-contract-tests.log",
+      "bytes": 6202,
+      "sha256": "e07834585ded8173f7614a5de253cc4b75fda30df756cd22ccf96ff3edbb5616"
+    }
+  },
+  "consolidated_execution_checks": {
+    "status": "passed",
+    "scope": "Local combined source before subsequent retained-room verification correction, identified by 207 exact file hashes.",
+    "python_tests": 146,
+    "room_javascript_tests": 25,
+    "fx_javascript_tests": 97,
+    "enumerated_tests": 268,
+    "failures": 0,
+    "skipped": 0,
+    "wheel_modules": 19,
+    "evidence": [
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-check.json",
+        "bytes": 38706,
+        "sha256": "28366433527b725426a9ea36458d2c84eb4fbe2f0c2fe1ad18c1f493e3ef93fc"
+      },
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-check.stdout.log",
+        "bytes": 11688,
+        "sha256": "e8dd5990758ae9e1e6dca518cad5023cb6a66565b706b817f973a7f7d6cfe319"
+      },
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-check.stderr.log",
+        "bytes": 19944,
+        "sha256": "1cb8fede2a4dd8272c49573169ce95828017b6019e604ecb5f2a11ae462efc68"
+      },
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-wheel.json",
+        "bytes": 7589,
+        "sha256": "37959612b4b929598852055b00df79022da66eb5cd18884a268952c54a433e01"
+      },
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-wheel.stdout.log",
+        "bytes": 954,
+        "sha256": "dcf57f71f4e6456bc8b6fed38b83d8b2277235e77dcdae4983e8c6b285e3068e"
+      },
+      {
+        "path": "docs/recovery/evidence/consolidated-execution-wheel.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "retained_producing_source_anchor": {
+    "path": "manifests/acceptance/god-here-retained-producing-source-anchor.json",
+    "bytes": 8191,
+    "sha256": "4b748722a4a17d8400400ff5decd66759ee18cb527fb02bf698ed5fd9fe131ef"
+  },
+  "producing_source_hosted_ci": {
+    "path": "manifests/acceptance/god-here-producing-source-hosted-ci.json",
+    "bytes": 2011,
+    "sha256": "31846844bde820f9013a2cc3b39118e8143162574e5d5cb6462d65a66ef7d7c3"
+  },
+  "room_output_selection_review": {
+    "path": "manifests/acceptance/god-here-room-output-selection-review.json",
+    "bytes": 5386,
+    "sha256": "aed56e596b5abc76fb705ce7738c87625bb96095884c381a6a61d32908834c19"
+  },
+  "room_existing_products_review": {
+    "path": "manifests/acceptance/god-here-room-existing-products-review.json",
+    "bytes": 3133,
+    "sha256": "6117789f729991a1c039c8fd9890f6eee9de88cd0af9e7205a311efa745c13ac"
+  },
+  "final_consolidated_checks": {
+    "status": "passed",
+    "scope": "Complete combined code after the reviewed retained-room output selection correction; actual source hashes are bound in the receipt.",
+    "python_tests": 150,
+    "room_javascript_tests": 25,
+    "fx_javascript_tests": 97,
+    "enumerated_tests": 272,
+    "failures": 0,
+    "skipped": 0,
+    "wheel_modules": 19,
+    "evidence": [
+      {
+        "path": "docs/recovery/evidence/final-consolidated-check.json",
+        "bytes": 41368,
+        "sha256": "cb64123fccff1fd0a183ec0262362e470f178e8e4e3e8e3ef7aff250e0ed5498"
+      },
+      {
+        "path": "docs/recovery/evidence/final-consolidated-check.stdout.log",
+        "bytes": 11696,
+        "sha256": "6d28f47eada34dd115bf4a56f3d434c221cac34aec4384234161d93d5544385f"
+      },
+      {
+        "path": "docs/recovery/evidence/final-consolidated-check.stderr.log",
+        "bytes": 20716,
+        "sha256": "ea0204f49cf3d810c0ae6eda23ec8bc9ea9f7d036f84b564af18177199686dc2"
+      },
+      {
+        "path": "docs/recovery/evidence/final-consolidated-wheel.json",
+        "bytes": 8532,
+        "sha256": "27762a11a1521a374ba070db4777cda848254c430dd6057720e795d2d995bfc9"
+      },
+      {
+        "path": "docs/recovery/evidence/final-consolidated-wheel.stdout.log",
+        "bytes": 998,
+        "sha256": "bbb5068f2aa115544bd0274a608acedf0eead65dd481505bf13393a411dc1a81"
+      },
+      {
+        "path": "docs/recovery/evidence/final-consolidated-wheel.stderr.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "corrected_code_hosted_ci": {
+    "path": "manifests/acceptance/god-here-corrected-code-hosted-ci.json",
+    "bytes": 4958,
+    "sha256": "bcc57827434c07d97f23c154b816ba7d61f4b9619e866d7696e022a1cc2d18ef"
+  },
+  "retained_execution_availability": {
+    "path": "manifests/artifacts/god-here-retained-execution-availability.json",
+    "bytes": 191301,
+    "sha256": "d78fbd0381d9b55f975bf8dedab9bbafa0980175af7744ef6d77f0f19d17bf77"
+  },
+  "retained_execution_identity_snapshot": {
+    "path": "manifests/acceptance/god-here-retained-execution-identities.json",
+    "bytes": 160696,
+    "sha256": "713af406a881adbdf5d1b014a728947a017c2a7c9bb8b04aa00a1f81dec9a3a6"
+  },
+  "retained_execution_preservation": {
+    "path": "manifests/acceptance/god-here-retained-execution-preservation.json",
+    "bytes": 33522,
+    "sha256": "7f4f7092a15a11d2c6df842d00890ec5d15885ba31b26e6e25d25bb6d5101a44"
+  },
+  "retained_execution_code_equivalence": {
+    "path": "manifests/acceptance/god-here-retained-execution-code-equivalence.json",
+    "bytes": 20765,
+    "sha256": "63d139dc79245798ce81aba4737d2bcee9973bb475968de30e01c8fde777700e"
+  },
+  "retained_execution_availability_review": {
+    "path": "manifests/acceptance/god-here-retained-execution-availability-review.json",
+    "bytes": 7323,
+    "sha256": "5a8c2fe303cf0611c0e0877b81b535ef1e4b5d917ef24aaad59aa62d2ebfa8d7"
+  },
+  "retained_execution_negative_probes": {
+    "path": "manifests/acceptance/god-here-retained-availability-probes.json",
+    "bytes": 33998,
+    "sha256": "ef343891cd39bc89c8d51e4c3dfc526b1aad6dc907f748931c355c0fd34b35ac"
+  },
+  "retained_execution_view_metadata_check": {
+    "path": "manifests/acceptance/god-here-retained-view-metadata-check.json",
+    "bytes": 82156,
+    "sha256": "952e513263346b53552a9b601ce1d9b799ceddaf4ced053e208c0bd2489215c3"
+  },
+  "current_retained_availability": {
+    "frozen_catalog_unique_objects": 3151,
+    "frozen_catalog_file_occurrences": 4609,
+    "baseline_additional_unique_outputs": 24,
+    "additional_exact_pr49_input_identities": 3,
+    "bound_retained_recipes": 5,
+    "native_renderer_families": 4,
+    "native_execution_attempts": 6,
+    "successful_required_product_sets": 5,
+    "required_output_occurrences": 95,
+    "unique_required_output_identities": 95,
+    "fully_decoded_required_media": 89,
+    "existing_custody_matches": 60,
+    "new_required_output_identities": 35,
+    "new_required_output_bytes": 1210784607,
+    "new_required_outputs_by_type": {
+      "audio": 29,
+      "metadata": 4,
+      "video": 2
+    },
+    "new_required_media_decode_passes": 31,
+    "frozen_unmatched_expected_hashes": 194,
+    "unmatched_after_baseline_reproduction": 189,
+    "additional_expected_hashes_reproduced": 29,
+    "expectation_rows_updated": 114,
+    "remaining_unmatched_expected_hashes": 160,
+    "frozen_baseline_pr49_retained_scoped_identity_union": 3213,
+    "historical_original_outputs_retrieved_by_this_operation": 0,
+    "new_public_output_links": 0,
+    "artistic_acceptance_added": 0
+  },
+  "retained_execution_independent_review": {
+    "path": "manifests/acceptance/god-here-retained-execution-availability-independent-review.json",
+    "bytes": 16191,
+    "sha256": "27f6e6ec443b8f16cffe0c2b69f225ec53c3e2c4cad445c0831214a280341259"
+  }
+}

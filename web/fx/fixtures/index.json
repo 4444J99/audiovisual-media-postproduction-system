@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "1.0.0",
+  "source": {
+    "id": "god-here-second-draft",
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "offset": 95,
+    "duration": 12.166666667
+  },
+  "regions": [
+    "striped-shirt",
+    "patterned-shirt",
+    "dark-gray-shirt",
+    "light-gray-shirt",
+    "black-shirt-cap"
+  ],
+  "outputs": [
+    {
+      "id": "message-impact",
+      "name": "Message impact",
+      "filename": "message-impact.json",
+      "kind": "artwork patch"
+    },
+    {
+      "id": "closed-inbox",
+      "name": "Closed inbox",
+      "filename": "closed-inbox.json",
+      "kind": "artwork patch"
+    },
+    {
+      "id": "out-but-still-here",
+      "name": "Out, but still here",
+      "filename": "out-but-still-here.json",
+      "kind": "artwork patch"
+    },
+    {
+      "id": "correction-machine",
+      "name": "Correction machine",
+      "filename": "correction-machine.json",
+      "kind": "artwork patch"
+    },
+    {
+      "id": "fractured-utterance",
+      "name": "Fractured utterance",
+      "filename": "fractured-utterance.json",
+      "kind": "artwork patch"
+    },
+    {
+      "id": "room-takeover",
+      "name": "Room takeover",
+      "filename": "room-takeover.json",
+      "kind": "artwork patch"
+    },
+    {
+      "id": "demo-routing",
+      "name": "Routing \u2014 demonstration",
+      "filename": "demo-routing.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-delay",
+      "name": "Delay / Echo \u2014 demonstration",
+      "filename": "demo-delay.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-stutter",
+      "name": "Stutter \u2014 demonstration",
+      "filename": "demo-stutter.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-granular",
+      "name": "Granular \u2014 demonstration",
+      "filename": "demo-granular.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-reverse",
+      "name": "Reverse \u2014 demonstration",
+      "filename": "demo-reverse.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-freeze",
+      "name": "Freeze / Hold \u2014 demonstration",
+      "filename": "demo-freeze.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-feedback",
+      "name": "Feedback \u2014 demonstration",
+      "filename": "demo-feedback.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-queue",
+      "name": "Queue / Overflow \u2014 demonstration",
+      "filename": "demo-queue.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-gate",
+      "name": "Gate / Erase \u2014 demonstration",
+      "filename": "demo-gate.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-displacement",
+      "name": "Displacement \u2014 demonstration",
+      "filename": "demo-displacement.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-exchange",
+      "name": "Exchange \u2014 demonstration",
+      "filename": "demo-exchange.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-typography",
+      "name": "Typography \u2014 demonstration",
+      "filename": "demo-typography.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "demo-damage",
+      "name": "Signal Damage \u2014 demonstration",
+      "filename": "demo-damage.json",
+      "kind": "module demonstration"
+    },
+    {
+      "id": "patch-demo-message-impact",
+      "name": "Message impact \u2014 demonstration",
+      "kind": "patch-demo",
+      "filename": "patch-demo-message-impact.json"
+    },
+    {
+      "id": "patch-demo-closed-inbox",
+      "name": "Closed inbox \u2014 demonstration",
+      "kind": "patch-demo",
+      "filename": "patch-demo-closed-inbox.json"
+    },
+    {
+      "id": "patch-demo-out-but-still-here",
+      "name": "Out, but still here \u2014 demonstration",
+      "kind": "patch-demo",
+      "filename": "patch-demo-out-but-still-here.json"
+    },
+    {
+      "id": "patch-demo-correction-machine",
+      "name": "Correction machine \u2014 demonstration",
+      "kind": "patch-demo",
+      "filename": "patch-demo-correction-machine.json"
+    },
+    {
+      "id": "patch-demo-fractured-utterance",
+      "name": "Fractured utterance \u2014 demonstration",
+      "kind": "patch-demo",
+      "filename": "patch-demo-fractured-utterance.json"
+    },
+    {
+      "id": "patch-demo-room-takeover",
+      "name": "Room takeover \u2014 demonstration",
+      "kind": "patch-demo",
+      "filename": "patch-demo-room-takeover.json"
+    }
+  ]
+}

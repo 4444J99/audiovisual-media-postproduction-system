@@ -1,0 +1,429 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "closed-inbox",
+  "name": "Closed inbox",
+  "seed": 773,
+  "duration": 12.166666667,
+  "source": {
+    "id": "god-here-second-draft",
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "offset": 95,
+    "duration": 12.166666667
+  },
+  "nodes": [
+    {
+      "id": "source",
+      "type": "source"
+    },
+    {
+      "id": "inbox",
+      "type": "queue",
+      "name": "Queue / Overflow",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "patterned-shirt",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "capacity": 7,
+        "rate": 7,
+        "release": 1.2,
+        "burst": 3.4,
+        "spread": 0.95,
+        "order": 0
+      },
+      "macro": [
+        {
+          "parameter": "capacity",
+          "min": 16,
+          "max": 7,
+          "curve": "linear"
+        },
+        {
+          "parameter": "rate",
+          "min": 1,
+          "max": 7,
+          "curve": "linear"
+        },
+        {
+          "parameter": "release",
+          "min": 6,
+          "max": 1.2,
+          "curve": "linear"
+        },
+        {
+          "parameter": "spread",
+          "min": 0.1,
+          "max": 0.95,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "recurrence",
+      "type": "feedback",
+      "name": "Feedback",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "patterned-shirt",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "time": 0.26,
+        "gain": 0.8,
+        "repeats": 10,
+        "scale": 0.81,
+        "rotation": 0.2,
+        "reset": 11.5,
+        "threshold": 0.005
+      },
+      "macro": [
+        {
+          "parameter": "gain",
+          "min": 0.2,
+          "max": 0.8,
+          "curve": "linear"
+        },
+        {
+          "parameter": "repeats",
+          "min": 2,
+          "max": 10,
+          "curve": "linear"
+        },
+        {
+          "parameter": "scale",
+          "min": 0.97,
+          "max": 0.81,
+          "curve": "linear"
+        },
+        {
+          "parameter": "rotation",
+          "min": 0,
+          "max": 0.2,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "closed",
+      "type": "gate",
+      "name": "Gate / Erase",
+      "presetId": "extreme",
+      "bypass": false,
+      "solo": false,
+      "wet": 1,
+      "intensity": 1,
+      "targets": [
+        "voice",
+        "picture",
+        "text"
+      ],
+      "region": "patterned-shirt",
+      "scope": {
+        "type": "track"
+      },
+      "params": {
+        "duty": 0.18,
+        "period": 1.3,
+        "edge": 0.012,
+        "phase": 0.1,
+        "retain": 0,
+        "threshold": 0.38,
+        "detector": 0
+      },
+      "macro": [
+        {
+          "parameter": "duty",
+          "min": 1,
+          "max": 0.18,
+          "curve": "linear"
+        },
+        {
+          "parameter": "edge",
+          "min": 0.2,
+          "max": 0.012,
+          "curve": "linear"
+        },
+        {
+          "parameter": "retain",
+          "min": 0.45,
+          "max": 0,
+          "curve": "linear"
+        }
+      ],
+      "automation": []
+    },
+    {
+      "id": "prior-returns",
+      "type": "mix",
+      "gain": 1
+    },
+    {
+      "id": "sum",
+      "type": "mix",
+      "gain": 1
+    },
+    {
+      "id": "output",
+      "type": "output",
+      "gain": 1
+    }
+  ],
+  "connections": [
+    {
+      "from": "source",
+      "to": "inbox",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "inbox",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "inbox",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "source",
+      "to": "inbox",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "inbox",
+      "to": "recurrence",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "inbox",
+      "to": "recurrence",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "inbox",
+      "to": "recurrence",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "inbox",
+      "to": "recurrence",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "recurrence",
+      "to": "closed",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "recurrence",
+      "to": "closed",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "recurrence",
+      "to": "closed",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "recurrence",
+      "to": "closed",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "closed",
+      "to": "sum",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "closed",
+      "to": "sum",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "closed",
+      "to": "sum",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "closed",
+      "to": "sum",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "audio",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "picture",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "text",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "sum",
+      "to": "output",
+      "port": "matte",
+      "gain": 1,
+      "role": "insert"
+    },
+    {
+      "from": "recurrence",
+      "to": "prior-returns",
+      "port": "audio",
+      "gain": 0.48,
+      "role": "send"
+    },
+    {
+      "from": "recurrence",
+      "to": "prior-returns",
+      "port": "picture",
+      "gain": 0.48,
+      "role": "send"
+    },
+    {
+      "from": "recurrence",
+      "to": "prior-returns",
+      "port": "text",
+      "gain": 0.48,
+      "role": "send"
+    },
+    {
+      "from": "prior-returns",
+      "to": "sum",
+      "port": "audio",
+      "gain": 1,
+      "role": "return"
+    },
+    {
+      "from": "prior-returns",
+      "to": "sum",
+      "port": "picture",
+      "gain": 1,
+      "role": "return"
+    },
+    {
+      "from": "prior-returns",
+      "to": "sum",
+      "port": "text",
+      "gain": 1,
+      "role": "return"
+    }
+  ],
+  "events": [],
+  "metadata": {
+    "sourceClock": "seconds relative to excerpt",
+    "voiceInput": "shared recording; performer isolation is not claimed",
+    "project": "god-here",
+    "originalPictureInterval": [
+      95,
+      107.166666667
+    ],
+    "identityPolicy": "Appearance labels, not certified performer names.",
+    "dialogueReference": {
+      "sha256": "24817c4f076a1c9fca43ebcf9825964610fc2956c1755501547de7477d173254",
+      "method": "Inherited DeepFilterNet v0.5.6 candidate; shared stereo recording; artist/listening acceptance remains pending."
+    },
+    "wordMaterial": [
+      {
+        "id": "out",
+        "text": "OUT",
+        "start": 2.88,
+        "end": 3.12,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "how",
+        "text": "HOW",
+        "start": 6.14,
+        "end": 6.52,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "what",
+        "text": "WHAT",
+        "start": 9.94,
+        "end": 10.08,
+        "provenance": "provisional ASR interval",
+        "listeningAccepted": false
+      },
+      {
+        "id": "why",
+        "text": "WHY",
+        "provenance": "authored screenplay word; not performed in this excerpt",
+        "listeningAccepted": false
+      }
+    ],
+    "layerStatus": "Guided classical segmentation workprint; fine roto is not accepted.",
+    "roomStatus": "Hybrid generated hidden-room fill; source-shot registration remains approximate.",
+    "objectStatus": "Authored object regions, not segmented object tracks.",
+    "patchMacro": "Capacity crisis",
+    "description": "Queue → Feedback → Gate, with earlier returns sent around the closed gate.",
+    "sourceSelections": "Workprint intervals; checked speech cues must carry their own provenance."
+  }
+}

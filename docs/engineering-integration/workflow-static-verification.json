@@ -1,0 +1,61 @@
+{
+  "schema": "god-here.github-workflow-static-verification.v1",
+  "recorded_at": "2026-10-11T19:40:11.334214+00:00",
+  "workflow": ".github/workflows/verify.yml",
+  "workflow_sha256": "14f90154175aa765389069fdfb4739d8e5df16929f1b5ae54ed30f1edf0c8b64",
+  "yaml_parser": {
+    "name": "PyYAML",
+    "version": "6.0.3"
+  },
+  "yaml_parse": "passed",
+  "shell_syntax": [
+    {
+      "step": "Install declared verification dependencies",
+      "bash_syntax": "passed",
+      "sha256": "0514615cd9d9b8b919af6937c48a7c9bb59e96d836654522b388a0027578d108"
+    },
+    {
+      "step": "Run the complete project checks",
+      "bash_syntax": "passed",
+      "sha256": "7b3cc6112d897fe93e30500139b29cb2b3cf44f9b3f8ad3dbc23a9b409bc89e0"
+    },
+    {
+      "step": "Build the Python distribution without network resolution",
+      "bash_syntax": "passed",
+      "sha256": "06000ff71d4e1d82b119c1faadec6f3683c09b29044a92212143fb30cd25fe52"
+    }
+  ],
+  "actions": [
+    {
+      "name": "actions/checkout",
+      "commit": "d23441a48e516b6c34aea4fa41551a30e30af803"
+    },
+    {
+      "name": "actions/setup-python",
+      "commit": "ece7cb06caefa5fff74198d8649806c4678c61a1"
+    },
+    {
+      "name": "actions/setup-node",
+      "commit": "249970729cb0ef3589644e2896645e5dc5ba9c38"
+    }
+  ],
+  "triggers": {
+    "workflow_dispatch": null,
+    "pull_request": null,
+    "push": {
+      "branches": [
+        "main",
+        "inventory/**",
+        "consolidation/**"
+      ]
+    }
+  },
+  "repository_permission": "contents: read",
+  "checkout_credentials_retained": false,
+  "single_check_entry_point": "python tools/check.py",
+  "optical_flow_dependency": "requirements-direction.txt: opencv-python-headless==4.13.0.92",
+  "private_media_or_network_required_by_test_fixtures": false,
+  "wheel_build_resolution": "--no-index --no-deps --no-build-isolation",
+  "remote_github_actions_run": "not_run",
+  "local_scope": "Workflow YAML/structure and bash syntax inspected; prior combined checks and wheel build remain the executed code evidence. No full suite repeat, dependency installation, workflow dispatch, or remote publication performed."
+}

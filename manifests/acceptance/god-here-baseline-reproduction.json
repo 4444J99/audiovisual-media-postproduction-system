@@ -1,0 +1,1061 @@
+{
+  "schema": "god-here.baseline-reproduction-proof.v1",
+  "recorded_at_utc": "2026-10-11T19:18:30.856418+00:00",
+  "status": "technically_reproduced_and_verified",
+  "repository": "4444J99/audiovisual-media-postproduction-system",
+  "pinned_revision": "b8c9b3c6ac5fc428c8895b56f4dcfcf8989766f0",
+  "source": {
+    "logical_path": "project_sources/02-2020-04-26-god-s-ears-second-draft.mp4",
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "bytes": 12636527,
+    "unchanged_after_execution": true
+  },
+  "recipe": [
+    "README.md Run section",
+    "tools/finish_production.py"
+  ],
+  "parameters": {
+    "source_start_frame": 0,
+    "source_end_frame_exclusive": 3360,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "duration_seconds": 112,
+    "fields": true,
+    "boundary_mode": "hard",
+    "typography": true,
+    "fine_layers_baseline": false,
+    "existing_finish_recipe_seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  "commands": [
+    {
+      "step": "validate",
+      "argv": [
+        "${PYTHON}",
+        "-m",
+        "amp.cli",
+        "validate"
+      ]
+    },
+    {
+      "step": "audio",
+      "argv": [
+        "${PYTHON}",
+        "-m",
+        "amp.cli",
+        "audio",
+        "--source",
+        "${SOURCE}",
+        "--output",
+        "${OUTPUT}/audio"
+      ]
+    },
+    {
+      "step": "render",
+      "argv": [
+        "${PYTHON}",
+        "-m",
+        "amp.cli",
+        "render",
+        "--source",
+        "${SOURCE}",
+        "--audio",
+        "${OUTPUT}/audio/candidate-B.wav",
+        "--output",
+        "${OUTPUT}/god-here-linear-picture.mp4",
+        "--start",
+        "0",
+        "--end",
+        "112",
+        "--width",
+        "1280",
+        "--mode",
+        "hard",
+        "--typography"
+      ]
+    },
+    {
+      "step": "finish",
+      "argv": [
+        "${PYTHON}",
+        "tools/finish_production.py",
+        "${SOURCE}",
+        "${OUTPUT}"
+      ]
+    }
+  ],
+  "dependency_versions": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "Pillow": "12.3.0",
+    "setuptools": "84.0.0",
+    "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+    "ffprobe": "ffprobe version 6.1.1-3ubuntu5 Copyright (c) 2007-2023 the FFmpeg developers",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+  },
+  "font": {
+    "name": "DejaVuSans.ttf",
+    "present": true,
+    "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280"
+  },
+  "explicit_environment": {
+    "OPENBLAS_NUM_THREADS": "2",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2"
+  },
+  "production_code_modified": false,
+  "model_downloads": false,
+  "paid_services": false,
+  "initial_attempt": {
+    "status": "failed_during_finish_recipe_decode_gate",
+    "failed_step": "finish",
+    "step_exit_code": 1,
+    "observed_file_count": 77,
+    "confirmed_incomplete_outputs": [
+      {
+        "path": "dialogue-reference.mp4",
+        "bytes": 11010096,
+        "probe_exit_code": 1,
+        "diagnosis": "missing_moov_atom"
+      },
+      {
+        "path": "god-here-variation-17.mp4",
+        "bytes": 3407920,
+        "probe_exit_code": 1,
+        "diagnosis": "missing_moov_atom"
+      },
+      {
+        "path": "audio-trial-B.m4a",
+        "bytes": 262188,
+        "probe_exit_code": 1,
+        "diagnosis": "missing_moov_atom"
+      },
+      {
+        "path": "audio-trial-F.m4a",
+        "bytes": 262188,
+        "probe_exit_code": 1,
+        "diagnosis": "missing_moov_atom"
+      }
+    ],
+    "write_mechanism": "not_established",
+    "evidence_disposition": "preserved_separately"
+  },
+  "completed_attempt": {
+    "output_filesystem": "separate temporary tmpfs",
+    "started_at_utc": "2026-10-11T19:10:28.698026+00:00",
+    "finished_at_utc": "2026-10-11T19:14:10.780345+00:00",
+    "steps": [
+      {
+        "step": "validate",
+        "exit_code": 0,
+        "elapsed_seconds": 0.832,
+        "stderr_bytes": 0
+      },
+      {
+        "step": "audio",
+        "exit_code": 0,
+        "elapsed_seconds": 73.703,
+        "stderr_bytes": 0
+      },
+      {
+        "step": "render",
+        "exit_code": 0,
+        "elapsed_seconds": 45.243,
+        "stderr_bytes": 0
+      },
+      {
+        "step": "finish",
+        "exit_code": 0,
+        "elapsed_seconds": 102.299,
+        "stderr_bytes": 0
+      }
+    ],
+    "worktree_clean": true
+  },
+  "verification": {
+    "generated_file_count": 76,
+    "generated_file_bytes": 767651153,
+    "media_file_count": 67,
+    "media_types": {
+      ".wav": 20,
+      ".m4a": 36,
+      ".mp4": 11
+    },
+    "full_decode_acceptance": "exit zero, empty error-level stderr, progress=end",
+    "decoded_frame_count_method": "ffmpeg null output with fps_mode passthrough and progress frame count",
+    "post_exit_stabilization": {
+      "started_at_utc": "2026-10-11T19:14:31.403757+00:00",
+      "second_observation_at_utc": "2026-10-11T19:14:33.406872+00:00",
+      "minimum_wait_seconds": 2,
+      "initial_file_count": 76,
+      "passed": true,
+      "changed_paths": []
+    },
+    "files_stable_through_complete_validation": true,
+    "expected_video_count": 11,
+    "historical_video_byte_matches": 11,
+    "maximum_audio_video_end_delta_seconds": 0.0006669999999999732,
+    "delivered_waveform_alignment": [
+      {
+        "video": "god-here-linear-picture.mp4",
+        "reference_audio": "audio/candidate-B.wav",
+        "status": "passed",
+        "sample_rate": 48000,
+        "maximum_allowed_lag_samples": 48,
+        "minimum_normalized_correlation": 0.98,
+        "definition": "Delivered AAC left channel versus its exact recipe WAV; positive lag means delivery later than the reference.",
+        "observations": [
+          {
+            "source_seconds": 8.5,
+            "window_samples": 24000,
+            "lag_samples": 0,
+            "lag_milliseconds": 0.0,
+            "normalized_correlation": 0.9998383656545907,
+            "passed": true
+          },
+          {
+            "source_seconds": 37,
+            "window_samples": 24000,
+            "lag_samples": 0,
+            "lag_milliseconds": 0.0,
+            "normalized_correlation": 0.9999331554232057,
+            "passed": true
+          },
+          {
+            "source_seconds": 58,
+            "window_samples": 24000,
+            "lag_samples": 0,
+            "lag_milliseconds": 0.0,
+            "normalized_correlation": 0.9980546373027388,
+            "passed": true
+          },
+          {
+            "source_seconds": 86,
+            "window_samples": 24000,
+            "lag_samples": 0,
+            "lag_milliseconds": 0.0,
+            "normalized_correlation": 0.9998453346581125,
+            "passed": true
+          },
+          {
+            "source_seconds": 104.5,
+            "window_samples": 24000,
+            "lag_samples": 0,
+            "lag_milliseconds": 0.0,
+            "normalized_correlation": 0.9996047636130623,
+            "passed": true
+          }
+        ]
+      },
+      {
+        "video": "god-here-linear-workprint-01.mp4",
+        "reference_audio": "audio/expressive-mix.wav",
+        "status": "passed",
+        "sample_rate": 48000,
+        "maximum_allowed_lag_samples": 48,
+        "minimum_normalized_correlation": 0.98,
+        "definition": "Delivered AAC left channel versus its exact recipe WAV; positive lag means delivery later than the reference.",
+        "observations": [
+          {
+            "source_seconds": 8.5,
+            "window_samples": 24000,
+            "lag_samples": 0,
+            "lag_milliseconds": 0.0,
+            "normalized_correlation": 0.9998383656545907,
+            "passed": true
+          },
+          {
+            "source_seconds": 37,
+            "window_samples": 24000,
+            "lag_samples": 0,
+            "lag_milliseconds": 0.0,
+            "normalized_correlation": 0.9999256150355504,
+            "passed": true
+          },
+          {
+            "source_seconds": 58,
+            "window_samples": 24000,
+            "lag_samples": 0,
+            "lag_milliseconds": 0.0,
+            "normalized_correlation": 0.9978699947194839,
+            "passed": true
+          },
+          {
+            "source_seconds": 86,
+            "window_samples": 24000,
+            "lag_samples": 0,
+            "lag_milliseconds": 0.0,
+            "normalized_correlation": 0.9998270231721524,
+            "passed": true
+          },
+          {
+            "source_seconds": 104.5,
+            "window_samples": 24000,
+            "lag_samples": 0,
+            "lag_milliseconds": 0.0,
+            "normalized_correlation": 0.9995732994741342,
+            "passed": true
+          }
+        ]
+      }
+    ],
+    "pilot_active_speech_spread_lu": 0.05000000000000071,
+    "pilot_within_0_5_lu": true
+  },
+  "videos": [
+    {
+      "path": "dialogue-reference.mp4",
+      "bytes": 13616094,
+      "sha256": "7efc7beab0905de8f95ab7bac416c621b79f580f52f0baea6af17a52e48a1dff",
+      "container_duration_seconds": 112.0,
+      "decoded_frames": 3360,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "7efc7beab0905de8f95ab7bac416c621b79f580f52f0baea6af17a52e48a1dff",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.0,
+        "audio_video_clock_bounds_passed": true
+      }
+    },
+    {
+      "path": "god-here-independent-layers.mp4",
+      "bytes": 1459466,
+      "sha256": "934bd4a1561d4f4c5337f329a4b52acc33e511182dae2530cfbf74a516923cc2",
+      "container_duration_seconds": 8.233333,
+      "decoded_frames": 247,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "934bd4a1561d4f4c5337f329a4b52acc33e511182dae2530cfbf74a516923cc2",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.0003329999999994726,
+        "audio_video_clock_bounds_passed": true
+      }
+    },
+    {
+      "path": "god-here-linear-picture.mp4",
+      "bytes": 16098363,
+      "sha256": "6ded015bebb447329161a449b1544bb2e251538764181d4b54949c9958131729",
+      "container_duration_seconds": 112.0,
+      "decoded_frames": 3360,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "6ded015bebb447329161a449b1544bb2e251538764181d4b54949c9958131729",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.0,
+        "audio_video_clock_bounds_passed": true
+      }
+    },
+    {
+      "path": "god-here-linear-workprint-01.mp4",
+      "bytes": 16098420,
+      "sha256": "7f9fc24cde2cdfa5e45b1c65de6063cd7c9d5f18a1fc9726ff11ea117ec8601a",
+      "container_duration_seconds": 112.0,
+      "decoded_frames": 3360,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "7f9fc24cde2cdfa5e45b1c65de6063cd7c9d5f18a1fc9726ff11ea117ec8601a",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.0,
+        "audio_video_clock_bounds_passed": true
+      }
+    },
+    {
+      "path": "god-here-variation-17.mp4",
+      "bytes": 3813926,
+      "sha256": "cdf02b0f31f93a86415ecfef8d04e73c887267b029d7257b259acaaf391aa5c2",
+      "container_duration_seconds": 25.866667,
+      "decoded_frames": 776,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "cdf02b0f31f93a86415ecfef8d04e73c887267b029d7257b259acaaf391aa5c2",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.0006669999999999732,
+        "audio_video_clock_bounds_passed": true
+      }
+    },
+    {
+      "path": "god-here-variation-29.mp4",
+      "bytes": 3917614,
+      "sha256": "56d846e574dbea92b95d9eb01254b8a267c511ee521a5a6e630cb5a7bcd1756c",
+      "container_duration_seconds": 31.133333,
+      "decoded_frames": 934,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "56d846e574dbea92b95d9eb01254b8a267c511ee521a5a6e630cb5a7bcd1756c",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.00033300000000124896,
+        "audio_video_clock_bounds_passed": true
+      }
+    },
+    {
+      "path": "god-here-variation-43.mp4",
+      "bytes": 4204246,
+      "sha256": "f1667e1211c301c4441a3b0402c5717b411e3e0e0af3ed1c1957071ab5fd02d4",
+      "container_duration_seconds": 33.833333,
+      "decoded_frames": 1015,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "f1667e1211c301c4441a3b0402c5717b411e3e0e0af3ed1c1957071ab5fd02d4",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.0003330000000048017,
+        "audio_video_clock_bounds_passed": true
+      }
+    },
+    {
+      "path": "proof-A.mp4",
+      "bytes": 2968653,
+      "sha256": "cee7601c7aa5bab879d45a03778d4c94798f8ae56709ec354d82280f1e6a7e50",
+      "container_duration_seconds": 22.033333,
+      "decoded_frames": 661,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "cee7601c7aa5bab879d45a03778d4c94798f8ae56709ec354d82280f1e6a7e50",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.00033299999999769625,
+        "audio_video_clock_bounds_passed": true
+      }
+    },
+    {
+      "path": "proof-B.mp4",
+      "bytes": 2969557,
+      "sha256": "091172dcfcb20ca8b8a63bb26cd10a7afa3cf20f7ab7d3cc474f25d15d133edf",
+      "container_duration_seconds": 22.033333,
+      "decoded_frames": 661,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "091172dcfcb20ca8b8a63bb26cd10a7afa3cf20f7ab7d3cc474f25d15d133edf",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.00033299999999769625,
+        "audio_video_clock_bounds_passed": true
+      }
+    },
+    {
+      "path": "proof-C.mp4",
+      "bytes": 3426733,
+      "sha256": "b3bf46c62226483b2cfe0da46bc5b2e71167d0cfa197427f279e7f8ef39d3b1c",
+      "container_duration_seconds": 22.033333,
+      "decoded_frames": 661,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "b3bf46c62226483b2cfe0da46bc5b2e71167d0cfa197427f279e7f8ef39d3b1c",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.00033299999999769625,
+        "audio_video_clock_bounds_passed": true
+      }
+    },
+    {
+      "path": "proof-D.mp4",
+      "bytes": 3426352,
+      "sha256": "f78b45d88f3a53f1c33d67aa92295ebdd5b036cb76a62e106ecbc8287682e2f5",
+      "container_duration_seconds": 22.033333,
+      "decoded_frames": 661,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "retained_reference_sha256": "f78b45d88f3a53f1c33d67aa92295ebdd5b036cb76a62e106ecbc8287682e2f5",
+      "historical_byte_identity": true,
+      "full_decode": "passed",
+      "structural_checks": {
+        "decoded_frames_match": true,
+        "declared_frames_match": true,
+        "dimensions_match": true,
+        "duration_matches_within_one_frame": true,
+        "audio_video_start_delta_seconds": 0.0,
+        "audio_video_end_delta_seconds": 0.00033299999999769625,
+        "audio_video_clock_bounds_passed": true
+      }
+    }
+  ],
+  "historical_audio_candidates": {
+    "A": {
+      "actual_sha256": "b3855324d08e3da2064dd301c7ad5a5cb0c86c49b7585d7665af6516cce59852",
+      "expected_sha256": "b3855324d08e3da2064dd301c7ad5a5cb0c86c49b7585d7665af6516cce59852",
+      "byte_identical": true
+    },
+    "B": {
+      "actual_sha256": "129907ef32fb769c33a0290dea504675882b2b411e93f35afa009db9cc998042",
+      "expected_sha256": "129907ef32fb769c33a0290dea504675882b2b411e93f35afa009db9cc998042",
+      "byte_identical": true
+    },
+    "S": {
+      "actual_sha256": "6af86334e34ce39525fcb66872c6f85329a502a51868d2f0832df06bb014e053",
+      "expected_sha256": "6af86334e34ce39525fcb66872c6f85329a502a51868d2f0832df06bb014e053",
+      "byte_identical": true
+    },
+    "F": {
+      "actual_sha256": "2466bf794cbc8f33b9add16a116b9afbc2aba9aef7811b8a6c376b4cd8c8260b",
+      "expected_sha256": "2466bf794cbc8f33b9add16a116b9afbc2aba9aef7811b8a6c376b4cd8c8260b",
+      "byte_identical": true
+    }
+  },
+  "files": [
+    {
+      "path": "audio/audio-report.json",
+      "bytes": 5128,
+      "sha256": "0c991c450f0ed6ead406d9b8c317fd369e3b83f32d97375f847d31357b666e03",
+      "status": "bytes_inventoried"
+    },
+    {
+      "path": "audio/candidate-A.wav",
+      "bytes": 43013074,
+      "sha256": "b3855324d08e3da2064dd301c7ad5a5cb0c86c49b7585d7665af6516cce59852",
+      "status": "passed"
+    },
+    {
+      "path": "audio/candidate-B.wav",
+      "bytes": 43013074,
+      "sha256": "129907ef32fb769c33a0290dea504675882b2b411e93f35afa009db9cc998042",
+      "status": "passed"
+    },
+    {
+      "path": "audio/candidate-F.wav",
+      "bytes": 43013074,
+      "sha256": "2466bf794cbc8f33b9add16a116b9afbc2aba9aef7811b8a6c376b4cd8c8260b",
+      "status": "passed"
+    },
+    {
+      "path": "audio/candidate-S.wav",
+      "bytes": 43013074,
+      "sha256": "6af86334e34ce39525fcb66872c6f85329a502a51868d2f0832df06bb014e053",
+      "status": "passed"
+    },
+    {
+      "path": "audio/conservative-unmatched.wav",
+      "bytes": 43013074,
+      "sha256": "039d9d65e11ad0ed52752bdcad27eee0308796625ff6138d98ed2c73467e0dd8",
+      "status": "passed"
+    },
+    {
+      "path": "audio/expressive-mix.wav",
+      "bytes": 43013074,
+      "sha256": "f70e512607a465c134779af28821a946ea62afe7bdf29c99b0b05662037fbade",
+      "status": "passed"
+    },
+    {
+      "path": "audio/expressive-report.json",
+      "bytes": 442,
+      "sha256": "e645d37bd02e3e146d3efaf3948a5a06318b69d03b3b8fc4e845bbaf74e27b6d",
+      "status": "bytes_inventoried"
+    },
+    {
+      "path": "audio/expressive-returns.wav",
+      "bytes": 43013074,
+      "sha256": "33007640ad790e0b53174453556328722cb1438f5c85f33af86ba3582f0ebac6",
+      "status": "passed"
+    },
+    {
+      "path": "audio/fft-denoise-unmatched.wav",
+      "bytes": 43013130,
+      "sha256": "684d3da74e1176c1247120cd1c683464a3ed9f3498a91eda72a59276a38c1fdb",
+      "status": "passed"
+    },
+    {
+      "path": "audio/pilot-A.wav",
+      "bytes": 8460858,
+      "sha256": "a78f3b86755f1af1d56f3b268b90ac9679a121dfe95f05506b18b9558d1d11c4",
+      "status": "passed"
+    },
+    {
+      "path": "audio/pilot-B.wav",
+      "bytes": 8460858,
+      "sha256": "91b46fad45b37e9eb91d05af1fc389460b5b632bc19548e43ea8c5f29b475aca",
+      "status": "passed"
+    },
+    {
+      "path": "audio/pilot-D.wav",
+      "bytes": 8460858,
+      "sha256": "7511637b345eb72277672746ac8d558e231d95d77040c53a4e9bdf1197d50ed0",
+      "status": "passed"
+    },
+    {
+      "path": "audio/pilot-F.wav",
+      "bytes": 8460858,
+      "sha256": "243f7a92fa80a9e759b8c6f99b2779719031d0a96887b3aefb7f593930feb642",
+      "status": "passed"
+    },
+    {
+      "path": "audio/pilot-S.wav",
+      "bytes": 8460858,
+      "sha256": "a9d3defbd49c1ead03fa8b4a7353c2819856d8ebd91180db6d6499546f86ea25",
+      "status": "passed"
+    },
+    {
+      "path": "audio/reference-decoded.wav",
+      "bytes": 43013074,
+      "sha256": "4c4ce9ab6e697cfdffe15598325b2f2543ea8e508174dc0956ee5e5078281be9",
+      "status": "passed"
+    },
+    {
+      "path": "audio/removed-residual.wav",
+      "bytes": 43013074,
+      "sha256": "f2f464c809334624564446eefb45944cdc6854a5c683ecbb7e4a7ad992c4de11",
+      "status": "passed"
+    },
+    {
+      "path": "audio/return-P01.wav",
+      "bytes": 43013074,
+      "sha256": "90b51c41408ecf3628e136d43224272644a60ca156e02cde1fc2751024562997",
+      "status": "passed"
+    },
+    {
+      "path": "audio/return-P02.wav",
+      "bytes": 43013074,
+      "sha256": "44a05047bab814d06bb52abe78f90d1b467bdd34db6065f0aa788eea95e9e6f9",
+      "status": "passed"
+    },
+    {
+      "path": "audio/return-P03.wav",
+      "bytes": 43013074,
+      "sha256": "e37a623882800ba84dc4aca1a7854b35f1547079d0397767be4a779b68b5c721",
+      "status": "passed"
+    },
+    {
+      "path": "audio/return-P04.wav",
+      "bytes": 43013074,
+      "sha256": "5aa5d7de181d7c9902723bce497562a2c13e13ad75e9ba7d22bedc03ea668371",
+      "status": "passed"
+    },
+    {
+      "path": "audio/return-P05.wav",
+      "bytes": 43013074,
+      "sha256": "b8160abe5a43f91f063f11dd73da34e73d4216df2a9c1619c7a6b3a71a236051",
+      "status": "passed"
+    },
+    {
+      "path": "audio-trial-A.m4a",
+      "bytes": 537239,
+      "sha256": "77e4ab67628afd6eed0ed666212a7a728edf9a04ff5b4a29a3e103da1d7256ca",
+      "status": "passed"
+    },
+    {
+      "path": "audio-trial-B.m4a",
+      "bytes": 538143,
+      "sha256": "7e6b92e42afa76f6be4a2535515c3e49f66070e1fb964a65f8cc1e49e7028aa6",
+      "status": "passed"
+    },
+    {
+      "path": "audio-trial-F.m4a",
+      "bytes": 539015,
+      "sha256": "42bd161e50502f956f90897266cc251bba8cb6616d1e3ab2c98ec565b7394740",
+      "status": "passed"
+    },
+    {
+      "path": "audio-trial-S.m4a",
+      "bytes": 537976,
+      "sha256": "3d44714fd261f13c39a07c368e8b97e85c8bc5075afad4c34afd73574629fdcc",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/01-opening-A.m4a",
+      "bytes": 116758,
+      "sha256": "babdc822ecd193ce27fd45410651f5ef3f1a18b36f5ba5653552c48e580e5e4b",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/01-opening-B.m4a",
+      "bytes": 116851,
+      "sha256": "2023925746e614eaf26d5a3e581679be80fbf998295ee5856187ce8d5211007a",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/01-opening-F.m4a",
+      "bytes": 116714,
+      "sha256": "91071ac8ee6d707e9650f07062cc0840cdf165a4c39ec6d8388fca8382d82641",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/01-opening-S.m4a",
+      "bytes": 116689,
+      "sha256": "bde9f65af104035d6fc0808113faef237856045ee8e4eeb3001d21cf2b59f3bc",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/02-distant_and_quiet-A.m4a",
+      "bytes": 178395,
+      "sha256": "70a3a34b0ffefb493faf0230f90bff5097cb14e876ca0eeee2dcaf5f8f50f13e",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/02-distant_and_quiet-B.m4a",
+      "bytes": 178498,
+      "sha256": "f2d2cc4a156c74f41940bc22471e77ad8d481661a62d6f763a87c0000b320f00",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/02-distant_and_quiet-F.m4a",
+      "bytes": 178217,
+      "sha256": "1ce100c4db4599561f6f34b37cc371014080a3ecaa3dc546c56b4563b1efe6b1",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/02-distant_and_quiet-S.m4a",
+      "bytes": 178206,
+      "sha256": "c32ccb8773077c166095e91cd5e90e5c3d0111893293fbce2d0209b4c1744e5c",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/03-raised_speech-A.m4a",
+      "bytes": 231522,
+      "sha256": "fc7af30922bd1ea26ea43a7be76d27873298a2c6512f4640b71b0a8d0c0165c3",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/03-raised_speech-B.m4a",
+      "bytes": 231868,
+      "sha256": "3fa2ae359a3d61fd7c25789d68de37e7a3bf2c2f0c32ba7118ac3b8d9bfb80e7",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/03-raised_speech-F.m4a",
+      "bytes": 231727,
+      "sha256": "4f3b32191caa419ef69ccdb299ffc69e80c7da74f545483d48e330a9dac4e200",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/03-raised_speech-S.m4a",
+      "bytes": 231170,
+      "sha256": "16f790f42ad5e5bb3f84e27acd86d50550865a5e6de1a0a87eeac3feeac74f02",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/04-brief_turns-A.m4a",
+      "bytes": 196794,
+      "sha256": "5fe03a8f0c47452e2c4c920a716274d3d64d1eb9a4613d23415cb2ddbe185c38",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/04-brief_turns-B.m4a",
+      "bytes": 196362,
+      "sha256": "78e4923d4a1b36a171d893373f12ae88d0f62ae22dda8cf66ac9603ce670c1c6",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/04-brief_turns-F.m4a",
+      "bytes": 196884,
+      "sha256": "24280dced6a617774d97ca46624aa21284f79a04efa6549a5e55beaccd68cc6a",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/04-brief_turns-S.m4a",
+      "bytes": 197015,
+      "sha256": "16cbf40d7e35351035a43a9b73d907e30900825a7413db23b15916a2789f916f",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/05-corrections-A.m4a",
+      "bytes": 211006,
+      "sha256": "acb4e7b8cad84e93ed54b89bfadc9f45d6d087d535dc4f38aa470ebf9d826712",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/05-corrections-B.m4a",
+      "bytes": 210987,
+      "sha256": "cc42f79fb149c4be8986d740df8ef13a02a124cae02beb52036b1e3083576023",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/05-corrections-F.m4a",
+      "bytes": 211259,
+      "sha256": "ec47fb0194d08441a21114a6467c462c56b328cbafb86005f776fb2a83a91149",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/05-corrections-S.m4a",
+      "bytes": 211706,
+      "sha256": "9fc40ba3b027b26e13e62b2fb4b946c099b64fc020e2483405432194c75116c9",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/06-overlap-A.m4a",
+      "bytes": 100503,
+      "sha256": "6c64c50d3e7d7fc3d886d0be4e79f7caed73753432027ca5c14bbe7a504de5ae",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/06-overlap-B.m4a",
+      "bytes": 100156,
+      "sha256": "e56c95afbe7beb9a1c537ec6262f16b08ed5e2b2aa0a31e28ce9ca47a7fcacd0",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/06-overlap-F.m4a",
+      "bytes": 100426,
+      "sha256": "b8a87ba61e35378aea72094b53efa8fa57a5c2a326078ccbe56ed1093c2587c6",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/06-overlap-S.m4a",
+      "bytes": 99936,
+      "sha256": "351aaa3a146f4837663ec8d79106f8e4785c42d3af89b48e040f7bdc4f8ba24a",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/07-inbox-A.m4a",
+      "bytes": 162208,
+      "sha256": "b8e81f4129020e457075c50981340dc349d6ee3605ee2399e3d2df560ff632d7",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/07-inbox-B.m4a",
+      "bytes": 162183,
+      "sha256": "85a1c8c9ef23c335fe0098d8445f6f3070eb962222e1a361a4f2ad717b282753",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/07-inbox-F.m4a",
+      "bytes": 162604,
+      "sha256": "94d66a6a6f57f8b99cc8d3f877a9a6eba409d88d15829590795130e7150f58f3",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/07-inbox-S.m4a",
+      "bytes": 162129,
+      "sha256": "168f45ffc3843b5e0357ecee8fb5a7f61da07c908d4258f61f9118f294c10bf2",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/08-ending-A.m4a",
+      "bytes": 297627,
+      "sha256": "e79afcf41e303905eb9f9f3667f69e14df95234b77ab9d75005c31370b3769a9",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/08-ending-B.m4a",
+      "bytes": 298394,
+      "sha256": "ee2fe258384373f69d56d47b4e20c53049761cbd4b48721cabb095141ff63dac",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/08-ending-F.m4a",
+      "bytes": 298490,
+      "sha256": "2052c9a40603d762314123a98a682e66573ba616129f2adcf78c77df699eaed7",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/08-ending-S.m4a",
+      "bytes": 298193,
+      "sha256": "30d0096ebc0c5fc612e64d3fc09beb7e2c6008603d38184563f7e6422f56cec1",
+      "status": "passed"
+    },
+    {
+      "path": "benchmarks/intervals.json",
+      "bytes": 908,
+      "sha256": "bfe7052d20a21c6d445038c1d57147968b7a312d8885f6239a8f05aeb9b0ac0f",
+      "status": "bytes_inventoried"
+    },
+    {
+      "path": "dialogue-reference.mp4",
+      "bytes": 13616094,
+      "sha256": "7efc7beab0905de8f95ab7bac416c621b79f580f52f0baea6af17a52e48a1dff",
+      "status": "passed"
+    },
+    {
+      "path": "god-here-independent-layers.mp4",
+      "bytes": 1459466,
+      "sha256": "934bd4a1561d4f4c5337f329a4b52acc33e511182dae2530cfbf74a516923cc2",
+      "status": "passed"
+    },
+    {
+      "path": "god-here-independent-layers.render.json",
+      "bytes": 571,
+      "sha256": "60fc5daf06a5642d5537910405aad75c93819ca4718c563340cfc54627acc1ed",
+      "status": "bytes_inventoried"
+    },
+    {
+      "path": "god-here-linear-picture.mp4",
+      "bytes": 16098363,
+      "sha256": "6ded015bebb447329161a449b1544bb2e251538764181d4b54949c9958131729",
+      "status": "passed"
+    },
+    {
+      "path": "god-here-linear-picture.render.json",
+      "bytes": 558,
+      "sha256": "6e496766d249a5a493d36f6ba8c6fcad87deebd40692ede05553c6fb03c77b37",
+      "status": "bytes_inventoried"
+    },
+    {
+      "path": "god-here-linear-workprint-01.mp4",
+      "bytes": 16098420,
+      "sha256": "7f9fc24cde2cdfa5e45b1c65de6063cd7c9d5f18a1fc9726ff11ea117ec8601a",
+      "status": "passed"
+    },
+    {
+      "path": "god-here-variation-17.mp4",
+      "bytes": 3813926,
+      "sha256": "cdf02b0f31f93a86415ecfef8d04e73c887267b029d7257b259acaaf391aa5c2",
+      "status": "passed"
+    },
+    {
+      "path": "god-here-variation-17.schedule.json",
+      "bytes": 1065,
+      "sha256": "e49fdc1ef9db7e16b7082bc4bda6e40f76772db461a0554404c4ab84d25e9d47",
+      "status": "bytes_inventoried"
+    },
+    {
+      "path": "god-here-variation-29.mp4",
+      "bytes": 3917614,
+      "sha256": "56d846e574dbea92b95d9eb01254b8a267c511ee521a5a6e630cb5a7bcd1756c",
+      "status": "passed"
+    },
+    {
+      "path": "god-here-variation-29.schedule.json",
+      "bytes": 1071,
+      "sha256": "072218ed04bc9bcc06359001b88761df72c50c86da6c81773b6408617f8253d1",
+      "status": "bytes_inventoried"
+    },
+    {
+      "path": "god-here-variation-43.mp4",
+      "bytes": 4204246,
+      "sha256": "f1667e1211c301c4441a3b0402c5717b411e3e0e0af3ed1c1957071ab5fd02d4",
+      "status": "passed"
+    },
+    {
+      "path": "god-here-variation-43.schedule.json",
+      "bytes": 1046,
+      "sha256": "229fa3a0d2d90ad65b5d2277aab6b7db0ae000fbdbbec7ab83332127d0c19157",
+      "status": "bytes_inventoried"
+    },
+    {
+      "path": "production-validation.json",
+      "bytes": 6634,
+      "sha256": "a2bf9e20be3c9af708917ef7db215ee9732014a8fb9b5aaa454be6dd1077192e",
+      "status": "bytes_inventoried"
+    },
+    {
+      "path": "proof-A.mp4",
+      "bytes": 2968653,
+      "sha256": "cee7601c7aa5bab879d45a03778d4c94798f8ae56709ec354d82280f1e6a7e50",
+      "status": "passed"
+    },
+    {
+      "path": "proof-B.mp4",
+      "bytes": 2969557,
+      "sha256": "091172dcfcb20ca8b8a63bb26cd10a7afa3cf20f7ab7d3cc474f25d15d133edf",
+      "status": "passed"
+    },
+    {
+      "path": "proof-C.mp4",
+      "bytes": 3426733,
+      "sha256": "b3bf46c62226483b2cfe0da46bc5b2e71167d0cfa197427f279e7f8ef39d3b1c",
+      "status": "passed"
+    },
+    {
+      "path": "proof-D.mp4",
+      "bytes": 3426352,
+      "sha256": "f78b45d88f3a53f1c33d67aa92295ebdd5b036cb76a62e106ecbc8287682e2f5",
+      "status": "passed"
+    }
+  ],
+  "artist_acceptance": "not_assessed",
+  "listening_acceptance": "not_assessed",
+  "scope_limit": "This receipt proves this retained baseline recipe only; it does not certify all project experiments or a later edition.",
+  "baseline_dialogue_reference_identity": "7efc7beab0905de8f95ab7bac416c621b79f580f52f0baea6af17a52e48a1dff",
+  "current_pass_02_keeper_identity_is_distinct": "0909b79a45521c37d478ca28df5cf192a380b46d5f151208f0cc2a7c21da021b",
+  "durable_preservation": {
+    "status": "complete",
+    "archive_sha256": "7376a37bd0e8cdb71aa4a659d35828a4465c6f8fd2b54bc902e413642602213d",
+    "archive_bytes": 536344206,
+    "encoding": "22 ordered raw binary volumes; concatenation restores original archive bytes",
+    "all_volumes_saved": true,
+    "standalone_workprint_saved": true,
+    "report_saved": true,
+    "separate_initial_failure_bundle_saved": true,
+    "complete_archive_member_crc_and_sha256_verified": true,
+    "private_custody_details": "Kept separately from this public receipt."
+  }
+}

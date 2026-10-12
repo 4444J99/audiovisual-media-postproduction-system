@@ -1,0 +1,3 @@
+Command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 -B scripts/generate-manifest.py room-media-source --output RECOVERY_WORKSPACE/repo-audit/concurrent-migration/expanded-limit-delivery/generated-manifests
+
+{"files": 52, "bytes": 540442474, "manifestSha256": "e351c99497b30bb81810ac08f0db03c7114da414f17936c4fef8f23527bd81b2"}

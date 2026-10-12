@@ -1,0 +1,34 @@
+{
+  "schema_version": "amps.execution.v1",
+  "source_clock": {
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "frame_rate": {
+      "num": 30,
+      "den": 1
+    },
+    "frames": 3360
+  },
+  "adapter": "amp.direction.v1",
+  "upstream": {
+    "pull_request": 49,
+    "commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30"
+  },
+  "id": "direction-proof-reference",
+  "inputs": {
+    "recipe": {
+      "sha256": "612233bc79b4e28333627b868a149c90a7becb9b9302890badaab359ebb67ef9",
+      "bytes": 2109
+    },
+    "source": {
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "bytes": 12636527
+    },
+    "audio": {
+      "sha256": "be0e55149b0e9b076e88659b2a16a309c536283355765ec77ed344eebe201aa7",
+      "bytes": 43013074
+    }
+  },
+  "options": {
+    "variant": "reference"
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": "god-here.reproduction-view-metadata-check.v1",
+  "status": "passed",
+  "scope": "Node execution of the current JS with a minimal DOM fixture derived from actual HTML and the current JSON; no browser, media or network verification.",
+  "input_sha256": {
+    "web/recovery/index.html": "6eeb698dbff39dae2d2130f1da7278cbf0f4ac5d2c97d0d167c36dbc16c2ea9d",
+    "web/recovery/recovery.js": "4f97362fd099bc0deb8c05d572c1f1f334a1cf8d1d5c01ce94f4dffd2756f5a7",
+    "web/recovery/catalog.json": "3df3eeea34a12abc0a872206e3b0701bf4a0cb1782d0011e58ff38b4ad626727"
+  },
+  "script_sha256": "8a965cd1e333a84ff14f12cd14d1a1657e6f6176b3614e5169d8cce9c04f50c6",
+  "checks": 50,
+  "assertions": [
+    {
+      "check": "Frozen object count remains 3151",
+      "passed": true
+    },
+    {
+      "check": "Supplement summary and tab are visible",
+      "passed": true
+    },
+    {
+      "check": "Summary gives 24 new and 189 unmatched",
+      "passed": true
+    },
+    {
+      "check": "Reproduction mode contains 24 rows",
+      "passed": true
+    },
+    {
+      "check": "No supplemental playback or download links exist",
+      "passed": true
+    },
+    {
+      "check": "Exact reproduction filter shows seven reference records",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to one exact supplemental identity",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to one exact supplemental identity",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to one exact supplemental identity",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to one exact supplemental identity",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to one exact supplemental identity",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to one exact supplemental identity",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference badge states exact reproduction",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference no longer claims current unavailability",
+      "passed": true
+    },
+    {
+      "check": "Resolved reference has a metadata navigation button",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation resolves to one exact supplemental identity",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation preserves the exact expected SHA-256",
+      "passed": true
+    },
+    {
+      "check": "Reference navigation exposes no private media URL",
+      "passed": true
+    },
+    {
+      "check": "Seven resolved reference rows represent five distinct exact identities",
+      "passed": true
+    },
+    {
+      "check": "Switching back retains the frozen denominator",
+      "passed": true
+    }
+  ]
+}

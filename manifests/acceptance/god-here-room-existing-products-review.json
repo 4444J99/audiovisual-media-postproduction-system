@@ -1,0 +1,53 @@
+{
+  "schema_version": "god-here.room-existing-products-receipt-review.v1",
+  "reviewed_at_utc": "2026-10-11T20:16:12.961914+00:00",
+  "status": "receipt_identity_and_metadata_review_passed",
+  "scope": "Metadata-only independent review of the implementation agent full-media verification receipt. No additional media hashing, decoding, rendering, publication or original-output mutation by this review.",
+  "reviewed_receipt": {
+    "sha256": "f82c7ee7e4c18d7d3e0ce531ee72fd2950953f75691622be897fd2b257c2ab64",
+    "bytes": 112583
+  },
+  "code_review": {
+    "sha256": "aed56e596b5abc76fb705ce7738c87625bb96095884c381a6a61d32908834c19",
+    "bytes": 5386
+  },
+  "original_execution_receipt": {
+    "sha256": "080165cb7f8d8952429c19de78aff69d499449dfbac7cb393b3075ab2fe9a9d5",
+    "bytes": 6510
+  },
+  "original_execution_status": "execution_failed",
+  "original_producing_commit": "7469ea42e2a7058d9846ac8032e03075dabc9647",
+  "later_verification_commit": "994a24550e9ba9d1969db47292c0610ebc96566b",
+  "verification_render_executed": false,
+  "checks_passed": [
+    "Original failed receipt identity, status, error and complete producing-code manifest remain equal to the original on-disk JSON.",
+    "Later verification code is the reviewed 994a2455 correction; original production remains7469ea42.",
+    "The reviewed read-only helper identity is unchanged; the receipt records no new native render.",
+    "Binding identity, native options and clocks match the original run.",
+    "All85 declared file names are present once;84 media digests and optional sizes equal the current native report; the report itself has its recorded file identity.",
+    "All84 media rows record full decode pass, finite stereo48kHz audio, declared source-reel or full-film sample count and bounded codec padding.",
+    "Forty separate incidental files have unique safe relative names, native temporary classification, identity metadata and explicit non-acceptance; no incidental file is promoted into the required set.",
+    "Required plus incidental totals match125 observed files and2,144,275,553 bytes.",
+    "Receipt records native-code closure match, post-decode output stability, staged-input verification and preservation of the original receipt.",
+    "No local owner roots or HTTP locators occur in the public verification JSON.",
+    "Artistic acceptance remains pending; numerical parity is not claimed."
+  ],
+  "totals": {
+    "observed_files": 125,
+    "observed_bytes": 2144275553,
+    "declared_files": 85,
+    "declared_media": 84,
+    "declared_bytes": 1502478786,
+    "incidental_files": 40,
+    "incidental_bytes": 641796767,
+    "full_decode_passed": 84,
+    "native_report_identity_matched": 84,
+    "wav_files": 30,
+    "flac_files": 18,
+    "m4a_files": 36,
+    "source_reel_media_files": 2,
+    "full_film_media_files": 82,
+    "maximum_aac_tail_padding_samples": 0
+  },
+  "claim_limit": "This independently verifies receipt consistency and provenance. The full media decoding was performed by the execution agent using the identified helper and verifier; it is not a second independent media decode or artistic acceptance."
+}

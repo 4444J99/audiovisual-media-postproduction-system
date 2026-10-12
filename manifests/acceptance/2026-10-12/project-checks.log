@@ -1,0 +1,429 @@
+{"valid": true, "shots": 6, "cues": 20}
+test_cut_retains_identity_with_different_position (test_composition.CompositionTests.test_cut_retains_identity_with_different_position) ... ok
+test_invalid_geometry_rejected (test_composition.CompositionTests.test_invalid_geometry_rejected) ... ok
+test_neutral_is_source_exact (test_composition.CompositionTests.test_neutral_is_source_exact) ... ok
+test_seeded_generation_is_reproducible_and_bounded (test_composition.CompositionTests.test_seeded_generation_is_reproducible_and_bounded) ... ok
+test_single_effect_cannot_change_neighbor_or_shared_room (test_composition.CompositionTests.test_single_effect_cannot_change_neighbor_or_shared_room) ... ok
+test_unregistered_or_unknown_shot_falls_back (test_composition.CompositionTests.test_unregistered_or_unknown_shot_falls_back) ... ok
+test_candidate_source_binding_is_required_for_expressive_cache (test_directed_audio_cache.DirectedAudioCacheTests.test_candidate_source_binding_is_required_for_expressive_cache) ... ok
+test_config_change_rebuilds_expressive_audio_only (test_directed_audio_cache.DirectedAudioCacheTests.test_config_change_rebuilds_expressive_audio_only) ... ok
+test_invalid_regeneration_preserves_existing_verified_candidate_cache (test_directed_audio_cache.DirectedAudioCacheTests.test_invalid_regeneration_preserves_existing_verified_candidate_cache) ... ok
+test_missing_expressive_mix_rebuilds_only_expressive_stage (test_directed_audio_cache.DirectedAudioCacheTests.test_missing_expressive_mix_rebuilds_only_expressive_stage) ... ok
+test_nonfinite_performer_return_is_rejected_even_with_updated_hash (test_directed_audio_cache.DirectedAudioCacheTests.test_nonfinite_performer_return_is_rejected_even_with_updated_hash) ... ok
+test_stale_same_length_candidate_rebuilds_both_stages (test_directed_audio_cache.DirectedAudioCacheTests.test_stale_same_length_candidate_rebuilds_both_stages) ... ok
+test_transcript_and_producing_code_changes_invalidate_candidates (test_directed_audio_cache.DirectedAudioCacheTests.test_transcript_and_producing_code_changes_invalidate_candidates) ... ok
+test_truncated_candidate_is_rejected_even_with_updated_file_hash (test_directed_audio_cache.DirectedAudioCacheTests.test_truncated_candidate_is_rejected_even_with_updated_file_hash) ... ok
+test_valid_complete_cache_is_authenticated_and_reused (test_directed_audio_cache.DirectedAudioCacheTests.test_valid_complete_cache_is_authenticated_and_reused) ... ok
+test_changed_tracking_input_is_rejected (test_directed_delivery.DirectedDeliveryTests.test_changed_tracking_input_is_rejected) ... ok
+test_complete_bound_delivery_validates_registered_source (test_directed_delivery.DirectedDeliveryTests.test_complete_bound_delivery_validates_registered_source) ... Validated proof-A.mp4
+Validated proof-B.mp4
+Validated proof-C.mp4
+Validated directed-gap.mp4
+Validated directed-reaction.mp4
+Validated directed-integrated.mp4
+Validated god-here-directed-passage.mp4
+Validated attention-replay.mp4
+Validated god-here-directed-full-workprint.mp4
+ok
+test_self_consistent_other_source_film_and_receipt_are_rejected (test_directed_delivery.DirectedDeliveryTests.test_self_consistent_other_source_film_and_receipt_are_rejected) ... ok
+test_stale_producing_code_and_composition_are_rejected (test_directed_delivery.DirectedDeliveryTests.test_stale_producing_code_and_composition_are_rejected) ... ok
+test_substituting_adjacent_recipe_cannot_change_expected_delivery (test_directed_delivery.DirectedDeliveryTests.test_substituting_adjacent_recipe_cannot_change_expected_delivery) ... ok
+test_wrong_audio_candidate_is_rejected (test_directed_delivery.DirectedDeliveryTests.test_wrong_audio_candidate_is_rejected) ... ok
+test_wrong_recipe_with_matching_hash_is_rejected (test_directed_delivery.DirectedDeliveryTests.test_wrong_recipe_with_matching_hash_is_rejected) ... ok
+test_wrong_session_with_matching_hash_is_rejected (test_directed_delivery.DirectedDeliveryTests.test_wrong_session_with_matching_hash_is_rejected) ... ok
+test_camera_cuts_validated_with_zero_field_gain (test_direction.DirectionClockAndRenderTests.test_camera_cuts_validated_with_zero_field_gain) ... ok
+test_camera_free_directed_render_skips_optional_tracking (test_direction.DirectionClockAndRenderTests.test_camera_free_directed_render_skips_optional_tracking) ... ok
+test_matching_summary_rates_do_not_allow_irregular_frame_timestamps (test_direction.DirectionClockAndRenderTests.test_matching_summary_rates_do_not_allow_irregular_frame_timestamps) ... ok
+test_timestamp_validation_counts_frames_without_container_count (test_direction.DirectionClockAndRenderTests.test_timestamp_validation_counts_frames_without_container_count) ... ok
+test_zero_expressive_return_is_reported_as_dry (test_direction.DirectionClockAndRenderTests.test_zero_expressive_return_is_reported_as_dry) ... ok
+test_bad_dimensions_rejected (test_direction.DirectionTests.test_bad_dimensions_rejected) ... ok
+test_bad_source_hash_rejected (test_direction.DirectionTests.test_bad_source_hash_rejected) ... ok
+test_bool_is_not_integer (test_direction.DirectionTests.test_bool_is_not_integer) ... ok
+test_camera_neutral_at_endpoints (test_direction.DirectionTests.test_camera_neutral_at_endpoints) ... ok
+test_camera_never_samples_outside_source (test_direction.DirectionTests.test_camera_never_samples_outside_source) ... ok
+test_camera_overlap_rejected (test_direction.DirectionTests.test_camera_overlap_rejected) ... ok
+test_complete_source_frame_coverage (test_direction.DirectionTests.test_complete_source_frame_coverage) ... ok
+test_directed_frames (test_direction.DirectionTests.test_directed_frames) ... ok
+test_duplicate_tracker_id_rejected (test_direction.DirectionTests.test_duplicate_tracker_id_rejected) ... ok
+test_excessive_speed_rejected (test_direction.DirectionTests.test_excessive_speed_rejected) ... ok
+test_false_zoom_rejected (test_direction.DirectionTests.test_false_zoom_rejected) ... ok
+test_forged_acceptance_rejected (test_direction.DirectionTests.test_forged_acceptance_rejected) ... ok
+test_infinite_rejected (test_direction.DirectionTests.test_infinite_rejected) ... ok
+test_invented_caption_rejected (test_direction.DirectionTests.test_invented_caption_rejected) ... ok
+test_json_export_roundtrip (test_direction.DirectionTests.test_json_export_roundtrip) ... ok
+test_map_endpoints (test_direction.DirectionTests.test_map_endpoints) ... ok
+test_missing_media_rejected (test_direction.DirectionTests.test_missing_media_rejected) ... ok
+test_nan_rejected (test_direction.DirectionTests.test_nan_rejected) ... ok
+test_offscreen_roi_rejected (test_direction.DirectionTests.test_offscreen_roi_rejected) ... ok
+test_output_map_contiguous (test_direction.DirectionTests.test_output_map_contiguous) ... ok
+test_patch_changes_timing (test_direction.DirectionTests.test_patch_changes_timing) ... ok
+test_recipe_valid (test_direction.DirectionTests.test_recipe_valid) ... ok
+test_reference_frames (test_direction.DirectionTests.test_reference_frames) ... ok
+test_shell_operation_rejected (test_direction.DirectionTests.test_shell_operation_rejected) ... ok
+test_source_gap_rejected (test_direction.DirectionTests.test_source_gap_rejected) ... ok
+test_source_incomplete_rejected (test_direction.DirectionTests.test_source_incomplete_rejected) ... ok
+test_source_length_rejected (test_direction.DirectionTests.test_source_length_rejected) ... ok
+test_source_monotonic (test_direction.DirectionTests.test_source_monotonic) ... ok
+test_source_reversal_rejected (test_direction.DirectionTests.test_source_reversal_rejected) ... ok
+test_text_outside_output_rejected (test_direction.DirectionTests.test_text_outside_output_rejected) ... ok
+test_typography_moves_independently (test_direction.DirectionTests.test_typography_moves_independently) ... ok
+test_typography_outside_cue_is_neutral (test_direction.DirectionTests.test_typography_outside_cue_is_neutral) ... ok
+test_unbounded_zoom_rejected (test_direction.DirectionTests.test_unbounded_zoom_rejected) ... ok
+test_unknown_nested_operation_rejected (test_direction.DirectionTests.test_unknown_nested_operation_rejected) ... ok
+test_browser_direction_contract_and_edit_regressions (test_direction_tools.DirectionToolTests.test_browser_direction_contract_and_edit_regressions) ... ok
+test_directed_receipt_cannot_be_omitted_after_valid_proofs (test_direction_tools.DirectionToolTests.test_directed_receipt_cannot_be_omitted_after_valid_proofs) ... ok
+test_modified_proof_is_rejected_before_decode (test_direction_tools.DirectionToolTests.test_modified_proof_is_rejected_before_decode) ... ok
+test_preparation_hash_does_not_read_entire_video (test_direction_tools.DirectionToolTests.test_preparation_hash_does_not_read_entire_video) ... ok
+test_proof_receipt_is_required (test_direction_tools.DirectionToolTests.test_proof_receipt_is_required) ... ok
+test_all_fixed_dispatch_families_use_native_entry_points (test_execution.DispatchTests.test_all_fixed_dispatch_families_use_native_entry_points) ... ok
+test_binding_cannot_inject_native_command_or_extra_argv (test_execution.DispatchTests.test_binding_cannot_inject_native_command_or_extra_argv) ... ok
+test_changed_input_blocks_before_creating_output (test_execution.DispatchTests.test_changed_input_blocks_before_creating_output) ... ok
+test_cli_error_is_nonzero_and_never_echoes_private_path (test_execution.DispatchTests.test_cli_error_is_nonzero_and_never_echoes_private_path) ... ok
+test_cli_rejects_silently_ignored_native_options (test_execution.DispatchTests.test_cli_rejects_silently_ignored_native_options) ... ok
+test_different_workstream_cannot_be_claimed_as_upstream (test_execution.DispatchTests.test_different_workstream_cannot_be_claimed_as_upstream) ... ok
+test_dry_run_verifies_inputs_and_records_clocks_without_output (test_execution.DispatchTests.test_dry_run_verifies_inputs_and_records_clocks_without_output) ... ok
+test_execution_uses_frozen_copies_and_keeps_receipt_path_free (test_execution.DispatchTests.test_execution_uses_frozen_copies_and_keeps_receipt_path_free) ... ok
+test_failure_before_launch_does_not_claim_a_render_ran (test_execution.DispatchTests.test_failure_before_launch_does_not_claim_a_render_ran) ... ok
+test_fields_only_variant_does_not_validate_dormant_camera_cues (test_execution.DispatchTests.test_fields_only_variant_does_not_validate_dormant_camera_cues) ... ok
+test_missing_runtime_dependency_has_named_gate (test_execution.DispatchTests.test_missing_runtime_dependency_has_named_gate) ... ok
+test_mutating_consumed_copy_is_detected_even_when_original_is_unchanged (test_execution.DispatchTests.test_mutating_consumed_copy_is_detected_even_when_original_is_unchanged) ... ok
+test_output_directory_must_be_fresh (test_execution.DispatchTests.test_output_directory_must_be_fresh) ... ok
+test_source_bound_clock_rejects_wrong_original (test_execution.DispatchTests.test_source_bound_clock_rejects_wrong_original) ... ok
+test_zero_field_gain_camera_requires_and_passes_fields_input (test_execution.DispatchTests.test_zero_field_gain_camera_requires_and_passes_fields_input) ... ok
+test_zero_field_gain_camera_still_checks_source_cuts (test_execution.DispatchTests.test_zero_field_gain_camera_still_checks_source_cuts) ... ok
+test_direction_retained_map_and_output_typography_clock (test_execution.NativeClockTests.test_direction_retained_map_and_output_typography_clock) ... ok
+test_fx_clock_uses_actual_javascript_rounding_and_proxy_rate (test_execution.NativeClockTests.test_fx_clock_uses_actual_javascript_rounding_and_proxy_rate) ... ok
+test_native_recipe_schemas_are_not_interchangeable (test_execution.NativeClockTests.test_native_recipe_schemas_are_not_interchangeable) ... ok
+test_partial_spectral_layer_selection_is_explicitly_unsupported (test_execution.NativeClockTests.test_partial_spectral_layer_selection_is_explicitly_unsupported) ... ok
+test_revision_retained_intervals_keep_source_time_events (test_execution.NativeClockTests.test_revision_retained_intervals_keep_source_time_events) ... ok
+test_room_retained_sample_lineage_and_noninvertible_spectral_map (test_execution.NativeClockTests.test_room_retained_sample_lineage_and_noninvertible_spectral_map) ... ok
+test_room_seed_is_a_native_dependency_not_an_ignored_report_field (test_execution.NativeClockTests.test_room_seed_is_a_native_dependency_not_an_ignored_report_field) ... ok
+test_source_clock_mismatch_is_rejected (test_execution.NativeClockTests.test_source_clock_mismatch_is_rejected) ... ok
+test_aac_endpoint_tolerance_does_not_allow_shifted_start (test_execution.OutputGatesTests.test_aac_endpoint_tolerance_does_not_allow_shifted_start) ... ok
+test_actual_audio_count_finite_samples_and_codec_tail (test_execution.OutputGatesTests.test_actual_audio_count_finite_samples_and_codec_tail) ... ok
+test_an_unrelated_decodable_file_cannot_replace_required_render (test_execution.OutputGatesTests.test_an_unrelated_decodable_file_cannot_replace_required_render) ... ok
+test_audio_only_mp4_cannot_pass_as_the_required_movie (test_execution.OutputGatesTests.test_audio_only_mp4_cannot_pass_as_the_required_movie) ... ok
+test_native_temporary_file_does_not_satisfy_a_missing_required_room_output (test_execution.OutputGatesTests.test_native_temporary_file_does_not_satisfy_a_missing_required_room_output) ... ok
+test_native_temporary_file_is_accounted_without_replacing_or_decoding_outputs (test_execution.OutputGatesTests.test_native_temporary_file_is_accounted_without_replacing_or_decoding_outputs) ... ok
+test_revision_receipt_requires_the_consumed_direction_code_digest (test_execution.OutputGatesTests.test_revision_receipt_requires_the_consumed_direction_code_digest) ... ok
+test_room_deliverable_set_covers_raw_production_audition_and_stacks (test_execution.OutputGatesTests.test_room_deliverable_set_covers_raw_production_audition_and_stacks) ... ok
+test_room_output_must_match_native_report_hash_even_if_clock_could_match (test_execution.OutputGatesTests.test_room_output_must_match_native_report_hash_even_if_clock_could_match) ... ok
+test_shifted_presentation_timestamps_fail_despite_correct_counts (test_execution.OutputGatesTests.test_shifted_presentation_timestamps_fail_despite_correct_counts) ... ok
+test_temporary_prefix_only_classifies_a_native_replacement_of_a_required_file (test_execution.OutputGatesTests.test_temporary_prefix_only_classifies_a_native_replacement_of_a_required_file) ... ok
+test_zero_exit_with_error_stderr_is_a_failed_decode (test_execution.OutputGatesTests.test_zero_exit_with_error_stderr_is_a_failed_decode) ... ok
+test_all_existing_inventory_shapes_supply_the_same_identity (test_execution.ResolverTests.test_all_existing_inventory_shapes_supply_the_same_identity) ... ok
+test_collection_requires_exact_safe_members_and_stable_roles (test_execution.ResolverTests.test_collection_requires_exact_safe_members_and_stable_roles) ... ok
+test_conflicting_index_size_is_not_silently_deduplicated (test_execution.ResolverTests.test_conflicting_index_size_is_not_silently_deduplicated) ... ok
+test_hash_mismatch_does_not_print_private_path (test_execution.ResolverTests.test_hash_mismatch_does_not_print_private_path) ... ok
+test_hash_only_dependency_observes_size_without_inventing_it (test_execution.ResolverTests.test_hash_only_dependency_observes_size_without_inventing_it) ... ok
+test_invalid_json_never_echoes_content_or_locator (test_execution.ResolverTests.test_invalid_json_never_echoes_content_or_locator) ... ok
+test_inventory_and_locations_schema_mismatch (test_execution.ResolverTests.test_inventory_and_locations_schema_mismatch) ... ok
+test_missing_file_has_explicit_dependency_error (test_execution.ResolverTests.test_missing_file_has_explicit_dependency_error) ... ok
+test_missing_location_never_searches_basename (test_execution.ResolverTests.test_missing_location_never_searches_basename) ... ok
+test_mutation_after_resolution_fails_recheck (test_execution.ResolverTests.test_mutation_after_resolution_fails_recheck) ... ok
+test_repeated_same_location_is_not_ambiguous (test_execution.ResolverTests.test_repeated_same_location_is_not_ambiguous) ... ok
+test_repo_traversal_and_symlink_escape_rejected (test_execution.ResolverTests.test_repo_traversal_and_symlink_escape_rejected) ... ok
+test_two_distinct_identical_locations_require_owner_choice (test_execution.ResolverTests.test_two_distinct_identical_locations_require_owner_choice) ... ok
+test_all_categories_have_finite_edges (test_foley.FoleyTest.test_all_categories_have_finite_edges) ... ok
+test_invalid_recovery_claim_is_rejected (test_foley.FoleyTest.test_invalid_recovery_claim_is_rejected) ... ok
+test_out_of_range_event_is_rejected (test_foley.FoleyTest.test_out_of_range_event_is_rejected) ... ok
+test_seed_repeats_recipe_but_distinct_event_varies (test_foley.FoleyTest.test_seed_repeats_recipe_but_distinct_event_varies) ... ok
+test_empty_stream (test_neural_audio.NeuralTimingTests.test_empty_stream) ... ok
+test_overlap_stream_compensates_offset_and_flushes_end (test_neural_audio.NeuralTimingTests.test_overlap_stream_compensates_offset_and_flushes_end) ... ok
+test_unpinned_models_rejected (test_neural_audio.NeuralTimingTests.test_unpinned_models_rejected) ... ok
+test_44100hz_audio_is_trimmed_on_source_time (test_revision.RevisionReviewRegressionTests.test_44100hz_audio_is_trimmed_on_source_time) ... ok
+test_cli_rejects_explicit_null_replay_before_rendering (test_revision.RevisionReviewRegressionTests.test_cli_rejects_explicit_null_replay_before_rendering) ... ok
+test_falsy_sessions_are_invalid (test_revision.RevisionReviewRegressionTests.test_falsy_sessions_are_invalid) ... ok
+test_missing_track_receipt_metadata_fails_native_and_preflight (test_revision.RevisionReviewRegressionTests.test_missing_track_receipt_metadata_fails_native_and_preflight) ... ok
+test_tracking_must_cover_every_camera_frame (test_revision.RevisionReviewRegressionTests.test_tracking_must_cover_every_camera_frame) ... ok
+test_typography_works_without_debian_font (test_revision.RevisionReviewRegressionTests.test_typography_works_without_debian_font) ... ok
+test_unregistered_typography_is_untouched (test_revision.RevisionReviewRegressionTests.test_unregistered_typography_is_untouched) ... ok
+test_boolean_frame_indices_rejected (test_revision.RevisionTests.test_boolean_frame_indices_rejected) ... ok
+test_browser_offline_attention_parity (test_revision.RevisionTests.test_browser_offline_attention_parity) ... ok
+test_cross_source_and_nan_rejected (test_revision.RevisionTests.test_cross_source_and_nan_rejected) ... ok
+test_delayed_layer_mask_uses_delayed_source_clock (test_revision.RevisionTests.test_delayed_layer_mask_uses_delayed_source_clock) ... ok
+test_integer_map_no_drift_and_bounds (test_revision.RevisionTests.test_integer_map_no_drift_and_bounds) ... ok
+test_source_time_attention_and_residue (test_revision.RevisionTests.test_source_time_attention_and_residue) ... ok
+test_unbounded_retime_and_reordering_rejected (test_revision.RevisionTests.test_unbounded_retime_and_reordering_rejected) ... ok
+test_all_exclusions_do_not_create_empty_render_pool (test_roomaudit.RoomAuditTests.test_all_exclusions_do_not_create_empty_render_pool) ... ok
+test_candidate_is_contained_and_does_not_trim_stable_noise (test_roomaudit.RoomAuditTests.test_candidate_is_contained_and_does_not_trim_stable_noise) ... ok
+test_duplicate_missing_unknown_and_changed_original_bounds_rejected (test_roomaudit.RoomAuditTests.test_duplicate_missing_unknown_and_changed_original_bounds_rejected) ... ok
+test_empty_or_truncated_mp3_cannot_pass_delivery_validation (test_roomaudit.RoomAuditTests.test_empty_or_truncated_mp3_cannot_pass_delivery_validation) ... ok
+test_exclusion_and_subregion_preserve_traceability (test_roomaudit.RoomAuditTests.test_exclusion_and_subregion_preserve_traceability) ... ok
+test_hash_mismatch_rejected (test_roomaudit.RoomAuditTests.test_hash_mismatch_rejected) ... ok
+test_human_status_requires_actual_review_record (test_roomaudit.RoomAuditTests.test_human_status_requires_actual_review_record) ... ok
+test_metric_rejects_nonfinite_audio_and_handles_silence (test_roomaudit.RoomAuditTests.test_metric_rejects_nonfinite_audio_and_handles_silence) ... ok
+test_original_pool_resolves_without_pretending_human_approval (test_roomaudit.RoomAuditTests.test_original_pool_resolves_without_pretending_human_approval) ... ok
+test_rendered_review_keeps_source_portions_and_exact_boundaries (test_roomaudit.RoomAuditTests.test_rendered_review_keeps_source_portions_and_exact_boundaries) ... ok
+test_reused_audit_directory_cannot_authenticate_stale_artifacts (test_roomaudit.RoomAuditTests.test_reused_audit_directory_cannot_authenticate_stale_artifacts) ... ok
+test_subregion_cannot_escape_grid_or_be_too_short (test_roomaudit.RoomAuditTests.test_subregion_cannot_escape_grid_or_be_too_short) ... ok
+test_variation_metric_responds_to_known_envelope (test_roomaudit.RoomAuditTests.test_variation_metric_responds_to_known_envelope) ... ok
+test_wav_cues_preserve_audio_bytes_and_mark_exact_samples (test_roomaudit.RoomAuditTests.test_wav_cues_preserve_audio_bytes_and_mark_exact_samples) ... ok
+test_archive_is_verified_before_replacing_existing_delivery (test_roompackaging.RoomPackagingTests.test_archive_is_verified_before_replacing_existing_delivery) ... ok
+test_copied_stem_rejects_missing_tail_and_preserves_existing_target (test_roompackaging.RoomPackagingTests.test_copied_stem_rejects_missing_tail_and_preserves_existing_target) ... ok
+test_copied_stem_rejects_nonfinite_complete_decode (test_roompackaging.RoomPackagingTests.test_copied_stem_rejects_nonfinite_complete_decode) ... ok
+test_expected_full_length_mismatch_preserves_existing_encoded_target (test_roompackaging.RoomPackagingTests.test_expected_full_length_mismatch_preserves_existing_encoded_target) ... ok
+test_export_records_transcoded_core_identity_and_validates_retained_stems (test_roompackaging.RoomPackagingTests.test_export_records_transcoded_core_identity_and_validates_retained_stems) ... ok
+test_failed_first_archive_does_not_publish_a_manifest (test_roompackaging.RoomPackagingTests.test_failed_first_archive_does_not_publish_a_manifest) ... ok
+test_failed_staged_validation_preserves_existing_valid_target (test_roompackaging.RoomPackagingTests.test_failed_staged_validation_preserves_existing_valid_target) ... ok
+test_poster_falls_back_when_dejavu_is_unavailable (test_roompackaging.RoomPackagingTests.test_poster_falls_back_when_dejavu_is_unavailable) ... ok
+test_shared_gain_bounds_coincident_stem_peaks (test_roompackaging.RoomPackagingTests.test_shared_gain_bounds_coincident_stem_peaks) ... ok
+test_short_decode_without_a_warning_still_fails_exact_flac_length (test_roompackaging.RoomPackagingTests.test_short_decode_without_a_warning_still_fails_exact_flac_length) ... ok
+test_source_identity_mismatch_is_rejected_before_render_lookup (test_roompackaging.RoomPackagingTests.test_source_identity_mismatch_is_rejected_before_render_lookup) ... ok
+test_truncated_flac_is_rejected_even_with_a_zero_decoder_exit (test_roompackaging.RoomPackagingTests.test_truncated_flac_is_rejected_even_with_a_zero_decoder_exit) ... ok
+test_valid_flac_fully_decodes_to_exact_source_duration (test_roompackaging.RoomPackagingTests.test_valid_flac_fully_decodes_to_exact_source_duration) ... ok
+test_flat_split_reconstruction (test_roomrack.RoomRackTests.test_flat_split_reconstruction) ... ok
+test_linked_compression_controls_burst (test_roomrack.RoomRackTests.test_linked_compression_controls_burst) ... ok
+test_equal_power_profiles_remove_source_fragment_amplitude_differences (test_roomrefine.RoomRefinementTests.test_equal_power_profiles_remove_source_fragment_amplitude_differences) ... ok
+test_invalid_or_empty_portions_are_rejected (test_roomrefine.RoomRefinementTests.test_invalid_or_empty_portions_are_rejected) ... ok
+test_loudness_match_uses_one_fixed_gain_and_reports_rms_separately (test_roomrefine.RoomRefinementTests.test_loudness_match_uses_one_fixed_gain_and_reports_rms_separately) ... ok
+test_reconstructed_reference_rejects_same_length_changed_audio (test_roomrefine.RoomRefinementTests.test_reconstructed_reference_rejects_same_length_changed_audio) ... ok
+test_recovered_reference_requires_independent_identity_before_decoding (test_roomrefine.RoomRefinementTests.test_recovered_reference_requires_independent_identity_before_decoding) ... ok
+test_shared_schedule_stays_identical_despite_band_energy_differences (test_roomrefine.RoomRefinementTests.test_shared_schedule_stays_identical_despite_band_energy_differences) ... ok
+test_source_hash_mismatch_stops_before_decoding_or_writing (test_roomrefine.RoomRefinementTests.test_source_hash_mismatch_stops_before_decoding_or_writing) ... ok
+test_sustain_morphs_spectral_color_while_static_does_not (test_roomrefine.RoomRefinementTests.test_sustain_morphs_spectral_color_while_static_does_not) ... ok
+test_synthesis_is_deterministic_and_does_not_invent_stereo_width (test_roomrefine.RoomRefinementTests.test_synthesis_is_deterministic_and_does_not_invent_stereo_width) ... ok
+test_accepts_only_the_existing_project_and_supported_unambiguous_layouts (test_roomsitepackaging.RoomSitePackagingTests.test_accepts_only_the_existing_project_and_supported_unambiguous_layouts) ... ok
+test_both_phases_keep_identical_urls_while_all_42_worker_flacs_stay_outside_public (test_roomsitepackaging.RoomSitePackagingTests.test_both_phases_keep_identical_urls_while_all_42_worker_flacs_stay_outside_public) ... ok
+test_download_writer_rejects_paths_outside_the_download_tree (test_roomsitepackaging.RoomSitePackagingTests.test_download_writer_rejects_paths_outside_the_download_tree) ... ok
+test_finish_authenticates_every_stretch_format_and_source_reel_before_rendering (test_roomsitepackaging.RoomSitePackagingTests.test_finish_authenticates_every_stretch_format_and_source_reel_before_rendering) ... ok
+test_finish_rechecks_comparison_copies_in_static_and_r2_layouts (test_roomsitepackaging.RoomSitePackagingTests.test_finish_rechecks_comparison_copies_in_static_and_r2_layouts) ... ok
+test_finish_rejects_comparison_receipt_replacement_between_phases (test_roomsitepackaging.RoomSitePackagingTests.test_finish_rejects_comparison_receipt_replacement_between_phases) ... ok
+test_finish_rejects_wrong_source_changed_bed_or_changed_prepared_media_before_rendering (test_roomsitepackaging.RoomSitePackagingTests.test_finish_rejects_wrong_source_changed_bed_or_changed_prepared_media_before_rendering) ... ok
+test_fresh_package_without_handwritten_notes_keeps_the_existing_notes_url (test_roomsitepackaging.RoomSitePackagingTests.test_fresh_package_without_handwritten_notes_keeps_the_existing_notes_url) ... ok
+test_prepare_authenticates_both_comparison_films_before_writing_site_media (test_roomsitepackaging.RoomSitePackagingTests.test_prepare_authenticates_both_comparison_films_before_writing_site_media) ... ok
+test_prepare_rejects_changed_audit_or_review_wav_before_writing_site_media (test_roomsitepackaging.RoomSitePackagingTests.test_prepare_rejects_changed_audit_or_review_wav_before_writing_site_media) ... ok
+test_prepare_rejects_missing_or_ambiguous_comparison_receipts_and_wrong_report_binding (test_roomsitepackaging.RoomSitePackagingTests.test_prepare_rejects_missing_or_ambiguous_comparison_receipts_and_wrong_report_binding) ... ok
+test_prepare_replaces_stale_picture_and_regenerates_pause_aac_from_verified_wav (test_roomsitepackaging.RoomSitePackagingTests.test_prepare_replaces_stale_picture_and_regenerates_pause_aac_from_verified_wav) ... ok
+test_processing_notes_can_use_producer_reproduction_instructions (test_roomsitepackaging.RoomSitePackagingTests.test_processing_notes_can_use_producer_reproduction_instructions) ... ok
+test_registered_r2_movie_requires_its_source_and_cannot_leak_into_public (test_roomsitepackaging.RoomSitePackagingTests.test_registered_r2_movie_requires_its_source_and_cannot_leak_into_public) ... ok
+test_static_limit_applies_to_public_assets_not_r2_sources_or_generated_dist (test_roomsitepackaging.RoomSitePackagingTests.test_static_limit_applies_to_public_assets_not_r2_sources_or_generated_dist) ... ok
+test_worker_checker_never_uses_stale_static_downloads_or_crosses_source_roots (test_roomsitepackaging.RoomSitePackagingTests.test_worker_checker_never_uses_stale_static_downloads_or_crosses_source_roots) ... ok
+test_84_second_loop_uses_exact_period_and_truncates_second_cycle (test_roomstretch.RoomStretchTests.test_84_second_loop_uses_exact_period_and_truncates_second_cycle) ... ok
+test_crossfade_reduces_join_step_without_shrinking_or_touching_other_samples (test_roomstretch.RoomStretchTests.test_crossfade_reduces_join_step_without_shrinking_or_touching_other_samples) ... ok
+test_failed_audition_headroom_does_not_publish_partial_media (test_roomstretch.RoomStretchTests.test_failed_audition_headroom_does_not_publish_partial_media) ... ok
+test_invalid_seams_and_nonfinite_audio_are_rejected (test_roomstretch.RoomStretchTests.test_invalid_seams_and_nonfinite_audio_are_rejected) ... ok
+test_nearby_periods_cannot_overwrite_the_same_output_identifier (test_roomstretch.RoomStretchTests.test_nearby_periods_cannot_overwrite_the_same_output_identifier) ... ok
+test_original_relative_gain_stack_reads_raw_stems_and_matches_only_the_sum (test_roomstretch.RoomStretchTests.test_original_relative_gain_stack_reads_raw_stems_and_matches_only_the_sum) ... ok
+test_reel_has_exact_raw_source_samples_and_unshortened_processed_length (test_roomstretch.RoomStretchTests.test_reel_has_exact_raw_source_samples_and_unshortened_processed_length) ... ok
+test_spectral_stretch_keeps_frequency_range_and_mono_with_new_phases (test_roomstretch.RoomStretchTests.test_spectral_stretch_keeps_frequency_range_and_mono_with_new_phases) ... ok
+test_sum_is_reconstructible_and_rejects_different_lengths (test_roomstretch.RoomStretchTests.test_sum_is_reconstructible_and_rejects_different_lengths) ... ok
+test_varispeed_shifts_a_known_frequency_and_preserves_channel_ratio (test_roomstretch.RoomStretchTests.test_varispeed_shifts_a_known_frequency_and_preserves_channel_ratio) ... ok
+test_wrong_source_identity_stops_before_decoding_or_writing (test_roomstretch.RoomStretchTests.test_wrong_source_identity_stops_before_decoding_or_writing) ... ok
+test_all_fragments_seed_and_no_adjacent_reuse (test_roomtone.RoomToneTests.test_all_fragments_seed_and_no_adjacent_reuse) ... ok
+test_no_empty_pool_synthesis (test_roomtone.RoomToneTests.test_no_empty_pool_synthesis) ... ok
+test_quiet_words_and_transients_excluded (test_roomtone.RoomToneTests.test_quiet_words_and_transients_excluded) ... ok
+test_empty_frame_does_not_reuse_prior_person (test_segmentation.SegmentationTests.test_empty_frame_does_not_reuse_prior_person) ... ok
+test_fractional_alpha_and_bad_geometry (test_segmentation.SegmentationTests.test_fractional_alpha_and_bad_geometry) ... ok
+test_nms_retains_distinct_people (test_segmentation.SegmentationTests.test_nms_retains_distinct_people) ... ok
+test_union_and_body_recovery (test_segmentation.SegmentationTests.test_union_and_body_recovery) ... ok
+test_bed_outside_scene_and_smooth_handles (test_soundstage.SoundStageTests.test_bed_outside_scene_and_smooth_handles) ... ok
+test_catalog_mount_metadata_is_not_artistic_acceptance (test_studio_build.StudioBuild.test_catalog_mount_metadata_is_not_artistic_acceptance) ... ok
+test_copy_does_not_mutate_source (test_studio_build.StudioBuild.test_copy_does_not_mutate_source) ... ok
+test_extract_rejects_traversal (test_studio_build.StudioBuild.test_extract_rejects_traversal) ... ok
+test_font_cannot_enter_bundle (test_studio_build.StudioBuild.test_font_cannot_enter_bundle) ... ok
+test_recovered_players_do_not_share_review_storage (test_studio_build.StudioBuild.test_recovered_players_do_not_share_review_storage) ... ok
+test_source_identity_checked (test_studio_build.StudioBuild.test_source_identity_checked) ... ok
+test_unknown_player_revision_is_not_silently_rewritten (test_studio_build.StudioBuild.test_unknown_player_revision_is_not_silently_rewritten) ... ok
+
+----------------------------------------------------------------------
+Ran 217 tests in 17.639s
+
+OK
+Transport, score replay, residues, and invalid-session checks passed
+✔ every identity is retained once across addenda (1.114836ms)
+✔ aliases are merged, never overwritten (0.742057ms)
+✔ private preservation is not playability (0.347547ms)
+✔ no link is not a broken play control (0.164016ms)
+✔ failed decode does not advertise playability (0.208712ms)
+✔ font is retained as metadata but never a download (0.152534ms)
+✔ source hashes remain searchable (0.244128ms)
+✔ empty queries retain all records (0.171255ms)
+✔ invalid route falls back to review (0.213901ms)
+✔ known tool is recovered from a deep link (0.310392ms)
+✔ arbitrary tool URLs are not accepted (0.155548ms)
+✔ fixed excerpt time maps only inside its source interval (0.163762ms)
+✔ unmapped edited films have no source conversion (0.062198ms)
+✔ non-finite media times have no source conversion (0.047213ms)
+✔ negative source position is rejected (0.069839ms)
+✔ previous root experience remains discoverable (0.243063ms)
+✔ URLs cannot sneak into the tool list (0.09523ms)
+✔ both recovered direction editors remain available in Compose (0.126832ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 92.832662
+✔ direction-review.html cannot export a fabricated source time before metadata loads (3.090105ms)
+✔ direction-review.html saves source time only after real metadata and disables it again on media failure (1.90352ms)
+✔ direction-review.html variant changes clear the prior ready state and retry recovers cleanly (1.557208ms)
+✔ directed-review.html cannot export a fabricated source time before metadata loads (1.520378ms)
+✔ directed-review.html saves source time only after real metadata and disables it again on media failure (2.298228ms)
+✔ directed-review.html variant changes clear the prior ready state and retry recovers cleanly (2.085761ms)
+✔ direction recipe exports remain available when its media is unavailable (1.797084ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103.065725
+✔ manifest accepts additional raw-relative-gain stacks and resolves hosted URLs (1.433466ms)
+✔ a layer without context selects a real room file and shares the film clock (0.340182ms)
+✔ the dialogue-only control cannot inherit room inspection (0.160064ms)
+✔ unsafe media protocols fail before custom controls become usable (0.484898ms)
+✔ duplicate IDs and a missing default are rejected as invalid catalogs (0.284277ms)
+✔ a pause records the handle start, not the selected interval, as its source clock (0.243431ms)
+✔ initial HTML provides native V5R playback, source reel, and direct/catalog links without script (2.175074ms)
+Room-tone comparison controls unavailable: Catalog request failed (503).
+✔ successful initialization uses the real 24-track catalog and preserves playback already begun (9.463058ms)
+✔ failed catalog loading keeps the static native film and direct fallback (5.563268ms)
+✔ track, mode, and control clicks bind to the corresponding direct file at the shared position (7.524133ms)
+✔ pause playback describes source handles, saves a source-clock note, and yields to the reel (5.557219ms)
+✔ a note export creates an explicit JSON download and leaves the visible note intact (6.190128ms)
+✔ rapid selections retain the requested position while metadata is pending (1.468395ms)
+✔ a play request reaches the native element during the click, before metadata (0.317068ms)
+✔ a stale metadata callback cannot seek a newer selection (0.270179ms)
+✔ blocked playback produces an actionable error instead of being swallowed (1.111214ms)
+✔ an aborted old play promise cannot replace the newer playback status (0.400136ms)
+✔ a gesture rejection keeps the pending clock for the next explicit selection (0.317533ms)
+✔ changing to room-only audio retains time and silences the video (0.168947ms)
+✔ a mode change while paused remains paused at the common position (0.12412ms)
+✔ source-pause audition starts at zero on its own clock (0.158409ms)
+✔ a failed media load exposes the direct-file fallback (0.387168ms)
+✔ selecting a new track after the previous one ends starts at zero (0.279621ms)
+✔ natural completion clears play intent even when the element is not paused (0.217668ms)
+✔ adopting an ended element does not report active playback (0.619335ms)
+✔ a play promise settling before the ended event does not revive playback (0.840134ms)
+✔ native pause during metadata load cancels intent for the next selection (0.188842ms)
+✔ an old same-source play rejection cannot override a later play (0.162231ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 130.148967
+✔ reads complete JSON and binary response bodies (5.384183ms)
+✔ reports a missing required asset with its name and HTTP status (1.181033ms)
+✔ a stalled request cannot leave loading pending and is aborted (16.330591ms)
+✔ a response with a stalled body also reaches the retry state (16.779016ms)
+✔ malformed metadata produces an actionable error (2.885272ms)
+✔ network failures produce an actionable error (0.895578ms)
+✔ identity binds the manifest and every actual derived input byte sequence (14.897878ms)
+✔ unchanged names, original source hash, code and patch cannot admit previews after any derived bytes change (28.605594ms)
+✔ manifest timing or layout metadata changes also invalidate cached pictures (4.721119ms)
+✔ typed-array slices hash only their viewed bytes (2.582301ms)
+✔ unbound, malformed, missing and escaping inputs fail closed (0.900757ms)
+✔ factory emits derived-byte identity and refuses to append after same-name media changes (296.058018ms)
+✔ audio and the shared core agree at automation, sidechain and clip boundaries (258.920199ms)
+✔ all 13 nodes render finite stereo; applicable extreme audio treatments change source (378.186053ms)
+✔ all bypass, wet-zero and non-voice targets preserve exact source samples (197.144333ms)
+✔ fully wet stays fully wet at low Intensity, and zero selects authored macro minimums (61.29235ms)
+✔ fully-wet delay contains no undeclared immediate direct tap at any Intensity (25.947873ms)
+✔ silent source remains silent through every module, including feedback and damage (171.106533ms)
+✔ Stutter → Delay differs from Delay → Stutter on the same upstream source (41.325359ms)
+✔ Reverse → Granular also changes with order (41.138603ms)
+✔ seed and serialized patch replay produce bit-for-bit identical stochastic output (123.605594ms)
+✔ parallel send/return branches mix their independent upstream signals with explicit gains (32.983404ms)
+✔ a control cable modulates intensity without placing its envelope in the audible bus (46.017987ms)
+✔ control multiply matches core semantics: parameter × (1 + amount × envelope) (16.360768ms)
+✔ integer parameters round before sidechain modulation, matching the shared evaluator (56.34625ms)
+✔ numeric gate detector mode opens from its sidechain and threshold automation takes effect (14.194403ms)
+✔ clip inserts preserve samples outside their half-open interval (9.5435ms)
+✔ wet automation switches at the exact sample and restores bypass at the end (17.959047ms)
+✔ parameter automation wins over its macro and saved events win over keyframes (25.208603ms)
+✔ recorded bypass and solo changes replay sample-accurately (55.22174ms)
+✔ static solo bypasses non-solo processors while preserving the route (19.232393ms)
+✔ queue delivers distinct arrivals, reports a stateful schedule and overflows (11.977642ms)
+✔ feedback is recursively changed, bounded and resettable; delay has finite input taps (54.423168ms)
+✔ level protection attenuates only peaks and never boosts a quiet bypass (6.671335ms)
+✔ typed graphs reject cycles and multiple insert inputs; picture-only cables carry no audio (11.037784ms)
+✔ source and output node gain are explicit and independent of effect intensity (6.718772ms)
+✔ time-map helpers and authoring curves are deterministic at boundary conditions (0.405949ms)
+✔ WAV encoder produces a valid stereo PCM header and complete sample payload (4.436048ms)
+✔ single-module helper preserves mono compatibility without changing the original (0.217908ms)
+✔ demo master bypass restores exact reference despite amplified parallel buses and peak attenuation (19.061981ms)
+✔ PCM16 encoding/decoding preserves all originally quantized reference samples (5.074679ms)
+✔ optional named control lanes expose the same node control signals without changing default audio or report (30.52993ms)
+✔ all thirteen module presets and the six named patches satisfy the same portable contract (24.915649ms)
+✔ instantaneous graph cycles are rejected even if the node type is feedback (0.88992ms)
+✔ feedback has a positive delay, finite recurrence count, and return gain below unity (0.750475ms)
+✔ typed connections cannot conceal endpoint mismatches or audio sidechains (0.537327ms)
+✔ multiple incoming serial streams require an explicit mix node (1.148084ms)
+✔ nonfinite values, unknown params, invalid common controls and unsupported targets are rejected (2.345288ms)
+✔ unknown types cannot inherit Object prototype entries (0.404291ms)
+✔ source hash binding catches wrong media and normalizes hexadecimal case (0.800928ms)
+✔ unbound source is visible as a replay warning (2.219033ms)
+✔ region validation is optional project configuration, never a fixed five-region rule (0.70203ms)
+✔ linear, step, endpoint hold and explicit time produce deterministic automation (0.583975ms)
+✔ common automation controls macro; direct param automation and events have final precedence (1.232695ms)
+✔ replay events use latest applicable time and do not depend on playback history (1.995715ms)
+✔ intensity sidechain acts before macro, direct param sidechain acts after automation (0.344137ms)
+✔ clip insert endpoints are half open and global solo bypasses other modules (0.569875ms)
+✔ invalid keyframe times, duplicate paths and off-excerpt events are rejected (0.592504ms)
+✔ source capture and clip scopes remain within the excerpt (0.441224ms)
+✔ module demonstrations actually evaluate bypass → extreme → sweep → bypass (7.220068ms)
+✔ clone and preset editing do not mutate other patches or immutable catalog defaults (0.903463ms)
+✔ serial order and parallel send/return roles remain explicit in saved patches (0.930133ms)
+✔ parallel patches preserve word-only returns, fully wet voice returns, and anchored-room mattes (2.671698ms)
+✔ correction word choices survive export/import and explicit source choices override defaults (1.196829ms)
+✔ frame chunks and the exported patch retain the validated revision after the input is replaced (32.767377ms)
+✔ partial audio receipts describe the emitted prefix and later peaks cannot attenuate it (38.946663ms)
+✔ a partial reverse render still reads later source samples from the preserved full score (69.274296ms)
+✔ output windows cannot request empty, nonfinite or out-of-source audio (0.428214ms)
+✔ the preview gate and public provenance identify the actual live module bytes (25.935148ms)
+✔ preserved factory records stay unchanged and cannot supply pictures for the repaired engine (5.082139ms)
+✔ missing or different producing-code evidence disables cached pictures (0.807244ms)
+✔ complete matching revisions admit valid previews without rewriting render evidence (0.358685ms)
+✔ unbound packs, changed derived identities, and unbound individual entries never supply cached pictures (0.396427ms)
+✔ preview signatures ignore UI names, preset labels and saved custom snapshots (4.860154ms)
+✔ signal-affecting parameters, graph connections and replay controls change preview identity (4.128374ms)
+✔ authored word content and bypass phase scores affect preview identity (1.985974ms)
+✔ property order and sub-microsecond JSON duration differences are canonicalized (4.955689ms)
+✔ multiple sinks and control-only paths are rejected (8.142542ms)
+✔ removing an effect coalesces an existing parallel dry cable and retains gain (0.767778ms)
+✔ both decoded monitors must match the manifest rate and exact frame count (1.471021ms)
+✔ queue retains capacity arrivals and bursts only on the next arrival (54.526336ms)
+✔ linear feedback reset automation resets once per crossing (99.379919ms)
+✔ a sole unity-gain body return applies its alpha isolation (1.661672ms)
+✔ room-only parallel returns preserve the dry performer pixels (1.874647ms)
+✔ feedback reset ramps rebuild picture returns after a single crossing (7.68785ms)
+✔ picture feedback follows audio reset crossings and is stable across backward seeks (131.538889ms)
+✔ feedback resets again only after automation becomes inactive and crosses again (1.856651ms)
+✔ visual gate detector responds to the supplied control envelope and threshold (0.818265ms)
+✔ source-node gain contributes to picture output (0.792941ms)
+✔ word persistence applies to both cue-based and authored word material (0.44097ms)
+✔ named picture targets leave every pixel above, below and beside their rectangle untouched (3.588032ms)
+✔ missing metadata is normalized without changing the caller-owned patch (4.826005ms)
+✔ falsey and truthy non-array demonstration phases are rejected (2.509007ms)
+✔ demonstration intervals must remain finite, ordered and inside the excerpt (1.272189ms)
+✔ overlapping or out-of-order phases cannot select different audio and picture treatments (0.756455ms)
+✔ adjacent half-open demonstration phases and gaps remain valid without reordering (1.061743ms)
+✔ clip inactivity and another solo do not prevent editing a node bypass toggle (2.483644ms)
+✔ authored toggle replay uses the latest applicable event and follows backward seeks (3.134457ms)
+✔ adding a processor uses the actual output ID and retains the existing upstream score (0.97037ms)
+✔ adding a bypassed processor preserves a parallel output bus and its sound (7.295706ms)
+✔ source sidechain editing works with renamed portable source IDs (0.967268ms)
+✔ a held keyboard range gesture produces one undo snapshot before any values change (0.991152ms)
+✔ range undo covers keyboard navigation and pointer edits without capturing unrelated keys (0.647766ms)
+✔ optional display names and consumed metadata text are validated before display (1.027466ms)
+✔ object rectangles have exactly four finite normalized coordinates (1.520196ms)
+✔ valid saved custom settings retain scope, target selection, macros and recorded events (1.262307ms)
+✔ custom state cannot target another processor or smuggle foreign recorded events (2.722415ms)
+✔ custom state maps reject primitive/array payloads and unknown processor IDs (2.165423ms)
+✔ reserved imported IDs are retained as data in a null-prototype custom-state map (0.622038ms)
+✔ source hash and loaded-passage duration mismatches are rejected (0.491741ms)
+ℹ tests 110
+ℹ suites 0
+ℹ pass 110
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1612.33181

@@ -1,0 +1,730 @@
+{
+  "schema_version": "amps.directed-audio-clock-audit.v1",
+  "source_root": "/workspace/scratch/4c2ac7bee972/directed-recovery",
+  "provenance": {
+    "saved_from": "Previously captured read-only ffprobe/hash/full-audio-decode observations and direct current-validator invocation in this session.",
+    "validator": "tools.validate_directed.validate_audio_clock",
+    "validator_invoked_on_actual_decoded_waveforms": true,
+    "new_decodes_or_tests_run_while_saving": false,
+    "source_media_or_historical_receipts_modified": false,
+    "validator_sha256": "00297c3ba37884143478d04b1c54d7120c649c2c04aac2134cfdb1f6fdf2b868",
+    "validator_sha256_basis": "Final stable-run hash supplied by parent agent; no rehash performed while saving."
+  },
+  "summary": {
+    "movies_checked": 17,
+    "passed": 17,
+    "failed": 0,
+    "preserved_hash_matches": 17,
+    "missing_tail_samples": 0,
+    "maximum_decoded_excess_samples": 896,
+    "all_audio_video_starts_zero": true,
+    "all_decoded_audio_finite": true,
+    "limits": "Audio and container-clock verification only; this pass did not repeat the prior full picture decodes or constitute perceptual listening."
+  },
+  "excluded": [
+    {
+      "path": "pr50/god-here-directed-production/review/media/proof-D.mp4",
+      "reason": "Previously recorded damaged extra; explicitly excluded from the 17 valid recovered movies.",
+      "new_decode_attempted": false
+    }
+  ],
+  "results": [
+    {
+      "path": "pr49/god-here-direction-proof/A-reference.mp4",
+      "sha256": "f849bbf19204c7883a5c0d490ebe4be8630000d3850b3a28dc13927ff9c23de5",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr49/god-here-direction-proof/analysis/media-verification.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 661,
+        "start_seconds": 0,
+        "duration_seconds": 22.033333333333335,
+        "duration_rational_seconds": "661/30",
+        "end_seconds": 22.033333333333335,
+        "end_rational_seconds": "661/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.033,
+        "header_end_seconds": 22.033,
+        "header_end_rational_seconds": "22033/1000",
+        "decoded_samples": 1057792,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1057600,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 192,
+        "decoded_minus_declared_audio_samples": 208,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr49/god-here-direction-proof/B-audio.mp4",
+      "sha256": "cb5bc9b88a0237cc2063f4e44814e443036959502376b116612c74dd732233de",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr49/god-here-direction-proof/analysis/media-verification.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 661,
+        "start_seconds": 0,
+        "duration_seconds": 22.033333333333335,
+        "duration_rational_seconds": "661/30",
+        "end_seconds": 22.033333333333335,
+        "end_rational_seconds": "661/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.033,
+        "header_end_seconds": 22.033,
+        "header_end_rational_seconds": "22033/1000",
+        "decoded_samples": 1057792,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1057600,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 192,
+        "decoded_minus_declared_audio_samples": 208,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr49/god-here-direction-proof/C-fields.mp4",
+      "sha256": "b0b8143cebad2db90280c01926696893c8f4352c81cc117295171ca4bfd943e4",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr49/god-here-direction-proof/analysis/media-verification.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 661,
+        "start_seconds": 0,
+        "duration_seconds": 22.033333333333335,
+        "duration_rational_seconds": "661/30",
+        "end_seconds": 22.033333333333335,
+        "end_rational_seconds": "661/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.033,
+        "header_end_seconds": 22.033,
+        "header_end_rational_seconds": "22033/1000",
+        "decoded_samples": 1057792,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1057600,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 192,
+        "decoded_minus_declared_audio_samples": 208,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr49/god-here-direction-proof/D-directed.mp4",
+      "sha256": "ff45ed5b8179dfcbfd6ff3c06ffe29e00fd4e74611a5f2f2cbbcd227f4d39f5e",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr49/god-here-direction-proof/analysis/media-verification.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 685,
+        "start_seconds": 0,
+        "duration_seconds": 22.833333333333332,
+        "duration_rational_seconds": "137/6",
+        "end_seconds": 22.833333333333332,
+        "end_rational_seconds": "137/6"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.833,
+        "header_end_seconds": 22.833,
+        "header_end_rational_seconds": "22833/1000",
+        "decoded_samples": 1096704,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1096000,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 704,
+        "decoded_minus_declared_audio_samples": 720,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr49/god-here-direction-proof/E-expressive.mp4",
+      "sha256": "f5811b162452acd0ad0c81ed9f5f0890db87b8b94b875e613260f86ef8e0d877",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr49/god-here-direction-proof/analysis/media-verification.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 685,
+        "start_seconds": 0,
+        "duration_seconds": 22.833333333333332,
+        "duration_rational_seconds": "137/6",
+        "end_seconds": 22.833333333333332,
+        "end_rational_seconds": "137/6"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.833,
+        "header_end_seconds": 22.833,
+        "header_end_rational_seconds": "22833/1000",
+        "decoded_samples": 1096704,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1096000,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 704,
+        "decoded_minus_declared_audio_samples": 720,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr49/god-here-direction-proof/F-exported-revision.mp4",
+      "sha256": "baa1a6667bf00bed2332f9fa0a190f808a82b30124bd53af554c019e9c9a6826",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr49/god-here-direction-proof/analysis/media-verification.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 706,
+        "start_seconds": 0,
+        "duration_seconds": 23.533333333333335,
+        "duration_rational_seconds": "353/15",
+        "end_seconds": 23.533333333333335,
+        "end_rational_seconds": "353/15"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 23.533,
+        "header_end_seconds": 23.533,
+        "header_end_rational_seconds": "23533/1000",
+        "decoded_samples": 1130496,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1129600,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 896,
+        "decoded_minus_declared_audio_samples": 912,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr49/god-here-direction-proof/god-here-directed-before-after.mp4",
+      "sha256": "82d0668e8f7686556409bf6aadbb5550239194b4b555c1918d7abca1081ba121",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr49/god-here-direction-proof/analysis/comparison-verification.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 1346,
+        "start_seconds": 0,
+        "duration_seconds": 44.86666666666667,
+        "duration_rational_seconds": "673/15",
+        "end_seconds": 44.86666666666667,
+        "end_rational_seconds": "673/15"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 44.885,
+        "header_end_seconds": 44.885,
+        "header_end_rational_seconds": "8977/200",
+        "decoded_samples": 2154496,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 2153600,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": 880,
+        "decoded_minus_video_samples": 896,
+        "decoded_minus_declared_audio_samples": 16,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr50/god-here-directed-production/review/media/attention-replay.mp4",
+      "sha256": "42a19eebe2f1f5a646bc1de56ec4678831ca8ab986080b81434dc97069ffb704",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr50/god-here-directed-production/directed-validation.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 661,
+        "start_seconds": 0,
+        "duration_seconds": 22.033333333333335,
+        "duration_rational_seconds": "661/30",
+        "end_seconds": 22.033333333333335,
+        "end_rational_seconds": "661/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.033,
+        "header_end_seconds": 22.033,
+        "header_end_rational_seconds": "22033/1000",
+        "decoded_samples": 1057792,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1057600,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 192,
+        "decoded_minus_declared_audio_samples": 208,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr50/god-here-directed-production/review/media/dialogue-reference.mp4",
+      "sha256": "7efc7beab0905de8f95ab7bac416c621b79f580f52f0baea6af17a52e48a1dff",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "repository:projects/god-here/production-validation.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 3360,
+        "start_seconds": 0,
+        "duration_seconds": 112.0,
+        "duration_rational_seconds": "112",
+        "end_seconds": 112.0,
+        "end_rational_seconds": "112"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 112.0,
+        "header_end_seconds": 112.0,
+        "header_end_rational_seconds": "112",
+        "decoded_samples": 5376000,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 5376000,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": 0,
+        "decoded_minus_video_samples": 0,
+        "decoded_minus_declared_audio_samples": 0,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr50/god-here-directed-production/review/media/directed-gap.mp4",
+      "sha256": "20710407c17e676dae95aa5e80f9eeb542fb7ffaa27915ee1403f48a24df5555",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr50/god-here-directed-production/directed-validation.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 679,
+        "start_seconds": 0,
+        "duration_seconds": 22.633333333333333,
+        "duration_rational_seconds": "679/30",
+        "end_seconds": 22.633333333333333,
+        "end_rational_seconds": "679/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.633,
+        "header_end_seconds": 22.633,
+        "header_end_rational_seconds": "22633/1000",
+        "decoded_samples": 1086464,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1086400,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 64,
+        "decoded_minus_declared_audio_samples": 80,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr50/god-here-directed-production/review/media/directed-integrated.mp4",
+      "sha256": "e0dc42c51b42cdaa8cad003da56925da08a8bf4324d7d2a30df282d9c90ddf34",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr50/god-here-directed-production/directed-validation.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 679,
+        "start_seconds": 0,
+        "duration_seconds": 22.633333333333333,
+        "duration_rational_seconds": "679/30",
+        "end_seconds": 22.633333333333333,
+        "end_rational_seconds": "679/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.633,
+        "header_end_seconds": 22.633,
+        "header_end_rational_seconds": "22633/1000",
+        "decoded_samples": 1086464,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1086400,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 64,
+        "decoded_minus_declared_audio_samples": 80,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr50/god-here-directed-production/review/media/directed-reaction.mp4",
+      "sha256": "e5326655a1a825dc941f8a9d60331ac1361553aac517c294660a2dfb65a2fc3e",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr50/god-here-directed-production/directed-validation.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 661,
+        "start_seconds": 0,
+        "duration_seconds": 22.033333333333335,
+        "duration_rational_seconds": "661/30",
+        "end_seconds": 22.033333333333335,
+        "end_rational_seconds": "661/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.033,
+        "header_end_seconds": 22.033,
+        "header_end_rational_seconds": "22033/1000",
+        "decoded_samples": 1057792,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1057600,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 192,
+        "decoded_minus_declared_audio_samples": 208,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr50/god-here-directed-production/review/media/god-here-directed-full-workprint.mp4",
+      "sha256": "4b8356ba7c3d3e22340cb411db6a0dc7720385a9ec570df1e48b4d5295d4befc",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr50/god-here-directed-production/directed-validation.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 3378,
+        "start_seconds": 0,
+        "duration_seconds": 112.6,
+        "duration_rational_seconds": "563/5",
+        "end_seconds": 112.6,
+        "end_rational_seconds": "563/5"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 112.6,
+        "header_end_seconds": 112.6,
+        "header_end_rational_seconds": "563/5",
+        "decoded_samples": 5405696,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 5404800,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": 0,
+        "decoded_minus_video_samples": 896,
+        "decoded_minus_declared_audio_samples": 896,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr50/god-here-directed-production/review/media/god-here-directed-passage.mp4",
+      "sha256": "76121fb83c962a15cf9a6ad544a0a316a3403a79c5ba24c60b575889f9915f0a",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr50/god-here-directed-production/directed-validation.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 679,
+        "start_seconds": 0,
+        "duration_seconds": 22.633333333333333,
+        "duration_rational_seconds": "679/30",
+        "end_seconds": 22.633333333333333,
+        "end_rational_seconds": "679/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.633,
+        "header_end_seconds": 22.633,
+        "header_end_rational_seconds": "22633/1000",
+        "decoded_samples": 1086464,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1086400,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 64,
+        "decoded_minus_declared_audio_samples": 80,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr50/god-here-directed-production/review/media/proof-A.mp4",
+      "sha256": "641f8eaa629ef88260ee8c6a8d44bc7fd60deb1667ff1745dddeb8da24eb4d66",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr50/god-here-directed-production/directed-validation.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 661,
+        "start_seconds": 0,
+        "duration_seconds": 22.033333333333335,
+        "duration_rational_seconds": "661/30",
+        "end_seconds": 22.033333333333335,
+        "end_rational_seconds": "661/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.033,
+        "header_end_seconds": 22.033,
+        "header_end_rational_seconds": "22033/1000",
+        "decoded_samples": 1057792,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1057600,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 192,
+        "decoded_minus_declared_audio_samples": 208,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr50/god-here-directed-production/review/media/proof-B.mp4",
+      "sha256": "e4753e6ba06a01d68d024925c96e3016307dc50841d9f7a2aa807a28a60bd9b5",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr50/god-here-directed-production/directed-validation.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 661,
+        "start_seconds": 0,
+        "duration_seconds": 22.033333333333335,
+        "duration_rational_seconds": "661/30",
+        "end_seconds": 22.033333333333335,
+        "end_rational_seconds": "661/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.033,
+        "header_end_seconds": 22.033,
+        "header_end_rational_seconds": "22033/1000",
+        "decoded_samples": 1057792,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1057600,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 192,
+        "decoded_minus_declared_audio_samples": 208,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    },
+    {
+      "path": "pr50/god-here-directed-production/review/media/proof-C.mp4",
+      "sha256": "9302bc7f1930cba6c49996197a549bfb60d5b6ab0b3ac9ccd3b76456357646d0",
+      "preserved_receipt_matches": true,
+      "preserved_receipt": "pr50/god-here-directed-production/directed-validation.json",
+      "video": {
+        "fps": 30,
+        "frame_rate": "30/1",
+        "frames": 661,
+        "start_seconds": 0,
+        "duration_seconds": 22.033333333333335,
+        "duration_rational_seconds": "661/30",
+        "end_seconds": 22.033333333333335,
+        "end_rational_seconds": "661/30"
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate": 48000,
+        "channels": 2,
+        "start_seconds": 0,
+        "header_duration_seconds": 22.033,
+        "header_end_seconds": 22.033,
+        "header_end_rational_seconds": "22033/1000",
+        "decoded_samples": 1057792,
+        "full_decode_passed": true,
+        "all_decoded_samples_finite": true,
+        "decode_stderr": ""
+      },
+      "clock": {
+        "expected_samples": 1057600,
+        "start_delta_samples": 0,
+        "declared_audio_minus_video_end_samples": -16,
+        "decoded_minus_video_samples": 192,
+        "decoded_minus_declared_audio_samples": 208,
+        "missing_tail_samples": 0,
+        "maximum_codec_padding_samples": 1024,
+        "endpoint_rounding_tolerance_seconds": 0.001,
+        "start_tolerance_seconds": 2.0833333333333333e-05,
+        "passed": true
+      }
+    }
+  ]
+}

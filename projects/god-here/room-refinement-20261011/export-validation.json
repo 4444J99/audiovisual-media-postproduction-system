@@ -1,0 +1,97 @@
+{
+  "identity": {
+    "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "input_report_sha256": {
+      "refinement": "8b1c170a90b3d3346037e5e763a85a49c89b746971f291ccb07486652f64c61a",
+      "audit": "ef0cb99815fc8956b2f89466197a98ee35247348f40fde56572065e67236dea3",
+      "baseline": "df280b1a928f122a329223717d0cab40f6987bc5425d6b8ca94906331f0b1703"
+    },
+    "pause_inventory_sha256": "bb616355c6d328c93d19247fa01fa48d5ee2fa1b1ad2faac3bee315285acd788",
+    "input_identity_verified": true
+  },
+  "human_listening_acceptance": "pending",
+  "full_room_flac": {
+    "A": {
+      "source_samples": 5376000,
+      "decoded_samples": 5376000,
+      "tail_padding_samples": 0,
+      "full_decode_verified": true,
+      "sha256": "f698436264d7d4b0131d7d55937ff14f51579e14a60ee6f41be4897eefd39bd9",
+      "max_abs_error_vs_float_wav": 0.0,
+      "pcm_identical_to_float_wav": true
+    },
+    "B": {
+      "source_samples": 5376000,
+      "decoded_samples": 5376000,
+      "tail_padding_samples": 0,
+      "full_decode_verified": true,
+      "sha256": "0f806592222746193afd3cf832c36cc7b41c6fb5c502644a5ade6dd50782cfed",
+      "max_abs_error_vs_float_wav": 1.1897554941242561e-07,
+      "pcm_identical_to_float_wav": false
+    },
+    "C": {
+      "source_samples": 5376000,
+      "decoded_samples": 5376000,
+      "tail_padding_samples": 0,
+      "full_decode_verified": true,
+      "sha256": "8722bbe9f78541c9ba7c4e725eb13a405695a0859a577ca8fdd6edeee21a5d83",
+      "max_abs_error_vs_float_wav": 1.189723661809694e-07,
+      "pcm_identical_to_float_wav": false
+    },
+    "D": {
+      "source_samples": 5376000,
+      "decoded_samples": 5376000,
+      "tail_padding_samples": 0,
+      "full_decode_verified": true,
+      "sha256": "b32f6ee3eee6028e19bd89f60cd8147ce15a263138c6b60b4bc08fb1c854dc6b",
+      "max_abs_error_vs_float_wav": 1.1897100193891674e-07,
+      "pcm_identical_to_float_wav": false
+    },
+    "E": {
+      "source_samples": 5376000,
+      "decoded_samples": 5376000,
+      "tail_padding_samples": 0,
+      "full_decode_verified": true,
+      "sha256": "3212764cbe233efad0609c3799eafd31962948e73e95669ad9e34d0294c5eb25",
+      "max_abs_error_vs_float_wav": 1.1897554941242561e-07,
+      "pcm_identical_to_float_wav": false
+    }
+  },
+  "new_stem_flac": {
+    "B": {
+      "stem_count": 3,
+      "samples_per_channel": 5376000,
+      "full_decode_verified": true,
+      "max_abs_sum_error": 2.384185791015625e-07,
+      "rms_sum_error": 1.3721060820773108e-07,
+      "quantization": "24-bit PCM export; stems remain within 5e-7 absolute reconstruction tolerance"
+    },
+    "C": {
+      "stem_count": 3,
+      "samples_per_channel": 5376000,
+      "full_decode_verified": true,
+      "max_abs_sum_error": 2.384185791015625e-07,
+      "rms_sum_error": 1.37176196266881e-07,
+      "quantization": "24-bit PCM export; stems remain within 5e-7 absolute reconstruction tolerance"
+    },
+    "D": {
+      "stem_count": 3,
+      "samples_per_channel": 5376000,
+      "full_decode_verified": true,
+      "max_abs_sum_error": 2.384185791015625e-07,
+      "rms_sum_error": 1.3720288746644567e-07,
+      "quantization": "24-bit PCM export; stems remain within 5e-7 absolute reconstruction tolerance"
+    },
+    "E": {
+      "stem_count": 3,
+      "samples_per_channel": 5376000,
+      "full_decode_verified": true,
+      "max_abs_sum_error": 2.384185791015625e-07,
+      "rms_sum_error": 1.3714518729860957e-07,
+      "quantization": "24-bit PCM export; stems remain within 5e-7 absolute reconstruction tolerance"
+    }
+  },
+  "baseline_A_pcm_identical": true,
+  "dialogue_core_file_identical": true,
+  "original_six_stems_full_decode_verified": true
+}

@@ -1,0 +1,1786 @@
+{
+  "baselineSiteCommit": "957093108309ef1e02df2cbed9b797a346000f4a",
+  "upstreamRepairCommit": "c6656685603022193617405c87b831d28f570299",
+  "baselineTrackedFiles": 518,
+  "stagedTrackedFiles": 531,
+  "changedExistingFiles": [
+    "public/fx/app.mjs",
+    "public/fx/audio-engine.mjs",
+    "public/fx/core.mjs",
+    "public/fx/index.html",
+    "public/fx/visual-engine.mjs",
+    "public/fx/watch.html",
+    "public/fx/workbench-state.mjs"
+  ],
+  "newFiles": [
+    "FX-ENGINE-INTEGRATION.md",
+    "public/fx/engine-provenance.json",
+    "public/fx/preview-provenance.mjs",
+    "tests/fx/audio-core.test.mjs",
+    "tests/fx/audio.test.mjs",
+    "tests/fx/core-contract.test.mjs",
+    "tests/fx/preview-provenance.test.mjs",
+    "tests/fx/preview-signature.test.mjs",
+    "tests/fx/review-regressions.test.mjs",
+    "tests/fx/runtime.mjs",
+    "tests/fx/source-binding.test.mjs",
+    "tests/fx/visual-routing.test.mjs",
+    "tests/fx/workbench-state.test.mjs"
+  ],
+  "unchangedTrackedFileCount": 511,
+  "protectedFileCount": 229,
+  "protectedPaths": [
+    {
+      "path": ".openai/hosting.json",
+      "mode": "100644",
+      "gitBlob": "7679ac0a610ecdd00be03aa08faffaa10b5d9b7a",
+      "unchanged": true
+    },
+    {
+      "path": "lib/room-media-manifest.json",
+      "mode": "100644",
+      "gitBlob": "630f4ff6193e37c3245a3b133da5564ad92ef93b",
+      "unchanged": true
+    },
+    {
+      "path": "lib/room-media-manifest.mjs",
+      "mode": "100644",
+      "gitBlob": "7e5dec8feba5bdd8faa8633411993c2d9510d298",
+      "unchanged": true
+    },
+    {
+      "path": "lib/room-media.mjs",
+      "mode": "100644",
+      "gitBlob": "4b840c0b46cc6ce83af3a4376c8c7276d44689ef",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/asset-loader.mjs",
+      "mode": "100644",
+      "gitBlob": "15134a3353576dbdc31eb718911b478aa2b29e70",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/asset-receipt.json",
+      "mode": "100644",
+      "gitBlob": "512c4d1f6a530498e56397b7ae008af45860fbb3",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/matte-00.png",
+      "mode": "100644",
+      "gitBlob": "93664b38a6cb298752573a8a9f9ecfee98274ed6",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/matte-01.png",
+      "mode": "100644",
+      "gitBlob": "58971be88053980ec11396721027397bdcbd77a5",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/matte-02.png",
+      "mode": "100644",
+      "gitBlob": "b20f24bc6deedb31860f37999e8d2cf5e938cb16",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/matte-03.png",
+      "mode": "100644",
+      "gitBlob": "35b2ca82bbeb3b9a3122b7a859ef157aec5fc0c4",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/matte-04.png",
+      "mode": "100644",
+      "gitBlob": "e6c2ba554d4c36cb8b1c689535a75c8df790cf02",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/matte-05.png",
+      "mode": "100644",
+      "gitBlob": "5902e211a852d409e597281fe709681a8b86d8ae",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/matte-06.png",
+      "mode": "100644",
+      "gitBlob": "de580b5af9bf88ff5eb8e3bf83d442bc1be51299",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/matte-07.png",
+      "mode": "100644",
+      "gitBlob": "8fbf5fa786064d6211511f6e6f58227de023a33a",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/matte-08.png",
+      "mode": "100644",
+      "gitBlob": "e2ac240685f603b584f33327c6785905380cb627",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/matte-09.png",
+      "mode": "100644",
+      "gitBlob": "374bbb05adf81ba511eee136b4347459db721786",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/picture-00.jpg",
+      "mode": "100644",
+      "gitBlob": "c783533df5080c89cb9851243881082578df2702",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/picture-01.jpg",
+      "mode": "100644",
+      "gitBlob": "36c84e3d303edcd6f78e7c6c57c1e1b794ea0404",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/picture-02.jpg",
+      "mode": "100644",
+      "gitBlob": "edfc38e6e8e02c5ca4b529eaa094e971f0de1b27",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/picture-03.jpg",
+      "mode": "100644",
+      "gitBlob": "24c6246afc8967fd7cb005367e07a36f3eefc168",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/picture-04.jpg",
+      "mode": "100644",
+      "gitBlob": "f4bce5326529bdfe44bd26affa8b536af778708a",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/picture-05.jpg",
+      "mode": "100644",
+      "gitBlob": "cf4547afaf7f3848f2967254b99f7ae37e978044",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/picture-06.jpg",
+      "mode": "100644",
+      "gitBlob": "9253e9125f3bed84556904f8a564bae28e03102b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/picture-07.jpg",
+      "mode": "100644",
+      "gitBlob": "6bb81b01d74476d8638a5c0ec0df405dd970300f",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/picture-08.jpg",
+      "mode": "100644",
+      "gitBlob": "6bd5b6b9fbfa89bbff54ecac1500de3e4cd5ada2",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/atlases/picture-09.jpg",
+      "mode": "100644",
+      "gitBlob": "6c9d5732672b25df245643cf139cc87a30af8d45",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/cues.json",
+      "mode": "100644",
+      "gitBlob": "4715a657d6326c8e9f0c7a2267c1cd429160798e",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/dialogue-candidate.m4a",
+      "mode": "100644",
+      "gitBlob": "d457473eaeac6a7976a0367ebce772e2677fdf26",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/dialogue-candidate.wav",
+      "mode": "100644",
+      "gitBlob": "3318b0a286e9324ea06e39dda1ff22856b3637c2",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/manifest.json",
+      "mode": "100644",
+      "gitBlob": "85907188293872568ecae9e3260238c939770e8d",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/media-validation.json",
+      "mode": "100644",
+      "gitBlob": "cb24323f064861cc1fb83db293830325e3403ab2",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/passage-source.mp4",
+      "mode": "100644",
+      "gitBlob": "b9d388cd3f5cddb451a723ff437041b5a45ae375",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/poster.jpg",
+      "mode": "100644",
+      "gitBlob": "4a1b8cede986d7a4f80e5c914b92ebc48ec13214",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/provenance.json",
+      "mode": "100644",
+      "gitBlob": "030ab993d46530da6cddf27e4e5cfd056ca13fe4",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/regions.json",
+      "mode": "100644",
+      "gitBlob": "ac8c2f679424cb1e02de31eb4519a2647cf37843",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/closed-inbox-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "f0502ed396592a03905f230de1db0eff5fc83957",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/closed-inbox.mp4",
+      "mode": "100644",
+      "gitBlob": "4bdd1b2ab904ca2969f92a978c4d45e0b57726e0",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/closed-inbox.patch.json",
+      "mode": "100644",
+      "gitBlob": "d1363404d65897f25919d5d6ca442788702985d5",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/closed-inbox.render.json",
+      "mode": "100644",
+      "gitBlob": "185d6095c4c6ecf7acd08c8789042ce8b2998010",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/correction-machine-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "d3b9fb00b9fced5b625df4a1ddf3e7e392c3260c",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/correction-machine.mp4",
+      "mode": "100644",
+      "gitBlob": "034403e21ae386fd81ae25620cee9d46b5f954e4",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/correction-machine.patch.json",
+      "mode": "100644",
+      "gitBlob": "5287ffef0ddd3fc6cdee5f3138439f6ce80be2c7",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/correction-machine.render.json",
+      "mode": "100644",
+      "gitBlob": "038c29b3bd93c999a32cad888eaa73c0c6243701",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-damage-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "fd57d90de28b14ac14db09e2b4eddca96b342620",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-damage.mp4",
+      "mode": "100644",
+      "gitBlob": "1a5d51d7dad3e68b3e8f6b6faf5d174f9c6186ac",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-damage.patch.json",
+      "mode": "100644",
+      "gitBlob": "1e2e489b4f2bcb3cf55b2aa1af68324e5307167d",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-damage.render.json",
+      "mode": "100644",
+      "gitBlob": "367e57daab0fd49fa5c2388d41ef31e904e1d7d8",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-delay-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "0553e08482a4de687645288cab28340968a7bd11",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-delay.mp4",
+      "mode": "100644",
+      "gitBlob": "4f7d2c49fbdcf7ff95a7be3cd2bb677801c29675",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-delay.patch.json",
+      "mode": "100644",
+      "gitBlob": "5766f58df33c8d9a4c3875e147381123b3ff408b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-delay.render.json",
+      "mode": "100644",
+      "gitBlob": "8c12c72bdbf0e414f6259d4b4cbbb586daab3eb2",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-displacement-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "518dff18b4748087dda0d9154e9279d3dfc7fa9b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-displacement.mp4",
+      "mode": "100644",
+      "gitBlob": "6e839d8d513944e81fc6115ffdf119d31b63150d",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-displacement.patch.json",
+      "mode": "100644",
+      "gitBlob": "a229cdd991918ba8a290699162f8875c35dff66e",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-displacement.render.json",
+      "mode": "100644",
+      "gitBlob": "f9223d25a224f9ccb10993616443f42d276cd73d",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-exchange-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "b5536f763be3d459473889a917640267572953ca",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-exchange.mp4",
+      "mode": "100644",
+      "gitBlob": "f82dffbcb047781ead8465ecafe28c820162fa97",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-exchange.patch.json",
+      "mode": "100644",
+      "gitBlob": "cf2e050b3778a1277bbe6c0d0d8d92f3c881a381",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-exchange.render.json",
+      "mode": "100644",
+      "gitBlob": "04d6c39014f607dfad8b3442afdce4f2beb3de65",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-feedback-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "a7ff1533e2c4c76cf400a1729e22ab17845288de",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-feedback.mp4",
+      "mode": "100644",
+      "gitBlob": "b46ab07dff43993ad35e8163fc5045385b85daf4",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-feedback.patch.json",
+      "mode": "100644",
+      "gitBlob": "b45007b85552eacdc75402db7b7ad3b11c225309",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-feedback.render.json",
+      "mode": "100644",
+      "gitBlob": "81ba34bedb5aa65de1c40ed7aa8f3d8b5f0e4faa",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-freeze-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "742dbe441bbd956496f1361c6a594b23b4a7f5fe",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-freeze.mp4",
+      "mode": "100644",
+      "gitBlob": "151c1420582500cd70ab6068d7f230a8ba9e093f",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-freeze.patch.json",
+      "mode": "100644",
+      "gitBlob": "e52d1970e94e24ca15ef5cee101b84818f168ba5",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-freeze.render.json",
+      "mode": "100644",
+      "gitBlob": "2ce9f154e535f871e38d42c76e2a58177f35f942",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-gate-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "fa0bffb1781aaee6d7753d9d95fa87ae6f39bbeb",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-gate.mp4",
+      "mode": "100644",
+      "gitBlob": "379f701fa3255289325709534b70d97222200317",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-gate.patch.json",
+      "mode": "100644",
+      "gitBlob": "56e01c0f5439938c7c2e37acdea881684da726ad",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-gate.render.json",
+      "mode": "100644",
+      "gitBlob": "816f676e38c0d4b2b9b6d4af0ec940d14875469d",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-granular-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "4a7b651c7936d524b2106911f0d2b6959f099e7e",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-granular.mp4",
+      "mode": "100644",
+      "gitBlob": "aae9be6293a535b978af60889a4341252e2826e0",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-granular.patch.json",
+      "mode": "100644",
+      "gitBlob": "9ab33cea56352dade2922ced446687f9f2ef4136",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-granular.render.json",
+      "mode": "100644",
+      "gitBlob": "d11ffceddf5ab069966ce7ae3c1a2c89f3564f99",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-queue-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "5fd826273b0c0f0f694d87e2aad7cc84cf1b5e10",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-queue.mp4",
+      "mode": "100644",
+      "gitBlob": "5a398557b9fccd828b98638f02606f1afb28aa30",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-queue.patch.json",
+      "mode": "100644",
+      "gitBlob": "b67dac6c2db2e9a36fce3a1db125729e2e415401",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-queue.render.json",
+      "mode": "100644",
+      "gitBlob": "9b8343e6505f0a855d6137e49304f6f9f8782bd3",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-reverse-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "65901346f7ecdbd99d35bb4e40263f04aac18bfd",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-reverse.mp4",
+      "mode": "100644",
+      "gitBlob": "3fe3b8adbc691e8cac203d6c3d205a4c2ea7bfe4",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-reverse.patch.json",
+      "mode": "100644",
+      "gitBlob": "cca1726fd1c4de53cf559251f3bb89ae7a75795b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-reverse.render.json",
+      "mode": "100644",
+      "gitBlob": "8425af63572c115c205c39667800237919b7fc36",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-routing-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "0719f63c7aa5b99c21098f6e385d9b6e58d55797",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-routing.mp4",
+      "mode": "100644",
+      "gitBlob": "f57b26d58e4e975b8b81b272a995110a55025a68",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-routing.patch.json",
+      "mode": "100644",
+      "gitBlob": "7c0f1d758657c7d2c666817abf8c80eea0ab5a83",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-routing.render.json",
+      "mode": "100644",
+      "gitBlob": "8ffb4d7a0a09d5cd432032e171a341445a19cd87",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-stutter-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "d331bb0400afac6c12fc4ef861c562ce7b5c204c",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-stutter.mp4",
+      "mode": "100644",
+      "gitBlob": "2dd96fade9a6e30255381420561be50f00e5796a",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-stutter.patch.json",
+      "mode": "100644",
+      "gitBlob": "991492e09804334c95327ae24ee87e2f1e97131a",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-stutter.render.json",
+      "mode": "100644",
+      "gitBlob": "a8aee15fcfa8af35bf35e89534551aa627e29374",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-typography-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "f33ccaf043d4558fb360623634723e0700e39bbd",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-typography.mp4",
+      "mode": "100644",
+      "gitBlob": "d5df26d0cae34f9013d37acaee10fbcc5a7db124",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-typography.patch.json",
+      "mode": "100644",
+      "gitBlob": "9aaba43710db66208a1fc4c5dd73ee856a18d58d",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/demo-typography.render.json",
+      "mode": "100644",
+      "gitBlob": "240d045add98bda5277d2d2115b43bd30e3d2469",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/encoded-media-validation.json",
+      "mode": "100644",
+      "gitBlob": "1684f6d7b54a70eed9aa6c86e804f1af5ca53bb2",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/fractured-utterance-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "ef6b37121b7a6f699f6000827e4017b35054c1fe",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/fractured-utterance.mp4",
+      "mode": "100644",
+      "gitBlob": "65f061b62d97190d841d75f77602e484d34182a6",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/fractured-utterance.patch.json",
+      "mode": "100644",
+      "gitBlob": "9027326f8a7098f6b297ec41f6a5de9f25b11efb",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/fractured-utterance.render.json",
+      "mode": "100644",
+      "gitBlob": "58acb29a9acceca3fc521e796b3ced1be78a68e9",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/god-here-13-processors.render.json",
+      "mode": "100644",
+      "gitBlob": "7f0f1ad44e74af1cad5c06ffb569297aee7e247b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/message-impact-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "3f231060eb15911d299629aafa4e356d98c25dd5",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/message-impact.mp4",
+      "mode": "100644",
+      "gitBlob": "14d1c5226c8d88963f034ebff14d09d6faa8aa46",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/message-impact.patch.json",
+      "mode": "100644",
+      "gitBlob": "52c86f26cd95baea0d258bb14143bcc7237b88e0",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/message-impact.render.json",
+      "mode": "100644",
+      "gitBlob": "c0de2e31e6a1cca20e15203d9b06a1e292deee35",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/out-but-still-here-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "2b7abce1954388db93c25d507bfb47c4e5062201",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/out-but-still-here.mp4",
+      "mode": "100644",
+      "gitBlob": "e29d6eb9490929b1f1471633a07f6ed9209fa2dc",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/out-but-still-here.patch.json",
+      "mode": "100644",
+      "gitBlob": "8d909686816281d7fcc7affa9fa28b0839ec10a0",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/out-but-still-here.render.json",
+      "mode": "100644",
+      "gitBlob": "15f495df13b20083603fd017bd3cb3d319e648b9",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-closed-inbox-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "78165cef553995a829bb6e6b4df128420f5beb06",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-closed-inbox.mp4",
+      "mode": "100644",
+      "gitBlob": "a18930cd786baa189dbdcba863e402ccf46ff002",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-closed-inbox.patch.json",
+      "mode": "100644",
+      "gitBlob": "57965bebfd185d2a29b603699e3020cd76044a0d",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-closed-inbox.render.json",
+      "mode": "100644",
+      "gitBlob": "c9695fbc9d9cd2b81a4e0dca66124e2530a62e32",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-correction-machine-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "380d22cd99b25ffcc681361937e7a265c7679517",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-correction-machine.mp4",
+      "mode": "100644",
+      "gitBlob": "e135c0cd6cfa0371b41279a29357186a3d98e1b5",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-correction-machine.patch.json",
+      "mode": "100644",
+      "gitBlob": "afb3966492010a908ec3e380ee53fcfa5e0b2643",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-correction-machine.render.json",
+      "mode": "100644",
+      "gitBlob": "8faf6658893aa1d91353513f45fe99360c3bf694",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-fractured-utterance-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "2f37b4ba9c8f3bebfc72d12f6ec7760242b1e69b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-fractured-utterance.mp4",
+      "mode": "100644",
+      "gitBlob": "d11f97ed95462e2ec3ea5b66a490c97c2f38de2f",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-fractured-utterance.patch.json",
+      "mode": "100644",
+      "gitBlob": "56d5c46df92de07a8df0c7db85184de52d016d65",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-fractured-utterance.render.json",
+      "mode": "100644",
+      "gitBlob": "1037795d32721681d8e3518daaa612673aae7553",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-message-impact-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "e12e3f183f875df4f2fd2bab0f4f9996415abe23",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-message-impact.mp4",
+      "mode": "100644",
+      "gitBlob": "aea0b973bbf53ffe5bbf51b4a773487f91a193d4",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-message-impact.patch.json",
+      "mode": "100644",
+      "gitBlob": "5bf2076df19ebdf296e8be5b281aa9ee63fe562f",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-message-impact.render.json",
+      "mode": "100644",
+      "gitBlob": "755df81c08ab7ea7d96faecee71fbce602a7d8bf",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-out-but-still-here-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "382c61c32553cf0d52be6e0ea306d02c3bab99e4",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-out-but-still-here.mp4",
+      "mode": "100644",
+      "gitBlob": "31b120f831dd8c784d3e3d571a56731fd15a7fa1",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-out-but-still-here.patch.json",
+      "mode": "100644",
+      "gitBlob": "13c113d0426a84e80d2369448fb1007a986e6718",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-out-but-still-here.render.json",
+      "mode": "100644",
+      "gitBlob": "69eab99aaa82de62d9812b885d4d9433843f3eeb",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-room-takeover-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "8062e07657d3410fd71cfa6a8d581b9be7d443b4",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-room-takeover.mp4",
+      "mode": "100644",
+      "gitBlob": "a1c99408d2196d7e5f99e113a1c4381d3c86e566",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-room-takeover.patch.json",
+      "mode": "100644",
+      "gitBlob": "112b1984edd7aa94faf348d4bfccc64af96a8295",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/patch-demo-room-takeover.render.json",
+      "mode": "100644",
+      "gitBlob": "36361a12ab73a08f4d83b6a234b4cc4a58baf5a3",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/render-manifest.json",
+      "mode": "100644",
+      "gitBlob": "bda47f6f796b13d601fca0e3f1fbe33667a13ea2",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/room-takeover-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "ef713e01e0bd04ef6924c9172975603e5f3bec39",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/room-takeover.mp4",
+      "mode": "100644",
+      "gitBlob": "65fe79aabf6a353092bd7a69264e3ffbff35a5fa",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/room-takeover.patch.json",
+      "mode": "100644",
+      "gitBlob": "d8dfedb4d1f3ae4c9e2988c38ffa9ccfc30f2d07",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/renders/room-takeover.render.json",
+      "mode": "100644",
+      "gitBlob": "b64b50a929c3929ef99fc2081d056bdbc31842c3",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/room-hybrid.jpg",
+      "mode": "100644",
+      "gitBlob": "18e41171c3147176731198c110595269e7ebe78b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/room-observation-mask.png",
+      "mode": "100644",
+      "gitBlob": "6d31bf2d40f33d9e0ea6b9d6a2751bc63d1dca77",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/room-observed.jpg",
+      "mode": "100644",
+      "gitBlob": "991e69b7b55085b042ae9c451403b1c08d8298b4",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/source.m4a",
+      "mode": "100644",
+      "gitBlob": "9ef4cc51912eb99e8906453a6fcf582db077e015",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/source.wav",
+      "mode": "100644",
+      "gitBlob": "ecfeca0b03ee994842082e932a3def086c57e436",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/assets/waveforms.json",
+      "mode": "100644",
+      "gitBlob": "d73c6b93ab13283524ff920aed12f3b261a9a9f4",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/audio-worker.mjs",
+      "mode": "100644",
+      "gitBlob": "380ebfb0aa03f33ada747c45fc413b149a98f6b3",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/closed-inbox.json",
+      "mode": "100644",
+      "gitBlob": "d1363404d65897f25919d5d6ca442788702985d5",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/correction-machine.json",
+      "mode": "100644",
+      "gitBlob": "5287ffef0ddd3fc6cdee5f3138439f6ce80be2c7",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-damage.json",
+      "mode": "100644",
+      "gitBlob": "1e2e489b4f2bcb3cf55b2aa1af68324e5307167d",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-delay.json",
+      "mode": "100644",
+      "gitBlob": "5766f58df33c8d9a4c3875e147381123b3ff408b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-displacement.json",
+      "mode": "100644",
+      "gitBlob": "a229cdd991918ba8a290699162f8875c35dff66e",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-exchange.json",
+      "mode": "100644",
+      "gitBlob": "cf2e050b3778a1277bbe6c0d0d8d92f3c881a381",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-feedback.json",
+      "mode": "100644",
+      "gitBlob": "b45007b85552eacdc75402db7b7ad3b11c225309",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-freeze.json",
+      "mode": "100644",
+      "gitBlob": "e52d1970e94e24ca15ef5cee101b84818f168ba5",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-gate.json",
+      "mode": "100644",
+      "gitBlob": "56e01c0f5439938c7c2e37acdea881684da726ad",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-granular.json",
+      "mode": "100644",
+      "gitBlob": "9ab33cea56352dade2922ced446687f9f2ef4136",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-queue.json",
+      "mode": "100644",
+      "gitBlob": "b67dac6c2db2e9a36fce3a1db125729e2e415401",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-reverse.json",
+      "mode": "100644",
+      "gitBlob": "cca1726fd1c4de53cf559251f3bb89ae7a75795b",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-routing.json",
+      "mode": "100644",
+      "gitBlob": "7c0f1d758657c7d2c666817abf8c80eea0ab5a83",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-stutter.json",
+      "mode": "100644",
+      "gitBlob": "991492e09804334c95327ae24ee87e2f1e97131a",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/demo-typography.json",
+      "mode": "100644",
+      "gitBlob": "9aaba43710db66208a1fc4c5dd73ee856a18d58d",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/fractured-utterance.json",
+      "mode": "100644",
+      "gitBlob": "9027326f8a7098f6b297ec41f6a5de9f25b11efb",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/index.json",
+      "mode": "100644",
+      "gitBlob": "0038a9a705e21c07af3e42d8b744af32c717d90f",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/message-impact.json",
+      "mode": "100644",
+      "gitBlob": "52c86f26cd95baea0d258bb14143bcc7237b88e0",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/out-but-still-here.json",
+      "mode": "100644",
+      "gitBlob": "8d909686816281d7fcc7affa9fa28b0839ec10a0",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/patch-demo-closed-inbox.json",
+      "mode": "100644",
+      "gitBlob": "57965bebfd185d2a29b603699e3020cd76044a0d",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/patch-demo-correction-machine.json",
+      "mode": "100644",
+      "gitBlob": "afb3966492010a908ec3e380ee53fcfa5e0b2643",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/patch-demo-fractured-utterance.json",
+      "mode": "100644",
+      "gitBlob": "56d5c46df92de07a8df0c7db85184de52d016d65",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/patch-demo-message-impact.json",
+      "mode": "100644",
+      "gitBlob": "5bf2076df19ebdf296e8be5b281aa9ee63fe562f",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/patch-demo-out-but-still-here.json",
+      "mode": "100644",
+      "gitBlob": "13c113d0426a84e80d2369448fb1007a986e6718",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/patch-demo-room-takeover.json",
+      "mode": "100644",
+      "gitBlob": "112b1984edd7aa94faf348d4bfccc64af96a8295",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/fixtures/room-takeover.json",
+      "mode": "100644",
+      "gitBlob": "d8dfedb4d1f3ae4c9e2988c38ffa9ccfc30f2d07",
+      "unchanged": true
+    },
+    {
+      "path": "public/fx/watch.js",
+      "mode": "100644",
+      "gitBlob": "f8d4109e1181352f306914396e486a87920e3fca",
+      "unchanged": true
+    },
+    {
+      "path": "public/index.html",
+      "mode": "100644",
+      "gitBlob": "6786031f392b4d8d0c01582c415e030c4ab25ff2",
+      "unchanged": true
+    },
+    {
+      "path": "public/recovery/catalog.json",
+      "mode": "100644",
+      "gitBlob": "7147d6f0d96b24bff1d1346b520171b06bc5ec4b",
+      "unchanged": true
+    },
+    {
+      "path": "public/recovery/index.html",
+      "mode": "100644",
+      "gitBlob": "10879b271db5bca1233a29064b71ea5f7802d033",
+      "unchanged": true
+    },
+    {
+      "path": "public/recovery/recovery.css",
+      "mode": "100644",
+      "gitBlob": "b8f300beec56f177cb6ce0fa0e688ef80ce1543c",
+      "unchanged": true
+    },
+    {
+      "path": "public/recovery/recovery.js",
+      "mode": "100644",
+      "gitBlob": "55ad21e45d9f825ef13a7d4c52fcf5d68953a1ac",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/fx/assets/renders/god-here-13-processors-landscape.mp4",
+      "mode": "100644",
+      "gitBlob": "afc5f7d44bbbe29bd9529581f22c2fe9965e1528",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/fx/assets/renders/god-here-13-processors-portrait.mp4",
+      "mode": "100644",
+      "gitBlob": "2624eeaab25824d9baf61f0c871a9671b1ee23be",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/media/dialogue-reference.mp4",
+      "mode": "100644",
+      "gitBlob": "acb793bc70c04bab75db12bee2d4b7041ec585ca",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/media/god-here-linear-workprint-02.mp4",
+      "mode": "100644",
+      "gitBlob": "8ddc86b1cac77aca7475fe86ee551e7a53ca30e1",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/media/interactive-source.mp4",
+      "mode": "100644",
+      "gitBlob": "7319d7fcf296b8074af7fc01afa7bc987c6f59dd",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/full-length/A-room.flac",
+      "mode": "100644",
+      "gitBlob": "9811b977a5669831bd8f5961caf57ccf00703f90",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/full-length/B-room.flac",
+      "mode": "100644",
+      "gitBlob": "72ee5ce1a275d771f9bdf559aacd23c7abcc7a0b",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/full-length/C-room.flac",
+      "mode": "100644",
+      "gitBlob": "172f49376b7e00b758ec50c16da290b5cd6a7350",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/full-length/D-room.flac",
+      "mode": "100644",
+      "gitBlob": "e7d0bfefc985176bcb5ea48fede87aa4f6dabba8",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/full-length/E-room.flac",
+      "mode": "100644",
+      "gitBlob": "936899f799cf2ca06a17e8d399a8ab6bd9f2b64f",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/full-length/dialogue-core.flac",
+      "mode": "100644",
+      "gitBlob": "f999218641c322dd03509f2d759afa561256042c",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/original-room-rack/high-dry-contribution.flac",
+      "mode": "100644",
+      "gitBlob": "491cdf2baa312600bc3543de4e6f93b4c74b5fc5",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/original-room-rack/high-fx-return.flac",
+      "mode": "100644",
+      "gitBlob": "da8df2ac0b0ef6fce18d3a712d956f2d766d7cc8",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/original-room-rack/low-dry-contribution.flac",
+      "mode": "100644",
+      "gitBlob": "f099277533544850bc42f881e8ad2b620776e838",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/original-room-rack/low-fx-return.flac",
+      "mode": "100644",
+      "gitBlob": "e2db6cab192c515e273729c85b3380ba0e039a37",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/original-room-rack/mid-dry-contribution.flac",
+      "mode": "100644",
+      "gitBlob": "aa5e082a5713d13a2585011b4f52d9f47a9bf985",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/original-room-rack/mid-fx-return.flac",
+      "mode": "100644",
+      "gitBlob": "c9915be7b43bc39406ce654dc3e831987e82e4d7",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/B/high.flac",
+      "mode": "100644",
+      "gitBlob": "22493bf6b5bf46c460bd4dcbd1b18d87116a508a",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/B/low.flac",
+      "mode": "100644",
+      "gitBlob": "b56142d5bcf6fd324a739df9b92414055b7eac27",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/B/mid.flac",
+      "mode": "100644",
+      "gitBlob": "3dde259256cc12272b4ae0835b2e47bd5aa98cc0",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/C/high.flac",
+      "mode": "100644",
+      "gitBlob": "7c4c7927d85407f07c304562ab9657c9fd77d7be",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/C/low.flac",
+      "mode": "100644",
+      "gitBlob": "77a9c7120115c8fe8eb68a7fc99d3ba57ecc25b2",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/C/mid.flac",
+      "mode": "100644",
+      "gitBlob": "7ae07785d76a8bf2633a45b27c682b6ef07265cb",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/D/high.flac",
+      "mode": "100644",
+      "gitBlob": "4b5c2a6e0e501e0593473fa1901f8d36ddfa0e67",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/D/low.flac",
+      "mode": "100644",
+      "gitBlob": "2e62a81a79f10e78230de14177680a28759d4401",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/D/mid.flac",
+      "mode": "100644",
+      "gitBlob": "da085f29efc8d165adc0c54f549196b9d38bc156",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/E/high.flac",
+      "mode": "100644",
+      "gitBlob": "e1c112cb4c0ef2e7950b36ba9a97c3f6c7c0c3a9",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/E/low.flac",
+      "mode": "100644",
+      "gitBlob": "3e522a625407e34ddd108c29398540a81e25fd37",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/previous/stems/E/mid.flac",
+      "mode": "100644",
+      "gitBlob": "234c4946531c09b88c321b1f0bf76766fa8a690e",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/P5.flac",
+      "mode": "100644",
+      "gitBlob": "568726e675a91e98f55146e73eb257bf5eb067ce",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/P5R.flac",
+      "mode": "100644",
+      "gitBlob": "04b99e40509b6fa95737248237fe28db6e3cb7c3",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/PL1.flac",
+      "mode": "100644",
+      "gitBlob": "a53ade684f1ce1a127cf7f08a268c8e559853ed2",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/PL2.flac",
+      "mode": "100644",
+      "gitBlob": "89e97f01aee8d304057bd37ea907d98a33f54e1d",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/PL3.flac",
+      "mode": "100644",
+      "gitBlob": "96dab55383c69a2bc207fd0e7922d6b30a0166b8",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/PL4.flac",
+      "mode": "100644",
+      "gitBlob": "bdf087286fdbe6e6d6a0549aa8cc6883bdb2f42f",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/PL5.flac",
+      "mode": "100644",
+      "gitBlob": "07268a4f37ebf000dd40e4213890c6f20e9ad3cc",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/V1.flac",
+      "mode": "100644",
+      "gitBlob": "046a21a015191d5e974e02e83a29703da44f9f9f",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/V2.flac",
+      "mode": "100644",
+      "gitBlob": "d650f57db778aaa07d2a0223e8c30ab0a0f06022",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/V3.flac",
+      "mode": "100644",
+      "gitBlob": "7bee90292b17ef38c9dbbb8a1073af78f1aaf928",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/V4.flac",
+      "mode": "100644",
+      "gitBlob": "235f6a3a67a07e1b2d79a50b215c7d6fe0a0458b",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/V5.flac",
+      "mode": "100644",
+      "gitBlob": "b86d9dcf8f240ce5510e834940999981f96c4d46",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/V5R.flac",
+      "mode": "100644",
+      "gitBlob": "830a10321f27c5465a342b949044e9a07467dc04",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/VL1.flac",
+      "mode": "100644",
+      "gitBlob": "ca8749c01da4b098aee31e98fd32b74b197085e4",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/VL2.flac",
+      "mode": "100644",
+      "gitBlob": "2ff85406cd674cf749776d00e1c3b71765c7a4ef",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/VL3.flac",
+      "mode": "100644",
+      "gitBlob": "cee6320e89b8a3a49326ea86e18cce96223fd69f",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/VL4.flac",
+      "mode": "100644",
+      "gitBlob": "f74e62d57c315cab972211c87b81f739c385d671",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/downloads/stretched/VL5.flac",
+      "mode": "100644",
+      "gitBlob": "9f116796b423cbaf75dd6139bcb128f00702eda6",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/media/context-V1.mp4",
+      "mode": "100644",
+      "gitBlob": "0a465665e0f01d614917dccc1fe8ccaf7f74921b",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/media/context-V2.mp4",
+      "mode": "100644",
+      "gitBlob": "6dd1acfe149d3df40b232d18eddcc123d84928b6",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/media/context-V3.mp4",
+      "mode": "100644",
+      "gitBlob": "86b87a6061d035f2e992fb992d77a26c19d8832a",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/media/context-V4.mp4",
+      "mode": "100644",
+      "gitBlob": "0630446ebf7ebcf9ab8510e82e600ba72c357402",
+      "unchanged": true
+    },
+    {
+      "path": "room-media-source/room-tone/media/god-here-room-tone-dialogue-comparison.mp4",
+      "mode": "100644",
+      "gitBlob": "67425543d718fc54d01d106029e1132cc07c5d2f",
+      "unchanged": true
+    }
+  ],
+  "exactUpstreamModules": [
+    {
+      "path": "public/fx/core.mjs",
+      "githubPath": "web/fx/core.mjs",
+      "githubCommit": "c6656685603022193617405c87b831d28f570299",
+      "sha256": "2127a48b62c507082ccf783937fc0ffb3222bab158d31d4768ea1d5439b9b0af",
+      "exactMatch": true
+    },
+    {
+      "path": "public/fx/audio-engine.mjs",
+      "githubPath": "web/fx/audio-engine.mjs",
+      "githubCommit": "c6656685603022193617405c87b831d28f570299",
+      "sha256": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f",
+      "exactMatch": true
+    },
+    {
+      "path": "public/fx/visual-engine.mjs",
+      "githubPath": "web/fx/visual-engine.mjs",
+      "githubCommit": "c6656685603022193617405c87b831d28f570299",
+      "sha256": "42be9510643e71595a088faa1fe0ca616297b8a45f0723f19acd2abff75f34b1",
+      "exactMatch": true
+    },
+    {
+      "path": "public/fx/workbench-state.mjs",
+      "githubPath": "web/fx/workbench-state.mjs",
+      "githubCommit": "c6656685603022193617405c87b831d28f570299",
+      "sha256": "f77e43155c3aa9db1c61a4f41a9df7369b0438b154e82a8cf20fe44d6ce15fbf",
+      "exactMatch": true
+    }
+  ],
+  "localReferences": [
+    {
+      "from": "fx/index.html",
+      "reference": "workbench.css",
+      "resolvedPath": "/fx/workbench.css",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/index.html",
+      "reference": "../",
+      "resolvedPath": "/index.html",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/index.html",
+      "reference": "watch.html",
+      "resolvedPath": "/fx/watch.html",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/index.html",
+      "reference": "watch.html",
+      "resolvedPath": "/fx/watch.html",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/index.html",
+      "reference": "assets/renders/god-here-13-processors-landscape.mp4",
+      "resolvedPath": "/fx/assets/renders/god-here-13-processors-landscape.mp4",
+      "presentStatic": false,
+      "registeredDownload": true
+    },
+    {
+      "from": "fx/index.html",
+      "reference": "assets/provenance.json",
+      "resolvedPath": "/fx/assets/provenance.json",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/index.html",
+      "reference": "engine-provenance.json",
+      "resolvedPath": "/fx/engine-provenance.json",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/index.html",
+      "reference": "assets/passage-source.mp4",
+      "resolvedPath": "/fx/assets/passage-source.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/index.html",
+      "reference": "../review.html",
+      "resolvedPath": "/review.html",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/index.html",
+      "reference": "app.mjs",
+      "resolvedPath": "/fx/app.mjs",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "watch.css",
+      "resolvedPath": "/fx/watch.css",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "../",
+      "resolvedPath": "/index.html",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "./",
+      "resolvedPath": "/fx/index.html",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/message-impact.mp4",
+      "resolvedPath": "/fx/assets/renders/message-impact.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/message-impact.mp4",
+      "resolvedPath": "/fx/assets/renders/message-impact.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "./?patch=message-impact",
+      "resolvedPath": "/fx/index.html",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/message-impact.mp4",
+      "resolvedPath": "/fx/assets/renders/message-impact.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/closed-inbox.mp4",
+      "resolvedPath": "/fx/assets/renders/closed-inbox.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/out-but-still-here.mp4",
+      "resolvedPath": "/fx/assets/renders/out-but-still-here.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/correction-machine.mp4",
+      "resolvedPath": "/fx/assets/renders/correction-machine.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/fractured-utterance.mp4",
+      "resolvedPath": "/fx/assets/renders/fractured-utterance.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/room-takeover.mp4",
+      "resolvedPath": "/fx/assets/renders/room-takeover.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-routing.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-routing.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-delay.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-delay.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-stutter.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-stutter.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-granular.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-granular.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-reverse.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-reverse.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-freeze.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-freeze.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-feedback.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-feedback.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-queue.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-queue.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-gate.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-gate.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-displacement.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-displacement.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-exchange.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-exchange.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-typography.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-typography.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/demo-damage.mp4",
+      "resolvedPath": "/fx/assets/renders/demo-damage.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/message-impact.mp4",
+      "resolvedPath": "/fx/assets/renders/message-impact.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/message-impact.mp4",
+      "resolvedPath": "/fx/assets/renders/message-impact.mp4",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/god-here-13-processors-landscape.mp4",
+      "resolvedPath": "/fx/assets/renders/god-here-13-processors-landscape.mp4",
+      "presentStatic": false,
+      "registeredDownload": true
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "assets/renders/render-manifest.json",
+      "resolvedPath": "/fx/assets/renders/render-manifest.json",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "engine-provenance.json",
+      "resolvedPath": "/fx/engine-provenance.json",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/watch.html",
+      "reference": "watch.js",
+      "resolvedPath": "/fx/watch.js",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/app.mjs",
+      "reference": "./core.mjs",
+      "resolvedPath": "/fx/core.mjs",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/app.mjs",
+      "reference": "./visual-engine.mjs",
+      "resolvedPath": "/fx/visual-engine.mjs",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/app.mjs",
+      "reference": "./god-here.config.mjs",
+      "resolvedPath": "/fx/god-here.config.mjs",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/app.mjs",
+      "reference": "./audio-engine.mjs",
+      "resolvedPath": "/fx/audio-engine.mjs",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/app.mjs",
+      "reference": "./workbench-state.mjs",
+      "resolvedPath": "/fx/workbench-state.mjs",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/app.mjs",
+      "reference": "./preview-key.mjs",
+      "resolvedPath": "/fx/preview-key.mjs",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/app.mjs",
+      "reference": "./asset-loader.mjs",
+      "resolvedPath": "/fx/asset-loader.mjs",
+      "presentStatic": true,
+      "registeredDownload": false
+    },
+    {
+      "from": "fx/app.mjs",
+      "reference": "./preview-provenance.mjs",
+      "resolvedPath": "/fx/preview-provenance.mjs",
+      "presentStatic": true,
+      "registeredDownload": false
+    }
+  ],
+  "browserAcceptance": "not performed",
+  "artisticRendersGenerated": 0,
+  "remoteMutationsPerformed": false
+}

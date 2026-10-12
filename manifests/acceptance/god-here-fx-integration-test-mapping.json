@@ -1,0 +1,66 @@
+[
+  {
+    "path": "tests/fx/audio-core.test.mjs",
+    "sourcePath": "tests/fx/audio-core.test.mjs",
+    "sourceCommit": "c6656685603022193617405c87b831d28f570299",
+    "sourceSha256": "b5077b6cb5262cd533b1858d5ff3465cf997fab0d091fec5b0aba0acbbe5b9a9",
+    "sha256": "3f748b97e93b92dc7affbffa9afd462e11053f0221d10d840dabe550505d3326",
+    "adaptation": "default runtime lookup from web/fx to public/fx"
+  },
+  {
+    "path": "tests/fx/audio.test.mjs",
+    "sourcePath": "tests/fx/audio.test.mjs",
+    "sourceCommit": "c6656685603022193617405c87b831d28f570299",
+    "sourceSha256": "badad4ead149317dae716c3b17291883dff0e0658d5cd62c1e9523be929ad2b0",
+    "sha256": "817496798e207e540e4cb5b196436cfd958ea6ba7ab5700e31635620a71c649b",
+    "adaptation": "default runtime lookup from web/fx to public/fx"
+  },
+  {
+    "path": "tests/fx/core-contract.test.mjs",
+    "sourcePath": "tests/fx/core-contract.test.mjs",
+    "sourceCommit": "c6656685603022193617405c87b831d28f570299",
+    "sourceSha256": "4f29998eeb07c88382716017da1fbcf55e7433024951fa78bc45007e10b60fe3",
+    "sha256": "4f29998eeb07c88382716017da1fbcf55e7433024951fa78bc45007e10b60fe3",
+    "adaptation": "none"
+  },
+  {
+    "path": "tests/fx/preview-signature.test.mjs",
+    "sourcePath": "tests/fx/preview-signature.test.mjs",
+    "sourceCommit": "c6656685603022193617405c87b831d28f570299",
+    "sourceSha256": "7abe567bdbbb1f83d9e2fbac7ebfb724fd3f0c4e215ec883a0c41ffa026ca11c",
+    "sha256": "7abe567bdbbb1f83d9e2fbac7ebfb724fd3f0c4e215ec883a0c41ffa026ca11c",
+    "adaptation": "none"
+  },
+  {
+    "path": "tests/fx/review-regressions.test.mjs",
+    "sourcePath": "tests/fx/review-regressions.test.mjs",
+    "sourceCommit": "c6656685603022193617405c87b831d28f570299",
+    "sourceSha256": "9345ce11985e9a3d180a1f5468938743d487afb2ebef4e1e6bdff9b74d622351",
+    "sha256": "59852e802b5f501c614335d8134a5951b76963eb57f3f2b6ba060cde690cb5fc",
+    "adaptation": "default runtime lookup from web/fx to public/fx"
+  },
+  {
+    "path": "tests/fx/runtime.mjs",
+    "sourcePath": "tests/fx/runtime.mjs",
+    "sourceCommit": "c6656685603022193617405c87b831d28f570299",
+    "sourceSha256": "7bf2272be0356203927d8b7a922e5c15474578e0d345e32052839a50846b7428",
+    "sha256": "0acf40f2744f98d240f0ce3d63e8359f62b76123dcab7ba9718b57a76a4b844e",
+    "adaptation": "default runtime lookup from web/fx to public/fx"
+  },
+  {
+    "path": "tests/fx/visual-routing.test.mjs",
+    "sourcePath": "tests/fx/visual-routing.test.mjs",
+    "sourceCommit": "c6656685603022193617405c87b831d28f570299",
+    "sourceSha256": "936d9a6e8def8565db61536affb655fa245329eb48d282a9a3c7ce61e9d8e54d",
+    "sha256": "936d9a6e8def8565db61536affb655fa245329eb48d282a9a3c7ce61e9d8e54d",
+    "adaptation": "none"
+  },
+  {
+    "path": "tests/fx/workbench-state.test.mjs",
+    "sourcePath": "tests/fx/workbench-state.test.mjs",
+    "sourceCommit": "c6656685603022193617405c87b831d28f570299",
+    "sourceSha256": "ac93799cecbccec64e4df511ed7d5e918a80d5154d348ea4747fa9958cf12e2c",
+    "sha256": "ac93799cecbccec64e4df511ed7d5e918a80d5154d348ea4747fa9958cf12e2c",
+    "adaptation": "none"
+  }
+]

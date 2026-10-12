@@ -1,0 +1,24 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {normalizeCatalog,availability,filterObjects,parseRoute,sourceMoment,toolForPath} from '../../web/studio/core.mjs';
+const sha='a'.repeat(64),other='b'.repeat(64);
+const base={objects:[{sha256:sha,names:['original.mp4'],type:'video',links:[],decode:'passed'}],reproductions:[],retained_outputs:[],retained_inputs:[]};
+test('every identity is retained once across addenda',()=>assert.equal(normalizeCatalog({...base,retained_outputs:[{sha256:sha,names:['alias.mp4'],links:[]}]}).length,1));
+test('aliases are merged, never overwritten',()=>assert.deepEqual(normalizeCatalog({...base,retained_outputs:[{sha256:sha,names:['alias.mp4'],links:[]} ]})[0].names,['original.mp4','alias.mp4']));
+test('private preservation is not playability',()=>assert.equal(availability({...base.objects[0],availability:'privately_preserved'}).key,'preserved'));
+test('no link is not a broken play control',()=>assert.equal(availability(base.objects[0]).playable,false));
+test('failed decode does not advertise playability',()=>assert.equal(availability({...base.objects[0],decode:'failed',links:[{href:'../media/x.mp4'}]}).playable,false));
+test('font is retained as metadata but never a download',()=>assert.equal(availability({...base.objects[0],type:'font',names:['font.ttf'],links:[{href:'../font.ttf'}]}).playable,false));
+test('source hashes remain searchable',()=>assert.equal(filterObjects(normalizeCatalog(base),sha,'all','all').length,1));
+test('empty queries retain all records',()=>assert.equal(filterObjects(normalizeCatalog({...base,reproductions:[{sha256:other,names:['sound.wav'],type:'audio',links:[]}]}),'','all','all').length,2));
+test('invalid route falls back to review',()=>assert.equal(parseRoute('#not-a-route').mode,'review'));
+test('known tool is recovered from a deep link',()=>assert.deepEqual(parseRoute('#compose/fx'),{mode:'compose',tool:'fx'}));
+test('arbitrary tool URLs are not accepted',()=>assert.equal(parseRoute('#compose/https://evil.test/').tool,null));
+test('fixed excerpt time maps only inside its source interval',()=>assert.equal(sourceMoment('audio',2),87.133333333));
+test('unmapped edited films have no source conversion',()=>assert.equal(sourceMoment('color',2),null));
+test('non-finite media times have no source conversion',()=>assert.equal(sourceMoment('audio',Infinity),null));
+test('negative source position is rejected',()=>assert.equal(sourceMoment('audio',-1),null));
+test('previous root experience remains discoverable',()=>assert.equal(toolForPath('/experience.html'),'experience'));
+test('URLs cannot sneak into the tool list',()=>assert.equal(toolForPath('https://evil.test/review.html'),null));
+
+test('both recovered direction editors remain available in Compose',()=>{assert.deepEqual(parseRoute('#compose/direction'),{mode:'compose',tool:'direction'});assert.deepEqual(parseRoute('#compose/directed'),{mode:'compose',tool:'directed'});assert.equal(toolForPath('/direction-review.html'),'direction');assert.equal(toolForPath('/directed-review.html'),'directed');});

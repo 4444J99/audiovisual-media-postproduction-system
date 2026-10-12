@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checks": {
+    "all_observed_files_have_sha256_and_consistent_size": true,
+    "observed_count_matches_records": true,
+    "baseline_count_matches_records": true,
+    "byte_sum_matches": true,
+    "path_dispositions_partition_observed_files": true,
+    "new_identities_have_no_frozen_match": true,
+    "all_media_have_exact_baseline_and_frozen_match": true,
+    "frozen_catalog_unchanged": true
+  },
+  "public_receipt_sha256": "16595855541235b1dbda2b030ac04bcbaf472575dd44a8b2e56552dc4611db1d",
+  "public_receipt_bytes": 959102,
+  "scope": "Read-only immutable Git tree inventory. No frozen catalog changes, no publication, no renderer execution."
+}

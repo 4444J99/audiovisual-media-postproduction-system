@@ -1,0 +1,49 @@
+{
+  "schema": "god-here.integration-package-check.v1",
+  "wheel_name": "audiovisual_media_postproduction_system-0.2.0-py3-none-any.whl",
+  "bytes": 71973,
+  "sha256": "9356a8c4e157d2eaf797c224c00911fedef12f40073ce8e57a5170ede7378a3f",
+  "entry_points": "[console_scripts]\namp = amp.cli:main\n",
+  "modules": [
+    "amp/__init__.py",
+    "amp/audio.py",
+    "amp/cli.py",
+    "amp/core.py",
+    "amp/direction.py",
+    "amp/foley.py",
+    "amp/neural_audio.py",
+    "amp/render.py",
+    "amp/revision.py",
+    "amp/roomaudit.py",
+    "amp/roomrack.py",
+    "amp/roomrefine.py",
+    "amp/roomstretch.py",
+    "amp/roomtone.py",
+    "amp/segmentation.py",
+    "amp/soundstage.py",
+    "amp/workstation.py"
+  ],
+  "optional_dependency_metadata": [
+    "Requires-Dist: numpy>=1.24",
+    "Requires-Dist: scipy>=1.10",
+    "Requires-Dist: Pillow>=9",
+    "Provides-Extra: learned",
+    "Requires-Dist: onnxruntime>=1.16; extra == \"learned\"",
+    "Requires-Dist: opencv-python-headless>=4.8; extra == \"learned\"",
+    "Provides-Extra: tracking",
+    "Requires-Dist: opencv-python-headless<6,>=4.8; extra == \"tracking\""
+  ],
+  "command": [
+    "python",
+    "-m",
+    "pip",
+    "wheel",
+    "--no-deps",
+    "--no-build-isolation",
+    "--wheel-dir",
+    "OUTPUT",
+    "."
+  ],
+  "build_exit_code": 0,
+  "installed_or_published": false
+}

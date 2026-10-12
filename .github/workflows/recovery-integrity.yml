@@ -1,0 +1,67 @@
+name: Recovery integrity
+
+on:
+  pull_request:
+    paths:
+      - 'manifests/**'
+      - 'docs/recovery/**'
+      - 'docs/engineering-integration/**'
+      - 'tools/recovery/**'
+      - 'web/recovery/**'
+      - '.github/workflows/recovery-integrity.yml'
+  push:
+    branches:
+      - main
+      - inventory/god-here-project-reconciliation-20261011
+    paths:
+      - 'manifests/**'
+      - 'docs/recovery/**'
+      - 'docs/engineering-integration/**'
+      - 'tools/recovery/**'
+      - 'web/recovery/**'
+      - '.github/workflows/recovery-integrity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recovery-integrity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Set up Python for metadata checks
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Set up Node for the recovery view fixture
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: "24"
+      - name: Verify frozen catalog and historical expectations
+        run: >-
+          python3 tools/recovery/verify_catalog.py
+          --catalog manifests/artifacts/god-here-recovery-catalog.json
+          --expectations manifests/artifacts/god-here-recovery-expectations.json
+      - name: Verify evidence hashes, delivery accounting and workbench bindings
+        run: python3 tools/recovery/verify_checkpoint.py
+      - name: Reject inconsistent recovery metadata
+        run: >-
+          python3 tools/recovery/probe_checkpoint_negatives.py
+          --root "$GITHUB_WORKSPACE"
+          --scratch-root "$RUNNER_TEMP"
+          --output "$RUNNER_TEMP/god-here-checkpoint-negative-probes.json"
+      - name: Verify reproduction navigation and private-output rules
+        run: >-
+          node tools/recovery/probe_reproduction_view.mjs
+          --root "$GITHUB_WORKSPACE"
+          --output "$RUNNER_TEMP/god-here-reproduction-view-check.json"
+      - name: Reject inconsistent retained-execution accounting and preservation
+        run: >-
+          python3 tools/recovery/probe_retained_availability.py
+          --root "$GITHUB_WORKSPACE"
+          --output "$RUNNER_TEMP/god-here-retained-availability-probes.json"

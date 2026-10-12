@@ -1,0 +1,47 @@
+{
+  "schema_version": "amps.execution.v1",
+  "id": "directed-integrated-excerpt",
+  "adapter": "amp.revision.v1",
+  "upstream": {
+    "pull_request": 50,
+    "commit": "e31f8acab66f2caa8760b2d552f10af60c506ab3"
+  },
+  "source_clock": {
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "frame_rate": {
+      "num": 30,
+      "den": 1
+    },
+    "frames": 3360
+  },
+  "inputs": {
+    "recipe": {
+      "sha256": "2733f18af7222322a9857c7b5718cf800268f7cd29c1ddf1bdd2316432c86278",
+      "bytes": 954
+    },
+    "source": {
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "bytes": 12636527
+    },
+    "audio": {
+      "sha256": "129907ef32fb769c33a0290dea504675882b2b411e93f35afa009db9cc998042",
+      "bytes": 43013074
+    },
+    "composition": {
+      "sha256": "efe30fd3b4043a65ba2454183c3360fc083f292fdfd862054cc50decd60a3801",
+      "bytes": 13448,
+      "repo_path": "projects/god-here/composition.json"
+    },
+    "track": {
+      "sha256": "e90b71f10cc281d50fc8f9401d971a945d7e4fb0a406907fd09e4272b746afe9",
+      "bytes": 78251
+    },
+    "font": {
+      "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
+      "bytes": 759720
+    }
+  },
+  "options": {
+    "width": 1280
+  }
+}

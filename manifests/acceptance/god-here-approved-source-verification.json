@@ -1,0 +1,13 @@
+{
+  "source_commit": "957093108309ef1e02df2cbed9b797a346000f4a",
+  "registry_sha256": "e351c99497b30bb81810ac08f0db03c7114da414f17936c4fef8f23527bd81b2",
+  "file_count": 52,
+  "bytes": 540442474,
+  "all_source_hashes_match_approved_registry": true,
+  "approval": {
+    "instruction": "Proceed with full approval",
+    "user_time": "2026-10-11T15:00:42-04:00",
+    "scope": "Previously listed 52-file media payload to the existing public canonical workbench"
+  },
+  "destination": "https://god-here-five-realities.ajpadavano.chatgpt.site"
+}
