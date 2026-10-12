@@ -1,4 +1,5 @@
 from collections import deque
+import hashlib
 import json
 import subprocess
 from pathlib import Path
@@ -66,6 +67,8 @@ def render(source, audio, config, output, *, start=0, end=None, width=1280, fiel
          "-ar", "48000", "-movflags", "+faststart", output])
     silent.unlink()
     data = {"source_sha256": sha256(source), "audio_sha256": sha256(audio), "output_sha256": sha256(output),
+            "composition_sha256": hashlib.sha256(json.dumps(config, sort_keys=True, allow_nan=False).encode()).hexdigest(),
+            "render_code_sha256": sha256(__file__), "core_code_sha256": sha256(Path(__file__).with_name('core.py')),
             "frames": rendered, "fps": fps, "source_start_frame": start_frame, "source_end_frame_exclusive": stop_frame,
             "duration_seconds": seconds, "fields": fields, "boundary_mode": mode, "fine_layers": layers,
             "expressive_typography": typography, "status": "workprint; listening and artistic acceptance pending"}

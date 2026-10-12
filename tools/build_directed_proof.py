@@ -1,29 +1,177 @@
 """Render the approved god-here implementation as concrete review alternatives."""
-import copy
+import hashlib
 import json
 import platform
 import subprocess
 import sys
+import tempfile
+
+import numpy as np
 from pathlib import Path
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from amp.audio import make_candidates, expressive_audio, load_audio, measure
+from amp.audio import RATE, make_candidates, expressive_audio, load_audio, measure
 from amp.core import sha256, write_json, run, probe
 from amp.render import render
 from amp.revision import render_revision, track_region, timing_map
 from amp.workstation import export_workstation
+from tools.directed_contract import delivery_inputs
+
+
+def _value_sha256(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"),
+                                     allow_nan=False).encode()).hexdigest()
+
+
+def _audio_producer():
+    root = Path(__file__).resolve().parents[1]
+    return {name: sha256(root / name) for name in
+            ("amp/audio.py", "tools/build_directed_proof.py")}
+
+
+def _decoded_audio_receipt(path, expected_samples=None, expected_sha256=None):
+    """Read the complete stream: a WAV header or successful exit is insufficient."""
+    path = Path(path)
+    digest = sha256(path)
+    if expected_sha256 is not None and digest != expected_sha256:
+        raise ValueError(f"Audio changed after its receipt: {path.name}")
+    decoded = subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-i", str(path),
+                              "-vn", "-ar", str(RATE), "-ac", "2", "-f", "f32le", "-"],
+                             capture_output=True, check=True)
+    if decoded.stderr.strip() or not decoded.stdout or len(decoded.stdout) % 8:
+        raise ValueError(f"Audio failed complete decode: {path.name}")
+    samples = np.frombuffer(decoded.stdout, dtype="<f4").reshape(-1, 2)
+    if not np.isfinite(samples).all():
+        raise ValueError(f"Audio contains nonfinite samples: {path.name}")
+    if expected_samples is not None and len(samples) != expected_samples:
+        raise ValueError(f"Audio has wrong decoded sample count: {path.name}")
+    return {"sha256": digest, "samples": len(samples), "sample_rate": RATE,
+            "channels": 2, "full_decode_verified": True}
+
+
+def _candidate_inputs(source_sha256, transcript):
+    return {"source_sha256": source_sha256, "transcript_sha256": _value_sha256(transcript),
+            "producer_sha256": _audio_producer()}
+
+
+def _expressive_inputs(source_sha256, candidate_sha256, config):
+    return {"source_sha256": source_sha256, "candidate_sha256": candidate_sha256,
+            "composition_sha256": _value_sha256(config), "producer_sha256": _audio_producer()}
+
+
+def _read_audio_report(path):
+    report = json.loads(path.read_text())
+    if not isinstance(report, dict):
+        raise ValueError(f"Audio report must be an object: {path.name}")
+    return report
+
+
+def _candidate_assets(audio, report, expected_source_sha256, expected_samples):
+    if report.get("source_sha256") != expected_source_sha256 or report.get("sample_rate") != RATE:
+        raise ValueError("Audio candidate report belongs to another source or sample rate")
+    candidates = report.get("candidates", {})
+    if (not isinstance(candidates, dict) or not {"A", "B"}.issubset(candidates)
+            or not set(candidates).issubset({"A", "B", "S", "F"})):
+        raise ValueError("Audio report lacks the required candidate identities")
+    assets = {}
+    for name, item in candidates.items():
+        if not isinstance(item, dict) or item.get("samples") != expected_samples or not item.get("sha256"):
+            raise ValueError(f"Candidate {name} has incomplete or incorrect sample/hash provenance")
+        filename = f"candidate-{name}.wav"
+        assets[filename] = _decoded_audio_receipt(audio / filename, expected_samples, item["sha256"])
+    return assets
+
+
+def _expressive_filenames(config):
+    performers = config["performers"]
+    if any(not isinstance(pid, str) or not pid.isalnum() for pid in performers):
+        raise ValueError("Invalid performer identifier in expressive audio configuration")
+    return ["expressive-mix.wav", "expressive-returns.wav", *[f"return-{pid}.wav" for pid in performers]]
+
+
+def _verify_candidates(audio, transcript, expected_source_sha256, expected_samples):
+    report = _read_audio_report(audio / "audio-report.json")
+    if report.get("preparation_inputs") != _candidate_inputs(expected_source_sha256, transcript):
+        raise ValueError("Audio candidate cache does not match the source, transcript or producing code")
+    assets = _candidate_assets(audio, report, expected_source_sha256, expected_samples)
+    if report.get("audio_assets") != assets:
+        raise ValueError("Audio candidate decode receipts are missing or stale")
+    return report
+
+
+def _verify_expressive(audio, config, expected_source_sha256, expected_samples, candidate_sha256):
+    report = _read_audio_report(audio / "expressive-report.json")
+    expected = _expressive_inputs(expected_source_sha256, candidate_sha256, config)
+    if report.get("preparation_inputs") != expected:
+        raise ValueError("Expressive audio cache does not match the source, candidate, composition or producing code")
+    receipts = report.get("audio_assets", {})
+    if not isinstance(receipts, dict) or set(receipts) != set(_expressive_filenames(config)):
+        raise ValueError("Expressive audio report lacks the required mix and performer receipts")
+    for filename, receipt in receipts.items():
+        if not isinstance(receipt, dict) or not receipt.get("sha256") or receipt != _decoded_audio_receipt(
+                audio / filename, expected_samples, receipt["sha256"]):
+            raise ValueError(f"Expressive audio decode receipt is missing or stale: {filename}")
+    return report
+
+
+def verify_audio_cache(audio, config, transcript, expected_source_sha256, expected_samples):
+    """Authenticate prepared audio without modifying it or needing the source film."""
+    audio = Path(audio)
+    if config.get("source_sha256") != expected_source_sha256:
+        raise ValueError("Audio configuration belongs to another source")
+    candidates = _verify_candidates(audio, transcript, expected_source_sha256, expected_samples)
+    expressive = _verify_expressive(audio, config, expected_source_sha256, expected_samples,
+                                    candidates["candidates"]["B"]["sha256"])
+    return {"candidates": candidates, "expressive": expressive}
+
+
+def _publish_audio_stage(staged, audio, report_name):
+    audio.mkdir(parents=True, exist_ok=True)
+    for path in sorted(staged.iterdir()):
+        if path.name != report_name:
+            path.replace(audio / path.name)
+    (staged / report_name).replace(audio / report_name)
 
 
 def prepare_audio(source, transcript, config, audio):
-    """Resume audio preparation after either stage was interrupted."""
-    audio = Path(audio)
-    rebuild_candidates = not all((audio / name).is_file() for name in ('candidate-A.wav', 'candidate-B.wav', 'audio-report.json'))
-    if rebuild_candidates:
-        make_candidates(source, transcript, audio)
-    expressive_files = ['expressive-mix.wav', 'expressive-returns.wav', 'expressive-report.json']
-    expressive_files += [f'return-{pid}.wav' for pid in config['performers']]
-    if rebuild_candidates or not all((audio / name).is_file() for name in expressive_files):
-        expressive_audio(audio / 'candidate-B.wav', config, audio)
+    """Resume only source-bound, completely decoded audio with current provenance."""
+    source, audio = Path(source), Path(audio)
+    source_receipt = _decoded_audio_receipt(source)
+    source_sha256, expected_samples = source_receipt["sha256"], source_receipt["samples"]
+    if config.get("source_sha256") != source_sha256:
+        raise ValueError("Audio configuration belongs to another source")
+    audio.parent.mkdir(parents=True, exist_ok=True)
+    rebuild_candidates = False
+    cache_errors = (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError)
+    try:
+        candidates = _verify_candidates(audio, transcript, source_sha256, expected_samples)
+    except cache_errors:
+        rebuild_candidates = True
+        with tempfile.TemporaryDirectory(prefix=".directed-candidates-", dir=audio.parent) as directory:
+            staged = Path(directory)
+            make_candidates(source, transcript, staged)
+            candidates = _read_audio_report(staged / "audio-report.json")
+            candidates["audio_assets"] = _candidate_assets(staged, candidates, source_sha256, expected_samples)
+            candidates["preparation_inputs"] = _candidate_inputs(source_sha256, transcript)
+            write_json(staged / "audio-report.json", candidates)
+            _publish_audio_stage(staged, audio, "audio-report.json")
+    candidate_sha256 = candidates["candidates"]["B"]["sha256"]
+    try:
+        if rebuild_candidates:
+            raise ValueError("Candidates were rebuilt; regenerate their expressive returns")
+        _verify_expressive(audio, config, source_sha256, expected_samples, candidate_sha256)
+    except cache_errors:
+        with tempfile.TemporaryDirectory(prefix=".directed-expressive-", dir=audio.parent) as directory:
+            staged = Path(directory)
+            expressive_audio(audio / "candidate-B.wav", config, staged)
+            expressive = _read_audio_report(staged / "expressive-report.json")
+            expressive["audio_assets"] = {filename: _decoded_audio_receipt(staged / filename, expected_samples)
+                                           for filename in _expressive_filenames(config)}
+            expressive["preparation_inputs"] = _expressive_inputs(source_sha256, candidate_sha256, config)
+            write_json(staged / "expressive-report.json", expressive)
+            _publish_audio_stage(staged, audio, "expressive-report.json")
+    return {"source_audio": source_receipt, "candidate_report_sha256": sha256(audio / "audio-report.json"),
+            "expressive_report_sha256": sha256(audio / "expressive-report.json")}
 
 
 def build(source, root):
@@ -36,20 +184,7 @@ def build(source, root):
     audio=root/'audio'
     prepare_audio(source, transcript, config, audio)
     print('Audio candidates and independent effect returns prepared',flush=True)
-    base={'schema_version':'1.0','source_sha256':config['source_sha256'],
-          'original_note':'Let the closing disclosure register before the group resumes its word game.',
-          'intent':'Test changed reception through an extended gap, reaction emphasis, and persistent words.',
-          'source_wording':'No invented or reconstructed dialogue; inherited ASR gaps are provisional.',
-          'review_status':'candidate; owner acceptance pending',
-          'segments':[{'source_start_frame':2554,'source_end_frame':3215,'output_frames':661}],
-          'fine_layers':True,'animated_typography':True}
-    gap=[{'source_start_frame':2554,'source_end_frame':2955,'output_frames':401},
-         {'source_start_frame':2955,'source_end_frame':2979,'output_frames':42},
-         {'source_start_frame':2979,'source_end_frame':3215,'output_frames':236}]
-    recipes={}
-    recipes['gap']=copy.deepcopy(base);recipes['gap']['segments']=gap
-    recipes['reaction']=copy.deepcopy(base);recipes['reaction']['camera']={'start_frame':2850,'end_frame':3215,'max_zoom':1.45}
-    recipes['integrated']=copy.deepcopy(recipes['reaction']);recipes['integrated']['segments']=gap
+    base, recipes, full, session = delivery_inputs(config)
     for name,recipe in recipes.items():
         write_json(root/f'{name}.recipe.json',recipe)
     track=track_region(source,2850,3215,[.61,.30,.75,.52],root/'reaction.track.json')
@@ -64,19 +199,9 @@ def build(source, root):
         print(f'Directed {name} rendered',flush=True)
     render_revision(source,audio/'expressive-mix.wav',config,recipes['integrated'],root/'god-here-directed-passage.mp4',track=track)
     print('Integrated expressive passage rendered',flush=True)
-    session={'schema_version':'1.0','project':config['project'],'score_version':config['score_version'],
-             'source_sha256':config['source_sha256'],'reduced_motion':False,
-             'capture_kind':'Authored replay fixture; not a claimed audience session',
-             'events':[{'source_time':85.133333,'selected':'P01','amount':.8},
-                       {'source_time':90,'selected':'P04','amount':.7},
-                       {'source_time':97.5,'selected':'P05','amount':.85},
-                       {'source_time':102,'selected':None,'amount':0}]}
     write_json(root/'attention-demo.json',session)
     render_revision(source,audio/'candidate-B.wav',config,base,root/'attention-replay.mp4',session=session)
     print('Browser-score offline replay rendered',flush=True)
-    full=copy.deepcopy(recipes['integrated'])
-    full['segments']=[{'source_start_frame':0,'source_end_frame':2955,'output_frames':2955},
-                      gap[1],{'source_start_frame':2979,'source_end_frame':3360,'output_frames':381}]
     write_json(root/'full-edition.recipe.json',full)
     render_revision(source,audio/'expressive-mix.wav',config,full,root/'god-here-directed-full-workprint.mp4',track=track)
     print('Complete source-length directed workprint rendered',flush=True)
@@ -84,23 +209,8 @@ def build(source, root):
                        {'Original':root/'proof-A.mp4','Restored':root/'proof-B.mp4','FiveRegions':root/'proof-C.mp4',
                         'Directed':root/'directed-integrated.mp4','Expressive':root/'god-here-directed-passage.mp4'},root/'workstation')
     print('Editable workstation handoff prepared',flush=True)
-    outputs=[]
-    for path in sorted(root.glob('*.mp4')):
-        if path.name.endswith('.picture.mp4'):
-            continue
-        run(['ffmpeg','-v','error','-i',path,'-f','null','-'])
-        info=probe(path);video=next(s for s in info['streams'] if s['codec_type']=='video')
-        outputs.append({'file':path.name,'frames':int(video['nb_frames']),'duration':float(video['duration']),
-                        'sha256':sha256(path),'full_decode':'passed','audio':measure(load_audio(path))})
-    report={'outputs':outputs,'source_sha256':sha256(source),'python':platform.python_version(),
-            'ffmpeg':subprocess.check_output(['ffmpeg','-version'],text=True).splitlines()[0],
-            'track_accepted_fraction':sum(r['accepted'] for r in track['rows'])/len(track['rows']),
-            'added_duration_seconds':.6,'provisional_pause_source_seconds':[98.5,99.3],
-            'camera_target':'Patterned-shirt visual identity P02; authored reaction target, no speaker-name assertion',
-            'native_application_import':'pending; applications unavailable',
-            'audio_improvement_listening':'pending','artist_acceptance':'pending',
-            'learned_enhancement_segmentation':'not run; torch, SAM2, model weights absent'}
-    write_json(root/'directed-validation.json',report)
+    from tools.validate_directed import validate_outputs
+    validate_outputs(root)
     print('Full decode and delivered-audio measurements complete',flush=True)
 
 

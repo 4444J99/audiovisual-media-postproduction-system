@@ -14,14 +14,21 @@ const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 await fs.mkdir(out,{recursive:true});await fs.mkdir(path.join(out,'logs'),{recursive:true});
 const index=await j(options.index?path.resolve(options.index):path.join(engineDir,'fixtures/index.json'));
 const {signalSignature}=await import(pathToFileURL(path.join(engineDir,'preview-key.mjs')));
-const codeHashes=Object.fromEntries(await Promise.all(['core.mjs','catalog.mjs','visual-engine.mjs','audio-engine.mjs','preview-key.mjs','god-here.config.mjs'].map(async p=>[p,hash(await fs.readFile(path.join(engineDir,p)))])));
+const {assetPackIdentity,assertBoundRenderAssets}=await import(pathToFileURL(path.join(engineDir,'asset-pack.mjs')));
+const assetsIdentity=await assetPackIdentity(await fs.readFile(path.join(assetsDir,'manifest.json')),file=>fs.readFile(path.join(assetsDir,file)));
+const codeHashes=Object.fromEntries(await Promise.all(['core.mjs','catalog.mjs','visual-engine.mjs','audio-engine.mjs','preview-key.mjs','god-here.config.mjs','asset-pack.mjs'].map(async p=>[p,hash(await fs.readFile(path.join(engineDir,p)))])));
 const entries=await Promise.all(index.outputs.map(async item=>{
  const patch=await j(path.join(engineDir,'fixtures',item.filename));
  return {...item,key:signalSignature(patch),signalSignature:signalSignature(patch),video:`${item.id}.mp4`,portrait:`${item.id}-portrait.mp4`,patch:`${item.id}.patch.json`,receipt:`${item.id}.render.json`,status:'pending'};
 }));
 const previous=options.append?await j(path.join(out,'manifest.json')):null;
-if(previous)for(const entry of previous.entries)entry.signalSignature??=entry.key;
-const manifest={schemaVersion:'1.0.0',source:index.source,width:480,height:270,portraitWidth:270,portraitHeight:480,fps:12,codeHashes,entries:[...(previous?.entries||[]),...entries],complete:false};
+if(previous){
+ assertBoundRenderAssets(previous,assetsIdentity);
+ if(previous.entries.some(entry=>entry.assetsIdentitySha256!==assetsIdentity.sha256))throw Error('Cannot append unbound historical preview entries.');
+ for(const [name,value]of Object.entries(codeHashes))if(previous.codeHashes?.[name]!==value)throw Error('Cannot append previews from another producing-code revision.');
+ for(const entry of previous.entries)entry.signalSignature??=entry.key;
+}
+const manifest={schemaVersion:'1.0.0',source:index.source,width:480,height:270,portraitWidth:270,portraitHeight:480,fps:12,codeHashes,assetsIdentity,entries:[...(previous?.entries||[]),...entries],complete:false};
 const save=async()=>{const text=JSON.stringify(manifest,null,2)+'\n';await fs.writeFile(path.join(out,'manifest.json'),text);await fs.writeFile(path.join(out,'render-manifest.json'),text);};await save();
 let cursor=0;
 async function worker(){
@@ -36,7 +43,7 @@ async function worker(){
   const child=spawn(process.execPath,argv,{stdio:['ignore',log.fd,log.fd]});
   const code=await new Promise((resolve,reject)=>{child.on('error',reject);child.on('close',resolve);});await log.close();
   if(code!==0){entry.status='failed';await save();throw Error(`${entry.id} failed: see logs/${entry.id}.log`);}
-  const receipt=await j(path.join(out,entry.receipt));entry.status='complete';entry.seconds=(Date.now()-start)/1000;entry.bytes=receipt.outputs.reduce((s,v)=>s+v.bytes,0);entry.frameCount=receipt.frameCount;entry.duration=receipt.duration;entry.sha256=receipt.outputs[0].sha256;entry.portraitSha256=receipt.outputs[1].sha256;
+  const receipt=await j(path.join(out,entry.receipt));entry.assetsIdentitySha256=assertBoundRenderAssets(receipt,assetsIdentity);entry.status='complete';entry.seconds=(Date.now()-start)/1000;entry.bytes=receipt.outputs.reduce((s,v)=>s+v.bytes,0);entry.frameCount=receipt.frameCount;entry.duration=receipt.duration;entry.sha256=receipt.outputs[0].sha256;entry.portraitSha256=receipt.outputs[1].sha256;
   await save();process.stdout.write(`DONE ${entry.id}: ${entry.seconds.toFixed(1)} s, ${(entry.bytes/1048576).toFixed(2)} MiB\n`);
  }
 }

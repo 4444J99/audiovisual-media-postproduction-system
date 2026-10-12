@@ -101,12 +101,32 @@ class RevisionReviewRegressionTests(unittest.TestCase):
     def test_tracking_must_cover_every_camera_frame(self):
         from amp.revision import validate_camera_track
         track={'source_sha256':CONFIG['source_sha256'],'fps':30,'start_frame':10,'end_frame':15,
+               'method':'authored tracking fixture','review_status':'pending',
                'rows':[{'source_frame':i,'center':[.5,.5]} for i in range(10,15)]}
         camera={'start_frame':10,'end_frame':15}
         validate_camera_track(track,camera,CONFIG,3360)
         for mutation in (lambda t:t.update(end_frame=14),lambda t:t['rows'].pop(),lambda t:t['rows'][2].update(source_frame=14)):
             broken=copy.deepcopy(track);mutation(broken)
             with self.assertRaises(ValueError):validate_camera_track(broken,camera,CONFIG,3360)
+
+    def test_missing_track_receipt_metadata_fails_native_and_preflight(self):
+        from amp.revision import validate_camera_track
+        from amp.execution import validate_track
+        track={'schema_version':'1.0','source_sha256':CONFIG['source_sha256'],'fps':30,
+               'start_frame':10,'end_frame':12,'method':'authored fixture','review_status':'pending',
+               'rows':[{'source_frame':i,'center':[.5,.5]} for i in range(10,12)]}
+        camera={'start_frame':10,'end_frame':12}
+        clock={'sha256':CONFIG['source_sha256'],'frame_rate':{'num':30,'den':1},'frames':3360}
+        for field in ('method','review_status'):
+            for value in (None,'',17):
+                broken=copy.deepcopy(track)
+                if value is None:del broken[field]
+                else:broken[field]=value
+                with self.subTest(field=field,value=value):
+                    with self.assertRaisesRegex(ValueError,'tracking receipt metadata'):
+                        validate_camera_track(broken,camera,CONFIG,3360)
+                    with self.assertRaisesRegex(ValueError,'tracking receipt metadata'):
+                        validate_track(broken,{'camera':camera},clock)
 
     def test_unregistered_typography_is_untouched(self):
         from amp.revision import animated_word

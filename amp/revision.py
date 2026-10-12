@@ -208,9 +208,16 @@ def animated_word(image, config, t):
     return out
 
 
-def validate_camera_track(track, camera, config, source_frames):
+def validate_track_metadata(track):
     if not isinstance(track, dict):
-        raise ValueError('Camera operation requires a real source-addressed track')
+        raise ValueError('Track must be an object')
+    for key in ('method', 'review_status'):
+        if not isinstance(track.get(key), str) or not track[key].strip():
+            raise ValueError(f'Missing or invalid tracking receipt metadata: {key}')
+
+
+def validate_camera_track(track, camera, config, source_frames):
+    validate_track_metadata(track)
     a, b = track.get('start_frame'), track.get('end_frame')
     if (track.get('source_sha256') != config['source_sha256'] or track.get('fps') != config['fps']
             or type(a) is not int or type(b) is not int or not 0 <= a < b <= source_frames
@@ -240,8 +247,10 @@ def render_revision(source, audio, config, recipe, output, session=None, track=N
         raise ValueError('Source content differs from registered source')
     if session is not None:
         validate_session(session,config,duration)
-    if track and track['source_sha256']!=config['source_sha256']:
-        raise ValueError('Track belongs to another source')
+    if track is not None:
+        validate_track_metadata(track)
+        if track.get('source_sha256')!=config['source_sha256']:
+            raise ValueError('Track belongs to another source')
     if recipe.get('camera'):
         validate_camera_track(track, recipe['camera'], config, source_frames)
     if width<160 or width>3840 or width%2:
@@ -313,6 +322,7 @@ def render_revision(source, audio, config, recipe, output, session=None, track=N
                     'track_sha256':hashlib.sha256(json.dumps(track,sort_keys=True).encode()).hexdigest() if track else None,
                     'session_sha256':hashlib.sha256(json.dumps(session,sort_keys=True).encode()).hexdigest() if session else None,
                     'revision_code_sha256':sha256(__file__),'core_code_sha256':sha256(Path(__file__).with_name('core.py')),
+                    'direction_code_sha256':sha256(Path(__file__).with_name('direction.py')),
                     'python_version':platform.python_version(),'numpy_version':np.__version__,
                     'ffmpeg_version':subprocess.check_output(['ffmpeg','-version'],text=True).splitlines()[0]})
     write_json(output.with_suffix('.revision.json'),receipt)

@@ -90,6 +90,16 @@ class RoomSitePackagingTests(unittest.TestCase):
                            json.dumps({"source_sha256": sha256(source), "portions": portions}).encode())
         prior_report["input_report_sha256"] = {"audit": sha256(audit)}
         self.write(prior / "listening-package-report.json", json.dumps(prior_report).encode())
+        # This is an existing producer receipt, created before any mutation in
+        # the tests. Hashing a replaced film during prepare is not authority.
+        delivered = [prior / "listening-package-report.json",
+                     prior / "god-here-room-tone-quick-comparison.mp4",
+                     prior / "god-here-room-tone-dialogue-comparison.mp4"]
+        self.write(prior / "delivery-manifest.json", json.dumps({
+            "schema_version": "amps.room-delivery.v1",
+            "files": [{"path": path.name, "bytes": path.stat().st_size, "sha256": sha256(path)}
+                      for path in delivered],
+        }).encode())
 
         report = {"source_sha256": sha256(source), "layers": [], "stacks": [],
                   "source_reel_raw": {"file": "source-reel-raw.wav"},
@@ -189,6 +199,78 @@ class RoomSitePackagingTests(unittest.TestCase):
         self.assertTrue((worker / "room-media-source" / movie).is_file())
         self.assertTrue((worker / "public/room-tone/catalog.html").is_file())
         self.assertTrue((worker / "public/room-tone/records/site-media-verification.json").is_file())
+        for site, assets in [(legacy, "dist"), (worker, "public")]:
+            preparation = json.loads((site / assets / "room-tone/records/site-preparation.json").read_text())
+            self.assertEqual(preparation["comparison_receipt_sha256"], sha256(prior / "delivery-manifest.json"))
+            for key in ["quick", "dialogue"]:
+                name = f"god-here-room-tone-{key}-comparison.mp4"
+                self.assertEqual(preparation["files"]["media/" + name], sha256(prior / name))
+
+    def test_prepare_authenticates_both_comparison_films_before_writing_site_media(self):
+        for key in ["quick", "dialogue"]:
+            with self.subTest(film=key):
+                source, prior, _ = self.render_fixtures()
+                movie = prior / f"god-here-room-tone-{key}-comparison.mp4"
+                self.write(movie, b"replaced comparison film")
+                site = self.site(key, {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+                with mock.patch.object(packaging, "run") as run, self.assertRaisesRegex(ValueError, "Comparison film"):
+                    packaging.prepare(source, prior, site, self.root / "working")
+                run.assert_not_called()
+                self.assertFalse((site / "dist").exists())
+
+    def test_prepare_rejects_missing_or_ambiguous_comparison_receipts_and_wrong_report_binding(self):
+        for problem in ["absent", "missing", "duplicate", "wrong-report"]:
+            with self.subTest(problem=problem):
+                source, prior, _ = self.render_fixtures()
+                path = prior / "delivery-manifest.json"
+                receipt = json.loads(path.read_text())
+                if problem == "absent":
+                    path.unlink()
+                else:
+                    if problem == "missing":
+                        receipt["files"].pop()
+                    elif problem == "duplicate":
+                        receipt["files"].append(receipt["files"][-1])
+                    else:
+                        receipt["files"][0]["sha256"] = "0" * 64
+                    path.write_text(json.dumps(receipt))
+                site = self.site(problem, {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+                with mock.patch.object(packaging, "run") as run, self.assertRaisesRegex(ValueError, "Comparison|comparison"):
+                    packaging.prepare(source, prior, site, self.root / "working")
+                run.assert_not_called()
+                self.assertFalse((site / "dist").exists())
+
+    def test_finish_rechecks_comparison_copies_in_static_and_r2_layouts(self):
+        for storage in ["static", "r2"]:
+            for key in ["quick", "dialogue"]:
+                with self.subTest(storage=storage, film=key):
+                    source, prior, stretch = self.render_fixtures()
+                    config = {"project_id": packaging.SITE_ID}
+                    config.update({"r2": "ROOM_MEDIA"} if storage == "r2" else {"static": {"directory": "dist"}})
+                    site = self.site(storage, config)
+                    assets = "public" if storage == "r2" else "dist"
+                    media_root = "room-media-source" if storage == "r2" and key == "dialogue" else assets
+                    movie = site / media_root / f"room-tone/media/god-here-room-tone-{key}-comparison.mp4"
+                    with self.assertRaisesRegex(ValueError, "Prepared media"):
+                        self.package_fixtures(source, prior, stretch, site, assets,
+                                              before_finish=lambda: self.write(movie, b"changed published comparison"))
+                    self.assertEqual(self.rendered_contexts, [])
+
+    def test_finish_rejects_comparison_receipt_replacement_between_phases(self):
+        source, prior, stretch = self.render_fixtures()
+        site = self.site("legacy", {"project_id": packaging.SITE_ID, "static": {"directory": "dist"}})
+
+        def replace_receipt():
+            path = prior / "delivery-manifest.json"
+            # Even unchanged film digests cannot silently substitute another
+            # producer receipt after preparation has already been certified.
+            receipt = json.loads(path.read_text())
+            receipt["listening_acceptance"] = "pending"
+            path.write_text(json.dumps(receipt))
+
+        with self.assertRaisesRegex(ValueError, "Comparison receipt changed"):
+            self.package_fixtures(source, prior, stretch, site, "dist", before_finish=replace_receipt)
+        self.assertEqual(self.rendered_contexts, [])
 
     def test_prepare_replaces_stale_picture_and_regenerates_pause_aac_from_verified_wav(self):
         source, prior, stretch = self.render_fixtures()

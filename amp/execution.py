@@ -298,13 +298,14 @@ def preflight(binding_path, *, locations=None, inventories=(), repo_root=REPO_RO
         plan.clock = direction_clock(recipe, options["variant"], binding["source_clock"], video)
         fields = options["variant"] in ("fields", "directed", "expressive") and recipe["field_gain"] > 0
         typography = options["variant"] in ("directed", "expressive") and bool(recipe["typography"])
-        require(("fields" in inputs) == fields and ("font" in inputs) == typography, "missing_or_unused_dependency")
-        if fields:
+        needs_fields = fields or tracking
+        require(("fields" in inputs) == needs_fields and ("font" in inputs) == typography, "missing_or_unused_dependency")
+        if needs_fields:
             from .core import validate, shot_at
             config = read_json(plan.paths["fields"], role="fields")
             native_validation(validate, config, container_duration, role="fields")
             require(config["fps"] == recipe["fps"] and type(config["history_frames"]) is int and 0 <= config["history_frames"] <= 120, "native_clock_mismatch", "fields")
-            for cue in recipe["camera"]:
+            for cue in (recipe["camera"] if tracking else []):
                 a = shot_at(config, cue["source_start"] / recipe["fps"])
                 require(a is not None and a == shot_at(config, (cue["source_end"] - 1) / recipe["fps"]), "camera_crosses_source_cut")
     elif adapter == "amp.revision.v1":
@@ -376,6 +377,8 @@ def preflight(binding_path, *, locations=None, inventories=(), repo_root=REPO_RO
 
 
 def validate_track(track, recipe, source_clock):
+    from .revision import validate_track_metadata
+    validate_track_metadata(track)
     fps = float(validate_source_clock(source_clock))
     if track.get("schema_version") != "1.0" or track.get("source_sha256") != source_clock["sha256"] or track.get("fps") != fps:
         raise ValueError("track clock mismatch")
@@ -498,7 +501,9 @@ def expected_products(plan, products):
                 identity = hashlib.sha256(json.dumps(read_json(plan.paths[role], role=role), sort_keys=True).encode()).hexdigest() if role in inputs else None
                 require(report.get(role + "_sha256") == identity, "native_dependency_binding_mismatch", role)
             require(report.get("time_map") == plan.clock["source_output_map"], "native_clock_mismatch")
-            require(report.get("revision_code_sha256") == code.get("amp/revision.py") and report.get("core_code_sha256") == code.get("amp/core.py"), "native_code_binding_mismatch")
+            require(report.get("revision_code_sha256") == code.get("amp/revision.py")
+                    and report.get("core_code_sha256") == code.get("amp/core.py")
+                    and report.get("direction_code_sha256") == code.get("amp/direction.py"), "native_code_binding_mismatch")
     return required
 
 

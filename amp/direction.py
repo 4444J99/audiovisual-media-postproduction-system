@@ -316,7 +316,7 @@ def render(source, source_audio, recipe, output, *, variant="directed", field_co
         require(font_path is not None and Path(font_path).is_file(), "Supply an installed font; font files are not bundled")
     output.parent.mkdir(parents=True,exist_ok=True)
     mapping = frame_map(recipe,directed)
-    tracks = track_camera(source,recipe) if directed else {}
+    tracks = track_camera(source,recipe) if directed and recipe["camera"] else {}
     w,h = video["width"],video["height"]
     ow = recipe["output_width"]
     oh = round(ow*h/w/2)*2

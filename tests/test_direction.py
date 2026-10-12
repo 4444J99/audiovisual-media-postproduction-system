@@ -123,6 +123,20 @@ class DirectionClockAndRenderTests(unittest.TestCase):
                     with self.assertRaisesRegex(ValueError,'crosses a source cut'):
                         render(source,sound,r,Path(tmp)/'output.mp4',field_config=field_config)
 
+    def test_camera_free_directed_render_skips_optional_tracking(self):
+        from unittest.mock import patch
+        r=json.loads((ROOT/'projects/god-here/direction-proof.json').read_text())
+        r.update(camera=[],typography=[],field_gain=0)
+        metadata={'streams':[{'codec_type':'video','width':320,'height':180}],'format':{'duration':'112'}}
+        with tempfile.TemporaryDirectory() as tmp:
+            source=Path(tmp)/'source.mp4';sound=Path(tmp)/'sound.wav'
+            source.touch();sound.touch()
+            with patch('amp.direction.probe',return_value=metadata),patch('amp.direction.validated_frame_count',return_value=3360),patch('amp.direction.sha256',return_value=r['source_sha256']),patch('amp.direction.track_camera',side_effect=AssertionError('OpenCV unavailable')) as tracker,patch('amp.direction.audio_map',side_effect=RuntimeError('reached audio rendering')):
+                for variant in ('directed','expressive'):
+                    with self.assertRaisesRegex(RuntimeError,'reached audio rendering'):
+                        render(source,sound,r,Path(tmp)/'output.mp4',variant=variant)
+                tracker.assert_not_called()
+
     def test_zero_expressive_return_is_reported_as_dry(self):
         from unittest.mock import patch
         from amp.direction import audio_map

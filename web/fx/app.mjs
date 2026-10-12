@@ -6,6 +6,7 @@ import {removeProcessor, validateDecodedAudio, normalizeWorkbenchPatch, toggleVa
 import {signalSignature} from './preview-key.mjs';
 import {readAsset} from './asset-loader.mjs';
 import {compatiblePreviewEntries} from './preview-provenance.mjs';
+import {assetPackIdentity} from './asset-pack.mjs';
 
 const $=id=>document.getElementById(id);
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -313,18 +314,25 @@ async function initialize(){
   try{
     const progress=text=>{if(loading)$('loading-text').textContent=text;};
     progress('Loading source details…');
-    const get=path=>readAsset(`assets/${path}`,{label:`Source details (${path})`});
-    media=await get('manifest.json');const [cues,regions,waveforms,provenance]=await Promise.all([get(media.cues),get(media.regions),get(media.waveforms),get(media.provenance)]);
+    // Every identity hash and renderer consumes the same fetched byte promise.
+    // Rebuilt atlases, masks, cues, plates or WAVs invalidate cached previews even
+    // when their filenames and original-film hash remain unchanged.
+    const loadedBytes=new Map();
+    const getBytes=path=>{if(!loadedBytes.has(path))loadedBytes.set(path,readAsset(`assets/${path}`,{label:`Source asset (${path})`,format:'arrayBuffer'}));return loadedBytes.get(path);};
+    const get=async path=>JSON.parse(new TextDecoder().decode(await getBytes(path)));
+    const manifestBytes=await getBytes('manifest.json');media=JSON.parse(new TextDecoder().decode(manifestBytes));
+    const identityReady=assetPackIdentity(manifestBytes,getBytes).catch(()=>null);
+    const [cues,regions,waveforms,provenance]=await Promise.all([get(media.cues),get(media.regions),get(media.waveforms),get(media.provenance)]);
     sourceBinding={id:'god-here-second-draft',sha256:provenance.source.sha256,offset:media.sourceIn,duration:media.duration};
     let loaded=0;const total=media.picture.pages.length+media.matte.pages.length+3;
     const completed=()=>progress(`Preparing picture and sound… ${++loaded}/${total}`);
     progress(`Preparing picture and sound… 0/${total}`);
-    const loadImage=path=>new Promise((resolve,reject)=>{const image=new Image();const timer=setTimeout(()=>reject(Error('Picture loading timed out. Retry loading or play the demonstrations.')),25000);image.onload=()=>{clearTimeout(timer);completed();resolve(image);};image.onerror=()=>{clearTimeout(timer);reject(Error(`Could not load ${path}`));};image.src=`assets/${path}`;});
+    const loadImage=async path=>{const data=await getBytes(path);return new Promise((resolve,reject)=>{const image=new Image(),url=URL.createObjectURL(new Blob([data],{type:path.endsWith('.png')?'image/png':'image/jpeg'}));const finish=()=>{clearTimeout(timer);URL.revokeObjectURL(url);};const timer=setTimeout(()=>{finish();reject(Error('Picture loading timed out. Retry loading or play the demonstrations.'));},25000);image.onload=()=>{finish();completed();resolve(image);};image.onerror=()=>{finish();reject(Error(`Could not load ${path}`));};image.src=url;});};
     // Optional rendered presets must never hold the editable source pack open.
-    readAsset('assets/renders/render-manifest.json',{label:'Rendered preset index',timeoutMs:8000}).then(manifest=>{
+    readAsset('assets/renders/render-manifest.json',{label:'Rendered preset index',timeoutMs:8000}).then(async manifest=>{
       // Earlier demonstrations retain their own picture and sound in watch.html.
       // Never combine an older picture engine with the current audio worker.
-      for(const entry of compatiblePreviewEntries(manifest))previews.set(entry.signalSignature,entry);
+      for(const entry of compatiblePreviewEntries(manifest,await identityReady))previews.set(entry.signalSignature,entry);
       state.revision++;
     }).catch(()=>{/* The editable renderer remains available without presets. */});
     const [picture,matte,room,audioResponses]=await Promise.all([
@@ -332,7 +340,7 @@ async function initialize(){
       Promise.all(media.matte.pages.map(loadImage)),
       loadImage(media.room.hybrid),
       Promise.all([media.audio.source,media.audio.reference].map(async path=>{
-        const data=await readAsset(`assets/${path}`,{label:`Source sound (${path})`,format:'arrayBuffer'});completed();return data;
+        const data=await getBytes(path);completed();return data;
       }))
     ]);
     assets={picture,matte,room,cues,regions,waveforms};

@@ -46,6 +46,7 @@ R2_MOVIE_PATHS = frozenset({
 })
 R2_ROOM_MOVIE_URLS = frozenset(path.removeprefix("room-tone/")
                               for path in R2_MOVIE_PATHS if path.startswith("room-tone/"))
+COMPARISON_MOVIES = tuple(f"god-here-room-tone-{kind}-comparison.mp4" for kind in ["quick", "dialogue"])
 
 
 @dataclass(frozen=True)
@@ -155,6 +156,36 @@ def prior_beds(prior, report):
                                     f"Earlier bed {key}") for key in "ABCDE"}
 
 
+def prior_comparisons(prior):
+    """Authenticate inherited films against the producer's existing delivery receipt."""
+    receipt_path = prior / "delivery-manifest.json"
+    if not receipt_path.is_file():
+        raise ValueError("Comparison films require the producer's delivery-manifest.json; "
+                         "create the verified prior package with package_room_refinement.py --archive")
+    receipt = json.loads(receipt_path.read_text())
+    files = receipt.get("files")
+    if receipt.get("schema_version") != "amps.room-delivery.v1" or not isinstance(files, list):
+        raise ValueError("Invalid comparison delivery receipt")
+    expected = {}
+    # Including the report prevents importing movie receipts from another
+    # comparison package whose source/processing description happens to differ.
+    for name in ["listening-package-report.json", *COMPARISON_MOVIES]:
+        matches = [entry for entry in files if isinstance(entry, dict) and entry.get("path") == name]
+        if len(matches) != 1:
+            raise ValueError(f"Comparison delivery receipt needs exactly one record for {name}")
+        digest = matches[0].get("sha256")
+        authenticated_file(prior, name, digest, "Comparison film/report " + name)
+        expected[name] = digest
+    return {name: expected[name] for name in COMPARISON_MOVIES}, sha256(receipt_path)
+
+
+def prepared_media_root(targets, relative):
+    """Registered movies keep their public URL while living in the R2 source tree."""
+    if targets.storage == "r2" and relative in R2_ROOM_MOVIE_URLS:
+        return targets.downloads.parent
+    return targets.room
+
+
 def source_pause_inputs(prior, report):
     """The original review WAVs, rather than unreceipted AAC copies, are authoritative."""
     audit_path = authenticated_file(prior, "source-pause-review/portion-review.json",
@@ -211,6 +242,7 @@ def prepare(source, prior, site, working):
         raise ValueError("The source differs from the earlier room-tone source")
     beds = prior_beds(prior, report)
     _, pause_sources = source_pause_inputs(prior, report)
+    comparison_hashes, comparison_receipt_hash = prior_comparisons(prior)
     base = targets.room
     media, records = base / "media", base / "records"
     media.mkdir(parents=True, exist_ok=True)
@@ -241,9 +273,11 @@ def prepare(source, prior, site, working):
         encodes[target.name] = atomic_encode(path, target)
     for path in sorted((prior / "auditions").glob("original-*.m4a")):
         checked_copy(path, media / path.name)
-    for name in ["god-here-room-tone-quick-comparison.mp4", "god-here-room-tone-dialogue-comparison.mp4"]:
-        destination = targets.downloads.parent / "media" / name if f"media/{name}" in R2_ROOM_MOVIE_URLS else media / name
+    for name, expected in comparison_hashes.items():
+        relative = "media/" + name
+        destination = prepared_media_root(targets, relative) / relative
         checked_copy(prior / name, destination)
+        authenticated_file(destination.parent, name, expected, "Comparison film copy " + name)
     checked_copy(prior / "source-pause-review/source-portions-diagnostics.png", media / "source-portions-diagnostics.png")
     for path in sorted((prior / "source-pause-review").glob("*")):
         if path.is_file():
@@ -257,8 +291,10 @@ def prepare(source, prior, site, working):
     validate_static_assets(targets)
     preparation = {"source_sha256": report["source_sha256"],
                    "prior_report_sha256": sha256(prior / "listening-package-report.json"),
+                   "comparison_receipt_sha256": comparison_receipt_hash,
                    "files": {"media/" + name: sha256(media / name)
                              for name in [picture.name, "room-poster.jpg", *encodes]}}
+    preparation["files"].update({"media/" + name: expected for name, expected in comparison_hashes.items()})
     (records / "site-preparation.json").write_text(json.dumps(preparation, indent=2) + "\n")
     return base
 
@@ -318,6 +354,7 @@ def finish(source, prior, stretch, site, working):
         raise ValueError("Stretch source differs from recovered room-tone source")
     beds = prior_beds(prior, prior_report)
     audit, _ = source_pause_inputs(prior, prior_report)
+    comparison_hashes, comparison_receipt_hash = prior_comparisons(prior)
     validate_stretch_assets(stretch, report)
     preparation_path = records / "site-preparation.json"
     if not preparation_path.is_file():
@@ -326,11 +363,19 @@ def finish(source, prior, stretch, site, working):
     if (preparation.get("source_sha256") != source_hash or
             preparation.get("prior_report_sha256") != sha256(prior / "listening-package-report.json")):
         raise ValueError("Prepared media belongs to another source or prior report; rerun prepare")
+    if preparation.get("comparison_receipt_sha256") != comparison_receipt_hash:
+        raise ValueError("Comparison receipt changed after preparation; rerun prepare")
     expected_prepared = {"media/source-picture.mp4", "media/room-poster.jpg"}
     expected_prepared.update(f"media/{mode}-{key}.m4a" for key in "ABCDE" for mode in ["room", "inspection"])
     expected_prepared.update(f"media/{entry['portion_id']}-with-handles.m4a" for entry in audit["portions"])
+    for name, expected in comparison_hashes.items():
+        relative = "media/" + name
+        if preparation.get("files", {}).get(relative) != expected:
+            raise ValueError("Prepared media receipt differs from the comparison delivery receipt: " + relative)
+        expected_prepared.add(relative)
     for relative in expected_prepared:
-        authenticated_file(base, relative, preparation.get("files", {}).get(relative), "Prepared media " + relative)
+        authenticated_file(prepared_media_root(targets, relative), relative,
+                           preparation.get("files", {}).get(relative), "Prepared media " + relative)
     manifest = {"schemaVersion": 1, "source": {"url": "media/source-picture.mp4", "posterUrl": "media/room-poster.jpg", "duration": DURATION},
                 "defaultTrack": "V5R", "inspectionGainDb": INSPECTION_DB, "tracks": [], "pauses": [], "videos": [], "downloads": []}
     for key in "ABCDE":

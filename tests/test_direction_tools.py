@@ -6,29 +6,10 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from tools.build_directed_proof import prepare_audio
 from tools.validate_directed import validate_outputs
 
 
 class DirectionToolTests(unittest.TestCase):
-    def test_partial_audio_build_recovers_missing_expressive_mix(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root=Path(tmp)
-            for name in ('candidate-A.wav','candidate-B.wav','audio-report.json','expressive-returns.wav'):
-                (root/name).touch()
-            with patch('tools.build_directed_proof.make_candidates') as candidates,patch('tools.build_directed_proof.expressive_audio') as expressive:
-                prepare_audio('source.mp4',{}, {'performers':{'P01':{}}},root)
-                candidates.assert_not_called();expressive.assert_called_once()
-
-    def test_completed_audio_build_is_retained(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root=Path(tmp)
-            for name in ('candidate-A.wav','candidate-B.wav','audio-report.json','expressive-mix.wav','expressive-returns.wav','expressive-report.json','return-P01.wav'):
-                (root/name).touch()
-            with patch('tools.build_directed_proof.make_candidates') as candidates,patch('tools.build_directed_proof.expressive_audio') as expressive:
-                prepare_audio('source.mp4',{}, {'performers':{'P01':{}}},root)
-                candidates.assert_not_called();expressive.assert_not_called()
-
     def test_proof_receipt_is_required(self):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaisesRegex(ValueError,'Missing render receipt: proof-A'):

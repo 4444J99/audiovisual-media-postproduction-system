@@ -137,7 +137,10 @@ async function main(options){
   const engineDir=path.resolve(options['engine-dir']),assetsDir=path.resolve(options['assets-dir']);
   const patchPath=path.resolve(options.patch),outputPath=path.resolve(options.output),outBase=outputPath.replace(/\.mp4$/i,'');
   if(!/\.mp4$/i.test(outputPath))throw Error('Output must end with .mp4');
-  const [media,inputPatchBytes]=await Promise.all([json(path.join(assetsDir,'manifest.json')),fs.readFile(patchPath)]);
+  const [manifestBytes,inputPatchBytes]=await Promise.all([fs.readFile(path.join(assetsDir,'manifest.json')),fs.readFile(patchPath)]);
+  const media=JSON.parse(manifestBytes);
+  const {assetPackIdentity,sameAssetPack}=await import(pathToFileURL(path.join(engineDir,'asset-pack.mjs')));
+  const assetsIdentity=await assetPackIdentity(manifestBytes,file=>fs.readFile(path.join(assetsDir,file)));
   const rawPatch=JSON.parse(inputPatchBytes.toString('utf8'));
   const duration=finite(options.duration??rawPatch.duration,'duration',{min:.001,max:rawPatch.duration});
   const width=finite(options.width??480,'width',{min:64,max:4096,integer:true}),height=finite(options.height??270,'height',{min:64,max:4096,integer:true});
@@ -208,6 +211,8 @@ async function main(options){
     }
     for(const e of encoders)e.proc.stdin.end();
     await Promise.all(encoders.map(async e=>{try{await e.done;}catch(error){throw Error(`${error.message}: ${e.stderr}`);}}));
+    const finalAssetsIdentity=await assetPackIdentity(await fs.readFile(path.join(assetsDir,'manifest.json')),file=>fs.readFile(path.join(assetsDir,file)));
+    if(!sameAssetPack(assetsIdentity,finalAssetsIdentity))throw Error('Derived source assets changed during rendering; no preview receipt can be issued.');
     const outputs=[];
     for(const e of encoders){
       const probe=JSON.parse(await run(options.ffprobe||'ffprobe',['-v','error','-show_streams','-show_format','-of','json',e.partial]));
@@ -218,7 +223,7 @@ async function main(options){
     const codeHashes=Object.fromEntries(await Promise.all(['core.mjs','catalog.mjs','visual-engine.mjs','audio-engine.mjs'].map(async p=>[p,sha(await fs.readFile(path.join(engineDir,p)))])));
     const keepWav=Boolean(options['keep-wav']);if(keepWav)await fs.rename(audioPath,outBase+'.wav');
     await fs.copyFile(patchSnapshot.patchPath,outBase+'.patch.json');
-    const report={schemaVersion:'1.0.0',patchId:patch.id,name:patch.name,output:outputs[0].file,bytes:outputs[0].bytes,sha256:outputs[0].sha256,outputs,width,height,fps,frameCount,duration,overlay:overlayMode,patchSha256:patchSnapshot.patchSha256,patchFileSha256:patchSnapshot.patchFileSha256,inputPatchSha256:sha(inputPatchBytes),source:patch.source,assetsManifestSha256:sha(await fs.readFile(path.join(assetsDir,'manifest.json'))),codeHashes,font,audio:{input:inputKind,inputSha256:sha(inputBytes),sampleRate:decoded.sampleRate,samples,channels:channels.length,pcmWavSha256:sha(wavBytes),file:keepWav?path.basename(outBase+'.wav'):null,controlFps:audio.controlFps,controlNodeIds:Object.keys(audio.controlEnvelopes),renderMs:audioRenderMs,report:audio.report},validation,chunks,elapsedSeconds:(performance.now()-before)/1000,probe:outputs[0].probe,limitations:['AAC/H264 previews are lossy encodes of the shared graph.','Text uses the recorded font substitute on the render host.','Inherited body masks and hybrid room plate remain workprint assets.','Machine-crosschecked speech cues and dialogue candidate await listener/artist acceptance.']};
+    const report={schemaVersion:'1.0.0',patchId:patch.id,name:patch.name,output:outputs[0].file,bytes:outputs[0].bytes,sha256:outputs[0].sha256,outputs,width,height,fps,frameCount,duration,overlay:overlayMode,patchSha256:patchSnapshot.patchSha256,patchFileSha256:patchSnapshot.patchFileSha256,inputPatchSha256:sha(inputPatchBytes),source:patch.source,assetsManifestSha256:assetsIdentity.manifestSha256,assetsIdentity,codeHashes,font,audio:{input:inputKind,inputSha256:sha(inputBytes),sampleRate:decoded.sampleRate,samples,channels:channels.length,pcmWavSha256:sha(wavBytes),file:keepWav?path.basename(outBase+'.wav'):null,controlFps:audio.controlFps,controlNodeIds:Object.keys(audio.controlEnvelopes),renderMs:audioRenderMs,report:audio.report},validation,chunks,elapsedSeconds:(performance.now()-before)/1000,probe:outputs[0].probe,limitations:['AAC/H264 previews are lossy encodes of the shared graph.','Text uses the recorded font substitute on the render host.','Inherited body masks and hybrid room plate remain workprint assets.','Machine-crosschecked speech cues and dialogue candidate await listener/artist acceptance.']};
     await writeJson(outBase+'.render.json',report);await fs.rm(tempDir,{recursive:true,force:true});
     process.stdout.write(JSON.stringify({output:outputPath,report:outBase+'.render.json',frameCount,duration,bytes:report.bytes,seconds:report.elapsedSeconds})+'\n');
   }catch(error){worker?.kill('SIGKILL');for(const e of encoders)e.proc.kill('SIGKILL');await fs.rm(tempDir,{recursive:true,force:true});throw error;}

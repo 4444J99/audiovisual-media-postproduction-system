@@ -240,6 +240,41 @@ class DispatchTests(unittest.TestCase):
              patch("amp.execution.probe", return_value={"format": {"duration": "112.02"}, "streams": [{"codec_type": "audio"}]}):
             return preflight(self.path, locations=self.locations)
 
+    def direction_camera_binding(self, *, variant='directed', field_gain=0, include_fields=True):
+        self.recipe['field_gain']=field_gain
+        self.recipe['typography']=[]
+        recipe_path=self.root/'recipe.json'
+        recipe_path.write_text(json.dumps(self.recipe))
+        self.inputs['recipe']=file_identity(recipe_path,'recipe')
+        self.locations['objects'][self.inputs['recipe']['sha256']]=str(recipe_path)
+        self.binding['options']={'variant':variant}
+        if include_fields:
+            fields_path=self.root/'fields.json'
+            fields=read_json(REPO_ROOT/'projects/god-here/direction-field-score.json')
+            fields['source_sha256']=self.recipe['source_sha256']
+            fields_path.write_text(json.dumps(fields))
+            self.inputs['fields']=file_identity(fields_path,'fields')
+            self.locations['objects'][self.inputs['fields']['sha256']]=str(fields_path)
+
+    def test_zero_field_gain_camera_requires_and_passes_fields_input(self):
+        self.direction_camera_binding()
+        for variant in ('directed','expressive'):
+            self.binding['options']['variant']=variant
+            plan=self.plan()
+            self.assertIn('--fields',plan.argv(self.root/'products'))
+        del self.inputs['fields']
+        with self.assertRaisesRegex(ContractError,'missing_or_unused_dependency'):self.plan()
+
+    def test_zero_field_gain_camera_still_checks_source_cuts(self):
+        self.direction_camera_binding()
+        with patch('amp.core.shot_at',side_effect=[{'id':'A'},{'id':'B'}]):
+            with self.assertRaisesRegex(ContractError,'camera_crosses_source_cut'):self.plan()
+
+    def test_fields_only_variant_does_not_validate_dormant_camera_cues(self):
+        self.direction_camera_binding(variant='fields',field_gain=.4)
+        with patch('amp.core.shot_at',side_effect=AssertionError('dormant camera must not run')):
+            self.assertEqual(self.plan().options['variant'],'fields')
+
     def test_dry_run_verifies_inputs_and_records_clocks_without_output(self):
         plan = self.plan()
         result = plan.receipt()
@@ -390,6 +425,42 @@ class OutputGatesTests(unittest.TestCase):
         plan = ExecutionPlan({"adapter": "amp.roomstretch.v1"}, {}, MediaResolver(root), root,
                              clock={"source_reel_samples": 2, "output": {"sample_rate": 48000, "channels": 2, "samples_per_channel": 4}})
         return plan, set(references) | {"room-stretch-report.json"}, temporary
+
+    def test_revision_receipt_requires_the_consumed_direction_code_digest(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            recipe={'schema_version':'1.0','source_sha256':SOURCE_HASH,
+                    'segments':[{'source_start_frame':0,'source_end_frame':3,'output_frames':3}]}
+            composition={'fps':30,'source_sha256':SOURCE_HASH}
+            paths={}
+            for role,value in (('recipe',recipe),('composition',composition)):
+                paths[role]=root/f'{role}.json'
+                paths[role].write_text(json.dumps(value))
+            movie=root/'render.mp4';movie.write_bytes(b'inert rendered fixture')
+            inputs={role:file_identity(path,role) for role,path in paths.items()}
+            inputs['audio']={'sha256':'a'*64}
+            code={'files':[{'path':path,**file_identity(REPO_ROOT/path,'code')}
+                           for path in ('amp/revision.py','amp/core.py','amp/direction.py')]}
+            clock=revision_clock(recipe,composition,CLOCK,1280)
+            plan=ExecutionPlan({'adapter':'amp.revision.v1','inputs':inputs,'source_clock':CLOCK},{},
+                               MediaResolver(root),REPO_ROOT,paths=paths,clock=clock,code=code)
+            digests={row['path']:row['sha256'] for row in code['files']}
+            report={'source_sha256':SOURCE_HASH,'audio_sha256':'a'*64,'frames':3,'fps':30,
+                    'output_sha256':file_identity(movie,'output')['sha256'],
+                    'recipe_sha256':hashlib.sha256(json.dumps(recipe,sort_keys=True).encode()).hexdigest(),
+                    'composition_sha256':hashlib.sha256(json.dumps(composition,sort_keys=True).encode()).hexdigest(),
+                    'track_sha256':None,'session_sha256':None,'time_map':clock['source_output_map'],
+                    'revision_code_sha256':digests['amp/revision.py'],'core_code_sha256':digests['amp/core.py'],
+                    'direction_code_sha256':digests['amp/direction.py']}
+            receipt=root/'render.revision.json';receipt.write_text(json.dumps(report))
+            self.assertEqual(expected_products(plan,root),{'render.mp4','render.revision.json'})
+            for mismatch in (None,'0'*64):
+                broken=deepcopy(report)
+                if mismatch is None:del broken['direction_code_sha256']
+                else:broken['direction_code_sha256']=mismatch
+                receipt.write_text(json.dumps(broken))
+                with self.subTest(mismatch=mismatch),self.assertRaisesRegex(ContractError,'native_code_binding_mismatch'):
+                    expected_products(plan,root)
 
     def test_native_temporary_file_is_accounted_without_replacing_or_decoding_outputs(self):
         with tempfile.TemporaryDirectory() as directory:

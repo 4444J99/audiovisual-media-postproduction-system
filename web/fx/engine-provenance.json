@@ -9,7 +9,8 @@
       "visual-engine.mjs": "a2edf08ab6793a07319cf955065624c6fd884f17ba1ce1ef557057474baab05b",
       "audio-engine.mjs": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f",
       "preview-key.mjs": "6285b41c3f4af0afd5239aedc4c122279098a9c0b5b9cef4e8a63cf7d0b73979",
-      "god-here.config.mjs": "b47ae61497db053321f4ea3ce48667d5a1121200aa1b75637a895d370c0158f7"
+      "god-here.config.mjs": "b47ae61497db053321f4ea3ce48667d5a1121200aa1b75637a895d370c0158f7",
+      "asset-pack.mjs": "e61633a2ea2b413702f0ee01c40a3ada27cd01b104f9434c4ce658f005408fb5"
     },
     "integration": "The current source tree repairs output fan-in, portable source sidechains, room-return isolation and picture-clock feedback reset crossings. codeSha256 identifies the editable engine bytes; basedOnGithubCommit identifies its earlier repaired baseline. Historical demonstrations retain their original producing hashes.",
     "basedOnGithubCommit": "c6656685603022193617405c87b831d28f570299"
@@ -36,6 +37,6 @@
     "regenerated": false,
     "mediaModified": false
   },
-  "previewPolicy": "The editable rack may pair a cached picture with current audio only when every recorded engine hash matches, the render entry is complete, and the patch signal signature matches. Preserved demonstrations from the earlier engine keep their own muxed picture and sound in watch.html.",
+  "previewPolicy": "The editable rack may pair a cached picture with current audio only when producing-code hashes match, the complete render entry has the matching patch signal signature, and both manifest and entry bind to the SHA-256 identity of the exact loaded derived asset bytes (manifest, picture pages, mattes, room plate, cues, regions, provenance, waveforms, and both WAV inputs). Missing or mismatched asset identity rejects cached previews. Preserved historical demonstrations retain their original muxed picture and sound in watch.html.",
   "acceptance": "Automated runtime checks establish the repaired behavior and provenance gate. Browser, device and artistic acceptance are separate; this integration does not assert new artistic acceptance."
 }
