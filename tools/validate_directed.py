@@ -9,7 +9,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from amp.audio import load_audio, measure
+from amp.audio import RATE, load_audio, measure
 from amp.core import probe,run,sha256,write_json
 from amp.revision import timing_map, validate_camera_track
 from tools.directed_contract import delivery_inputs, delivery_plan, json_sha256
@@ -58,6 +58,41 @@ def validate_receipt(data, name, spec, config, audio, track):
         require_identity(data, key, expected, name)
 
 
+def validate_audio_clock(info, wave, frames, fps, name):
+    """Allow an AAC padding block, but never missing source-clock samples."""
+    streams = [stream for stream in info.get('streams', []) if stream.get('codec_type') == 'audio']
+    if len(streams) != 1:
+        raise ValueError(f'Delivery must contain exactly one audio stream: {name}')
+    stream = streams[0]
+    if (stream.get('codec_name') != 'aac' or int(stream.get('sample_rate', 0)) != RATE
+            or stream.get('channels') != 2):
+        raise ValueError(f'Incorrect delivered audio encoding/clock: {name}')
+    expected = round(frames / fps * RATE)
+    # AAC-LC uses 1024-sample blocks. MP4 edit metadata normally trims the
+    # endpoint, while the decoded final block can retain encoder padding.
+    padding = 1024
+    # The MP4 edit-list clock can round an endpoint to milliseconds even when
+    # all expected decoded samples are present (the retained excerpts do so).
+    endpoint_rounding = 1 / 1000
+    if wave.ndim != 2 or wave.shape[1] != 2 or not expected <= len(wave) <= expected + padding:
+        raise ValueError(f'Incorrect delivered audio sample count: {name}')
+    try:
+        start = float(stream['start_time'])
+        duration = float(stream['duration'])
+    except (KeyError, TypeError, ValueError):
+        raise ValueError(f'Missing or invalid delivered audio endpoint: {name}') from None
+    endpoint = start + duration
+    seconds = frames / fps
+    if (not all(math.isfinite(value) for value in (start, duration, endpoint))
+            or abs(start) > 1 / RATE or endpoint < seconds - endpoint_rounding
+            or endpoint > seconds + padding / RATE):
+        raise ValueError(f'Incorrect delivered audio endpoint: {name}')
+    return {'expected_samples': expected, 'decoded_samples': len(wave), 'sample_rate': RATE,
+            'start_seconds': start, 'end_seconds': endpoint, 'expected_end_seconds': seconds,
+            'maximum_codec_padding_samples': padding, 'endpoint_rounding_tolerance_seconds': endpoint_rounding,
+            'missing_tail_samples': 0, 'passed': True}
+
+
 def validate_outputs(root):
     root=Path(root)
     config, transcript, source_samples = expected_delivery_inputs()
@@ -98,7 +133,9 @@ def validate_outputs(root):
         if abs(float(video['duration'])-frames/30)>1/300:
             raise ValueError(f'Incorrect picture duration: {name}')
         run(['ffmpeg','-v','error','-xerror','-i',path,'-f','null','-'])
-        wave=load_audio(path);audio=measure(wave)
+        wave=load_audio(path)
+        audio_clock=validate_audio_clock(info, wave, frames, config['fps'], name)
+        audio=measure(wave)
         if not np.isfinite(wave).all() or not all(math.isfinite(audio[key]) for key in ('input_tp', 'input_i')):
             raise ValueError(f'Delivered audio contains nonfinite samples or measurements: {name}')
         if audio['input_tp']>=0:
@@ -106,7 +143,7 @@ def validate_outputs(root):
         rows.append({'file':name,'frames':frames,'duration':float(video['duration']),
                      'dimensions':[1280,720],'sha256':sha256(path),'full_decode':'passed',
                      'render_receipt_sha256':sha256(path.with_suffix('.render.json' if name.startswith('proof-') else '.revision.json')),
-                     'delivered_audio':audio})
+                     'delivered_audio':audio,'audio_clock':audio_clock})
         print(f'Validated {name}',flush=True)
     levels=[row['delivered_audio']['input_i'] for row in rows if row['file'] in ['proof-A.mp4','proof-B.mp4','proof-C.mp4']]
     spread=max(levels)-min(levels)

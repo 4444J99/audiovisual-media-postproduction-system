@@ -340,8 +340,11 @@ def preflight(binding_path, *, locations=None, inventories=(), repo_root=REPO_RO
         media = read_json(root / "manifest.json", role="asset_manifest")
         require(media.get("schemaVersion") == "1.0.0", "schema_mismatch", "asset_manifest")
         try:
+            # assetPackIdentity binds this entire collection, including the
+            # unselected audio and waveform metadata, before rendering begins.
             required_members = ["manifest.json", media["provenance"], media["regions"], media["cues"], media["room"]["hybrid"],
-                                media["audio"][options["audio_input"]], *media["picture"]["pages"], *media["matte"]["pages"]]
+                                media["waveforms"], media["audio"]["source"], media["audio"]["reference"],
+                                *media["picture"]["pages"], *media["matte"]["pages"]]
         except (TypeError, KeyError):
             raise ContractError("schema_mismatch", "asset_manifest") from None
         plan.asset_root = resolver.collection(inputs["asset_receipt"], required_members)

@@ -78,7 +78,7 @@ class InstalledWheelTests(unittest.TestCase):
                          {'amp/_runtime/'+name for name in self.runtime_files})
         self.assertFalse(any(name.endswith(('.mp4','.wav','.flac','.ttf','.woff','.xlsx')) for name in names))
 
-    def test_installed_wheel_passes_both_external_adapter_preflights(self):
+    def test_installed_wheel_preflights_both_adapters_and_executes_complete_fx_pack(self):
         result=self.run_command([str(self.python),'-I',str(self.probe),str(self.consumer)],self.consumer)
         receipt=json.loads(result.stdout)
         self.assertTrue(Path(receipt['package']).is_relative_to(self.root/'environment'))
@@ -87,3 +87,6 @@ class InstalledWheelTests(unittest.TestCase):
         self.assertEqual(receipt['room_samples'],48000)
         self.assertTrue(receipt['all_code_identities_match_installed_bytes'])
         self.assertTrue(receipt['missing_producer_rejected'])
+        self.assertTrue(receipt['fx_render_verified'])
+        self.assertTrue(receipt['complete_asset_pack_staged'])
+        self.assertTrue(receipt['asset_dependency_failures_rejected'])

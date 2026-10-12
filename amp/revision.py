@@ -18,7 +18,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-from .core import composite, probe, sha256, shot_at, validate, write_json, run
+from .core import composite, probe, sha256, shot_at, validate, run
 from .direction import validated_frame_count
 
 
@@ -67,6 +67,9 @@ def session_state(session, t):
 def validate_recipe(recipe, config, source_frames):
     if recipe.get('schema_version') != '1.0' or recipe.get('source_sha256') != config['source_sha256']:
         raise ValueError('Incompatible recipe/source')
+    for flag in ('animated_typography', 'fine_layers'):
+        if flag in recipe and type(recipe[flag]) is not bool:
+            raise ValueError(f'{flag} must be a boolean')
     segments = recipe.get('segments')
     if not isinstance(segments, list) or not 1 <= len(segments) <= 100:
         raise ValueError('Invalid segment count')
@@ -130,6 +133,9 @@ def retime_audio(audio, recipe, fps, output):
 
 def track_region(source, start_frame, end_frame, roi, output, fps=30):
     """Local template correspondence with an explicit low-confidence hold fallback."""
+    source, output = Path(source), Path(output)
+    if output.exists() or output.is_symlink() or output.resolve() == source.resolve():
+        raise ValueError('Tracking requires a fresh output path; refusing overwrite')
     import cv2  # Optional dependency; fail explicitly if absent.
     if not 0 <= start_frame < end_frame or len(roi) != 4 or not 0 <= roi[0] < roi[2] <= 1 or not 0 <= roi[1] < roi[3] <= 1:
         raise ValueError('Invalid tracking span/ROI')
@@ -169,7 +175,9 @@ def track_region(source, start_frame, end_frame, roi, output, fps=30):
           'end_frame':end_frame,'fps':fps,'seed_roi':roi,'method':'OpenCV fixed-template local correlation; smoothed center',
           'opencv_version':cv2.__version__,'identity_status':'authored visual target; no character-name inference',
           'review_status':'moving-image review pending','rows':rows}
-    write_json(output,data)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open('x', encoding='utf-8') as stream:
+        stream.write(json.dumps(data, indent=2)+'\n')
     return data
 
 

@@ -3,6 +3,7 @@ import copy
 from contextlib import ExitStack
 import json
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -10,9 +11,11 @@ from unittest.mock import patch
 import numpy as np
 
 from amp.core import sha256, write_json
+from amp.audio import load_audio
+from amp.core import probe
 from amp.revision import timing_map
 from tools.directed_contract import delivery_inputs, delivery_plan, json_sha256
-from tools.validate_directed import REPO_ROOT, expected_delivery_inputs, validate_outputs
+from tools.validate_directed import REPO_ROOT, expected_delivery_inputs, validate_audio_clock, validate_outputs
 
 
 class DirectedDeliveryTests(unittest.TestCase):
@@ -70,22 +73,33 @@ class DirectedDeliveryTests(unittest.TestCase):
         data.update(updates)
         write_json(path, data)
 
-    def validate(self, *, error=None):
+    def validate(self, *, error=None, media_error=None, decoded_samples=None):
         def media_info(path):
             frames = self.plan[Path(path).name]['frames']
             return {'streams': [{'codec_type': 'video', 'nb_frames': str(frames),
-                                 'width': 1280, 'height': 720, 'duration': str(frames / 30)}]}
+                                 'width': 1280, 'height': 720, 'duration': str(frames / 30)},
+                                {'codec_type': 'audio', 'codec_name': 'aac', 'sample_rate': '48000',
+                                 'channels': 2, 'start_time': '0', 'duration': str(frames / 30)}]}
+        def decoded_audio(path):
+            samples = decoded_samples if decoded_samples is not None else self.plan[Path(path).name]['frames'] * 1600
+            return np.broadcast_to(np.zeros((1, 2), dtype=np.float32), (samples, 2))
         with ExitStack() as stack:
             cache = stack.enter_context(patch('tools.build_directed_proof.verify_audio_cache'))
             probe = stack.enter_context(patch('tools.validate_directed.probe', side_effect=media_info))
             stack.enter_context(patch('tools.validate_directed.run'))
-            stack.enter_context(patch('tools.validate_directed.load_audio', return_value=np.zeros((4, 2))))
+            stack.enter_context(patch('tools.validate_directed.load_audio', side_effect=decoded_audio))
             stack.enter_context(patch('tools.validate_directed.measure', return_value={'input_tp': -2, 'input_i': -20}))
             stack.enter_context(patch('tools.validate_directed.subprocess.check_output', return_value='ffmpeg fixture\n'))
             if error:
                 with self.assertRaisesRegex(ValueError, error):
                     validate_outputs(self.root)
                 probe.assert_not_called()
+                return
+            if media_error:
+                with self.assertRaisesRegex(ValueError, media_error):
+                    validate_outputs(self.root)
+                self.assertEqual(probe.call_count, 1)
+                self.assertFalse((self.root / 'directed-validation.json').exists())
                 return
             record = validate_outputs(self.root)
             config, transcript, samples = expected_delivery_inputs()
@@ -98,6 +112,11 @@ class DirectedDeliveryTests(unittest.TestCase):
         self.assertEqual(record['source_sha256'], self.config['source_sha256'])
         self.assertEqual(len(record['outputs']), 9)
         self.assertTrue(record['delivery_input_binding'].startswith('passed'))
+        for item in record['outputs']:
+            self.assertEqual(item['audio_clock']['decoded_samples'], item['frames'] * 1600)
+
+    def test_short_audio_cannot_pass_with_correct_video_and_finite_measurements(self):
+        self.validate(media_error='audio sample count', decoded_samples=48000)
 
     def test_self_consistent_other_source_film_and_receipt_are_rejected(self):
         name = 'proof-A.mp4'
@@ -144,6 +163,64 @@ class DirectedDeliveryTests(unittest.TestCase):
                 self.edit_receipt(name, {key: '0' * 64})
                 self.validate(error=f'incompatible {key}')
                 path.write_text(original)
+
+
+class DeliveredAudioClockTests(unittest.TestCase):
+    def info(self, **changes):
+        stream = {'codec_type': 'audio', 'codec_name': 'aac', 'sample_rate': '48000',
+                  'channels': 2, 'start_time': '0', 'duration': '1'}
+        stream.update(changes)
+        return {'streams': [stream]}
+
+    def test_exact_length_and_one_padded_aac_block_are_allowed(self):
+        for samples in (48000, 48001, 49024):
+            with self.subTest(samples=samples):
+                result = validate_audio_clock(self.info(), np.zeros((samples, 2)), 30, 30, 'film.mp4')
+                self.assertEqual(result['decoded_samples'], samples)
+                self.assertEqual(result['missing_tail_samples'], 0)
+        # The retained excerpts' MP4 edit-list clocks round 16 samples down;
+        # decoded AAC still covers every expected picture-clock sample.
+        result = validate_audio_clock(self.info(duration=str(1 - 16 / 48000)),
+                                      np.zeros((48128, 2)), 30, 30, 'film.mp4')
+        self.assertTrue(result['passed'])
+
+    def test_short_or_excessively_padded_decodes_are_rejected(self):
+        for samples in (0, 47999, 49025):
+            with self.subTest(samples=samples), self.assertRaisesRegex(ValueError, 'sample count'):
+                validate_audio_clock(self.info(), np.zeros((samples, 2)), 30, 30, 'film.mp4')
+
+    def test_padding_cannot_hide_short_or_offset_stream_endpoint(self):
+        for changes in ({'duration': '.99'}, {'start_time': '.01', 'duration': '.99'},
+                        {'duration': '1.1'}, {'duration': 'nan'}, {'start_time': 'nan'}):
+            with self.subTest(changes=changes), self.assertRaisesRegex(ValueError, 'audio endpoint'):
+                validate_audio_clock(self.info(**changes), np.zeros((48128, 2)), 30, 30, 'film.mp4')
+
+    def test_missing_audio_or_endpoint_does_not_pass(self):
+        with self.assertRaisesRegex(ValueError, 'exactly one audio'):
+            validate_audio_clock({'streams': []}, np.zeros((48000, 2)), 30, 30, 'film.mp4')
+        data = self.info()
+        del data['streams'][0]['duration']
+        with self.assertRaisesRegex(ValueError, 'audio endpoint'):
+            validate_audio_clock(data, np.zeros((48000, 2)), 30, 30, 'film.mp4')
+
+    def test_real_decodable_mp4_with_short_audio_fails_clock_validation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'short-audio.mp4'
+            subprocess.run(['ffmpeg', '-nostdin', '-v', 'error', '-f', 'lavfi', '-i',
+                            'color=c=black:s=160x90:r=30:d=1', '-f', 'lavfi', '-i',
+                            'sine=frequency=440:sample_rate=48000:duration=0.5',
+                            '-map', '0:v', '-map', '1:a', '-c:v', 'libx264', '-threads', '1',
+                            '-c:a', 'aac', '-ac', '2', '-ar', '48000', str(path)],
+                           check=True, capture_output=True)
+            subprocess.run(['ffmpeg', '-nostdin', '-v', 'error', '-xerror', '-i', str(path), '-f', 'null', '-'],
+                           check=True, capture_output=True)
+            info = probe(path)
+            video = next(stream for stream in info['streams'] if stream['codec_type'] == 'video')
+            self.assertEqual(int(video['nb_frames']), 30)
+            wave = load_audio(path)
+            self.assertTrue(np.isfinite(wave).all())
+            with self.assertRaisesRegex(ValueError, 'audio sample count'):
+                validate_audio_clock(info, wave, 30, 30, path.name)
 
 
 if __name__ == '__main__':

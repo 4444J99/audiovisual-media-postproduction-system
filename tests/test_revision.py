@@ -53,6 +53,28 @@ class RevisionTests(unittest.TestCase):
         x=copy.deepcopy(self.recipe);x['segments'][0]['source_start_frame']=True
         with self.assertRaisesRegex(ValueError,'frame interval'):validate_recipe(x,CONFIG,3360)
 
+    def test_revision_effect_flags_require_actual_booleans(self):
+        for key in ('animated_typography','fine_layers'):
+            for value in ('false','true',0,1,None,[],{},['enabled']):
+                recipe=copy.deepcopy(self.recipe);recipe[key]=value
+                with self.subTest(flag=key,value=value),self.assertRaisesRegex(ValueError,'boolean'):
+                    validate_recipe(recipe,CONFIG,3360)
+            for value in (True,False):
+                recipe=copy.deepcopy(self.recipe);recipe[key]=value
+                self.assertEqual(validate_recipe(recipe,CONFIG,3360),72)
+        self.assertEqual(validate_recipe(self.recipe,CONFIG,3360),72)
+
+    def test_retained_delivery_recipes_still_pass_boolean_contract(self):
+        import hashlib
+        from tools.directed_contract import delivery_inputs
+        base,recipes,full,_=delivery_inputs(CONFIG)
+        for name,recipe in {'base':base,**recipes,'full':full}.items():
+            with self.subTest(recipe=name):
+                self.assertEqual(validate_recipe(recipe,CONFIG,3360),sum(segment['output_frames'] for segment in recipe['segments']))
+        binding=json.loads((Path(__file__).resolve().parents[1]/'projects/god-here/executions/directed-integrated-excerpt.json').read_text())
+        original_bytes=(json.dumps(recipes['integrated'],indent=2)+'\n').encode()
+        self.assertEqual(hashlib.sha256(original_bytes).hexdigest(),binding['inputs']['recipe']['sha256'])
+
     def test_browser_offline_attention_parity(self):
         script='''const fs=require('fs');(async()=>{const code=fs.readFileSync('web/score.js','utf8');
         const {stateFromEvents}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
@@ -82,6 +104,54 @@ class RevisionTests(unittest.TestCase):
 
 
 class RevisionReviewRegressionTests(unittest.TestCase):
+    def test_tracking_rejects_existing_paths_and_source_aliases_before_reading(self):
+        import os,tempfile
+        from unittest.mock import MagicMock,patch
+        from amp.revision import track_region
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);source=root/'source.mp4';source.write_bytes(b'original movie')
+            hard=root/'hard.json';os.link(source,hard)
+            link=root/'link.json';link.symlink_to(source)
+            dangling=root/'dangling.json';dangling.symlink_to(root/'absent')
+            prior=root/'prior.json';prior.write_bytes(b'earlier tracking')
+            (root/'sub').mkdir()
+            cv=MagicMock();cv.VideoCapture.side_effect=AssertionError('must reject before tracking')
+            with patch.dict('sys.modules',{'cv2':cv}):
+                for output in (source,hard,link,dangling,prior,root/'sub'/'..'/'source.mp4'):
+                    with self.subTest(output=output.name),self.assertRaisesRegex(ValueError,'fresh output'):
+                        track_region(source,0,2,[0,0,1,1],output)
+            cv.VideoCapture.assert_not_called()
+            self.assertEqual(source.read_bytes(),b'original movie')
+            self.assertEqual(hard.read_bytes(),b'original movie')
+            self.assertEqual(prior.read_bytes(),b'earlier tracking')
+            self.assertTrue(link.is_symlink());self.assertTrue(dangling.is_symlink())
+
+    def test_tracking_exclusive_write_preserves_source_when_output_appears_during_tracking(self):
+        import tempfile
+        from unittest.mock import MagicMock,patch
+        from amp.revision import track_region
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);source=root/'source.mp4';source.write_bytes(b'original movie')
+            for concurrent in (False,True):
+                output=root/('race.json' if concurrent else 'fresh.json')
+                gray=np.arange(640*360,dtype=np.uint8).reshape(360,640)
+                cv=MagicMock();cv.__version__='synthetic';cv.resize.return_value=gray;cv.cvtColor.return_value=gray
+                cap=cv.VideoCapture.return_value
+                def read():
+                    if concurrent:output.symlink_to(source)
+                    return True,gray
+                cap.read.side_effect=read
+                with patch.dict('sys.modules',{'cv2':cv}):
+                    if concurrent:
+                        with self.assertRaises(FileExistsError):track_region(source,0,1,[0,0,1,1],output)
+                        self.assertTrue(output.is_symlink())
+                    else:
+                        receipt=track_region(source,0,1,[0,0,1,1],output)
+                        self.assertEqual(json.loads(output.read_text()),receipt)
+                        self.assertEqual(receipt['rows'][0]['source_frame'],0)
+                cap.release.assert_called_once()
+                self.assertEqual(source.read_bytes(),b'original movie')
+
     def test_existing_output_aliases_are_rejected_before_media_reads(self):
         import os,tempfile
         from unittest.mock import patch
