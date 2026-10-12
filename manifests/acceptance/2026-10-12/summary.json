@@ -1,16 +1,15 @@
 {
   "schema": "god-here.release-verification.v1",
-  "verified_at": "2026-10-12T16:20:02.962578+00:00",
+  "verified_at": "2026-10-12T17:59:41.319880+00:00",
   "baseline_integration_head": "06239ea898cc8430b8ced792732e6253e2c96372",
-  "python_tests": 217,
+  "python_tests": 318,
   "node_tests": {
     "studio": 18,
     "directed_media": 7,
     "room": 28,
-    "fx": 110
+    "fx": 188
   },
   "additional_nested_editor_cases": 6,
-  "execution_contract_recheck": 45,
   "source_picture": {
     "frames": 3360,
     "fps": 30,
@@ -32,7 +31,8 @@
     "No hosted browser test in current environment: control-browser unavailable.",
     "Owner browser-local evaluation data not migrated.",
     "Physical Safari/iPhone, listening and artist acceptance remain pending.",
-    "Historical media was not rerendered under corrected engine code."
+    "Historical media was not rerendered under corrected engine code.",
+    "Legacy room: no observed identity mismatch, but 14 context movies and 10 prior AACs lack the complete producer bindings required by the new strict checker."
   ],
   "repairs": [
     "FX fan-in, renamed-source sidechain, room-return isolation, discrete feedback reset",
@@ -48,30 +48,62 @@
     "known_damaged_extra_excluded": "proof-D.mp4",
     "all_requested_files_recovered": true
   },
-  "verified_integration_code_commit": "0435e34973c261db4a77d525e0e2b0f5a0265b2f",
+  "verified_integration_code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
   "hosting_tests": {
     "node": 80,
     "python": 37,
-    "scope": "73 hosting/build Node checks rerun at final source plus7 editor cases;37 Python seeding/inventory checks. Separate from public-repository test counts."
+    "scope": "73 hosting/build Node checks rerun at final source plus 7 editor cases; 37 Python seeding/inventory checks. Separate from public-repository test counts."
   },
-  "site_source_commit": "beca02effe664122d727d95b887151a868c94da8",
+  "site_source_commit": "4d70e621e754f27d57359adabc93c0cfa5e91ab2",
   "latest_review_repairs": [
     "Directed camera field dependency and optional tracking imports",
     "Early camera receipt metadata checks and direction-code binding",
     "Derived asset bytes bound to cached preview eligibility",
     "Directed delivery source/audio/recipe/session/track/code authentication",
     "Audio cache receipt/full-decode authentication",
-    "Inherited comparison-film authentication through packaging"
+    "Inherited comparison-film authentication through packaging",
+    "All seven review assets authenticate against the retained catalog; JSON/CSV/workbook align to 174 events. Actual preserved package passed.",
+    "Exact unique 16-name set plus original-archive member hashes; all actual original clips passed.",
+    "Non-track media binds to producing receipts and must pass clock/codec checks and complete decoding.",
+    "Revision track is required if and only if camera uses it.",
+    "Revision/replay require explicit movie output filename; other defaults remain unchanged.",
+    "Export copies authenticated allowlisted files only; private/stale extras, changed files, traversal and symlinks rejected.",
+    "Completion fails unless source, tracked files, revision and worktree remain unchanged; independent validation checks evidence and repository again.",
+    "Wheel includes nine external runtime files; real FX and roomstretch preflights run outside checkout. Native Canvas dependency locked and exercised in CI.",
+    "Only delivery-receipt authenticated prior FLACs are published; private extras excluded and stale managed downloads removed.",
+    "Fresh output/receipt paths and isolated intermediates prevent source overwrite; atomic no-replace publication and source digest rechecks.",
+    "Fields require source identity; exact historical semantic hash alone retains documented source compatibility. No historical artifacts changed.",
+    "Consumed asset-pack and workbench-state modules bind native/execution receipts; mutation blocks publication.",
+    "All variants validate before a rollback-capable publication of movies, patch, optional WAV and receipt; receipt is committed last.",
+    "Stages waveform and both audio variants. Installed-wheel regression performs real FX execution to render_verified and checks every staged identity with distinct source/reference audio.",
+    "Tracking rejects source/existing/aliased outputs before reading; exclusive creation blocks concurrent output collisions.",
+    "Optional effect flags must be actual JSON booleans; retained recipe identity unchanged.",
+    "Audio sample count and stream endpoints must cover the picture clock; codec padding and millisecond header rounding bounded. All 17 recovered movies passed; truncated-audio fixture rejects.",
+    "Movie and receipt must be fresh and distinct from inputs; private intermediates and no-replace publication preserve sources.",
+    "Tracking requires an explicit JSON output filename before reading media.",
+    "Session events require explicit null/known selected performer and ordered times within 0..duration.",
+    "Prior, pause audit, preparation and stretch receipts require the same authenticated pause inventory.",
+    "Every track label, mode, URL, input and output binds to producing receipts before decode; legacy gaps remain explicit.",
+    "Append rejects repeated IDs, destination collisions, unsafe paths and already-existing unlisted output artifacts before work begins.",
+    "All generated destinations reject aliases to patch, font, assets and producing-code inputs before rendering and publication.",
+    "Factory IDs are safe single components; filenames reject traversal and destination collisions.",
+    "Direction captures audio identity before consuming it and checks it again before publication; actual post-mapping mutation regression rejects.",
+    "Query-distinct responses have deterministic query-digest capture paths and separate reproducible byte receipts.",
+    "Demo inputs authenticate to manifest and native receipt identities before assembly; unbound historical receipts require fresh authenticated inputs."
   ],
-  "site_version": 15,
+  "site_version": 18,
   "current_publication": "manifests/acceptance/god-here-studio-publication.json",
   "publication_checks": {
     "v13_http": 30,
     "v14_http": 12,
-    "v15_http": 12,
-    "v15_exact_public_text": 3,
+    "v18_http": 12,
+    "v18_exact_public_text": 3,
     "legacy_registered_full_downloads": 52,
     "studio_registered_full_downloads": 41,
     "admin_disabled": true
-  }
+  },
+  "earlier_execution_contract_recheck": 45,
+  "installed_wheel_validation": "Isolated sdist/wheel install, native FX and roomstretch preflights, and actual synthetic FX render_verified execution; no private source inputs.",
+  "retained_room_identity_audit": "manifests/acceptance/2026-10-12/retained-room-identity-audit.json",
+  "directed_media_audio_clock": "manifests/acceptance/2026-10-12/directed-media-audio-clock-final.json"
 }

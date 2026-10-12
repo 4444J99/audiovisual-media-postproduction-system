@@ -1,9 +1,9 @@
 {
-  "source_commit": "beca02effe664122d727d95b887151a868c94da8",
-  "build_log": "site-build-v15.log",
-  "archive_sha256": "1d78d420c6660ce2e189d6af5bc985940723b3e47ead12db59e9bfc5f2fcc597",
-  "archive_bytes": 244188372,
-  "built_bytes": 264947279,
+  "source_commit": "4d70e621e754f27d57359adabc93c0cfa5e91ab2",
+  "build_log": "site-build-v18.log",
+  "archive_sha256": "547128686a8cc53cf77802ab8a855f6f695d869cffbaf0215c5c72ff9a9d7b91",
+  "archive_bytes": 244188644,
+  "built_bytes": 264947759,
   "protected_static_paths": 0,
-  "server_sha256": "e88b07c9d1392dcc460e87c5dbfd5cf26b50f5fedde6a4e26f209bad4d374d1f"
+  "server_sha256": "a4d754e2ba97882be013d495913976ef59d838e4cd40120b4315e5a2309fc58d"
 }

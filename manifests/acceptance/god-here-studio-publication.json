@@ -1,31 +1,31 @@
 {
   "schema_version": "god-here.studio-publication.v1",
   "status": "published_access_and_bytes_verified_browser_acceptance_open",
-  "updated_at_utc": "2026-10-12T17:02:42.525001+00:00",
+  "updated_at_utc": "2026-10-12T18:03:28.071033+00:00",
   "production_url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
   "audience": "public_unchanged; Studio routes require verified owner identity",
-  "code_commit": "0435e34973c261db4a77d525e0e2b0f5a0265b2f",
-  "source_commit": "beca02effe664122d727d95b887151a868c94da8",
+  "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+  "source_commit": "4d70e621e754f27d57359adabc93c0cfa5e91ab2",
   "site_version": {
-    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_f31678e9a0848191a6b3bd6f7fa472be",
+    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_78a47039b4a08191b0236f3faebb3704",
     "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
-    "version_number": 15,
+    "version_number": 18,
     "source": {
-      "commit_sha": "beca02effe664122d727d95b887151a868c94da8"
+      "commit_sha": "4d70e621e754f27d57359adabc93c0cfa5e91ab2"
     },
     "archive_storage": {
       "archive_format": "tar",
-      "content_hash": "sha256:fcb7d7c2163a203485973ff970e338a6988a361dd966eb0b1aa0d74ba0e2a438",
+      "content_hash": "sha256:15c327635faa2b5a9b0014c3cd7912604b942ec2cfa3a34611961effa3229abc",
       "size_bytes": 265256960,
       "file_count": 394
     },
     "deployment_id": null
   },
   "current_deployment": {
-    "id": "appgdep_6acd12a03cd88191931ed39fb2b98a8a",
+    "id": "appgdep_6acd20d461a8819187cd651a7c5be614",
     "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
     "title": "god-here \u00b7 Five realities",
-    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_f31678e9a0848191a6b3bd6f7fa472be",
+    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_78a47039b4a08191b0236f3faebb3704",
     "type": "publish",
     "status": "succeeded",
     "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
@@ -34,7 +34,7 @@
     "provider_deployment_id": "site---6ac71699c8fc81919b030dcf9ad112e4",
     "failure_message": null,
     "env_set_revision": 9,
-    "updated_at": "2026-10-12T17:02:42.525001+00:00"
+    "updated_at": "2026-10-12T18:03:28.071033+00:00"
   },
   "environment": {
     "revision": 9,
@@ -74,8 +74,8 @@
     }
   },
   "verification": {
-    "python_tests": 217,
-    "node_tests": 163,
+    "python_tests": 318,
+    "node_tests": 241,
     "site_node_tests": 80,
     "site_python_tests": 37,
     "decoded_media_path_checks": 241,
@@ -86,53 +86,58 @@
   "evidence": {
     "summary.json": {
       "path": "manifests/acceptance/2026-10-12/summary.json",
-      "bytes": 3043,
-      "sha256": "1c5cd2062200b9ae1d5c17e3451a03a8404cdbb7f2a49c4576d09798ad37f0b1"
+      "bytes": 7209,
+      "sha256": "03e9c7d42bd9c41893be2ac289755aa081b8cf807c178aacf2a5419f5bef4c89"
     },
     "final-control-plane.json": {
       "path": "manifests/acceptance/2026-10-12/final-control-plane.json",
       "bytes": 1688,
-      "sha256": "1807c0f730b260171da7de9b0b49015192747cbd584ac22ba33ae2e1aacaa750"
+      "sha256": "ab1595b37767ce66a51aae17a769d3a94f1f4ba9913124a3cd981c23ef0ca010"
     },
     "final-build.json": {
       "path": "manifests/acceptance/2026-10-12/final-build.json",
       "bytes": 367,
-      "sha256": "a57bf74a1ff3852677a7e2c7f50907d01bbfa02abb7a2383023fc4c6bb226785"
+      "sha256": "1e719c5a97740bb1b45714aa3818de6911d9103f6d19df837c90acd6d3e9bf72"
     },
-    "site-build-v15.log": {
-      "path": "manifests/acceptance/2026-10-12/site-build-v15.log",
-      "bytes": 1447,
-      "sha256": "c803ae01b104db546811eed1148731f800d68c68a688be6501b192342c39ba4b"
+    "site-build-v18.log": {
+      "path": "manifests/acceptance/2026-10-12/site-build-v18.log",
+      "bytes": 1408,
+      "sha256": "52427a6a0f8d0adbfc4fa023b1d3d61d67308e4b741a27a00839b14f7bcc46ed"
     },
-    "site-tests-v15.log": {
-      "path": "manifests/acceptance/2026-10-12/site-tests-v15.log",
-      "bytes": 6971,
-      "sha256": "2846eeb0daec3ef1ec356f741488cda4d039a5d5111ef8050c10a8d33ac4b0e7"
+    "site-tests-v18.log": {
+      "path": "manifests/acceptance/2026-10-12/site-tests-v18.log",
+      "bytes": 6977,
+      "sha256": "441a702f480426da0fc48d632b935ef58496817880d84b990d7800221e57278f"
     },
-    "hosted-routes-v15.json": {
-      "path": "manifests/acceptance/2026-10-12/hosted-routes-v15.json",
-      "bytes": 3961,
-      "sha256": "cd7ff7e9b53db75dbf88a2160c68665702966a8481edc3f7b55f60e06fea2811"
+    "hosted-routes-v18.json": {
+      "path": "manifests/acceptance/2026-10-12/hosted-routes-v18.json",
+      "bytes": 3957,
+      "sha256": "b10e6ae3423d06ef1da5283fc0617e3be2854924c4c24102629350c77bfc9194"
     },
-    "public-text-v15.json": {
-      "path": "manifests/acceptance/2026-10-12/public-text-v15.json",
+    "public-text-v18.json": {
+      "path": "manifests/acceptance/2026-10-12/public-text-v18.json",
       "bytes": 882,
       "sha256": "e44eaa9081f80640f9bcc4dfe520ef3d33d26d6a94a5e453ecf19a8c4f1b2104"
     },
-    "admin-disabled-v15.json": {
-      "path": "manifests/acceptance/2026-10-12/admin-disabled-v15.json",
-      "bytes": 284,
-      "sha256": "08d561b715e863f53dd38f66b66db1421148e399a970e079715291c6834e9b1d"
+    "admin-disabled-v18.json": {
+      "path": "manifests/acceptance/2026-10-12/admin-disabled-v18.json",
+      "bytes": 279,
+      "sha256": "489539e9adca9fcf0fa357dc5ef4c936db054e8be943b70609f0639991412305"
     },
     "final-review-dispositions.json": {
       "path": "manifests/acceptance/2026-10-12/final-review-dispositions.json",
-      "bytes": 1575,
-      "sha256": "64715cb03c4938426a0efbd0eb1becd40ae54ee43d5795b79bd64cfa6b1c41f7"
+      "bytes": 12463,
+      "sha256": "5e65152240449d7ae831535bb6d7c5863d245bed23ab37e5b7df0d068dabf223"
     },
     "code-ci.json": {
       "path": "manifests/acceptance/2026-10-12/code-ci.json",
-      "bytes": 979,
-      "sha256": "5b476986194b5a958fc95a15f8123b863cf4afd80b045bc454f38bbbf1bf3a88"
+      "bytes": 984,
+      "sha256": "29ee9b54e3b5f93e801ac6ea26c01e927b88640442d026f6bb59e9d26d3e4bb7"
+    },
+    "project-checks-final.log": {
+      "path": "manifests/acceptance/2026-10-12/project-checks-final.log",
+      "bytes": 70733,
+      "sha256": "31008c7ea8d84fb198c351dc9fe530b35fa273b28819b6aae0d3d4b952fc84a9"
     }
   },
   "privacy_correction": {
@@ -162,9 +167,9 @@
       "sha256": "ae393d59ca2de96bbdbc63154caf867e3541471b76225658a98c0be44294a582"
     },
     "verified_shutdown": {
-      "path": "manifests/acceptance/2026-10-12/admin-disabled-v15.json",
-      "bytes": 284,
-      "sha256": "08d561b715e863f53dd38f66b66db1421148e399a970e079715291c6834e9b1d"
+      "path": "manifests/acceptance/2026-10-12/admin-disabled-v18.json",
+      "bytes": 279,
+      "sha256": "489539e9adca9fcf0fa357dc5ef4c936db054e8be943b70609f0639991412305"
     }
   },
   "remaining_gates": [

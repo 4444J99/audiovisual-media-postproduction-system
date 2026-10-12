@@ -1,5 +1,4 @@
 {
-  "reviewed_code_commit": "0435e34973c261db4a77d525e0e2b0f5a0265b2f",
   "threads": [
     {
       "id": "PRRT_kwDOVAYltM6ri-GH",
@@ -40,6 +39,215 @@
       "id": "PRRT_kwDOVAYltM6ri-Gp",
       "path": "tools/build_directed_proof.py",
       "disposition": "Fixed in the reviewed code commit, with new regression coverage."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjVZY",
+      "path": "tools/studio/build_site.py",
+      "code_commit": "488bf42a01bda72a7c7bccb3c4ab1a470fe7473b",
+      "disposition": "All seven review assets authenticate against the retained catalog; JSON/CSV/workbook align to 174 events. Actual preserved package passed.",
+      "regression_tests": "Passed in final 253-test Python suite."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjVZb",
+      "path": "tools/studio/build_site.py",
+      "code_commit": "488bf42a01bda72a7c7bccb3c4ab1a470fe7473b",
+      "disposition": "Exact unique 16-name set plus original-archive member hashes; all actual original clips passed.",
+      "regression_tests": "Passed in final 253-test Python suite."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjVZg",
+      "path": "tools/check_room_tone_site.py",
+      "code_commit": "488bf42a01bda72a7c7bccb3c4ab1a470fe7473b",
+      "disposition": "Non-track media binds to producing receipts and must pass clock/codec checks and complete decoding.",
+      "regression_tests": "Passed in final 253-test Python suite."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjVZn",
+      "path": "amp/execution.py",
+      "code_commit": "488bf42a01bda72a7c7bccb3c4ab1a470fe7473b",
+      "disposition": "Revision track is required if and only if camera uses it.",
+      "regression_tests": "Passed in final 253-test Python suite."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjVZs",
+      "path": "amp/cli.py",
+      "code_commit": "488bf42a01bda72a7c7bccb3c4ab1a470fe7473b",
+      "disposition": "Revision/replay require explicit movie output filename; other defaults remain unchanged.",
+      "regression_tests": "Passed in final 253-test Python suite."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjVZy",
+      "path": "tools/package_room_refinement.py",
+      "code_commit": "488bf42a01bda72a7c7bccb3c4ab1a470fe7473b",
+      "disposition": "Export copies authenticated allowlisted files only; private/stale extras, changed files, traversal and symlinks rejected.",
+      "regression_tests": "Passed in final 253-test Python suite."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjVZ1",
+      "path": "tools/recovery/run_existing_recipe.py",
+      "code_commit": "488bf42a01bda72a7c7bccb3c4ab1a470fe7473b",
+      "disposition": "Completion fails unless source, tracked files, revision and worktree remain unchanged; independent validation checks evidence and repository again.",
+      "regression_tests": "Passed in final 253-test Python suite."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjmO3",
+      "path": "pyproject.toml",
+      "code_commit": "3e041b239993068345a998f36b8a3eb79bb63268",
+      "disposition": "Wheel includes nine external runtime files; real FX and roomstretch preflights run outside checkout. Native Canvas dependency locked and exercised in CI.",
+      "regression_tests": "Passed in final 269 Python / 169 Node check."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjmO_",
+      "path": "tools/package_room_stretch_site.py",
+      "code_commit": "3e041b239993068345a998f36b8a3eb79bb63268",
+      "disposition": "Only delivery-receipt authenticated prior FLACs are published; private extras excluded and stale managed downloads removed.",
+      "regression_tests": "Passed in final 269 Python / 169 Node check."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjmPG",
+      "path": "amp/revision.py",
+      "code_commit": "3e041b239993068345a998f36b8a3eb79bb63268",
+      "disposition": "Fresh output/receipt paths and isolated intermediates prevent source overwrite; atomic no-replace publication and source digest rechecks.",
+      "regression_tests": "Passed in final 269 Python / 169 Node check."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjmPS",
+      "path": "amp/direction.py",
+      "code_commit": "3e041b239993068345a998f36b8a3eb79bb63268",
+      "disposition": "Fields require source identity; exact historical semantic hash alone retains documented source compatibility. No historical artifacts changed.",
+      "regression_tests": "Passed in final 269 Python / 169 Node check."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjmPb",
+      "path": "tools/render-fx.mjs",
+      "code_commit": "3e041b239993068345a998f36b8a3eb79bb63268",
+      "disposition": "Consumed asset-pack and workbench-state modules bind native/execution receipts; mutation blocks publication.",
+      "regression_tests": "Passed in final 269 Python / 169 Node check."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjmPj",
+      "path": "tools/render-fx.mjs",
+      "code_commit": "3e041b239993068345a998f36b8a3eb79bb63268",
+      "disposition": "All variants validate before a rollback-capable publication of movies, patch, optional WAV and receipt; receipt is committed last.",
+      "regression_tests": "Passed in final 269 Python / 169 Node check."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjtyI",
+      "path": "amp/execution.py",
+      "code_commit": "b9f363cd5c8e4cdcbd66b35d95c7e06ed500d5cf",
+      "disposition": "Stages waveform and both audio variants. Installed-wheel regression performs real FX execution to render_verified and checks every staged identity with distinct source/reference audio.",
+      "regression_tests": "Passed in final 279 Python / 169 Node check."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjtyN",
+      "path": "amp/revision.py",
+      "code_commit": "b9f363cd5c8e4cdcbd66b35d95c7e06ed500d5cf",
+      "disposition": "Tracking rejects source/existing/aliased outputs before reading; exclusive creation blocks concurrent output collisions.",
+      "regression_tests": "Passed in final 279 Python / 169 Node check."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjtyX",
+      "path": "amp/revision.py",
+      "code_commit": "b9f363cd5c8e4cdcbd66b35d95c7e06ed500d5cf",
+      "disposition": "Optional effect flags must be actual JSON booleans; retained recipe identity unchanged.",
+      "regression_tests": "Passed in final 279 Python / 169 Node check."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rjtyf",
+      "path": "tools/validate_directed.py",
+      "code_commit": "b9f363cd5c8e4cdcbd66b35d95c7e06ed500d5cf",
+      "disposition": "Audio sample count and stream endpoints must cover the picture clock; codec padding and millisecond header rounding bounded. All 17 recovered movies passed; truncated-audio fixture rejects.",
+      "regression_tests": "Passed in final 279 Python / 169 Node check."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkBwM",
+      "path": "amp/direction.py",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "Movie and receipt must be fresh and distinct from inputs; private intermediates and no-replace publication preserve sources.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkBwR",
+      "path": "amp/cli.py",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "Tracking requires an explicit JSON output filename before reading media.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkBwT",
+      "path": "amp/revision.py",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "Session events require explicit null/known selected performer and ordered times within 0..duration.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkBwW",
+      "path": "tools/package_room_stretch_site.py",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "Prior, pause audit, preparation and stretch receipts require the same authenticated pause inventory.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkBwd",
+      "path": "tools/check_room_tone_site.py",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "Every track label, mode, URL, input and output binds to producing receipts before decode; legacy gaps remain explicit.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkBwh",
+      "path": "tools/render-factory.mjs",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "Append rejects repeated IDs, destination collisions, unsafe paths and already-existing unlisted output artifacts before work begins.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkH6O",
+      "path": "tools/render-fx.mjs",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "All generated destinations reject aliases to patch, font, assets and producing-code inputs before rendering and publication.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkH6R",
+      "path": "tools/render-factory.mjs",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "Factory IDs are safe single components; filenames reject traversal and destination collisions.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkH6X",
+      "path": "amp/direction.py",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "Direction captures audio identity before consuming it and checks it again before publication; actual post-mapping mutation regression rejects.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkH6c",
+      "path": "tools/site_audit_snapshot.py",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "Query-distinct responses have deterministic query-digest capture paths and separate reproducible byte receipts.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
+    },
+    {
+      "id": "PRRT_kwDOVAYltM6rkH6j",
+      "path": "tools/build-demo-reel.mjs",
+      "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+      "disposition": "Demo inputs authenticate to manifest and native receipt identities before assembly; unbound historical receipts require fresh authenticated inputs.",
+      "regression_tests": "Passed in 318 Python / 241 Node checks."
     }
-  ]
+  ],
+  "reviewed_code_commits": [
+    "0435e34973c261db4a77d525e0e2b0f5a0265b2f",
+    "488bf42a01bda72a7c7bccb3c4ab1a470fe7473b",
+    "3e041b239993068345a998f36b8a3eb79bb63268",
+    "b9f363cd5c8e4cdcbd66b35d95c7e06ed500d5cf",
+    "901552a7af7944498a49c5b773b6e25d656857a2"
+  ],
+  "source_preservation_followup": {
+    "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
+    "scope": "audio, render/remix, roomtone, roomrack, roomstretch",
+    "tests": 21,
+    "result": "Exact input aliases rejected and private staging preserves original bytes while permitting safe derived-file replacement."
+  }
 }

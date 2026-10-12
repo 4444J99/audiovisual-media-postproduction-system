@@ -1,26 +1,26 @@
 {
   "site_version": {
-    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_f31678e9a0848191a6b3bd6f7fa472be",
+    "id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_78a47039b4a08191b0236f3faebb3704",
     "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
-    "version_number": 15,
+    "version_number": 18,
     "source": {
-      "commit_sha": "beca02effe664122d727d95b887151a868c94da8"
+      "commit_sha": "4d70e621e754f27d57359adabc93c0cfa5e91ab2"
     },
     "archive_storage": {
       "archive_format": "tar",
-      "content_hash": "sha256:fcb7d7c2163a203485973ff970e338a6988a361dd966eb0b1aa0d74ba0e2a438",
+      "content_hash": "sha256:15c327635faa2b5a9b0014c3cd7912604b942ec2cfa3a34611961effa3229abc",
       "size_bytes": 265256960,
       "file_count": 394
     },
     "deployment_id": null
   },
-  "source_commit": "beca02effe664122d727d95b887151a868c94da8",
-  "code_commit": "0435e34973c261db4a77d525e0e2b0f5a0265b2f",
+  "source_commit": "4d70e621e754f27d57359adabc93c0cfa5e91ab2",
+  "code_commit": "901552a7af7944498a49c5b773b6e25d656857a2",
   "deployment": {
-    "id": "appgdep_6acd12a03cd88191931ed39fb2b98a8a",
+    "id": "appgdep_6acd20d461a8819187cd651a7c5be614",
     "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
     "title": "god-here · Five realities",
-    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_f31678e9a0848191a6b3bd6f7fa472be",
+    "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_78a47039b4a08191b0236f3faebb3704",
     "type": "publish",
     "status": "succeeded",
     "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
@@ -29,7 +29,7 @@
     "provider_deployment_id": "site---6ac71699c8fc81919b030dcf9ad112e4",
     "failure_message": null,
     "env_set_revision": 9,
-    "updated_at": "2026-10-12T17:02:42.525001+00:00"
+    "updated_at": "2026-10-12T18:03:28.071033+00:00"
   },
   "environment": {
     "revision": 9,
