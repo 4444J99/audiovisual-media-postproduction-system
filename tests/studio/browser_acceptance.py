@@ -32,8 +32,9 @@ def document():
     text=(ROOT/'index.html').read_text();css=(ROOT/'studio/studio.css').read_text()
     text=text.replace('<link rel="stylesheet" href="studio/studio.css">','<style>'+css+'</style>')
     core=re.sub(r'\bexport\s+','',(ROOT/'studio/core.mjs').read_text())
-    app=re.sub(r'^import[^\n]*\n','',(ROOT/'studio/studio.mjs').read_text())
-    return text.replace('<script type="module" src="studio/studio.mjs"></script>','<script>'+ADAPTER+core+'\n'+app+'</script>')
+    presentation=re.sub(r'\bexport\s+','',(ROOT/'studio/presentation.mjs').read_text())
+    app=re.sub(r'^import[^\n]*\n','',(ROOT/'studio/studio.mjs').read_text(),flags=re.MULTILINE)
+    return text.replace('<script type="module" src="studio/studio.mjs"></script>','<script>'+ADAPTER+core+'\n'+presentation+'\n'+app+'</script>')
 def open_page(browser,width=1440,height=1100):
     context=browser.new_context(viewport={'width':width,'height':height},accept_downloads=True)
     page=context.new_page();page.expose_function('__readLocalText',asset)
