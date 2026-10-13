@@ -126,10 +126,11 @@ that an artist selected a treatment, or that anything was hosted.
 Run:
 
 ```sh
-python -m pytest -q tests/test_residual.py tests/test_residual_io.py
+python -m unittest discover -s tests -p 'test_residual*.py' -v
 ```
 
-The initial increment passed 57 focused tests. They cover numerical scale and
+The increment passed 57 focused standard-library unittest checks locally, including
+a run with pytest imports blocked. They cover numerical scale and
 closure, cancellation/overflow, malformed WAVs, exact windows, unsupported channel
 or rate conversion, PCM decoding, native-residual distinction, private-path
 redaction, deterministic outputs, dry-run, mutation detection and write failures.
@@ -137,9 +138,11 @@ redaction, deterministic outputs, dry-run, mutation detection and write failures
 Verification used the two new modules and an exact copy of the retained resolver
 (blob `54d8335ae33b28f11cd3fd0f83206a173713af8d`) from commit
 `3117fcae901a470751224bde6ddd93d09413a6f6`, associated with PR #59.
-A complete checkout was unavailable in that execution environment; **the complete
-repository suite, installed-package behavior and independent code review remain
-required**. No result from the upstream PR's tests is counted as this increment's
+A complete checkout was unavailable in the local execution environment. The
+initial hosted check exposed an undeclared pytest import in the new tests; they
+now use the existing unittest runner without additional dependencies. **A green
+complete repository gate at the retained PR head and independent code review
+are required before merge**. No result from the upstream PR's tests is counted as this increment's
 own verification.
 
 Next integration: bind this numerical core into the agreed shared study contract;
