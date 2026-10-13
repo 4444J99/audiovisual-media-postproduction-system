@@ -2,6 +2,8 @@
 
 A directable audiovisual postproduction system that translates creative notes into reproducible edits: audio restoration and design, dialogue and performance revision, animated typography, tracked reframing, detail reconstruction, compositing, and new editions from existing media.
 
+The [ACE implementation contract](ace-manifest.json) separates functional software, capabilities, modules, source media, compositions, artworks, editions and archives. Composition configuration now lives in `compositions/comp-001`; the original `projects/god-here` path remains a compatibility link. The `amp` package and commands keep their identities. Use `amp validate --composition comp-001`, or supply another composition directory. See the [naming boundary and reversible migration](docs/architecture/functional-identities.md).
+
 ## Current verification and finish line · 12 October 2026
 
 Start with the [current finish-line plan](docs/GOD-HERE-FINISH-LINE.md), [release verification](manifests/acceptance/2026-10-12/summary.json), and [canonical site](https://god-here-five-realities.ajpadavano.chatgpt.site/). The published Studio brings source review, comparisons, composition tools, catalogue and project records into one entry point. Its current checks pass **318 Python tests and 241 Node tests**; six additional editor cases run inside the Python suite.
@@ -72,7 +74,7 @@ The [stretch-and-stack experiment](docs/ROOM-STRETCH.md) expands the same 4.42-s
 
 Pass `--start` and `--end` for excerpts, `--layers` for the manual fine-layer variant, and `--mode soft` or `--mode spill` for authored boundary extensions. Hard boundaries are the baseline. The final source-length picture uses 3,360 frames at 30 fps. The pilot uses source frames 2,554–3,214 inclusive, 661 frames.
 
-`tools/finish_production.py` is the **god-here production recipe**, with its explicit 112-second baseline. `amp` holds reusable processing primitives; project-specific intervals, masks, styles, and scores live in `projects/god-here`. Original media are external inputs, not committed public assets. Source identities are recorded by SHA-256.
+`tools/finish_production.py` is the **god-here production recipe**, with its explicit 112-second baseline. `amp` holds reusable processing primitives; composition-specific intervals, masks, styles, and scores live in `compositions/comp-001` (legacy alias `projects/god-here`). Original media are external inputs, not committed public assets. Source identities are recorded by SHA-256.
 
 ## Directed revision extension
 

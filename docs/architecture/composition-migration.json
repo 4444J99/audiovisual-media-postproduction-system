@@ -1,0 +1,302 @@
+{
+  "schema_version": "1.0.0",
+  "baseline_commit": "868b015778f34625fd1f04270eacbe659a570aad",
+  "media_moved": false,
+  "files": [
+    {
+      "from": "projects/god-here/audio-report.json",
+      "to": "compositions/comp-001/audio-report.json",
+      "sha256": "0c991c450f0ed6ead406d9b8c317fd369e3b83f32d97375f847d31357b666e03"
+    },
+    {
+      "from": "projects/god-here/backlog.json",
+      "to": "compositions/comp-001/backlog.json",
+      "sha256": "fee75b7b078a9e559148f51d7be68fe3c233d2be89ca07efc9a5cf84f5d932e3"
+    },
+    {
+      "from": "projects/god-here/composition.json",
+      "to": "compositions/comp-001/composition.json",
+      "sha256": "efe30fd3b4043a65ba2454183c3360fc083f292fdfd862054cc50decd60a3801"
+    },
+    {
+      "from": "projects/god-here/composition.schema.json",
+      "to": "compositions/comp-001/composition.schema.json",
+      "sha256": "2d5cadc3f9e7173e99ba0e6ef2e091b98fadc69e8a8d67f16ad8efb8a7c3d068"
+    },
+    {
+      "from": "projects/god-here/direction-field-score.json",
+      "to": "compositions/comp-001/direction-field-score.json",
+      "sha256": "8688ca61c24680ca413d92916e21c3e9a54bbb350b4ee093b8e83cad8db2486e"
+    },
+    {
+      "from": "projects/god-here/direction-proof.json",
+      "to": "compositions/comp-001/direction-proof.json",
+      "sha256": "95f9e00b7f70178fff51f488c0d99d925ab6caa424989780dfc698772abe7eab"
+    },
+    {
+      "from": "projects/god-here/direction-validation.json",
+      "to": "compositions/comp-001/direction-validation.json",
+      "sha256": "67e08b69c64d9a2d819000c3186553a96f9149fde6474ba63fe68bb2d08b498b"
+    },
+    {
+      "from": "projects/god-here/executions/directed-integrated-excerpt.json",
+      "to": "compositions/comp-001/executions/directed-integrated-excerpt.json",
+      "sha256": "d8efc58a920352be60e47d590a652c4d517075035d2e67f105b5bd73ddd5bbc6"
+    },
+    {
+      "from": "projects/god-here/executions/direction-proof-directed.json",
+      "to": "compositions/comp-001/executions/direction-proof-directed.json",
+      "sha256": "6ed3555cbe1b39410fa52329707d9f649261040d59165e591dc0da5a8037d302"
+    },
+    {
+      "from": "projects/god-here/executions/direction-proof-reference.json",
+      "to": "compositions/comp-001/executions/direction-proof-reference.json",
+      "sha256": "81b4e42779db6ffcaf8aec98f74c40a94104fdfa01d6182fbc07b8532181de72"
+    },
+    {
+      "from": "projects/god-here/executions/fx-demo-delay.json",
+      "to": "compositions/comp-001/executions/fx-demo-delay.json",
+      "sha256": "6d28498399a023459ca668d6d31b9ed88480cd67195739e2c66aeca0da5cbc1e"
+    },
+    {
+      "from": "projects/god-here/executions/room-stretch-full.json",
+      "to": "compositions/comp-001/executions/room-stretch-full.json",
+      "sha256": "f763af6c93da53f6be80d74f3d5158e506adc48ba3796d54e73e74457005b404"
+    },
+    {
+      "from": "projects/god-here/expressive-report.json",
+      "to": "compositions/comp-001/expressive-report.json",
+      "sha256": "e645d37bd02e3e146d3efaf3948a5a06318b69d03b3b8fc4e845bbaf74e27b6d"
+    },
+    {
+      "from": "projects/god-here/foley-manifest.json",
+      "to": "compositions/comp-001/foley-manifest.json",
+      "sha256": "e15c640e87f41bcf6fec136b2a71fb6482a0a3ab069bc993bce74c1498a8accb"
+    },
+    {
+      "from": "projects/god-here/foley-score.json",
+      "to": "compositions/comp-001/foley-score.json",
+      "sha256": "68dcbad81d111d37e6ea74bc4b731a0e155cc697c8a5fa15a189f1fc98c271be"
+    },
+    {
+      "from": "projects/god-here/fx/evidence/audio-render-report.json",
+      "to": "compositions/comp-001/fx/evidence/audio-render-report.json",
+      "sha256": "fe05e70ab9d48929c08b6b8cda407898146b134ee15229ea182b37aa4133436d"
+    },
+    {
+      "from": "projects/god-here/fx/evidence/browser-report.json",
+      "to": "compositions/comp-001/fx/evidence/browser-report.json",
+      "sha256": "52414b9858e4586181f73105f435e36efc0ee37e313ff1c60a68d8a78251ad2a"
+    },
+    {
+      "from": "projects/god-here/fx/evidence/core-evaluator-audit.json",
+      "to": "compositions/comp-001/fx/evidence/core-evaluator-audit.json",
+      "sha256": "bcf2ee5ad07334610f3c986ad27f3684b03de5e8d14619c686a52b6c81a1ac58"
+    },
+    {
+      "from": "projects/god-here/fx/evidence/encoded-media-validation.json",
+      "to": "compositions/comp-001/fx/evidence/encoded-media-validation.json",
+      "sha256": "ea2eb9e5fc6a5a43f9356f8f75469bd4f98f25ce25f678deed4684087e691f56"
+    },
+    {
+      "from": "projects/god-here/fx/evidence/native-player.json",
+      "to": "compositions/comp-001/fx/evidence/native-player.json",
+      "sha256": "6c68064933466e07f316e8ccd19e798d523af5cd94a3f6d1d7f90ecfae744411"
+    },
+    {
+      "from": "projects/god-here/fx/evidence/playback-recovery-fixed.json",
+      "to": "compositions/comp-001/fx/evidence/playback-recovery-fixed.json",
+      "sha256": "bbdfbd81a257ea693fc084b2d6b14ea18c554a017afda56c4328116c38a093f5"
+    },
+    {
+      "from": "projects/god-here/fx/evidence/preserved-factory-render-manifest.json",
+      "to": "compositions/comp-001/fx/evidence/preserved-factory-render-manifest.json",
+      "sha256": "4ac6004775c790f0ee8dc61da34ea0784d410b0e305d3dc6a335d6f11301d387"
+    },
+    {
+      "from": "projects/god-here/fx/evidence/visual-render-report.json",
+      "to": "compositions/comp-001/fx/evidence/visual-render-report.json",
+      "sha256": "4419f4f29d466b0952660afb23f8f99c32f68d8212439ebf1603f6bab0552690"
+    },
+    {
+      "from": "projects/god-here/github-issues.json",
+      "to": "compositions/comp-001/github-issues.json",
+      "sha256": "253c091319a7d09b92d157c60bc39bab0b5abc4ed018e6d5c920062a4032f682"
+    },
+    {
+      "from": "projects/god-here/neural-audio-report.json",
+      "to": "compositions/comp-001/neural-audio-report.json",
+      "sha256": "1149abb712de97e003caff3c66ad700c8b14d9bc31a818d88c955c2f5c0f01de"
+    },
+    {
+      "from": "projects/god-here/pass-02-validation.json",
+      "to": "compositions/comp-001/pass-02-validation.json",
+      "sha256": "d686b0e285a1700b007ac9f3e4f9ab8fe04a61a0f1142946e994156897e0e7da"
+    },
+    {
+      "from": "projects/god-here/pass-02-variations.json",
+      "to": "compositions/comp-001/pass-02-variations.json",
+      "sha256": "364b659011e99fea4ae0453e03a6a18fd52e95761a58825a1a6c4dd0b427e979"
+    },
+    {
+      "from": "projects/god-here/planning-source-manifest.json",
+      "to": "compositions/comp-001/planning-source-manifest.json",
+      "sha256": "bc714276b889f8c9493b462aab14ddb6b6b32c4021ce21c40acaff059b7c3de3"
+    },
+    {
+      "from": "projects/god-here/production-validation.json",
+      "to": "compositions/comp-001/production-validation.json",
+      "sha256": "ca8fad9564b5ee4c44c0e7a8b63753f88188853c735dfb84756badb001384660"
+    },
+    {
+      "from": "projects/god-here/qualification.json",
+      "to": "compositions/comp-001/qualification.json",
+      "sha256": "ec372923dab7dffafdca925531426d760bf084c0c80cef94202f54d1733bffe6"
+    },
+    {
+      "from": "projects/god-here/room-refinement-20261011/export-validation.json",
+      "to": "compositions/comp-001/room-refinement-20261011/export-validation.json",
+      "sha256": "dc3be17bf1dc124a32674bf46978e230c473740161ff8dba696235e4ba1fe599"
+    },
+    {
+      "from": "projects/god-here/room-refinement-20261011/listening-package-report.json",
+      "to": "compositions/comp-001/room-refinement-20261011/listening-package-report.json",
+      "sha256": "cf0158e912c533723e35392164f40ee70b974ace98a3a045267ab1ef6eac6220"
+    },
+    {
+      "from": "projects/god-here/room-refinement-20261011/portion-review.json",
+      "to": "compositions/comp-001/room-refinement-20261011/portion-review.json",
+      "sha256": "ef0cb99815fc8956b2f89466197a98ee35247348f40fde56572065e67236dea3"
+    },
+    {
+      "from": "projects/god-here/room-refinement-20261011/room-final-media-review.json",
+      "to": "compositions/comp-001/room-refinement-20261011/room-final-media-review.json",
+      "sha256": "67530f6bad5bfeba2e56fe2324924289b7f472c39d0900e2352d116f1d9b942d"
+    },
+    {
+      "from": "projects/god-here/room-refinement-20261011/room-html-interaction-review.json",
+      "to": "compositions/comp-001/room-refinement-20261011/room-html-interaction-review.json",
+      "sha256": "931df1167f7cdbe422fba5d00836af1ead63989c0c92c9de82bc566d2a63e7a2"
+    },
+    {
+      "from": "projects/god-here/room-refinement-20261011/room-pause-m4a-review.json",
+      "to": "compositions/comp-001/room-refinement-20261011/room-pause-m4a-review.json",
+      "sha256": "14c737c395e23b5143fffad8b16f628d701e7f3f5db1d7396eeb2741a74e4810"
+    },
+    {
+      "from": "projects/god-here/room-refinement-20261011/room-refinement-report.json",
+      "to": "compositions/comp-001/room-refinement-20261011/room-refinement-report.json",
+      "sha256": "8b1c170a90b3d3346037e5e763a85a49c89b746971f291ccb07486652f64c61a"
+    },
+    {
+      "from": "projects/god-here/room-refinement-20261011/selection-original-pending.json",
+      "to": "compositions/comp-001/room-refinement-20261011/selection-original-pending.json",
+      "sha256": "8dbf5d27425dafd42708934a0e0efd9366752395a54aff438fbe99945da331e2"
+    },
+    {
+      "from": "projects/god-here/room-refinement-20261011/verification-receipt.json",
+      "to": "compositions/comp-001/room-refinement-20261011/verification-receipt.json",
+      "sha256": "ea3d8b678da8f5cfbbd48dca58296521641208e2c906e19dc86d0edb1371d0be"
+    },
+    {
+      "from": "projects/god-here/room-stretch-20261011/lossless-download-verification.json",
+      "to": "compositions/comp-001/room-stretch-20261011/lossless-download-verification.json",
+      "sha256": "8b0169155973f4a79db7614bd0296859ab4da9959cd81e09710eeb4359fff0ea"
+    },
+    {
+      "from": "projects/god-here/room-stretch-20261011/publication/package-verification.json",
+      "to": "compositions/comp-001/room-stretch-20261011/publication/package-verification.json",
+      "sha256": "638abfd023319bed586cb29d50eb0217a4e0cc2029603d8fdd7e8838925886c0"
+    },
+    {
+      "from": "projects/god-here/room-stretch-20261011/publication/publication-blocker.json",
+      "to": "compositions/comp-001/room-stretch-20261011/publication/publication-blocker.json",
+      "sha256": "1a5490edc476c1d5b07d341050f86bbee5cf7521e954aab56f53525715f8a838"
+    },
+    {
+      "from": "projects/god-here/room-stretch-20261011/room-stretch-report.json",
+      "to": "compositions/comp-001/room-stretch-20261011/room-stretch-report.json",
+      "sha256": "84dd4043b36d90f78ee2f5ccec595daf438fcf1514e8a763f906e8b02897843c"
+    },
+    {
+      "from": "projects/god-here/room-stretch-20261011/room-stretch-verification.json",
+      "to": "compositions/comp-001/room-stretch-20261011/room-stretch-verification.json",
+      "sha256": "110d9b33648719f1acb60f3eb63608f826af82e52ef800e5bf224fc1fa682921"
+    },
+    {
+      "from": "projects/god-here/room-stretch-20261011/site-integration-verification.json",
+      "to": "compositions/comp-001/room-stretch-20261011/site-integration-verification.json",
+      "sha256": "b8580774284306738cf86a69d7de67e06bb02039bfb25e430e23be02a403af53"
+    },
+    {
+      "from": "projects/god-here/room-stretch-20261011/site-media-verification.json",
+      "to": "compositions/comp-001/room-stretch-20261011/site-media-verification.json",
+      "sha256": "09a68bd1fdea4f675ec362cc17fd349917ce252c7a5c3cd81a2edb2f8db74984"
+    },
+    {
+      "from": "projects/god-here/room-stretch-20261011/verification-receipt.json",
+      "to": "compositions/comp-001/room-stretch-20261011/verification-receipt.json",
+      "sha256": "6b120bad243bef850b1ea151cff8d4b29c3e1a8f55665d832654564168e183ae"
+    },
+    {
+      "from": "projects/god-here/room-tone-report.json",
+      "to": "compositions/comp-001/room-tone-report.json",
+      "sha256": "bb616355c6d328c93d19247fa01fa48d5ee2fa1b1ad2faac3bee315285acd788"
+    },
+    {
+      "from": "projects/god-here/segmentation-report.json",
+      "to": "compositions/comp-001/segmentation-report.json",
+      "sha256": "92f28bebb7d1542e7368fdb40a859c790968352cef572e929ca4cf128f197aaf"
+    },
+    {
+      "from": "projects/god-here/segmentation-validation.json",
+      "to": "compositions/comp-001/segmentation-validation.json",
+      "sha256": "c5d0f5d9d9f2330cbb23ab4bee02d2b4bc03e4d7efd8e5bd82e5cb448f6b0064"
+    },
+    {
+      "from": "projects/god-here/selfie-trial-report.json",
+      "to": "compositions/comp-001/selfie-trial-report.json",
+      "sha256": "e3aea100853c106c2d4a111aa69d417fd4a1ab270c21749b8a194a63b285b23f"
+    },
+    {
+      "from": "projects/god-here/soundstage-report.json",
+      "to": "compositions/comp-001/soundstage-report.json",
+      "sha256": "d8de429462578d827b525cf2e0b770a1e58d3441503e06aafec034411ea84e2a"
+    },
+    {
+      "from": "projects/god-here/source-registration.json",
+      "to": "compositions/comp-001/source-registration.json",
+      "sha256": "84a2f0e24d8a94837c5ee771650daaf5771ec77000ffee5166b928650b7fff00"
+    },
+    {
+      "from": "projects/god-here/transcript.provisional.json",
+      "to": "compositions/comp-001/transcript.provisional.json",
+      "sha256": "ffa7570eba256b4106a86bbddb09087098cb357bece433fc7fa4c96645da0571"
+    },
+    {
+      "from": "projects/god-here/units.json",
+      "to": "compositions/comp-001/units.json",
+      "sha256": "f89d9eda9eda8ed0082769c7c43c788ffd66d4766e01967b1194a8230374f877"
+    },
+    {
+      "from": "projects/god-here/variation-17.schedule.json",
+      "to": "compositions/comp-001/variation-17.schedule.json",
+      "sha256": "e49fdc1ef9db7e16b7082bc4bda6e40f76772db461a0554404c4ab84d25e9d47"
+    },
+    {
+      "from": "projects/god-here/variation-29.schedule.json",
+      "to": "compositions/comp-001/variation-29.schedule.json",
+      "sha256": "072218ed04bc9bcc06359001b88761df72c50c86da6c81773b6408617f8253d1"
+    },
+    {
+      "from": "projects/god-here/variation-43.schedule.json",
+      "to": "compositions/comp-001/variation-43.schedule.json",
+      "sha256": "229fa3a0d2d90ad65b5d2277aab6b7db0ae000fbdbbec7ab83332127d0c19157"
+    },
+    {
+      "from": "projects/god-here/visual-mask-inspection.json",
+      "to": "compositions/comp-001/visual-mask-inspection.json",
+      "sha256": "a9c040212a1dbae27e25c5358b43a3af6f2af08b606b68e78974839518b97a49"
+    }
+  ]
+}

@@ -77,6 +77,24 @@ class InstalledWheelTests(unittest.TestCase):
         self.assertEqual({name for name in names if name.startswith('amp/_runtime/')},
                          {'amp/_runtime/'+name for name in self.runtime_files})
         self.assertFalse(any(name.endswith(('.mp4','.wav','.flac','.ttf','.woff','.xlsx')) for name in names))
+        self.assertFalse(any(name.startswith(('projects/', 'compositions/')) for name in names))
+
+    def test_installed_cli_accepts_a_second_composition_without_bundled_artwork(self):
+        composition=self.consumer/'independent-composition';composition.mkdir(exist_ok=True)
+        config={'schema_version':'1.0','project':'independent-study','fps':30,
+                'performers':{'only':{'style':'pressure'}},
+                'layouts':{'view':{'registered':True,'fields':[{'performer':'only','span':[0,1]}]}},
+                'shots':[{'id':'one','start':0,'end':1,'layout':'view'}],'cues':[]}
+        (composition/'composition.json').write_text(json.dumps(config))
+        for option in ('--composition','--project'):
+            result=self.run_command([str(self.python),'-I','-m','amp.cli','validate',option,str(composition)],self.consumer)
+            self.assertTrue(json.loads(result.stdout)['valid'])
+            self.assertNotIn('god-here',result.stdout+result.stderr)
+        missing=subprocess.run([str(self.python),'-I','-m','amp.cli','validate'],cwd=self.consumer,
+                               env=self.environment,text=True,capture_output=True,timeout=30)
+        self.assertEqual(missing.returncode,2)
+        self.assertIn('Select a composition',missing.stderr)
+        self.assertNotIn('god-here',missing.stdout+missing.stderr)
 
     def test_installed_wheel_preflights_both_adapters_and_executes_complete_fx_pack(self):
         result=self.run_command([str(self.python),'-I',str(self.probe),str(self.consumer)],self.consumer)

@@ -7,7 +7,8 @@ from pathlib import Path
 def main():
     parser = argparse.ArgumentParser(description="Source-addressable postproduction")
     parser.add_argument("command", choices=["validate", "qualify", "audio", "render", "generate", "revision", "replay", "track", "execute"])
-    parser.add_argument("--project", default="projects/god-here")
+    parser.add_argument("--composition", "--project", dest="project",
+                        help="Composition directory, registered ID or alias; --project remains compatible")
     parser.add_argument("--source")
     parser.add_argument("--audio")
     parser.add_argument("--output")
@@ -70,11 +71,15 @@ def main():
             return 2
         print(json.dumps(result, indent=2))
         return 0
+    from .composition import resolve_composition
+    try:
+        project = resolve_composition(args.project)
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        parser.error(str(exc))
     if args.command in ("qualify", "generate"):
         from fractions import Fraction
         from .generation import frame_units, generate_schedule
         from .qualification import audit_qualification
-        project = Path(args.project)
         review_path = Path(args.qualification) if args.qualification else project / "qualification.json"
         try:
             units = json.loads((project / "units.json").read_text())["units"]
@@ -113,7 +118,6 @@ def main():
     from .audio import make_candidates, expressive_audio, expressive_output_paths
     from .core import validate, write_json, require_distinct_outputs
     from .render import render, remix
-    project = Path(args.project)
     config = json.loads((project / "composition.json").read_text())
     if args.command == "validate":
         print(json.dumps(validate(config)))
