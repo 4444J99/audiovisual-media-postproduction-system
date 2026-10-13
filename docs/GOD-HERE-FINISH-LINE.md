@@ -1,6 +1,6 @@
 # God-here: verification and finish line
 
-Updated 12 October 2026. This is the current production decision record. Older reports remain evidence of their own dates, not current completion certificates.
+Updated 13 October 2026. This is the current production decision record. Older reports remain evidence of their own dates, not current completion certificates.
 
 ## Two finish lines
 
@@ -28,7 +28,9 @@ The inherited catalogue represents 3,228 identities and 13 directly recovered pr
 
 The [existing main URL](https://god-here-five-realities.ajpadavano.chatgpt.site/) remains the canonical entry point. The published Studio, recovered private studies, source review and project documents use owner-gated server routes. Small protected assets are held server-only; large protected assets resolve through a fixed R2 asset map after the owner check. Protected assets are absent from the public static build. Existing public media routes and their 52 fixed registrations are retained, and the published build keeps the previous main experience at `/experience.html`. Source history supplies rollback.
 
-Version 18 is live; the [current publication receipt](../manifests/acceptance/god-here-studio-publication.json) records source `4d70e621e754f27d57359adabc93c0cfa5e91ab2`, successful deployment at environment revision 9, access checks, all 52 public registrations and all 41 protected large-asset registrations. Temporary upload administration is explicitly disabled, including for the old token. Gate 1 still needs owner-session browser navigation/playback acceptance; HTTP and byte verification do not establish that pass. The older v11 workbench receipt remains a frozen historical checkpoint.
+Version 18 is a historical deployment checkpoint; the [current publication receipt](../manifests/acceptance/god-here-studio-publication.json) records source `4d70e621e754f27d57359adabc93c0cfa5e91ab2`, successful deployment at environment revision 9, access checks, all 52 public registrations and all 41 protected large-asset registrations. Temporary upload administration is explicitly disabled, including for the old token. Gate 1 still needs owner-session browser navigation/playback acceptance; HTTP and byte verification do not establish that pass. The older v11 workbench receipt remains a frozen historical checkpoint.
+
+The [13 October control-plane reconciliation](../manifests/acceptance/god-here-release-reconciliation-2026-10-13.json) confirms successful published **version 23**, source `66944024866fd332518186325531f763b471718b`, at environment revision 9. This supersedes v18 as the current observed release and v22 as the latest reviewed publication record. It does not rerun access, media, browser, text-scaling or physical-device checks. Reconcile Site-only source changes before rebuilding from this GitHub tree; source equivalence is not yet established.
 
 Keep the original evaluation site accessible for exporting browser-local records. Its database overview reports no bindings or tables. Saved reviews and audience responses therefore cannot be claimed migrated merely by copying its application. Export them from the original browser/origin, import the matching-source patch into the mounted evaluation application, and retain the original export alongside the imported copy.
 
@@ -103,6 +105,6 @@ The wording and order below come from the [preserved foundation backlog](foundat
 
 ## Working rule
 
-Until the first edition is selected and finished, new creative experiments must answer an unresolved decision in that edit. The broader system gates remain visible and can proceed when their own inputs are ready. Keep source preservation, software correctness, perceptual review and artist approval as separate states. An unavailable artifact stays unavailable; a broken control stays open until reproduced and checked; a rendered option is not an accepted shot.
+The [13 October evolution directive](GOD-HERE-EVOLUTION-2026-10-13.md) governs sequencing: qualify a usable source subset, then advance the authored edition and generative prototype concurrently within admitted resources. Experiments must answer a recorded decision in either path. The broader system gates remain visible and can proceed when their own inputs are ready. Keep source preservation, software correctness, perceptual review and artist approval as separate states. An unavailable artifact stays unavailable; a broken control stays open until reproduced and checked; a rendered option is not an accepted shot.
 
-The next creative decision is the matched sound-and-picture passage. Once it is selected, finish the complete film with that treatment before expanding into further reconstruction or additional editions.
+The next creative decision is the matched sound-and-picture passage. Once it is selected, extend its treatment into the complete authored edition while developing nested vocabulary and three structurally distinct offline performances from admitted material. Neither a finished linear edition nor all thirty reconstructed views is a prerequisite for that prototype. See [source qualification](GOD-HERE-QUALIFICATION.md) for the executable P1/P4 admission boundary; valid records do not substitute for listening or artistic review.

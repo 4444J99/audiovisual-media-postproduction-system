@@ -3,12 +3,13 @@ from __future__ import annotations
 import hashlib
 import json
 import math
-import random
 import subprocess
 from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
+
+from .generation import generate_schedule  # Retained public import for existing consumers.
 
 
 STYLES = {"pressure", "lag", "refraction", "residue", "erosion"}
@@ -249,36 +250,3 @@ def composite(image, history, config, t, *, mode="hard", overrides=None, layers=
             local.paste(aperture, (0, 0), mask)
             out.paste(local, (left, 0))
     return out
-
-
-def generate_schedule(units, seed, count=5):
-    rng = random.Random(seed)
-    by_id = {u["id"]: u for u in units}
-    eligible = [u for u in units if u.get("eligible")]
-    if len(eligible) < 2:
-        raise ValueError("Not enough qualified source units")
-    selected = eligible[0]
-    events, clock = [], 0.0
-    for i in range(count):
-        if not 0 <= selected["start"] < selected["end"]:
-            raise ValueError("Invalid source unit")
-        duration = selected["end"] - selected["start"]
-        events.append({"unit": selected["id"], "source_start": selected["start"], "source_end": selected["end"],
-                       "output_start": round(clock, 6), "output_end": round(clock + duration, 6)})
-        clock += duration
-        choices = [by_id[x] for x in selected["allowed_next"] if x in by_id and by_id[x].get("eligible")]
-        choices = [x for x in choices if sum(e["unit"] == x["id"] for e in events) < 2]
-        if i < count - 2:
-            nonterminals = [x for x in choices if not x.get("terminal")]
-            if nonterminals:
-                choices = nonterminals
-        elif i == count - 2:
-            terminals = [x for x in choices if x.get("terminal")]
-            if terminals:
-                choices = terminals
-        if not choices and i + 1 < count:
-            raise ValueError("Transition grammar exhausted")
-        if choices:
-            selected = rng.choice(choices)
-    return {"schema_version": "1.0", "seed": seed, "rules_version": "1.0", "authored_reordering": True,
-            "text_verification": "provisional; no invented wording", "events": events, "duration": round(clock, 6)}

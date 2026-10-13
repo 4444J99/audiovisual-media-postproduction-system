@@ -2,11 +2,11 @@
 
 Owner: god-here production in 4444J99/audiovisual-media-postproduction-system.
 
-This documentation-only directive preserves the current session's integrated planning outcome. The full artist-facing deliverable is **god-here-full-evolution-plan-2026-10-13.md**. This file is the repository owner for its implementation sequence and acceptance changes. It does not certify new implementation or close any existing issue.
+This directive preserves the current session's integrated planning outcome. The full artist-facing deliverable is **god-here-full-evolution-plan-2026-10-13.md**. This file is the repository owner for its implementation sequence and acceptance changes. The bounded implementation receipt below records code separately from source/artistic acceptance and closes no existing issue.
 
 ## Current evidence and intent
 
-PRs #55 and #56 are merged. Do not restart their consolidation. The latest reviewed mobile report records Site version 22; current main documentation still describes earlier release checkpoints, so source and deployed repairs must be reconciled before new mutation. The accepted color r2 pass is a color/motion-stability result; it is not accepted reconstruction. The source is the surviving edited film, with unavailable original camera recordings. Two camera families in that edit do not provide simultaneous alternate coverage.
+PRs #55 and #56 are merged. Do not restart their consolidation. The supplied plan reviewed Site version 22. A fresh authenticated control-plane read now confirms successful published version 23, source `66944024866fd332518186325531f763b471718b`, environment revision 9; see the [release reconciliation receipt](../manifests/acceptance/god-here-release-reconciliation-2026-10-13.json). Source equivalence and Site-only repairs must still be reconciled before Studio mutation. The historical v18/v22 receipts retain their original scope. The accepted color r2 pass is a color/motion-stability result; it is not accepted reconstruction. The source is the surviving edited film, with unavailable original camera recordings. Two camera families in that edit do not provide simultaneous alternate coverage.
 
 The October 13 direction makes reduction, density, nested action/dialogue/expression containers, variable recurrence and compositionally unique new performances core scope. The complete wide shot remains proportional and unobscured while additional layers use the surrounding canvas. The existing site's Review, Compare, Compose, Library and Project surfaces remain the delivery home.
 
@@ -54,8 +54,12 @@ The complete artist-facing plan contains the recent-conversation coverage matrix
 
 ## Verification and merge condition
 
-This is a planning-only change: no media, source transcript, private photographs, raw chat exports, model weights, task-state changes or deployed code are included. Review checks concern coverage, evidence labels, current PR merge facts, dependency order and preservation of existing scope. No production test is newly claimed.
+This change includes source-qualification validation, explicit linguistic scheduling admission and a media-free CLI audit/preflight. Existing source-mixture scheduling remains available without recertifying its provisional wording. The real source has 3,360 pending frames and zero listened unit reviews. No media, transcript corrections, private photographs, raw chat exports, model weights, task-state transitions or deployment changes are included. Focused verification and limits are recorded in [the implementation receipt](../manifests/acceptance/god-here-qualification-2026-10-13.json).
 
-Merge condition: documentation review confirms this directive preserves current decisions and remains consistent with the named acceptance owners. Implementation completion remains governed by the owning predicates in each packet.
+Merge condition: scoped code and documentation review confirms fail-closed linguistic admission, preserved historical behavior and scope, and consistency with the named acceptance owners. Implementation completion remains governed by the owning predicates in each packet.
 
 Sources: [PR 55](https://github.com/4444J99/audiovisual-media-postproduction-system/pull/55), [PR 56](https://github.com/4444J99/audiovisual-media-postproduction-system/pull/56), [existing finish-line ledger](GOD-HERE-FINISH-LINE.md), and current saved project reports reviewed on 13 October 2026.
+
+## Implemented qualification boundary
+
+See [the executable contract and commands](GOD-HERE-QUALIFICATION.md). Interval dispositions cover the full immutable source; only explicitly listened, source-bound unit records can enter the new linguistic mode. Missing records remain pending. Passing schema validation neither authenticates a reviewer nor establishes semantic dependencies, legal joins, usable sound/picture, novelty, physical acceptance or artistic approval. P1/P4 remain incomplete until their actual review and container obligations are satisfied.

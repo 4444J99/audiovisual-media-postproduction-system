@@ -6,7 +6,7 @@ from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(description="Source-addressable postproduction")
-    parser.add_argument("command", choices=["validate", "audio", "render", "generate", "revision", "replay", "track", "execute"])
+    parser.add_argument("command", choices=["validate", "qualify", "audio", "render", "generate", "revision", "replay", "track", "execute"])
     parser.add_argument("--project", default="projects/god-here")
     parser.add_argument("--source")
     parser.add_argument("--audio")
@@ -15,6 +15,8 @@ def main():
     parser.add_argument("--end", type=float)
     parser.add_argument("--width", type=int, default=1280)
     parser.add_argument("--seed", type=int, default=17)
+    parser.add_argument("--generation-mode", choices=["source-mixture", "linguistic"], default="source-mixture")
+    parser.add_argument("--qualification", help="Source-bound review record; defaults to PROJECT/qualification.json")
     parser.add_argument("--mode", choices=["hard", "soft", "spill"], default="hard")
     parser.add_argument("--layers", action="store_true")
     parser.add_argument("--typography", action="store_true")
@@ -68,8 +70,48 @@ def main():
             return 2
         print(json.dumps(result, indent=2))
         return 0
+    if args.command in ("qualify", "generate"):
+        from fractions import Fraction
+        from .generation import frame_units, generate_schedule
+        from .qualification import audit_qualification
+        project = Path(args.project)
+        review_path = Path(args.qualification) if args.qualification else project / "qualification.json"
+        try:
+            units = json.loads((project / "units.json").read_text())["units"]
+            config = json.loads((project / "composition.json").read_text())
+            source, qualification = None, None
+            if args.command == "qualify" or args.generation_mode == "linguistic":
+                registrations = json.loads((project / "source-registration.json").read_text())["sources"]
+                matching = [item for item in registrations if item["sha256"] == config["source_sha256"]]
+                if len(matching) != 1:
+                    raise ValueError("Expected one registered composition source")
+                source = {key: matching[0][key] for key in ("sha256", "frame_count", "fps")}
+                if Fraction(source["fps"]["numerator"], source["fps"]["denominator"]) != Fraction(str(config["fps"])):
+                    raise ValueError("Composition and registration timebases disagree")
+                qualification = json.loads(review_path.read_text())
+            elif args.qualification:
+                raise ValueError("Use --generation-mode linguistic with --qualification")
+            if args.command == "qualify":
+                result = audit_qualification(qualification, source=source, units=frame_units(units, source))
+            else:
+                result = generate_schedule(units, args.seed, generation_mode=args.generation_mode,
+                                           qualification=qualification, source=source)
+                if not args.dry_run:
+                    if not args.source:
+                        raise ValueError("generate requires --source unless --dry-run is used")
+                    from .core import require_distinct_outputs
+                    from .render import remix
+                    protected = [project / name for name in ("units.json", "composition.json", "source-registration.json")]
+                    protected.append(review_path)
+                    require_distinct_outputs(protected, [args.output, Path(args.output).with_suffix(".schedule.json")])
+                    remix(args.source, result, args.output)
+        except (OSError, ValueError, KeyError, TypeError, ZeroDivisionError) as exc:
+            print(json.dumps({"status": "blocked", "error": str(exc)}))
+            return 2
+        print(json.dumps(result, indent=2))
+        return 0
     from .audio import make_candidates, expressive_audio, expressive_output_paths
-    from .core import generate_schedule, validate, write_json, require_distinct_outputs
+    from .core import validate, write_json, require_distinct_outputs
     from .render import render, remix
     project = Path(args.project)
     config = json.loads((project / "composition.json").read_text())
@@ -90,13 +132,6 @@ def main():
         print(json.dumps(render(args.source, args.audio, config, args.output, start=args.start, end=args.end,
                          width=args.width, fields=not args.original_picture, mode=args.mode, layers=args.layers,
                          typography=args.typography)))
-    elif args.command == "generate":
-        if not args.source:
-            parser.error("--source should point to a source-length linear workprint")
-        units = json.loads((project / "units.json").read_text())["units"]
-        schedule = generate_schedule(units, args.seed)
-        remix(args.source, schedule, args.output)
-        print(json.dumps(schedule))
     elif args.command == "track":
         from .revision import track_region
         if not args.source or args.end is None or not args.roi:
