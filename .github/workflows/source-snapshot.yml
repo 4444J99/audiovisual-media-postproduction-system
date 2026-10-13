@@ -1,0 +1,37 @@
+name: Exact source snapshot
+
+"on":
+  pull_request:
+    paths:
+      - .github/workflows/source-snapshot.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+          lfs: false
+          submodules: false
+      - name: Archive only the selected tracked source
+        run: |
+          mkdir -p "$RUNNER_TEMP/source-snapshot"
+          git archive --format=tar HEAD > "$RUNNER_TEMP/source-snapshot/source.tar"
+          git rev-parse HEAD > "$RUNNER_TEMP/source-snapshot/revision.txt"
+          git rev-parse HEAD^{tree} > "$RUNNER_TEMP/source-snapshot/tree-sha.txt"
+          git ls-tree -r HEAD > "$RUNNER_TEMP/source-snapshot/tree.txt"
+          cd "$RUNNER_TEMP/source-snapshot"
+          sha256sum source.tar revision.txt tree-sha.txt tree.txt > SHA256SUMS
+      - name: Retain source for reproducible off-host checks
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: exact-source-snapshot
+          path: ${{ runner.temp }}/source-snapshot/
+          if-no-files-found: error
+          retention-days: 1
