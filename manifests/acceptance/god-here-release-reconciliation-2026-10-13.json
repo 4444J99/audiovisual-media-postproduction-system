@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "observed_date": "2026-10-13",
+  "method": "authenticated Sites get_site, list_site_versions and get_deployment_status; no new deployment",
+  "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+  "url": "https://god-here-five-realities.ajpadavano.chatgpt.site",
+  "access_mode": "public",
+  "version_number": 23,
+  "version_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4~appgver_739cfb77e86881918f0f84a88d7177fc",
+  "source_commit_sha": "66944024866fd332518186325531f763b471718b",
+  "deployment_id": "appgdep_6acd43bfc5788191ad71cea52ee54a0e",
+  "deployment_status": "succeeded",
+  "deployment_updated_at": "2026-10-12T20:32:31.852693+00:00",
+  "environment_revision": 9,
+  "archive": {
+    "sha256": "ce916b7f71e031c110062f68961931e7855cdbe11bd43caff39c931e7998f71d",
+    "size_bytes": 265328640,
+    "file_count": 394
+  },
+  "previous_reviewed_version": {
+    "number": 22,
+    "source_commit_sha": "42ebbe704b8431afecb1dba1c94640a19a3504f3"
+  },
+  "scope": {
+    "control_plane": "verified",
+    "media_byte_checks": "not rerun",
+    "browser_controls": "not rerun",
+    "text_scaling": "not retested",
+    "physical_device": "not tested",
+    "site_source_to_github_equivalence": "not established"
+  },
+  "next_action": "Reconcile the v23 Site source repairs with GitHub before any Studio rebuild; retain existing public/protected media registrations and access controls."
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "frame_count": 3360,
+    "fps": {
+      "numerator": 30,
+      "denominator": 1
+    }
+  },
+  "intervals": [
+    {
+      "id": "source-review-pending",
+      "start_frame": 0,
+      "end_frame": 3360,
+      "disposition": "pending"
+    }
+  ],
+  "unit_reviews": []
+}

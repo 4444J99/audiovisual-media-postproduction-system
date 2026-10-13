@@ -1,4 +1,5 @@
 from collections import deque
+from fractions import Fraction
 import hashlib
 import json
 import subprocess
@@ -94,9 +95,16 @@ def remix(video, schedule, output):
     receipt_path = output.with_suffix(".schedule.json")
     require_distinct_outputs([video], [output, receipt_path])
     source_digest = sha256(video)
+    if schedule.get("generation_mode") == "linguistic" and source_digest != schedule.get("source", {}).get("sha256"):
+        raise ValueError("Linguistic remix requires the exact reviewed source; derivative bindings are not yet supported")
     metadata = probe(video)
     stream = next(s for s in metadata["streams"] if s["codec_type"] == "video")
     numerator, denominator = map(int, stream["avg_frame_rate"].split("/"))
+    if schedule.get("generation_mode") == "linguistic":
+        source = schedule["source"]
+        expected_rate = Fraction(source["fps"]["numerator"], source["fps"]["denominator"])
+        if Fraction(numerator, denominator) != expected_rate or int(stream.get("nb_frames", -1)) != source["frame_count"]:
+            raise ValueError("Linguistic remix media timebase differs from the reviewed source")
     fps = numerator / denominator
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="amp-remix-", dir=output.parent) as work:
