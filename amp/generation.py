@@ -57,7 +57,7 @@ def generate_schedule(units, seed, count=5, *, generation_mode="source-mixture",
     rng = random.Random(seed)
     by_id = {u["id"]: u for u in units}
     eligible = [u for u in units if u.get("eligible") is True]
-    if len(eligible) < 2:
+    if len(eligible) < (1 if count == 1 else 2):
         raise ValueError("Not enough admitted source units")
     selected = eligible[0]
     events, clock = [], 0.0

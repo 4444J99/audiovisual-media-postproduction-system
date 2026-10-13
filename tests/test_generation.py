@@ -67,6 +67,18 @@ class GenerationAdmissionTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             generate_schedule(UNITS + [UNITS[0]], 17)
 
+    def test_one_event_accepts_one_reviewed_unit_without_a_transition(self):
+        document = reviewed()
+        document["unit_reviews"] = document["unit_reviews"][:1]
+        try:
+            result = generate_schedule(UNITS[:1], 17, count=1, generation_mode="linguistic",
+                                       source=SOURCE, qualification=document)
+        except ValueError as exc:
+            self.fail(f"A single reviewed excerpt was rejected: {exc}")
+        self.assertEqual(len(result["events"]), 1)
+        self.assertEqual(result["events"][0]["unit"], "0")
+        self.assertEqual(result["duration"], 1)
+
     def test_cli_real_source_audit_and_generation_are_distinct(self):
         audit = subprocess.run([sys.executable, "-m", "amp.cli", "qualify"], cwd=ROOT,
                                capture_output=True, text=True, timeout=10)
@@ -102,6 +114,60 @@ class GenerationAdmissionTests(unittest.TestCase):
                         remix(Path(directory) / "source.mp4", schedule, destination)
                     run.assert_not_called()
                     self.assertFalse(destination.parent.exists())
+
+    def test_remix_rejects_changed_seconds_or_frame_provenance(self):
+        from amp.render import remix
+        original = generate_schedule(UNITS, 17, count=2, generation_mode="linguistic", source=SOURCE, qualification=reviewed())
+        changes = [("source_start", .5), ("source_end", .5),
+                   ("source_start_frame", True), ("source_end_frame", 91),
+                   ("output_start_frame", 1), ("output_end_frame", 2),
+                   ("output_start", .5), ("source_start", float("nan"))]
+        with tempfile.TemporaryDirectory() as directory:
+            for index, (field, value) in enumerate(changes):
+                schedule = copy.deepcopy(original)
+                schedule["events"][0][field] = value
+                destination = Path(directory) / f"{index}-{field}" / "out.mp4"
+                # Substitute only external media reads/encoding. Old code completes
+                # successfully, so the expected rejection detects the real gap.
+                def encode(args):
+                    Path(args[-1]).write_bytes(b"synthetic encoded output")
+                with self.subTest(field=field, value=value), \
+                        patch("amp.render.sha256", return_value=SOURCE["sha256"]), \
+                        patch("amp.render.probe", return_value={"streams": [{"codec_type": "video", "avg_frame_rate": "30/1", "nb_frames": "90"}]}), \
+                        patch("amp.render.run", side_effect=encode) as run:
+                    with self.assertRaises(ValueError):
+                        remix(Path(directory) / "source.mp4", schedule, destination)
+                    run.assert_not_called()
+                    self.assertFalse(destination.parent.exists())
+
+    def test_linguistic_remix_renders_exact_frame_order(self):
+        import numpy as np
+        from amp.core import sha256
+        from amp.render import remix
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source, output = root / "source.mp4", root / "output.mp4"
+            subprocess.run(["ffmpeg", "-v", "error", "-f", "lavfi", "-i", "color=red:s=160x90:r=30:d=0.1",
+                            "-f", "lavfi", "-i", "color=blue:s=160x90:r=30:d=0.1",
+                            "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo", "-filter_complex",
+                            "[0:v][1:v]concat=n=2:v=1:a=0[v]", "-map", "[v]", "-map", "2:a",
+                            "-t", "0.2", "-c:v", "libx264", "-threads", "1", "-c:a", "aac", str(source)],
+                           check=True, timeout=20)
+            schedule = {"generation_mode": "linguistic", "source": {"sha256": sha256(source), "frame_count": 6,
+                        "fps": {"numerator": 30, "denominator": 1}}, "duration": .2,
+                        "events": [{"source_start": .1, "source_end": .2, "source_start_frame": 3, "source_end_frame": 6,
+                                    "output_start": 0, "output_end": .1, "output_start_frame": 0, "output_end_frame": 3},
+                                   {"source_start": 0, "source_end": .1, "source_start_frame": 0, "source_end_frame": 3,
+                                    "output_start": .1, "output_end": .2, "output_start_frame": 3, "output_end_frame": 6}]}
+            remix(source, schedule, output)
+            pixels = subprocess.check_output(["ffmpeg", "-v", "error", "-i", str(output), "-map", "0:v:0",
+                                              "-f", "rawvideo", "-pix_fmt", "rgb24", "pipe:1"], timeout=20)
+            frames = np.frombuffer(pixels, dtype=np.uint8).reshape((-1, 90, 160, 3))
+            self.assertEqual(len(frames), 6)
+            self.assertGreater(int(frames[0, 45, 80, 2]), 200)
+            self.assertLess(int(frames[0, 45, 80, 0]), 25)
+            self.assertGreater(int(frames[3, 45, 80, 0]), 200)
+            self.assertLess(int(frames[3, 45, 80, 2]), 25)
 
 
 if __name__ == "__main__":

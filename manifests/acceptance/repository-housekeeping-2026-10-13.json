@@ -1,0 +1,269 @@
+{
+  "schema_version": "1.0",
+  "repository": "4444J99/audiovisual-media-postproduction-system",
+  "repository_id": 1409689012,
+  "observed_date": "2026-10-13",
+  "initial_main": "45bf7815aba9f183f25a520bb73e971db1202ef0",
+  "pr57_merged_main": "868b015778f34625fd1f04270eacbe659a570aad",
+  "pr57_merged_at": "2026-10-13T18:34:24Z",
+  "branches": [
+    {
+      "branch": "feat/audiovisual-fx-rack",
+      "original_sha": "c6656685603022193617405c87b831d28f570299",
+      "archive_tag": "archive/2026-10-13/feat/audiovisual-fx-rack",
+      "scope": "remote branch",
+      "landing_proof": {
+        "kind": "ancestor",
+        "main": "868b015778f34625fd1f04270eacbe659a570aad"
+      },
+      "status": "branch_reference_removed_exact_tip_preserved_in_verified_archive_tag",
+      "archive_tag_object": "b64aa76f9d6de2bb5151fd9f49c9633a5537a454",
+      "archive_tag_readback": "exact annotated tag and peeled commit match live remote",
+      "remote_branch_absent_verified": true
+    },
+    {
+      "branch": "feat/room-tone-refinement-20261011",
+      "original_sha": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "archive_tag": "archive/2026-10-13/feat/room-tone-refinement-20261011",
+      "scope": "remote branch",
+      "landing_proof": {
+        "kind": "ancestor",
+        "main": "868b015778f34625fd1f04270eacbe659a570aad"
+      },
+      "status": "branch_reference_removed_exact_tip_preserved_in_verified_archive_tag",
+      "archive_tag_object": "d6c431079da90ee0aacb248551a3356e7d7097cf",
+      "archive_tag_readback": "exact annotated tag and peeled commit match live remote",
+      "remote_branch_absent_verified": true
+    },
+    {
+      "branch": "fix/add-mit-license-20261010",
+      "original_sha": "97d8657fa0a1401a0dd56aa1ae965681bf35c2d5",
+      "archive_tag": "archive/2026-10-13/fix/add-mit-license-20261010",
+      "scope": "remote branch",
+      "landing_proof": {
+        "kind": "equivalent_patch_and_exact_license_blob",
+        "main": "868b015778f34625fd1f04270eacbe659a570aad",
+        "merged_pr": 52,
+        "sha256": "6d319436c6a6428d1cfa592e3386aef31cb02e04d67731a577b68395c5e963fc"
+      },
+      "status": "branch_reference_removed_exact_tip_preserved_in_verified_archive_tag",
+      "archive_tag_object": "cfbb951f6720667c47064e41cc245b2825c1d65f",
+      "archive_tag_readback": "exact annotated tag and peeled commit match live remote",
+      "remote_branch_absent_verified": true
+    },
+    {
+      "branch": "foundation/directable-postproduction",
+      "original_sha": "bb479256be5fd802ef536b6417f1fea445d596be",
+      "archive_tag": "archive/2026-10-13/foundation/directable-postproduction",
+      "scope": "remote branch",
+      "landing_proof": {
+        "kind": "complete_byte_exact_inactive_snapshot",
+        "main": "868b015778f34625fd1f04270eacbe659a570aad",
+        "files": [
+          {
+            "original_path": ".gitignore",
+            "main_path": "docs/foundation-archive/snapshot/.gitignore.txt",
+            "sha256": "adc1bcf0b692695f8f03d25fb18ef7444adc264a4150a8b35842326112cd302b"
+          },
+          {
+            "original_path": "AGENTS.md",
+            "main_path": "docs/foundation-archive/snapshot/AGENTS.md.txt",
+            "sha256": "b3c358d1ae0c5e54ab2e786561254b77c750914013b0073622d2248ea0f82c23"
+          },
+          {
+            "original_path": "README.md",
+            "main_path": "docs/foundation-archive/snapshot/README.md.txt",
+            "sha256": "7250a5ea4e2145ec5fe1c0aae8a4ea061a76ac9697fcc36fe1b4f34e3cb8d75e"
+          },
+          {
+            "original_path": "docs/architecture.md",
+            "main_path": "docs/foundation-archive/snapshot/docs/architecture.md.txt",
+            "sha256": "71889a2b3caba1ce9c8c85f7b966abd99b1ad0ef0f5d88dc106856805586b7a5"
+          },
+          {
+            "original_path": "docs/roadmap.md",
+            "main_path": "docs/foundation-archive/snapshot/docs/roadmap.md.txt",
+            "sha256": "04547739b61ca193efbae3c977dbd53849eb35152be13f13d94345d66a54fdff"
+          },
+          {
+            "original_path": "docs/standards-adoption.md",
+            "main_path": "docs/foundation-archive/snapshot/docs/standards-adoption.md.txt",
+            "sha256": "a017e27ffb0047b82854214cd38a8a89b7327e5840cc60eb44dd2237feaba0be"
+          },
+          {
+            "original_path": "examples/revision-proposal.json",
+            "main_path": "docs/foundation-archive/snapshot/examples/revision-proposal.json.txt",
+            "sha256": "4a75f2647f77f7a67fe914238df443bd4b3a43850a555e8ebe470c4dabead739"
+          },
+          {
+            "original_path": "planning/epics.json",
+            "main_path": "docs/foundation-archive/snapshot/planning/epics.json.txt",
+            "sha256": "b03de71ad19bc3a2df852af3cfbea44814269b9b3458223930f081569124acdf"
+          },
+          {
+            "original_path": "projects/god-here/README.md",
+            "main_path": "docs/foundation-archive/snapshot/projects/god-here/README.md.txt",
+            "sha256": "ffda8c59b1c6f1f5f10e2a9a326181b8a7ee87d27845e476fc2c8208048a99cc"
+          },
+          {
+            "original_path": "requirements-dev.txt",
+            "main_path": "docs/foundation-archive/snapshot/requirements-dev.txt.txt",
+            "sha256": "756cc9e506ae4ee1a6f6c0507088b5cfc0dc8ba350fb2d2d46f1ffa72033adb6"
+          },
+          {
+            "original_path": "schemas/revision-proposal.schema.json",
+            "main_path": "docs/foundation-archive/snapshot/schemas/revision-proposal.schema.json.txt",
+            "sha256": "55ef92b1a7e355b35922287576e14901176bd7e63a7da1979173df9ee8d56178"
+          },
+          {
+            "original_path": "tools/validate_foundation.py",
+            "main_path": "docs/foundation-archive/snapshot/tools/validate_foundation.py.txt",
+            "sha256": "2ff2a16cb10f8b9fbe27d1fc156afe41edd6ff88d95e0f5570c59dd87a8b76f1"
+          }
+        ],
+        "historical_pr": 1,
+        "note": "Archival reconciliation, not activation or merge of the obsolete foundation tree."
+      },
+      "status": "branch_reference_removed_exact_tip_preserved_in_verified_archive_tag",
+      "archive_tag_object": "6346244f8337eed72be3b2600681084dc3726fc3",
+      "archive_tag_readback": "exact annotated tag and peeled commit match live remote",
+      "remote_branch_absent_verified": true
+    },
+    {
+      "branch": "implementation/directed-revision-proof",
+      "original_sha": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "archive_tag": "archive/2026-10-13/implementation/directed-revision-proof",
+      "scope": "remote branch",
+      "landing_proof": {
+        "kind": "ancestor",
+        "main": "868b015778f34625fd1f04270eacbe659a570aad"
+      },
+      "status": "branch_reference_removed_exact_tip_preserved_in_verified_archive_tag",
+      "archive_tag_object": "276a368d1102c5a8275d704465d69c18cf6500ae",
+      "archive_tag_readback": "exact annotated tag and peeled commit match live remote",
+      "remote_branch_absent_verified": true
+    },
+    {
+      "branch": "implementation/directed-revisions",
+      "original_sha": "e31f8acab66f2caa8760b2d552f10af60c506ab3",
+      "archive_tag": "archive/2026-10-13/implementation/directed-revisions",
+      "scope": "remote branch",
+      "landing_proof": {
+        "kind": "ancestor",
+        "main": "868b015778f34625fd1f04270eacbe659a570aad"
+      },
+      "status": "branch_reference_removed_exact_tip_preserved_in_verified_archive_tag",
+      "archive_tag_object": "6b22a608499ffb3b18ad02c6fdbdcadb5f9bfca4",
+      "archive_tag_readback": "exact annotated tag and peeled commit match live remote",
+      "remote_branch_absent_verified": true
+    },
+    {
+      "branch": "integration/unified-review-site-20261012",
+      "original_sha": "22d5ae34f683d36213e3b54ee55b176ee4e2954f",
+      "archive_tag": "archive/2026-10-13/integration/unified-review-site-20261012",
+      "scope": "remote branch",
+      "landing_proof": {
+        "kind": "ancestor",
+        "main": "868b015778f34625fd1f04270eacbe659a570aad"
+      },
+      "status": "branch_reference_removed_exact_tip_preserved_in_verified_archive_tag",
+      "archive_tag_object": "4c236fd93b394ca65f6b019b0b215cab06448d3d",
+      "archive_tag_readback": "exact annotated tag and peeled commit match live remote",
+      "remote_branch_absent_verified": true
+    },
+    {
+      "branch": "inventory/god-here-project-reconciliation-20261011",
+      "original_sha": "3ecdb13a1084c148e253c00fdeee0371de4b45a2",
+      "archive_tag": "archive/2026-10-13/inventory/god-here-project-reconciliation-20261011",
+      "scope": "remote branch",
+      "landing_proof": {
+        "kind": "ancestor",
+        "main": "868b015778f34625fd1f04270eacbe659a570aad"
+      },
+      "status": "branch_reference_removed_exact_tip_preserved_in_verified_archive_tag",
+      "archive_tag_object": "083979bd4c754957878b3b1c580fa344c8f2999d",
+      "archive_tag_readback": "exact annotated tag and peeled commit match live remote",
+      "remote_branch_absent_verified": true
+    },
+    {
+      "branch": "ui/mobile-style-alignment-20261012",
+      "original_sha": "12a90e3571eec122410687ea8f6ac304cc5e5d5b",
+      "archive_tag": "archive/2026-10-13/ui/mobile-style-alignment-20261012",
+      "scope": "remote branch",
+      "landing_proof": {
+        "kind": "ancestor",
+        "main": "868b015778f34625fd1f04270eacbe659a570aad"
+      },
+      "status": "branch_reference_removed_exact_tip_preserved_in_verified_archive_tag",
+      "archive_tag_object": "84233710dabe91b1ff8b210beda2d62ee49c2c96",
+      "archive_tag_readback": "exact annotated tag and peeled commit match live remote",
+      "remote_branch_absent_verified": true
+    },
+    {
+      "branch": "docs/god-here-evolution-20261013",
+      "original_sha": "1be54eed1b1e91f3f2aaa02c2cc5bd37099e0e3c",
+      "archive_tag": "archive/2026-10-13/docs/god-here-evolution-20261013",
+      "scope": "local branch; remote deleted by merge",
+      "landing_proof": {
+        "kind": "exact_tree_equivalence",
+        "main": "868b015778f34625fd1f04270eacbe659a570aad",
+        "merged_pr": 57
+      },
+      "status": "branch_reference_removed_exact_tip_preserved_in_verified_archive_tag",
+      "archive_tag_object": "90d019fc026e6c3485d280b89e0fac6c499326aa",
+      "archive_tag_readback": "exact annotated tag and peeled commit match live remote",
+      "remote_branch_absent_verified": true
+    }
+  ],
+  "policy": "Exact archive tags must be authenticated and peeled to original tips before compare-and-swap branch reference removal. Source files and Git objects remain retained.",
+  "worktree_disposition": "Retain active code checkout; no directory retirement.",
+  "historical_review_inventory": "repository-housekeeping-2026-10-13-review-inventory.json",
+  "old_branch_cleanup": {
+    "remote_refs_deleted_with_compare_and_swap": 9,
+    "local_obsolete_ref_deleted_with_compare_and_swap": 1,
+    "remote_heads_after_old_cleanup": {
+      "refs/heads/main": "868b015778f34625fd1f04270eacbe659a570aad"
+    },
+    "measured_at": "2026-10-13T18:49:24.156600+00:00",
+    "source_or_commit_objects_deleted": false
+  },
+  "verification": {
+    "command": "python tools/check.py",
+    "exit_code": 0,
+    "elapsed_seconds": 22.786,
+    "environment": "Existing Homebrew Python 3.14 scientific packages; temporary system-site-packages venv; existing bundled setuptools/wheel linked; installed Arial font; canonical macOS TMPDIR. No network install.",
+    "initial_result": "8 macOS path-alias failures, 1 missing-setuptools setup error and 2 missing-font skips; retained in full-check.initial.log.",
+    "implementation_files": [
+      "amp/generation.py",
+      "amp/render.py",
+      "tests/test_generation.py"
+    ],
+    "python_tests": 347,
+    "node_tests": 249,
+    "transport_score_replay": "passed",
+    "skipped": 0,
+    "evidence": "docs/housekeeping/2026-10-13/full-check.log",
+    "evidence_sha256": "a2031c38325bbb3fea62a215a9c4397569824e36035752b16c93f310385a1030",
+    "implementation_sha256": {
+      "amp/generation.py": "f3690ec67ba3840eea473613416109b094ed923ec4ccfa0fc8b09b61aca221bc",
+      "amp/render.py": "ce8c87e24744f001875e38a9411285577605bd0105ba9aece4a3c5e149080515",
+      "tests/test_generation.py": "aee2ff2847c3f36943a9fc114a9f4c87ac874fb7846ba633202541a739675169"
+    }
+  },
+  "git_object_integrity": {
+    "command": "git fsck --full --no-reflogs",
+    "exit_code": 0,
+    "output": "empty; no corrupt or dangling objects observed"
+  },
+  "final_postconditions": {
+    "required_local_branch": "main",
+    "required_remote_branch": "main",
+    "equal_live_heads": true,
+    "equal_trees": true,
+    "no_open_pull_requests": true,
+    "no_stashes": true,
+    "one_retained_worktree": true,
+    "generated_metadata_cleanup": "Only ignored .DS_Store and *.pyc in __pycache__; source/history and historical archive originals retained.",
+    "observation_location": "Final measured result is recorded in the owning housekeeping PR after merge; these are acceptance predicates, not pre-merge completion claims."
+  }
+}
