@@ -1,0 +1,50 @@
+{
+  "native_build": "2025.33230",
+  "source_main": "664a47aca1f68d84c3dd5440363b1a48ba32243f",
+  "patch": "web/fx/fixtures/message-impact.json",
+  "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+  "audio_binding": "original paired camera recording; declared substitution",
+  "unmatched_dialogue_reference": "24817c4f076a1c9fca43ebcf9825964610fc2956c1755501547de7477d173254",
+  "local_dialogue_candidate_sha256": "102b261e3f207bac28b4c1b17e8f5f9387c1f87967ab3040a9e900c2c342fa8a",
+  "human_listening": "pending",
+  "artistic_acceptance": "pending",
+  "physical_sync": "unmeasured",
+  "rebuild": "passed in isolated native component; removed test component",
+  "annotation_overlaps": 0,
+  "review_warning": "Inherited final phrase has clipped handle; review-through-112-seconds preset retained",
+  "site_v24_equivalence": "not established",
+  "native_view": "complete source anchor plus editable expression; horizontal and portrait",
+  "checkout_custody": "retain implementation checkout for disk-synced code",
+  "message-impact-verification": {
+    "frame": 2850.0,
+    "history": 1,
+    "gaps": 0,
+    "gpu_history_bytes": 11993088,
+    "compiled": "Vertex Shader Compile Results:\n\nCompiled Successfully\n\n=============\nPixel Shader Compile Results:\n\nCompiled Successfully\n",
+    "bypass_max_pixel_error": 0.0019608139991760254,
+    "wet_zero_max_pixel_error": 0.0019608139991760254,
+    "effect_mean_pixel_difference": 0.2651922106742859,
+    "portrait_size": [
+      720,
+      1280
+    ],
+    "reset_history_frames": 0,
+    "reset_audio_samples": 0,
+    "errors": ""
+  },
+  "message-impact-expression-probe": {
+    "mode": "expression",
+    "play": true,
+    "frame": 3022.0,
+    "local_time": 5.733333333333334,
+    "history_frames": 96,
+    "capture_gaps": 0,
+    "sample_rate": 44100.0,
+    "source_peak": 0.11547931283712387,
+    "processed_peak": 0.49503666162490845,
+    "audio_difference_rms": 0.1252514123916626,
+    "audio_history_samples": 132300,
+    "errors": "",
+    "warnings": ""
+  }
+}
