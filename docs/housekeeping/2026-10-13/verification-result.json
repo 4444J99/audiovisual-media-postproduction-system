@@ -1,0 +1,12 @@
+{
+  "command": "python tools/check.py",
+  "exit_code": 0,
+  "elapsed_seconds": 22.786,
+  "environment": "Existing Homebrew Python 3.14 scientific packages; temporary system-site-packages venv; existing bundled setuptools/wheel linked; installed Arial font; canonical macOS TMPDIR. No network install.",
+  "initial_result": "8 macOS path-alias failures, 1 missing-setuptools setup error and 2 missing-font skips; retained in full-check.initial.log.",
+  "implementation_files": [
+    "amp/generation.py",
+    "amp/render.py",
+    "tests/test_generation.py"
+  ]
+}

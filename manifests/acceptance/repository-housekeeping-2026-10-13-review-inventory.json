@@ -1,0 +1,630 @@
+{
+  "schema_version": "1.0",
+  "observed_date": "2026-10-13",
+  "scope": "All 10 historical PRs; complete review-thread pagination. Resolution is not inferred from merge state.",
+  "unresolved_at_start": 61,
+  "findings": [
+    {
+      "pr": 1,
+      "thread_id": "PRRT_kwDOVAYltM6qMEYc",
+      "comment_id": 4214476945,
+      "path": "README.md",
+      "reviewed_commit": "bb479256be5fd802ef536b6417f1fea445d596be",
+      "finding": "**\ud83d\udfe1 Medium \u00b7 Sensitive files are staged** When a contributor adds transcripts, performance notes, or model weights outside `/private/` in an otherwise unignored format, `.gitignore` does not exclude those files, so `git add -A` stages them and a push exposes their contents despite the stated default boundary.",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/1"
+    },
+    {
+      "pr": 1,
+      "thread_id": "PRRT_kwDOVAYltM6qMEYi",
+      "comment_id": 4214476952,
+      "path": "tools/validate_foundation.py",
+      "reviewed_commit": "bb479256be5fd802ef536b6417f1fea445d596be",
+      "finding": "**\ud83d\udfe1 Medium \u00b7 Broken heading links pass** When a Markdown link points to a missing heading in an existing file or to a missing same-page heading, `main()` checks only whether the target file exists and skips same-page fragments, so links to missing headings pass the advertised documentation-link check.",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/1"
+    },
+    {
+      "pr": 49,
+      "thread_id": "PRRT_kwDOVAYltM6qNqX2",
+      "comment_id": 4215178127,
+      "path": "amp/direction.py",
+      "reviewed_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "finding": "**\ud83c\udfaf Functional Correctness** | **\ud83d\udfe1 Minor** | **\u26a1 Quick win** **Run the source-cut check for camera cues even when `field_gain` is 0.**",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/49"
+    },
+    {
+      "pr": 49,
+      "thread_id": "PRRT_kwDOVAYltM6qNqX9",
+      "comment_id": 4215178144,
+      "path": "web/direction-review.html",
+      "reviewed_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "finding": "**\ud83d\uddc4\ufe0f Data Integrity & Integration** | **\ud83d\udfe1 Minor** | **\u26a1 Quick win**",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/49"
+    },
+    {
+      "pr": 49,
+      "thread_id": "PRRT_kwDOVAYltM6qNtVd",
+      "comment_id": 4215198613,
+      "path": "amp/direction.py",
+      "reviewed_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Handle sources without stored frame counts** For valid CFR media whose container does not expose `nb_frames` through a normal `ffprobe -show_streams` call (common with formats such as MPEG-TS and some Matroska files), this direct lookup raises `KeyError` before rendering. The preceding frame-rate check is not sufficient to guarantee the field exists; request/c",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/49"
+    },
+    {
+      "pr": 49,
+      "thread_id": "PRRT_kwDOVAYltM6qNtVg",
+      "comment_id": 4215198617,
+      "path": "web/direction-review.html",
+      "reviewed_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Preserve typography endpoints across pace changes** When the pace slider is reduced, this permanently clamps each typography cue's `output_end`; increasing the slider again cannot restore it. With the bundled recipe, dragging from +24 frames to 0 and back to +24 changes WHAT from frame 679 to 661 even though the pace control has returned to its original value,",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/49"
+    },
+    {
+      "pr": 49,
+      "thread_id": "PRRT_kwDOVAYltM6qNtVk",
+      "comment_id": 4215198626,
+      "path": "tools/prepare_direction_audio.py",
+      "reviewed_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Hash source media without reading it all into memory** For large production source files, `source.read_bytes()` allocates the entire video before audio preparation starts and can exhaust memory even though SHA-256 can be computed incrementally. This is especially problematic because the helper accepts a full-source recording while only the evaluation span is b",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/49"
+    },
+    {
+      "pr": 49,
+      "thread_id": "PRRT_kwDOVAYltM6qNtVn",
+      "comment_id": 4215198635,
+      "path": "amp/direction.py",
+      "reviewed_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Validate camera cuts whenever tracking runs** Gating the camera-cut checks on `fields` uses the wrong feature condition: a directed render with `field_gain` set to zero still runs `track_camera`, but skips the cut validation even when a field configuration was supplied, allowing a cue to track and smooth across an edit. Conversely, the `fields` variant validat",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/49"
+    },
+    {
+      "pr": 49,
+      "thread_id": "PRRT_kwDOVAYltM6qNtVs",
+      "comment_id": 4215198641,
+      "path": "web/direction-review.html",
+      "reviewed_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Restore valid state after a failed recipe import** An imported JSON object can pass the shallow version/hash/array-length checks but fail inside `show()` due to malformed nested entries; the exception is caught, but `recipe` has already been replaced with the invalid object. The panel then loses the previous valid edits and may export malformed data or keep th",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/49"
+    },
+    {
+      "pr": 49,
+      "thread_id": "PRRT_kwDOVAYltM6qNtVw",
+      "comment_id": 4215198652,
+      "path": "amp/direction.py",
+      "reviewed_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Report the expressive return only when it is applied** The recipe permits `return_gain` to be zero, in which case the expressive branch adds no delayed signal, but the render report still records `expressive_shared_mix_return: true` whenever the expressive variant was selected. This misclassifies a dry render as containing the return and can corrupt experiment",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/49"
+    },
+    {
+      "pr": 49,
+      "thread_id": "PRRT_kwDOVAYltM6qNtVz",
+      "comment_id": 4215198655,
+      "path": "web/direction-review.html",
+      "reviewed_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Enforce renderer note bounds before exporting** The renderer requires `note` to be nonempty and at most 4,000 characters, but this textarea permits both clearing the note and entering arbitrarily long text, and Export performs no validation. A normal edit can therefore produce a file advertised as an executable recipe that `validate_recipe` immediately rejects",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/49"
+    },
+    {
+      "pr": 49,
+      "thread_id": "PRRT_kwDOVAYltM6qNtV6",
+      "comment_id": 4215198664,
+      "path": "amp/direction.py",
+      "reviewed_commit": "f4b2851b25b4279bf2098569c7dc1f4ce0657a30",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Verify CFR from frame timestamps** Equality between `r_frame_rate` and `avg_frame_rate` does not prove that every frame has the same duration: FFmpeg documents `r_frame_rate` as a guessed base rate rather than a CFR indicator ([FFmpeg AVStream documentation](https://ffmpeg.org/doxygen/8.1/structAVStream.html)). If a VFR stream receives equal summary values, th",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/49"
+    },
+    {
+      "pr": 50,
+      "thread_id": "PRRT_kwDOVAYltM6qN6CU",
+      "comment_id": 4215284754,
+      "path": "amp/revision.py",
+      "reviewed_commit": "e31f8acab66f2caa8760b2d552f10af60c506ab3",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Resample audio before sample-based trimming** When `--audio` is not already 48 kHz, these hard-coded 48,000-Hz sample indices are interpreted using the input's native sample rate, so every segment is cut from the wrong source time (for example, sample 48000 is about 1.088 seconds in 44.1-kHz audio). The final `-ar 48000` only converts the already-trimmed resul",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/50"
+    },
+    {
+      "pr": 50,
+      "thread_id": "PRRT_kwDOVAYltM6qN6Cd",
+      "comment_id": 4215284765,
+      "path": "amp/revision.py",
+      "reviewed_commit": "e31f8acab66f2caa8760b2d552f10af60c506ab3",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Fall back when the system font is unavailable** On macOS, Windows, or a minimal Linux image without this Debian-specific font path, every revision with `animated_typography` raises `OSError: cannot open resource` and aborts rendering. The existing typography implementation in `amp/core.py` checks whether the font exists and uses `ImageFont.load_default()`; thi",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/50"
+    },
+    {
+      "pr": 50,
+      "thread_id": "PRRT_kwDOVAYltM6qN6Ch",
+      "comment_id": 4215284774,
+      "path": "tools/build_directed_proof.py",
+      "reviewed_commit": "e31f8acab66f2caa8760b2d552f10af60c506ab3",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Rebuild missing expressive audio independently** If a previous build is interrupted after `make_candidates` completes but before `expressive_audio` finishes, `candidate-B.wav` exists and the next run skips both operations. The script then fails when it renders `expressive-mix.wav` or copies `expressive-returns.wav`, so the production command cannot resume from",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/50"
+    },
+    {
+      "pr": 50,
+      "thread_id": "PRRT_kwDOVAYltM6qN6Cm",
+      "comment_id": 4215284785,
+      "path": "amp/revision.py",
+      "reviewed_commit": "e31f8acab66f2caa8760b2d552f10af60c506ab3",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Require the track to cover the camera interval** When a valid same-source track covers only part of the recipe's camera interval, these checks accept it, and `reframe()` silently returns the unzoomed image for every uncovered frame. This produces a partial camera move while the receipt still records the requested camera operation and tracking method; validate ",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/50"
+    },
+    {
+      "pr": 50,
+      "thread_id": "PRRT_kwDOVAYltM6qN6Cx",
+      "comment_id": 4215284801,
+      "path": "amp/revision.py",
+      "reviewed_commit": "e31f8acab66f2caa8760b2d552f10af60c506ab3",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Validate even falsy session payloads** For `amp replay`, a session file containing `null`, `{}`, or another falsy JSON value bypasses validation and session processing entirely, so the command successfully renders the baseline composition while appearing to replay the supplied score. Distinguish an omitted session (`None`) from a provided payload and reject an",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/50"
+    },
+    {
+      "pr": 50,
+      "thread_id": "PRRT_kwDOVAYltM6qN6C3",
+      "comment_id": 4215284809,
+      "path": "tools/validate_directed.py",
+      "reviewed_commit": "e31f8acab66f2caa8760b2d552f10af60c506ab3",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Fail when an expected render receipt is missing** If a directed MP4 is replaced or modified and its `.revision.json` sidecar is omitted, this validator skips the only comparison against the recorded output hash and still reports the file as validated as long as its dimensions, duration, decoding, and loudness pass. Require revision receipts for directed output",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/50"
+    },
+    {
+      "pr": 50,
+      "thread_id": "PRRT_kwDOVAYltM6qN6C7",
+      "comment_id": 4215284819,
+      "path": "amp/revision.py",
+      "reviewed_commit": "e31f8acab66f2caa8760b2d552f10af60c506ab3",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Preserve fallback for unregistered typography layouts** When a shot's layout is deliberately marked `registered: false`, `composite()` correctly returns the untouched source frame, but this unconditional field lookup still applies typography using that untrusted layout geometry. A revision with `animated_typography` therefore violates the repository's supporte",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/50"
+    },
+    {
+      "pr": 51,
+      "thread_id": "PRRT_kwDOVAYltM6rNp-u",
+      "comment_id": 4241629725,
+      "path": "tools/render-fx.mjs",
+      "reviewed_commit": "fe65c9809808e7fe2bf05e16d510f365ad3b886f",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Snapshot the validated patch before spawning frame workers** When the input patch file is edited or replaced during a multi-chunk render, every frame worker reloads `job.patchPath`, while the audio and report were generated from the earlier normalized in-memory patch. Later chunks can therefore use a different graph, and the copied patch and reported hash may ",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/51"
+    },
+    {
+      "pr": 51,
+      "thread_id": "PRRT_kwDOVAYltM6rNp-x",
+      "comment_id": 4241629728,
+      "path": "web/fx/visual-engine.mjs",
+      "reviewed_commit": "fe65c9809808e7fe2bf05e16d510f365ad3b886f",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Respect the full bounds of named picture regions** For a picture-targeting processor with a named region, such as the `closed-inbox` Queue targeting `patterned-shirt`, this mask uses only the region's x and width values and fills the entire frame height. The effect consequently alters pixels above and below the selected region instead of independently processi",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/51"
+    },
+    {
+      "pr": 51,
+      "thread_id": "PRRT_kwDOVAYltM6rNp-z",
+      "comment_id": 4241629731,
+      "path": "web/fx/app.mjs",
+      "reviewed_commit": "fe65c9809808e7fe2bf05e16d510f365ad3b886f",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Snapshot keyboard-driven slider edits** When a focused range control is changed with the keyboard, its `input` event mutates the patch but no `pointerdown` event occurs, so no undo snapshot is recorded. Pressing Undo after adjusting Intensity, wet/dry, a processor parameter, object bounds, or sidechain amount with arrow keys therefore restores an unrelated old",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/51"
+    },
+    {
+      "pr": 51,
+      "thread_id": "PRRT_kwDOVAYltM6rNp-1",
+      "comment_id": 4241629735,
+      "path": "web/fx/workbench-state.mjs",
+      "reviewed_commit": "c6656685603022193617405c87b831d28f570299",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Reject overlapping demonstration phases** An imported patch with overlapping phases is accepted, but the two renderers resolve it differently: `VisualEngine` uses the first matching phase, while `renderRackAudio` independently replaces every range named `bypass`. If an earlier `extreme` phase overlaps a later `bypass` phase, the picture remains processed while",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/51"
+    },
+    {
+      "pr": 51,
+      "thread_id": "PRRT_kwDOVAYltM6rNp-5",
+      "comment_id": 4241629743,
+      "path": "web/fx/app.mjs",
+      "reviewed_commit": "fe65c9809808e7fe2bf05e16d510f365ad3b886f",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Resolve the output node by type when adding processors** Portable patches may use any nonempty ID for their sole output node, but this action hard-codes the ID `output`. Adding a processor to an otherwise valid imported patch whose output is named, for example, `main-out` leaves the existing route untouched and adds an edge to a nonexistent node, so validation",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/51"
+    },
+    {
+      "pr": 51,
+      "thread_id": "PRRT_kwDOVAYltM6rNp--",
+      "comment_id": 4241629750,
+      "path": "tools/render-fx.mjs",
+      "reviewed_commit": "fe65c9809808e7fe2bf05e16d510f365ad3b886f",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Report the audio duration actually written for partial renders** When the advertised `--duration` option is shorter than the patch, this call still renders `patch.duration` and only slices the channels afterward. The nested audio report therefore records the full patch's frame count, duration, peak, and limiter reduction even though the WAV and MP4 contain onl",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/51"
+    },
+    {
+      "pr": 51,
+      "thread_id": "PRRT_kwDOVAYltM6rQvps",
+      "comment_id": 4242900050,
+      "path": "web/fx/workbench-state.mjs",
+      "reviewed_commit": "c6656685603022193617405c87b831d28f570299",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Preserve output fan-in when inserting a processor** When a valid graph uses the output node itself to sum parallel branches, this loop redirects every incoming edge into the new serial processor. That gives the processor multiple inputs for each shared port, so `validatePatch` rejects the edit and `changeGraph` restores the old graph; consequently, Add process",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/51"
+    },
+    {
+      "pr": 51,
+      "thread_id": "PRRT_kwDOVAYltM6rQvpt",
+      "comment_id": 4242900051,
+      "path": "web/fx/app.mjs",
+      "reviewed_commit": "c6656685603022193617405c87b831d28f570299",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Resolve the source node by type for sidechains** For an imported valid patch whose source has any ID other than `source`, enabling this checkbox adds a cable from a nonexistent node. Validation then fails and rolls the entire edit back, so source-driven sidechains cannot be enabled even though portable source IDs are unrestricted; locate the source node by `ty",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/51"
+    },
+    {
+      "pr": 51,
+      "thread_id": "PRRT_kwDOVAYltM6rQvpu",
+      "comment_id": 4242900053,
+      "path": "web/fx/visual-engine.mjs",
+      "reviewed_commit": "c6656685603022193617405c87b831d28f570299",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Reset visual feedback only at automation crossings** With valid linear automation on `params.reset`, this treats the current parameter value as a new feedback epoch on every frame. For example, a `0\u21924` reset ramp over seconds `0\u21924` makes `reset === t`, so the picture emits no feedback returns throughout the ramp, whereas the audio backend now performs a discre",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/51"
+    },
+    {
+      "pr": 51,
+      "thread_id": "PRRT_kwDOVAYltM6rQvpv",
+      "comment_id": 4242900055,
+      "path": "web/fx/visual-engine.mjs",
+      "reviewed_commit": "c6656685603022193617405c87b831d28f570299",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Isolate room-only picture returns before mixing** When a room-targeting processor is used as a parallel picture return, its processed image still contains the preserved dry frame outside the room mask, but this predicate isolates only body, object, and named-picture branches. Mixing that return with a dry branch therefore also adds the return's unchanged perfo",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/51"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rN22q",
+      "comment_id": 4241712097,
+      "path": "amp/roomrefine.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Authenticate the recovered reference before using it as A** When a baseline directory contains the expected report but a stale or replaced `room-tone-layered.wav`/`.flac`, this code accepts the audio based only on duration and finiteness, then records a new hash of whatever it found. The later packaging check is circular because it compares against that newly ",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rN22u",
+      "comment_id": 4241712101,
+      "path": "tools/package_room_refinement.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Fully validate copied baseline stems** If any recovered contribution is truncated after the 28\u201358 second excerpt, `build()` still succeeds because it only uses that excerpt, and this loop then copies the damaged full-length FLAC directly into the delivery. Unlike the newly encoded beds and B\u2013E stems, these six editable assets receive no sample-count, finite-au",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rN22x",
+      "comment_id": 4241712106,
+      "path": "amp/roomaudit.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Exclude stale artifacts from reused audit directories** When the audit is rerun into an existing output directory, files that the current invocation no longer produces remain present\u2014for example, an old MP3 after switching to `--no-mp3`, a previous `selection-subregions-candidate.json` when the new run finds no changes, or review WAVs for portions removed from",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rN221",
+      "comment_id": 4241712110,
+      "path": "tools/package_room_refinement.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Fall back when DejaVu fonts are unavailable** On a system that has the declared Pillow dependency but no separately installed DejaVu system fonts, every call to `poster()` raises `OSError` here and the packaging command cannot produce either comparison video. The audit renderer and existing typography code already handle this environment with `ImageFont.load_d",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rOZfJ",
+      "comment_id": 4241932969,
+      "path": "amp/roomaudit.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**\ud83d\uddc4\ufe0f Data Integrity & Integration** | **\ud83d\udfe1 Minor** | **\u26a1 Quick win** **Do not list stale files from earlier runs in the `files` manifest.**",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rOZfL",
+      "comment_id": 4241932972,
+      "path": "amp/roomstretch.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**\ud83d\uddc4\ufe0f Data Integrity & Integration** | **\ud83d\udfe1 Minor** | **\u26a1 Quick win** **Validate audition headroom before the WAV, FLAC, and production AAC files are published.**",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rOZfP",
+      "comment_id": 4241932977,
+      "path": "projects/god-here/room-refinement-20261011/verification-receipt.json",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**\ud83d\udcd0 Maintainability & Code Quality** | **\ud83d\udfe1 Minor** | **\u26a1 Quick win** **Fix the typo in the receipt text.**",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rOZfQ",
+      "comment_id": 4241932978,
+      "path": "tools/package_room_refinement.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**\ud83d\uddc4\ufe0f Data Integrity & Integration** | **\ud83d\udfe1 Minor** | **\u26a1 Quick win** **Write the delivery manifest only after the archive passes validation.**",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rOa_h",
+      "comment_id": 4241942747,
+      "path": "tools/package_room_stretch_site.py",
+      "reviewed_commit": "f00509dace5a081dbbba2f87cd7e7dc45a6fabaf",
+      "finding": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Verify stretch assets against their recorded receipts** When a rendered stretch file is stale or replaced after `room-stretch-report.json` was written, `checked_copy` only proves that the copy matches the current source file; it never compares that file with `entry[\"receipts\"][...]`. Consequently arbitrary same-duration AAC/FLAC/WAV content can be published un",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rOa_j",
+      "comment_id": 4241942749,
+      "path": "tools/package_room_stretch_site.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Rebuild or authenticate the cached source picture** When `prepare` is rerun in an existing Site checkout for a newly rendered source/prior package, this existence check silently reuses the old `source-picture.mp4` without binding it to the newly verified source. `finish` then copies that picture into every context comparison, while `check_room_tone_site.py` on",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rOa_l",
+      "comment_id": 4241942753,
+      "path": "tools/package_room_stretch_site.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Generate the processing notes before requiring them** A fresh `prior` directory produced by `package_room_refinement.py` contains the listening report, gateway, media, and reproduction files, but that code never creates `god-here-room-tone-processing-notes.md` (a repository-wide search finds no producer). This unconditional copy therefore raises `FileNotFoundE",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rOa_n",
+      "comment_id": 4241942756,
+      "path": "amp/roomstretch.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Reject period values that collapse to the same identifier** With custom `--periods`, distinct valid floats can produce the same six-significant-digit `:g` identifier\u2014for example, nearby 10-second values can both become `V10` even when they round to different sample counts. The later layer then overwrites the first layer's raw stem, WAV, FLAC, and AAC paths whi",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rOa_p",
+      "comment_id": 4241942761,
+      "path": "tools/package_room_stretch_site.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Bind the finish source to the render reports** When the two site-packaging phases are invoked separately and `finish` is accidentally given a different `--source`, this check only compares the prior and stretch reports with each other; it never compares either expected hash with `sha256(source)`. The source argument is otherwise unused until its hash is writte",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rO5Ug",
+      "comment_id": 4242137074,
+      "path": "tools/package_room_stretch_site.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Revalidate earlier beds during finish** When the documented `prepare` and `finish` phases run separately, an A\u2013E FLAC can be replaced between phases: `prepare` checks `full_room_flac_sha256` and creates the room/inspection AACs, but `finish` rereads the current file here without repeating that check. The resulting context movie can therefore contain a differen",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rO5Uj",
+      "comment_id": 4242137078,
+      "path": "tools/package_room_stretch_site.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Record the exported dialogue core hash** When `package_room_refinement.py` receives a non-FLAC dialogue file, its explicit fallback transcodes that input to `full-length/dialogue-core.flac`, but the report records the hash of the original input bytes. This comparison then always rejects the freshly produced package because a FLAC cannot have the WAV/AAC input'",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rO5Uo",
+      "comment_id": 4242137084,
+      "path": "tools/package_room_stretch_site.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Authenticate copied source-pause auditions** If a packaged `PAUSE*-with-handles.m4a` is stale or replaced before `prepare`, `checked_copy` only proves that the destination matches the current untrusted source; these transcoded auditions have no receipt checked here. `finish` still labels them from the authenticated portion report, and the site checker only ver",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rO5Ut",
+      "comment_id": 4242137089,
+      "path": "tools/package_room_refinement.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Bound the shared stem gain by their sum** When several recovered contributions have coincident peaks, limiting the common gain against the maximum true peak of any individual stem does not bound the peak of their sum as the preceding comment claims. The recombined common-gain auditions can therefore clip even though every solo stem remains below \u22121.5 dBTP, and",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rPNHv",
+      "comment_id": 4242261901,
+      "path": "tools/package_room_stretch_site.py",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Move generated context movies out of the static bundle** In the Worker packaging flow, this loop writes all 14 generated `context-*.mp4` files into `public/room-tone/media`, even though large stored media is otherwise routed through `room-media-source`. The committed `publication-blocker.json` confirms that this exact package expands to 276,323,758 bytes, exce",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rPNHw",
+      "comment_id": 4242261902,
+      "path": "projects/god-here/room-stretch-20261011/verification-receipt.json",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Record the actual parent commit in the receipt** For the reviewed commit, `git rev-parse 22e6bdb8^` is `b8c9b3c6ac5fc428c8895b56f4dcfcf8989766f0`, but this provenance receipt records `87e6bcf...`, an intermediate commit from the unsquashed development history. Anyone using the receipt to audit or reproduce the reviewed change will therefore start from a tree t",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 53,
+      "thread_id": "PRRT_kwDOVAYltM6rPNHx",
+      "comment_id": 4242261903,
+      "path": "web/room-tone/transport.mjs",
+      "reviewed_commit": "e7594031c566066a1c68edc0095c4ccb426ad586",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Clear playback intent when media reaches its end** When a comparison reaches its natural end, an `HTMLMediaElement` can have `ended === true` while its `paused` flag remains false\u2014the newly added ended-track test models exactly that state. This condition consequently leaves `wantsPlay` true, and `snapshot()` also reports `playing: true`, so the page says \u201cPlay",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/53"
+    },
+    {
+      "pr": 55,
+      "thread_id": "PRRT_kwDOVAYltM6rkvkQ",
+      "comment_id": 4251071278,
+      "path": "tools/studio/build_site.py",
+      "reviewed_commit": "22d5ae34f683d36213e3b54ee55b176ee4e2954f",
+      "finding": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Authenticate all recovered player inputs** Only the evaluation player is checked against its retained digest, so a stale or substituted Study 03, Study 04, or layer-study file with the expected filename is accepted, rewritten, mounted, and advertised as the recovered workspace. The repository catalog contains a unique identity for each of these files; require ",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/55"
+    },
+    {
+      "pr": 55,
+      "thread_id": "PRRT_kwDOVAYltM6rkvkY",
+      "comment_id": 4251071286,
+      "path": "tools/package_room_stretch_site.py",
+      "reviewed_commit": "22d5ae34f683d36213e3b54ee55b176ee4e2954f",
+      "finding": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Allowlist source-pause records before publishing them** When the prior package contains an unlisted scratch export, private note, or replaced artifact at the top level of `source-pause-review`, this glob copies it into the site's public `records` tree even though `source_pause_inputs()` authenticates only the audit report and referenced review WAVs. Copy only ",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/55"
+    },
+    {
+      "pr": 55,
+      "thread_id": "PRRT_kwDOVAYltM6rkvkc",
+      "comment_id": 4251071291,
+      "path": "tools/build-demo-reel.mjs",
+      "reviewed_commit": "22d5ae34f683d36213e3b54ee55b176ee4e2954f",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Stage both demo reels before replacing either output** If the portrait FFmpeg run or its subsequent probe fails after the landscape run succeeds, the landscape file has already been written directly over its published destination while the old receipt remains unchanged. Render and validate both orientations in temporary paths, then publish the complete set wit",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/55"
+    },
+    {
+      "pr": 55,
+      "thread_id": "PRRT_kwDOVAYltM6rkvkh",
+      "comment_id": 4251071296,
+      "path": "tools/check_room_tone_site.py",
+      "reviewed_commit": "22d5ae34f683d36213e3b54ee55b176ee4e2954f",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Require the exact source-pause manifest inventory** An edited `media.json` containing eight copies of one valid pause passes this length check: `verify_nontrack_media()` authenticates each repeated item but never requires unique IDs or coverage of every portion in the bound audit report. The checker can therefore report success while seven original source port",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/55"
+    },
+    {
+      "pr": 55,
+      "thread_id": "PRRT_kwDOVAYltM6rkvkl",
+      "comment_id": 4251071300,
+      "path": "amp/direction.py",
+      "reviewed_commit": "22d5ae34f683d36213e3b54ee55b176ee4e2954f",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Bind typography output to the font bytes actually consumed** During a typography render, `add_type()` reopens the font for every output frame, but the receipt hashes the path only after rendering and never checks an initial identity. If the font is replaced during the run, the movie can contain frames from multiple font versions while `font_sha256` records onl",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/55"
+    },
+    {
+      "pr": 55,
+      "thread_id": "PRRT_kwDOVAYltM6rkvkp",
+      "comment_id": 4251071306,
+      "path": "tools/validate-execution-fx.mjs",
+      "reviewed_commit": "22d5ae34f683d36213e3b54ee55b176ee4e2954f",
+      "finding": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Verify FX atlases cover the requested picture clock** An authenticated asset manifest with nonempty but undersized picture or matte page arrays passes this preflight because only source timing and patch duration are checked. `VisualEngine.frame()` treats an out-of-range page as absent and returns a blank canvas, so the renderer can successfully publish and ver",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/55"
+    },
+    {
+      "pr": 55,
+      "thread_id": "PRRT_kwDOVAYltM6rkvku",
+      "comment_id": 4251071313,
+      "path": "tools/render-factory.mjs",
+      "reviewed_commit": "22d5ae34f683d36213e3b54ee55b176ee4e2954f",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Stop sibling factory workers after the first failure** When either worker throws because its child render failed, `Promise.all()` rejects immediately but the sibling worker has no cancellation flag and continues consuming the shared `cursor`. It can render all remaining entries and repeatedly rewrite the manifest after the command has already entered its failu",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/55"
+    },
+    {
+      "pr": 55,
+      "thread_id": "PRRT_kwDOVAYltM6rkvkz",
+      "comment_id": 4251071320,
+      "path": "amp/execution.py",
+      "reviewed_commit": "22d5ae34f683d36213e3b54ee55b176ee4e2954f",
+      "finding": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Check the consumed audio stream rather than container duration** When the bound audio input is a container whose video or data stream spans the full source but whose first audio stream ends early, this format-level duration check passes along with the mere presence check below it. The direction and revision renderers consume that short audio stream and pad its",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/55"
+    },
+    {
+      "pr": 55,
+      "thread_id": "PRRT_kwDOVAYltM6rkvk2",
+      "comment_id": 4251071324,
+      "path": "tools/validate_directed.py",
+      "reviewed_commit": "22d5ae34f683d36213e3b54ee55b176ee4e2954f",
+      "finding": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Validate the delivered picture presentation clock** A delivered movie with the expected frame count and total duration passes these checks even when it is variable-frame-rate or its video stream has a nonzero start timestamp. Full decoding does not assert presentation timestamps, so such a replacement can be recorded as valid despite irregular source-time mapp",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/55"
+    },
+    {
+      "pr": 56,
+      "thread_id": "PRRT_kwDOVAYltM6rlgKy",
+      "comment_id": 4251389842,
+      "path": "web/studio/presentation.mjs",
+      "reviewed_commit": "b565c0a6f4f08cefd4cffe63bc1a2da3266c02d6",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Reinitialize sizing after iframe navigation** When an embedded tool navigates within the same iframe\u2014for example, the Room-tone page's `catalog.html` links are not intercepted as a known workspace\u2014the iframe retains `data-studio-sizing`, so the next `load` calls this function and immediately returns. The surviving observer and media-query callback still captur",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/56"
+    },
+    {
+      "pr": 56,
+      "thread_id": "PRRT_kwDOVAYltM6rlgK3",
+      "comment_id": 4251389848,
+      "path": "web/studio/legacy-layout.css",
+      "reviewed_commit": "b565c0a6f4f08cefd4cffe63bc1a2da3266c02d6",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Preserve readable text on dark FX panels** When the embedded audiovisual FX tool opens its Connections tab, this override changes the inherited foreground from the original light `--ink` to `#26342e`, but `.graph-map` in `web/fx/workbench.css` deliberately retains its `#101416` background and `.graph-node` has no foreground of its own. Consequently the process",
+      "status": "retained_review_debt",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/56"
+    },
+    {
+      "pr": 57,
+      "thread_id": "PRRT_kwDOVAYltM6sAXzf",
+      "comment_id": 4262533942,
+      "path": "amp/generation.py",
+      "reviewed_commit": "1be54eed1b1e91f3f2aaa02c2cc5bd37099e0e3c",
+      "finding": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Allow one admitted unit for one-event schedules** When linguistic review has admitted exactly one eligible unit and the caller requests `count=1`, this unconditional two-unit minimum raises `Not enough admitted source units` even though no transition or second unit is needed. This contradicts the newly accepted 1\u2013256 count range and prevents a valid single rev",
+      "status": "fixed_in_housekeeping",
+      "owner_url": "https://github.com/4444J99/audiovisual-media-postproduction-system/pull/57",
+      "evidence": "tests/test_generation.py:test_one_event_accepts_one_reviewed_unit_without_a_transition"
+    }
+  ],
+  "additional_review_findings": [
+    {
+      "pr": 57,
+      "review_id": 5508223593,
+      "path": "amp/render.py",
+      "status": "fixed_in_housekeeping",
+      "evidence": "tests/test_generation.py:test_remix_rejects_changed_seconds_or_frame_provenance and test_linguistic_remix_renders_exact_frame_order",
+      "finding": "Linguistic rendering must use reviewed integer frames and reject mismatched seconds/provenance before output creation."
+    }
+  ],
+  "remaining_thread_disposition": "60 pre-existing historical threads retain their original PR/commit identities and production owners. They were not automatically resolved or certified by branch pruning."
+}

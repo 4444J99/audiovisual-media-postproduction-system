@@ -2,6 +2,7 @@ from collections import deque
 from fractions import Fraction
 import hashlib
 import json
+import math
 import subprocess
 import tempfile
 from pathlib import Path
@@ -90,6 +91,37 @@ def render(source, audio, config, output, *, start=0, end=None, width=1280, fiel
     return data
 
 
+def _reviewed_frame_events(schedule, rate):
+    """Reject score edits that detach rendered cuts from recorded frame provenance."""
+    events = schedule.get("events")
+    if not isinstance(events, list) or not 1 <= len(events) <= 256:
+        raise ValueError("Linguistic remix requires 1–256 reviewed events")
+    cursor = 0
+    for event in events:
+        if not isinstance(event, dict):
+            raise ValueError("Linguistic event must be an object")
+        keys = ("source_start_frame", "source_end_frame", "output_start_frame", "output_end_frame")
+        if any(type(event.get(key)) is not int for key in keys):
+            raise ValueError("Linguistic event requires integer frame provenance")
+        start, end, output_start, output_end = (event[key] for key in keys)
+        if not 0 <= start < end <= schedule["source"]["frame_count"]:
+            raise ValueError("Linguistic event is outside reviewed source frames")
+        if output_start != cursor or output_end != cursor + end - start:
+            raise ValueError("Linguistic output frame provenance is discontinuous")
+        for key, frame in (("source_start", start), ("source_end", end),
+                           ("output_start", output_start), ("output_end", output_end)):
+            seconds = event.get(key)
+            if type(seconds) not in (int, float) or not math.isfinite(seconds):
+                raise ValueError("Linguistic event seconds must be finite numbers")
+            tolerance = Fraction(1, 1000000) / rate if key.startswith("source_") else Fraction(1, 1000000)
+            if abs(Fraction(str(seconds)) - Fraction(frame) / rate) > tolerance:
+                raise ValueError("Linguistic event seconds differ from reviewed frames")
+        cursor = output_end
+    duration = schedule.get("duration")
+    if type(duration) not in (int, float) or not math.isfinite(duration) or abs(Fraction(str(duration)) - Fraction(cursor) / rate) > Fraction(1, 1000000):
+        raise ValueError("Linguistic schedule duration differs from output frames")
+
+
 def remix(video, schedule, output):
     video, output = Path(video), Path(output)
     receipt_path = output.with_suffix(".schedule.json")
@@ -105,6 +137,7 @@ def remix(video, schedule, output):
         expected_rate = Fraction(source["fps"]["numerator"], source["fps"]["denominator"])
         if Fraction(numerator, denominator) != expected_rate or int(stream.get("nb_frames", -1)) != source["frame_count"]:
             raise ValueError("Linguistic remix media timebase differs from the reviewed source")
+        _reviewed_frame_events(schedule, expected_rate)
     fps = numerator / denominator
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="amp-remix-", dir=output.parent) as work:
@@ -113,12 +146,20 @@ def remix(video, schedule, output):
         args = ["ffmpeg", "-v", "error", "-y"]
         filters = []
         for i, event in enumerate(schedule["events"]):
-            a, b = event["source_start"], event["source_end"]
-            frames = round((b - a) * fps)
-            samples = round(frames / fps * 48000)
-            args += ["-ss", str(a), "-i", str(video)]
-            filters += [f"[{i}:v]trim=end_frame={frames},setpts=PTS-STARTPTS[v{i}]",
-                        f"[{i}:a]aresample=48000,atrim=end_sample={samples},asetpts=PTS-STARTPTS[a{i}]"]
+            if schedule.get("generation_mode") == "linguistic":
+                a, b = event["source_start_frame"], event["source_end_frame"]
+                first_sample = round(Fraction(a * 48000) / expected_rate)
+                last_sample = round(Fraction(b * 48000) / expected_rate)
+                args += ["-i", str(video)]
+                filters += [f"[{i}:v]trim=start_frame={a}:end_frame={b},setpts=PTS-STARTPTS[v{i}]",
+                            f"[{i}:a]aresample=48000,atrim=start_sample={first_sample}:end_sample={last_sample},asetpts=PTS-STARTPTS[a{i}]"]
+            else:
+                a, b = event["source_start"], event["source_end"]
+                frames = round((b - a) * fps)
+                samples = round(frames / fps * 48000)
+                args += ["-ss", str(a), "-i", str(video)]
+                filters += [f"[{i}:v]trim=end_frame={frames},setpts=PTS-STARTPTS[v{i}]",
+                            f"[{i}:a]aresample=48000,atrim=end_sample={samples},asetpts=PTS-STARTPTS[a{i}]"]
         links = "".join(f"[v{i}][a{i}]" for i in range(len(schedule["events"])))
         filters.append(f"{links}concat=n={len(schedule['events'])}:v=1:a=1[v][a]")
         # One output encode avoids per-excerpt AAC priming and cumulative join drift.
