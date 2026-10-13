@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "pull_request": 58,
+  "initial_submitted_head": "8476119ad4110423ddaed2cebc080ddd1996bbcb",
+  "initial_merge_effect": "not executed; policy HOLD",
+  "diagnosis": "Default python3 could not derive GATES deploy classification; policy conservatively treated the PR as website-sensitive despite zero pending required checks.",
+  "changed_input": "Use existing Homebrew Python 3.14 and its libexec python3 on the subprocess PATH; PyYAML 6.0.3 is available and verify.py --deploy-regex succeeds. No global configuration or policy is changed.",
+  "derived_deploy_regex": "(^web/app/.*$|^scripts/assemble\\-dashboard\\-data\\.py$|^firebase\\.json$|^\\.github/workflows/deploy\\.yml$|^apps/danse/.*$|^\\.github/workflows/deploy\\-danse\\.yml$)",
+  "implicated_paths_are_deploy_triggers": false,
+  "correction_submission": "One new exact head including this diagnostic receipt; do not retry the earlier exact head or wait synchronously for CI.",
+  "verification_reuse": {
+    "code_unchanged_since_full_pass": true,
+    "implementation_sha256": {
+      "amp/generation.py": "f3690ec67ba3840eea473613416109b094ed923ec4ccfa0fc8b09b61aca221bc",
+      "amp/render.py": "ce8c87e24744f001875e38a9411285577605bd0105ba9aece4a3c5e149080515",
+      "tests/test_generation.py": "aee2ff2847c3f36943a9fc114a9f4c87ac874fb7846ba633202541a739675169"
+    }
+  }
+}
