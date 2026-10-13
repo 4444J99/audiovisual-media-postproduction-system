@@ -9,7 +9,12 @@
   "human_listening": "pending",
   "artistic_acceptance": "pending",
   "physical_sync": "unmeasured",
-  "rebuild": "passed in isolated native component; removed test component",
+  "rebuild": {
+    "source_frame": 2850,
+    "picture_and_audio_cooked": true,
+    "errors": 0,
+    "warnings": 0
+  },
   "annotation_overlaps": 0,
   "review_warning": "Inherited final phrase has clipped handle; review-through-112-seconds preset retained",
   "site_v24_equivalence": "not established",

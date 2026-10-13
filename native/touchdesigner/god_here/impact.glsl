@@ -42,7 +42,7 @@ vec4 Routed(vec2 uv,float t,int tap,bool words) {
         vec2 p=(uv-origin)/scale;
         vec4 src=vec4(0);
         if(words)src=Glyph(p,max(0,t-float(j)*.085));
-        
+
         float alpha=(1.0-float(j)/float(count+1))*.95;
         result=Over(src*alpha,result);
     }

@@ -87,5 +87,11 @@ def build(source_file, parent_path="/project1", name="base_godhere_compare", cod
     c.viewer = True
     c.op("execute_capture").par.active = True
     c.op("parexec_controls").par.active = True
-    c.par.Cue.pulse()
+    movie = c.op("movie_reference")
+    movie.cook(force=True)
+    # Initial file opening is asynchronous. Hold cue through decoder startup,
+    # then release it; one pulse while opening can otherwise be lost.
+    movie.par.cue = True
+    run("n=op(args[0]); n and setattr(n.par, 'cue', False)", movie.path,
+        delayMilliSeconds=500, wallTime=True)
     return c
