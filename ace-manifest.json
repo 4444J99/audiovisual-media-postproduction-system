@@ -1,0 +1,373 @@
+{
+  "schema_version": "1.0.0",
+  "system_id": "audiovisual-composition-system",
+  "repository": {
+    "github_id": 1409689012,
+    "full_name": "4444J99/audiovisual-media-postproduction-system"
+  },
+  "software": {
+    "id": "audiovisual-media-postproduction-system",
+    "name": "Audiovisual Media Postproduction System",
+    "responsibility": "Source-addressed audio processing, spatial compositing, directed revisions, source-unit scheduling and hash-bound native execution. The amp package retains its existing public interfaces."
+  },
+  "capabilities": [
+    {
+      "id": "composition-resolution",
+      "description": "Resolve explicit composition configuration independently from software identity."
+    },
+    {
+      "id": "audio-processing",
+      "description": "Create dialogue-processing candidates and expressive audio returns."
+    },
+    {
+      "id": "region-compositing",
+      "description": "Apply source-timed effects to authored spatial regions and layers."
+    },
+    {
+      "id": "person-segmentation",
+      "description": "Associate learned person-mask candidates with authored spatial regions."
+    },
+    {
+      "id": "directed-revision",
+      "description": "Render source-addressed camera, typography, retiming and attention-score edits."
+    },
+    {
+      "id": "source-unit-scheduling",
+      "description": "Assemble bounded source-unit schedules with explicit listened-review admission."
+    },
+    {
+      "id": "native-execution",
+      "description": "Verify hash-bound inputs and dispatch retained native recipe formats."
+    },
+    {
+      "id": "audiovisual-effects",
+      "description": "Evaluate typed audiovisual effect graphs and controls."
+    },
+    {
+      "id": "room-audio-processing",
+      "description": "Build, refine and stretch room-audio material from source intervals."
+    },
+    {
+      "id": "workstation-export",
+      "description": "Export editable timing and media-comparison handoffs."
+    }
+  ],
+  "modules": [
+    {
+      "id": "composition-resolver",
+      "path": "amp/composition.py",
+      "capability_ids": [
+        "composition-resolution"
+      ],
+      "interfaces": [
+        "amp.composition.resolve_composition",
+        "amp --composition / --project"
+      ]
+    },
+    {
+      "id": "dialogue-processing",
+      "path": "amp/audio.py",
+      "capability_ids": [
+        "audio-processing"
+      ],
+      "interfaces": [
+        "amp audio",
+        "amp.audio"
+      ]
+    },
+    {
+      "id": "region-compositor",
+      "path": "amp/core.py",
+      "capability_ids": [
+        "region-compositing"
+      ],
+      "interfaces": [
+        "amp.core.validate",
+        "amp.core.composite"
+      ]
+    },
+    {
+      "id": "source-timed-renderer",
+      "path": "amp/render.py",
+      "capability_ids": [
+        "region-compositing"
+      ],
+      "interfaces": [
+        "amp render",
+        "amp.render.render",
+        "amp.render.remix"
+      ],
+      "compatibility_note": "Retains historical defaults; use explicit render interval or review exported filenames. See functional-identities.md."
+    },
+    {
+      "id": "person-mask-segmentation",
+      "path": "amp/segmentation.py",
+      "capability_ids": [
+        "person-segmentation"
+      ],
+      "interfaces": [
+        "amp.segmentation"
+      ]
+    },
+    {
+      "id": "directed-recipe-renderer",
+      "path": "amp/direction.py",
+      "capability_ids": [
+        "directed-revision"
+      ],
+      "interfaces": [
+        "python -m amp.direction",
+        "amps.direction.v1"
+      ]
+    },
+    {
+      "id": "directed-revision-renderer",
+      "path": "amp/revision.py",
+      "capability_ids": [
+        "directed-revision"
+      ],
+      "interfaces": [
+        "amp revision",
+        "amp replay",
+        "amp track"
+      ]
+    },
+    {
+      "id": "source-unit-scheduler",
+      "path": "amp/generation.py",
+      "capability_ids": [
+        "source-unit-scheduling"
+      ],
+      "interfaces": [
+        "amp generate",
+        "amp.generation.generate_schedule"
+      ]
+    },
+    {
+      "id": "source-unit-qualification",
+      "path": "amp/qualification.py",
+      "capability_ids": [
+        "source-unit-scheduling"
+      ],
+      "interfaces": [
+        "amp qualify",
+        "amp.qualification.audit_qualification"
+      ]
+    },
+    {
+      "id": "native-execution-dispatcher",
+      "path": "amp/execution.py",
+      "capability_ids": [
+        "native-execution"
+      ],
+      "interfaces": [
+        "amp execute",
+        "amps.execution.v1"
+      ]
+    },
+    {
+      "id": "audiovisual-effects-workbench",
+      "path": "web/fx",
+      "capability_ids": [
+        "audiovisual-effects"
+      ],
+      "interfaces": [
+        "fx.rack.v1"
+      ]
+    },
+    {
+      "id": "room-stretch-renderer",
+      "path": "amp/roomstretch.py",
+      "capability_ids": [
+        "room-audio-processing"
+      ],
+      "interfaces": [
+        "amp.roomstretch.v1"
+      ]
+    },
+    {
+      "id": "workstation-handoff",
+      "path": "amp/workstation.py",
+      "capability_ids": [
+        "workstation-export"
+      ],
+      "interfaces": [
+        "amp.workstation.export_workstation"
+      ],
+      "compatibility_note": "Filenames follow composition_id or the existing native project ID; filename_prefix can select an explicit neutral name. Legacy composition retains identical filenames."
+    },
+    {
+      "id": "authored-foley-study",
+      "path": "amp/foley.py",
+      "capability_ids": [
+        "audio-processing"
+      ],
+      "interfaces": [
+        "amp.foley"
+      ],
+      "composition_ids": [
+        "comp-001"
+      ],
+      "reuse_status": "retained-composition-specific-defaults",
+      "description": "Existing source-specific timing or authored events remain compatibility behavior; explicit extraction is required before treating this module as a neutral recipe."
+    },
+    {
+      "id": "authored-soundstage-study",
+      "path": "amp/soundstage.py",
+      "capability_ids": [
+        "audio-processing"
+      ],
+      "interfaces": [
+        "amp.soundstage"
+      ],
+      "composition_ids": [
+        "comp-001"
+      ],
+      "reuse_status": "retained-composition-specific-defaults",
+      "description": "Existing source-specific timing or authored events remain compatibility behavior; explicit extraction is required before treating this module as a neutral recipe."
+    },
+    {
+      "id": "room-refinement-study",
+      "path": "amp/roomrefine.py",
+      "capability_ids": [
+        "room-audio-processing"
+      ],
+      "interfaces": [
+        "amp.roomrefine"
+      ],
+      "composition_ids": [
+        "comp-001"
+      ],
+      "reuse_status": "retained-composition-specific-defaults",
+      "description": "Existing source-specific timing or authored events remain compatibility behavior; explicit extraction is required before treating this module as a neutral recipe."
+    },
+    {
+      "id": "room-rack-study",
+      "path": "amp/roomrack.py",
+      "capability_ids": [
+        "room-audio-processing"
+      ],
+      "interfaces": [
+        "amp.roomrack"
+      ],
+      "composition_ids": [
+        "comp-001"
+      ],
+      "reuse_status": "retained-composition-specific-defaults",
+      "description": "Existing source-specific timing or authored events remain compatibility behavior; explicit extraction is required before treating this module as a neutral recipe."
+    },
+    {
+      "id": "roomtone-study",
+      "path": "amp/roomtone.py",
+      "capability_ids": [
+        "room-audio-processing"
+      ],
+      "interfaces": [
+        "amp.roomtone"
+      ],
+      "composition_ids": [
+        "comp-001"
+      ],
+      "reuse_status": "retained-composition-specific-defaults",
+      "description": "Existing source-specific timing or authored events remain compatibility behavior; explicit extraction is required before treating this module as a neutral recipe."
+    }
+  ],
+  "source_media": [
+    {
+      "id": "SRC-001",
+      "label": "draft-script-text",
+      "description": "Supplied first-draft script text; date label retained in original filename, chronology unresolved.",
+      "original_filename": "God\u2018s Ears (First Draft) May 21 2020.txt",
+      "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67",
+      "bytes": 2299,
+      "provenance": {
+        "record_path": "compositions/comp-001/planning-source-manifest.json",
+        "source_id": "SRC-001",
+        "status": "existing-public-registration-unchanged"
+      }
+    },
+    {
+      "id": "SRC-002",
+      "label": "edited-two-view-dialogue-recording",
+      "description": "Supplied edited dialogue recording with two principal camera views and mixed stereo audio; original camera tracks are not registered.",
+      "original_filename": "2020 04 26   god's ears   second draft.mp4",
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "bytes": 12636527,
+      "provenance": {
+        "record_path": "compositions/comp-001/planning-source-manifest.json",
+        "source_id": "SRC-002",
+        "status": "existing-public-registration-unchanged"
+      }
+    },
+    {
+      "id": "SRC-003",
+      "label": "annotated-field-layout-image",
+      "description": "Supplied JPEG image used to register the authored spatial field layout.",
+      "original_filename": "IMG_6971.jpeg",
+      "sha256": "d5deb50824888de14e92d2dde9077643dc405c7c1a1e2121848874f38dffd7f4",
+      "bytes": 192296,
+      "provenance": {
+        "record_path": "compositions/comp-001/planning-source-manifest.json",
+        "source_id": "SRC-003",
+        "status": "existing-public-registration-unchanged"
+      }
+    }
+  ],
+  "compositions": [
+    {
+      "id": "comp-001",
+      "native_id": "god-here",
+      "aliases": [
+        "god-here"
+      ],
+      "path": "compositions/comp-001",
+      "legacy_paths": [
+        "projects/god-here"
+      ],
+      "artwork_id": "g-p-6ab7e48981d88191ae8b0a658b118c39",
+      "source_media_ids": [
+        "SRC-001",
+        "SRC-002",
+        "SRC-003"
+      ],
+      "description": "Five-performer spatial score, directed revisions, dialogue qualification and source-unit studies. Existing native project and source fields remain unchanged."
+    }
+  ],
+  "artworks": [
+    {
+      "id": "g-p-6ab7e48981d88191ae8b0a658b118c39",
+      "native_id": "god-here",
+      "title": "God's Ears",
+      "aliases": [
+        "god-here"
+      ],
+      "publication_status": "unverified",
+      "status_note": "Existing public workprint and site receipts do not establish final artwork acceptance."
+    }
+  ],
+  "editions": [],
+  "archives": [
+    {
+      "id": "foundation-archive",
+      "path": "docs/foundation-archive",
+      "description": "Inactive exact-text snapshot with its own source-commit and per-file hash manifest.",
+      "manifest_path": "docs/foundation-archive/manifest.json"
+    }
+  ],
+  "defaults": {
+    "composition_id": "comp-001"
+  },
+  "migration": {
+    "baseline_commit": "868b015778f34625fd1f04270eacbe659a570aad",
+    "path_aliases": [
+      {
+        "from": "projects/god-here",
+        "to": "compositions/comp-001",
+        "mechanism": "relative-symlink"
+      }
+    ],
+    "preserve_native_recipe_bytes": true,
+    "source_media_moved": false,
+    "guide": "docs/architecture/functional-identities.md"
+  }
+}

@@ -1,6 +1,6 @@
 # Shared system and artwork boundary
 
-The repository supplies processing and composition mechanisms. `god-here` supplies its score, regional geometry, visual identities, utterance units, masks, and artistic decisions. Other artworks can use the mechanisms with their own project records; their meanings and treatments must not be inferred from this example.
+The repository supplies processing and composition mechanisms. The typed [ACE contract](../ace-manifest.json) separates software, capabilities, modules, source media, compositions, artworks, editions and archives. `compositions/comp-001` supplies the first composition's score, regional geometry, visual identities, utterance units, masks, and artistic decisions. `projects/god-here` remains a compatibility link; artistic titles belong to artwork metadata. Other artworks can use the mechanisms with their own composition records. See the [functional identity migration](architecture/functional-identities.md) for stable IDs, remaining recipe constraints and rollback.
 
 | Module | Implemented responsibility |
 | --- | --- |
@@ -8,7 +8,7 @@ The repository supplies processing and composition mechanisms. `god-here` suppli
 | `amp.audio` | 48 kHz working path, restrained/stronger spectral trials, FFT-denoise comparison, removed residual, measured level matching, expressive mixture returns |
 | `amp.render` | Shot-local frame history, original title/credit pass-through, picture encoding, sound muxing, source/output mapping, source-unit remix |
 | `amp.cli` | Validated command-line production entry points |
-| `projects/god-here` | Artwork-specific configuration, source registration, provisional text, score, finer layers, allowed transitions, acceptance backlog |
+| `compositions/comp-001` | Composition-specific configuration, source registration, provisional text, score, finer layers, allowed transitions, acceptance backlog; legacy `projects/god-here` alias retained |
 | `web` | One-clock interactive player, shader interpretation, score capture/replay, matched listening interface |
 | `tools/finish_production.py` | The bounded 112-second artwork production recipe and delivered-media checks |
 

@@ -85,8 +85,8 @@ def validate(config, duration=None):
         raise ValueError("Unsupported composition version")
     if not isinstance(config.get("fps"), int) or config["fps"] <= 0:
         raise ValueError("fps must be a positive integer")
-    if len(config["performers"]) != 5:
-        raise ValueError("This artwork requires five stable performer identities")
+    if not isinstance(config["performers"], dict) or not config["performers"]:
+        raise ValueError("A composition requires at least one stable performer identity")
     for p in config["performers"].values():
         if p["style"] not in STYLES:
             raise ValueError("Unknown style")
@@ -101,7 +101,7 @@ def validate(config, duration=None):
             raise ValueError("Missing shot layout")
     for layout in config["layouts"].values():
         fields = layout["fields"]
-        if len(fields) != 5 or {f["performer"] for f in fields} != set(config["performers"]):
+        if len(fields) != len(config["performers"]) or {f["performer"] for f in fields} != set(config["performers"]):
             raise ValueError("Layout does not preserve performer identities")
         last = 0
         for f in fields:

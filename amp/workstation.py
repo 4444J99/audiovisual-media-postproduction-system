@@ -1,12 +1,20 @@
 """Editable REAPER audio and Fusion comparison projects; import review pending."""
 from pathlib import Path
 import shutil
+import re
 
 from .core import write_json, probe
 from .revision import retime_audio, timing_map
 
 
-def export_workstation(recipe, config, clean, returns, videos, output):
+def export_workstation(recipe, config, clean, returns, videos, output, *, filename_prefix=None):
+    # Preserve old native project filenames without imposing that artwork's
+    # name on a different composition. Explicit prefixes are one file component.
+    prefix = filename_prefix if filename_prefix is not None else config.get('composition_id', config.get('project', 'composition'))
+    if not isinstance(prefix, str) or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*', prefix):
+        raise ValueError('Workstation filename prefix must be one safe filename component')
+    audio_name=f'{prefix}-directed-audio.rpp'
+    review_name=f'{prefix}-variant-review.comp'
     root=Path(output);root.mkdir(parents=True,exist_ok=True)
     fps=config['fps']; segments=timing_map(recipe,fps)
     for path,name in [(clean,'dialogue-source.wav'),(returns,'expressive-returns-source.wav')]:
@@ -24,7 +32,7 @@ def export_workstation(recipe, config, clean, returns, videos, output):
         rpp.append('  >')
     for i,s in enumerate(segments):
         rpp.append(f'  MARKER {i+1} {s["output_start"]:.12f} "source {s["source_start"]:.3f}; speed {s["audio_speed"]:.3f}"')
-    rpp.append('>');(root/'god-here-directed-audio.rpp').write_text('\n'.join(rpp)+'\n')
+    rpp.append('>');(root/audio_name).write_text('\n'.join(rpp)+'\n')
     loaders=[]; names=[]
     for i,(name,path) in enumerate(videos.items()):
         target=root/Path(path).name;shutil.copyfile(path,target); node=f'Variant{i+1}';names.append(node)
@@ -38,16 +46,16 @@ def export_workstation(recipe, config, clean, returns, videos, output):
       Inputs = {{ Input = Input {{ SourceOp = "{names[-1]}", Source = "Output" }} }},
       ViewInfo = OperatorInfo {{ Pos = {{ 180, 160 }} }},
     }},''')
-    (root/'god-here-variant-review.comp').write_text('{ Tools = ordered() {\n'+'\n'.join(loaders)+'\n}, ActiveTool = "SelectedEdition" }\n')
+    (root/review_name).write_text('{ Tools = ordered() {\n'+'\n'.join(loaders)+'\n}, ActiveTool = "SelectedEdition" }\n')
     write_json(root/'editorial-time-map.json',{'fps':fps,'segments':segments,'recipe':recipe,
                'fusion_scope':'Editable media-backed comparison graph; region processing remains in Python sidecar, not falsely translated to native nodes',
                'reaper_scope':'Editable split items, source offsets, preserved-pitch playback rate, independent dialogue and return tracks',
                'native_import_status':'REAPER/Resolve unavailable here; application import and playback pending'})
-    (root/'OPEN-FIRST.md').write_text('''# Editable workstation handoff
+    (root/'OPEN-FIRST.md').write_text(f'''# Editable workstation handoff
 
-Open `god-here-directed-audio.rpp` in REAPER. Dialogue and expressive returns are separate tracks; items retain source offsets and rate changes. Solo, mute, trim, and adjust them independently. This is mixed recorded dialogue, not isolated actors. Route audio and set headroom before final export.
+Open `{audio_name}` in REAPER. Dialogue and expressive returns are separate tracks; items retain source offsets and rate changes. Solo, mute, trim, and adjust them independently. This is mixed recorded dialogue, not isolated actors. Route audio and set headroom before final export.
 
-Open `god-here-variant-review.comp` in Fusion/Resolve. Relink local movie files if requested. Route a different Variant output to SelectedEdition to compare it. These media-backed branches preserve the rendered effects; the Python recipe is the editable authority for fields, typography, and tracking. Native compositing nodes for every Python operator have not been fabricated.
+Open `{review_name}` in Fusion/Resolve. Relink local movie files if requested. Route a different Variant output to SelectedEdition to compare it. These media-backed branches preserve the rendered effects; the Python recipe is the editable authority for fields, typography, and tracking. Native compositing nodes for every Python operator have not been fabricated.
 
 `editorial-time-map.json` records exact source/output timing. Native project syntax has been generated and structurally checked, but the applications are unavailable in this runtime; import, source-offset/rate interpretation, color management, and final sound levels require workstation review.
 ''')
