@@ -11,6 +11,8 @@ def onCook(scriptOp):
     count = max(1, int(44100 / workspace.time.rate))
     result = np.zeros((2, count), dtype=np.float32)
     for track in tracks:
+        scene=workspace.op('base_generated_scene')
+        if scene and track==workspace.op(str(scene.par.Controller)+'/base_player') and scene.op('text_runtime').module.handles_audio(scene):continue
         if not track.par.Enabled or track.par.Mute or (solo and not track.par.Solo): continue
         player=track.op('audiofile_material') or track.op('audiomovie_material')
         if player is not None and not player.par.play.eval():continue

@@ -21,6 +21,12 @@ def journal():
     return sys.modules[alias]
 
 
+def scene():
+    candidate=parent.Materials.op('base_generated_scene')
+    if candidate and parent.Materials.op(str(candidate.par.Controller))==parent.Vocabulary:return candidate
+    return None
+
+
 def session_owner():
     v=parent.Vocabulary;session=v.fetch('journal_session',None)
     if not session:
@@ -159,19 +165,25 @@ def compile_score(seed):
     logic.validate_hierarchy(library,list(by_id))
     count=int(v.par.Events)
     if not 2<=count<=32:raise ValueError('Performance length must be 2–32 events')
+    composed=scene();settings=None
+    if composed and composed.par.Enabled:
+        settings=composed.op('text_runtime').module.config(composed)
+        units=composed.op('text_score').module.pool(units,settings['vocabulary_limit'],int(seed))
     generated=engine(v.fetch('code_root'))(units,int(seed),count=count)
     clock=0;events=[]
     for event in generated['events']:
         u,frames=by_id[event['unit']];speed=float(u.par.Speed);duration=(frames['end_frame']-frames['start_frame'])/30/speed
         events.append({'unit':event['unit'],**frames,'speed':speed,'output_start':round(clock,6),'output_end':round(clock+duration,6)})
         clock+=duration
-    if clock>300:raise ValueError('Performance exceeds the five-minute native limit')
+    if clock>300 and not (settings and settings['rate']):raise ValueError('Performance exceeds the five-minute native limit')
     source=source_identity()
     expected=str(v.op(next(iter(v.fetch('unit_paths').values()))).par.Sourcehash)
     if source!=expected:raise ValueError('Original film identity changed; performance withheld')
-    return {'schema':'god-here.native-score/1','source_sha256':source,'seed':int(seed),
+    result={'schema':'god-here.native-score/1','source_sha256':source,'seed':int(seed),
             'generation_mode':'source-mixture','text_verification':'Provisional; no caption assertion',
             'events':events,'duration':round(clock,6),'limits':{'events':32,'seconds':300,'decoders':1}}
+    if settings:result=composed.op('text_score').module.decorate(result,settings,int(seed),composed.op('text_runtime').module.snapshot(composed))
+    return result
 
 
 def generate(play=False):
@@ -191,7 +203,7 @@ def generate(play=False):
             return identity,score
         except ValueError as error:
             last_error=str(error)
-            if 'structural differences' not in last_error:break
+            if not any(x in last_error for x in ['structural differences','Transition grammar exhausted','Target event rate']):break
     v.par.Status='No new performance issued: '+last_error
     return None
 
@@ -209,6 +221,8 @@ def start_event(event,resume_frame=None):
     p.store('cue_pending',True);movie=p.op('movie_material');movie.par.cue=True;movie.par.cue.mode=ParMode.CONSTANT
     p.store('loaded_unit',event['unit']);movie.par.cuepulse.pulse();p.par.Play=True
     p.store('opening_frames',0)
+    composed=scene()
+    if composed and composed.par.Active and 'scene' in event:composed.op('text_runtime').module.begin_event(composed,event,resume_frame)
     if event['unit'] in v.par.Unit.menuNames:v.par.Unit=event['unit']
     root.time.play=True
 
@@ -227,6 +241,10 @@ def start(identity,score,replay=False,parent_run=None):
         if not replay:status(identity,'running')
         v.par.Status=('Recovery' if parent_run else 'Replay' if replay else 'New performance')+' · '+identity[:8]
         if hasattr(v.par,'Executionid'):v.par.Executionid=run;v.par.Executionstatus='Armed; waiting for an uploaded start frame'
+        if 'composition' in score:
+            composed=scene()
+            if composed is None:raise ValueError('Stored composition controller is unavailable')
+            composed.op('text_runtime').module.prepare(composed,score)
         start_event(score['events'][record['event_index']],record['source_frame'] if parent_run else None)
         refresh_execution()
     except Exception:
@@ -283,6 +301,8 @@ def advance():
     if state['index']>=len(state['score']['events']):
         v.op('base_player').par.Play=False
         restore_cue(state)
+        composed=scene()
+        if composed and composed.par.Active:composed.op('text_runtime').module.stop(composed)
         if state.get('run_id'):journal().transition(v.fetch('history_path'),state['run_id'],'complete')
         if not state['replay']:status(state['id'],'complete')
         elif state.get('mode')=='recovery':status(state['id'],'recovered')
@@ -298,6 +318,8 @@ def stop(reason='Stopped by operator',failed=False):
     v=parent.Vocabulary;state=v.fetch('performance_state',None)
     v.store('performance_state',None);v.op('base_player').par.Play=False
     restore_cue(state)
+    composed=scene()
+    if composed and composed.par.Active:composed.op('text_runtime').module.stop(composed)
     if state and state.get('run_id'):
         try:
             run=journal().get(v.fetch('history_path'),state['run_id'])
