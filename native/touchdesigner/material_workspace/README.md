@@ -166,3 +166,39 @@ r2 row. The imported catalog and targeted linked-directory searches did not
 identify the exact r2 master/report pair; this does not prove it is absent elsewhere.
 No new color treatment substitutes for that accepted work. Exact color binding
 remains open pending its path or Page link. Monochrome reference remains available.
+
+## Execution journal and explicit recovery
+
+The vocabulary controls now expose Execution evidence, Check interrupted executions
+and Resume last interrupted performance. `table_execution` lists the latest 32
+runs separately from novelty reservations. The private SQLite stores immutable
+score snapshots, requested cues, uploaded start/end frames, pause/stop/failure and
+interruption facts. A run is complete only after all event boundaries are observed.
+Holding the movie cue until its exact first source frame is uploaded prevents a
+stale previous frame from completing a new event and prevents initial frame skips.
+Pending cues withhold movie audio. The previous cue value/mode/binding is restored
+when the execution ends; this mechanism owns only the shared performance player.
+
+Reconciliation preserves live or uncertain foreign owners. Process absence or a
+missing same-process run/session can mark an execution interrupted. Project
+creation/start never silently resumes saved execution state; Recoverlast explicitly
+creates a linked execution using the last durable source frame and an observed
+completed prefix. A completed recovery is not offered again. Abrupt failure can
+repeat up to 0.5s since the last checkpoint; this does not reconstruct FX buffers
+or audience interactions. Pauses and orderly lifecycle callbacks checkpoint the
+uploaded frame when available.
+
+Limits are 4,096 retained runs, 128 events per run with a terminal slot reserved,
+0.5s checkpoints, 250ms SQLite lock timeout, 240 native frames to see a cued start,
+and a finite wall deadline. Capacity/history errors stop this player without
+discarding reservations. Existing manual audition remains separate. Legacy runs
+predating the journal are not retroactively certified.
+
+Nine journal tests and five existing vocabulary/history tests pass. A separate
+muted native diagnostic completed two events, preserved a pause at source frame
+733, resumed a simulated interruption at exact frame 171, and completed through
+frame 1599. Its follow-up held cues until exact starts 160/1000 were uploaded and
+observed exact ends 171/1011. Original novelty history remained three records;
+no diagnostic reservation was added there. Actual application restart, power-loss
+recovery, full audiovisual replay and extended soak acceptance remain open. No
+project was reloaded for the lifecycle simulation.

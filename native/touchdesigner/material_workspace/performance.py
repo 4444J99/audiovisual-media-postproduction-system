@@ -3,11 +3,99 @@ import hashlib
 import importlib
 import importlib.util
 import json
+import math
+import os
 from pathlib import Path
 import sqlite3
 import sys
 import time
 import uuid
+
+
+def journal():
+    alias='_godhere_execution_journal'
+    if alias not in sys.modules:
+        path=Path(parent.Vocabulary.fetch('code_root'))/'native/touchdesigner/material_workspace/execution_journal.py'
+        spec=importlib.util.spec_from_file_location(alias,path);module=importlib.util.module_from_spec(spec)
+        sys.modules[alias]=module;spec.loader.exec_module(module)
+    return sys.modules[alias]
+
+
+def session_owner():
+    v=parent.Vocabulary;session=v.fetch('journal_session',None)
+    if not session:
+        session=uuid.uuid4().hex;v.store('journal_session',session);v.storeStartupValue('journal_session',None)
+    return {'pid':os.getpid(),'node':v.id,'session':session}
+
+
+def owner_alive(record):
+    owner=record['owner']
+    if owner['pid']!=os.getpid():
+        try:os.kill(owner['pid'],0);return True
+        except ProcessLookupError:return False
+        except PermissionError:return True
+    component=op(owner['node'])
+    if component is None or component.fetch('journal_session',None)!=owner['session']:return False
+    state=component.fetch('performance_state',None)
+    return bool(state and state.get('run_id')==record['id'])
+
+
+def refresh_execution():
+    v=parent.Vocabulary
+    if not v.op('table_execution'):return
+    table=v.op('table_execution');table.clear()
+    table.appendRow(['run','performance','mode','status','event','last_checkpointed_source_frame','observed_complete_events','parent_run'])
+    for run in journal().recent(v.fetch('history_path')):
+        table.appendRow([run['id'],run['performance_id'],run['mode'],run['status'],run['event_index'],run['source_frame'] if run['source_frame'] is not None else '',len(run['completed']),run['parent_run'] or ''])
+    interrupted=journal().latest_interrupted(v.fetch('history_path'))
+    v.par.Interruptedrun=interrupted['id'] if interrupted else ''
+
+
+def reconcile_execution():
+    v=parent.Vocabulary;result=journal().reconcile(v.fetch('history_path'),owner_alive)
+    for identity in result['interrupted']:
+        row=journal().get(v.fetch('history_path'),identity)
+        if row['mode']=='new':status(row['performance_id'],'interrupted')
+    refresh_execution()
+    v.par.Executionstatus='Reconciled '+str(len(result['interrupted']))+' interrupted runs; '+str(len(result['live_owners']))+' owners still live'
+    return result
+
+
+def recover_last():
+    v=parent.Vocabulary;reconcile_execution();old=journal().latest_interrupted(v.fetch('history_path'))
+    if old is None:raise ValueError('No interrupted execution eligible for recovery')
+    stop();start(old['performance_id'],old['score'],replay=True,parent_run=old['id'])
+
+
+def startup():
+    v=parent.Vocabulary
+    if v.fetch('performance_state',None):
+        restore_cue(v.fetch('performance_state'));v.op('base_player').par.Play=False;v.store('performance_state',None)
+    v.store('journal_session',None);session_owner();reconcile_execution()
+
+
+def shutdown(reason='Native process closing'):
+    v=parent.Vocabulary;state=v.fetch('performance_state',None)
+    if state and state.get('run_id'):
+        try:
+            if state.get('event_seen'):
+                frame=float(v.op('base_player/movie_material').lastIndexUploaded)
+                journal().observe(v.fetch('history_path'),state['run_id'],state['index'],frame)
+            journal().transition(v.fetch('history_path'),state['run_id'],'interrupted',reason)
+        except Exception:v.store('journal_recovery_needed',state['run_id'])
+        restore_cue(state)
+        v.op('base_player').par.Play=False;v.store('performance_state',None)
+
+
+def restore_cue(state):
+    p=parent.Vocabulary.op('base_player');saved=state.get('prior_cue') if state else None
+    if saved:
+        par=p.op('movie_material').par.cue;par.val=saved['value']
+        if saved['expr']:par.expr=saved['expr']
+        if saved['bind']:par.bindExpr=saved['bind']
+        par.mode=getattr(ParMode,saved['mode'].split('.')[-1])
+    elif p.fetch('cue_pending',False):p.op('movie_material').par.cue=False
+    p.store('cue_pending',False)
 
 
 def engine(code_root):
@@ -108,22 +196,41 @@ def generate(play=False):
     return None
 
 
-def start_event(event):
+def start_event(event,resume_frame=None):
     v=parent.Vocabulary;p=v.op('base_player');p.allowCooking=True;p.par.Play=False
-    p.par.In=event['start_frame']/30;p.par.Out=event['end_frame']/30;p.par.Speed=event['speed']
+    source_start=event['start_frame'] if resume_frame is None else resume_frame
+    state=v.fetch('performance_state',None)
+    if state and state.get('run_id'):
+        journal().request(v.fetch('history_path'),state['run_id'],state['index'],source_start)
+        state.update(event_seen=False,expected_start=source_start,waited=0,last_checkpoint=0,paused=False)
+        v.store('performance_state',state)
+    p.par.In=source_start/30;p.par.Out=event['end_frame']/30;p.par.Speed=event['speed']
     p.par.Title=event['unit']+' · recorded source mixture';p.par.Enabled=bool(v.par.Auditionsound)
-    p.store('loaded_unit',event['unit']);p.op('movie_material').par.cuepulse.pulse();p.par.Play=True
+    p.store('cue_pending',True);movie=p.op('movie_material');movie.par.cue=True;movie.par.cue.mode=ParMode.CONSTANT
+    p.store('loaded_unit',event['unit']);movie.par.cuepulse.pulse();p.par.Play=True
     p.store('opening_frames',0)
-    v.par.Unit=event['unit'];root.time.play=True
+    if event['unit'] in v.par.Unit.menuNames:v.par.Unit=event['unit']
+    root.time.play=True
 
 
-def start(identity,score,replay=False):
+def start(identity,score,replay=False,parent_run=None):
     v=parent.Vocabulary
+    if v.fetch('performance_state',None):raise ValueError('An execution already owns the player')
     if source_identity()!=score['source_sha256']:raise ValueError('Replay source identity mismatch')
-    v.store('performance_state',{'id':identity,'score':score,'index':0,'replay':replay})
-    if not replay:status(identity,'running')
-    v.par.Status=('Replay' if replay else 'New performance')+' · '+identity[:8]
-    start_event(score['events'][0])
+    mode='recovery' if parent_run else 'replay' if replay else 'new'
+    run=journal().begin(v.fetch('history_path'),identity,score,mode,session_owner(),parent_run)
+    record=journal().get(v.fetch('history_path'),run)
+    cue=v.op('base_player/movie_material').par.cue
+    v.store('performance_state',{'id':identity,'score':score,'index':record['event_index'],'replay':replay,'run_id':run,'mode':mode,'wall_deadline':time.monotonic()+max(30,float(score['duration'])+len(score['events'])*5),
+        'prior_cue':{'value':cue.val,'expr':cue.expr,'bind':cue.bindExpr,'mode':str(cue.mode)}})
+    try:
+        if not replay:status(identity,'running')
+        v.par.Status=('Recovery' if parent_run else 'Replay' if replay else 'New performance')+' · '+identity[:8]
+        if hasattr(v.par,'Executionid'):v.par.Executionid=run;v.par.Executionstatus='Armed; waiting for an uploaded start frame'
+        start_event(score['events'][record['event_index']],record['source_frame'] if parent_run else None)
+        refresh_execution()
+    except Exception:
+        stop('Event could not be cued',failed=True);raise
 
 
 def replay():
@@ -137,27 +244,94 @@ def replay():
     start(latest[0],latest[1],replay=True)
 
 
+def observe_frame(movie):
+    v=parent.Vocabulary;state=v.fetch('performance_state',None)
+    if not state or not state.get('run_id'):return True
+    path=v.fetch('history_path');p=v.op('base_player')
+    if time.monotonic()>state['wall_deadline']:raise ValueError('Native execution wall deadline reached')
+    if not p.par.Play or not root.time.play:
+        if not state.get('paused'):
+            if state.get('event_seen'):journal().observe(path,state['run_id'],state['index'],float(movie.lastIndexUploaded))
+            journal().transition(path,state['run_id'],'paused','Player or global transport paused');state['paused']=True;v.store('performance_state',state)
+        return False
+    if state.get('paused'):
+        journal().transition(path,state['run_id'],'playing','Transport resumed');state['paused']=False
+    state['waited']=state.get('waited',0)+1
+    frame=float(movie.lastIndexUploaded);event=state['score']['events'][state['index']]
+    if not state.get('event_seen'):
+        if movie.isOpening or abs(frame-state['expected_start'])>.001:
+            if state['waited']>240:raise ValueError('Uploaded start frame not observed within 240 native frames')
+            v.store('performance_state',state);return False
+        journal().observe(path,state['run_id'],state['index'],frame,first=True)
+        state['event_seen']=True
+        movie.par.cue=False;p.store('cue_pending',False)
+    elif not math.isfinite(frame) or not event['start_frame']<=frame<event['end_frame']:
+        raise ValueError('Decoder left the reserved source interval')
+    if time.monotonic()-state.get('last_checkpoint',0)>=.5:
+        journal().observe(path,state['run_id'],state['index'],frame)
+        state['last_checkpoint']=time.monotonic()
+        if hasattr(v.par,'Executionstatus'):v.par.Executionstatus='Observed event '+str(state['index']+1)+' · source frame '+str(int(frame))
+    v.store('performance_state',state);return True
+
+
 def advance():
     v=parent.Vocabulary;state=v.fetch('performance_state',None)
     if state is None:return False
+    if state.get('run_id'):
+        journal().complete_event(v.fetch('history_path'),state['run_id'],state['index'],float(v.op('base_player/movie_material').lastIndexUploaded))
     state['index']+=1
     if state['index']>=len(state['score']['events']):
         v.op('base_player').par.Play=False
+        restore_cue(state)
+        if state.get('run_id'):journal().transition(v.fetch('history_path'),state['run_id'],'complete')
         if not state['replay']:status(state['id'],'complete')
+        elif state.get('mode')=='recovery':status(state['id'],'recovered')
         v.store('performance_state',None);v.par.Status='Performance finished · '+state['id'][:8]
+        if hasattr(v.par,'Executionstatus'):v.par.Executionstatus='Complete; every event start/end observed'
+        refresh_execution()
     else:
         v.store('performance_state',state);start_event(state['score']['events'][state['index']])
     return True
 
 
-def stop():
+def stop(reason='Stopped by operator',failed=False):
     v=parent.Vocabulary;state=v.fetch('performance_state',None)
     v.store('performance_state',None);v.op('base_player').par.Play=False
+    restore_cue(state)
+    if state and state.get('run_id'):
+        try:
+            run=journal().get(v.fetch('history_path'),state['run_id'])
+            if run['status'] not in journal().TERMINAL:
+                journal().transition(v.fetch('history_path'),state['run_id'],'failed' if failed else 'stopped',reason)
+            if hasattr(v.par,'Executionstatus'):v.par.Executionstatus='Failed: '+reason if failed else 'Stopped; reservation retained'
+            refresh_execution()
+        except Exception:
+            v.store('journal_recovery_needed',state['run_id'])
+            if hasattr(v.par,'Executionstatus'):v.par.Executionstatus='Stopped; journal reconciliation required'
     if state and not state['replay']:
         try:status(state['id'],'aborted')
         except sqlite3.Error:
             v.store('history_recovery_needed',state['id'])
             v.par.Status='Stopped; local history needs interrupted-session reconciliation'
+
+
+def install_journal(v,code_root):
+    if v.op('text_journal'):raise ValueError('Execution journal controls exist; preserve edits')
+    code=Path(code_root)/'native/touchdesigner/material_workspace';namespace={}
+    exec((code/'build.py').read_text(encoding='utf-8'),namespace)
+    node,custom=[namespace[k] for k in ['node','custom']]
+    for name in ['Executionid','Executionstatus','Interruptedrun']:custom(v,name,'Str','',readonly=True)
+    for name in ['Reconcile','Recoverlast']:custom(v,name,'Pulse')
+    v.par.Reconcile.label='Check interrupted executions';v.par.Recoverlast.label='Resume last interrupted performance'
+    v.par.Executionstatus.label='Execution evidence';v.par.Executionid.label='Execution run'
+    v.par.Interruptedrun.label='Recoverable interrupted run'
+    node(v,'textDAT','text_journal',2150,-600,language='python',file=str(code/'execution_journal.py'),syncfile=True)
+    node(v,'tableDAT','table_execution',2150,-800)
+    node(v,'executeDAT','execute_journal',2325,-600,language='python',file=str(code/'execution_boot.py'),syncfile=True,start=True,create=True,exit=True)
+    audio=v.op('base_player/audiomovie_material').par.play
+    if audio.expr=='parent.Player.par.Play':audio.expr="parent.Player.par.Play and not parent.Player.fetch('cue_pending',False)"
+    session_owner();reconcile_execution()
+    return {'runs_limit':4096,'events_per_run_limit':128,'checkpoint_seconds':.5,'resume':'explicit; last durable frame; up to 0.5s may repeat after abrupt loss','automatic_restart':False}
 
 
 def install(v,code_root,history_path):

@@ -11,6 +11,12 @@ def onValueChange(par, prev):
 def onPulse(par):
     v=parent.Vocabulary;module=v.op('text_vocabulary').module
     performance=v.op('text_performance')
+    if performance and par.name in ['Reconcile','Recoverlast']:
+        try:
+            if par.name=='Reconcile':performance.module.reconcile_execution()
+            else:performance.module.recover_last()
+        except Exception as error:v.par.Executionstatus='Recovery withheld: '+str(error)
+        return
     if performance and par.name in ['Generate','Newperformance','Replay']:
         try:
             if par.name=='Replay':performance.module.replay()
