@@ -27,4 +27,14 @@ def onValueChange(par, prev):
 
 
 def onPulse(par):
+    workspace = parent.Materials
+    if par.name != "Cue":
+        return
+    owner = par.owner
+    if owner == workspace:
+        target = op(workspace.fetch("original")).op("movie_material")
+    else:
+        target = owner.op("audiofile_material") or owner.op("movie_material")
+    if target is not None:
+        target.par.cuepulse.pulse()
     return

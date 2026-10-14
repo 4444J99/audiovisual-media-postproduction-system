@@ -5,15 +5,21 @@ import numpy as np
 def onCook(scriptOp):
     workspace = parent.Materials
     tracks = [o for bank in workspace.children if bank.isCOMP
-              for o in bank.children if o.isCOMP and hasattr(o.par, 'Enabled')]
+              for o in bank.children if o.isCOMP and hasattr(o.par, 'Enabled')
+              and o.op('null_audio') is not None]
     solo = any(o.par.Enabled and o.par.Solo for o in tracks)
     count = max(1, int(44100 / workspace.time.rate))
     result = np.zeros((2, count), dtype=np.float32)
     for track in tracks:
         if not track.par.Enabled or track.par.Mute or (solo and not track.par.Solo): continue
+        if hasattr(track.par, 'Duration') and track.par.Clock == 'source':
+            local = ((float(workspace.par.Time) - float(track.par.Sourceoffset))
+                     * float(track.par.Speed) + float(track.par.Offset))
+            if not 0 <= local < float(track.par.Duration):
+                continue
         signal = track.op('null_audio')
         if signal is None: continue
-        signal.cook(force=True)
+        signal.cook()
         audio = signal.numpyArray()
         if audio.size == 0: continue
         if audio.shape[0] == 1: audio = np.repeat(audio, 2, axis=0)
