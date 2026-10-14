@@ -1,0 +1,10 @@
+{
+  "annotation_contains_all": true,
+  "errors": [],
+  "scene_enabled": false,
+  "audio_enabled": false,
+  "program": "composition",
+  "test_cooking": false,
+  "test_scene_cooking": false,
+  "audience_panel": "/project1/container_godhere_workspace/base_generated_scene/base_audience/container_controls"
+}

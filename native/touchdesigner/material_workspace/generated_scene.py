@@ -43,17 +43,35 @@ def prepare(scene,score):
 
 def begin_event(scene,event,resume_frame=None):
     scene.store('event',copy.deepcopy(event))
-    for spec in event['scene']['companions']:
-        start=scene.op('text_score').module.companion_frame(event,spec,event['start_frame'] if resume_frame is None else resume_frame)
-        p=scene.op('player_'+str(spec['slot']));p.par.Play=False;p.par.In=spec['start_frame']/30;p.par.Out=spec['end_frame']/30;p.par.Speed=spec['speed']
-        p.store('cue_pending',True);p.store('expected_start',start);p.store('waited',0);p.store('finished',False)
-        movie=p.op('movie_material');movie.par.cue=False;movie.par.playmode='specify';movie.par.indexunit='indices'
-        movie.par.index.expr="parent.Generatedscene.op('text_runtime').module.target_frame(parent.Generatedscene,"+str(spec['slot'])+")-round(float(parent.Player.par.In)*30)"
-        p.op('audiomovie_material').par.play.expr="parent.Generatedscene.op('text_runtime').module.audio_playing(parent.Generatedscene,"+str(spec['slot'])+")"
-        p.par.Play=spec['slot'] in event['scene']['active_fields']
+    for slot in range(1,5):configure_player(scene,slot)
+
+
+def influence(scene):
+    return scene.fetch('influence',{'attention':None,'holds':{},'refused':{},'messages':{}}) if scene.op('text_interactions') else {'attention':None,'holds':{},'refused':{},'messages':{}}
+
+
+def active_fields(scene):
+    return sorted(set(scene.fetch('event')['scene']['active_fields'])|{int(key) for key in influence(scene)['holds']})
+
+
+def active_spec(scene,slot):
+    held=influence(scene)['holds'].get(str(slot))
+    return held['spec'] if held else next(c for c in scene.fetch('event')['scene']['companions'] if c['slot']==slot)
+
+
+def configure_player(scene,slot):
+    spec=active_spec(scene,slot);start=target_frame(scene,slot)
+    p=scene.op('player_'+str(slot));p.par.Play=False;p.par.In=spec['start_frame']/30;p.par.Out=spec['end_frame']/30;p.par.Speed=spec['speed']
+    p.store('cue_pending',True);p.store('expected_start',start);p.store('waited',0);p.store('finished',False)
+    movie=p.op('movie_material');movie.par.cue=False;movie.par.playmode='specify';movie.par.indexunit='indices'
+    movie.par.index.expr="parent.Generatedscene.op('text_runtime').module.target_frame(parent.Generatedscene,"+str(slot)+")-round(float(parent.Player.par.In)*30)"
+    p.op('audiomovie_material').par.play.expr="parent.Generatedscene.op('text_runtime').module.audio_playing(parent.Generatedscene,"+str(slot)+")"
+    p.par.Play=slot in active_fields(scene)
 
 
 def target_frame(scene,slot):
+    held=influence(scene)['holds'].get(str(slot))
+    if held:return held['frame']
     event=scene.fetch('event');v=controller(scene);state=v.fetch('performance_state',{}) or {}
     primary=float(v.op('base_player/movie_material').lastIndexUploaded) if state.get('event_seen') else state.get('expected_start',event['start_frame'])
     spec=next(c for c in event['scene']['companions'] if c['slot']==slot)
@@ -62,13 +80,13 @@ def target_frame(scene,slot):
 
 def audio_playing(scene,slot):
     v=controller(scene);state=v.fetch('performance_state',{}) or {};p=scene.op('player_'+str(slot))
-    return bool(scene.par.Active and state.get('event_seen') and v.op('base_player').par.Play and root.time.play and p.par.Play and not p.fetch('cue_pending',True) and not p.fetch('finished',False))
+    return bool(scene.par.Active and state.get('event_seen') and v.op('base_player').par.Play and root.time.play and p.par.Play and not p.fetch('cue_pending',True) and not p.fetch('finished',False) and str(slot) not in influence(scene)['holds'])
 
 
 def ready(scene):
     """Hold the primary cue until every active companion start is uploaded."""
     result=True
-    for i in scene.fetch('event')['scene']['active_fields']:
+    for i in active_fields(scene):
         if not i:continue
         p=scene.op('player_'+str(i));movie=p.op('movie_material');movie.cook()
         if movie.isOpening or abs(float(movie.lastIndexUploaded)-p.fetch('expected_start'))>.001:result=False
@@ -93,6 +111,7 @@ def stop(scene):
                 if bind:par.bindExpr=bind
                 par.mode=getattr(ParMode,mode.split('.')[-1])
     scene.store('idle_layout',None);scene.par.Active=False;scene.par.Status='Idle; manual canvas unchanged'
+    scene.store('influence',{'attention':None,'holds':{},'refused':{},'messages':{}});scene.store('action_queue',[])
 
 
 def tick():
@@ -108,9 +127,11 @@ def tick():
     gain=scene.op('text_score').module.envelope(phase) if state.get('event_seen') else 0
     for i,name in enumerate(NAMES):
         ready=True if i==0 else not scene.op('player_'+str(i)).fetch('cue_pending',True)
-        field=scene.op('base_canvas/field_'+name);field.par.Opacity=event['scene']['opacity'][i]*gain*ready
+        held=influence(scene)['holds'].get(str(i))
+        attention=scene.op('text_interactions').module.gain(scene,i) if scene.op('text_interactions') else 1
+        field=scene.op('base_canvas/field_'+name);field.par.Opacity=(held['opacity'] if held else event['scene']['opacity'][i]*gain)*ready*attention
         base=scene.fetch('score')['composition']['layout']['fields'][i]['Rotate']
-        field.par.Rotate=base+event['scene']['rotate'][i]*math.sin(phase*math.tau)*gain
+        field.par.Rotate=held.get('rotate',base) if held else base+event['scene']['rotate'][i]*math.sin(phase*math.tau)*gain
     for i in range(1,5):
         p=scene.op('player_'+str(i))
         if not p.par.Play:continue

@@ -21,6 +21,18 @@ def journal():
     return sys.modules[alias]
 
 
+def actions(refresh=False):
+    alias='_godhere_scene_actions'
+    if alias in sys.modules and not refresh:return sys.modules[alias]
+    path=Path(parent.Vocabulary.fetch('code_root'))/'native/touchdesigner/material_workspace/scene_actions.py'
+    stamp=path.stat().st_mtime_ns
+    active=any(c.fetch('performance_state',None) for c in parent.Materials.children if c.isCOMP and c.op('text_performance'))
+    if alias not in sys.modules or (getattr(sys.modules[alias],'_source_stamp',None)!=stamp and not active):
+        spec=importlib.util.spec_from_file_location(alias,path);module=importlib.util.module_from_spec(spec)
+        sys.modules[alias]=module;spec.loader.exec_module(module);module._source_stamp=stamp
+    return sys.modules[alias]
+
+
 def scene():
     candidate=parent.Materials.op(parent.Vocabulary.fetch('scene_path','base_generated_scene'))
     if candidate and parent.Materials.op(str(candidate.par.Controller))==parent.Vocabulary:return candidate
@@ -231,9 +243,10 @@ def start_event(event,resume_frame=None):
     root.time.play=True
 
 
-def start(identity,score,replay=False,parent_run=None):
+def start(identity,score,replay=False,parent_run=None,capture_run=None):
     v=parent.Vocabulary
     if v.fetch('performance_state',None):raise ValueError('An execution already owns the player')
+    actions(refresh=True)  # Refresh disk-owned action code only while all controllers are idle.
     if source_identity()!=score['source_sha256']:raise ValueError('Replay source identity mismatch')
     mode='recovery' if parent_run else 'replay' if replay else 'new'
     run=journal().begin(v.fetch('history_path'),identity,score,mode,session_owner(),parent_run)
@@ -249,6 +262,10 @@ def start(identity,score,replay=False,parent_run=None):
             composed=scene()
             if composed is None:raise ValueError('Stored composition controller is unavailable')
             composed.op('text_runtime').module.prepare(composed,score)
+            if composed.op('text_interactions'):
+                composed.op('text_interactions').module.prepare(composed,parent_run or capture_run,recovery=bool(parent_run))
+            elif parent_run or capture_run:
+                if actions().rows(v.fetch('history_path'),parent_run or capture_run):raise ValueError('Native audience-action runtime is unavailable')
         start_event(score['events'][record['event_index']],record['source_frame'] if parent_run else None)
         refresh_execution()
     except Exception:
@@ -293,6 +310,9 @@ def observe_frame(movie):
         movie.par.cue=False;p.store('cue_pending',False)
     elif not math.isfinite(frame) or not event['start_frame']<=frame<event['end_frame']:
         raise ValueError('Decoder left the reserved source interval')
+    composed=scene()
+    if composed and composed.par.Active and composed.op('text_interactions'):
+        composed.op('text_interactions').module.advance(composed,state['index'],frame)
     if time.monotonic()-state.get('last_checkpoint',0)>=.5:
         journal().observe(path,state['run_id'],state['index'],frame)
         state['last_checkpoint']=time.monotonic()
