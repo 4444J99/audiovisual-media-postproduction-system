@@ -127,3 +127,42 @@ current program for inspection. The main program is not rerouted. The FX rack's
 default Textinput links only the expressive output when no prior Word/Textinput
 was set; captions retain their own path. Timing boundaries, review filtering,
 visible expressive alpha and source/program preservation were checked live.
+
+## Complete-frame canvas in both orientations
+
+Open `base_canvas_layout/container_controls`. Its landscape and portrait outputs
+are `null_landscape` (1280×720) and `null_portrait` (720×1280). Orientation chooses
+the preview and optional **Program → Complete-frame canvas** output. The existing
+program choice stays selected until the artist changes it.
+
+Five field components start from the existing recovered actor tracks. Each has
+an independent Source operator path, Enabled, Opacity, Rotate, source-crop controls,
+and separate landscape/portrait X, Y and width settings. Their incoming track
+settings and clocks are preserved. Those default actor mattes cover only 70–76s;
+empty fields outside that range do not imply failed source playback. Any available
+picture, object, room or expressive-text operator can be assigned to a field.
+
+Reference selects the complete original frame or complete shared performance
+frame. The renderer preserves its aspect ratio and clamps it inside the canvas,
+above a reserved caption strip. Auxiliary fields are rendered first; the complete
+reference is rendered last, so a field cannot obscure it even at extreme size or
+position. Caption text follows the reference decoder's actual source frame and
+reflows at each orientation's width, using the caption track's size, opacity and
+review filter. Auxiliary time offsets remain explicit independent relationships.
+
+Two geometry tests cover both orientations and extreme anchor settings. Live
+testing placed an opaque field over the canvas and found zero changed pixels in
+230,400 protected landscape pixels and 236,520 protected portrait pixels, while
+outside pixels changed. `verify_canvas.py` freezes only its local reference Select
+during this check, restores parameter values/modes/bindings and transport, and
+assigns a separate DAT to its temporary mask shader. Both live outputs were
+visually checked after restoring file bindings. Shader compilation and scoped
+health passed without operator errors; the unselected orientation does not cook
+continuously, and first shader/font cooks can be expensive. This is not a sustained
+performance or artistic acceptance certificate.
+
+`table_reference_bindings` retains source identity and the unbound accepted-color
+r2 row. The imported catalog and targeted linked-directory searches did not
+identify the exact r2 master/report pair; this does not prove it is absent elsewhere.
+No new color treatment substitutes for that accepted work. Exact color binding
+remains open pending its path or Page link. Monochrome reference remains available.
