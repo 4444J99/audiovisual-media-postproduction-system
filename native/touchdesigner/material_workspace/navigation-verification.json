@@ -1,0 +1,21 @@
+{
+  "native_lister_selection": true,
+  "selection_does_not_seek": true,
+  "cue_start_actual": 5.333333333333333,
+  "cue_start_expected": 5.33,
+  "cue_start_pass": true,
+  "cue_end_actual": 7.0,
+  "cue_end_pass": true,
+  "study_cue_local_seconds": 7.25,
+  "study_cue_native_samples": 174000.0,
+  "study_cue_pass": true,
+  "records": 174,
+  "dialogue": 35,
+  "visual": 139,
+  "provisional_actor_links": 14,
+  "voice_study_events": 9,
+  "unresolved_rows": 27,
+  "unverified_room_image_candidates": 3,
+  "errors": "",
+  "warnings": ""
+}
