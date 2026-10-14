@@ -2,7 +2,7 @@
 
 The earlier workbench versions are exercises and starting material. This workspace lays out their ingredients without selecting a treatment. The original film is the neutral program output.
 
-Open `/project1/container_godhere_workspace`. Ten named banks contain 228 entries: original source; dialogue/audio; room; foley; moving layers; picture/spatial studies; color/detail; FX studies; reference images; supporting atlases. Entries have readable names, original identity/origin, local transport, optional source-clock following, offsets, speed, gain, pan, mute, solo, opacity and spatial transforms. The recovered masks expose both raw masks and source-pixel cutouts. Earlier finished study movies are labelled study material; their editable ingredients remain separate where recovered.
+Open `/project1/container_godhere_workspace`. Eleven named banks contain 284 entries: original source; dialogue/audio; room; foley; moving layers; picture/spatial studies; color/detail; FX studies; reference images; supporting atlases; recovered room studies. Entries have readable names, original identity/origin, local transport, optional source-clock following, offsets, speed, gain, pan, mute, solo, opacity and spatial transforms. The recovered masks expose both raw masks and source-pixel cutouts. Earlier finished study movies are labelled study material; their editable ingredients remain separate where recovered.
 
 `container_controls` is the native parameter panel: choose Category and Material, then adjust the selected track. Previewing a material does not mix it in. Enabled admits audio to the mix; Play starts that material on its independent clock. Monitor enables audio output. Program defaults to the untreated original and can be switched to selected picture material. Source transport and each material's local transport remain separate.
 
@@ -58,7 +58,7 @@ Three structurally distinct five-event scores were reserved. One full native run
 
 To reproduce, run `vocabulary.install(workspace, code_root, records_path, study_path, source_hash)` in TouchDesigner, then `performance.install(vocabulary_comp, code_root, private_history_path)`. Existing destinations are refused. Runtime data/scores/history and component snapshots stay private; only code and redacted technical verification are committed.
 
-## Native FX first pass — incomplete full-port contract
+## Historical native FX first pass
 
 `base_fx_rack/container_controls` exposes the thirteen existing modules and their authored parameter ranges. Every module starts inactive; rack audio mixing is off. Audioinput and Pictureinput reference operators within the material workspace. The module chain is explicit through Select operators; native parent-COMP input ports and separate text/matte/control graph routing remain pending. Program → Native FX audition selects the picture output without replacing the original program choice automatically.
 
@@ -67,3 +67,63 @@ Twelve native streaming audio processors and Typography's intentional audio pass
 Routing, Gate, Displacement, Typography and Signal Damage have initial GPU picture workprints. Eight temporal picture paths are still pass-through and explicitly marked pending in `table_capabilities`; typed text/matte/control expansion is also pending. This is not a completed thirteen-module audiovisual port. The retained web catalog is exported as `fx_catalog.json`; original code and studies remain authoritative references for the missing behavior.
 
 Synthetic nonzero input exercised every DSP type; all outputs were finite, twelve changed the signal and Typography passed through. Native callbacks were exercised at 44.1kHz, neutral picture output matched exactly, and Signal Damage was compiled and visually inspected. The new modules were returned to inactive, rack mixing stayed off, and original composition/monitoring settings were preserved. Code and redacted metrics are committed; buffers, media and the component snapshot remain private.
+
+## Native temporal and typed ports
+
+The 2026-10-14 pass adds native connectors to all thirteen modules, ordered
+audio, picture, text, matte, control. Picture, text and matte have independent
+Cache TOP histories. Root Textinput, Matteinput and Controlinput select defaults;
+wiring a module input overrides its default. Pictureon, Texton, Matteon and
+Audioon control processing independently. Controlparameter, Controlamount and
+Controlmode modulate a chosen parameter; Gate can use the explicit control stream.
+The default control is zero and default matte is white.
+
+Delay, Stutter, Granular, Reverse, Freeze, Feedback, Queue and Exchange now have
+causal GPU workprints. Historyfps requests a capture rate; the actual rate is the
+native frame rate divided by an integer cache step. Bufferbudget limits requested
+history storage, not all GPU/application memory. A port over budget remains dry
+and reports its rejection without shortening the authored history. Queue's 24
+slots and Typography's 32 copies use staged passes with at most ten texture
+inputs, preserving the full range on the installed 16-sampler GPU. Parameter,
+transport and bypass resets clear histories. Precise browser parity, perceptual
+acceptance, sustained full-resolution performance and matched AV clocks remain
+open. The audio callback uses absTime.frame only as a repeated-cook guard, not
+as the DSP time source; replay of the complete stateful rack is not certified.
+
+Live checks include shader compilation, zero-error neutral picture equivalence,
+a measured 0.1-second texture delay, and an oversized history rejected with zero
+dry-image difference. Metrics are in `verification-temporal-20261014.json`.
+`verify_temporal_motion.py` runs only in `base_fx_temporal_test`: 520 real native
+frames with a 30-second deadline, synthetic pixels and no audio monitoring.
+Its finite-output/activity checks do not establish artistic acceptance.
+The corrected short moving run changed twelve picture outputs. Typography's
+32-copy history showed a change on the longer follow-up but stayed dry during
+the 0.65-second sample window; cold-start latency remains unqualified. Follow-up
+also checked the explicit Gate control at zero and one. The test rack is retained
+with cooking disabled after checks; the verifier enables only that test rack.
+
+## Separate text tracks
+
+Open `base_text_tracks/container_controls`. **Track** selects spoken captions,
+written draft or expressive text. Their renderers expose independent enable,
+font size, opacity, position and wrapping controls. `table_captions` contains
+35 editable spoken cues with source timing, provisional speaker attribution,
+provenance and a reviewed flag. Reviewedonly withholds unchecked cues. Caption
+time uses start-inclusive/end-exclusive intervals and preserves overlaps.
+
+`table_reading` contains all 34 original written-draft turns, including their
+source lines and directions. It has no invented timecodes. Select a Cue manually,
+or enable Timed after authoring its In/Out cells. `table_expressive` retains 35
+independent spoken-derived text cues; choose spoken, written or manual text on
+the expressive track. These editable tables are derivative material and do not
+change the original source annotations. Spoken wording/bounds still need listening.
+
+Clock can follow the selected original/performance program, the original source,
+the shared performance decoder's actual source frame, or a manual text clock.
+External FX picture sources require an appropriate explicit clock selection.
+Width/Height permit landscape or portrait text outputs within the installed
+license. `null_text` is transparent text; `null_preview` composites it over the
+current program for inspection. The main program is not rerouted. The FX rack's
+default Textinput links only the expressive output when no prior Word/Textinput
+was set; captions retain their own path. Timing boundaries, review filtering,
+visible expressive alpha and source/program preservation were checked live.

@@ -67,12 +67,35 @@ def reset(module=None):
         for name in PORTS:
             cache=owner.op('base_'+name+'/cache_history')
             if cache:cache.par.resetpulse.pulse()
+            feedback=owner.op('base_'+name+'/feedback_return')
+            if feedback:feedback.par.resetpulse.pulse()
         owner.store('feedback_epoch',None)
+
+
+def split_history_passes(group):
+    """Keep every slot while respecting the installed GPU's sampler limit."""
+    final=group.op('glsl_temporal')
+    taps=sorted(group.ops('select_history_*'),key=lambda o:int(o.name.rsplit('_',1)[1]))
+    if len(taps)<=8:return
+    if group.op('glsl_pass_1'):raise ValueError('History passes already installed')
+    incoming=group.op('select_source');previous=None
+    for offset in reversed(range(0,len(taps),8)):
+        last=offset==0
+        shader=final if last else group.copy(final,name='glsl_pass_'+str(offset//8))
+        for connector in reversed(list(shader.inputConnectors)):connector.disconnect()
+        shader.inputConnectors[0].connect(incoming)
+        for i,tap in enumerate(taps[offset:offset+8]):shader.inputConnectors[i+1].connect(tap)
+        if previous:shader.inputConnectors[9].connect(previous)
+        shader.par.vec5valuey=offset;shader.par.vec5valuez=int(last)
+        shader.nodeX=700+((len(taps)-offset)//8)*175
+        shader.nodeY=-250
+        previous=shader
 
 
 def tick():
     rack=parent.Fxrack;budget=float(rack.par.Bufferbudget)*1024*1024;used=0;blocked=[]
-    fps=float(rack.par.Historyfps)
+    step=max(1,round(float(rack.time.rate)/float(rack.par.Historyfps)))
+    fps=float(rack.time.rate)/step
     for name in rack.fetch('module_paths'):
         m=rack.op(name);active=bool(m.par.Active and not m.par.Bypass and m.par.Wet>0)
         params={p['key']:effective(m,p['key']) for p in m.fetch('definition')['params']}
@@ -88,9 +111,9 @@ def tick():
             if active and enabled and not admitted:blocked.append(m.name+'/'+name)
             if admitted:used+=required
             group.par.Admitted=admitted
-            cache.allowCooking=admitted and schedule['seconds']>0
-            cache.par.cachesize=size
-            cache.par.step=max(1,round(float(rack.time.rate)/fps))
+            cache.par.cachesize=size if admitted else 2
+            cache.par.reset=not admitted or schedule['seconds']<=0
+            cache.par.step=step
             cache.par.active=bool(admitted and rack.par.Play and root.time.play and schedule['capture'])
             cache.par.alwayscook=bool(admitted and rack.par.Play and root.time.play and schedule['capture'])
             if not admitted and group.fetch('was_admitted',False):cache.par.resetpulse.pulse()
@@ -113,7 +136,13 @@ def install(rack,code_root):
     if rack.op('text_temporal'):raise ValueError('Temporal ports exist; preserve edits')
     code=Path(code_root)/'native/touchdesigner/material_workspace'
     ns={};exec((code/'build.py').read_text(encoding='utf-8'),ns)
-    node,custom,expr=[ns[k] for k in ['node','custom','expr']]
+    raw_node,custom,expr=[ns[k] for k in ['node','custom','expr']]
+    def node(owner,typ,name,node_x,node_y,inputs=(),**pars):
+        for key in ['top','chop']:
+            value=pars.get(key)
+            if isinstance(value,str) and value.startswith(rack.path+'/'):
+                pars[key]=expr('parent.Fxrack.op('+repr(value[len(rack.path)+1:])+')')
+        return raw_node(owner,typ,name,node_x,node_y,inputs,**pars)
     for key,style,value in [('Historyfps','Float',30),('Bufferbudget','Float',512),('Memoryused','Float',0),
         ('Textinput','Str',''),('Matteinput','Str',''),('Controlinput','Str','')]:custom(rack,key,style,value,readonly=key=='Memoryused')
     rack.par.Historyfps.min=1;rack.par.Historyfps.max=60;rack.par.Historyfps.clampMin=True;rack.par.Historyfps.clampMax=True
@@ -129,7 +158,7 @@ def install(rack,code_root):
         custom(m,'Controlparameter','Menu','none',choices=[('none','None')]+[(p['key'],p['label']) for p in m.fetch('definition')['params']])
         custom(m,'Controlmode','Menu','add',choices=[('add','Add'),('multiply','Multiply')])
         incoming_control=node(m,'selectCHOP','select_control',-350,250,chop=control.path)
-        in_control=node(m,'inCHOP','in_control',-175,250,[incoming_control],connectorder=1)
+        in_control=node(m,'inCHOP','in_control',-175,250,[incoming_control],connectorder=4)
         m.par.Controlvalue.expr="float(me.op('in_control')[0]) if me.op('in_control').numChans else 0"
         incoming_audio=m.op('select_audio');in_audio=node(m,'inCHOP','in_audio',0,0,[incoming_audio],connectorder=0)
         m.op('script_audio').inputConnectors[0].connect(in_audio.outputConnectors[0])
@@ -137,14 +166,13 @@ def install(rack,code_root):
             if port:
                 default=node(m,'selectTOP','select_'+name,-350,-250-port*250,top=source.path)
             else:default=source
-            inlet=node(m,'inTOP','in_'+name,-175,-250-port*250,[default],connectorder=port)
+            inlet=node(m,'inTOP','in_'+name,-175,-250-port*250,[default],connectorder=port+1)
             group=node(m,'baseCOMP','base_'+name,175,-250-port*250,parentshortcut='Fxport')
             custom(group,'Admitted','Toggle',False,readonly=True);custom(group,'Phase','Float',0,readonly=True)
             incoming=node(group,'selectTOP','select_source',0,0,top=inlet.path)
-            feedback=node(group,'feedbackTOP','feedback_return',0,250,top='./null_output')
+            feedback=node(group,'feedbackTOP','feedback_return',0,250,[incoming],top='null_output')
             choose=node(group,'switchTOP','switch_history',175,125,[incoming,feedback],index=1 if m.par.Type=='feedback' else 0)
             cache=node(group,'cacheTOP','cache_history',350,125,[choose],active=False,alwayscook=False,cachesize=2,step=2,format='mono8fixed' if port==2 else 'rgba8fixed')
-            cache.allowCooking=False
             count=32 if m.par.Type=='typography' and port==1 else 24 if m.par.Type=='queue' else 8
             taps=[node(group,'cacheselectTOP','select_history_'+str(i),525,125-i*125,cachetop='cache_history',index=0) for i in range(count)]
             shader=node(group,'glslmultiTOP','glsl_temporal',700,0,[incoming]+taps)
@@ -159,7 +187,8 @@ def install(rack,code_root):
                     if pi<len(m.fetch('definition')['params']):
                         key=m.fetch('definition')['params'][pi]['key']
                         getattr(shader.par,'vec'+str(vi+2)+'value'+letter).expr="parent.Fxrack.op('text_temporal').module.effective(parent.Fx,'"+key+"')"
-            shader.par.vec5name='uAux';shader.par.vec5valuex.expr='parent.Fxport.par.Admitted'
+            shader.par.vec5name='uAux';shader.par.vec5valuex.expr='parent.Fxport.par.Admitted';shader.par.vec5valuey=0;shader.par.vec5valuez=1;shader.par.vec5valuew=0
+            if count>8:split_history_passes(group)
             if m.par.Type=='typography' and port==0:
                 glyph=node(group,'selectTOP','select_glyph',525,-125,top=m.path+'/base_text/glsl_temporal')
                 shader.inputConnectors[1].connect(glyph.outputConnectors[0])
@@ -171,15 +200,22 @@ def install(rack,code_root):
             else:
                 selected=node(m,'selectTOP','select_temporal_'+name,525,-250-port*250,top=endpoint.path)
                 output=node(m,'nullTOP','null_'+name,700,-250-port*250,[selected])
-                node(m,'outTOP','out_'+name,875,-250-port*250,[output],connectorder=port)
+                node(m,'outTOP','out_'+name,875,-250-port*250,[output],connectorder=port+1)
             unused=group.op('glsl_temporal_compute')
             if unused:unused.destroy()
-        out_control=node(m,'nullCHOP','null_control',175,250,[in_control]);node(m,'outCHOP','out_control',350,250,[out_control],connectorder=1)
+        m.op('out_picture').par.connectorder=1
+        out_control=node(m,'nullCHOP','null_control',175,250,[in_control]);node(m,'outCHOP','out_control',350,250,[out_control],connectorder=4)
         text=m.op('null_text');matte=m.op('null_matte');control=out_control
         m.par.Ports='audio, picture, text, matte, control · native inputs/outputs'
     for row,(name,source,family) in enumerate([('text',text,'TOP'),('matte',matte,'TOP'),('control',control,'CHOP')]):
         selected=node(rack,'select'+family,'select_output_'+name,5400,-700-row*175,**{'top' if family=='TOP' else 'chop':source.path})
-        output=node(rack,'null'+family,'null_'+name,5575,-700-row*175,[selected]);node(rack,'out'+family,'out_'+name,5750,-700-row*175,[output],connectorder=1 if name in ['text','control'] else 2)
+        output=node(rack,'null'+family,'null_'+name,5575,-700-row*175,[selected]);node(rack,'out'+family,'out_'+name,5750,-700-row*175,[output],connectorder={'text':2,'matte':3,'control':4}[name])
+    rack.op('out_picture').par.connectorder=1
     node(rack,'textDAT','text_temporal',350,-1500,language='python',file=str(code/'fx_temporal.py'),syncfile=True)
     node(rack,'executeDAT','execute_temporal',525,-1500,language='python',file=str(code/'fx_temporal_tick.py'),syncfile=True,framestart=True)
+    capabilities=rack.op('table_capabilities')
+    if capabilities:
+        for row in range(1,capabilities.numRows):
+            capabilities[row,'picture']='native causal workprint; moving acceptance pending'
+            capabilities[row,'text_matte_control']='typed native ports; independent histories; frame control modulation'
     return {'typed_modules':13,'history_fps':30,'texture_budget_mib':512,'independent_history_ports':39}

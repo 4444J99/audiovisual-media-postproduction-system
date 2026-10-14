@@ -122,7 +122,8 @@ class Stream:
                     b[1,left-start:right-start]+=source*math.sin(pan*np.pi/2)*math.sqrt(2)
         elif kind=='gate':
             phase=(t/max(.1,value('period',1.3))+value('phase',.1))%1
-            open_=np.max(np.abs(a),axis=0)>=value('threshold',.38) if int(value('detector',0)) else phase<value('duty',.18)
+            detector=np.full(n,value('control',0)) if 'control' in p else np.max(np.abs(a),axis=0)
+            open_=detector>=value('threshold',.38) if int(value('detector',0)) else phase<value('duty',.18)
             b=a*np.where(open_,1,value('retain',0))
         elif kind=='displacement':
             warp=np.sin(t*2*np.pi*value('frequency',4.2))*value('warp',.036)

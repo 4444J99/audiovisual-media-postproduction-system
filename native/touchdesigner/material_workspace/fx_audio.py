@@ -19,7 +19,7 @@ def onCook(scriptOp):
     if audio.shape[0]==1:audio=np.repeat(audio,2,axis=0)
     audio=audio[:2]
     dry=audio.copy()
-    if not owner.par.Active or owner.par.Bypass or float(owner.par.Wet)==0 or not rack.par.Play or owner.par.Type=='typography':
+    if not owner.par.Active or owner.par.Bypass or float(owner.par.Wet)==0 or not rack.par.Play or owner.par.Type=='typography' or (hasattr(owner.par,'Audioon') and not owner.par.Audioon):
         reset(owner);result=dry
     else:
         if CORE is None:
@@ -34,6 +34,9 @@ def onCook(scriptOp):
             intensity=float(owner.par.Intensity)
             for macro in definition['macro']:
                 key=macro['parameter'];params[key]=macro['min']+(params[key]-macro['min'])*intensity
+            if rack.op('text_temporal'):
+                params={p['key']:rack.op('text_temporal').module.effective(owner,p['key']) for p in definition['params']}
+                params['control']=float(owner.par.Controlvalue)
             wet=record['stream'].process(str(owner.par.Type),audio,params)
             result=dry*(1-float(owner.par.Wet))+wet*float(owner.par.Wet)
             record.update(frame=frame,result=result)

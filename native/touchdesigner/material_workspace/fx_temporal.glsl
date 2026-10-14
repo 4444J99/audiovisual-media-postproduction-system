@@ -13,6 +13,8 @@ vec4 Sample(vec2 uv) {
 vec4 Over(vec4 front,vec4 back) {return front+back*(1.-front.a);}
 vec4 History(int slot,vec2 uv) {
  if(any(lessThan(uv,vec2(0)))||any(greaterThan(uv,vec2(1)))) return vec4(0);
+ slot-=int(uAux.y);
+ if(slot<0 || slot>=8)return vec4(0);
  switch(slot) {
 #if TD_NUM_2D_INPUTS > 1
 case 0: return texture(sTD2DInputs[1],uv);
@@ -121,7 +123,8 @@ void main() {
         for(int k=7;k>=0;k--)if(k<int(uP0.y)) {
             float q=clamp(progress-float(k)*.12*uP0.z,0.,1.);
             float x=mix(uP1.x,uP1.y,q);vec2 pos=vec2(x,.5+sin(q*3.14159)*.3);
-            wet=Over(Sample((uv-pos)/.62+.5)*(1.-float(k)/(uP0.y+1.)),wet);
+            vec2 traceUV=(uv-pos)/.62+.5;vec4 trace=k==0?Sample(traceUV):History(k,traceUV);
+            wet=Over(trace*(1.-float(k)/(uP0.y+1.)),wet);
         }
     } else if(kind==1) {
         wet=dry;
@@ -158,11 +161,14 @@ void main() {
         vec2 q=mat2(cos(angle),-sin(angle),sin(angle),cos(angle))*v+.5;
         vec4 echo=History(0,q)*uP0.y;
         if(max(max(echo.r,echo.g),echo.b)<uP1.z) echo=vec4(0);
-        wet=Over(dry,echo);
+        wet=Over(echo,dry);
     } else if(kind==7) {
         float phase=uPort.w;
         int count=min(int(uP0.x),max(0,int(floor(phase*uP0.y)-floor(phase*uP0.z*.2))));
         wet=dry;
+#if TD_NUM_2D_INPUTS > 9
+        if(uAux.y>0.)wet=texture(sTD2DInputs[9],uv);
+#endif
         for(int i=23;i>=0;i--) if(i<count) {
             float spread=uP1.x;vec2 pos=vec2(.5+(Hash(float(i))-.5)*spread,.5+(Hash(float(i+51))-.5)*spread);
             wet=Over(History(i,(uv-pos)/.45+.5)*.8,wet);
@@ -182,8 +188,12 @@ void main() {
             wet=uP0.w>0.?History(0,q):Sample(q);
         }
     } else if(kind==11 && int(uPort.x)==1) {
-        wet=vec4(0);int copies=int(uP0.y);
-        for(int i=31;i>=0;i--) if(i<copies) {
+        wet=vec4(0);
+#if TD_NUM_2D_INPUTS > 9
+        if(uAux.y>0.)wet=texture(sTD2DInputs[9],uv);
+#endif
+        int copies=int(uP0.y);
+        for(int i=31;i>=0;i--) if(i<copies && i>=int(uAux.y) && i<int(uAux.y)+8) {
             vec2 pos=vec2(.5)+vec2(sin(t*uP1.y+float(i)),cos(t*uP1.y+float(i)))*.16;
             vec2 q=(uv-pos)/max(.05,uP0.x)+.5;
             q.x+=sin(floor(q.y*12.)*4.+floor(t*5.))*uP0.w*.045;
@@ -194,25 +204,13 @@ void main() {
     } else if(kind==11 && int(uPort.x)==2) {
         wet=dry;
     } else if(kind==11) {
-        vec2 q=(uv-.5)/max(.05,uP0.x)+.5;vec4 word=texture(sTD2DInputs[1],q);
-        if(int(uP1.x)==1)wet=dry*word.a;
-        else if(int(uP1.x)==2) {
-            vec2 tile=fract(uv*vec2(3.,max(2.,ceil(uP0.y/3.))));word=texture(sTD2DInputs[1],tile);
-            wet=Over(vec4(vec3(.86,.98,.4)*word.a,word.a),dry);
-        } else {
-            wet=dry;
-            for(int k=31;k>=0;k--)if(k<int(uP0.y)) {
-                vec2 offset=k==0?vec2(0):vec2(sin(t*uP1.y+float(k)),cos(t*uP1.y+float(k)))*.16;
-                vec2 p=q-offset;p.x+=sin(floor(p.y*12.)*4.+floor(t*5.))*uP0.w*.045;
-                float alpha=texture(sTD2DInputs[1],p).a*(k==0?1.:.18);
-                wet=Over(vec4(vec3(.86,.98,.4)*alpha,alpha),wet);
-            }
-        }
+        vec4 word=texture(sTD2DInputs[1],uv);
+        wet=int(uP1.x)==1?dry*word.a:Over(word,dry);
     } else if(kind==12) {
         float cols=max(3.,round(1./max(.003,uP0.z)));vec2 grid=vec2(cols,max(2.,round(cols*uTDOutputInfo.res.w/uTDOutputInfo.res.z)));
         vec4 p=Sample((floor(uv*grid)+.5)/grid);float levels=max(1.,uP0.w-1.);
         float gray=dot(p.rgb,vec3(.333333));gray=round(clamp((gray-.5)*uP1.x+.5,0.,1.)*levels)/levels;
         wet=vec4(vec3(.847,.949,1.)*gray,p.a);
     }
-    fragColor=TDOutputSwizzle(mix(dry,wet,clamp(uControl.z,0.,1.)));
+    fragColor=TDOutputSwizzle(uAux.z>.5?mix(dry,wet,clamp(uControl.z,0.,1.)):wet);
 }
