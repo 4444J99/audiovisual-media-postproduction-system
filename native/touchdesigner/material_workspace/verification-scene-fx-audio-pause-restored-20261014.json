@@ -1,0 +1,29 @@
+{
+  "state": "verified",
+  "phase": "replay",
+  "mask_method": "GPU shader; same native UV/uniforms as protection",
+  "protected_pixels": 230400,
+  "reference_max_error": 0.0,
+  "caption_max_error": 0.0,
+  "outside_max_difference": 1.0,
+  "clock_before_pause": 1.2,
+  "dsp_before_pause": {
+    "fx_delay": 53655,
+    "fx_gate": 53655
+  },
+  "audio_clock_offsets_seconds": {
+    "fx_delay": 0.016666666666666607,
+    "fx_gate": 0.016666666666666607
+  },
+  "pause_ticks": 20,
+  "clock_after_pause": 1.2,
+  "dsp_after_pause": {
+    "fx_delay": 53655,
+    "fx_gate": 53655
+  },
+  "paused_audio_peak": 0.0,
+  "stored_delay_restored": true,
+  "recovery_withheld_reason": "Active scene FX recovery needs recorded history reconstruction; cold histories are not recovered state",
+  "recovery_status": "failed",
+  "future_idle_delay_preserved": true
+}

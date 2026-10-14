@@ -174,5 +174,6 @@
     "fx_gate": 0.19999999999999973
   },
   "full_trace_retained_privately": true,
-  "correction_status": "Unfinished; interval callback integration and validation pending"
+  "correction_status": "Unfinished; interval callback integration and validation pending",
+  "qualification": "Superseded diagnostic; consult routing-final for current interval and routing evidence"
 }

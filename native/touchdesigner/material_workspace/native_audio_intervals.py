@@ -24,5 +24,23 @@ def install(workspace,code_root):
     for rack in racks:
         if not rack:continue
         for owner in rack.findChildren():
-            if owner.OPType=='select' and owner.family=='CHOP' and owner.name in ('select_audio','select_output_audio'):owner.par.timeslice=True
+            if owner.OPType=='selectCHOP' and owner.name in ('select_audio','select_output_audio'):owner.par.timeslice=True
+    finish(workspace,code_root)
     return {'native_rate':44100,'clock':clock.path,'media_export':False}
+
+
+def finish(workspace,code_root):
+    code=Path(code_root)/'native/touchdesigner/material_workspace'
+    if not workspace.op('text_audio_intervals'):
+        helper=workspace.create('textDAT','text_audio_intervals');helper.nodeX=1325;helper.nodeY=-400;helper.par.language='python';helper.par.file=str(code/'audio_intervals.py');helper.par.syncfile=True
+        helper.par.loadonstart=True;helper.par.write=False
+    racks=[workspace.op('base_fx_rack')]+[workspace.op(n+'/base_fx') for n in ('base_generated_scene','base_scene_soak')]
+    for rack in racks:
+        if rack:
+            if hasattr(rack.par,'Ownedtransport'):
+                # The scene already supplies the shared native slice. Resampling
+                # must preserve that interval, including the first active block.
+                rack.op('resample_audio').par.timeslice=False
+            for owner in rack.findChildren():
+                if owner.OPType=='selectCHOP' and owner.name in ('select_audio','select_output_audio'):owner.par.timeslice=True
+    return {'selector_type':'selectCHOP','interval_helper':workspace.op('text_audio_intervals').path}

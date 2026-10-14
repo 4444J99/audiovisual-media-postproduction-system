@@ -15,7 +15,7 @@ def onFrameEnd(frame):
         if state is None and reason is None:reason='execution_ended'
         if state and state.get('event_seen'):
             primary=float(v.op('base_player/movie_material').lastIndexUploaded);event=state['score']['events'][state['index']]
-            r.op('null_audio').cook(force=True);scene.op('null_picture').cook(force=True)
+            r.op('null_audio').cook();scene.op('null_picture').cook(force=True)
             if job['phase']=='warm' and primary>=event['start_frame']+36:
                 output=scene.op('null_picture').numpyArray();dry=scene.op('base_canvas/null_picture').numpyArray()
                 canvas=scene.op('base_canvas');orientation=str(canvas.par.Orientation);x,y,w,h=canvas.op('text_layout').module.geometry(canvas,orientation)
@@ -52,5 +52,10 @@ def onFrameEnd(frame):
         job['state']=reason;job['ended']=time.time();job.pop('deadline',None);job.pop('score',None);job.pop('identity',None)
         Path(job['receipt']).write_text(json.dumps({k:v for k,v in job.items() if k!='prior_history'},indent=2),encoding='utf-8')
         v.par.Auditionsound=False;v.op('base_player').par.Enabled=False;v.store('scene_path','base_generated_scene');v.store('history_path',job['prior_history']);v.allowCooking=False
+        if 'prior_gain' in job:
+            gain=v.op('base_player').par.Gain;value,mode,expression,bind=job['prior_gain'];gain.val=value
+            if expression:gain.expr=expression
+            if bind:gain.bindExpr=bind
+            gain.mode=getattr(ParMode,mode.split('.')[-1])
         scene.par.Enabled=False;scene.par.Audio=False;scene.par.Fxenabled=False;scene.allowCooking=False;me.par.active=False
     scene.store('fx_job',job)

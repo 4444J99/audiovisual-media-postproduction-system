@@ -202,3 +202,40 @@ observed exact ends 171/1011. Original novelty history remained three records;
 no diagnostic reservation was added there. Actual application restart, power-loss
 recovery, full audiovisual replay and extended soak acceptance remain open. No
 project was reloaded for the lifecycle simulation.
+
+
+## Shared native audio slices and source authority
+
+`base_audio_clock/null_slice` supplies the same 44,100 Hz native interval to the
+root and generated-scene mixers. They align actual input sample coordinates and
+zero-fill missing intervals; they do not stretch a single frame across a catch-up
+slice. Script CHOP callbacks assign their start index after copying NumPy data,
+because copying resets it. The scene-owned FX resampler preserves its incoming
+slice rather than manufacturing a 200 ms cold-start block. Manual rack settings
+remain independent. Sub-sample start-coordinate rounding in the native resampler
+is measured in the receipt rather than claimed exact.
+
+A score owns its primary decoder throughout active execution, even while its
+sound is withheld. Scene audio toggles therefore cannot route the raw decoder
+around the scene send. Root solo arbitration excludes that owned decoder and muted sends;
+inside-scene solo behavior remains available. Muted diagnostics use a separate
+scene, controller and private execution history, with gain/settings restored.
+
+The 2026-10-14 restoration followed an unintended return to older synced callback
+contents after application restart. A private live component snapshot and exact
+pre-repair files were retained before restoring the committed journal, audience
+and FX behavior. Current native nodes already contained the racks and clock, so
+no complete workspace was replaced. Owned authored DATs now load code from disk
+on startup and do not write embedded text on .toe save. These settings are live
+and in scoped snapshots; this work never saves or overwrites the artist's .toe.
+
+Forty-four native Python contract tests pass. Bounded native playback establishes
+nonzero paired movie audio, preserved startup/catch-up intervals, source-to-DSP
+clock offsets within one 30 fps source frame, silent pause with unchanged DSP
+positions, and unchanged protected reference/caption pixels. Diagnostic reads
+use normal audio pulls: forcing an Audio Movie CHOP a second time in one frame
+can replace its available block with a zero sample and invalidate a measurement.
+Physical listening, sustained load, all thirteen processors' perceptual behavior,
+and active audio/picture/text/matte history reconstruction remain open. In
+particular active-FX recovery still fails explicitly; pause/replay checks do not
+certify recovery or the complete God-here plan.

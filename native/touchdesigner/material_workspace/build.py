@@ -31,6 +31,9 @@ def node(owner, typ, name, node_x, node_y, inputs=(), **pars):
         p=getattr(n.par,key)
         if isinstance(value,dict):p.expr=value['expr']
         else:p.val=value
+    if typ in ('textDAT','executeDAT') and pars.get('syncfile') and pars.get('file'):
+        n.par.loadonstart=True
+        n.par.write=False
     for i,source in enumerate(inputs):n.inputConnectors[i].connect(source.outputConnectors[0])
     return n
 

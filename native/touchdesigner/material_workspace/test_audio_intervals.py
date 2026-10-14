@@ -8,6 +8,10 @@ class AudioIntervalTests(unittest.TestCase):
         source=np.arange(1470,dtype=np.float32)
         np.testing.assert_array_equal(align(source,735,44100,735,1470),source)
 
+    def test_large_equal_rate_indices_do_not_drop_boundary_samples(self):
+        source=np.arange(735,dtype=np.float32)+1
+        np.testing.assert_array_equal(align(source,10**12,44100,10**12,735),source)
+
     def test_new_source_catchup_is_trimmed_to_current_interval(self):
         source=np.arange(8820,dtype=np.float32)
         np.testing.assert_array_equal(align(source,0,44100,8085,735),source[-735:])

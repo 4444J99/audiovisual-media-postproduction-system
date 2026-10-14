@@ -8,7 +8,7 @@ from scene_fx_model import MODULE_KEYS,active,clock,validate
 
 class SceneFxModelTests(unittest.TestCase):
     def setUp(self):
-        self.definitions=json.loads(Path(__file__).with_name('fx_catalog.json').read_text())
+        self.definitions=json.loads(Path(__file__).with_name('fx_catalog.json').read_text(encoding='utf-8'))
         self.recipe={'schema':'god-here.native-scene-fx/1','enabled':True,'rack':{'Seed':1,'Word':'','Historyfps':30,'Bufferbudget':512,'Ownedcontrol':0},'modules':{}}
         for d in self.definitions:
             values={k:0 for k in MODULE_KEYS};values.update(Active=False,Bypass=False,Wet=1,Intensity=1,Controlparameter='none',Controlmode='add')

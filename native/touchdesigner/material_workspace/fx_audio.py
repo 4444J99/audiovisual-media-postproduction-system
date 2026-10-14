@@ -42,4 +42,4 @@ def onCook(scriptOp):
             wet=record['stream'].process(str(owner.par.Type),audio,params)
             result=dry*(1-float(owner.par.Wet))+wet*float(owner.par.Wet)
             record.update(frame=frame,result=result)
-    scriptOp.clear();scriptOp.rate=44100;scriptOp.copyNumpyArray(result.astype(np.float32))
+    scriptOp.clear();scriptOp.rate=44100;scriptOp.copyNumpyArray(result.astype(np.float32));scriptOp.start=scriptOp.inputs[0].start

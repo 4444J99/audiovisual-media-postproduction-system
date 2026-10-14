@@ -64,6 +64,8 @@ def prepare(scene,score,recovery=False):
         for key,value in values.items():
             par=getattr(owner.par,key);par.val=value;par.readOnly=True
     reset(scene)
+    # Prime the native slice while the observed source transport is still withheld.
+    rack.op('null_audio').cook(force=True)
     scene.par.Fxstatus='Stored FX settings; observed source clock; volatile histories start empty'
 
 

@@ -146,8 +146,13 @@ def tick():
         elif frame>=float(p.par.Out)*30-1-.001:p.store('finished',True)
 
 
+def owns_primary(scene):
+    # Output toggles must not release a score-owned decoder into the manual mix.
+    return bool(scene and scene.par.Active and controller(scene).fetch('performance_state',None))
+
+
 def handles_audio(scene):
-    return bool(scene and scene.par.Active and scene.par.Audio and controller(scene).par.Auditionsound and controller(scene).fetch('performance_state',None) and scene.fetch('score',{}).get('composition',{}).get('config',{}).get('audio_enabled'))
+    return bool(owns_primary(scene) and scene.par.Audio and controller(scene).par.Auditionsound and scene.fetch('score',{}).get('composition',{}).get('config',{}).get('audio_enabled'))
 
 
 def install(workspace,code_root):
