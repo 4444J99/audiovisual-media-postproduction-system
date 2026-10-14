@@ -1,0 +1,40 @@
+"""Native Script CHOP callback. Volatile history is never exported into a .tox."""
+import importlib.util
+from pathlib import Path
+import numpy as np
+
+STATES={}
+CORE=None
+
+
+def reset(owner=None):
+    if owner is None:STATES.clear()
+    else:STATES.pop(owner.id,None)
+
+
+def onCook(scriptOp):
+    global CORE
+    owner=parent.Fx;rack=parent.Fxrack
+    audio=scriptOp.inputs[0].numpyArray()
+    if audio.shape[0]==1:audio=np.repeat(audio,2,axis=0)
+    audio=audio[:2]
+    dry=audio.copy()
+    if not owner.par.Active or owner.par.Bypass or float(owner.par.Wet)==0 or not rack.par.Play or owner.par.Type=='typography':
+        reset(owner);result=dry
+    else:
+        if CORE is None:
+            path=Path(str(owner.op('text_audio').par.file)).with_name('fx_dsp.py');spec=importlib.util.spec_from_file_location('godhere_fx_dsp',path)
+            CORE=importlib.util.module_from_spec(spec);spec.loader.exec_module(CORE)
+        record=STATES.get(owner.id)
+        if record is None:record={'stream':CORE.Stream(seed=int(rack.par.Seed)),'frame':None};STATES[owner.id]=record
+        frame=absTime.frame
+        if record['frame']==frame:result=record['result']
+        else:
+            definition=owner.fetch('definition');params={p['key']:float(getattr(owner.par,'P'+p['key'].lower())) for p in definition['params']}
+            intensity=float(owner.par.Intensity)
+            for macro in definition['macro']:
+                key=macro['parameter'];params[key]=macro['min']+(params[key]-macro['min'])*intensity
+            wet=record['stream'].process(str(owner.par.Type),audio,params)
+            result=dry*(1-float(owner.par.Wet))+wet*float(owner.par.Wet)
+            record.update(frame=frame,result=result)
+    scriptOp.clear();scriptOp.rate=44100;scriptOp.copyNumpyArray(result.astype(np.float32))
