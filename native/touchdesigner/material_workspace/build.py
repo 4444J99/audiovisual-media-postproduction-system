@@ -26,6 +26,7 @@ def custom(owner, name, style, value=None, label=None, choices=None, readonly=Fa
 
 def node(owner, typ, name, x, y, inputs=(), **pars):
     n = owner.create(typ,name); n.nodeX=x; n.nodeY=y; n.viewer=True
+    if typ == 'tableDAT':n.clear()
     for key,value in pars.items():
         p=getattr(n.par,key)
         if isinstance(value,dict):p.expr=value['expr']

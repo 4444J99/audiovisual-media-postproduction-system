@@ -34,5 +34,7 @@
   ],
   "errors": "",
   "warnings": "",
-  "recovered_room_link_resolves": true
+  "recovered_room_link_resolves": true,
+  "source_material_entries": 284,
+  "normalized_inventory_tables": 13
 }
