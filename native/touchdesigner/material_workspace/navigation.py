@@ -84,7 +84,7 @@ def select(event_id):
         names.append(row['study_track']); labels.append('Authored voice study · independent local time')
         n.par.Sound = row['study_track'].split('/')[1]
     for path in row.get('links', []):
-        names.append(path); labels.append('Room image · unverified clean plate')
+        names.append(path); labels.append(row.get('link_labels',{}).get(path,'Room image · unverified clean plate'))
     n.par.Linked.menuNames = names or ['none']
     n.par.Linked.menuLabels = labels or ['No supported media association']
     n.par.Linked = names[0] if names else 'none'
@@ -110,6 +110,9 @@ def open_link():
     w.par.Material.menuNames = w.op(bank).fetch('asset_ids', [])
     w.par.Material.menuLabels = w.op(bank).fetch('asset_titles', [])
     w.par.Material = material
+    linked=w.op(value)
+    if hasattr(n.par,'Soundbrowser') and linked.op('null_audio'):n.par.Soundbrowser=True
+    if hasattr(n.par,'Picturebrowser') and linked.op('null_picture'):n.par.Picturebrowser=True
     if bank == 'base_composition' and material.startswith('layer_'): n.par.Picture = material
 
 
@@ -178,6 +181,8 @@ def install(workspace, code_root, source_hash):
     pictures=[t for t in bank.children if hasattr(t.par,'Enabled') and t.op('null_picture')]
     par('Sound','Menu',audio[0].name,choices=[(t.name,t.name.replace('_',' ')) for t in audio])
     par('Picture','Menu',pictures[0].name,choices=[(t.name,t.name.replace('_',' ')) for t in pictures])
+    par('Soundbrowser','Toggle',False).label='Use bank sound'
+    par('Picturebrowser','Toggle',False).label='Use bank picture'
     table=n.op('table_records')
     table.clear();table.appendRow(['id','kind','in','out','person','timing','source','actor_candidate','association_note'])
     for r in rows:table.appendRow([r['event_id'],r['event_kind'],r['start_s'],r['end_s'],r['character_name'],r['timing_basis'],r['source_match'],r['candidate'],r['candidate_note']])
@@ -201,18 +206,23 @@ def install(workspace, code_root, source_hash):
     callbacks.par.file=str(code/'navigation_callbacks.py');callbacks.par.syncfile=True;callbacks.par.language='python';callbacks.par.active=True
     # The module is file-synced separately, so callbacks and panel paths survive project saving.
     for name,scope,x,y,width,height,target in [
-        ('parameter_filters','View Query Person Kind Count Sound Picture',0,0,325,380,n),
+        ('parameter_filters','View Query Person Kind Count Soundbrowser Sound Picturebrowser Picture',0,0,325,380,n),
         ('parameter_record','Record In Out Subject Timing Linked Cuestart Cueend Cuestudy Openlink',335,150,355,230,n),
-        ('parameter_transport','Play Time Monitor Volume Program',700,385,650,120,workspace),
+        ('parameter_transport','Category Material Play Time Monitor Volume Program',700,385,650,185,workspace),
         ('parameter_sound','Enabled Play Clock Localtime Cue Sourceoffset Offset Speed Gain Pan Mute Solo Alignment',700,0,320,375,None),
         ('parameter_picture','Enabled Play Clock Localtime Cue Sourceoffset Offset Speed X Y Scale Rotate Opacity Layerorder Alignment',1030,0,320,375,None),
     ]:
         p=n.op(name);p.par.builtin=False;p.par.custom=True;p.par.parscope=scope;p.par.scopeorder=True
         p.par.w=width;p.par.h=height;p.par.x=x;p.par.y=y
         if target:p.par.op=target
-        else:p.par.op.expr="parent.Materials.op('base_composition/'+str(parent.Navigator.par."+('Sound' if name.endswith('sound') else 'Picture')+'))'
+        else:
+            kind='Sound' if name.endswith('sound') else 'Picture'
+            endpoint='null_audio' if kind=='Sound' else 'null_picture'
+            selected="parent.Materials.op(str(parent.Materials.par.Category)+'/'+str(parent.Materials.par.Material))"
+            p.par.op.expr=(f"({selected} if parent.Navigator.par.{kind}browser and {selected} and {selected}.op('{endpoint}') "
+                           f"else parent.Materials.op('base_composition/'+str(parent.Navigator.par.{kind})))")
     preview=n.op('container_program');preview.par.top.expr="parent.Materials.op('null_program')";preview.par.topfill='best'
-    preview.par.x=700;preview.par.y=515;preview.par.w=650;preview.par.h=365
+    preview.par.x=700;preview.par.y=580;preview.par.w=650;preview.par.h=300
     evidence=n.op('container_evidence/text_evidence');evidence.par.text.expr='str(parent.Navigator.par.Detail)'
     evidence.par.type='multiline';evidence.par.wordwrap=True;evidence.par.editmode='selectonly'
     evidence.par.fontsize=11;evidence.par.alignx='left';evidence.par.aligny='top'

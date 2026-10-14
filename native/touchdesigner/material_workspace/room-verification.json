@@ -1,0 +1,38 @@
+{
+  "import": {
+    "added": 56,
+    "audio": 46,
+    "video": 10,
+    "all_disabled": true
+  },
+  "reconciliation": {
+    "prior_room_warnings_resolved": 23,
+    "room_only_tracks_bound": 23,
+    "context_movies_unavailable": 4,
+    "ingredient_rows": 31
+  },
+  "ranges": {
+    "slider_ranges_changed": 2404,
+    "source_seek_range": [
+      0,
+      112
+    ],
+    "pan_range": [
+      -1,
+      1
+    ],
+    "values_and_parameter_modes_preserved": true,
+    "verified_values_and_modes_unchanged": true
+  },
+  "audio_peak": 0.0265879537910223,
+  "audio_samples": 9600,
+  "context_frame": 2100.0,
+  "context_images": 3360,
+  "context_resolution": [
+    854,
+    480
+  ],
+  "errors": "",
+  "warnings": "",
+  "recovered_room_link_resolves": true
+}

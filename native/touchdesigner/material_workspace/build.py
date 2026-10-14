@@ -17,6 +17,10 @@ def custom(owner, name, style, value=None, label=None, choices=None, readonly=Fa
         p.menuNames = [x[0] for x in choices]; p.menuLabels = [x[1] for x in choices]
     if value is not None and style != 'Pulse': p.default = value; p.val = value
     p.readOnly = readonly
+    ranges={'Cuepoint':(0,112),'Time':(0,112),'Sourceoffset':(0,112),'Localtime':(0,112),
+            'Offset':(-112,112),'Speed':(-2,2),'Gain':(0,2),'Pan':(-1,1),
+            'X':(-1,1),'Y':(-1,1),'Scale':(.1,3),'Rotate':(-180,180)}
+    if name in ranges:p.normMin,p.normMax=ranges[name]
     return p
 
 
