@@ -17,9 +17,13 @@ def onValueChange(par, prev):
                 if previous and previous != target.path and op(previous):
                     old = op(previous); old.par.Preview = False
                     old.allowCooking = bool(old.par.Enabled)
-                target.par.Preview = True
-                target.allowCooking = True
-                workspace.store('preview_asset', target.path)
+                if hasattr(target.par, 'Preview'):
+                    target.par.Preview = True
+                    target.allowCooking = True
+                    workspace.store('preview_asset', target.path)
+                elif target.fetch('vocabulary_id', None):
+                    workspace.op('base_vocabulary').par.Unit = target.fetch('vocabulary_id')
+                    workspace.store('preview_asset', None)
     elif hasattr(owner.par, 'Enabled') and par.name in ('Enabled', 'Preview'):
         owner.allowCooking = bool(owner.par.Enabled or owner.par.Preview)
     if par.name == 'Play' and par.eval(): root.time.play = True

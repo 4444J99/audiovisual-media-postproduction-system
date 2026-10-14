@@ -24,8 +24,8 @@ def custom(owner, name, style, value=None, label=None, choices=None, readonly=Fa
     return p
 
 
-def node(owner, typ, name, x, y, inputs=(), **pars):
-    n = owner.create(typ,name); n.nodeX=x; n.nodeY=y; n.viewer=True
+def node(owner, typ, name, node_x, node_y, inputs=(), **pars):
+    n = owner.create(typ,name); n.nodeX=node_x; n.nodeY=node_y; n.viewer=True
     if typ == 'tableDAT':n.clear()
     for key,value in pars.items():
         p=getattr(n.par,key)

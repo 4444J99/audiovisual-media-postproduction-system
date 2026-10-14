@@ -41,10 +41,10 @@ def refresh():
     table.clear()
     table.appendRow(['ID', 'In', 'Out', 'Person', 'Kind', 'Moment / availability'])
     query = str(n.par.Query).casefold().strip()
-    rows = n.fetch({'gaps':'gaps', 'study':'study'}.get(str(n.par.View), 'records'))
+    rows = n.fetch({'gaps':'gaps', 'study':'study', 'units':'vocabulary'}.get(str(n.par.View), 'records'))
     visible = []
     for row in rows:
-        if n.par.View == 'moments':
+        if n.par.View in ['moments','units']:
             if n.par.Person != 'all' and row['character_name'] != str(n.par.Person): continue
             if n.par.Kind != 'all' and row['event_kind'] != str(n.par.Kind): continue
         if query and query not in json.dumps(row, ensure_ascii=False).casefold(): continue
@@ -60,7 +60,7 @@ def refresh():
 
 def select(event_id):
     n = nav()
-    rows = n.fetch({'gaps':'gaps', 'study':'study'}.get(str(n.par.View), 'records'))
+    rows = n.fetch({'gaps':'gaps', 'study':'study', 'units':'vocabulary'}.get(str(n.par.View), 'records'))
     row = next((r for r in rows if r['event_id'] == event_id), None)
     if row is None: return
     n.store('selected', row)
@@ -76,6 +76,8 @@ def select(event_id):
     if 'local_start' in row: detail.append(f'Study local cue: {row["local_start"]:.3f}s; {row["lip_sync"]}; listening pending')
     n.par.Detail = '\n'.join(x for x in detail if x)
     names, labels = [], []
+    if row.get('unit_path'):
+        names.append(row['unit_path']); labels.append('Editable performance unit · source record preserved')
     if row.get('source_match') == 'hash verified':
         names.append(n.fetch('original_relative')); labels.append('Original film · hash verified; timing approximate')
     if row.get('candidate'):

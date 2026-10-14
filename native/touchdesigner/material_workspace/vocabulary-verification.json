@@ -1,0 +1,69 @@
+{
+  "vocabulary": {
+    "units": 199,
+    "micro": 174,
+    "shots": 9,
+    "passages": 7,
+    "study_events": 9,
+    "decoders": 1,
+    "audition_sound_enabled": false
+  },
+  "finite_audition": {
+    "finite_audition_stopped": true,
+    "final_source_frame": 2108.0,
+    "expected_last_frame": 2108,
+    "status": "Audition finished: P01"
+  },
+  "three_scores": {
+    "candidates": 3,
+    "all_pairwise_selection_and_order_distinct": true,
+    "event_counts": [
+      5,
+      5,
+      5
+    ],
+    "durations": [
+      28.533333,
+      35.033333,
+      32.2
+    ],
+    "source_hashes_match": true,
+    "reserved_ids_unique": true
+  },
+  "completed_run": {
+    "finished": true,
+    "player_stopped": true,
+    "history_states": [
+      [
+        "complete",
+        1
+      ],
+      [
+        "reserved",
+        2
+      ]
+    ]
+  },
+  "replay": {
+    "recorded_first_frame": 613,
+    "native_first_frame": 613.0,
+    "native_in_seconds": 20.433333333333334,
+    "edited_current_unit_in": 21.7,
+    "replay_state_explicit": true,
+    "history_rows_before": 3,
+    "history_rows_after": 3,
+    "replay_uses_saved_bounds": true
+  },
+  "audition_audio": {
+    "peak": 0.30030557513237,
+    "samples": 8820
+  },
+  "paused_player_peak": 0.0,
+  "paused_mix_peak": 0.0,
+  "history_rows": 3,
+  "new_unit_tests": 5,
+  "existing_source_generation_and_qualification_tests": 26,
+  "offline_suite_limit": "Three unmodified offline-render tests could not run in the CLI environment because numpy is absent; no dependencies installed or offline renders launched.",
+  "errors": "",
+  "warnings": ""
+}

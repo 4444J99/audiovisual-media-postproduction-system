@@ -12,6 +12,8 @@ def onCook(scriptOp):
     result = np.zeros((2, count), dtype=np.float32)
     for track in tracks:
         if not track.par.Enabled or track.par.Mute or (solo and not track.par.Solo): continue
+        player=track.op('audiofile_material') or track.op('audiomovie_material')
+        if player is not None and not player.par.play.eval():continue
         if hasattr(track.par, 'Duration') and track.par.Clock == 'source':
             local = ((float(workspace.par.Time) - float(track.par.Sourceoffset))
                      * float(track.par.Speed) + float(track.par.Offset))
