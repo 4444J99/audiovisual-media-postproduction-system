@@ -65,6 +65,14 @@ def reset(module=None):
     modules=[module] if module else [rack.op(n) for n in rack.fetch('module_paths')]
     for owner in modules:
         for name in PORTS:
+            group=owner.op('base_'+name)
+            if group.fetch('recovery_feedback_pending',False):
+                feedback=group.op('feedback_return')
+                feedback.inputConnectors[0].connect(op(group.fetch('recovery_feedback_input')))
+                feedback.par.reset=group.fetch('recovery_feedback_reset')
+                group.op('null_output').inputConnectors[0].connect(op(group.fetch('recovery_output_input')))
+                group.store('recovery_feedback_pending',False)
+            group.store('history_tick',0)
             cache=owner.op('base_'+name+'/cache_history')
             if cache:cache.par.resetpulse.pulse()
             feedback=owner.op('base_'+name+'/feedback_return')
@@ -113,10 +121,26 @@ def tick():
             group.par.Admitted=admitted
             cache.par.cachesize=size if admitted else 2
             cache.par.reset=not admitted or schedule['seconds']<=0
-            cache.par.step=step
+            cache.par.step=1 if hasattr(rack.par,'Ownedtransport') else step
             transport=bool(rack.par.Play and root.time.play and (not hasattr(rack.par,'Ownedtransport') or rack.par.Ownedtransport))
-            cache.par.active=bool(admitted and transport and schedule['capture'])
-            cache.par.alwayscook=bool(admitted and transport and schedule['capture'])
+            capture=bool(admitted and transport and schedule['capture'])
+            if hasattr(rack.par,'Ownedtransport'):
+                if capture:
+                    history_tick=group.fetch('history_tick',0)
+                    capture=history_tick%step==0
+                    group.store('history_tick',history_tick+1)
+                if group.fetch('recovery_feedback_pending',False) and transport:
+                    first=group.fetch('recovery_feedback_frame',None)
+                    if first is None:
+                        group.op('null_output').inputConnectors[0].connect(op(group.fetch('recovery_output_input')))
+                        group.store('recovery_feedback_frame',absTime.frame)
+                    elif absTime.frame>first:
+                        feedback=group.op('feedback_return')
+                        feedback.inputConnectors[0].connect(op(group.fetch('recovery_feedback_input')))
+                        feedback.par.reset=group.fetch('recovery_feedback_reset')
+                        group.store('recovery_feedback_pending',False)
+            cache.par.active=capture
+            cache.par.alwayscook=capture
             if not admitted and group.fetch('was_admitted',False):cache.par.resetpulse.pulse()
             group.store('was_admitted',admitted)
             group.par.Phase=schedule['phase']

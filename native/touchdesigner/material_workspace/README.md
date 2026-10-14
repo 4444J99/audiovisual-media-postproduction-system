@@ -239,3 +239,43 @@ Physical listening, sustained load, all thirteen processors' perceptual behavior
 and active audio/picture/text/matte history reconstruction remain open. In
 particular active-FX recovery still fails explicitly; pause/replay checks do not
 certify recovery or the complete God-here plan.
+
+
+## Paused native FX state checkpoints
+
+`native_fx_state.py` provides paused capture/read/restore primitives in the muted
+diagnostic scene. The main generated scene still withholds active-FX interruption
+recovery. These primitives restore memory; they do not yet implement automatic
+checkpoints, journal-linked restart recovery or a new user-facing recovery control.
+
+DSP memory uses a typed, finite codec rather than pickle. Rings, captures, grains,
+queued/playing snippets, random generator and lowpass memory survive exactly.
+All thirteen adapters produce identical future audio arrays after restoration,
+including ring-buffer wrap. Seven state/store tests bring the combined native
+contract suite to 51 passing tests. The private store verifies file hashes and
+NumPy allocation headers before loading; a complete manifest is committed only
+following fsynced array files. Checkpoints bind score, source, FX recipe, event,
+observed primary frame and implementation hashes. Bounds are one GiB per
+checkpoint and two GiB retained storage; capacity is explicit and preserves data.
+
+Native history textures return through Script TOP uploads and Cache TOP individual
+index replacement. Owned racks maintain an explicit capture-phase counter, leaving
+manual rack scheduling independent. Feedback holds the checkpoint output through
+a temporary seed route, then restores the original shader/input connections on
+native transport frames. Cold buffers never substitute for recorded state.
+
+The final muted disk roundtrip deliberately cleared active Delay/Gate/Feedback
+memory, then restored eighteen picture/matte history frames, six DSP arrays and
+feedback seeds with zero measured data difference. A 119,445,504-byte checkpoint
+contained 26 arrays. Resumed audio was nonzero; measured DSP/source error stayed
+within 16.7 ms. The test consumed the checkpoint-write wall gap while held and
+read the rack on the frame after arming resume. Earlier failed/clock-invalid
+receipts remain distinct from this result. A Null TOP lock flag did not retain
+the seed image in this build; the working route avoids that silent failure.
+
+This is paused state-loss evidence, not uninterrupted-versus-recovered future
+picture comparison or app-restart acceptance. The synchronous write/read/restore
+comparison took 0.431 seconds, so automatic realtime scheduling is unqualified.
+Journal/interaction/auxiliary checkpoint binding, restart, all-processor GPU
+continuation and sustained performance remain open. Original media, private
+state arrays and full manifests remain outside public Git; no .toe is saved.
