@@ -1,0 +1,183 @@
+{
+  "state": "measured",
+  "sampled_native_ticks": 180,
+  "started": 1791997554.664374,
+  "ended": 1791997558.045672,
+  "condition": "Muted diagnostic; forced source CHOP reads do not certify listening or active source-mixer continuity",
+  "counts": {
+    "movie": {
+      "1": 180
+    },
+    "source": {
+      "1": 180
+    },
+    "scene": {
+      "735": 180
+    },
+    "resample": {
+      "8820": 1,
+      "4410": 1,
+      "1470": 16,
+      "2205": 1,
+      "735": 161
+    },
+    "delay_input": {
+      "8820": 1,
+      "4410": 1,
+      "1470": 16,
+      "2205": 1,
+      "735": 161
+    },
+    "delay_output": {
+      "8820": 1,
+      "4410": 1,
+      "1470": 16,
+      "2205": 1,
+      "735": 161
+    },
+    "gate_input": {
+      "8820": 1,
+      "4410": 1,
+      "1470": 16,
+      "2205": 1,
+      "735": 161
+    },
+    "gate_output": {
+      "8820": 1,
+      "4410": 1,
+      "1470": 16,
+      "2205": 1,
+      "735": 161
+    }
+  },
+  "first": {
+    "primary_uploaded": 613.0,
+    "primary_true_index": 613.0,
+    "fx_time": 0.0,
+    "native_absolute_frame": 1016445.0,
+    "native_absolute_seconds": 16940.75,
+    "timeline_frame": 477.0,
+    "intervals": {
+      "movie": {
+        "samples": 1,
+        "start": 349860.0,
+        "end": 349860.0,
+        "rate": 44100.0
+      },
+      "source": {
+        "samples": 1,
+        "start": 349860.0,
+        "end": 349860.0,
+        "rate": 44100.0
+      },
+      "scene": {
+        "samples": 735,
+        "start": 0.0,
+        "end": 734.0,
+        "rate": 44100.0
+      },
+      "resample": {
+        "samples": 8820,
+        "start": 341041.0,
+        "end": 349860.0,
+        "rate": 44100.0
+      },
+      "delay_input": {
+        "samples": 8820,
+        "start": 0.0,
+        "end": 8819.0,
+        "rate": 44100.0
+      },
+      "delay_output": {
+        "samples": 8820,
+        "start": 0.0,
+        "end": 8819.0,
+        "rate": 44100.0
+      },
+      "gate_input": {
+        "samples": 8820,
+        "start": 0.0,
+        "end": 8819.0,
+        "rate": 44100.0
+      },
+      "gate_output": {
+        "samples": 8820,
+        "start": 0.0,
+        "end": 8819.0,
+        "rate": 44100.0
+      }
+    },
+    "dsp_positions": {
+      "fx_delay": 8820,
+      "fx_gate": 8820
+    }
+  },
+  "last": {
+    "primary_uploaded": 714.0,
+    "primary_true_index": 714.0,
+    "fx_time": 3.3666666666666667,
+    "native_absolute_frame": 1016647.0,
+    "native_absolute_seconds": 16944.116666666665,
+    "timeline_frame": 79.0,
+    "intervals": {
+      "movie": {
+        "samples": 1,
+        "start": 57330.0,
+        "end": 57330.0,
+        "rate": 44100.0
+      },
+      "source": {
+        "samples": 1,
+        "start": 57330.0,
+        "end": 57330.0,
+        "rate": 44100.0
+      },
+      "scene": {
+        "samples": 735,
+        "start": 0.0,
+        "end": 734.0,
+        "rate": 44100.0
+      },
+      "resample": {
+        "samples": 1470,
+        "start": 55861.0,
+        "end": 57330.0,
+        "rate": 44100.0
+      },
+      "delay_input": {
+        "samples": 1470,
+        "start": 0.0,
+        "end": 1469.0,
+        "rate": 44100.0
+      },
+      "delay_output": {
+        "samples": 1470,
+        "start": 0.0,
+        "end": 1469.0,
+        "rate": 44100.0
+      },
+      "gate_input": {
+        "samples": 1470,
+        "start": 0.0,
+        "end": 1469.0,
+        "rate": 44100.0
+      },
+      "gate_output": {
+        "samples": 1470,
+        "start": 0.0,
+        "end": 1469.0,
+        "rate": 44100.0
+      }
+    },
+    "dsp_positions": {
+      "fx_delay": 157290,
+      "fx_gate": 157290
+    }
+  },
+  "final_dsp_minus_picture_seconds": {
+    "fx_delay": 0.20000000000000018,
+    "fx_gate": 0.20000000000000018
+  },
+  "full_trace_retained_privately": true,
+  "correction_status": "Unfinished; interval callback integration and validation pending"
+}
