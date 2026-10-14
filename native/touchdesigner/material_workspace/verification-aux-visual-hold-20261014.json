@@ -1,0 +1,17 @@
+{
+  "state": "deadline",
+  "phase": "pause",
+  "started": 1791994158.3541791,
+  "receipt": "/Users/4jp/Workspace/audiovisual-composition-system/.agents/god-here/workspace-implementation/native/touchdesigner/material_workspace/verification-aux-visual-hold-20261014.json",
+  "before": {
+    "primary": 633.0,
+    "auxiliary": [
+      633.0,
+      633.0,
+      633.0,
+      633.0
+    ]
+  },
+  "pause_ticks": 1457,
+  "ended": 1791994183.36831
+}

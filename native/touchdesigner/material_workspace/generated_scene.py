@@ -27,6 +27,11 @@ def prepare(scene,score):
     if not scene.par.Enabled:raise ValueError('Enable score modulation before composed replay')
     saved=snapshot(scene);canvas=scene.op('base_canvas')
     owners=[(canvas,saved['canvas'])]+[(canvas.op('field_'+n),values) for n,values in zip(NAMES,saved['fields'])]
+    for i in range(1,5):
+        player=scene.op('player_'+str(i))
+        owners.extend([(player,['Play','In','Out','Speed']),
+            (player.op('movie_material'),['playmode','index','indexunit','cue']),
+            (player.op('audiomovie_material'),['play'])])
     scene.store('idle_modes',[(owner.path,{key:(getattr(owner.par,key).val,str(getattr(owner.par,key).mode),getattr(owner.par,key).expr,getattr(owner.par,key).bindExpr) for key in keys}) for owner,keys in owners])
     scene.store('idle_layout',saved);scene.store('score',copy.deepcopy(score));scene.par.Active=True
     canvas=scene.op('base_canvas');layout=score['composition']['layout']
@@ -39,12 +44,36 @@ def prepare(scene,score):
 def begin_event(scene,event,resume_frame=None):
     scene.store('event',copy.deepcopy(event))
     for spec in event['scene']['companions']:
-        elapsed=0 if resume_frame is None else max(0,resume_frame-event['start_frame'])/30/event['speed']
-        start=min(spec['end_frame']-1,spec['start_frame']+math.floor(elapsed*spec['speed']*30))
-        p=scene.op('player_'+str(spec['slot']));p.par.Play=False;p.par.In=start/30;p.par.Out=spec['end_frame']/30;p.par.Speed=spec['speed']
+        start=scene.op('text_score').module.companion_frame(event,spec,event['start_frame'] if resume_frame is None else resume_frame)
+        p=scene.op('player_'+str(spec['slot']));p.par.Play=False;p.par.In=spec['start_frame']/30;p.par.Out=spec['end_frame']/30;p.par.Speed=spec['speed']
         p.store('cue_pending',True);p.store('expected_start',start);p.store('waited',0);p.store('finished',False)
-        movie=p.op('movie_material');movie.par.cue=True;movie.par.cue.mode=ParMode.CONSTANT;movie.par.cuepulse.pulse()
+        movie=p.op('movie_material');movie.par.cue=False;movie.par.playmode='specify';movie.par.indexunit='indices'
+        movie.par.index.expr="parent.Generatedscene.op('text_runtime').module.target_frame(parent.Generatedscene,"+str(spec['slot'])+")-round(float(parent.Player.par.In)*30)"
+        p.op('audiomovie_material').par.play.expr="parent.Generatedscene.op('text_runtime').module.audio_playing(parent.Generatedscene,"+str(spec['slot'])+")"
         p.par.Play=spec['slot'] in event['scene']['active_fields']
+
+
+def target_frame(scene,slot):
+    event=scene.fetch('event');v=controller(scene);state=v.fetch('performance_state',{}) or {}
+    primary=float(v.op('base_player/movie_material').lastIndexUploaded) if state.get('event_seen') else state.get('expected_start',event['start_frame'])
+    spec=next(c for c in event['scene']['companions'] if c['slot']==slot)
+    return scene.op('text_score').module.companion_frame(event,spec,primary)
+
+
+def audio_playing(scene,slot):
+    v=controller(scene);state=v.fetch('performance_state',{}) or {};p=scene.op('player_'+str(slot))
+    return bool(scene.par.Active and state.get('event_seen') and v.op('base_player').par.Play and root.time.play and p.par.Play and not p.fetch('cue_pending',True) and not p.fetch('finished',False))
+
+
+def ready(scene):
+    """Hold the primary cue until every active companion start is uploaded."""
+    result=True
+    for i in scene.fetch('event')['scene']['active_fields']:
+        if not i:continue
+        p=scene.op('player_'+str(i));movie=p.op('movie_material');movie.cook()
+        if movie.isOpening or abs(float(movie.lastIndexUploaded)-p.fetch('expected_start'))>.001:result=False
+        else:p.store('cue_pending',False)
+    return result
 
 
 def stop(scene):
@@ -92,7 +121,7 @@ def tick():
                 m.par.cue=False;p.store('cue_pending',False)
             elif waited>240:
                 v.op('text_performance').module.stop('Auxiliary uploaded start frame timed out',failed=True);return
-        elif frame>=float(p.par.Out)*30-1-.001:p.par.Play=False;p.store('finished',True)
+        elif frame>=float(p.par.Out)*30-1-.001:p.store('finished',True)
 
 
 def handles_audio(scene):

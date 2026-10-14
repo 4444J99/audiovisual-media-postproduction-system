@@ -1,7 +1,7 @@
 import copy
 import unittest
 
-from scene_score import decorate,pool,envelope
+from scene_score import decorate,pool,envelope,companion_frame
 
 
 class SceneScoreTests(unittest.TestCase):
@@ -38,6 +38,17 @@ class SceneScoreTests(unittest.TestCase):
         units=[{'id':str(i)} for i in range(7)]
         self.assertEqual(len(pool(units,3,17)),3);self.assertEqual(pool(units,0,17),units)
         self.assertEqual((envelope(0),envelope(.5),envelope(1)),(0,1,0))
+
+    def test_companion_clock_pause_recovery_and_non_unit_speed(self):
+        event = {'start_frame': 600, 'speed': .5}
+        companion = {'start_frame': 1200, 'end_frame': 1290, 'speed': 1.5}
+        self.assertEqual(companion_frame(event, companion, 610), 1230)
+        self.assertEqual(companion_frame(event, companion, 610), 1230)
+        self.assertEqual(companion_frame(event, companion, 620), 1260)
+        self.assertEqual(companion_frame(event, companion, 700), 1289)
+        self.assertEqual(companion_frame(event, companion, 590), 1200)
+        with self.assertRaises(ValueError):
+            companion_frame(event, companion, float('nan'))
 
 
 if __name__=='__main__':unittest.main()

@@ -77,6 +77,8 @@ def startup():
     v=parent.Vocabulary
     if v.fetch('performance_state',None):
         restore_cue(v.fetch('performance_state'));v.op('base_player').par.Play=False;v.store('performance_state',None)
+    composed=scene()
+    if composed and composed.par.Active:composed.op('text_runtime').module.stop(composed)
     v.store('journal_session',None);session_owner();reconcile_execution()
 
 
@@ -91,6 +93,8 @@ def shutdown(reason='Native process closing'):
         except Exception:v.store('journal_recovery_needed',state['run_id'])
         restore_cue(state)
         v.op('base_player').par.Play=False;v.store('performance_state',None)
+        composed=scene()
+        if composed and composed.par.Active:composed.op('text_runtime').module.stop(composed)
 
 
 def restore_cue(state):
@@ -279,6 +283,10 @@ def observe_frame(movie):
     if not state.get('event_seen'):
         if movie.isOpening or abs(frame-state['expected_start'])>.001:
             if state['waited']>240:raise ValueError('Uploaded start frame not observed within 240 native frames')
+            v.store('performance_state',state);return False
+        composed=scene()
+        if composed and composed.par.Active and not composed.op('text_runtime').module.ready(composed):
+            if state['waited']>240:raise ValueError('Companion start frames not observed within 240 native frames')
             v.store('performance_state',state);return False
         journal().observe(path,state['run_id'],state['index'],frame,first=True)
         state['event_seen']=True

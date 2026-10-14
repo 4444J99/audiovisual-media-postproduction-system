@@ -1,0 +1,931 @@
+{
+  "state": "finished",
+  "phase": "recovery",
+  "started": 1791994088.905608,
+  "receipt": "/Users/4jp/Workspace/audiovisual-composition-system/.agents/god-here/workspace-implementation/native/touchdesigner/material_workspace/verification-aux-recovery-20261014.json",
+  "sample_count": 6660,
+  "max_error_frames": 0,
+  "out_of_bounds": 0,
+  "paused_audio_peak": 0,
+  "playing_audio_peak": 0.3079985976219177,
+  "examples": [
+    {
+      "event": 0,
+      "primary": 613.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 613,
+          "observed": 613.0,
+          "speed": 1.0,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 613,
+          "observed": 613.0,
+          "speed": 1.0,
+          "unit": "U01"
+        },
+        {
+          "slot": 3,
+          "expected": 613,
+          "observed": 613.0,
+          "speed": 1.0,
+          "unit": "U01"
+        },
+        {
+          "slot": 4,
+          "expected": 613,
+          "observed": 613.0,
+          "speed": 1.0,
+          "unit": "U01"
+        }
+      ],
+      "recovery": false
+    },
+    {
+      "event": 1,
+      "primary": 2551.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 623,
+          "observed": 623.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2551,
+          "observed": 2551.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2551,
+          "observed": 2551.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 623,
+          "observed": 623.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": false
+    },
+    {
+      "event": 1,
+      "primary": 2566.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 653,
+          "observed": 653.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2566,
+          "observed": 2566.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2566,
+          "observed": 2566.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 653,
+          "observed": 653.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2567.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 655,
+          "observed": 655.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2567,
+          "observed": 2567.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2567,
+          "observed": 2567.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 655,
+          "observed": 655.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2567.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 655,
+          "observed": 655.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2567,
+          "observed": 2567.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2567,
+          "observed": 2567.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 655,
+          "observed": 655.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2568.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 657,
+          "observed": 657.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2568,
+          "observed": 2568.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2568,
+          "observed": 2568.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 657,
+          "observed": 657.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2568.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 657,
+          "observed": 657.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2568,
+          "observed": 2568.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2568,
+          "observed": 2568.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 657,
+          "observed": 657.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2569.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 659,
+          "observed": 659.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2569,
+          "observed": 2569.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2569,
+          "observed": 2569.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 659,
+          "observed": 659.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2569.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 659,
+          "observed": 659.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2569,
+          "observed": 2569.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2569,
+          "observed": 2569.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 659,
+          "observed": 659.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2570.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 661,
+          "observed": 661.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2570,
+          "observed": 2570.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2570,
+          "observed": 2570.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 661,
+          "observed": 661.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2570.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 661,
+          "observed": 661.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2570,
+          "observed": 2570.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2570,
+          "observed": 2570.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 661,
+          "observed": 661.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2571.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 663,
+          "observed": 663.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2571,
+          "observed": 2571.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2571,
+          "observed": 2571.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 663,
+          "observed": 663.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2571.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 663,
+          "observed": 663.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2571,
+          "observed": 2571.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2571,
+          "observed": 2571.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 663,
+          "observed": 663.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2572.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 665,
+          "observed": 665.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2572,
+          "observed": 2572.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2572,
+          "observed": 2572.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 665,
+          "observed": 665.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2572.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 665,
+          "observed": 665.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2572,
+          "observed": 2572.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2572,
+          "observed": 2572.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 665,
+          "observed": 665.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2573.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 667,
+          "observed": 667.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2573,
+          "observed": 2573.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2573,
+          "observed": 2573.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 667,
+          "observed": 667.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2573.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 667,
+          "observed": 667.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2573,
+          "observed": 2573.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2573,
+          "observed": 2573.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 667,
+          "observed": 667.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2574.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 669,
+          "observed": 669.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2574,
+          "observed": 2574.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2574,
+          "observed": 2574.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 669,
+          "observed": 669.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2574.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 669,
+          "observed": 669.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2574,
+          "observed": 2574.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2574,
+          "observed": 2574.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 669,
+          "observed": 669.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2575.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 671,
+          "observed": 671.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2575,
+          "observed": 2575.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2575,
+          "observed": 2575.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 671,
+          "observed": 671.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2575.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 671,
+          "observed": 671.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2575,
+          "observed": 2575.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2575,
+          "observed": 2575.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 671,
+          "observed": 671.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2576.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 673,
+          "observed": 673.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2576,
+          "observed": 2576.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2576,
+          "observed": 2576.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 673,
+          "observed": 673.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2576.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 673,
+          "observed": 673.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2576,
+          "observed": 2576.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2576,
+          "observed": 2576.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 673,
+          "observed": 673.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    },
+    {
+      "event": 1,
+      "primary": 2577.0,
+      "companions": [
+        {
+          "slot": 1,
+          "expected": 675,
+          "observed": 675.0,
+          "speed": 2,
+          "unit": "U01"
+        },
+        {
+          "slot": 2,
+          "expected": 2577,
+          "observed": 2577.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 3,
+          "expected": 2577,
+          "observed": 2577.0,
+          "speed": 1.0,
+          "unit": "U04"
+        },
+        {
+          "slot": 4,
+          "expected": 675,
+          "observed": 675.0,
+          "speed": 2,
+          "unit": "U01"
+        }
+      ],
+      "recovery": true
+    }
+  ],
+  "pause_before": {
+    "primary": 633.0,
+    "companions": [
+      {
+        "slot": 1,
+        "expected": 633,
+        "observed": 633.0,
+        "speed": 1.0,
+        "unit": "U01"
+      },
+      {
+        "slot": 2,
+        "expected": 633,
+        "observed": 633.0,
+        "speed": 1.0,
+        "unit": "U01"
+      },
+      {
+        "slot": 3,
+        "expected": 633,
+        "observed": 633.0,
+        "speed": 1.0,
+        "unit": "U01"
+      },
+      {
+        "slot": 4,
+        "expected": 633,
+        "observed": 633.0,
+        "speed": 1.0,
+        "unit": "U01"
+      }
+    ]
+  },
+  "pause_ticks": 20,
+  "pause_after": {
+    "primary": 633.0,
+    "companions": [
+      {
+        "slot": 1,
+        "expected": 633,
+        "observed": 633.0,
+        "speed": 1.0,
+        "unit": "U01"
+      },
+      {
+        "slot": 2,
+        "expected": 633,
+        "observed": 633.0,
+        "speed": 1.0,
+        "unit": "U01"
+      },
+      {
+        "slot": 3,
+        "expected": 633,
+        "observed": 633.0,
+        "speed": 1.0,
+        "unit": "U01"
+      },
+      {
+        "slot": 4,
+        "expected": 633,
+        "observed": 633.0,
+        "speed": 1.0,
+        "unit": "U01"
+      }
+    ]
+  },
+  "checkpoint": {
+    "event": 1,
+    "primary": 2566.0,
+    "status": "interrupted",
+    "scene_stopped": true
+  },
+  "recovery_expected_start": 2566.0,
+  "recovered": true,
+  "execution_status": "complete",
+  "completed_events": 5,
+  "ended": 1791994117.922637
+}

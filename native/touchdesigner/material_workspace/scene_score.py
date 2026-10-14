@@ -47,3 +47,14 @@ def decorate(score,config,seed,layout):
 
 def envelope(phase):
     return max(0,min(1,phase/.12,(1-phase)/.12))
+
+
+def companion_frame(event, companion, primary_frame):
+    """Absolute source frame, derived from the primary uploaded source clock."""
+    if not math.isfinite(primary_frame):
+        raise ValueError('Primary source clock must be finite')
+    if event['speed'] <= 0 or companion['speed'] <= 0:
+        raise ValueError('Source speeds must be positive')
+    elapsed = max(0, primary_frame - event['start_frame']) / event['speed']
+    frame = companion['start_frame'] + math.floor(elapsed * companion['speed'] + 1e-9)
+    return min(companion['end_frame'] - 1, max(companion['start_frame'], frame))
