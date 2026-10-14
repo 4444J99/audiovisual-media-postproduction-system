@@ -22,7 +22,7 @@ def journal():
 
 
 def scene():
-    candidate=parent.Materials.op('base_generated_scene')
+    candidate=parent.Materials.op(parent.Vocabulary.fetch('scene_path','base_generated_scene'))
     if candidate and parent.Materials.op(str(candidate.par.Controller))==parent.Vocabulary:return candidate
     return None
 
