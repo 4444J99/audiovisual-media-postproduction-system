@@ -19,7 +19,9 @@ def onCook(scriptOp):
     if audio.shape[0]==1:audio=np.repeat(audio,2,axis=0)
     audio=audio[:2]
     dry=audio.copy()
-    if not owner.par.Active or owner.par.Bypass or float(owner.par.Wet)==0 or not rack.par.Play or owner.par.Type=='typography' or (hasattr(owner.par,'Audioon') and not owner.par.Audioon):
+    if hasattr(rack.par,'Ownedtransport') and not rack.par.Ownedtransport:
+        result=np.zeros_like(dry)  # Pause/opening holds history without advancing DSP state.
+    elif not owner.par.Active or owner.par.Bypass or float(owner.par.Wet)==0 or not rack.par.Play or owner.par.Type=='typography' or (hasattr(owner.par,'Audioon') and not owner.par.Audioon):
         reset(owner);result=dry
     else:
         if CORE is None:

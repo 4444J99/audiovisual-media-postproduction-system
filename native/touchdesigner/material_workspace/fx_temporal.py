@@ -114,8 +114,9 @@ def tick():
             cache.par.cachesize=size if admitted else 2
             cache.par.reset=not admitted or schedule['seconds']<=0
             cache.par.step=step
-            cache.par.active=bool(admitted and rack.par.Play and root.time.play and schedule['capture'])
-            cache.par.alwayscook=bool(admitted and rack.par.Play and root.time.play and schedule['capture'])
+            transport=bool(rack.par.Play and root.time.play and (not hasattr(rack.par,'Ownedtransport') or rack.par.Ownedtransport))
+            cache.par.active=bool(admitted and transport and schedule['capture'])
+            cache.par.alwayscook=bool(admitted and transport and schedule['capture'])
             if not admitted and group.fetch('was_admitted',False):cache.par.resetpulse.pulse()
             group.store('was_admitted',admitted)
             group.par.Phase=schedule['phase']

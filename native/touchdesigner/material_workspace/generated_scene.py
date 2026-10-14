@@ -95,6 +95,7 @@ def ready(scene):
 
 
 def stop(scene):
+    if scene.op('text_fx'):scene.op('text_fx').module.stop(scene)
     for i in range(1,5):
         p=scene.op('player_'+str(i));p.par.Play=False;p.op('movie_material').par.cue=False;p.store('cue_pending',False)
     idle=scene.fetch('idle_layout',None)

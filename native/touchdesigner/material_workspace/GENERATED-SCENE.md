@@ -83,3 +83,36 @@ zero held audio, zero refused-field opacity, visible message alpha, identical
 recovered influence, and zero measured dispatch lateness. The actual native UI
 pulse fired. These checks do not establish audience perception, listening
 quality, application-restart recovery, or a finished artistic treatment.
+
+## Score-owned FX
+
+The generated scene has its own `base_fx/container_controls`, retaining all
+thirteen processors and typed ports. Edit its settings while idle, turn on
+**Capture owned FX in future scores**, then Generate/Newperformance. The manual
+workspace rack remains independent. Stored performances capture the owned rack's
+seed, word, control value, history budget/rate and all thirteen module settings.
+Playback temporarily protects those settings from editing and restores their
+idle values, modes, bindings and editability when stopped. Audio still requires
+the scene and vocabulary audio opt-ins.
+
+FX process an auxiliary-only canvas. The final stage adds the complete reference
+and caption strip after processing. Both orientations retain their proper sizes.
+Native GPU-mask probes preserved all 230,400 landscape and 236,520 portrait
+reference pixels with zero difference, while pixels outside the protected
+regions changed. The portrait output was visually inspected. Stored delay replay
+and idle future-setting restoration passed. Pausing held both the picture clock
+and DSP history positions and produced silent owned FX audio.
+
+Two requirements remain visibly incomplete. First, native probes found a DSP
+sample-time offset against the observed source-frame clock (up to 0.2 seconds in
+these probes); matched audio/picture timing is not established. Second, active
+FX interruption recovery is withheld and journaled as failed because rebuilding
+volatile histories is not implemented. The guard test confirms honest failure,
+not successful recovery. Score replay can start effects from empty histories;
+it does not certify bit-exact audio/picture reproduction. External text, matte
+and control bindings also require source/clock contracts before stored replay
+admission; owned word, white matte and scalar control are available now.
+
+Three FX recipe/clock tests pass, for a total of 39 native contract tests. Next
+technical work is source/audio clock reconciliation and recorded-history rebuild.
+These open requirements and the full v4 completion matrix remain in scope.

@@ -1,0 +1,31 @@
+{
+  "state": "verified",
+  "phase": "replay",
+  "started": 1791996416.644289,
+  "receipt": "/Users/4jp/Workspace/audiovisual-composition-system/.agents/god-here/workspace-implementation/native/touchdesigner/material_workspace/verification-scene-fx-portrait-20261014.json",
+  "reference_max_error": 0.0,
+  "caption_max_error": 0.0,
+  "outside_max_difference": 1.0,
+  "clock_before_pause": 1.2,
+  "dsp_before_pause": {
+    "fx_delay": 61740,
+    "fx_gate": 61740
+  },
+  "audio_clock_offsets_seconds": {
+    "fx_delay": 0.19999999999999996,
+    "fx_gate": 0.19999999999999996
+  },
+  "pause_ticks": 20,
+  "clock_after_pause": 1.2,
+  "dsp_after_pause": {
+    "fx_delay": 61740,
+    "fx_gate": 61740
+  },
+  "paused_audio_peak": 0.0,
+  "stored_delay_restored": true,
+  "recovery_withheld_reason": "Active scene FX recovery needs recorded history reconstruction; cold histories are not recovered state",
+  "recovery_status": "failed",
+  "future_idle_delay_preserved": true,
+  "ended": 1791996419.452016,
+  "mask_method": "Preliminary CPU grid; superseded by the corresponding GPU-mask receipt"
+}

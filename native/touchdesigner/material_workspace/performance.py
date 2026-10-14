@@ -198,7 +198,9 @@ def compile_score(seed):
     result={'schema':'god-here.native-score/1','source_sha256':source,'seed':int(seed),
             'generation_mode':'source-mixture','text_verification':'Provisional; no caption assertion',
             'events':events,'duration':round(clock,6),'limits':{'events':32,'seconds':300,'decoders':1}}
-    if settings:result=composed.op('text_score').module.decorate(result,settings,int(seed),composed.op('text_runtime').module.snapshot(composed))
+    if settings:
+        result=composed.op('text_score').module.decorate(result,settings,int(seed),composed.op('text_runtime').module.snapshot(composed))
+        if composed.op('text_fx'):result['composition']['fx']=composed.op('text_fx').module.snapshot(composed)
     return result
 
 
@@ -266,6 +268,8 @@ def start(identity,score,replay=False,parent_run=None,capture_run=None):
                 composed.op('text_interactions').module.prepare(composed,parent_run or capture_run,recovery=bool(parent_run))
             elif parent_run or capture_run:
                 if actions().rows(v.fetch('history_path'),parent_run or capture_run):raise ValueError('Native audience-action runtime is unavailable')
+            if composed.op('text_fx'):composed.op('text_fx').module.prepare(composed,score,recovery=bool(parent_run))
+            elif score['composition'].get('fx',{}).get('enabled'):raise ValueError('Stored scene FX runtime is unavailable')
         start_event(score['events'][record['event_index']],record['source_frame'] if parent_run else None)
         refresh_execution()
     except Exception:
