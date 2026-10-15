@@ -5,12 +5,16 @@ import math
 import os
 from pathlib import Path
 import shutil
+import threading
+import time
 import uuid
 import numpy as np
 
 MAX_BYTES = 1024 * 1024 * 1024
 STORE_BYTES = 2 * MAX_BYTES
 MAX_ARRAYS = 16384
+JOBS={}
+JOB_LOCK=threading.Lock()
 
 
 def digest(path):
@@ -20,7 +24,7 @@ def digest(path):
     return h.hexdigest()
 
 
-def write(root, metadata, arrays):
+def write(root, metadata, arrays, deadline=None):
     root = Path(root);root.mkdir(mode=0o700, parents=True, exist_ok=True)
     if root.is_symlink():raise ValueError('FX checkpoint root must be an owned directory')
     if len(arrays) > MAX_ARRAYS:raise ValueError('FX checkpoint array count exceeds bounds')
@@ -36,6 +40,7 @@ def write(root, metadata, arrays):
     folder = root / uuid.uuid4().hex;folder.mkdir(mode=0o700)
     manifest = {'schema': 'god-here.fx-checkpoint/1', 'metadata': metadata, 'arrays': {}}
     for i, (name, array) in enumerate(arrays.items()):
+        if deadline is not None and time.monotonic()>deadline:raise TimeoutError('Native FX writer deadline reached; partial state retained')
         if array.dtype.hasobject or array.nbytes > MAX_BYTES:raise ValueError('Unsafe FX checkpoint array')
         filename = 'a' + str(i) + '.npy';path = folder / filename
         with path.open('xb') as target:
@@ -52,6 +57,34 @@ def write(root, metadata, arrays):
     try:os.fsync(descriptor)
     finally:os.close(descriptor)
     return folder
+
+
+def submit(root,metadata,arrays,commit):
+    """One I/O worker; its callback must use only filesystem/SQLite APIs."""
+    with JOB_LOCK:
+        if any(job['thread'].is_alive() for job in JOBS.values()):raise ValueError('Native FX writer is already active')
+        if len(JOBS)>=128:raise ValueError('Native FX writer job capacity reached; no evidence discarded')
+        identity=uuid.uuid4().hex;job={'state':'running','folder':None,'error':None,'sequence':None,'started':time.monotonic()}
+        for array in arrays.values():array.flags.writeable=False
+        def run():
+            try:
+                folder=write(root,metadata,arrays,deadline=job['started']+30)
+                job['folder']=str(folder)
+                sequence=commit(folder,digest(folder/'complete.json'))
+                with JOB_LOCK:job.update(state='complete',sequence=sequence,elapsed=time.monotonic()-job['started'])
+            except Exception as error:
+                with JOB_LOCK:job.update(state='failed',error=str(error),elapsed=time.monotonic()-job['started'])
+        worker=threading.Thread(target=run,name='godhere-fx-checkpoint-io',daemon=True)
+        job['thread']=worker;JOBS[identity]=job;worker.start()
+    return identity
+
+
+def poll(identity):
+    with JOB_LOCK:
+        if identity not in JOBS:raise ValueError('Unknown native FX writer job')
+        job=JOBS[identity];result={k:v for k,v in job.items() if k!='thread'}
+        result['alive']=job['thread'].is_alive();result['overdue']=result['alive'] and time.monotonic()-job['started']>30
+        return result
 
 
 def read(folder):

@@ -78,5 +78,35 @@ class ExecutionJournalTests(unittest.TestCase):
         self.assertEqual(journal.get(self.path,run)['status'],'failed')
         with sqlite3.connect(self.path) as db:self.assertEqual(db.execute('SELECT count(*) FROM execution_events').fetchone()[0],128)
 
+    def checkpoint(self,run,frame=40):
+        import hashlib
+        folder=Path(self.directory.name)/'fx-checkpoints'/('cp'+str(frame));folder.mkdir(parents=True)
+        manifest=folder/'complete.json';manifest.write_text('{"synthetic":true}')
+        sha=hashlib.sha256(manifest.read_bytes()).hexdigest()
+        score_sha=hashlib.sha256(json.dumps(self.score,sort_keys=True,allow_nan=False).encode()).hexdigest()
+        point={'identity':{'score_sha256':score_sha,'source_sha256':self.score['source_sha256'],'event_index':0,'source_frame':frame},
+               'execution':{'run_id':run,'completed':[],'action_origins':[]}}
+        sequence=journal.link_fx_checkpoint(self.path,run,folder,sha,point)
+        return folder,sequence
+
+    def test_fx_recovery_uses_committed_checkpoint_not_later_frame(self):
+        run=self.begin();journal.request(self.path,run,0,30);journal.observe(self.path,run,0,40,True)
+        folder,sequence=self.checkpoint(run)
+        journal.observe(self.path,run,0,55);journal.transition(self.path,run,'interrupted')
+        recovered=journal.begin(self.path,'reserved',self.score,'recovery',self.owner,run,sequence)
+        self.assertEqual(journal.get(self.path,recovered)['source_frame'],40)
+        self.assertEqual(journal.latest_fx_checkpoint(self.path,run)['sequence'],sequence)
+
+    def test_changed_fx_manifest_cannot_seed_recovery(self):
+        run=self.begin();journal.request(self.path,run,0,30);journal.observe(self.path,run,0,40,True)
+        folder,sequence=self.checkpoint(run);(folder/'complete.json').write_text('changed')
+        journal.transition(self.path,run,'interrupted')
+        with self.assertRaises(ValueError):journal.begin(self.path,'reserved',self.score,'recovery',self.owner,run,sequence)
+
+    def test_unobserved_fx_checkpoint_cannot_link(self):
+        run=self.begin();journal.request(self.path,run,0,30);journal.observe(self.path,run,0,35,True)
+        with self.assertRaises(ValueError):self.checkpoint(run,40)
+        self.assertIsNone(journal.latest_fx_checkpoint(self.path,run))
+
 
 if __name__=='__main__':unittest.main()

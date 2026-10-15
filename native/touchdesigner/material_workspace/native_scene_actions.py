@@ -14,11 +14,11 @@ def state(scene):
     return scene.fetch('influence',module(scene).empty())
 
 
-def prepare(scene,source_run=None,recovery=False):
+def prepare(scene,source_run=None,recovery=False,inherit_origins=None):
     v=runtime(scene).controller(scene)
     influence,queue=module(scene).empty(),[]
     if source_run:
-        influence,queue=module(scene).bind(v.fetch('history_path'),str(v.par.Executionid),source_run,recovery)
+        influence,queue=module(scene).bind(v.fetch('history_path'),str(v.par.Executionid),source_run,recovery,inherit_origins)
     scene.store('influence',influence);scene.store('action_queue',queue)
     scene.store('captured_replay',bool(source_run and not recovery))
     scene.op('base_audience').par.Status='Captured replay; live actions withheld' if scene.fetch('captured_replay') else 'Ready; input is optional'

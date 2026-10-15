@@ -29,7 +29,7 @@ def enabled(scene):
 
 def transport(scene):
     v=controller(scene);state=v.fetch('performance_state',{}) or {}
-    return bool(enabled(scene) and state.get('event_seen') and v.op('base_player').par.Play and root.time.play)
+    return bool(enabled(scene) and state.get('event_seen') and not state.get('fx_recovery_pending') and absTime.frame>state.get('fx_resume_after_native_frame',-1) and v.op('base_player').par.Play and root.time.play)
 
 
 def clock(scene):
@@ -45,12 +45,12 @@ def reset(scene):
     for name in rack.fetch('module_paths'):rack.op(name+'/text_audio').module.reset(rack.op(name))
 
 
-def prepare(scene,score,recovery=False):
+def prepare(scene,score,recovery=False,checkpoint=None):
     recipe=score.get('composition',{}).get('fx')
     if recipe is None:
         scene.store('fx_recipe',{});scene.par.Fxstatus='Legacy score; FX not requested';return
     recipe=model(scene).validate(recipe,definitions(scene))
-    if recovery and model(scene).active(recipe):
+    if recovery and model(scene).active(recipe) and checkpoint is None:
         scene.par.Fxstatus='Recovery withheld: recorded FX-history reconstruction remains unimplemented'
         raise ValueError('Active scene FX recovery needs recorded history reconstruction; cold histories are not recovered state')
     rack=scene.op('base_fx');owners=[(rack,recipe['rack'])]+[(rack.op('fx_'+kind),values) for kind,values in recipe['modules'].items()]
@@ -66,7 +66,7 @@ def prepare(scene,score,recovery=False):
     reset(scene)
     # Prime the native slice while the observed source transport is still withheld.
     rack.op('null_audio').cook(force=True)
-    scene.par.Fxstatus='Stored FX settings; observed source clock; volatile histories start empty'
+    scene.par.Fxstatus='Checkpoint staged; output withheld until exact source/context validation' if checkpoint else 'Stored FX settings; observed source clock; volatile histories start empty'
 
 
 def stop(scene):

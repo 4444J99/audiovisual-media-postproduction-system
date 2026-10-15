@@ -68,5 +68,27 @@ class FxStateStoreTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as root:
             with self.assertRaises(FileNotFoundError):fx_state_store.read(root)
 
+    def test_single_worker_publishes_only_after_complete_manifest(self):
+        import tempfile,threading
+        from pathlib import Path
+        import fx_state_store
+        entered=threading.Event();release=threading.Event()
+        with tempfile.TemporaryDirectory() as root:
+            def commit(folder,sha):
+                self.assertTrue((folder/'complete.json').is_file())
+                self.assertEqual(fx_state_store.digest(folder/'complete.json'),sha)
+                entered.set()
+                if not release.wait(2):raise TimeoutError('Fixture commit release missed')
+                return 7
+            identity=fx_state_store.submit(Path(root)/'state',{'purpose':'synthetic'}, {'a0':np.arange(80,dtype=np.float32)},commit)
+            try:
+                self.assertTrue(entered.wait(2));self.assertTrue(fx_state_store.poll(identity)['alive'])
+                self.assertEqual(fx_state_store.poll(identity)['state'],'running')
+                with self.assertRaises(ValueError):fx_state_store.submit(Path(root)/'state',{}, {},commit)
+            finally:
+                release.set();fx_state_store.JOBS[identity]['thread'].join(2)
+            result=fx_state_store.poll(identity)
+            self.assertFalse(result['alive']);self.assertEqual((result['state'],result['sequence']),('complete',7))
+
 
 if __name__ == '__main__':unittest.main()

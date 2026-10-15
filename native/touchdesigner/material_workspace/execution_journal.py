@@ -1,7 +1,9 @@
 """Bounded durable execution facts, separate from structural novelty history."""
 from contextlib import contextmanager
 import json
+import hashlib
 import math
+from pathlib import Path
 import sqlite3
 import time
 import uuid
@@ -18,6 +20,7 @@ def transaction(path):
         db.execute('BEGIN IMMEDIATE')
         db.execute('CREATE TABLE IF NOT EXISTS execution_runs (id TEXT PRIMARY KEY, performance_id TEXT, mode TEXT, status TEXT, score TEXT, owner TEXT, initial_index INTEGER, parent_run TEXT, event_index INTEGER, source_frame REAL, event_seen INTEGER, completed TEXT, created REAL, updated REAL)')
         db.execute('CREATE TABLE IF NOT EXISTS execution_events (run_id TEXT, sequence INTEGER, kind TEXT, event_index INTEGER, source_frame REAL, created REAL, details TEXT, PRIMARY KEY(run_id,sequence))')
+        db.execute('CREATE TABLE IF NOT EXISTS execution_fx_checkpoints (run_id TEXT, sequence INTEGER, folder TEXT, manifest_sha256 TEXT, event_index INTEGER, source_frame REAL, completed TEXT, action_origins TEXT, created REAL, PRIMARY KEY(run_id,sequence))')
         yield db
         db.commit()
     except Exception:
@@ -39,8 +42,9 @@ def event(db,run,kind,index=None,frame=None,details=None):
     db.execute('INSERT INTO execution_events VALUES (?,?,?,?,?,?,?)',(run,count,kind,index,frame,time.time(),json.dumps(details or {},sort_keys=True)))
 
 
-def begin(path,identity,score,mode,owner,parent_run=None):
+def begin(path,identity,score,mode,owner,parent_run=None,checkpoint_sequence=None):
     if mode not in ['new','replay','recovery','adopted']:raise ValueError('Unknown execution mode')
+    if checkpoint_sequence is not None and mode!='recovery':raise ValueError('FX checkpoint requires explicit recovery')
     identity_run=uuid.uuid4().hex;now=time.time();index=0;frame=None;completed=[]
     with transaction(path) as db:
         stored=db.execute('SELECT score FROM performances WHERE id=?',(identity,)).fetchone()
@@ -50,11 +54,66 @@ def begin(path,identity,score,mode,owner,parent_run=None):
             old=record(db.execute('SELECT * FROM execution_runs WHERE id=?',(parent_run,)).fetchone())
             if old['status']!='interrupted' or old['performance_id']!=identity:raise ValueError('Recovery requires an interrupted matching run')
             index=old['event_index'];frame=old['source_frame'];completed=old['completed']
+            if checkpoint_sequence is not None:
+                point=db.execute('SELECT * FROM execution_fx_checkpoints WHERE run_id=? AND sequence=?',(parent_run,checkpoint_sequence)).fetchone()
+                if point is None:raise ValueError('Unknown linked FX checkpoint')
+                folder=Path(point['folder']);manifest=folder/'complete.json'
+                if folder.is_symlink() or manifest.is_symlink() or manifest.stat().st_size>4*1024*1024 or hashlib.sha256(manifest.read_bytes()).hexdigest()!=point['manifest_sha256']:
+                    raise ValueError('Linked FX checkpoint commit is unavailable or changed')
+                index=point['event_index'];frame=point['source_frame'];completed=json.loads(point['completed'])
+                if old['completed'][:index]!=completed:raise ValueError('FX checkpoint lacks an observed completed prefix')
             if completed!=list(range(index)):raise ValueError('Recovery lacks observed prefix completion')
         db.execute('INSERT INTO execution_runs VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
             (identity_run,identity,mode,'armed',json.dumps(score,sort_keys=True),json.dumps(owner,sort_keys=True),index,parent_run,index,frame,0,json.dumps(completed),now,now))
-        event(db,identity_run,'run_armed',index,frame,{'mode':mode,'parent_run':parent_run})
+        event(db,identity_run,'run_armed',index,frame,{'mode':mode,'parent_run':parent_run,'checkpoint_sequence':checkpoint_sequence})
     return identity_run
+
+
+def link_fx_checkpoint(path,run,folder,manifest_sha256,point):
+    """Publish only complete scoped state, never an in-flight worker artifact."""
+    folder=Path(folder)
+    if folder.is_symlink() or folder.resolve().parent!=(Path(path).resolve().parent/'fx-checkpoints'):
+        raise ValueError('FX checkpoint is outside its private execution store')
+    manifest=folder/'complete.json'
+    if manifest.is_symlink() or manifest.stat().st_size>4*1024*1024:
+        raise ValueError('Invalid FX checkpoint commit manifest')
+    if hashlib.sha256(manifest.read_bytes()).hexdigest()!=manifest_sha256:
+        raise ValueError('FX checkpoint manifest integrity mismatch')
+    with transaction(path) as db:
+        row=record(db.execute('SELECT * FROM execution_runs WHERE id=?',(run,)).fetchone())
+        identity=point['identity'];execution=point['execution'];index=identity['event_index'];frame=identity['source_frame']
+        expected=hashlib.sha256(json.dumps(row['score'],sort_keys=True,allow_nan=False).encode('utf-8')).hexdigest()
+        if execution['run_id']!=run or identity['score_sha256']!=expected or identity['source_sha256']!=row['score']['source_sha256']:
+            raise ValueError('FX checkpoint execution/score/source mismatch')
+        if not isinstance(index,int) or not 0<=index<len(row['score']['events']) or index>row['event_index']:
+            raise ValueError('FX checkpoint event was not observed')
+        source=row['score']['events'][index]
+        if not math.isfinite(frame) or not source['start_frame']<=frame<source['end_frame']:
+            raise ValueError('FX checkpoint source clock is outside its event')
+        if index==row['event_index'] and (row['source_frame'] is None or frame>row['source_frame']):
+            raise ValueError('FX checkpoint source frame was not durably observed')
+        completed=execution['completed']
+        if completed!=list(range(index)) or row['completed'][:index]!=completed:
+            raise ValueError('FX checkpoint completed prefix mismatch')
+        origins=execution['action_origins']
+        if len(origins)>256 or len({tuple(v) for v in origins})!=len(origins):raise ValueError('Invalid FX checkpoint audience prefix')
+        count=db.execute('SELECT count(*) FROM execution_fx_checkpoints WHERE run_id=?',(run,)).fetchone()[0]
+        if count>=64:raise ValueError('FX checkpoint link capacity reached; no state discarded')
+        prior=db.execute('SELECT event_index,source_frame FROM execution_fx_checkpoints WHERE run_id=? ORDER BY sequence DESC LIMIT 1',(run,)).fetchone()
+        if prior and (index,frame)<(prior['event_index'],prior['source_frame']):raise ValueError('FX checkpoint clock moved backwards')
+        db.execute('INSERT INTO execution_fx_checkpoints VALUES (?,?,?,?,?,?,?,?,?)',
+                   (run,count,str(folder.resolve()),manifest_sha256,index,frame,json.dumps(completed),json.dumps(origins),time.time()))
+        event(db,run,'fx_checkpoint_committed',index,frame,{'sequence':count,'manifest_sha256':manifest_sha256})
+    return count
+
+
+def latest_fx_checkpoint(path,run):
+    with transaction(path) as db:
+        row=db.execute('SELECT * FROM execution_fx_checkpoints WHERE run_id=? ORDER BY sequence DESC LIMIT 1',(run,)).fetchone()
+        if row is None:return None
+        result=dict(row)
+        for key in ('completed','action_origins'):result[key]=json.loads(result[key])
+        return result
 
 
 def request(path,run,index,frame):

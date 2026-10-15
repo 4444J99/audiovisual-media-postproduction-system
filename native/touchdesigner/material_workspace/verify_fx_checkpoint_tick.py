@@ -19,13 +19,14 @@ def onFrameEnd(frame):
                 job['hold_ticks']+=1
                 if job['hold_ticks']>=2:
                     checkpoint_started=time.monotonic()
-                    f=scene.op('text_fx_state').module;metadata,arrays=f.capture_paused(scene)
+                    f=scene.op('text_fx_state').module;stage=time.monotonic();metadata,arrays=f.capture_paused(scene);job['capture_seconds']=time.monotonic()-stage;stage=time.monotonic()
                     folder=f.module(scene,'fx_state_store').write(Path(v.fetch('history_path')).parent/'fx-checkpoints',metadata,arrays)
+                    job['write_seconds']=time.monotonic()-stage;stage=time.monotonic()
                     job['checkpoint_bytes']=sum(a.nbytes for a in arrays.values());job['checkpoint_array_count']=len(arrays)
-                    saved=f.read(scene,folder);job['checkpoint_source_frame']=saved['identity']['source_frame']
+                    saved=f.read(scene,folder);job['read_seconds']=time.monotonic()-stage;stage=time.monotonic();job['checkpoint_source_frame']=saved['identity']['source_frame']
                     scene.op('text_fx').module.reset(scene)
                     job['dsp_cleared']=all(not r.op(n+'/text_audio').module.STATES for n in r.fetch('module_paths'))
-                    job['restore_result']=f.restore_paused(scene,saved)
+                    job['restore_result']=f.restore_paused(scene,saved);job['restore_seconds']=time.monotonic()-stage;stage=time.monotonic()
                     after_metadata,after_arrays=f.capture_paused(scene);after=f.module(scene,'fx_state').decode(after_metadata,after_arrays,max_bytes=f.MAX_BYTES)
                     errors=[];frames=0;audio_arrays=0
                     for name,entry in saved['modules'].items():
@@ -47,6 +48,7 @@ def onFrameEnd(frame):
                     job['restored_history_frames']=frames;job['restored_audio_arrays']=audio_arrays;job['native_roundtrip_max_error']=max(errors,default=0)
                     if job['native_roundtrip_max_error']!=0:raise ValueError('Native checkpoint data changed')
                     job['dsp_at_resume']={n:r.op(n+'/text_audio').module.STATES[r.op(n).id]['stream'].position for n in ('fx_delay','fx_gate')}
+                    job['compare_seconds']=time.monotonic()-stage
                     job['checkpoint_elapsed_seconds']=time.monotonic()-checkpoint_started
                     job['phase']='restored_hold'
             elif job['phase']=='restored_hold':

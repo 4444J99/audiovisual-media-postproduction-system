@@ -148,7 +148,7 @@ def record(path, run, event_index, source_frame, action, field, payload):
     return result
 
 
-def bind(path, run, source_run, recovery=False):
+def bind(path, run, source_run, recovery=False, inherit_origins=None):
     """Freeze replay input and inherit only influence already due at recovery."""
     with transaction(path) as db:
         owner, source = _run(db, run), _run(db, source_run)
@@ -161,10 +161,16 @@ def bind(path, run, source_run, recovery=False):
             raise ValueError('Captured action plan exceeds finite limit')
         db.execute('INSERT INTO scene_action_plans VALUES (?,?,?)', (run, source_run, json.dumps(actions, ensure_ascii=False, sort_keys=True)))
         state, queue = empty(), []
+        inherited_set=None if inherit_origins is None else {tuple(value) for value in inherit_origins}
+        if inherited_set is not None and (not recovery or not inherited_set<={(a['origin_run'],a['origin_sequence']) for a in actions}):
+            raise ValueError('Checkpoint audience prefix differs from recorded actions')
         checkpoint = (owner['event_index'], owner['source_frame'] if owner['source_frame'] is not None else -1)
         for action in actions:
             validate(action['action'], action['field'], action['payload'])
-            if recovery and (action['event_index'], action['source_frame']) <= checkpoint:
+            due=(action['event_index'], action['source_frame']) <= checkpoint
+            inherit=due if inherited_set is None else (action['origin_run'],action['origin_sequence']) in inherited_set
+            if inherited_set is not None and inherit and not due:raise ValueError('Checkpoint inherits a future audience action')
+            if recovery and inherit:
                 state = reduce(state, action)
                 _insert(db, run, action, owner['source_frame'] if action['event_index']==owner['event_index'] and owner['source_frame'] is not None else action['source_frame'], inherited=True)
             else:

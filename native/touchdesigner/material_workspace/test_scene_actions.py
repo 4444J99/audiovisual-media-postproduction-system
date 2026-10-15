@@ -123,6 +123,16 @@ class SceneActionsTests(unittest.TestCase):
         self.assertEqual(len(actions.rows(self.path, self.run)), actions.LIMIT)
         journal.transition(self.path, self.run, 'stopped')
 
+    def test_same_frame_post_checkpoint_action_stays_queued(self):
+        first=self.record('attend',2,frame=40)
+        self.record('message',1,{'text':'later'},frame=40)
+        journal.transition(self.path,self.run,'interrupted')
+        recovered=journal.begin(self.path,'fixture',self.score,'recovery',self.owner,self.run)
+        state,pending=actions.bind(self.path,recovered,self.run,recovery=True,inherit_origins=[[first['origin_run'],first['origin_sequence']]])
+        self.assertEqual(state['attention'],2);self.assertEqual(state['messages'],{})
+        self.assertEqual([a['action'] for a in pending],['message'])
+        self.assertEqual(len(actions.rows(self.path,recovered)),1)
+
 
 if __name__ == '__main__':
     unittest.main()

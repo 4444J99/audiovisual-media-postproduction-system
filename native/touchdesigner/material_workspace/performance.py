@@ -14,10 +14,12 @@ import uuid
 
 def journal():
     alias='_godhere_execution_journal'
-    if alias not in sys.modules:
-        path=Path(parent.Vocabulary.fetch('code_root'))/'native/touchdesigner/material_workspace/execution_journal.py'
+    path=Path(parent.Vocabulary.fetch('code_root'))/'native/touchdesigner/material_workspace/execution_journal.py'
+    stamp=path.stat().st_mtime_ns
+    active=any(c.fetch('performance_state',None) for c in parent.Materials.children if c.isCOMP and c.op('text_performance'))
+    if alias not in sys.modules or (getattr(sys.modules[alias],'_source_stamp',None)!=stamp and not active):
         spec=importlib.util.spec_from_file_location(alias,path);module=importlib.util.module_from_spec(spec)
-        sys.modules[alias]=module;spec.loader.exec_module(module)
+        sys.modules[alias]=module;spec.loader.exec_module(module);module._source_stamp=stamp
     return sys.modules[alias]
 
 
@@ -251,11 +253,21 @@ def start(identity,score,replay=False,parent_run=None,capture_run=None):
     actions(refresh=True)  # Refresh disk-owned action code only while all controllers are idle.
     if source_identity()!=score['source_sha256']:raise ValueError('Replay source identity mismatch')
     mode='recovery' if parent_run else 'replay' if replay else 'new'
-    run=journal().begin(v.fetch('history_path'),identity,score,mode,session_owner(),parent_run)
+    checkpoint=None;point=None;composed=scene()
+    if parent_run and composed and composed.op('text_fx_state') and score.get('composition',{}).get('fx',{}).get('enabled'):
+        point=journal().latest_fx_checkpoint(v.fetch('history_path'),parent_run)
+        if point:
+            adapter=composed.op('text_fx_state').module
+            if adapter.module(composed,'fx_state_store').digest(Path(point['folder'])/'complete.json')!=point['manifest_sha256']:
+                raise ValueError('Linked FX checkpoint manifest changed')
+            checkpoint=adapter.preflight(composed,adapter.read(composed,point['folder']),score)
+            if checkpoint['execution']['run_id']!=parent_run or checkpoint['execution']['action_origins']!=point['action_origins']:
+                raise ValueError('Linked FX execution/audience prefix differs from state')
+    run=journal().begin(v.fetch('history_path'),identity,score,mode,session_owner(),parent_run,point['sequence'] if point else None)
     record=journal().get(v.fetch('history_path'),run)
     cue=v.op('base_player/movie_material').par.cue
     v.store('performance_state',{'id':identity,'score':score,'index':record['event_index'],'replay':replay,'run_id':run,'mode':mode,'wall_deadline':time.monotonic()+max(30,float(score['duration'])+len(score['events'])*5),
-        'prior_cue':{'value':cue.val,'expr':cue.expr,'bind':cue.bindExpr,'mode':str(cue.mode)}})
+        'fx_recovery_pending':checkpoint,'prior_cue':{'value':cue.val,'expr':cue.expr,'bind':cue.bindExpr,'mode':str(cue.mode)}})
     try:
         if not replay:status(identity,'running')
         v.par.Status=('Recovery' if parent_run else 'Replay' if replay else 'New performance')+' · '+identity[:8]
@@ -265,10 +277,10 @@ def start(identity,score,replay=False,parent_run=None,capture_run=None):
             if composed is None:raise ValueError('Stored composition controller is unavailable')
             composed.op('text_runtime').module.prepare(composed,score)
             if composed.op('text_interactions'):
-                composed.op('text_interactions').module.prepare(composed,parent_run or capture_run,recovery=bool(parent_run))
+                composed.op('text_interactions').module.prepare(composed,parent_run or capture_run,recovery=bool(parent_run),inherit_origins=checkpoint['execution']['action_origins'] if checkpoint else None)
             elif parent_run or capture_run:
                 if actions().rows(v.fetch('history_path'),parent_run or capture_run):raise ValueError('Native audience-action runtime is unavailable')
-            if composed.op('text_fx'):composed.op('text_fx').module.prepare(composed,score,recovery=bool(parent_run))
+            if composed.op('text_fx'):composed.op('text_fx').module.prepare(composed,score,recovery=bool(parent_run),checkpoint=checkpoint)
             elif score['composition'].get('fx',{}).get('enabled'):raise ValueError('Stored scene FX runtime is unavailable')
         start_event(score['events'][record['event_index']],record['source_frame'] if parent_run else None)
         refresh_execution()
@@ -292,6 +304,10 @@ def observe_frame(movie):
     if not state or not state.get('run_id'):return True
     path=v.fetch('history_path');p=v.op('base_player')
     if time.monotonic()>state['wall_deadline']:raise ValueError('Native execution wall deadline reached')
+    if state.get('fx_restore_held_frame') is not None:
+        if absTime.frame<=state['fx_restore_held_frame']:return False
+        p.par.Play=True;state['fx_resume_after_native_frame']=absTime.frame
+        state.pop('fx_restore_held_frame');v.store('performance_state',state);return False
     if not p.par.Play or not root.time.play:
         if not state.get('paused'):
             if state.get('event_seen'):journal().observe(path,state['run_id'],state['index'],float(movie.lastIndexUploaded))
@@ -312,6 +328,21 @@ def observe_frame(movie):
         journal().observe(path,state['run_id'],state['index'],frame,first=True)
         state['event_seen']=True
         movie.par.cue=False;p.store('cue_pending',False)
+        if state.get('fx_recovery_pending'):
+            checkpoint=state['fx_recovery_pending'];p.par.Play=False;v.store('performance_state',state)
+            if composed.fetch('influence')!=checkpoint['execution']['influence']:raise ValueError('Recovered audience influence differs from FX checkpoint')
+            for slot,expected in checkpoint['execution']['auxiliary_frames'].items():
+                if abs(float(composed.op('player_'+slot+'/movie_material').lastIndexUploaded)-expected)>.001:
+                    raise ValueError('Recovered auxiliary upload differs from FX checkpoint')
+            restored=composed.op('text_fx_state').module.restore_paused(composed,checkpoint)
+            state['fx_restored_source_frame']=restored['source_frame']
+            state['fx_restored_influence_sha256']=composed.op('text_fx_state').module.digest(composed.fetch('influence'))
+            state['fx_restored_action_count']=len(checkpoint['execution']['action_origins'])
+            state['fx_recovery_pending']=None;state['fx_restore_held_frame']=absTime.frame
+            state['paused']=True;v.store('performance_state',state)
+            journal().transition(path,state['run_id'],'paused','Native FX memory restored at exact uploaded checkpoint')
+            composed.par.Fxstatus='Restored native FX checkpoint at source frame '+str(int(restored['source_frame']))
+            return False
     elif not math.isfinite(frame) or not event['start_frame']<=frame<event['end_frame']:
         raise ValueError('Decoder left the reserved source interval')
     composed=scene()

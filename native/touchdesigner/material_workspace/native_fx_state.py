@@ -2,11 +2,13 @@
 import hashlib
 import importlib.util
 import json
+import sys
 from pathlib import Path
 import numpy as np
 
 MODULES = {}
 MAX_BYTES = 1024 * 1024 * 1024
+IMPLEMENTATION=('fx_dsp.py','fx_audio.py','fx_temporal.py','native_fx_state.py','fx_state.py','fx_state_store.py','native_scene_fx.py','scene_fx_model.py','performance.py','execution_journal.py','generated_scene.py','generated_scene_audio.py','native_scene_actions.py','scene_actions.py','fx_temporal.glsl')
 
 
 def code(scene):return Path(scene.op('text_runtime').module.controller(scene).fetch('code_root')) / 'native/touchdesigner/material_workspace'
@@ -14,12 +16,33 @@ def code(scene):return Path(scene.op('text_runtime').module.controller(scene).fe
 
 def module(scene, name):
     if name not in MODULES:
+        if name=='fx_state_store' and '_godhere_fx_state_store_io' in sys.modules:
+            previous=sys.modules['_godhere_fx_state_store_io'];stamp=(code(scene)/(name+'.py')).stat().st_mtime_ns
+            if getattr(previous,'_source_stamp',None)==stamp:
+                MODULES[name]=previous;return previous
+            if any(job['thread'].is_alive() for job in getattr(previous,'JOBS',{}).values()):
+                raise ValueError('Native FX writer code changed while its existing job remains live')
         spec = importlib.util.spec_from_file_location('_godhere_' + name, code(scene) / (name + '.py'))
         value = importlib.util.module_from_spec(spec);spec.loader.exec_module(value);MODULES[name] = value
+        if name=='fx_state_store':
+            previous=sys.modules.get('_godhere_fx_state_store_io')
+            if previous:value.JOBS=getattr(previous,'JOBS',{})
+            value._source_stamp=(code(scene)/(name+'.py')).stat().st_mtime_ns
+            sys.modules['_godhere_fx_state_store_io']=value
     return MODULES[name]
 
 
 def digest(value):return hashlib.sha256(json.dumps(value, sort_keys=True, allow_nan=False).encode('utf-8')).hexdigest()
+
+
+def preflight(scene,state,score):
+    binding=state['identity']
+    expected={'score_sha256':digest(score),'recipe_sha256':digest(score['composition']['fx']),
+              'source_sha256':score['source_sha256'],'native_rate':float(root.time.rate),
+              'implementation_sha256':{name:hashlib.sha256((code(scene)/name).read_bytes()).hexdigest() for name in IMPLEMENTATION}}
+    if any(binding.get(key)!=value for key,value in expected.items()):raise ValueError('Native FX checkpoint implementation/source/score/recipe mismatch')
+    if set(state['modules'])!=set(scene.op('base_fx').fetch('module_paths')):raise ValueError('Incomplete native FX checkpoint')
+    return state
 
 
 def identity(scene):
@@ -31,7 +54,8 @@ def identity(scene):
     score = state['score']
     return {'score_sha256': digest(score), 'recipe_sha256': digest(scene.fetch('fx_recipe')),
             'source_sha256': score['source_sha256'], 'event_index': state['index'],
-            'implementation_sha256': {name:hashlib.sha256((code(scene)/name).read_bytes()).hexdigest() for name in ('fx_dsp.py','fx_audio.py','fx_temporal.py','native_fx_state.py','fx_state.py','fx_state_store.py','native_scene_fx.py','scene_fx_model.py')},
+            'implementation_sha256': {name:hashlib.sha256((code(scene)/name).read_bytes()).hexdigest() for name in IMPLEMENTATION},
+            'native_rate':float(root.time.rate),
             'source_frame': float(v.op('base_player/movie_material').lastIndexUploaded),
             'fx_time': float(rack.par.Time)}
 
@@ -47,7 +71,22 @@ def image(top):
 
 
 def capture_paused(scene):
-    binding = identity(scene);rack = scene.op('base_fx');state = {'identity': binding, 'modules': {}}
+    binding = identity(scene);rack = scene.op('base_fx');v=scene.op('text_runtime').module.controller(scene);m=v.op('text_performance').module
+    execution=v.fetch('performance_state');row=m.journal().get(v.fetch('history_path'),execution['run_id'])
+    if row['event_index']!=binding['event_index']:raise ValueError('FX checkpoint journal event mismatch')
+    if not row['event_seen'] or row['source_frame']!=binding['source_frame']:
+        m.journal().observe(v.fetch('history_path'),execution['run_id'],execution['index'],binding['source_frame'],first=not row['event_seen'])
+    if row['status']!='paused':m.journal().transition(v.fetch('history_path'),execution['run_id'],'paused','Native FX state capture')
+    execution['paused']=True;v.store('performance_state',execution)
+    runtime=scene.op('text_runtime').module;auxiliary={}
+    for slot in runtime.active_fields(scene):
+        if slot==0:continue
+        movie=scene.op('player_'+str(slot)+'/movie_material');movie.cook();expected=runtime.target_frame(scene,slot)
+        if movie.isOpening or abs(float(movie.lastIndexUploaded)-expected)>.001:raise ValueError('Auxiliary FX checkpoint frame is not uploaded')
+        auxiliary[str(slot)]=float(movie.lastIndexUploaded)
+    origins=[[a['origin_run'],a['origin_sequence']] for a in m.actions().rows(v.fetch('history_path'),execution['run_id'])]
+    state = {'identity': binding, 'modules': {},'execution':{'run_id':execution['run_id'],'completed':row['completed'],
+             'action_origins':origins,'influence':scene.fetch('influence'),'auxiliary_frames':auxiliary}}
     budget = 0
     for name in rack.fetch('module_paths'):
         owner = rack.op(name);record = owner.op('text_audio').module.STATES.get(owner.id)
@@ -76,11 +115,28 @@ def capture_paused(scene):
     return metadata, arrays
 
 
+def context(metadata):
+    tree=metadata['tree']['dict']
+    small={'schema':metadata['schema'],'tree':{'dict':{key:tree[key] for key in ('identity','execution')}}}
+    return MODULES['fx_state'].decode(small,{})
+
+
 def write_paused(scene):
     metadata, arrays = capture_paused(scene);v = scene.op('text_runtime').module.controller(scene)
     root = Path(v.fetch('history_path')).parent / 'fx-checkpoints'
     path = module(scene, 'fx_state_store').write(root, metadata, arrays)
     return path
+
+
+def submit_paused(scene):
+    metadata,arrays=capture_paused(scene);point=context(metadata)
+    v=scene.op('text_runtime').module.controller(scene);m=v.op('text_performance').module
+    path=str(v.fetch('history_path'));journal=m.journal();store=module(scene,'fx_state_store')
+    # All TD state is read above. The worker owns immutable copies and pure I/O.
+    def commit(folder,sha):return journal.link_fx_checkpoint(path,point['execution']['run_id'],folder,sha,point)
+    identity=store.submit(Path(path).parent/'fx-checkpoints',metadata,arrays,commit)
+    scene.store('fx_checkpoint_job',identity);scene.storeStartupValue('fx_checkpoint_job',None)
+    return identity
 
 
 def read(scene, folder):

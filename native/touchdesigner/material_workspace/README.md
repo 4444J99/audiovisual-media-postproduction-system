@@ -279,3 +279,35 @@ comparison took 0.431 seconds, so automatic realtime scheduling is unqualified.
 Journal/interaction/auxiliary checkpoint binding, restart, all-processor GPU
 continuation and sustained performance remain open. Original media, private
 state arrays and full manifests remain outside public Git; no .toe is saved.
+
+
+## Journal-linked checkpoint work in progress
+
+The experimental diagnostic path now links complete private FX checkpoints to
+execution records. One native-process worker writes immutable captured arrays
+without TD API calls; a journal pointer appears only after the complete manifest
+is fsynced. Actual thread liveness and failures remain visible. Capture itself is
+still synchronous (about 80–99 ms in these tests), so continuous realtime
+checkpointing is not qualified.
+
+Recovery can select the linked checkpoint's observed source frame and completed
+prefix rather than claiming later journal observations have matching FX memory.
+Applied audience origins and influence plus uploaded auxiliary positions are
+captured. Later recorded actions remain queued, including a message recorded at
+the same source frame after capture. Source/recipe/code/context checks precede
+FX restoration; native transport holds prevent output during the restore frame.
+All score-owned decoder nodes stay excluded from the manual mix.
+
+Twenty-nine implicated native Python tests pass. A muted native test committed
+state while 53 native frames continued during the 0.798-second worker. It restored
+source frame 637, matched the audience prefix/context and execution parent,
+inherited one action and realized a later same-frame action exactly once.
+However, its resumed DSP/source error reached 50 ms against a 33.3 ms limit, so
+the diagnostic failed. Nonzero audio and correct journal/context restoration do
+not certify correct audiovisual recovery. The passing synchronous roundtrip and
+this failed journal-recue path are retained separately.
+
+Main checkpoint-adapter installation, automatic controls/scheduling, corrected
+journal-recue timing, exact future GPU continuation and app-restart acceptance
+remain unfinished. The 2026-10-14 renewal window expired before further correction;
+completion-v14 records the exact next trace and retained checkout/custody.

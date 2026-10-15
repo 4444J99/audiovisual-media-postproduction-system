@@ -125,12 +125,13 @@ def tick():
         return
     event=scene.fetch('event');movie=v.op('base_player/movie_material')
     phase=(float(movie.lastIndexUploaded)-event['start_frame'])/max(1,event['end_frame']-event['start_frame']-1)
-    gain=scene.op('text_score').module.envelope(phase) if state.get('event_seen') else 0
+    gain=scene.op('text_score').module.envelope(phase) if state.get('event_seen') and not state.get('fx_recovery_pending') else 0
     for i,name in enumerate(NAMES):
         ready=True if i==0 else not scene.op('player_'+str(i)).fetch('cue_pending',True)
         held=influence(scene)['holds'].get(str(i))
         attention=scene.op('text_interactions').module.gain(scene,i) if scene.op('text_interactions') else 1
         field=scene.op('base_canvas/field_'+name);field.par.Opacity=(held['opacity'] if held else event['scene']['opacity'][i]*gain)*ready*attention
+        if state.get('fx_recovery_pending'):field.par.Opacity=0
         base=scene.fetch('score')['composition']['layout']['fields'][i]['Rotate']
         field.par.Rotate=held.get('rotate',base) if held else base+event['scene']['rotate'][i]*math.sin(phase*math.tau)*gain
     for i in range(1,5):
@@ -152,7 +153,7 @@ def owns_primary(scene):
 
 
 def handles_audio(scene):
-    return bool(owns_primary(scene) and scene.par.Audio and controller(scene).par.Auditionsound and scene.fetch('score',{}).get('composition',{}).get('config',{}).get('audio_enabled'))
+    return bool(owns_primary(scene) and not controller(scene).fetch('performance_state',{}).get('fx_recovery_pending') and scene.par.Audio and controller(scene).par.Auditionsound and scene.fetch('score',{}).get('composition',{}).get('config',{}).get('audio_enabled'))
 
 
 def install(workspace,code_root):
