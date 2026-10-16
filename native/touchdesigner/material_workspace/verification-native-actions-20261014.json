@@ -1,0 +1,44 @@
+{
+  "state": "finished",
+  "phase": "captured_replay",
+  "started": 1791994999.0804942,
+  "receipt": "/Users/4jp/Workspace/audiovisual-composition-system/.agents/god-here/workspace-implementation/native/touchdesigner/material_workspace/verification-native-actions-20261014.json",
+  "max_hold_error": 0,
+  "held_audio_peak": 0,
+  "message_alpha_peak": 1.0,
+  "hold_samples": 910,
+  "max_refused_opacity": 0,
+  "runs": [
+    {
+      "status": "complete",
+      "completed_events": 5,
+      "actions": 5,
+      "kinds": [
+        "attend",
+        "hold",
+        "message",
+        "refuse",
+        "release"
+      ]
+    },
+    {
+      "status": "complete",
+      "completed_events": 5,
+      "actions": 5,
+      "kinds": [
+        "attend",
+        "hold",
+        "message",
+        "refuse",
+        "release"
+      ]
+    }
+  ],
+  "held_frame": 633.0,
+  "ui_pulse_received": true,
+  "recovered_influence_equal": true,
+  "released_empty": true,
+  "captured_queue_remaining": 0,
+  "replay_released_empty": true,
+  "ended": 1791995056.6465669
+}

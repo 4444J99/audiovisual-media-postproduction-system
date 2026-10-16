@@ -1,0 +1,12 @@
+{
+  "tests": 29,
+  "success": true,
+  "suites": [
+    "test_execution_journal",
+    "test_scene_actions",
+    "test_fx_state"
+  ],
+  "provenance": "Native TouchDesigner unittest result recorded before the journal diagnostic; no rerun at exhaustion",
+  "combined_suite_rerun": false,
+  "journal_native_continuation_acceptance": false
+}

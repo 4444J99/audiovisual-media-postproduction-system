@@ -1,0 +1,491 @@
+{
+  "state": "finished",
+  "index": 13,
+  "frame": 0,
+  "samples": [],
+  "results": [
+    {
+      "module": "fx_routing",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.2166595458984375,
+          "mean": 0.16515658795833588,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.383331298828125,
+          "mean": 0.26612547039985657,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5499954223632812,
+          "mean": 0.31556087732315063,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.7166595458984375,
+          "mean": 0.3310305178165436,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_delay",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.6156862378120422,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.560949981212616,
+          "max_dry_difference": 0.125490203499794,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.5353530049324036,
+          "max_dry_difference": 0.24313724040985107,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666641235351562,
+          "mean": 0.5015581846237183,
+          "max_dry_difference": 0.24313724040985107,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_stutter",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48332977294921875,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6500015258789062,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_granular",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.1158236563205719,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48333740234375,
+          "mean": 0.21994221210479736,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6500015258789062,
+          "mean": 0.3384346663951874,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_reverse",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.149993896484375,
+          "mean": 0.46176469326019287,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48332977294921875,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.649993896484375,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_freeze",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.0003676470660138875,
+          "max_dry_difference": 0.9882352948188782,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.014338234439492226,
+          "max_dry_difference": 0.9686274528503418,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48332977294921875,
+          "mean": 0.6431372165679932,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6500015258789062,
+          "mean": 0.6019607782363892,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_feedback",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.5382353067398071,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.4794117212295532,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48333740234375,
+          "mean": 0.44999998807907104,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6500015258789062,
+          "mean": 0.4637254476547241,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_queue",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.149993896484375,
+          "mean": 0.5147058963775635,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.5794117450714111,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48332977294921875,
+          "mean": 0.6963917016983032,
+          "max_dry_difference": 0.5529412031173706,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.649993896484375,
+          "mean": 0.6490195393562317,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_gate",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48332977294921875,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6500015258789062,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_displacement",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.45118021965026855,
+          "max_dry_difference": 0.9019607901573181,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.48731040954589844,
+          "max_dry_difference": 0.9686274528503418,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48333740234375,
+          "mean": 0.5497424602508545,
+          "max_dry_difference": 0.9647058844566345,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6500015258789062,
+          "mean": 0.6103955507278442,
+          "max_dry_difference": 0.8980392217636108,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_exchange",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.149993896484375,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48332977294921875,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.649993896484375,
+          "mean": 0.0,
+          "max_dry_difference": 0.9921568632125854,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_typography",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.4725490212440491,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.44999998807907104,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48332977294921875,
+          "mean": 0.4696078300476074,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6500015258789062,
+          "mean": 0.5235294103622437,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_damage",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.5843443274497986,
+          "max_dry_difference": 0.6901960372924805,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3166656494140625,
+          "mean": 0.7044270634651184,
+          "max_dry_difference": 0.9411764740943909,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.48333740234375,
+          "mean": 0.7044270634651184,
+          "max_dry_difference": 0.9411764740943909,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6500015258789062,
+          "mean": 0.6443933248519897,
+          "max_dry_difference": 0.8156862854957581,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    }
+  ],
+  "output": "/Users/4jp/Workspace/audiovisual-composition-system/.agents/god-here/workspace-implementation/native/touchdesigner/material_workspace/verification-temporal-motion-gradient-20261014.json",
+  "deadline": 82634.608900916
+}

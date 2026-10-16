@@ -1,0 +1,491 @@
+{
+  "state": "finished",
+  "index": 13,
+  "frame": 0,
+  "samples": [],
+  "results": [
+    {
+      "module": "fx_routing",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.1493106633424759,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.46666717529296875,
+          "mean": 0.23824462294578552,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.6666679382324219,
+          "mean": 0.26042360067367554,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.8333320617675781,
+          "mean": 0.2440592646598816,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_delay",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.4009804129600525,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.33333587646484375,
+          "mean": 0.37174099683761597,
+          "max_dry_difference": 0.04313725233078003,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.3952052593231201,
+          "max_dry_difference": 0.14117646217346191,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666679382324219,
+          "mean": 0.40903225541114807,
+          "max_dry_difference": 0.14117646217346191,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_stutter",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3333320617675781,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666679382324219,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_granular",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.14999771118164062,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3333320617675781,
+          "mean": 0.07612280547618866,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.1429627686738968,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666641235351562,
+          "mean": 0.22129888832569122,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_reverse",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.14999771118164062,
+          "mean": 0.37156862020492554,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3333320617675781,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666641235351562,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_freeze",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.33333587646484375,
+          "mean": 0.010784314945340157,
+          "max_dry_difference": 0.6823529601097107,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.41470590233802795,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666679382324219,
+          "mean": 0.37843137979507446,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_feedback",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.3598039150238037,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3333320617675781,
+          "mean": 0.3686274588108063,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.40000003576278687,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666679382324219,
+          "mean": 0.44019609689712524,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_queue",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.14999771118164062,
+          "mean": 0.47156864404678345,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.46666717529296875,
+          "mean": 0.5061518549919128,
+          "max_dry_difference": 0.24313724040985107,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.633331298828125,
+          "mean": 0.4323529601097107,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.7999992370605469,
+          "mean": 0.43195924162864685,
+          "max_dry_difference": 0.24313724040985107,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_gate",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.33333587646484375,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666641235351562,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_displacement",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.45899587869644165,
+          "max_dry_difference": 0.3490196168422699,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.33333587646484375,
+          "mean": 0.4781503677368164,
+          "max_dry_difference": 0.3176470696926117,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.4715422987937927,
+          "max_dry_difference": 0.14901959896087646,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666641235351562,
+          "mean": 0.4395143985748291,
+          "max_dry_difference": 0.32549020648002625,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_exchange",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.3333282470703125,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666641235351562,
+          "mean": 0.0,
+          "max_dry_difference": 0.6980392336845398,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_typography",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.149993896484375,
+          "mean": 0.41470590233802795,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.41666412353515625,
+          "mean": 0.47058820724487305,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5833282470703125,
+          "mean": 0.48137256503105164,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.75,
+          "mean": 0.46568629145622253,
+          "max_dry_difference": 0.0,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    },
+    {
+      "module": "fx_damage",
+      "samples": [
+        {
+          "frame": 10,
+          "elapsed": 0.15000152587890625,
+          "mean": 0.17450977861881256,
+          "max_dry_difference": 0.4901960790157318,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 20,
+          "elapsed": 0.33333587646484375,
+          "mean": 0.17450977861881256,
+          "max_dry_difference": 0.4901960790157318,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 30,
+          "elapsed": 0.5,
+          "mean": 0.17450977861881256,
+          "max_dry_difference": 0.4901960790157318,
+          "finite": true,
+          "admitted": true
+        },
+        {
+          "frame": 40,
+          "elapsed": 0.6666641235351562,
+          "mean": 0.17450977861881256,
+          "max_dry_difference": 0.4901960790157318,
+          "finite": true,
+          "admitted": true
+        }
+      ]
+    }
+  ],
+  "output": "/Users/4jp/Workspace/audiovisual-composition-system/.agents/god-here/workspace-implementation/native/touchdesigner/material_workspace/verification-temporal-motion-20261014.json",
+  "deadline": 82532.500573208
+}

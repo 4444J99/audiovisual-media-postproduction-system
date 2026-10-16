@@ -1,0 +1,25 @@
+{
+  "state": "finished",
+  "id": "3eb7c252358840efa9cb9cb46066dd2e",
+  "runs": [
+    {
+      "status": "complete",
+      "completed_events": 5,
+      "last_frame": 3222.0
+    },
+    {
+      "status": "complete",
+      "completed_events": 5,
+      "last_frame": 3222.0
+    },
+    {
+      "status": "complete",
+      "completed_events": 5,
+      "last_frame": 3222.0
+    }
+  ],
+  "started": 1791993423.746589,
+  "ended": 1791993509.764538,
+  "video_only": true,
+  "isolated_sender_muted": true
+}

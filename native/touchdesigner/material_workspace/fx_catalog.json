@@ -1,0 +1,2618 @@
+[
+  {
+    "type": "routing",
+    "code": "01",
+    "name": "Routing",
+    "color": "#ff5b46",
+    "description": "Move a shared voice signal and an enormous word/image trace between authored addresses.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "travel",
+        "label": "Travel time",
+        "min": 0.08,
+        "max": 4,
+        "step": 0.01,
+        "default": 0.6,
+        "unit": "s"
+      },
+      {
+        "key": "copies",
+        "label": "Trace copies",
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "default": 4,
+        "unit": ""
+      },
+      {
+        "key": "spread",
+        "label": "Trace spread",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.9,
+        "unit": ""
+      },
+      {
+        "key": "arrival",
+        "label": "Impact scatter",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 1,
+        "unit": ""
+      },
+      {
+        "key": "origin",
+        "label": "Origin position",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.08,
+        "unit": ""
+      },
+      {
+        "key": "destination",
+        "label": "Destination position",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.92,
+        "unit": ""
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "copies",
+        "min": 1,
+        "max": 4,
+        "curve": "linear"
+      },
+      {
+        "parameter": "spread",
+        "min": 0.05,
+        "max": 0.9,
+        "curve": "linear"
+      },
+      {
+        "parameter": "arrival",
+        "min": 0.05,
+        "max": 1,
+        "curve": "linear"
+      },
+      {
+        "parameter": "travel",
+        "min": 1.8,
+        "max": 0.6,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "travel": 0.6,
+          "copies": 4,
+          "spread": 0.9,
+          "arrival": 1,
+          "origin": 0.08,
+          "destination": 0.92
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "copies",
+            "min": 1,
+            "max": 4,
+            "curve": "linear"
+          },
+          {
+            "parameter": "spread",
+            "min": 0.05,
+            "max": 0.9,
+            "curve": "linear"
+          },
+          {
+            "parameter": "arrival",
+            "min": 0.05,
+            "max": 1,
+            "curve": "linear"
+          },
+          {
+            "parameter": "travel",
+            "min": 1.8,
+            "max": 0.6,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "direct",
+        "name": "Direct delivery",
+        "params": {
+          "travel": 1.6,
+          "copies": 1,
+          "spread": 0.04,
+          "arrival": 0.1
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "travel",
+            "min": 2.5,
+            "max": 1.6,
+            "curve": "linear"
+          },
+          {
+            "parameter": "arrival",
+            "min": 0,
+            "max": 0.1,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [],
+    "behavior": "Pan and visual trajectory share normalized positions; changing destinations does not isolate a performer."
+  },
+  {
+    "type": "delay",
+    "code": "02",
+    "name": "Delay / Echo",
+    "color": "#ffc247",
+    "description": "Several large delayed images coexist while distinctly separated vocal copies return.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "time",
+        "label": "Tap delay",
+        "min": 0.04,
+        "max": 2,
+        "step": 0.01,
+        "default": 0.48,
+        "unit": "s"
+      },
+      {
+        "key": "taps",
+        "label": "Echo taps",
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "default": 5,
+        "unit": ""
+      },
+      {
+        "key": "decay",
+        "label": "Tap decay",
+        "min": 0.05,
+        "max": 0.92,
+        "step": 0.01,
+        "default": 0.68,
+        "unit": ""
+      },
+      {
+        "key": "spread",
+        "label": "Spatial spread",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.78,
+        "unit": ""
+      },
+      {
+        "key": "scale",
+        "label": "Copy scale",
+        "min": 0.25,
+        "max": 1.4,
+        "step": 0.01,
+        "default": 0.84,
+        "unit": ""
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "taps",
+        "min": 1,
+        "max": 5,
+        "curve": "linear"
+      },
+      {
+        "parameter": "decay",
+        "min": 0.2,
+        "max": 0.68,
+        "curve": "linear"
+      },
+      {
+        "parameter": "spread",
+        "min": 0.08,
+        "max": 0.78,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "time": 0.48,
+          "taps": 5,
+          "decay": 0.68,
+          "spread": 0.78,
+          "scale": 0.84
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "taps",
+            "min": 1,
+            "max": 5,
+            "curve": "linear"
+          },
+          {
+            "parameter": "decay",
+            "min": 0.2,
+            "max": 0.68,
+            "curve": "linear"
+          },
+          {
+            "parameter": "spread",
+            "min": 0.08,
+            "max": 0.78,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "ping-pong",
+        "name": "Wide ping-pong",
+        "params": {
+          "time": 0.72,
+          "taps": 4,
+          "decay": 0.58,
+          "spread": 1,
+          "scale": 0.7
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "taps",
+            "min": 1,
+            "max": 4,
+            "curve": "linear"
+          },
+          {
+            "parameter": "spread",
+            "min": 0.1,
+            "max": 1,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [],
+    "state": {
+      "kind": "finite-taps",
+      "bounded": true
+    },
+    "behavior": "Scheduled copies read earlier source times; intentional tap offsets remain audible."
+  },
+  {
+    "type": "stutter",
+    "code": "03",
+    "name": "Stutter",
+    "color": "#ff6396",
+    "description": "A checked buffer interval and gesture hammer repeatedly, then release into the running scene.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "window",
+        "label": "Buffer length",
+        "min": 0.04,
+        "max": 1.5,
+        "step": 0.005,
+        "default": 0.24,
+        "unit": "s"
+      },
+      {
+        "key": "repeats",
+        "label": "Repetitions",
+        "min": 1,
+        "max": 40,
+        "step": 1,
+        "default": 16,
+        "unit": ""
+      },
+      {
+        "key": "rate",
+        "label": "Playback rate",
+        "min": 0.25,
+        "max": 3,
+        "step": 0.01,
+        "default": 1,
+        "unit": ""
+      },
+      {
+        "key": "gap",
+        "label": "Gap between repeats",
+        "min": 0,
+        "max": 0.5,
+        "step": 0.005,
+        "default": 0.035,
+        "unit": "s"
+      },
+      {
+        "key": "release",
+        "label": "Release edge",
+        "min": 0.002,
+        "max": 0.4,
+        "step": 0.002,
+        "default": 0.03,
+        "unit": "s"
+      },
+      {
+        "key": "capture",
+        "label": "Capture time",
+        "min": 0,
+        "max": 12.166666667,
+        "step": 0.01,
+        "default": 2.88,
+        "unit": "s",
+        "sourceTime": true
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "window",
+        "min": 0.65,
+        "max": 0.24,
+        "curve": "linear"
+      },
+      {
+        "parameter": "repeats",
+        "min": 2,
+        "max": 16,
+        "curve": "linear"
+      },
+      {
+        "parameter": "gap",
+        "min": 0.12,
+        "max": 0.035,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "window": 0.24,
+          "repeats": 16,
+          "rate": 1,
+          "gap": 0.035,
+          "release": 0.03,
+          "capture": 2.88
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "window",
+            "min": 0.65,
+            "max": 0.24,
+            "curve": "linear"
+          },
+          {
+            "parameter": "repeats",
+            "min": 2,
+            "max": 16,
+            "curve": "linear"
+          },
+          {
+            "parameter": "gap",
+            "min": 0.12,
+            "max": 0.035,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "hammer",
+        "name": "Short hammer / hard release",
+        "params": {
+          "window": 0.095,
+          "repeats": 24,
+          "gap": 0.012,
+          "release": 0.008
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "window",
+            "min": 0.32,
+            "max": 0.095,
+            "curve": "linear"
+          },
+          {
+            "parameter": "repeats",
+            "min": 4,
+            "max": 24,
+            "curve": "linear"
+          },
+          {
+            "parameter": "gap",
+            "min": 0.07,
+            "max": 0.012,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [
+      "Capture times are editable workprint selections until listening checked."
+    ],
+    "state": {
+      "kind": "finite-repeat-buffer",
+      "bounded": true
+    }
+  },
+  {
+    "type": "granular",
+    "code": "04",
+    "name": "Granular",
+    "color": "#de96ff",
+    "description": "Speech and image fracture into a seeded cloud of short grains and scattered tiles.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "size",
+        "label": "Audio grain size",
+        "min": 0.015,
+        "max": 0.5,
+        "step": 0.005,
+        "default": 0.07,
+        "unit": "s"
+      },
+      {
+        "key": "density",
+        "label": "Grains per second",
+        "min": 2,
+        "max": 60,
+        "step": 1,
+        "default": 30,
+        "unit": "/s"
+      },
+      {
+        "key": "scatter",
+        "label": "Source time scatter",
+        "min": 0,
+        "max": 2,
+        "step": 0.01,
+        "default": 0.7,
+        "unit": "s"
+      },
+      {
+        "key": "pitch",
+        "label": "Pitch range",
+        "min": 0,
+        "max": 18,
+        "step": 0.1,
+        "default": 7,
+        "unit": "st"
+      },
+      {
+        "key": "spatial",
+        "label": "Spatial scatter",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.95,
+        "unit": ""
+      },
+      {
+        "key": "tiles",
+        "label": "Visual divisions",
+        "min": 2,
+        "max": 24,
+        "step": 1,
+        "default": 14,
+        "unit": ""
+      },
+      {
+        "key": "order",
+        "label": "Ordering",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 1,
+        "unit": "",
+        "options": [
+          "Ordered",
+          "Seeded shuffle"
+        ]
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "size",
+        "min": 0.3,
+        "max": 0.07,
+        "curve": "linear"
+      },
+      {
+        "parameter": "density",
+        "min": 6,
+        "max": 30,
+        "curve": "linear"
+      },
+      {
+        "parameter": "scatter",
+        "min": 0,
+        "max": 0.7,
+        "curve": "linear"
+      },
+      {
+        "parameter": "spatial",
+        "min": 0.03,
+        "max": 0.95,
+        "curve": "linear"
+      },
+      {
+        "parameter": "tiles",
+        "min": 3,
+        "max": 14,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "size": 0.07,
+          "density": 30,
+          "scatter": 0.7,
+          "pitch": 7,
+          "spatial": 0.95,
+          "tiles": 14,
+          "order": 1
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "size",
+            "min": 0.3,
+            "max": 0.07,
+            "curve": "linear"
+          },
+          {
+            "parameter": "density",
+            "min": 6,
+            "max": 30,
+            "curve": "linear"
+          },
+          {
+            "parameter": "scatter",
+            "min": 0,
+            "max": 0.7,
+            "curve": "linear"
+          },
+          {
+            "parameter": "spatial",
+            "min": 0.03,
+            "max": 0.95,
+            "curve": "linear"
+          },
+          {
+            "parameter": "tiles",
+            "min": 3,
+            "max": 14,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "syllable",
+        "name": "Coarse syllable blocks",
+        "params": {
+          "size": 0.21,
+          "density": 9,
+          "scatter": 0.4,
+          "pitch": 3,
+          "spatial": 0.8,
+          "tiles": 5
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "size",
+            "min": 0.42,
+            "max": 0.21,
+            "curve": "linear"
+          },
+          {
+            "parameter": "scatter",
+            "min": 0,
+            "max": 0.4,
+            "curve": "linear"
+          },
+          {
+            "parameter": "spatial",
+            "min": 0.05,
+            "max": 0.8,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [],
+    "state": {
+      "kind": "seeded-grains",
+      "bounded": true
+    },
+    "behavior": "Audio and visual grain sizes are separately authored parameters linked by the macro."
+  },
+  {
+    "type": "reverse",
+    "code": "05",
+    "name": "Reverse",
+    "color": "#b5a5ff",
+    "description": "Rewind one interval or reverse its route while the output clock continues forward.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "span",
+        "label": "Reversed interval",
+        "min": 0.15,
+        "max": 5,
+        "step": 0.01,
+        "default": 2.2,
+        "unit": "s"
+      },
+      {
+        "key": "speed",
+        "label": "Reverse speed",
+        "min": 0.25,
+        "max": 3,
+        "step": 0.01,
+        "default": 1,
+        "unit": ""
+      },
+      {
+        "key": "pivot",
+        "label": "Interval end / pivot",
+        "min": 0,
+        "max": 12.166666667,
+        "step": 0.01,
+        "default": 4,
+        "unit": "s",
+        "sourceTime": true
+      },
+      {
+        "key": "mode",
+        "label": "Reversal mode",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "unit": "",
+        "options": [
+          "Playback",
+          "Spatial route"
+        ]
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "span",
+        "min": 0.4,
+        "max": 2.2,
+        "curve": "linear"
+      },
+      {
+        "parameter": "speed",
+        "min": 0.5,
+        "max": 1,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "span": 2.2,
+          "speed": 1,
+          "pivot": 4,
+          "mode": 0
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "span",
+            "min": 0.4,
+            "max": 2.2,
+            "curve": "linear"
+          },
+          {
+            "parameter": "speed",
+            "min": 0.5,
+            "max": 1,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "route-return",
+        "name": "Route shoots back",
+        "params": {
+          "span": 2,
+          "speed": 1.8,
+          "mode": 1
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "speed",
+            "min": 0.5,
+            "max": 1.8,
+            "curve": "linear"
+          },
+          {
+            "parameter": "span",
+            "min": 0.5,
+            "max": 2,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [],
+    "behavior": "Spatial-route mode need not reverse speech; playback mode uses a finite source interval."
+  },
+  {
+    "type": "freeze",
+    "code": "06",
+    "name": "Freeze / Hold",
+    "color": "#72c8ff",
+    "description": "Hold a frame, region, word, or bounded vocal grain independently of the running scene.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "capture",
+        "label": "Capture time",
+        "min": 0,
+        "max": 12.166666667,
+        "step": 0.01,
+        "default": 2.92,
+        "unit": "s",
+        "sourceTime": true
+      },
+      {
+        "key": "duration",
+        "label": "Hold duration",
+        "min": 0.1,
+        "max": 8,
+        "step": 0.01,
+        "default": 4.4,
+        "unit": "s"
+      },
+      {
+        "key": "grain",
+        "label": "Voice hold grain",
+        "min": 0.025,
+        "max": 0.3,
+        "step": 0.005,
+        "default": 0.08,
+        "unit": "s"
+      },
+      {
+        "key": "decay",
+        "label": "Hold decay",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.12,
+        "unit": ""
+      },
+      {
+        "key": "motion",
+        "label": "Micro motion",
+        "min": 0,
+        "max": 0.25,
+        "step": 0.005,
+        "default": 0,
+        "unit": ""
+      },
+      {
+        "key": "release",
+        "label": "Release edge",
+        "min": 0.005,
+        "max": 0.5,
+        "step": 0.005,
+        "default": 0.05,
+        "unit": "s"
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "duration",
+        "min": 0.3,
+        "max": 4.4,
+        "curve": "linear"
+      },
+      {
+        "parameter": "decay",
+        "min": 0.7,
+        "max": 0.12,
+        "curve": "linear"
+      },
+      {
+        "parameter": "motion",
+        "min": 0.06,
+        "max": 0,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "capture": 2.92,
+          "duration": 4.4,
+          "grain": 0.08,
+          "decay": 0.12,
+          "motion": 0,
+          "release": 0.05
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "duration",
+            "min": 0.3,
+            "max": 4.4,
+            "curve": "linear"
+          },
+          {
+            "parameter": "decay",
+            "min": 0.7,
+            "max": 0.12,
+            "curve": "linear"
+          },
+          {
+            "parameter": "motion",
+            "min": 0.06,
+            "max": 0,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "residue",
+        "name": "Long vocal residue",
+        "params": {
+          "duration": 6,
+          "grain": 0.09,
+          "decay": 0.35,
+          "motion": 0.025
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "duration",
+            "min": 0.5,
+            "max": 6,
+            "curve": "linear"
+          },
+          {
+            "parameter": "decay",
+            "min": 0.8,
+            "max": 0.35,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [
+      "Independent body hold requires a usable alpha layer and background; region/collage hold is the workprint fallback."
+    ],
+    "behavior": "Picture is held directly. Audio is a windowed repeated grain, not claimed as reconstructed sustained speech."
+  },
+  {
+    "type": "feedback",
+    "code": "07",
+    "name": "Feedback",
+    "color": "#62ecc3",
+    "description": "Reprocess buffered returns into bounded image tunnels and recursively changed vocal returns.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "time",
+        "label": "Feedback delay",
+        "min": 0.04,
+        "max": 1.5,
+        "step": 0.01,
+        "default": 0.26,
+        "unit": "s"
+      },
+      {
+        "key": "gain",
+        "label": "Return gain",
+        "min": 0,
+        "max": 0.9,
+        "step": 0.01,
+        "default": 0.8,
+        "unit": ""
+      },
+      {
+        "key": "repeats",
+        "label": "Maximum recurrences",
+        "min": 1,
+        "max": 16,
+        "step": 1,
+        "default": 10,
+        "unit": ""
+      },
+      {
+        "key": "scale",
+        "label": "Scale per recurrence",
+        "min": 0.45,
+        "max": 1.3,
+        "step": 0.01,
+        "default": 0.81,
+        "unit": ""
+      },
+      {
+        "key": "rotation",
+        "label": "Rotation per recurrence",
+        "min": -0.5,
+        "max": 0.5,
+        "step": 0.01,
+        "default": 0.2,
+        "unit": "turn"
+      },
+      {
+        "key": "reset",
+        "label": "Reset time",
+        "min": 0,
+        "max": 12.166666667,
+        "step": 0.01,
+        "default": 11.5,
+        "unit": "s",
+        "outputTime": true
+      },
+      {
+        "key": "threshold",
+        "label": "Tail threshold",
+        "min": 0.001,
+        "max": 0.1,
+        "step": 0.001,
+        "default": 0.005,
+        "unit": ""
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "gain",
+        "min": 0.2,
+        "max": 0.8,
+        "curve": "linear"
+      },
+      {
+        "parameter": "repeats",
+        "min": 2,
+        "max": 10,
+        "curve": "linear"
+      },
+      {
+        "parameter": "scale",
+        "min": 0.97,
+        "max": 0.81,
+        "curve": "linear"
+      },
+      {
+        "parameter": "rotation",
+        "min": 0,
+        "max": 0.2,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "time": 0.26,
+          "gain": 0.8,
+          "repeats": 10,
+          "scale": 0.81,
+          "rotation": 0.2,
+          "reset": 11.5,
+          "threshold": 0.005
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "gain",
+            "min": 0.2,
+            "max": 0.8,
+            "curve": "linear"
+          },
+          {
+            "parameter": "repeats",
+            "min": 2,
+            "max": 10,
+            "curve": "linear"
+          },
+          {
+            "parameter": "scale",
+            "min": 0.97,
+            "max": 0.81,
+            "curve": "linear"
+          },
+          {
+            "parameter": "rotation",
+            "min": 0,
+            "max": 0.2,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "invasion",
+        "name": "Expanding invasion",
+        "params": {
+          "time": 0.41,
+          "gain": 0.72,
+          "repeats": 8,
+          "scale": 1.18,
+          "rotation": -0.08
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "gain",
+            "min": 0.2,
+            "max": 0.72,
+            "curve": "linear"
+          },
+          {
+            "parameter": "repeats",
+            "min": 2,
+            "max": 8,
+            "curve": "linear"
+          },
+          {
+            "parameter": "scale",
+            "min": 1,
+            "max": 1.18,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [],
+    "state": {
+      "kind": "buffered-recursion",
+      "bounded": true,
+      "delayParameter": "time",
+      "gainParameter": "gain",
+      "recurrenceParameter": "repeats"
+    },
+    "behavior": "Every pass depends on the prior pass. Graph cycles remain forbidden; delay, gain, recurrence count, threshold and reset bound internal state."
+  },
+  {
+    "type": "queue",
+    "code": "08",
+    "name": "Queue / Overflow",
+    "color": "#c8ee70",
+    "description": "Store distinct source arrivals until capacity is reached, then spill or release them in a burst.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "capacity",
+        "label": "Queue capacity",
+        "min": 2,
+        "max": 24,
+        "step": 1,
+        "default": 7,
+        "unit": ""
+      },
+      {
+        "key": "rate",
+        "label": "Arrival rate",
+        "min": 0.25,
+        "max": 12,
+        "step": 0.25,
+        "default": 7,
+        "unit": "/s"
+      },
+      {
+        "key": "release",
+        "label": "Release rate",
+        "min": 0.25,
+        "max": 16,
+        "step": 0.25,
+        "default": 1.2,
+        "unit": "/s"
+      },
+      {
+        "key": "burst",
+        "label": "Burst interval",
+        "min": 0.4,
+        "max": 6,
+        "step": 0.05,
+        "default": 3.4,
+        "unit": "s"
+      },
+      {
+        "key": "spread",
+        "label": "Overflow spread",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.95,
+        "unit": ""
+      },
+      {
+        "key": "order",
+        "label": "Queue order",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "unit": "",
+        "options": [
+          "First in, first out",
+          "Last in, first out"
+        ]
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "capacity",
+        "min": 16,
+        "max": 7,
+        "curve": "linear"
+      },
+      {
+        "parameter": "rate",
+        "min": 1,
+        "max": 7,
+        "curve": "linear"
+      },
+      {
+        "parameter": "release",
+        "min": 6,
+        "max": 1.2,
+        "curve": "linear"
+      },
+      {
+        "parameter": "spread",
+        "min": 0.1,
+        "max": 0.95,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "capacity": 7,
+          "rate": 7,
+          "release": 1.2,
+          "burst": 3.4,
+          "spread": 0.95,
+          "order": 0
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "capacity",
+            "min": 16,
+            "max": 7,
+            "curve": "linear"
+          },
+          {
+            "parameter": "rate",
+            "min": 1,
+            "max": 7,
+            "curve": "linear"
+          },
+          {
+            "parameter": "release",
+            "min": 6,
+            "max": 1.2,
+            "curve": "linear"
+          },
+          {
+            "parameter": "spread",
+            "min": 0.1,
+            "max": 0.95,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "avalanche",
+        "name": "Rapid avalanche",
+        "params": {
+          "capacity": 5,
+          "rate": 10,
+          "release": 12,
+          "burst": 2.5,
+          "order": 1
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "rate",
+            "min": 2,
+            "max": 10,
+            "curve": "linear"
+          },
+          {
+            "parameter": "release",
+            "min": 2,
+            "max": 12,
+            "curve": "linear"
+          },
+          {
+            "parameter": "spread",
+            "min": 0.1,
+            "max": 1,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [],
+    "state": {
+      "kind": "bounded-event-queue",
+      "bounded": true
+    },
+    "behavior": "Queue arrivals use distinct source times or authored cue events. Queue storage is separate from feedback recurrence."
+  },
+  {
+    "type": "gate",
+    "code": "09",
+    "name": "Gate / Erase",
+    "color": "#f08de1",
+    "description": "Remove selected audio/alpha components abruptly and reopen them on an authored interval.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "duty",
+        "label": "Open fraction",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.18,
+        "unit": ""
+      },
+      {
+        "key": "period",
+        "label": "Gate period",
+        "min": 0.1,
+        "max": 5,
+        "step": 0.01,
+        "default": 1.3,
+        "unit": "s"
+      },
+      {
+        "key": "edge",
+        "label": "Edge time",
+        "min": 0.002,
+        "max": 0.3,
+        "step": 0.002,
+        "default": 0.012,
+        "unit": "s"
+      },
+      {
+        "key": "phase",
+        "label": "Gate phase",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.1,
+        "unit": ""
+      },
+      {
+        "key": "retain",
+        "label": "Closed-state residue",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0,
+        "unit": ""
+      },
+      {
+        "key": "threshold",
+        "label": "Control threshold",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.38,
+        "unit": ""
+      },
+      {
+        "key": "detector",
+        "label": "Gate control",
+        "min": 0,
+        "max": 1,
+        "step": 1,
+        "default": 0,
+        "unit": "",
+        "options": [
+          "Periodic",
+          "Sidechain threshold"
+        ]
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "duty",
+        "min": 1,
+        "max": 0.18,
+        "curve": "linear"
+      },
+      {
+        "parameter": "edge",
+        "min": 0.2,
+        "max": 0.012,
+        "curve": "linear"
+      },
+      {
+        "parameter": "retain",
+        "min": 0.45,
+        "max": 0,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "duty": 0.18,
+          "period": 1.3,
+          "edge": 0.012,
+          "phase": 0.1,
+          "retain": 0,
+          "threshold": 0.38,
+          "detector": 0
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "duty",
+            "min": 1,
+            "max": 0.18,
+            "curve": "linear"
+          },
+          {
+            "parameter": "edge",
+            "min": 0.2,
+            "max": 0.012,
+            "curve": "linear"
+          },
+          {
+            "parameter": "retain",
+            "min": 0.45,
+            "max": 0,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "gone",
+        "name": "Gone / long absence",
+        "params": {
+          "duty": 0.04,
+          "period": 3.4,
+          "edge": 0.005,
+          "phase": 0.4,
+          "retain": 0
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "duty",
+            "min": 0.8,
+            "max": 0.04,
+            "curve": "linear"
+          },
+          {
+            "parameter": "edge",
+            "min": 0.15,
+            "max": 0.005,
+            "curve": "linear"
+          },
+          {
+            "parameter": "retain",
+            "min": 0.3,
+            "max": 0,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [
+      "Body removal requires background fill or a visibly authored hole/collage; the module does not infer hidden scenery."
+    ]
+  },
+  {
+    "type": "displacement",
+    "code": "10",
+    "name": "Displacement",
+    "color": "#ff9852",
+    "description": "Tear or fold the visual territory and optionally warp the shared voice signal from a separate audio mapping.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "amount",
+        "label": "Visual displacement",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.85,
+        "unit": ""
+      },
+      {
+        "key": "scale",
+        "label": "Field scale",
+        "min": 0.25,
+        "max": 12,
+        "step": 0.05,
+        "default": 4,
+        "unit": ""
+      },
+      {
+        "key": "frequency",
+        "label": "Field / warble frequency",
+        "min": 0.1,
+        "max": 12,
+        "step": 0.1,
+        "default": 4.2,
+        "unit": "Hz"
+      },
+      {
+        "key": "speed",
+        "label": "Field movement",
+        "min": 0,
+        "max": 4,
+        "step": 0.01,
+        "default": 1.5,
+        "unit": ""
+      },
+      {
+        "key": "spill",
+        "label": "Boundary spill",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 1,
+        "unit": ""
+      },
+      {
+        "key": "direction",
+        "label": "Direction",
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "default": 0,
+        "unit": "",
+        "options": [
+          "Horizontal",
+          "Vertical",
+          "Radial"
+        ]
+      },
+      {
+        "key": "warp",
+        "label": "Audio time warp",
+        "min": 0,
+        "max": 0.1,
+        "step": 0.001,
+        "default": 0.036,
+        "unit": "s"
+      },
+      {
+        "key": "ring",
+        "label": "Audio ring blend",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.25,
+        "unit": ""
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "amount",
+        "min": 0.03,
+        "max": 0.85,
+        "curve": "linear"
+      },
+      {
+        "parameter": "scale",
+        "min": 1,
+        "max": 4,
+        "curve": "linear"
+      },
+      {
+        "parameter": "spill",
+        "min": 0,
+        "max": 1,
+        "curve": "linear"
+      },
+      {
+        "parameter": "warp",
+        "min": 0,
+        "max": 0.036,
+        "curve": "linear"
+      },
+      {
+        "parameter": "ring",
+        "min": 0,
+        "max": 0.25,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "amount": 0.85,
+          "scale": 4,
+          "frequency": 4.2,
+          "speed": 1.5,
+          "spill": 1,
+          "direction": 0,
+          "warp": 0.036,
+          "ring": 0.25
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "amount",
+            "min": 0.03,
+            "max": 0.85,
+            "curve": "linear"
+          },
+          {
+            "parameter": "scale",
+            "min": 1,
+            "max": 4,
+            "curve": "linear"
+          },
+          {
+            "parameter": "spill",
+            "min": 0,
+            "max": 1,
+            "curve": "linear"
+          },
+          {
+            "parameter": "warp",
+            "min": 0,
+            "max": 0.036,
+            "curve": "linear"
+          },
+          {
+            "parameter": "ring",
+            "min": 0,
+            "max": 0.25,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "elastic",
+        "name": "Elastic sideways pull",
+        "params": {
+          "amount": 0.95,
+          "scale": 1.6,
+          "frequency": 0.9,
+          "speed": 0.7,
+          "spill": 1,
+          "warp": 0.055,
+          "ring": 0
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "amount",
+            "min": 0.05,
+            "max": 0.95,
+            "curve": "linear"
+          },
+          {
+            "parameter": "warp",
+            "min": 0,
+            "max": 0.055,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [],
+    "behavior": "Relevant alpha follows the picture transform. Audio warble is an authored mapping; it is not inferred from visual geometry."
+  },
+  {
+    "type": "exchange",
+    "code": "11",
+    "name": "Exchange",
+    "color": "#fae16b",
+    "description": "Reassign regions, source histories, or voice-channel addresses using an explicit cyclic permutation.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "offset",
+        "label": "Address offset",
+        "min": 1,
+        "max": 16,
+        "step": 1,
+        "default": 1,
+        "unit": ""
+      },
+      {
+        "key": "transition",
+        "label": "Exchange transition",
+        "min": 0.005,
+        "max": 1,
+        "step": 0.005,
+        "default": 0.05,
+        "unit": "s"
+      },
+      {
+        "key": "interval",
+        "label": "Exchange interval",
+        "min": 0.12,
+        "max": 5,
+        "step": 0.01,
+        "default": 0.72,
+        "unit": "s"
+      },
+      {
+        "key": "timeOffset",
+        "label": "History offset",
+        "min": 0,
+        "max": 3,
+        "step": 0.01,
+        "default": 0.45,
+        "unit": "s"
+      },
+      {
+        "key": "mode",
+        "label": "Exchanged components",
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "default": 0,
+        "unit": "",
+        "options": [
+          "Regions",
+          "Voice addresses",
+          "Both"
+        ]
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "interval",
+        "min": 3,
+        "max": 0.72,
+        "curve": "linear"
+      },
+      {
+        "parameter": "transition",
+        "min": 0.6,
+        "max": 0.05,
+        "curve": "linear"
+      },
+      {
+        "parameter": "timeOffset",
+        "min": 0,
+        "max": 0.45,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "offset": 1,
+          "transition": 0.05,
+          "interval": 0.72,
+          "timeOffset": 0.45,
+          "mode": 0
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "interval",
+            "min": 3,
+            "max": 0.72,
+            "curve": "linear"
+          },
+          {
+            "parameter": "transition",
+            "min": 0.6,
+            "max": 0.05,
+            "curve": "linear"
+          },
+          {
+            "parameter": "timeOffset",
+            "min": 0,
+            "max": 0.45,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "voice-addresses",
+        "name": "Voice addresses / bodies stay",
+        "params": {
+          "mode": 1,
+          "interval": 0.6,
+          "timeOffset": 1.1
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "interval",
+            "min": 2.5,
+            "max": 0.6,
+            "curve": "linear"
+          },
+          {
+            "parameter": "timeOffset",
+            "min": 0,
+            "max": 1.1,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [],
+    "behavior": "Address offset wraps by the project’s region count. Shared-recording voice mode reassigns channels/history, and does not claim isolated performer voices or changed lip movement."
+  },
+  {
+    "type": "typography",
+    "code": "12",
+    "name": "Typography",
+    "color": "#ffffff",
+    "description": "Make expressive words fill the canvas, multiply into a wall, or act as an image aperture.",
+    "targets": [
+      "text",
+      "picture"
+    ],
+    "defaultTargets": [
+      "text",
+      "picture"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "size",
+        "label": "Canvas-relative word size",
+        "min": 0.05,
+        "max": 1.6,
+        "step": 0.01,
+        "default": 1.05,
+        "unit": ""
+      },
+      {
+        "key": "copies",
+        "label": "Word copies",
+        "min": 1,
+        "max": 32,
+        "step": 1,
+        "default": 9,
+        "unit": ""
+      },
+      {
+        "key": "persistence",
+        "label": "Word persistence",
+        "min": 0.1,
+        "max": 8,
+        "step": 0.05,
+        "default": 3.2,
+        "unit": "s"
+      },
+      {
+        "key": "fragment",
+        "label": "Letter fragmentation",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.65,
+        "unit": ""
+      },
+      {
+        "key": "mode",
+        "label": "Word surface",
+        "min": 0,
+        "max": 2,
+        "step": 1,
+        "default": 0,
+        "unit": "",
+        "options": [
+          "Solid obstruction",
+          "Image aperture",
+          "Inbox wall"
+        ]
+      },
+      {
+        "key": "drift",
+        "label": "Word drift",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.55,
+        "unit": ""
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "size",
+        "min": 0.12,
+        "max": 1.05,
+        "curve": "linear"
+      },
+      {
+        "parameter": "copies",
+        "min": 1,
+        "max": 9,
+        "curve": "linear"
+      },
+      {
+        "parameter": "fragment",
+        "min": 0,
+        "max": 0.65,
+        "curve": "linear"
+      },
+      {
+        "parameter": "drift",
+        "min": 0,
+        "max": 0.55,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "size": 1.05,
+          "copies": 9,
+          "persistence": 3.2,
+          "fragment": 0.65,
+          "mode": 0,
+          "drift": 0.55
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "size",
+            "min": 0.12,
+            "max": 1.05,
+            "curve": "linear"
+          },
+          {
+            "parameter": "copies",
+            "min": 1,
+            "max": 9,
+            "curve": "linear"
+          },
+          {
+            "parameter": "fragment",
+            "min": 0,
+            "max": 0.65,
+            "curve": "linear"
+          },
+          {
+            "parameter": "drift",
+            "min": 0,
+            "max": 0.55,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "aperture",
+        "name": "Word becomes image aperture",
+        "params": {
+          "size": 1.3,
+          "copies": 1,
+          "fragment": 0,
+          "mode": 1,
+          "drift": 0.05
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "size",
+            "min": 0.15,
+            "max": 1.3,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [],
+    "behavior": "Expressive word material is separate from accessibility captions. Written-source text must retain its provenance."
+  },
+  {
+    "type": "damage",
+    "code": "13",
+    "name": "Signal Damage",
+    "color": "#83aaff",
+    "description": "Reduce picture to a coarse mosaic and speech to conspicuously quantized or bandwidth-limited material.",
+    "targets": [
+      "voice",
+      "picture",
+      "body",
+      "text",
+      "objects",
+      "room"
+    ],
+    "defaultTargets": [
+      "voice",
+      "picture",
+      "text"
+    ],
+    "ports": {
+      "inputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ],
+      "outputs": [
+        "audio",
+        "picture",
+        "text",
+        "matte",
+        "control"
+      ]
+    },
+    "params": [
+      {
+        "key": "bits",
+        "label": "Audio bit depth",
+        "min": 2,
+        "max": 16,
+        "step": 1,
+        "default": 3,
+        "unit": "bits"
+      },
+      {
+        "key": "rate",
+        "label": "Audio sample-rate reduction",
+        "min": 600,
+        "max": 24000,
+        "step": 100,
+        "default": 3200,
+        "unit": "Hz"
+      },
+      {
+        "key": "block",
+        "label": "Canvas-relative mosaic blocks",
+        "min": 0.003,
+        "max": 0.25,
+        "step": 0.001,
+        "default": 0.13,
+        "unit": ""
+      },
+      {
+        "key": "levels",
+        "label": "Picture tone levels",
+        "min": 2,
+        "max": 32,
+        "step": 1,
+        "default": 3,
+        "unit": ""
+      },
+      {
+        "key": "drive",
+        "label": "Signal drive",
+        "min": 1,
+        "max": 8,
+        "step": 0.1,
+        "default": 2.6,
+        "unit": ""
+      },
+      {
+        "key": "band",
+        "label": "Audio bandwidth",
+        "min": 250,
+        "max": 12000,
+        "step": 50,
+        "default": 900,
+        "unit": "Hz"
+      },
+      {
+        "key": "output",
+        "label": "Independent audio level",
+        "min": 0,
+        "max": 1,
+        "step": 0.01,
+        "default": 0.7,
+        "unit": ""
+      }
+    ],
+    "macro": [
+      {
+        "parameter": "bits",
+        "min": 16,
+        "max": 3,
+        "curve": "linear"
+      },
+      {
+        "parameter": "rate",
+        "min": 24000,
+        "max": 3200,
+        "curve": "linear"
+      },
+      {
+        "parameter": "block",
+        "min": 0.006,
+        "max": 0.13,
+        "curve": "linear"
+      },
+      {
+        "parameter": "levels",
+        "min": 32,
+        "max": 3,
+        "curve": "linear"
+      },
+      {
+        "parameter": "drive",
+        "min": 1,
+        "max": 2.6,
+        "curve": "linear"
+      },
+      {
+        "parameter": "band",
+        "min": 12000,
+        "max": 900,
+        "curve": "linear"
+      }
+    ],
+    "presets": [
+      {
+        "id": "extreme",
+        "name": "Extreme demonstration",
+        "params": {
+          "bits": 3,
+          "rate": 3200,
+          "block": 0.13,
+          "levels": 3,
+          "drive": 2.6,
+          "band": 900,
+          "output": 0.7
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "bits",
+            "min": 16,
+            "max": 3,
+            "curve": "linear"
+          },
+          {
+            "parameter": "rate",
+            "min": 24000,
+            "max": 3200,
+            "curve": "linear"
+          },
+          {
+            "parameter": "block",
+            "min": 0.006,
+            "max": 0.13,
+            "curve": "linear"
+          },
+          {
+            "parameter": "levels",
+            "min": 32,
+            "max": 3,
+            "curve": "linear"
+          },
+          {
+            "parameter": "drive",
+            "min": 1,
+            "max": 2.6,
+            "curve": "linear"
+          },
+          {
+            "parameter": "band",
+            "min": 12000,
+            "max": 900,
+            "curve": "linear"
+          }
+        ]
+      },
+      {
+        "id": "two-tone",
+        "name": "Two-tone / narrow voice",
+        "params": {
+          "bits": 2,
+          "rate": 1800,
+          "block": 0.19,
+          "levels": 2,
+          "drive": 1.8,
+          "band": 600,
+          "output": 0.65
+        },
+        "intensity": 1,
+        "wet": 1,
+        "macro": [
+          {
+            "parameter": "bits",
+            "min": 12,
+            "max": 2,
+            "curve": "linear"
+          },
+          {
+            "parameter": "rate",
+            "min": 18000,
+            "max": 1800,
+            "curve": "linear"
+          },
+          {
+            "parameter": "block",
+            "min": 0.006,
+            "max": 0.19,
+            "curve": "linear"
+          },
+          {
+            "parameter": "levels",
+            "min": 24,
+            "max": 2,
+            "curve": "linear"
+          },
+          {
+            "parameter": "band",
+            "min": 9000,
+            "max": 600,
+            "curve": "linear"
+          }
+        ]
+      }
+    ],
+    "neutral": "Bypass passes every incoming stream through; wet 0 blends entirely to that incoming stream.",
+    "latency": {
+      "processingSeconds": 0,
+      "deliberateDelayCompensated": false,
+      "bypass": "Pass through at the current output time; do not retain this instance’s tail."
+    },
+    "dependencies": [],
+    "behavior": "Intensity changes resolution and bandwidth. Independent output level is deliberately excluded from its macro."
+  }
+]

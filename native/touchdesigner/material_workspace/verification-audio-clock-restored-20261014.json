@@ -1,0 +1,116 @@
+{
+  "schema": "god-here.native-audio-clock-measurement/1",
+  "state": "measured",
+  "frames_observed": 180,
+  "private_raw_sha256": "4000a4c8f74cf494efb3a9e8c1be05b3ef16129c54faf1e64df69746450faa8a",
+  "intervals": {
+    "delay_input": {
+      "sample_counts": {
+        "735": 178,
+        "8085": 1,
+        "1470": 1
+      },
+      "peak_max": 0.3650948405265808,
+      "nonzero_blocks": 179,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "delay_output": {
+      "sample_counts": {
+        "735": 179,
+        "1470": 1
+      },
+      "peak_max": 0.4928193688392639,
+      "nonzero_blocks": 173,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "gate_input": {
+      "sample_counts": {
+        "735": 179,
+        "1470": 1
+      },
+      "peak_max": 0.4928193688392639,
+      "nonzero_blocks": 173,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "gate_output": {
+      "sample_counts": {
+        "735": 179,
+        "1470": 1
+      },
+      "peak_max": 0.42791441082954407,
+      "nonzero_blocks": 33,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "movie": {
+      "sample_counts": {
+        "1": 180
+      },
+      "peak_max": 0.0,
+      "nonzero_blocks": 0,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "resample": {
+      "sample_counts": {
+        "735": 178,
+        "8085": 1,
+        "1470": 1
+      },
+      "peak_max": 0.3650948405265808,
+      "nonzero_blocks": 179,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "scene": {
+      "sample_counts": {
+        "735": 178,
+        "8085": 1,
+        "1470": 1
+      },
+      "peak_max": 0.3650948405265808,
+      "nonzero_blocks": 180,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "source": {
+      "sample_counts": {
+        "1": 180
+      },
+      "peak_max": 0.0,
+      "nonzero_blocks": 0,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    }
+  },
+  "physical_listening_acceptance": false,
+  "primary_exclusion_error": null,
+  "scene_send_muted": null,
+  "source_clock_elapsed": 3.1666666666666665,
+  "dsp_clock_offsets_seconds": {
+    "fx_delay": {
+      "min": -0.16666666666666696,
+      "max": 0.016666666666666666
+    },
+    "fx_gate": {
+      "min": -0.16666666666666696,
+      "max": 0.016666666666666666
+    }
+  },
+  "counter_resets": 0,
+  "metadata_start_max_error_samples": 0.0,
+  "first_samples": {
+    "delay_input": 735,
+    "delay_output": 735,
+    "gate_input": 735,
+    "gate_output": 735,
+    "movie": 1,
+    "resample": 735,
+    "scene": 735,
+    "source": 1
+  },
+  "qualification": "Superseded diagnostic; consult routing-final for current interval and routing evidence"
+}

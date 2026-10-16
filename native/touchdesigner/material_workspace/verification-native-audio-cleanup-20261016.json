@@ -1,0 +1,29 @@
+{
+  "schema": "god-here.native-audio-cleanup/1",
+  "build": "2025.33230",
+  "saved": true,
+  "working_file": "audiovisual-material-workspace.3.toe",
+  "working_file_exists": true,
+  "saved_bytes": 1246852,
+  "materials": 296,
+  "missing_media": [],
+  "root_regions": 8,
+  "source_banks": 11,
+  "title_labels": 284,
+  "operator_errors": [],
+  "pause_device_silent": true,
+  "resume_device_active": true,
+  "controls": {
+    "Play": true,
+    "Monitor": true,
+    "Volume": 0.574,
+    "Program": "composition"
+  },
+  "native_audio_frames": 120,
+  "unique_audio_blocks": 120,
+  "shared_interval_starts_match": true,
+  "shared_interval_lengths_match": true,
+  "native_crash_cause": "unresolved",
+  "original_project_overwritten": false,
+  "listening_confirmed": true
+}

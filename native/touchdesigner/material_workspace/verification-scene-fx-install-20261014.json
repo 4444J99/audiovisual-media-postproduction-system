@@ -1,0 +1,48 @@
+{
+  "admitted_score_events": 5,
+  "stored_fx_module_count": 13,
+  "stored_fx_enabled": true,
+  "program": "composition",
+  "scene_enabled": false,
+  "fx_enabled": false,
+  "scene_audio": false,
+  "manual_rack": {
+    "play": false,
+    "mix": false,
+    "active_count": 0
+  },
+  "original_novelty_count": 3,
+  "errors": [],
+  "test_job": {
+    "state": "verified",
+    "phase": "replay",
+    "started": 1791996599.234741,
+    "hold_for_visual": false,
+    "mask_method": "GPU shader; same native UV/uniforms as protection",
+    "protected_pixels": 230400,
+    "reference_max_error": 0.0,
+    "caption_max_error": 0.0,
+    "outside_max_difference": 1.0,
+    "clock_before_pause": 1.2,
+    "dsp_before_pause": {
+      "fx_delay": 61740,
+      "fx_gate": 61740
+    },
+    "audio_clock_offsets_seconds": {
+      "fx_delay": 0.19999999999999996,
+      "fx_gate": 0.19999999999999996
+    },
+    "pause_ticks": 20,
+    "clock_after_pause": 1.2,
+    "dsp_after_pause": {
+      "fx_delay": 61740,
+      "fx_gate": 61740
+    },
+    "paused_audio_peak": 0.0,
+    "stored_delay_restored": true,
+    "recovery_withheld_reason": "Active scene FX recovery needs recorded history reconstruction; cold histories are not recovered state",
+    "recovery_status": "failed",
+    "future_idle_delay_preserved": true,
+    "ended": 1791996602.448777
+  }
+}
