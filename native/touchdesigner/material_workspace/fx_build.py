@@ -18,7 +18,7 @@ def install(workspace,code_root):
     definitions=[(a['type'],a['name']) for a in catalog];custom(rack,'Module','Menu',definitions[0][0],choices=definitions)
     clock_input=node(rack,'constantCHOP','constant_clock',-175,250,const0name='seconds',const0value=expr('1 if parent.Fxrack.par.Play else 0'))
     clock=node(rack,'speedCHOP','speed_clock',0,250,[clock_input])
-    rack.par.Time.expr="float(me.op('speed_clock')[0])"
+    rack.par.Time.expr="float(me.op('speed_clock')[0]) if me.allowCooking else 0"
     audio=node(rack,'selectCHOP','select_audio',0,0,chop=expr('parent.Materials.op(str(parent.Fxrack.par.Audioinput))'))
     audio=node(rack,'resampleCHOP','resample_audio',175,0,[audio],rate=44100,method='preserve',timeslice=True)
     picture=node(rack,'selectTOP','select_picture',0,-210,top=expr('parent.Materials.op(str(parent.Fxrack.par.Pictureinput))'))

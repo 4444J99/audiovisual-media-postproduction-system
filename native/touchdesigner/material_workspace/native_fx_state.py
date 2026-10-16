@@ -176,7 +176,7 @@ def restore_paused(scene, state):
     for name, record in state['modules'].items():
         owner = rack.op(name);audio = owner.op('text_audio').module
         audio.STATES.pop(owner.id, None)
-        if name in prepared:audio.STATES[owner.id] = {'stream': prepared[name], 'frame': None}
+        if name in prepared:audio.STATES[owner.id] = {'stream': prepared[name], 'frame': None, 'recovery_audio_boundary': True}
         owner.store('feedback_epoch', record['feedback_epoch'])
         for port, values in record['ports'].items():
             group = owner.op('base_' + port);cache = group.op('cache_history');cache.par.active=False;cache.par.alwayscook=False

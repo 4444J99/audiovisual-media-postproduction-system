@@ -1,4 +1,23 @@
 """Finite muted journal-linked FX recovery with a real I/O worker."""
+def trace(scene, v, rack, state, phase):
+    movie=v.op('base_player/movie_material')
+    intervals={}
+    for label,signal in [('clock',scene.parent().op('base_audio_clock/null_slice')),
+                         ('scene',scene.op('null_audio')),('rack',rack.op('resample_audio'))]:
+        intervals[label]={'start':float(signal.start),'samples':signal.numSamples,'rate':signal.rate}
+    positions={}
+    for name in ('fx_delay','fx_gate'):
+        owner=rack.op(name);record=owner.op('text_audio').module.STATES.get(owner.id)
+        if record:positions[name]={'position':record['stream'].position,'cooked_frame':record['frame']}
+    return {'native_frame':float(absTime.frame),'phase':phase,
+            'uploaded':float(movie.lastIndexUploaded),'true_index':float(movie.trueIndex),
+            'fx_time':float(rack.par.Time),'transport':bool(rack.par.Ownedtransport),
+            'play':bool(v.op('base_player').par.Play),'event_seen':bool(state.get('event_seen')),
+            'pending':bool(state.get('fx_recovery_pending')),
+            'held_frame':state.get('fx_restore_held_frame'),'resume_after':state.get('fx_resume_after_native_frame'),
+            'intervals':intervals,'dsp':positions}
+
+
 def onFrameEnd(frame):
     import json,time
     import numpy as np
@@ -12,6 +31,8 @@ def onFrameEnd(frame):
         if state is None and reason is None:reason='execution_ended'
         if state and state.get('event_seen') and not reason:
             r.op('null_audio').cook();scene.op('null_picture').cook()
+            samples=job.setdefault('trace',[])
+            if len(samples)<512:samples.append(trace(scene,v,r,state,job['phase']))
             primary=float(v.op('base_player/movie_material').lastIndexUploaded);event=state['score']['events'][state['index']]
             if job['phase']=='warm' and primary>=event['start_frame']+24:
                 slots=[i for i in scene.op('text_runtime').module.active_fields(scene) if i>0]

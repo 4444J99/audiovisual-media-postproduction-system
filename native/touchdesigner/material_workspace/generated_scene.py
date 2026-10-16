@@ -167,7 +167,7 @@ def install(workspace,code_root):
     scene.par.Enabled.label='Enable score modulation';scene.par.Audio.label='Include composed mixture audio';scene.par.Eventrate.label='Events per minute · 0 uses unit speeds';scene.par.Prominence.label='Primary mixture prominence · not speech certification'
     canvas=scene.copy(workspace.op('base_canvas_layout'),name='base_canvas');canvas.nodeX=700;canvas.nodeY=0
     canvas.par.Reference='performance';canvas.par.Status='Generated recorded mixtures; explicit source intervals; complete reference protected'
-    canvas.par.Time.expr="parent.Generatedscene.op('text_runtime').module.controller(parent.Generatedscene).op('base_player/movie_material').lastIndexUploaded/30"
+    canvas.par.Time.expr="parent.Generatedscene.op('text_runtime').module.controller(parent.Generatedscene).op('base_player/movie_material').lastIndexUploaded/30 if parent.Generatedscene.par.Active else 0"
     canvas.op('select_reference').par.top.expr="parent.Generatedscene.op('text_runtime').module.controller(parent.Generatedscene).op('base_player/null_picture')"
     canvas.par.Field.menuLabels=['Field '+str(i+1)+' · recorded mixture' for i in range(5)]
     original=workspace.op('base_vocabulary/base_player')
@@ -189,8 +189,8 @@ def install(workspace,code_root):
     node(scene,'nullCHOP','null_audio',1225,-500,[scene.op('script_audio')],timeslice=True)
     send=node(scene,'baseCOMP','base_send',1400,-500,parentshortcut='Scenesend')
     for key,style,value in [('Enabled','Toggle',False),('Gain','Float',1),('Mute','Toggle',False),('Solo','Toggle',False),('Pan','Float',0)]:custom(send,key,style,value)
-    send.par.Enabled.expr="parent.Generatedscene.op('text_runtime').module.handles_audio(parent.Generatedscene)"
-    send.par.Solo.expr="parent.Generatedscene.op('text_runtime').module.controller(parent.Generatedscene).op('base_player').par.Solo"
+    send.par.Enabled.expr="parent.Generatedscene.par.Active and parent.Generatedscene.op('text_runtime').module.handles_audio(parent.Generatedscene)"
+    send.par.Solo.expr="parent.Generatedscene.par.Active and parent.Generatedscene.op('text_runtime').module.controller(parent.Generatedscene).op('base_player').par.Solo"
     selected=node(send,'selectCHOP','select_audio',0,0,chop=expr("parent.Generatedscene.op('null_audio')"))
     gained=node(send,'mathCHOP','math_gain',175,0,[selected],gain=expr('parent.Scenesend.par.Gain if not parent.Scenesend.par.Mute else 0'),timeslice=True)
     node(send,'nullCHOP','null_audio',350,0,[gained],timeslice=True)

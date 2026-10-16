@@ -5,14 +5,17 @@ import numpy as np
 def onCook(scriptOp):
     workspace = parent.Materials
     tracks = [o for bank in workspace.children if bank.isCOMP
+              and (not hasattr(bank.par,'Controller') or (bank.allowCooking and bank.par.Active))
               for o in bank.children if o.isCOMP and hasattr(o.par, 'Enabled')
               and o.op('null_audio') is not None]
     clock=scriptOp.inputs[0] if scriptOp.inputs else None
     intervals=workspace.op('text_audio_intervals')
     owned=set()
     for scene in workspace.children:
-        if scene.isCOMP and hasattr(scene.par,'Controller') and scene.op('text_runtime') and scene.op('base_send') and scene.op('text_runtime').module.owns_primary(scene):
-            owned.add(workspace.op(str(scene.par.Controller)+'/base_player').id)
+        if scene.isCOMP and hasattr(scene.par,'Controller') and scene.par.Active:
+            controller=workspace.op(str(scene.par.Controller))
+            if not controller or not controller.fetch('performance_state',None):continue
+            owned.add(controller.op('base_player').id)
             owned.update(scene.op('player_'+str(i)).id for i in range(1,5) if scene.op('player_'+str(i)))
     solo = any(o.id not in owned and o.par.Enabled and not o.par.Mute and o.par.Solo for o in tracks)
     count = clock.numSamples if clock else max(1, int(44100 / workspace.time.rate))

@@ -107,9 +107,9 @@ def install(scene,code_root):
     custom(rack,'Ownedcontrol','Float',0,label='Stored control signal')
     custom(rack,'Ownedtransport','Toggle',False,readonly=True)
     rack.op('constant_control').par.const0value.expr='parent.Fxrack.par.Ownedcontrol'
-    rack.par.Play.expr="parent.Generatedscene.op('text_fx').module.enabled(parent.Generatedscene)"
-    rack.par.Ownedtransport.expr="parent.Generatedscene.op('text_fx').module.transport(parent.Generatedscene)"
-    rack.par.Time.expr="parent.Generatedscene.op('text_fx').module.clock(parent.Generatedscene)"
+    rack.par.Play.expr="parent.Generatedscene.par.Active and parent.Generatedscene.op('text_fx').module.enabled(parent.Generatedscene)"
+    rack.par.Ownedtransport.expr="parent.Generatedscene.par.Active and parent.Generatedscene.op('text_fx').module.transport(parent.Generatedscene)"
+    rack.par.Time.expr="parent.Generatedscene.op('text_fx').module.clock(parent.Generatedscene) if parent.Generatedscene.par.Active else 0"
     for key in ('Audioinput','Pictureinput','Play','Mixenabled'):getattr(rack.par,key).readOnly=True
     rack.allowCooking=True
     canvas=scene.op('base_canvas');pixel=node(canvas,'textDAT','text_fields_pixel',700,-1700,language='glsl',file=str(code/'scene_fields.glsl'),syncfile=True)

@@ -135,7 +135,7 @@ def build(catalog_path, code_root, parent_path='/project1', name='container_godh
     mixer=node(w,'scriptCHOP','script_mix',1500,-210,callbacks='text_mix',timeslice=True)
     gain=node(w,'mathCHOP','math_master',1675,-210,[mixer],gain=expr('parent.Materials.par.Volume'),timeslice=True)
     endpoint=node(w,'nullCHOP','null_audio',1850,-210,[gain],timeslice=True)
-    node(w,'outCHOP','out_audio',2025,-210,[endpoint]);node(w,'audiodeviceoutCHOP','audio_monitor',2200,-210,[endpoint],active=expr('parent.Materials.par.Monitor'))
+    node(w,'outCHOP','out_audio',2025,-210,[endpoint]);node(w,'audiodeviceoutCHOP','audio_monitor',2200,-210,[endpoint],active=expr('parent.Materials.par.Monitor and root.time.play'))
     records=node(w,'textDAT','text_source_records',450,-800,language='json',file=catalog['source_records'],syncfile=True)
     gaps=node(w,'tableDAT','table_missing',900,-800);gaps.appendRow(['material','reason'])
     for gap in catalog['gaps']:gaps.appendRow([gap['title'],gap['reason']])

@@ -39,7 +39,16 @@ def onCook(scriptOp):
             if rack.op('text_temporal'):
                 params={p['key']:rack.op('text_temporal').module.effective(owner,p['key']) for p in definition['params']}
                 params['control']=float(owner.par.Controlvalue)
-            wet=record['stream'].process(str(owner.par.Type),audio,params)
-            result=dry*(1-float(owner.par.Wet))+wet*float(owner.par.Wet)
+            count=audio.shape[1]
+            if record.get('recovery_audio_boundary'):
+                scene=rack.parent();v=scene.op('text_runtime').module.controller(scene)
+                state=v.fetch('performance_state');model=scene.op('text_fx_model').module
+                source_time=model.clock(state['score']['events'][state['index']],float(v.op('base_player/movie_material').trueIndex))
+                count=model.recovery_audio_count(record['stream'].position,source_time,count,float(root.time.rate))
+                if count==audio.shape[1] and count:record.pop('recovery_audio_boundary')
+            result=np.zeros_like(dry)
+            if count:
+                wet=record['stream'].process(str(owner.par.Type),audio[:,-count:],params)
+                result[:,-count:]=dry[:,-count:]*(1-float(owner.par.Wet))+wet*float(owner.par.Wet)
             record.update(frame=frame,result=result)
     scriptOp.clear();scriptOp.rate=44100;scriptOp.copyNumpyArray(result.astype(np.float32));scriptOp.start=scriptOp.inputs[0].start

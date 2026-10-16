@@ -227,7 +227,8 @@ pre-repair files were retained before restoring the committed journal, audience
 and FX behavior. Current native nodes already contained the racks and clock, so
 no complete workspace was replaced. Owned authored DATs now load code from disk
 on startup and do not write embedded text on .toe save. These settings are live
-and in scoped snapshots; this work never saves or overwrites the artist's .toe.
+and in scoped snapshots. The original .toe remains intact; a new native working
+copy was saved later with the owner's explicit approval.
 
 Forty-four native Python contract tests pass. Bounded native playback establishes
 nonzero paired movie audio, preserved startup/catch-up intervals, source-to-DSP
@@ -278,7 +279,8 @@ picture comparison or app-restart acceptance. The synchronous write/read/restore
 comparison took 0.431 seconds, so automatic realtime scheduling is unqualified.
 Journal/interaction/auxiliary checkpoint binding, restart, all-processor GPU
 continuation and sustained performance remain open. Original media, private
-state arrays and full manifests remain outside public Git; no .toe is saved.
+state arrays and full manifests remain outside public Git. This diagnostic did
+not save a .toe; the later authorized working copy is described below.
 
 
 ## Journal-linked checkpoint work in progress
@@ -298,16 +300,50 @@ the same source frame after capture. Source/recipe/code/context checks precede
 FX restoration; native transport holds prevent output during the restore frame.
 All score-owned decoder nodes stay excluded from the manual mix.
 
-Twenty-nine implicated native Python tests pass. A muted native test committed
-state while 53 native frames continued during the 0.798-second worker. It restored
-source frame 637, matched the audience prefix/context and execution parent,
-inherited one action and realized a later same-frame action exactly once.
-However, its resumed DSP/source error reached 50 ms against a 33.3 ms limit, so
-the diagnostic failed. Nonzero audio and correct journal/context restoration do
-not certify correct audiovisual recovery. The passing synchronous roundtrip and
-this failed journal-recue path are retained separately.
+The renewed native trace identified restoration wall time in the first resumed
+shared audio slice, plus repeated fractional movie phase after re-cue. Restored
+processors now admit only fresh source progress at this boundary, keep the
+restored DSP position unchanged during duplicated phase, and retain the shared
+slice's full shape/start with silence in its unused prefix. Ordinary processing
+continues to consume complete native slices.
 
-Main checkpoint-adapter installation, automatic controls/scheduling, corrected
-journal-recue timing, exact future GPU continuation and app-restart acceptance
-remain unfinished. The 2026-10-14 renewal window expired before further correction;
-completion-v14 records the exact next trace and retained checkout/custody.
+The corrective muted journal test passed at the unchanged 33.3 ms limit, restored
+source frame 638 and matching audience context/parent, inherited one action and
+realized the later same-frame action once. Resumed audio was nonzero. The earlier
+50 ms failure and a 150 ms traced baseline remain distinct retained evidence.
+Forty-seven scoped contracts now pass, including native-callback boundary behavior,
+all thirteen DSP continuations, journal/actions and cold idle-scene routing.
+
+## Reopened session, audible output and navigation
+
+An unexpected native allocator memory-corruption crash followed the timing test.
+Its cause remains unresolved. Private pre-crash and reopened workspace snapshots
+were compared: missing nodes were confined to authored helpers and diagnostic
+recovery probes; no creative tracks or controls were missing in that comparison.
+The interval helper, test checkpoint adapter, startup loads and interval flags
+were restored without replacing the workspace.
+
+The reopened file had a paused timeline with its device stuck active, and the
+mixer could evaluate an idle disabled scene's DAT module. The device now follows
+both Monitor and global transport. Ownership checks use stored execution state;
+idle scene sends are skipped before evaluating their expressions. Idle FX/canvas
+expressions also avoid compiling disabled DAT modules. Pause disables the actual
+device, and resume enables it. A 120-frame main-mix inspection measured 120 unique
+blocks, advancing source time, matching shared intervals and no mixer errors.
+The artist confirmed normal audio with the buzzing gone.
+
+The native working file is now named `audiovisual-material-workspace`, with native
+incremental versions in the existing private session area. The original .9.toe
+was not overwritten. The saved network has eight labeled regions, a start guide,
+eleven bank guides and title comments on all 284 source materials. Sources,
+composition, outputs, runtime support and idle diagnostics have separate areas;
+video backdrops and parameter-link clutter are off in the network editor. Stable
+operator paths and source files remain intact. `organize_workspace.py` records
+the layout and verifies annotation containment/separation. All 296 bound source
+and composition file paths existed at final readback; unavailable historical
+material outside those bindings remains unresolved.
+
+Main checkpoint-adapter installation, automatic controls/scheduling, exact future
+GPU continuation, exact FX restart acceptance and the wider v4 artistic/source
+matrix remain unfinished. Audible manual playback after reopening is narrower
+evidence than exact checkpoint recovery across an application restart.

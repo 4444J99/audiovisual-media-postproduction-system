@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import unittest
 
-from scene_fx_model import MODULE_KEYS,active,clock,validate
+from scene_fx_model import MODULE_KEYS,active,clock,recovery_audio_count,validate
 
 
 class SceneFxModelTests(unittest.TestCase):
@@ -32,6 +32,21 @@ class SceneFxModelTests(unittest.TestCase):
         self.assertAlmostEqual(clock(e,999),12+59/15)
         self.assertEqual(clock(e,599),12)
         with self.assertRaises(ValueError):clock(e,float('inf'))
+
+    def test_recovery_discards_restore_gap_and_preserves_sample_phase(self):
+        # Snapshot ended at 0.8333 s although the last uploaded movie frame
+        # represented 0.8 s. Re-cue repeats its fractional half-frame.
+        self.assertEqual(recovery_audio_count(36750,.8,8820,60),0)
+        self.assertEqual(recovery_audio_count(36750,.8+1/60,5145,60),0)
+        self.assertEqual(recovery_audio_count(36750,.8+2/60,735,60),735)
+        # A genuine decoder catch-up admits its complete multi-frame slice.
+        self.assertEqual(recovery_audio_count(37485,.8+8/60,4410,60),4410)
+
+    def test_recovery_interval_bounds(self):
+        self.assertEqual(recovery_audio_count(0,0,735,60),735)
+        self.assertEqual(recovery_audio_count(0,0,100,60),100)
+        with self.assertRaises(ValueError):recovery_audio_count(0,float('nan'),735,60)
+        with self.assertRaises(ValueError):recovery_audio_count(0,0,735,0)
 
 
 if __name__=='__main__':unittest.main()

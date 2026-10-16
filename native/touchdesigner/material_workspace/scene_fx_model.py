@@ -15,6 +15,21 @@ def clock(event,source_frame):
     return event['output_start']+(frame-event['start_frame'])/30/event['speed']
 
 
+def recovery_audio_count(position, source_time, available, native_rate, sample_rate=44100):
+    """Admit only source progress at a restored DSP boundary.
+
+    A native slice ends one render quantum after the movie's current fractional
+    index. The first slice after a held restore can also contain restoration
+    wall time, which is not source progress and must not advance restored DSP.
+    """
+    if (position < 0 or available < 0 or not math.isfinite(source_time)
+            or not math.isfinite(native_rate) or native_rate <= 0
+            or not math.isfinite(sample_rate) or sample_rate <= 0):
+        raise ValueError('Invalid recovery audio interval')
+    end = round((source_time + 1/native_rate)*sample_rate)
+    return min(available, max(0, end-position))
+
+
 def validate(recipe,definitions):
     if recipe.get('schema')!='god-here.native-scene-fx/1':raise ValueError('Unknown stored scene FX schema')
     expected={d['type']:d for d in definitions}
