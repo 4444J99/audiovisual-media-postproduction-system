@@ -24,6 +24,8 @@ def state(p):
 
 def level(p, key):
     value = state(p)[key]
+    if key == 'room' and p.op('table_attention'):
+        value *= attention_state(p)['room']
     if key in ('camera', 'room', 'foley'):
         if not p.par.Play or not p.par.Sound or p.fetch('pending_cue', None) is not None:
             return 0
@@ -31,6 +33,64 @@ def level(p, key):
         # A short final release avoids a hard audio edge at the finite endpoint.
         value *= max(0, min(1, (float(p.par.End) - float(p.par.Time)) / .1))
     return value
+
+
+def table_rows(p, name):
+    table = p.op(name)
+    headers = [str(c) for c in table.row(0)]
+    return [dict(zip(headers, [str(c) for c in row])) for row in table.rows()[1:]]
+
+
+def attention_state(p):
+    model = p.op('text_second_model').module
+    try:
+        return model.attention(table_rows(p, 'table_attention'), float(p.par.Time),
+                               float(p.par.Start), float(p.par.End), float(p.par.Fade))
+    except (ValueError, KeyError, TypeError) as error:
+        return dict.fromkeys(model.LEVELS, 0.0) | {'delay': 0, 'beat': 'Edit score: '+str(error), 'note': ''}
+
+
+def field_level(p, key):
+    field = p.op('field_'+key)
+    if not field.par.Enabled:
+        return 0
+    value = attention_state(p)[key]
+    bus = 'left' if key in ('mark', 'enrique') else 'right' if key in ('dan', 'chris') else 'trace' if key == 'trace' else None
+    return value*float(field.par.Amount)*(state(p)[bus] if bus else 1)
+
+
+def trace_delay(p):
+    return min(5, attention_state(p)['delay']*state(p)['delay']) if p.op('table_attention') else state(p)['delay']
+
+
+def track_level(p, key):
+    try:
+        return level(p, 'foley')*p.op('text_second_model').module.accent(
+            table_rows(p, 'table_accents'), key, float(p.par.Time))
+    except (ValueError, KeyError, TypeError):
+        return 0
+
+
+def expressive(p):
+    if not p.par.Expressive:
+        return '', 0
+    if not p.op('table_words'):
+        return state(p)['expression'], 1
+    if state(p)['expression']:
+        return state(p)['expression'], 1
+    try:
+        return p.op('text_second_model').module.words(table_rows(p, 'table_words'), float(p.par.Time))
+    except (ValueError, KeyError, TypeError):
+        return '', 0
+
+
+def field_crop(p, field):
+    if hasattr(field.par, 'Cropmode') and field.par.Cropmode == 'shots':
+        angle = 'A' if 88.2333333333 <= float(p.par.Time) < 95 else 'B'
+        for row in table_rows(p, 'table_crops'):
+            if row['field'] == field.name and row['angle'] == angle:
+                return tuple(float(row[k]) for k in ('x', 'y', 'width', 'height'))
+    return tuple(float(getattr(field.par, key)) for key in ('Cropx', 'Cropy', 'Cropwidth', 'Cropheight'))
 
 
 def cue(p, seconds, play=False):
@@ -78,9 +138,14 @@ def geometry(p, field=None):
         return x, y, width, height
     source = p.op(str(field.par.Source))
     aspect = max(1, source.width) / max(1, source.height) if source else 16/9
-    aspect *= max(.01, float(field.par.Cropwidth)) / max(.01, float(field.par.Cropheight))
+    crop = field_crop(p, field)
+    aspect *= max(.01, crop[2]) / max(.01, crop[3])
     width = float(field.par.Width)
-    return float(field.par.X), float(field.par.Y), width, width * 1280 / aspect / 720
+    height = width * 1280 / aspect / 720
+    if hasattr(field.par, 'Maxheight') and height > float(field.par.Maxheight):
+        width *= float(field.par.Maxheight)/height
+        height = float(field.par.Maxheight)
+    return float(field.par.X), float(field.par.Y), width, height
 
 
 def cancel_pending_cue(p):
@@ -125,6 +190,11 @@ def onFrameStart(frame):
 
 def onPulse(par):
     p = parent.Passage
+    viewers = {'Showattention': 'table_attention', 'Showcrops': 'table_crops',
+               'Showaccents': 'table_accents', 'Showwords': 'table_words', 'Showcaptions': 'table_captions'}
+    if par.name in viewers:
+        p.op(viewers[par.name]).openViewer()
+        return
     if par.name == 'Restart':
         cue(p, float(p.par.Start), True)
     elif par.name == 'Cue':

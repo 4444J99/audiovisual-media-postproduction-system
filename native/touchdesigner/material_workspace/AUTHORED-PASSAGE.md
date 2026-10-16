@@ -1,5 +1,9 @@
 # First authored passage: source 85–107 seconds
 
+This records the first pass. The current artistic revision and editing controls
+are described in [SECOND-PASS.md](SECOND-PASS.md). Earlier native versions remain
+preserved; use the private session's CURRENT.json to find the latest working file.
+
 Open `base_passage_85_107/container_controls` inside the material workspace.
 **Play from beginning** cues source 85 and plays once to 107. **Play / pause**
 holds/resumes. **Seek source seconds → Cue seek position** and **Edit section →

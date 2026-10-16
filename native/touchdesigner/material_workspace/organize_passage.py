@@ -19,18 +19,35 @@ GROUPS = [
 
 
 def arrange(p):
+    groups = list(GROUPS)
+    second = p.op('table_attention') is not None
+    fields = ['mark','enrique','hunter','dan','chris','trace'] if second else ['left','right','trace']
+    if second:
+        groups = [
+            (key,title,(['field_'+f for f in fields]+['select_'+f for f in fields]+['select_reference','glsl_canvas','null_picture','out_picture']) if key=='picture'
+             else names+['text_second_model'] if key=='runtime' else names,text)
+            for key,title,names,text in groups]
+        groups = [(key,title,names,'Macro trims remain in section controls; detailed attention, accents and words are in the editable score tables.' if key=='score'
+                   else 'Captions stay provisional. Expressive words have an independent editable timing table.' if key=='text' else text)
+                  for key,title,names,text in groups]
+        groups.append(('score_data','Editable score',['table_attention','table_crops','table_accents','table_words'],
+                       'Attention, angle-specific crops, sparse sound accents and delayed expressive words. Open tables to edit.'))
     for i in range(1,5):p.op('section_'+str(i)).nodeY=350
-    for i,key in enumerate(['left','right','trace']):
+    for i,key in enumerate(fields):
         p.op('field_'+key).nodeX=1650
+        p.op('field_'+key).nodeY=-i*240
         p.op('select_'+key).nodeX=2050
+        p.op('select_'+key).nodeY=-i*240
     p.op('select_reference').nodeX=2050
     for name,x in [('glsl_canvas',2400),('null_picture',2750),('out_picture',3100),
                    ('table_captions',1650),('text_expression',2050),('text_caption',2050)]:
         p.op(name).nodeX=x
     p.op('movie_trace').nodeWidth=350
     p.op('execute_verify_passage').nodeX=1050;p.op('execute_verify_passage').nodeY=-1350
+    if second:
+        for name,y in [('table_captions',-1550),('text_expression',-1550),('text_caption',-1775)]:p.op(name).nodeY=y
     result=[]
-    for key,title,names,text in GROUPS:
+    for key,title,names,text in groups:
         nodes=[p.op(n) for n in names]
         left=min(n.nodeX for n in nodes)-25;bottom=min(n.nodeY for n in nodes)-25
         right=max(n.nodeX+n.nodeWidth for n in nodes)+25
