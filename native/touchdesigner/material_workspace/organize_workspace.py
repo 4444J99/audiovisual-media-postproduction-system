@@ -17,6 +17,8 @@ GROUPS = [
         'table_materials','text_source_records','table_missing','base_fx_recipe_data'],25,-1000,3,550,200),
     ('support','07 Runtime support',[.25,.28,.35],[
         'base_audio_clock','text_mix','parexec_materials','text_audio_intervals'],2985,-1050,3,500,200),
+    ('passage','09 First passage',[.22,.33,.22],[
+        'base_passage_85_107'],1555,-1050,1,500,200),
     ('diagnostics','08 Diagnostics - idle',[.35,.30,.18],[
         'base_execution_test','base_scene_soak','base_fx_temporal_test',
         'base_fx_temporal_attempt1','execute_audio_check'],25,-1700,5,900,200),
@@ -31,6 +33,7 @@ def arrange(workspace):
             node=workspace.op(name)
             if node is None:raise ValueError('Expected working node missing: '+name)
             if node.isCOMP:node.nodeWidth=360 if node.OPType=='containerCOMP' else 300
+            if name=='base_passage_85_107':node.nodeWidth=700;node.nodeHeight=200
             node.nodeX=x+(index%columns)*dx
             node.nodeY=y-(index//columns)*dy
             nodes.append(node);assigned.add(name)

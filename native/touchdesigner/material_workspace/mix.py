@@ -2,10 +2,17 @@
 import numpy as np
 
 
+def audible_banks(workspace):
+    """A selected authored passage owns the audition mix, not the source banks."""
+    passage_selected = str(getattr(getattr(workspace, 'par', None), 'Program', '')) == 'passage'
+    return [bank for bank in workspace.children if bank.isCOMP
+            and (getattr(bank, 'name', '') == 'base_passage_85_107') == passage_selected]
+
+
 def onCook(scriptOp):
     workspace = parent.Materials
-    tracks = [o for bank in workspace.children if bank.isCOMP
-              and (not hasattr(bank.par,'Controller') or (bank.allowCooking and bank.par.Active))
+    tracks = [o for bank in audible_banks(workspace)
+              if (not hasattr(bank.par,'Controller') or (bank.allowCooking and bank.par.Active))
               for o in bank.children if o.isCOMP and hasattr(o.par, 'Enabled')
               and o.op('null_audio') is not None]
     clock=scriptOp.inputs[0] if scriptOp.inputs else None

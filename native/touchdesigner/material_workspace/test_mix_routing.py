@@ -9,6 +9,18 @@ import mix
 
 
 class MixRoutingTests(unittest.TestCase):
+    def test_passage_selects_only_its_own_audio_bank(self):
+        banks = [SimpleNamespace(isCOMP=True, name=name) for name in
+                 ('base_original', 'base_composition', 'base_passage_85_107')]
+        workspace = SimpleNamespace(children=banks, par=SimpleNamespace(Program='passage'))
+        self.assertEqual(mix.audible_banks(workspace), [banks[2]])
+
+    def test_other_programs_exclude_passage_without_mutating_source_tracks(self):
+        banks = [SimpleNamespace(isCOMP=True, name=name) for name in
+                 ('base_original', 'base_composition', 'base_passage_85_107')]
+        workspace = SimpleNamespace(children=banks, par=SimpleNamespace(Program='composition'))
+        self.assertEqual(mix.audible_banks(workspace), banks[:2])
+
     def fixture(self, active=False, cooking=False, owned=False):
         data=np.arange(10,dtype=np.float32).reshape(2,5)/20
         signal=SimpleNamespace(numpyArray=lambda:data,cook=lambda:None,
