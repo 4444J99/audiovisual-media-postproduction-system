@@ -83,4 +83,22 @@ class ProductionReceiptTests(unittest.TestCase):
         self.assertEqual(r['audio']['offset_samples'],3360000)
         self.assertEqual(r['audio']['sha256'],'a'*64)
 
+class AtomicMuxTests(unittest.TestCase):
+    def test_failed_mux_keeps_previous_delivery_intact(self):
+        import tempfile,subprocess
+        from pathlib import Path
+        from unittest.mock import patch
+        runner=ProductionReceiptTests.runner if hasattr(ProductionReceiptTests,'runner') else None
+        if runner is None:
+            ProductionReceiptTests.setUpClass();runner=ProductionReceiptTests.runner
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);target=root/'movie.mp4';target.write_bytes(b'previous verified delivery')
+            def failed(args,**kw):
+                Path(args[-1]).write_bytes(b'incomplete new mux')
+                raise subprocess.CalledProcessError(1,args)
+            with patch.object(runner,'run',side_effect=failed):
+                with self.assertRaises(subprocess.CalledProcessError):
+                    runner.mux_movie(root/'picture',root/'audio',0,1,target)
+            self.assertEqual(target.read_bytes(),b'previous verified delivery')
+
 if __name__=='__main__':unittest.main()

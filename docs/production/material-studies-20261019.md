@@ -23,3 +23,8 @@ This pass is explicitly pre-admission conventional control work. The original am
 Independent code review found a wrong duplex clock in the source-length mode, a mutable input decoding race, and insufficient recipe provenance. All three have focused regressions observed failing before fixes; the final focused suite passes 9 tests. The producer now renders from one frozen hash-verified snapshot, computes duplex timing after selecting the actual mode, and records per-frame modes, wet values, history frames and the audio artifact/hash/sample offset. Neutral source anchoring and cut-local image history also have focused checks.
 
 Final repository check: python3 tools/check.py exited 0; 366 Python tests ran, 2 skipped. Node checks passed. No learned inference, Studio deployment, full perceptual review or physical-device test is claimed. The original plan's 53 tasks and 38 bundles remain open in separate delivery accounting.
+
+
+Delivery validation caught incomplete direct-write MP4 containers in the two source-length workprints. A staged mux, container probe, verified copy and atomic replacement repaired both, followed by all 62 video full decodes. The producer now uses that staging sequence. A failing-mux regression preserves the previous delivered file and passed after the fix. Final release check with an explicitly installed font: 367 Python tests passed with no skips; 249 Node tests passed. Ten focused tests pass. This does not certify listening or artistic acceptance.
+
+Remote push was rejected by automatic approval review for lack of current sharing authorization. The code remains in local commits and a separately supplied patch. No alternate push method or remote write was attempted.

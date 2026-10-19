@@ -38,6 +38,23 @@ def recipe_record(mode,full,seconds,n,wet,delay,audio_name,audio_hash,offset):
             'history_delay_proxy_frames':delay,'visual_mode_definition_sha256':digest(Path(ms.__file__))}
 
 
+def mux_movie(picture,audio,offset,seconds,target):
+    # Do not expose a truncated destination while the MP4 container is unfinished.
+    with tempfile.TemporaryDirectory(prefix='amp-mux-') as td:
+        staged=Path(td)/'complete.mp4'
+        run(['ffmpeg','-v','error','-y','-i',picture,'-ss',str(offset),'-i',audio,'-map','0:v','-map','1:a','-t',str(seconds),'-c:v','copy','-c:a','aac','-b:a','160k','-ar','48000','-movflags','+faststart',staged])
+        check=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_streams','-of','json',str(staged)]))
+        if not {'video','audio'} <= {x['codec_type'] for x in check['streams']}:
+            raise ValueError('Mux output is incomplete')
+        delivery=target.with_suffix('.complete')
+        try:
+            shutil.copyfile(staged,delivery)
+            if digest(staged)!=digest(delivery):raise ValueError('Delivery copy changed')
+            delivery.replace(target)
+        finally:
+            delivery.unlink(missing_ok=True)
+
+
 def audio_bank(source,out):
     out.mkdir()
     raw=subprocess.check_output(['ffmpeg','-v','error','-i',str(source),'-vn','-af','aresample=48000,atrim=end_sample=5376000','-f','f32le','-ac','2','-'])
@@ -125,7 +142,7 @@ def render(cache,source,root,name,mode,*,start=70,seconds=24,events=None,wet=Non
                 p.stdin.write(frame.tobytes())
         finally:p.stdin.close()
         if p.wait()!=0:raise RuntimeError('Encoder failed')
-        run(['ffmpeg','-v','error','-y','-i',tmp,'-ss',str(offset),'-i',audio_path,'-map','0:v','-map','1:a','-t',str(seconds),'-c:v','copy','-c:a','aac','-b:a','160k','-ar','48000','-movflags','+faststart',target])
+        mux_movie(tmp,audio_path,offset,seconds,target)
         tmp.unlink()
         print(target.name,flush=True)
     return record
