@@ -46,6 +46,13 @@ def build(catalog_path, code_root, parent_path='/project1', name='container_godh
     if target.op(name):raise ValueError('Destination exists; existing work is never replaced')
     catalog=json.loads(Path(catalog_path).read_text(encoding='utf-8'))
     code=Path(code_root)/'native/touchdesigner/material_workspace'
+    try:
+        from amp.media_resolver import MediaResolver
+        media_root = Path(catalog.get('media_root', Path(catalog_path).parent))
+        project_root = Path(catalog.get('project_root', Path(code_root) / "compositions/comp-001"))
+        resolver = MediaResolver(code_root, media_root=media_root, project_root=project_root)
+    except Exception:
+        resolver = None
     w=node(target,'containerCOMP',name,1100,0,w=1280,h=800,parentshortcut='Materials')
     w.display=True
     custom(w,'Play','Toggle',False);custom(w,'Cuepoint','Float',10.2,label='Source seconds')
@@ -70,7 +77,13 @@ def build(catalog_path, code_root, parent_path='/project1', name='container_godh
         for ai,a in enumerate(rows):
             track=node(bank,'baseCOMP',a.get('node_name',a['id']),(ai%3)*350,-(ai//3)*240,parentshortcut='Track')
             track.allowCooking=False
-            for param,style,value in [('Title','Str',a['title']),('File','File',a['path']),('Kind','Str',a['kind']),
+            file_val = a['path']
+            if resolver is not None:
+                try:
+                    file_val = str(resolver.resolve_private_path(a.get('relative_path') or a['path']))
+                except Exception:
+                    file_val = a['path']
+            for param,style,value in [('Title','Str',a['title']),('File','File',file_val),('Kind','Str',a['kind']),
                                       ('Enabled','Toggle',False),('Preview','Toggle',False),('Play','Toggle',False),
                                       ('Localtime','Float',0),('Sourceoffset','Float',a.get('source_start',0)),
                                       ('Framerate','Float',a.get('fps',a.get('playback_fps',30))),('Samplerate','Float',a.get('sample_rate',44100)),('Offset','Float',0),('Speed','Float',1),('Gain','Float',1),

@@ -18,6 +18,60 @@ test('fixed excerpt time maps only inside its source interval',()=>assert.equal(
 test('unmapped edited films have no source conversion',()=>assert.equal(sourceMoment('color',2),null));
 test('non-finite media times have no source conversion',()=>assert.equal(sourceMoment('audio',Infinity),null));
 test('negative source position is rejected',()=>assert.equal(sourceMoment('audio',-1),null));
+
+test('retimed sourceMoment maps through piecewise linear span mapping', () => {
+  const retimingMap = [
+    { outputStart: 0, outputEnd: 20, sourceStart: 85.0, sourceEnd: 95.0 }
+  ];
+  // 2x slow-down: elapsed output of 10 maps to elapsed source of 5
+  assert.equal(sourceMoment('audio', 10, retimingMap), 90.0);
+  assert.equal(sourceMoment('audio', 0, retimingMap), 85.0);
+  assert.equal(sourceMoment('audio', 20, retimingMap), 95.0);
+  // Position outside span returns null
+  assert.equal(sourceMoment('audio', 25, retimingMap), null);
+});
+
+test('retimed sourceMoment supports multi-span piecewise linear mapping with varying rates', () => {
+  const multiSpanMap = [
+    { output_start: 0, output_end: 10, source_start: 50.0, source_end: 70.0 },
+    { output_start: 10, output_end: 30, source_start: 70.0, source_end: 80.0 }
+  ];
+  // Span 1 midpoint: 5s output -> 60s source
+  assert.equal(sourceMoment('fx', 5, multiSpanMap), 60.0);
+  // Span 2 midpoint: 20s output -> 75s source
+  assert.equal(sourceMoment('fx', 20, multiSpanMap), 75.0);
+});
+
+test('retimed sourceMoment unwraps tool-keyed map objects and falls back when tool is unmapped', () => {
+  const toolKeyedMap = {
+    audio: [{ outputStart: 0, outputEnd: 10, sourceStart: 85.133333333, sourceEnd: 90.133333333 }],
+    fx: [{ outputStart: 0, outputEnd: 5, sourceStart: 95.0, sourceEnd: 100.0 }]
+  };
+  assert.equal(sourceMoment('audio', 5, toolKeyedMap), 87.633333333);
+  assert.equal(sourceMoment('fx', 2.5, toolKeyedMap), 97.5);
+  // Unmapped tool in tool-keyed map falls back to null if no 1:1 fallback exists (or unmapped)
+  assert.equal(sourceMoment('color', 2, toolKeyedMap), null);
+});
+
+test('invalid retiming map fails closed and returns null', () => {
+  // Overlapping spans are invalid
+  const overlapping = [
+    { outputStart: 0, outputEnd: 15, sourceStart: 0, sourceEnd: 10 },
+    { outputStart: 10, outputEnd: 25, sourceStart: 10, sourceEnd: 20 }
+  ];
+  assert.equal(sourceMoment('audio', 5, overlapping), null);
+
+  // Non-finite times are invalid
+  const nonFinite = [{ outputStart: 0, outputEnd: NaN, sourceStart: 0, sourceEnd: 10 }];
+  assert.equal(sourceMoment('audio', 5, nonFinite), null);
+});
+
+test('fallback to 1:1 elapsed time when retiming map is null or undefined', () => {
+  assert.equal(sourceMoment('audio', 2, null), 87.133333333);
+  assert.equal(sourceMoment('audio', 2, undefined), 87.133333333);
+  assert.equal(sourceMoment('fx', 2), 97);
+  assert.equal(sourceMoment('experience', 50), 50);
+});
 test('previous root experience remains discoverable',()=>assert.equal(toolForPath('/experience.html'),'experience'));
 test('URLs cannot sneak into the tool list',()=>assert.equal(toolForPath('https://evil.test/review.html'),null));
 

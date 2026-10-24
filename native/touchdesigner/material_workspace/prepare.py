@@ -12,6 +12,8 @@ import subprocess
 import shutil
 from fractions import Fraction
 
+from amp.media_resolver import MediaResolver, ContractError
+
 MEDIA = {'.mp4', '.mov', '.m4a', '.wav', '.flac', '.png', '.jpg', '.jpeg'}
 SOURCE_SHA = 'bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225'
 
@@ -31,6 +33,7 @@ def category(name, kind):
 def prepare(archive_root, output, repository):
     archive_root, output, repository = map(Path, (archive_root, output, repository))
     output.mkdir(parents=True, exist_ok=True)
+    resolver = MediaResolver(repository, media_root=output, project_root=repository / "compositions/comp-001")
     assets, seen, gaps = [], {}, []
 
     def add(path, origin, kind=None, **metadata):
@@ -40,7 +43,15 @@ def prepare(archive_root, output, repository):
         if sha in seen:
             seen[sha]['aliases'].append(origin)
             return seen[sha]
-        row = dict(id='m'+sha[:16], title=path.name, path=str(path.resolve()), kind=kind,
+        rel_path = None
+        try:
+            rel_path = path.resolve().relative_to(output.resolve()).as_posix()
+        except ValueError:
+            try:
+                rel_path = path.resolve().relative_to(repository.resolve()).as_posix()
+            except ValueError:
+                pass
+        row = dict(id='m'+sha[:16], title=path.name, path=str(path.resolve()), relative_path=rel_path, kind=kind,
                    sha256=sha, bytes=path.stat().st_size, origin=origin, aliases=[],
                    category=category(origin, kind), decision='unselected material', **metadata)
         if sha == SOURCE_SHA:
@@ -92,8 +103,16 @@ def prepare(archive_root, output, repository):
                 sha = hashlib.sha256(''.join(digests).encode()).hexdigest()
                 if sha in seen: continue
                 layer = 'layer-study-03' in package.name
+                rel_folder = None
+                try:
+                    rel_folder = folder.resolve().relative_to(output.resolve()).as_posix()
+                except ValueError:
+                    try:
+                        rel_folder = folder.resolve().relative_to(repository.resolve()).as_posix()
+                    except ValueError:
+                        pass
                 row = dict(id='m'+sha[:16], title=f'{package.stem} · {directory}/{prefix} ({len(members)} frames)',
-                           path=str(folder.resolve()), kind='sequence', sha256=sha,
+                           path=str(folder.resolve()), relative_path=rel_folder, kind='sequence', sha256=sha,
                            category='layers', origin=package.name+' :: '+directory+'/'+prefix,
                            aliases=[], decision='unselected workprint sequence', frames=len(members),
                            fps=12 if layer else 15, source_start=24 if layer else 70)
@@ -140,6 +159,8 @@ def prepare(archive_root, output, repository):
         slug=re.sub('[^a-z0-9]+','_',a['title'].lower()).strip('_')
         a['node_name']=('layer_' if a['kind']=='sequence' else 'track_' if a['kind']=='audio' else 'media_')+slug[:48]+'_'+a['id'][-4:]
     result = dict(schema='god-here.native-material-workspace/1', assets=assets, gaps=gaps,
+                  media_root=str(output.resolve()),
+                  project_root=str((repository / "compositions/comp-001").resolve()),
                   source_sha256=SOURCE_SHA, source_records=str((output/'source-records.json').resolve()),
                   independent_time_data=str((output/'independent-time-data.json').resolve()),
                   policy='All versions are reusable exercises; no treatment selected.')

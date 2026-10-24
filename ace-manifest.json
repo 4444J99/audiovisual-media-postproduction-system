@@ -55,7 +55,7 @@
   "modules": [
     {
       "id": "composition-resolver",
-      "path": "amp/composition.py",
+      "path": "amp/composition/__init__.py",
       "capability_ids": [
         "composition-resolution"
       ],
