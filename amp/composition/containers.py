@@ -235,6 +235,10 @@ class StudyBinding:
     span: Optional[SourceSpan] = None
     timebase: Optional[Timebase] = None
 
+    @property
+    def inputs(self) -> Tuple[MaterialRef, ...]:
+        return self.materials
+
     def __post_init__(self):
         object.__setattr__(self, "operator", _validate_operator(self.operator))
 
@@ -273,7 +277,8 @@ class StudyBinding:
     def from_dict(cls, data: Mapping[str, Any]) -> StudyBinding:
         if isinstance(data, StudyBinding):
             return data
-        mats = [MaterialRef.from_dict(m) for m in data.get("materials", ())]
+        raw_mats = data.get("inputs", data.get("materials", ()))
+        mats = [MaterialRef.from_dict(m) for m in raw_mats]
         span = SourceSpan.from_dict(data["span"]) if data.get("span") is not None else None
         tb = Timebase.from_dict(data["timebase"]) if data.get("timebase") is not None else None
         return cls(
@@ -293,6 +298,8 @@ class StudyContext:
     timebase: Timebase = field(default_factory=lambda: Timebase(30, 1))
     span: Optional[SourceSpan] = None
     media_root: Optional[str] = None
+    output_dir: Optional[str] = None
+    parameters: Mapping[str, Any] = field(default_factory=dict)
     metadata: Mapping[str, Any] = field(default_factory=dict)
 
     def __post_init__(self):
@@ -323,6 +330,10 @@ class StudyContext:
         if self.media_root is not None:
             _reject_command_or_url(self.media_root, "media_root")
 
+        if self.output_dir is not None:
+            _reject_command_or_url(self.output_dir, "output_dir")
+
+        _reject_command_or_url(self.parameters, "context parameters")
         _reject_command_or_url(self.metadata, "context metadata")
 
     def to_dict(self) -> dict[str, Any]:
@@ -336,6 +347,10 @@ class StudyContext:
             data["span"] = self.span.to_dict()
         if self.media_root is not None:
             data["media_root"] = self.media_root
+        if self.output_dir is not None:
+            data["output_dir"] = self.output_dir
+        if self.parameters:
+            data["parameters"] = dict(self.parameters)
         if self.metadata:
             data["metadata"] = dict(self.metadata)
         return data
@@ -354,6 +369,8 @@ class StudyContext:
             timebase=tb,
             span=span,
             media_root=data.get("media_root"),
+            output_dir=data.get("output_dir"),
+            parameters=data.get("parameters", {}),
             metadata=data.get("metadata", {}),
         )
 

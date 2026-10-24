@@ -8,12 +8,26 @@
       "fps": {
         "numerator": 30,
         "denominator": 1
+      },
+      "custody_status": "privately_preserved",
+      "canonical_provenance": {
+        "source_id": "SRC-002",
+        "recovery_catalog_ref": "manifests/artifacts/god-here-recovery-catalog.json",
+        "planning_manifest_ref": "compositions/comp-001/planning-source-manifest.json",
+        "historical_role": "original_source",
+        "disposition": "retained_for_recovery_review"
       }
     },
     {
       "path": "project_sources/01-God-s-Ears-First-Draft-May-21-2020.txt",
       "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67",
-      "bytes": 2299
+      "bytes": 2299,
+      "custody_status": "canonical_repo_asset",
+      "canonical_provenance": {
+        "source_id": "SRC-001",
+        "historical_role": "draft_script_text",
+        "disposition": "existing-public-registration-unchanged"
+      }
     }
   ],
   "sketch_registration": {
