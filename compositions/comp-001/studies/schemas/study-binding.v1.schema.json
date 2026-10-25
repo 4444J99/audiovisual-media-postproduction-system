@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "amps.study-binding.v1.schema.json",
+  "title": "amps.study-binding.v1",
+  "type": "object",
+  "required": [
+    "operator",
+    "parameters",
+    "provenance",
+    "status"
+  ],
+  "properties": {
+    "operator": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parameters": {
+      "type": "object"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_tested",
+        "named_block",
+        "admitted",
+        "executed",
+        "accepted",
+        "rejected"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "unit_id",
+        "model_id",
+        "seed"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seed": {
+          "type": "integer"
+        }
+      }
+    },
+    "span": {
+      "type": "object",
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "timebase": {
+          "type": "object",
+          "required": [
+            "num"
+          ],
+          "properties": {
+            "num": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "den": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    "materials": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mask_coupling": {
+      "type": "object",
+      "required": [
+        "target_body",
+        "on_screen",
+        "mask_span"
+      ],
+      "properties": {
+        "target_body": {
+          "type": "string",
+          "minLength": 1
+        },
+        "on_screen": {
+          "type": "boolean"
+        },
+        "mask_span": {
+          "type": "object",
+          "required": [
+            "start",
+            "end"
+          ],
+          "properties": {
+            "start": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "end": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

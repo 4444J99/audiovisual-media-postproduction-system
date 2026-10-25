@@ -1,0 +1,55 @@
+{
+  "schema": "amps.god_here.material_transfers.v1",
+  "project_id": "god-here",
+  "composition_id": "comp-001",
+  "transfers": [
+    {
+      "transfer_id": "XFER-SKIN-01",
+      "name": "skin_vein_parchment",
+      "target_surface": "canonical_face_atlas",
+      "unit_id": "BM-01",
+      "frame_span": [155, 210],
+      "source_texture": "assets/materials/parchment_vein_specular.png",
+      "blend_mode": "multiply_albedo_displacement",
+      "edge_coherence_threshold": 0.88,
+      "temporal_flicker_max": 0.03,
+      "metrics": {
+        "edge_coherence": 0.92,
+        "temporal_flicker": 0.018,
+        "uv_drift_rms": 0.004
+      }
+    },
+    {
+      "transfer_id": "XFER-CLOTH-01",
+      "name": "cloth_weave_oxide",
+      "target_surface": "canonical_jacket_atlas",
+      "unit_id": "BM-05",
+      "frame_span": [330, 360],
+      "source_texture": "assets/materials/coarse_weave_oxide_rust.png",
+      "blend_mode": "normal_roughness_composite",
+      "edge_coherence_threshold": 0.85,
+      "temporal_flicker_max": 0.035,
+      "metrics": {
+        "edge_coherence": 0.89,
+        "temporal_flicker": 0.022,
+        "uv_drift_rms": 0.005
+      }
+    },
+    {
+      "transfer_id": "XFER-ROOM-01",
+      "name": "room_plaster_char",
+      "target_surface": "canonical_wall_atlas",
+      "unit_id": "BM-10",
+      "frame_span": [720, 840],
+      "source_texture": "assets/materials/scorched_plaster_char.png",
+      "blend_mode": "overlay_occlusion_burn",
+      "edge_coherence_threshold": 0.82,
+      "temporal_flicker_max": 0.04,
+      "metrics": {
+        "edge_coherence": 0.94,
+        "temporal_flicker": 0.012,
+        "uv_drift_rms": 0.002
+      }
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "schema": "amps.god_here.palette.v1",
+  "project_id": "god-here",
+  "composition_id": "comp-001",
+  "generated_at": "2026-10-25T00:00:00Z",
+  "entries": [
+    {
+      "stem_id": "STEM-VOICE-01",
+      "unit_id": "BM-01",
+      "category": "speech",
+      "acoustic_descriptors": {
+        "pitch_fundamental_hz": 138.5,
+        "spectral_centroid_hz": 1280.0,
+        "decay_time_ms": 110.0,
+        "percussiveness": 0.05
+      },
+      "metrics": {
+        "snr_db": 24.2,
+        "sdr_db": 19.8,
+        "bleed_db": -29.4,
+        "artifact_score": 0.03
+      },
+      "provenance": {
+        "source_id": "SRC-002",
+        "unit_id": "BM-01",
+        "model_id": "R01",
+        "seed": 42
+      },
+      "span": {
+        "start": 155,
+        "end": 210
+      }
+    },
+    {
+      "stem_id": "STEM-BREATH-01",
+      "unit_id": "BM-02",
+      "category": "breath",
+      "acoustic_descriptors": {
+        "pitch_fundamental_hz": 0.0,
+        "spectral_centroid_hz": 2450.0,
+        "decay_time_ms": 280.0,
+        "percussiveness": 0.02
+      },
+      "metrics": {
+        "snr_db": 18.5,
+        "sdr_db": 15.2,
+        "bleed_db": -24.8,
+        "artifact_score": 0.05
+      },
+      "provenance": {
+        "source_id": "SRC-002",
+        "unit_id": "BM-02",
+        "model_id": "R01",
+        "seed": 42
+      },
+      "span": {
+        "start": 210,
+        "end": 240
+      }
+    },
+    {
+      "stem_id": "STEM-VOICE-02",
+      "unit_id": "BM-03",
+      "category": "speech",
+      "acoustic_descriptors": {
+        "pitch_fundamental_hz": 162.0,
+        "spectral_centroid_hz": 1420.0,
+        "decay_time_ms": 95.0,
+        "percussiveness": 0.08
+      },
+      "metrics": {
+        "snr_db": 22.8,
+        "sdr_db": 18.6,
+        "bleed_db": -27.5,
+        "artifact_score": 0.04
+      },
+      "provenance": {
+        "source_id": "SRC-002",
+        "unit_id": "BM-03",
+        "model_id": "R01",
+        "seed": 42
+      },
+      "span": {
+        "start": 249,
+        "end": 293
+      }
+    },
+    {
+      "stem_id": "STEM-IMPACT-01",
+      "unit_id": "BM-05",
+      "category": "impact",
+      "acoustic_descriptors": {
+        "pitch_fundamental_hz": 75.0,
+        "spectral_centroid_hz": 640.0,
+        "decay_time_ms": 65.0,
+        "percussiveness": 0.88
+      },
+      "metrics": {
+        "snr_db": 26.5,
+        "sdr_db": 22.1,
+        "bleed_db": -32.0,
+        "artifact_score": 0.02
+      },
+      "provenance": {
+        "source_id": "SRC-002",
+        "unit_id": "BM-05",
+        "model_id": "R03",
+        "seed": 108
+      },
+      "span": {
+        "start": 330,
+        "end": 360
+      }
+    },
+    {
+      "stem_id": "STEM-CLOTH-01",
+      "unit_id": "BM-06",
+      "category": "cloth",
+      "acoustic_descriptors": {
+        "pitch_fundamental_hz": 0.0,
+        "spectral_centroid_hz": 1850.0,
+        "decay_time_ms": 140.0,
+        "percussiveness": 0.35
+      },
+      "metrics": {
+        "snr_db": 19.4,
+        "sdr_db": 16.0,
+        "bleed_db": -25.2,
+        "artifact_score": 0.04
+      },
+      "provenance": {
+        "source_id": "SRC-002",
+        "unit_id": "BM-06",
+        "model_id": "R03",
+        "seed": 108
+      },
+      "span": {
+        "start": 360,
+        "end": 395
+      }
+    },
+    {
+      "stem_id": "STEM-TONE-01",
+      "unit_id": "BM-10",
+      "category": "room_tone",
+      "acoustic_descriptors": {
+        "pitch_fundamental_hz": 60.0,
+        "spectral_centroid_hz": 310.0,
+        "decay_time_ms": 850.0,
+        "percussiveness": 0.01
+      },
+      "metrics": {
+        "snr_db": 17.2,
+        "sdr_db": 14.5,
+        "bleed_db": -22.0,
+        "artifact_score": 0.06
+      },
+      "provenance": {
+        "source_id": "SRC-002",
+        "unit_id": "BM-10",
+        "model_id": "R12",
+        "seed": 999
+      },
+      "span": {
+        "start": 720,
+        "end": 840
+      }
+    }
+  ]
+}
