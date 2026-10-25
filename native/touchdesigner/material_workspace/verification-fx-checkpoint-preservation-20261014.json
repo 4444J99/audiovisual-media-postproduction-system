@@ -1,0 +1,15 @@
+{
+  "project": "audiovisual-sampler-01.9.toe",
+  "controls": {
+    "Program": "composition",
+    "Play": true,
+    "Monitor": true,
+    "Volume": 0.574
+  },
+  "original_history_records": 3,
+  "test_idle": true,
+  "test_cooking_disabled": true,
+  "operator_errors": "",
+  "checkpoint_scope": "paused diagnostic scene; guard still withholds interrupted active-FX recovery",
+  "native_cache_fixture_roundtrip_error": 0.0
+}

@@ -1,0 +1,18 @@
+{
+  "project": "audiovisual-sampler-01.9.toe",
+  "controls": {
+    "Program": "composition",
+    "Play": true,
+    "Monitor": true,
+    "Volume": 0.574
+  },
+  "authored_dat_count": 385,
+  "different_authored_dat_paths": [],
+  "original_novelty_records": 3,
+  "test_idle": true,
+  "test_gain_restored": 0.0,
+  "test_cooking_disabled": true,
+  "errors": "",
+  "physical_listening_acceptance": false,
+  "active_fx_history_recovery": "withheld; not implemented"
+}

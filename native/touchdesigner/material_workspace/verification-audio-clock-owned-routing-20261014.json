@@ -1,0 +1,131 @@
+{
+  "schema": "god-here.native-audio-clock-measurement/1",
+  "state": "measured",
+  "frames_observed": 180,
+  "private_raw_sha256": "87642acda9b36e674f11684f94a065040475a13081a8da3e9e77f02e9eaa39f3",
+  "intervals": {
+    "movie": {
+      "sample_counts": {
+        "8820": 1,
+        "5145": 1,
+        "735": 178
+      },
+      "peak_max": 0.6157435178756714,
+      "nonzero_blocks": 180,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "source": {
+      "sample_counts": {
+        "8820": 1,
+        "5145": 1,
+        "735": 178
+      },
+      "peak_max": 0.6157435178756714,
+      "nonzero_blocks": 180,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "scene": {
+      "sample_counts": {
+        "735": 179,
+        "5145": 1
+      },
+      "peak_max": 0.46180763840675354,
+      "nonzero_blocks": 180,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "resample": {
+      "sample_counts": {
+        "735": 179,
+        "5145": 1
+      },
+      "peak_max": 0.46180763840675354,
+      "nonzero_blocks": 180,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "delay_input": {
+      "sample_counts": {
+        "735": 179,
+        "5145": 1
+      },
+      "peak_max": 0.46180763840675354,
+      "nonzero_blocks": 180,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "delay_output": {
+      "sample_counts": {
+        "735": 179,
+        "5145": 1
+      },
+      "peak_max": 0.6325973868370056,
+      "nonzero_blocks": 179,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "gate_input": {
+      "sample_counts": {
+        "735": 179,
+        "5145": 1
+      },
+      "peak_max": 0.6325973868370056,
+      "nonzero_blocks": 179,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "gate_output": {
+      "sample_counts": {
+        "735": 179,
+        "5145": 1
+      },
+      "peak_max": 0.5889873504638672,
+      "nonzero_blocks": 39,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    },
+    "clock": {
+      "sample_counts": {
+        "735": 179,
+        "5145": 1
+      },
+      "peak_max": 0,
+      "nonzero_blocks": 0,
+      "rate_min": 44100.0,
+      "rate_max": 44100.0
+    }
+  },
+  "physical_listening_acceptance": false,
+  "primary_exclusion_error": 0.0,
+  "primary_solo_error": 0.21284492313861847,
+  "root_output_peak": 0.21284492313861847,
+  "scene_send_muted": true,
+  "routing_ownership_probe": null,
+  "source_clock_elapsed": 3.066666666666667,
+  "dsp_clock_offsets_seconds": {
+    "fx_delay": {
+      "min": 0.016666666666666607,
+      "max": 0.03333333333333366
+    },
+    "fx_gate": {
+      "min": 0.016666666666666607,
+      "max": 0.03333333333333366
+    }
+  },
+  "counter_resets": 0,
+  "metadata_start_max_error_samples": 0.0205841064453125,
+  "first_samples": {
+    "movie": 8820,
+    "source": 8820,
+    "scene": 735,
+    "resample": 735,
+    "delay_input": 735,
+    "delay_output": 735,
+    "gate_input": 735,
+    "gate_output": 735,
+    "clock": 735
+  },
+  "qualification": "Superseded diagnostic; consult routing-final for current interval and routing evidence"
+}

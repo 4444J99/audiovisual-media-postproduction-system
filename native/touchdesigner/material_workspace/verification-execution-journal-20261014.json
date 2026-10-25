@@ -1,0 +1,168 @@
+{
+  "diagnostic_only": true,
+  "actual_app_restart_performed": false,
+  "pause": {
+    "status": "paused",
+    "frame": 733.0,
+    "player_frame": 733.0
+  },
+  "recovery": {
+    "interrupted_run": "546e365da38342fd94d83061c99b68b3",
+    "status": "interrupted",
+    "checkpoint_frame": 171.0,
+    "recovery_run": "e2b006cc18a24e539d3f50a78cb2b3e5",
+    "resume_requested": 171.0,
+    "native_in_frame": 171.0,
+    "parent": "546e365da38342fd94d83061c99b68b3"
+  },
+  "recovery_final": {
+    "status": "complete",
+    "completed": [
+      0,
+      1
+    ],
+    "last_frame": 1599.0
+  },
+  "recovery_events": [
+    {
+      "kind": "run_armed",
+      "event": 0,
+      "source_frame": 171.0
+    },
+    {
+      "kind": "cue_requested",
+      "event": 0,
+      "source_frame": 171.0
+    },
+    {
+      "kind": "start_frame_observed",
+      "event": 0,
+      "source_frame": 171.0
+    },
+    {
+      "kind": "last_frame_observed",
+      "event": 0,
+      "source_frame": 759.0
+    },
+    {
+      "kind": "cue_requested",
+      "event": 1,
+      "source_frame": 1000.0
+    },
+    {
+      "kind": "start_frame_observed",
+      "event": 1,
+      "source_frame": 1001.0
+    },
+    {
+      "kind": "last_frame_observed",
+      "event": 1,
+      "source_frame": 1599.0
+    },
+    {
+      "kind": "run_complete",
+      "event": 1,
+      "source_frame": 1599.0
+    }
+  ],
+  "test_run_counts": [
+    [
+      "new",
+      "complete",
+      2
+    ],
+    [
+      "recovery",
+      "complete",
+      1
+    ],
+    [
+      "replay",
+      "interrupted",
+      1
+    ]
+  ],
+  "original_novelty_records": 3,
+  "original_execution_records": 0,
+  "artist_state": {
+    "program": "composition",
+    "source_play": true,
+    "monitor": true,
+    "volume": 0.5740000009536743
+  },
+  "errors": [],
+  "exact_start_followup": {
+    "status": "complete",
+    "frames": [
+      [
+        "cue_requested",
+        0,
+        160.0
+      ],
+      [
+        "start_frame_observed",
+        0,
+        160.0
+      ],
+      [
+        "last_frame_observed",
+        0,
+        171.0
+      ],
+      [
+        "cue_requested",
+        1,
+        1000.0
+      ],
+      [
+        "start_frame_observed",
+        1,
+        1000.0
+      ],
+      [
+        "last_frame_observed",
+        1,
+        1011.0
+      ]
+    ],
+    "cue_released": true,
+    "pending": false
+  },
+  "strict_start_and_cue_restoration": {
+    "status": "complete",
+    "frames": [
+      [
+        "cue_requested",
+        0,
+        160.0
+      ],
+      [
+        "start_frame_observed",
+        0,
+        160.0
+      ],
+      [
+        "last_frame_observed",
+        0,
+        171.0
+      ],
+      [
+        "cue_requested",
+        1,
+        1000.0
+      ],
+      [
+        "start_frame_observed",
+        1,
+        1000.0
+      ],
+      [
+        "last_frame_observed",
+        1,
+        1011.0
+      ]
+    ],
+    "restored_mode": "ParMode.EXPRESSION",
+    "restored_expr": "False"
+  }
+}

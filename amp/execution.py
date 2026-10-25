@@ -25,6 +25,7 @@ from .media_resolver import ContractError, MediaResolver, file_identity, read_js
 from .runtime import runtime_path
 
 SCHEMA = "amps.execution.v1"
+STUDY_FAMILY = "amps.study.v1"
 ADAPTERS = ("amp.direction.v1", "amp.revision.v1", "fx.rack.v1", "amp.roomstretch.v1")
 REPO_ROOT = Path(__file__).resolve().parents[1]
 REVISION_FONT = Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
@@ -704,3 +705,18 @@ def execute(plan, output):
         raise failure from None
     _write_json(output / "execution.json", receipt)
     return receipt
+
+
+def is_study_binding(binding_data: dict) -> bool:
+    return isinstance(binding_data, dict) and binding_data.get("schema_version") == STUDY_FAMILY
+
+
+def execute_study(binding, context):
+    from amp.studies import run_study
+    from amp.composition.containers import StudyBinding, StudyContext
+    if isinstance(binding, dict):
+        binding = StudyBinding.from_dict(binding)
+    if isinstance(context, dict):
+        context = StudyContext.from_dict(context)
+    return run_study(binding, context)
+

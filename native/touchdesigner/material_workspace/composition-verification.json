@@ -1,0 +1,25 @@
+{
+  "controls": {
+    "peak": 0.19886590540409088,
+    "gain_error": 0.0,
+    "muted_peak": 0.0,
+    "solo_error": 0.0,
+    "second_track_delta": 0.08374150097370148,
+    "left_pan_right_peak": 0.0,
+    "left_pan_left_peak": 0.281238853931427
+  },
+  "timing": {
+    "clock": 71.0,
+    "offset_seconds": 0.5,
+    "speed": 2,
+    "actual_layer_index": 37.5,
+    "expected_layer_index": 37.5,
+    "footage_index": 2175.0
+  },
+  "live_audio_peak": 0.10089670121669769,
+  "composition_entries": 12,
+  "actor_sequence_frames": 90,
+  "errors": "",
+  "warnings": "",
+  "health_notes": "Unused alternate decoders and connector outputs are not pulled. Short live health sample did not report a current expensive cook."
+}

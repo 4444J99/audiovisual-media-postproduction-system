@@ -266,7 +266,7 @@
     {
       "from": "projects/god-here/source-registration.json",
       "to": "compositions/comp-001/source-registration.json",
-      "sha256": "84a2f0e24d8a94837c5ee771650daaf5771ec77000ffee5166b928650b7fff00"
+      "sha256": "d08dcd6cb0bdfb81dba2a03ac4e8402deb7394a353a0f825de05ad1e44bf78e5"
     },
     {
       "from": "projects/god-here/transcript.provisional.json",

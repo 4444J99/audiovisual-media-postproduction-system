@@ -56,6 +56,42 @@ class CompositionTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate(cfg)
 
+    def test_shot_boundary_finite_validation_rejects_non_finite_and_non_numbers(self):
+        invalid_values = [
+            float("nan"),
+            float("inf"),
+            float("-inf"),
+            True,
+            False,
+            "0.0",
+            "10.0",
+            None,
+        ]
+        for bad in invalid_values:
+            with self.subTest(boundary_start=bad):
+                cfg = copy.deepcopy(CONFIG)
+                cfg["shots"][0]["start"] = bad
+                with self.assertRaises(ValueError):
+                    validate(cfg)
+            with self.subTest(boundary_end=bad):
+                cfg = copy.deepcopy(CONFIG)
+                cfg["shots"][0]["end"] = bad
+                with self.assertRaises(ValueError):
+                    validate(cfg)
+
+    def test_shot_at_and_envelope_reject_non_finite_or_bool_times(self):
+        from amp.core import envelope
+        for bad_t in [float("nan"), float("inf"), float("-inf"), True, False, "10", None]:
+            with self.subTest(time=bad_t):
+                self.assertIsNone(shot_at(CONFIG, bad_t))
+                self.assertEqual(envelope(CONFIG["cues"][0], bad_t), 0.0)
+
+    def test_valid_finite_ordered_composition_passes_validation(self):
+        result = validate(CONFIG)
+        self.assertTrue(result["valid"])
+        self.assertEqual(result["shots"], len(CONFIG["shots"]))
+        self.assertEqual(result["cues"], len(CONFIG["cues"]))
+
     def test_seeded_generation_is_reproducible_and_bounded(self):
         units = json.loads((ROOT / "projects/god-here/units.json").read_text())["units"]
         first = generate_schedule(units, 17)

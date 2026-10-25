@@ -1,0 +1,98 @@
+{
+  "install": {
+    "modules": 13,
+    "live_audio_processors": 12,
+    "audio_passthrough_typography": 1,
+    "picture_workprints": 5,
+    "temporal_picture_ports_pending": 8,
+    "mix_enabled": false
+  },
+  "synthetic_dsp": [
+    {
+      "type": "routing",
+      "finite": true,
+      "peak": 0.2398451566696167,
+      "changed": true
+    },
+    {
+      "type": "delay",
+      "finite": true,
+      "peak": 0.2394145429134369,
+      "changed": true
+    },
+    {
+      "type": "stutter",
+      "finite": true,
+      "peak": 0.20000000298023224,
+      "changed": true
+    },
+    {
+      "type": "granular",
+      "finite": true,
+      "peak": 0.2788008451461792,
+      "changed": true
+    },
+    {
+      "type": "reverse",
+      "finite": true,
+      "peak": 0.20000000298023224,
+      "changed": true
+    },
+    {
+      "type": "freeze",
+      "finite": true,
+      "peak": 0.19999605417251587,
+      "changed": true
+    },
+    {
+      "type": "feedback",
+      "finite": true,
+      "peak": 0.27855223417282104,
+      "changed": true
+    },
+    {
+      "type": "queue",
+      "finite": true,
+      "peak": 0.23568961024284363,
+      "changed": true
+    },
+    {
+      "type": "gate",
+      "finite": true,
+      "peak": 0.20000000298023224,
+      "changed": true
+    },
+    {
+      "type": "displacement",
+      "finite": true,
+      "peak": 0.1989891082048416,
+      "changed": true
+    },
+    {
+      "type": "exchange",
+      "finite": true,
+      "peak": 0.20000000298023224,
+      "changed": true
+    },
+    {
+      "type": "typography",
+      "finite": true,
+      "peak": 0.20000000298023224,
+      "changed": false
+    },
+    {
+      "type": "damage",
+      "finite": true,
+      "peak": 0.23333333432674408,
+      "changed": true
+    }
+  ],
+  "neutral_picture_error": 0.0,
+  "native_audio_rate": 44100.0,
+  "native_audio_finite": true,
+  "native_audio_channels": 2,
+  "signal_damage_shader": "Vertex Shader Compile Results:\n\nCompiled Successfully\n\n=============\nPixel Shader Compile Results:\n\nCompiled Successfully\n",
+  "errors": "",
+  "warnings": "",
+  "pending": "Eight temporal picture paths; typed text/matte/control routing; moving/listening parity and acceptance."
+}

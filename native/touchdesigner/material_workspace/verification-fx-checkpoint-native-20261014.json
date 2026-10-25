@@ -1,0 +1,36 @@
+{
+  "state": "verified",
+  "phase": "resumed",
+  "hold_ticks": 2,
+  "checkpoint_bytes": 63672320,
+  "checkpoint_array_count": 14,
+  "checkpoint_source_frame": 637.0,
+  "dsp_cleared": true,
+  "restore_result": {
+    "restored_modules": 13,
+    "source_frame": 637.0,
+    "fx_time": 0.8
+  },
+  "restored_history_frames": 10,
+  "restored_audio_arrays": 4,
+  "native_roundtrip_max_error": 0.0,
+  "dsp_at_resume": {
+    "fx_delay": 36015,
+    "fx_gate": 36015
+  },
+  "resume_source_frame": 637.0,
+  "dsp_after_resume": {
+    "fx_delay": 79380,
+    "fx_gate": 79380
+  },
+  "resumed_audio_peak": 0.0,
+  "resume_source_advanced": true,
+  "scope": "Paused scoped state-loss test; not automatic, journal-linked or application-restart recovery",
+  "state_roundtrip_passed": true,
+  "resume_clock_passed": false,
+  "exact_future_gpu_continuation_acceptance": false,
+  "application_restart_acceptance": false,
+  "realtime_checkpoint_acceptance": false,
+  "physical_listening_acceptance": false,
+  "duration_seconds": 1.8578829765319824
+}

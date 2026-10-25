@@ -1,0 +1,6 @@
+{
+  "tests": 51,
+  "success": true,
+  "details": "...................................................\n----------------------------------------------------------------------\nRan 51 tests in 0.332s\n\nOK\n",
+  "scope": "Native pure contracts; all thirteen DSP adapters continue exactly after typed state restoration, including wrapped buffers. Not GPU continuation or restart acceptance."
+}

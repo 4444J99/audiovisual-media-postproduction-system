@@ -1,0 +1,59 @@
+{
+  "landscape": {
+    "dimensions": [
+      1280,
+      720
+    ],
+    "anchor_rect": [
+      0.5,
+      0.56,
+      0.5,
+      0.5
+    ],
+    "pixel_aspect": 1.7777777777777777,
+    "anchor_pixels": 230400,
+    "max_anchor_difference_under_opaque_cover": 0.0,
+    "changed_pixels_outside_anchor": 691200,
+    "protected": true
+  },
+  "portrait": {
+    "dimensions": [
+      720,
+      1280
+    ],
+    "anchor_rect": [
+      0.5,
+      0.58,
+      0.9,
+      0.284765625
+    ],
+    "pixel_aspect": 1.7777777777777777,
+    "anchor_pixels": 236520,
+    "max_anchor_difference_under_opaque_cover": 0.0,
+    "changed_pixels_outside_anchor": 685080,
+    "protected": true
+  },
+  "post_test": {
+    "pixel_file_bindings": [
+      "/Users/4jp/Workspace/audiovisual-composition-system/.agents/god-here/workspace-implementation/native/touchdesigner/material_workspace/canvas_layout.glsl",
+      "/Users/4jp/Workspace/audiovisual-composition-system/.agents/god-here/workspace-implementation/native/touchdesigner/material_workspace/canvas_layout.glsl"
+    ],
+    "before_transport": {
+      "source_play": true,
+      "monitor": true,
+      "volume": 0.5740000009536743,
+      "program": "composition",
+      "global_play": true
+    },
+    "after_transport": {
+      "source_play": true,
+      "monitor": true,
+      "volume": 0.5740000009536743,
+      "program": "composition",
+      "global_play": true
+    },
+    "source_transport_changed": false,
+    "reference_lock_restored": true,
+    "captions_restored": true
+  }
+}

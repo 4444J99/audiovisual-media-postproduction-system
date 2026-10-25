@@ -1,0 +1,40 @@
+{
+  "state": "verified",
+  "phase": "resumed",
+  "hold_ticks": 2,
+  "capture_seconds": 0.09892445799778216,
+  "write_seconds": 0.11857820799923502,
+  "checkpoint_bytes": 104765440,
+  "checkpoint_array_count": 26,
+  "read_seconds": 0.05489987500186544,
+  "checkpoint_source_frame": 637.0,
+  "dsp_cleared": true,
+  "restore_result": {
+    "restored_modules": 13,
+    "source_frame": 637.0,
+    "fx_time": 0.8
+  },
+  "restore_seconds": 0.023675749995163642,
+  "restored_history_frames": 18,
+  "restored_audio_arrays": 6,
+  "native_roundtrip_max_error": 0.0,
+  "dsp_at_resume": {
+    "fx_delay": 36015,
+    "fx_gate": 36015
+  },
+  "compare_seconds": 0.20082916600222234,
+  "checkpoint_elapsed_seconds": 0.4978300000075251,
+  "resume_source_frame": 637.0,
+  "resumed_audio_peak_max": 0.4166703224182129,
+  "resumed_clock_error_seconds": 0.01666666666666672,
+  "dsp_after_resume": {
+    "fx_delay": 70560,
+    "fx_gate": 70560
+  },
+  "resumed_audio_peak": 0.0,
+  "resume_source_advanced": true,
+  "scope": "Muted diagnostic; not application-restart, exact future GPU or realtime checkpoint acceptance",
+  "full_recovery_acceptance": false,
+  "physical_listening_acceptance": false,
+  "duration_seconds": 2.1150870323181152
+}

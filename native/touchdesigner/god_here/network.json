@@ -1,0 +1,2117 @@
+{
+  "custom": [
+    {
+      "name": "Sourcefile",
+      "style": "File",
+      "label": "Sourcefile",
+      "value": "",
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": null,
+      "menuLabels": null,
+      "readOnly": false
+    },
+    {
+      "name": "Play",
+      "style": "Toggle",
+      "label": "Play",
+      "value": false,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": [
+        "off",
+        "on"
+      ],
+      "menuLabels": [
+        "Off",
+        "On"
+      ],
+      "readOnly": false
+    },
+    {
+      "name": "Cuepoint",
+      "style": "Float",
+      "label": "Cuepoint",
+      "value": 95,
+      "expr": null,
+      "min": 0.0,
+      "max": 111.9666667,
+      "clampMin": true,
+      "clampMax": true,
+      "menuNames": null,
+      "menuLabels": null,
+      "readOnly": false
+    },
+    {
+      "name": "Cue",
+      "style": "Pulse",
+      "label": "Cue",
+      "value": false,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": null,
+      "menuLabels": null,
+      "readOnly": false
+    },
+    {
+      "name": "Reviewrange",
+      "style": "Menu",
+      "label": "Reviewrange",
+      "value": "patch",
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": [
+        "proof",
+        "patch",
+        "ending",
+        "tail"
+      ],
+      "menuLabels": [
+        "95\u2013101 \u00b7 Six-second proof",
+        "95\u2013107.167 \u00b7 Message impact",
+        "85.133\u2013107.167 \u00b7 Ending",
+        "85.133\u2013112 \u00b7 Ending with tail"
+      ],
+      "readOnly": false
+    },
+    {
+      "name": "Loop",
+      "style": "Toggle",
+      "label": "Loop",
+      "value": false,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": [
+        "off",
+        "on"
+      ],
+      "menuLabels": [
+        "Off",
+        "On"
+      ],
+      "readOnly": false
+    },
+    {
+      "name": "Sourcetime",
+      "style": "Float",
+      "label": "Sourcetime",
+      "value": 95.0,
+      "expr": "op('./movie_reference').trueIndex / 30",
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": null,
+      "menuLabels": null,
+      "readOnly": true
+    },
+    {
+      "name": "Mode",
+      "style": "Menu",
+      "label": "Mode",
+      "value": "expression",
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": [
+        "reference",
+        "expression"
+      ],
+      "menuLabels": [
+        "A \u00b7 Source reference",
+        "E \u00b7 Message impact"
+      ],
+      "readOnly": false
+    },
+    {
+      "name": "Impact",
+      "style": "Float",
+      "label": "Impact",
+      "value": 1.0,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": true,
+      "clampMax": true,
+      "menuNames": null,
+      "menuLabels": null,
+      "readOnly": false
+    },
+    {
+      "name": "Wet",
+      "style": "Float",
+      "label": "Wet",
+      "value": 1.0,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": true,
+      "clampMax": true,
+      "menuNames": null,
+      "menuLabels": null,
+      "readOnly": false
+    },
+    {
+      "name": "Bypass",
+      "style": "Toggle",
+      "label": "Bypass",
+      "value": false,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": [
+        "off",
+        "on"
+      ],
+      "menuLabels": [
+        "Off",
+        "On"
+      ],
+      "readOnly": false
+    },
+    {
+      "name": "Reset",
+      "style": "Pulse",
+      "label": "Reset",
+      "value": false,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": null,
+      "menuLabels": null,
+      "readOnly": false
+    },
+    {
+      "name": "Monitor",
+      "style": "Toggle",
+      "label": "Monitor",
+      "value": false,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": [
+        "off",
+        "on"
+      ],
+      "menuLabels": [
+        "Off",
+        "On"
+      ],
+      "readOnly": false
+    },
+    {
+      "name": "Volume",
+      "style": "Float",
+      "label": "Volume",
+      "value": 0.25,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": true,
+      "clampMax": true,
+      "menuNames": null,
+      "menuLabels": null,
+      "readOnly": false
+    },
+    {
+      "name": "Mute",
+      "style": "Toggle",
+      "label": "Mute",
+      "value": false,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": [
+        "off",
+        "on"
+      ],
+      "menuLabels": [
+        "Off",
+        "On"
+      ],
+      "readOnly": false
+    },
+    {
+      "name": "Portrait",
+      "style": "Toggle",
+      "label": "Portrait",
+      "value": false,
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": [
+        "off",
+        "on"
+      ],
+      "menuLabels": [
+        "Off",
+        "On"
+      ],
+      "readOnly": false
+    },
+    {
+      "name": "Status",
+      "style": "Str",
+      "label": "Status",
+      "value": "Camera mixture; provisional words; region workprint; artistic review pending",
+      "expr": null,
+      "min": 0.0,
+      "max": 1.0,
+      "clampMin": false,
+      "clampMax": false,
+      "menuNames": null,
+      "menuLabels": null,
+      "readOnly": false
+    }
+  ],
+  "nodes": [
+    {
+      "name": "text_how",
+      "type": "textTOP",
+      "pars": {
+        "pageindex": 0,
+        "text": "HOW",
+        "font": "Arial",
+        "typeface": "Bold",
+        "fontautosize": "fitiffat",
+        "fontsizex": 270.0,
+        "fontsizexunit": "pixels",
+        "outputresolution": "custom",
+        "resolutionw": 640,
+        "resolutionh": 360,
+        "resmult": false
+      },
+      "position": [
+        1500,
+        650
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "text_out",
+      "type": "textTOP",
+      "pars": {
+        "pageindex": 0,
+        "text": "OUT",
+        "font": "Arial",
+        "typeface": "Bold",
+        "fontautosize": "fitiffat",
+        "fontsizex": 270.0,
+        "fontsizexunit": "pixels",
+        "outputresolution": "custom",
+        "resolutionw": 640,
+        "resolutionh": 360,
+        "resmult": false
+      },
+      "position": [
+        1325,
+        650
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "out_audio",
+      "type": "outCHOP",
+      "pars": {
+        "pageindex": 0,
+        "label": {
+          "expr": "me.name"
+        },
+        "autoexportroot": {
+          "expr": "parent()"
+        }
+      },
+      "position": [
+        1050,
+        -500
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "null_audio",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "text_what",
+      "type": "textTOP",
+      "pars": {
+        "pageindex": 0,
+        "text": "WHAT",
+        "font": "Arial",
+        "typeface": "Bold",
+        "fontautosize": "fitiffat",
+        "fontsizex": 270.0,
+        "fontsizexunit": "pixels",
+        "outputresolution": "custom",
+        "resolutionw": 640,
+        "resolutionh": 360,
+        "resmult": false
+      },
+      "position": [
+        1675,
+        650
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "null_audio",
+      "type": "nullCHOP",
+      "pars": {
+        "pageindex": 0,
+        "timeslice": true,
+        "autoexportroot": {
+          "expr": "parent()"
+        }
+      },
+      "position": [
+        700,
+        -500
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "math_output",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "text_audio",
+      "type": "textDAT",
+      "pars": {
+        "pageindex": 0,
+        "language": "python"
+      },
+      "position": [
+        350,
+        -650
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "text_patch",
+      "type": "textDAT",
+      "pars": {
+        "pageindex": 0,
+        "language": "json"
+      },
+      "position": [
+        0,
+        -900
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_impact",
+      "type": "glslmultiTOP",
+      "pars": {
+        "pageindex": 0,
+        "glslversion": "glsl430",
+        "pixeldat": "glsl_impact_pixel",
+        "vec0name": "uTime",
+        "vec0valuex": {
+          "expr": "op('text_runtime').module.local_time()"
+        },
+        "outputresolution": "custom",
+        "resolutionw": 640,
+        "resolutionh": 360,
+        "vec1name": "uWet",
+        "vec1valuex": {
+          "expr": "op('text_runtime').module.wet()"
+        },
+        "vec2name": "uRoute",
+        "vec2valuex": {
+          "expr": "op('text_runtime').module.parameter('travel', 'travel')"
+        },
+        "vec2valuey": {
+          "expr": "op('text_runtime').module.parameter('travel', 'copies')"
+        },
+        "vec2valuez": {
+          "expr": "op('text_runtime').module.parameter('travel', 'spread')"
+        },
+        "vec2valuew": {
+          "expr": "op('text_runtime').module.parameter('travel', 'arrival')"
+        },
+        "vec3name": "uAddress",
+        "vec3valuex": {
+          "expr": "op('text_runtime').module.parameter('travel', 'origin')"
+        },
+        "vec3valuey": {
+          "expr": "op('text_runtime').module.parameter('travel', 'destination')"
+        },
+        "vec3valuez": 0.0,
+        "vec3valuew": 0.0,
+        "vec4name": "uEcho",
+        "vec4valuex": {
+          "expr": "op('text_runtime').module.parameter('impact-echo', 'time')"
+        },
+        "vec4valuey": {
+          "expr": "op('text_runtime').module.parameter('impact-echo', 'taps')"
+        },
+        "vec4valuez": {
+          "expr": "op('text_runtime').module.parameter('impact-echo', 'decay')"
+        },
+        "vec4valuew": {
+          "expr": "op('text_runtime').module.parameter('impact-echo', 'spread')"
+        },
+        "vec5name": "uEchoScale",
+        "vec5valuex": {
+          "expr": "op('text_runtime').module.parameter('impact-echo', 'scale')"
+        },
+        "vec6name": "uField",
+        "vec6valuex": {
+          "expr": "op('text_runtime').module.parameter('impact-field', 'amount')"
+        },
+        "vec6valuey": {
+          "expr": "op('text_runtime').module.parameter('impact-field', 'scale')"
+        },
+        "vec6valuez": {
+          "expr": "op('text_runtime').module.parameter('impact-field', 'speed')"
+        },
+        "vec6valuew": {
+          "expr": "op('text_runtime').module.parameter('impact-field', 'spill')"
+        },
+        "vec7name": "uRegion",
+        "vec7valuex": 0.75,
+        "vec7valuey": 0.25555555555555554,
+        "vec7valuez": 0.25,
+        "vec7valuew": 0.7444444444444445,
+        "vec8name": "uType",
+        "vec8valuex": {
+          "expr": "op('text_runtime').module.parameter('giant-word', 'size')"
+        },
+        "vec8valuey": {
+          "expr": "op('text_runtime').module.parameter('giant-word', 'copies')"
+        },
+        "vec8valuez": {
+          "expr": "op('text_runtime').module.parameter('giant-word', 'persistence')"
+        },
+        "vec8valuew": {
+          "expr": "op('text_runtime').module.parameter('giant-word', 'fragment')"
+        },
+        "vec9name": "uDrift",
+        "vec9valuex": {
+          "expr": "op('text_runtime').module.parameter('giant-word', 'drift')"
+        },
+        "vec10name": "uValid0",
+        "vec10valuex": {
+          "expr": "op('text_runtime').module.history_valid(1,0)"
+        },
+        "vec10valuey": {
+          "expr": "op('text_runtime').module.history_valid(1,1)"
+        },
+        "vec10valuez": {
+          "expr": "op('text_runtime').module.history_valid(1,2)"
+        },
+        "vec10valuew": {
+          "expr": "op('text_runtime').module.history_valid(1,3)"
+        },
+        "vec11name": "uValid1",
+        "vec11valuex": {
+          "expr": "op('text_runtime').module.history_valid(2,0)"
+        },
+        "vec11valuey": {
+          "expr": "op('text_runtime').module.history_valid(2,1)"
+        },
+        "vec11valuez": {
+          "expr": "op('text_runtime').module.history_valid(2,2)"
+        },
+        "vec11valuew": {
+          "expr": "op('text_runtime').module.history_valid(2,3)"
+        },
+        "vec12name": "uValid2",
+        "vec12valuex": {
+          "expr": "op('text_runtime').module.history_valid(3,0)"
+        },
+        "vec12valuey": {
+          "expr": "op('text_runtime').module.history_valid(3,1)"
+        },
+        "vec12valuez": {
+          "expr": "op('text_runtime').module.history_valid(3,2)"
+        },
+        "vec12valuew": {
+          "expr": "op('text_runtime').module.history_valid(3,3)"
+        },
+        "vec13name": "uValid3",
+        "vec13valuex": {
+          "expr": "op('text_runtime').module.history_valid(4,0)"
+        },
+        "vec13valuey": {
+          "expr": "op('text_runtime').module.history_valid(4,1)"
+        },
+        "vec13valuez": {
+          "expr": "op('text_runtime').module.history_valid(4,2)"
+        },
+        "vec13valuew": {
+          "expr": "op('text_runtime').module.history_valid(4,3)"
+        },
+        "vec14name": "uValid4",
+        "vec14valuex": {
+          "expr": "op('text_runtime').module.history_valid(5,0)"
+        },
+        "vec14valuey": {
+          "expr": "op('text_runtime').module.history_valid(5,1)"
+        },
+        "vec14valuez": {
+          "expr": "op('text_runtime').module.history_valid(5,2)"
+        },
+        "vec14valuew": {
+          "expr": "op('text_runtime').module.history_valid(5,3)"
+        }
+      },
+      "position": [
+        1850,
+        0
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "null_reference",
+          "index": 0
+        },
+        {
+          "from": "glsl_route1",
+          "index": 1
+        },
+        {
+          "from": "glsl_route2",
+          "index": 2
+        },
+        {
+          "from": "glsl_route3",
+          "index": 3
+        },
+        {
+          "from": "glsl_route4",
+          "index": 4
+        },
+        {
+          "from": "glsl_route5",
+          "index": 5
+        },
+        {
+          "from": "text_out",
+          "index": 6
+        },
+        {
+          "from": "text_how",
+          "index": 7
+        },
+        {
+          "from": "text_what",
+          "index": 8
+        }
+      ]
+    },
+    {
+      "name": "glsl_route1",
+      "type": "glslmultiTOP",
+      "pars": {
+        "pageindex": 0,
+        "glslversion": "glsl430",
+        "pixeldat": "glsl_route1_pixel",
+        "vec0name": "uTime",
+        "vec0valuex": {
+          "expr": "op('text_runtime').module.local_time()-1*op('text_runtime').module.parameter('impact-echo','time')"
+        },
+        "outputresolution": "custom",
+        "resolutionw": 640,
+        "resolutionh": 360,
+        "vec1name": "uRoute",
+        "vec1valuex": {
+          "expr": "op('text_runtime').module.parameter('travel','travel')"
+        },
+        "vec1valuey": {
+          "expr": "op('text_runtime').module.parameter('travel','copies')"
+        },
+        "vec1valuez": {
+          "expr": "op('text_runtime').module.parameter('travel','spread')"
+        },
+        "vec1valuew": {
+          "expr": "op('text_runtime').module.parameter('travel','arrival')"
+        },
+        "vec2name": "uAddress",
+        "vec2valuex": {
+          "expr": "op('text_runtime').module.parameter('travel','origin')"
+        },
+        "vec2valuey": {
+          "expr": "op('text_runtime').module.parameter('travel','destination')"
+        },
+        "vec3name": "uValid",
+        "vec3valuex": {
+          "expr": "op('text_runtime').module.history_valid(1,0)"
+        },
+        "vec3valuey": {
+          "expr": "op('text_runtime').module.history_valid(1,1)"
+        },
+        "vec3valuez": {
+          "expr": "op('text_runtime').module.history_valid(1,2)"
+        },
+        "vec3valuew": {
+          "expr": "op('text_runtime').module.history_valid(1,3)"
+        }
+      },
+      "position": [
+        1500,
+        -200
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "cacheselect_1_0",
+          "index": 0
+        },
+        {
+          "from": "cacheselect_1_1",
+          "index": 1
+        },
+        {
+          "from": "cacheselect_1_2",
+          "index": 2
+        },
+        {
+          "from": "cacheselect_1_3",
+          "index": 3
+        }
+      ]
+    },
+    {
+      "name": "glsl_route2",
+      "type": "glslmultiTOP",
+      "pars": {
+        "pageindex": 0,
+        "glslversion": "glsl430",
+        "pixeldat": "glsl_route2_pixel",
+        "vec0name": "uTime",
+        "vec0valuex": {
+          "expr": "op('text_runtime').module.local_time()-2*op('text_runtime').module.parameter('impact-echo','time')"
+        },
+        "outputresolution": "custom",
+        "resolutionw": 640,
+        "resolutionh": 360,
+        "vec1name": "uRoute",
+        "vec1valuex": {
+          "expr": "op('text_runtime').module.parameter('travel','travel')"
+        },
+        "vec1valuey": {
+          "expr": "op('text_runtime').module.parameter('travel','copies')"
+        },
+        "vec1valuez": {
+          "expr": "op('text_runtime').module.parameter('travel','spread')"
+        },
+        "vec1valuew": {
+          "expr": "op('text_runtime').module.parameter('travel','arrival')"
+        },
+        "vec2name": "uAddress",
+        "vec2valuex": {
+          "expr": "op('text_runtime').module.parameter('travel','origin')"
+        },
+        "vec2valuey": {
+          "expr": "op('text_runtime').module.parameter('travel','destination')"
+        },
+        "vec3name": "uValid",
+        "vec3valuex": {
+          "expr": "op('text_runtime').module.history_valid(2,0)"
+        },
+        "vec3valuey": {
+          "expr": "op('text_runtime').module.history_valid(2,1)"
+        },
+        "vec3valuez": {
+          "expr": "op('text_runtime').module.history_valid(2,2)"
+        },
+        "vec3valuew": {
+          "expr": "op('text_runtime').module.history_valid(2,3)"
+        }
+      },
+      "position": [
+        1500,
+        -750
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "cacheselect_2_0",
+          "index": 0
+        },
+        {
+          "from": "cacheselect_2_1",
+          "index": 1
+        },
+        {
+          "from": "cacheselect_2_2",
+          "index": 2
+        },
+        {
+          "from": "cacheselect_2_3",
+          "index": 3
+        }
+      ]
+    },
+    {
+      "name": "glsl_route3",
+      "type": "glslmultiTOP",
+      "pars": {
+        "pageindex": 0,
+        "glslversion": "glsl430",
+        "pixeldat": "glsl_route3_pixel",
+        "vec0name": "uTime",
+        "vec0valuex": {
+          "expr": "op('text_runtime').module.local_time()-3*op('text_runtime').module.parameter('impact-echo','time')"
+        },
+        "outputresolution": "custom",
+        "resolutionw": 640,
+        "resolutionh": 360,
+        "vec1name": "uRoute",
+        "vec1valuex": {
+          "expr": "op('text_runtime').module.parameter('travel','travel')"
+        },
+        "vec1valuey": {
+          "expr": "op('text_runtime').module.parameter('travel','copies')"
+        },
+        "vec1valuez": {
+          "expr": "op('text_runtime').module.parameter('travel','spread')"
+        },
+        "vec1valuew": {
+          "expr": "op('text_runtime').module.parameter('travel','arrival')"
+        },
+        "vec2name": "uAddress",
+        "vec2valuex": {
+          "expr": "op('text_runtime').module.parameter('travel','origin')"
+        },
+        "vec2valuey": {
+          "expr": "op('text_runtime').module.parameter('travel','destination')"
+        },
+        "vec3name": "uValid",
+        "vec3valuex": {
+          "expr": "op('text_runtime').module.history_valid(3,0)"
+        },
+        "vec3valuey": {
+          "expr": "op('text_runtime').module.history_valid(3,1)"
+        },
+        "vec3valuez": {
+          "expr": "op('text_runtime').module.history_valid(3,2)"
+        },
+        "vec3valuew": {
+          "expr": "op('text_runtime').module.history_valid(3,3)"
+        }
+      },
+      "position": [
+        1500,
+        -1300
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "cacheselect_3_0",
+          "index": 0
+        },
+        {
+          "from": "cacheselect_3_1",
+          "index": 1
+        },
+        {
+          "from": "cacheselect_3_2",
+          "index": 2
+        },
+        {
+          "from": "cacheselect_3_3",
+          "index": 3
+        }
+      ]
+    },
+    {
+      "name": "glsl_route4",
+      "type": "glslmultiTOP",
+      "pars": {
+        "pageindex": 0,
+        "glslversion": "glsl430",
+        "pixeldat": "glsl_route4_pixel",
+        "vec0name": "uTime",
+        "vec0valuex": {
+          "expr": "op('text_runtime').module.local_time()-4*op('text_runtime').module.parameter('impact-echo','time')"
+        },
+        "outputresolution": "custom",
+        "resolutionw": 640,
+        "resolutionh": 360,
+        "vec1name": "uRoute",
+        "vec1valuex": {
+          "expr": "op('text_runtime').module.parameter('travel','travel')"
+        },
+        "vec1valuey": {
+          "expr": "op('text_runtime').module.parameter('travel','copies')"
+        },
+        "vec1valuez": {
+          "expr": "op('text_runtime').module.parameter('travel','spread')"
+        },
+        "vec1valuew": {
+          "expr": "op('text_runtime').module.parameter('travel','arrival')"
+        },
+        "vec2name": "uAddress",
+        "vec2valuex": {
+          "expr": "op('text_runtime').module.parameter('travel','origin')"
+        },
+        "vec2valuey": {
+          "expr": "op('text_runtime').module.parameter('travel','destination')"
+        },
+        "vec3name": "uValid",
+        "vec3valuex": {
+          "expr": "op('text_runtime').module.history_valid(4,0)"
+        },
+        "vec3valuey": {
+          "expr": "op('text_runtime').module.history_valid(4,1)"
+        },
+        "vec3valuez": {
+          "expr": "op('text_runtime').module.history_valid(4,2)"
+        },
+        "vec3valuew": {
+          "expr": "op('text_runtime').module.history_valid(4,3)"
+        }
+      },
+      "position": [
+        1500,
+        -1850
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "cacheselect_4_0",
+          "index": 0
+        },
+        {
+          "from": "cacheselect_4_1",
+          "index": 1
+        },
+        {
+          "from": "cacheselect_4_2",
+          "index": 2
+        },
+        {
+          "from": "cacheselect_4_3",
+          "index": 3
+        }
+      ]
+    },
+    {
+      "name": "glsl_route5",
+      "type": "glslmultiTOP",
+      "pars": {
+        "pageindex": 0,
+        "glslversion": "glsl430",
+        "pixeldat": "glsl_route5_pixel",
+        "vec0name": "uTime",
+        "vec0valuex": {
+          "expr": "op('text_runtime').module.local_time()-5*op('text_runtime').module.parameter('impact-echo','time')"
+        },
+        "outputresolution": "custom",
+        "resolutionw": 640,
+        "resolutionh": 360,
+        "vec1name": "uRoute",
+        "vec1valuex": {
+          "expr": "op('text_runtime').module.parameter('travel','travel')"
+        },
+        "vec1valuey": {
+          "expr": "op('text_runtime').module.parameter('travel','copies')"
+        },
+        "vec1valuez": {
+          "expr": "op('text_runtime').module.parameter('travel','spread')"
+        },
+        "vec1valuew": {
+          "expr": "op('text_runtime').module.parameter('travel','arrival')"
+        },
+        "vec2name": "uAddress",
+        "vec2valuex": {
+          "expr": "op('text_runtime').module.parameter('travel','origin')"
+        },
+        "vec2valuey": {
+          "expr": "op('text_runtime').module.parameter('travel','destination')"
+        },
+        "vec3name": "uValid",
+        "vec3valuex": {
+          "expr": "op('text_runtime').module.history_valid(5,0)"
+        },
+        "vec3valuey": {
+          "expr": "op('text_runtime').module.history_valid(5,1)"
+        },
+        "vec3valuez": {
+          "expr": "op('text_runtime').module.history_valid(5,2)"
+        },
+        "vec3valuew": {
+          "expr": "op('text_runtime').module.history_valid(5,3)"
+        }
+      },
+      "position": [
+        1500,
+        -2400
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "cacheselect_5_0",
+          "index": 0
+        },
+        {
+          "from": "cacheselect_5_1",
+          "index": 1
+        },
+        {
+          "from": "cacheselect_5_2",
+          "index": 2
+        },
+        {
+          "from": "cacheselect_5_3",
+          "index": 3
+        }
+      ]
+    },
+    {
+      "name": "math_output",
+      "type": "mathCHOP",
+      "pars": {
+        "pageindex": 0,
+        "gain": {
+          "expr": "parent.GodhereCompare.par.Volume if not parent.GodhereCompare.par.Mute else 0"
+        },
+        "timeslice": true,
+        "autoexportroot": {
+          "expr": "parent()"
+        }
+      },
+      "position": [
+        525,
+        -500
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "script_audio",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "out_picture",
+      "type": "outTOP",
+      "pars": {
+        "pageindex": 0,
+        "label": {
+          "expr": "me.name"
+        }
+      },
+      "position": [
+        2725,
+        0
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "null_comparison",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "text_labels",
+      "type": "textTOP",
+      "pars": {
+        "pageindex": 0,
+        "text": {
+          "expr": "'SOURCE REFERENCE     |     ' + ('A SOURCE' if parent.GodhereCompare.par.Mode == 'reference' or parent.GodhereCompare.par.Bypass else 'E MESSAGE IMPACT') + '\\nCamera mixture \u00b7 provisional word timing \u00b7 region workprint'"
+        },
+        "wordwrap": true,
+        "font": "Arial",
+        "fontsizex": 18.0,
+        "fontsizexunit": "pixels",
+        "positiony": -30.0,
+        "aligny": "top",
+        "resmult": false
+      },
+      "position": [
+        2375,
+        0
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "glsl_comparison",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "script_audio",
+      "type": "scriptCHOP",
+      "pars": {
+        "pageindex": 0,
+        "callbacks": "text_audio",
+        "timeslice": true,
+        "exportmethod": "datname",
+        "autoexportroot": {
+          "expr": "parent()"
+        }
+      },
+      "position": [
+        350,
+        -500
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "null_sourceaudio",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "text_runtime",
+      "type": "textDAT",
+      "pars": {
+        "pageindex": 0,
+        "language": "python"
+      },
+      "position": [
+        175,
+        -900
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "audio_monitor",
+      "type": "audiodeviceoutCHOP",
+      "pars": {
+        "pageindex": 0,
+        "active": {
+          "expr": "parent.GodhereCompare.par.Monitor"
+        },
+        "timeslice": true,
+        "autoexportroot": {
+          "expr": "parent()"
+        }
+      },
+      "position": [
+        875,
+        -500
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "null_audio",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "cache_history",
+      "type": "cacheTOP",
+      "pars": {
+        "pageindex": 0,
+        "active": false,
+        "cacheonce": true,
+        "cachesize": 96
+      },
+      "position": [
+        525,
+        0
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "null_historysource",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "null_reference",
+      "type": "nullTOP",
+      "pars": {},
+      "position": [
+        175,
+        0
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "movie_reference",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "cacheselect_1_0",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(1,0)"
+        }
+      },
+      "position": [
+        1325,
+        -50
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_1_1",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(1,1)"
+        }
+      },
+      "position": [
+        1325,
+        -155
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_1_2",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(1,2)"
+        }
+      },
+      "position": [
+        1325,
+        -260
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_1_3",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(1,3)"
+        }
+      },
+      "position": [
+        1325,
+        -365
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_2_0",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(2,0)"
+        }
+      },
+      "position": [
+        1325,
+        -600
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_2_1",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(2,1)"
+        }
+      },
+      "position": [
+        1325,
+        -705
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_2_2",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(2,2)"
+        }
+      },
+      "position": [
+        1325,
+        -810
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_2_3",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(2,3)"
+        }
+      },
+      "position": [
+        1325,
+        -915
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_3_0",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(3,0)"
+        }
+      },
+      "position": [
+        1325,
+        -1150
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_3_1",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(3,1)"
+        }
+      },
+      "position": [
+        1325,
+        -1255
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_3_2",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(3,2)"
+        }
+      },
+      "position": [
+        1325,
+        -1360
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_3_3",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(3,3)"
+        }
+      },
+      "position": [
+        1325,
+        -1465
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_4_0",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(4,0)"
+        }
+      },
+      "position": [
+        1325,
+        -1700
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_4_1",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(4,1)"
+        }
+      },
+      "position": [
+        1325,
+        -1805
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_4_2",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(4,2)"
+        }
+      },
+      "position": [
+        1325,
+        -1910
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_4_3",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(4,3)"
+        }
+      },
+      "position": [
+        1325,
+        -2015
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_5_0",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(5,0)"
+        }
+      },
+      "position": [
+        1325,
+        -2250
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_5_1",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(5,1)"
+        }
+      },
+      "position": [
+        1325,
+        -2355
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_5_2",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(5,2)"
+        }
+      },
+      "position": [
+        1325,
+        -2460
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "cacheselect_5_3",
+      "type": "cacheselectTOP",
+      "pars": {
+        "pageindex": 0,
+        "cachetop": "cache_history",
+        "index": {
+          "expr": "op('text_runtime').module.history_index(5,3)"
+        }
+      },
+      "position": [
+        1325,
+        -2565
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "execute_capture",
+      "type": "executeDAT",
+      "pars": {
+        "pageindex": 0,
+        "fromop": {
+          "expr": "parent()"
+        },
+        "framestart": true,
+        "language": "python"
+      },
+      "position": [
+        525,
+        -900
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_comparison",
+      "type": "glslmultiTOP",
+      "pars": {
+        "pageindex": 0,
+        "glslversion": "glsl430",
+        "pixeldat": "glsl_comparison_pixel",
+        "vec0name": "uPortrait",
+        "vec0valuex": {
+          "expr": "parent.GodhereCompare.par.Portrait"
+        },
+        "outputresolution": "custom",
+        "resolutionw": {
+          "expr": "720 if parent.GodhereCompare.par.Portrait else 1280"
+        },
+        "resolutionh": {
+          "expr": "1280 if parent.GodhereCompare.par.Portrait else 720"
+        }
+      },
+      "position": [
+        2200,
+        0
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "null_reference",
+          "index": 0
+        },
+        {
+          "from": "null_expression",
+          "index": 1
+        }
+      ]
+    },
+    {
+      "name": "movie_reference",
+      "type": "moviefileinTOP",
+      "pars": {
+        "pageindex": 0,
+        "file": {
+          "expr": "parent.GodhereCompare.par.Sourcefile"
+        },
+        "play": {
+          "expr": "parent.GodhereCompare.par.Play"
+        },
+        "cuepoint": {
+          "expr": "round(parent.GodhereCompare.par.Cuepoint * 30)"
+        },
+        "cuepointunit": "indices",
+        "index": {
+          "expr": "me.time.frame"
+        },
+        "timecodeop": {
+          "expr": "tdu.Timecode()"
+        },
+        "cuepulse": {
+          "expr": "parent.GodhereCompare.par.Cue"
+        }
+      },
+      "position": [
+        0,
+        0
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "null_comparison",
+      "type": "nullTOP",
+      "pars": {},
+      "position": [
+        2550,
+        0
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "text_labels",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "null_expression",
+      "type": "nullTOP",
+      "pars": {},
+      "position": [
+        2025,
+        0
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "glsl_impact",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "glsl_impact_info",
+      "type": "infoDAT",
+      "pars": {
+        "pageindex": 0,
+        "op": "glsl_impact",
+        "language": "text"
+      },
+      "position": [
+        1850,
+        125
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_route1_info",
+      "type": "infoDAT",
+      "pars": {
+        "pageindex": 0,
+        "op": "glsl_route1",
+        "language": "text"
+      },
+      "position": [
+        1500,
+        -75
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_route2_info",
+      "type": "infoDAT",
+      "pars": {
+        "pageindex": 0,
+        "op": "glsl_route2",
+        "language": "text"
+      },
+      "position": [
+        1500,
+        -625
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_route3_info",
+      "type": "infoDAT",
+      "pars": {
+        "pageindex": 0,
+        "op": "glsl_route3",
+        "language": "text"
+      },
+      "position": [
+        1500,
+        -1175
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_route4_info",
+      "type": "infoDAT",
+      "pars": {
+        "pageindex": 0,
+        "op": "glsl_route4",
+        "language": "text"
+      },
+      "position": [
+        1500,
+        -1725
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_route5_info",
+      "type": "infoDAT",
+      "pars": {
+        "pageindex": 0,
+        "op": "glsl_route5",
+        "language": "text"
+      },
+      "position": [
+        1500,
+        -2275
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "null_sourceaudio",
+      "type": "nullCHOP",
+      "pars": {
+        "pageindex": 0,
+        "autoexportroot": {
+          "expr": "parent()"
+        }
+      },
+      "position": [
+        175,
+        -500
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "audiomovie_reference",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "parexec_controls",
+      "type": "parameterexecuteDAT",
+      "pars": {
+        "pageindex": 0,
+        "fromop": {
+          "expr": "parent()"
+        },
+        "op": {
+          "expr": "parent.GodhereCompare"
+        },
+        "pars": "*",
+        "builtin": false,
+        "language": "python"
+      },
+      "position": [
+        350,
+        -900
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_impact_pixel",
+      "type": "textDAT",
+      "pars": {
+        "pageindex": 0,
+        "language": "glsl",
+        "extension": "frag"
+      },
+      "position": [
+        1850,
+        -125
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_route1_pixel",
+      "type": "textDAT",
+      "pars": {
+        "pageindex": 0,
+        "language": "glsl",
+        "extension": "frag"
+      },
+      "position": [
+        1500,
+        -325
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_route2_pixel",
+      "type": "textDAT",
+      "pars": {
+        "pageindex": 0,
+        "language": "glsl",
+        "extension": "frag"
+      },
+      "position": [
+        1500,
+        -875
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_route3_pixel",
+      "type": "textDAT",
+      "pars": {
+        "pageindex": 0,
+        "language": "glsl",
+        "extension": "frag"
+      },
+      "position": [
+        1500,
+        -1425
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_route4_pixel",
+      "type": "textDAT",
+      "pars": {
+        "pageindex": 0,
+        "language": "glsl",
+        "extension": "frag"
+      },
+      "position": [
+        1500,
+        -1975
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_route5_pixel",
+      "type": "textDAT",
+      "pars": {
+        "pageindex": 0,
+        "language": "glsl",
+        "extension": "frag"
+      },
+      "position": [
+        1500,
+        -2525
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "null_historysource",
+      "type": "nullTOP",
+      "pars": {
+        "outputresolution": "custom",
+        "resolutionw": 640,
+        "resolutionh": 360
+      },
+      "position": [
+        350,
+        0
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": [
+        {
+          "from": "null_reference",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "name": "audiomovie_reference",
+      "type": "audiomovieCHOP",
+      "pars": {
+        "pageindex": 0,
+        "play": {
+          "expr": "parent.GodhereCompare.par.Play"
+        },
+        "moviefileintop": "movie_reference",
+        "index": true,
+        "timeslice": true,
+        "autoexportroot": {
+          "expr": "parent()"
+        }
+      },
+      "position": [
+        0,
+        -500
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_comparison_info",
+      "type": "infoDAT",
+      "pars": {
+        "pageindex": 0,
+        "op": "glsl_comparison",
+        "language": "text"
+      },
+      "position": [
+        2200,
+        125
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    },
+    {
+      "name": "glsl_comparison_pixel",
+      "type": "textDAT",
+      "pars": {
+        "pageindex": 0,
+        "language": "glsl",
+        "extension": "frag"
+      },
+      "position": [
+        2200,
+        -125
+      ],
+      "viewer": true,
+      "display": false,
+      "inputs": []
+    }
+  ],
+  "bindings": {
+    "text_audio": "native/touchdesigner/god_here/audio.py",
+    "text_patch": "web/fx/fixtures/message-impact.json",
+    "text_runtime": "native/touchdesigner/god_here/runtime.py",
+    "execute_capture": "native/touchdesigner/god_here/frame.py",
+    "parexec_controls": "native/touchdesigner/god_here/callbacks.py",
+    "glsl_impact_pixel": "native/touchdesigner/god_here/impact.glsl",
+    "glsl_route1_pixel": "native/touchdesigner/god_here/route.glsl",
+    "glsl_route2_pixel": "native/touchdesigner/god_here/route.glsl",
+    "glsl_route3_pixel": "native/touchdesigner/god_here/route.glsl",
+    "glsl_route4_pixel": "native/touchdesigner/god_here/route.glsl",
+    "glsl_route5_pixel": "native/touchdesigner/god_here/route.glsl",
+    "glsl_comparison_pixel": "native/touchdesigner/god_here/comparison.glsl"
+  },
+  "annotations": [
+    {
+      "title": "Reference",
+      "position": [
+        -25,
+        -25
+      ],
+      "size": [
+        705,
+        175
+      ]
+    },
+    {
+      "title": "Stereo",
+      "position": [
+        -25,
+        -675
+      ],
+      "size": [
+        1230,
+        325
+      ]
+    },
+    {
+      "title": "Controls",
+      "position": [
+        -25,
+        -925
+      ],
+      "size": [
+        705,
+        175
+      ]
+    },
+    {
+      "title": "Words",
+      "position": [
+        1300,
+        625
+      ],
+      "size": [
+        530,
+        175
+      ]
+    },
+    {
+      "title": "Comparison",
+      "position": [
+        1825,
+        -150
+      ],
+      "size": [
+        1055,
+        425
+      ]
+    },
+    {
+      "title": "Echo 1",
+      "position": [
+        1300,
+        -390
+      ],
+      "size": [
+        355,
+        490
+      ]
+    },
+    {
+      "title": "Echo 2",
+      "position": [
+        1300,
+        -940
+      ],
+      "size": [
+        355,
+        490
+      ]
+    },
+    {
+      "title": "Echo 3",
+      "position": [
+        1300,
+        -1490
+      ],
+      "size": [
+        355,
+        490
+      ]
+    },
+    {
+      "title": "Echo 4",
+      "position": [
+        1300,
+        -2040
+      ],
+      "size": [
+        355,
+        490
+      ]
+    },
+    {
+      "title": "Echo 5",
+      "position": [
+        1300,
+        -2590
+      ],
+      "size": [
+        355,
+        490
+      ]
+    }
+  ]
+}

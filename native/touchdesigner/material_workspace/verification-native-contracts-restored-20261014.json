@@ -1,0 +1,6 @@
+{
+  "tests": 44,
+  "success": true,
+  "details": "............................................\n----------------------------------------------------------------------\nRan 44 tests in 0.259s\n\nOK\n",
+  "scope": "Native pure contracts; not full artistic, device or recovery acceptance"
+}

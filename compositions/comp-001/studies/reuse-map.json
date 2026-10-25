@@ -1,0 +1,56 @@
+{
+  "schema": "amps.god_here.reuse_map.v1",
+  "generated_at": "2026-10-24T18:00:00Z",
+  "project_id": "god-here",
+  "composition_id": "comp-001",
+  "entries": [
+    {
+      "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67",
+      "size": 2299,
+      "role": "draft_script_text",
+      "custody_status": "canonical_repo_asset",
+      "producer": "historical_author",
+      "reuse_disposition": "unverified_vocabulary_reference"
+    },
+    {
+      "sha256": "57cd5662206c247861551bad7dc9651bb07157188b70c4687203b0c913f4fd21",
+      "size": 43013074,
+      "role": "candidate_restoration_audio",
+      "custody_status": "privately_preserved",
+      "producer": "neural_speech_restoration_pass",
+      "reuse_disposition": "benchmark_candidate_audio"
+    },
+    {
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "size": 12636527,
+      "role": "original_video_spine",
+      "custody_status": "privately_preserved",
+      "producer": "historical_camera_cut",
+      "reuse_disposition": "canonical_timing_spine"
+    },
+    {
+      "sha256": "be0e55149b0e9b076e88659b2a16a309c536283355765ec77ed344eebe201aa7",
+      "size": 43013074,
+      "role": "extracted_full_source_audio",
+      "custody_status": "privately_preserved",
+      "producer": "lossless_container_demux_44k1",
+      "reuse_disposition": "canonical_reference_speech_baseline"
+    },
+    {
+      "sha256": "d5d1ce43fffed6c95969a449659b947ca259257acec8a1eed6abbd5ffb701d25",
+      "size": 5448378,
+      "role": "historical_reception_workprint",
+      "custody_status": "privately_preserved",
+      "producer": "god_here_iteration_02_study",
+      "reuse_disposition": "historical_reception_reference_only"
+    },
+    {
+      "sha256": "d5deb50824888de14e92d2dde9077643dc405c7c1a1e2121848874f38dffd7f4",
+      "size": 192296,
+      "role": "field_sketch_photo",
+      "custody_status": "canonical_repo_asset",
+      "producer": "historical_author_sketch",
+      "reuse_disposition": "spatial_performer_geometry_anchor"
+    }
+  ]
+}

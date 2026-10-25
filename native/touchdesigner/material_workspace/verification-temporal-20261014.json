@@ -1,0 +1,50 @@
+{
+  "project": "audiovisual-sampler-01.7.toe",
+  "installed": {
+    "typed_modules": 13,
+    "history_fps": 30,
+    "texture_budget_mib": 512,
+    "independent_history_ports": 39,
+    "neutral_max_error": 0.0,
+    "preserved": {
+      "program": "original",
+      "play": false,
+      "mix": false,
+      "root_play": true
+    },
+    "after": {
+      "program": "original",
+      "play": false,
+      "mix": false,
+      "root_play": true
+    }
+  },
+  "test": {
+    "neutral_max_error": 0.0,
+    "delay_expected_red_difference": 0.01,
+    "delay_measured_red_difference": 0.011764705181121826
+  },
+  "budget_test": {
+    "admitted": false,
+    "status": "History budget exceeded; affected picture/text/matte ports are neutral",
+    "memory_mib": 0.0,
+    "neutral_error": 0.0
+  },
+  "compiled_shaders_including_prior_stages": 61,
+  "issues": [],
+  "moving_acceptance": "delay clock measured; other temporal effects need moving review",
+  "text_source": "base_text_tracks/base_expressive/null_text; separate caption path",
+  "final_state": {
+    "project": "audiovisual-sampler-01.7.toe",
+    "program": "original",
+    "source_play": false,
+    "monitor": true,
+    "volume": 0.23100000619888306,
+    "source_time": 72.06666666666666,
+    "rack_play": false,
+    "rack_mix": false,
+    "active_fx": [],
+    "text_clock": "auto",
+    "test_cooking": false
+  }
+}

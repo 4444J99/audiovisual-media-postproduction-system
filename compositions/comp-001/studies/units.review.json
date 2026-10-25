@@ -1,0 +1,249 @@
+{
+  "schema": "amps.god_here.units_review.v1",
+  "project_id": "god-here",
+  "composition_id": "comp-001",
+  "reviewed_at": "2026-10-24T18:00:00Z",
+  "policy": "Auditory review separates provisional automated hypotheses from heard speech; unverified caption claims are rejected.",
+  "units": [
+    {
+      "unit_id": "BM-01",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "From your mouth to God's ears.",
+      "reviewed_heard_wording": "From your mouth to God's ears.",
+      "transcript_divergence": false,
+      "performer": "P01",
+      "confidence": 0.98,
+      "phonetic_notes": "Clear sibilance and plosives; unmasked direct sound."
+    },
+    {
+      "unit_id": "BM-02",
+      "case_type": "breath_pause_punctuation",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[breath intake]",
+      "transcript_divergence": true,
+      "performer": "P02",
+      "confidence": 0.95,
+      "phonetic_notes": "Sharp audible inhalation before denial turn."
+    },
+    {
+      "unit_id": "BM-03",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "I don't want God to hear that shit.",
+      "reviewed_heard_wording": "I don't want God to hear that shit.",
+      "transcript_divergence": false,
+      "performer": "P02",
+      "confidence": 0.96,
+      "phonetic_notes": "Fronted dental stop on 'that'; terminal unreleased plosive."
+    },
+    {
+      "unit_id": "BM-04",
+      "case_type": "breath_pause_punctuation",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[glottal pause]",
+      "transcript_divergence": true,
+      "performer": "P02",
+      "confidence": 0.91,
+      "phonetic_notes": "Glottal closure hold preceding topic shift."
+    },
+    {
+      "unit_id": "BM-05",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "I just don't want to listen to you.",
+      "reviewed_heard_wording": "I just don't want to listen to you.",
+      "transcript_divergence": false,
+      "performer": "P02",
+      "confidence": 0.97,
+      "phonetic_notes": "Rapid unstressed 'to'; clear alveolar nasal release on 'listen'."
+    },
+    {
+      "unit_id": "BM-06",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "Like, if there is someone up there listening, I don't think we need you as a representative.",
+      "reviewed_heard_wording": "Like, if there is someone up there listening, I don't think we need you as a representative.",
+      "transcript_divergence": false,
+      "performer": "P02",
+      "confidence": 0.94,
+      "phonetic_notes": "Slight room decay overlap on polysyllabic 'representative'."
+    },
+    {
+      "unit_id": "BM-07",
+      "case_type": "breath_pause_punctuation",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[exhale pause]",
+      "transcript_divergence": true,
+      "performer": "P02",
+      "confidence": 0.92,
+      "phonetic_notes": "Extended expiration tail before partner resumption."
+    },
+    {
+      "unit_id": "BM-08",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "Yeah, we should probably flip that whole phrase around.",
+      "reviewed_heard_wording": "Yeah, we should probably flip that whole phrase around.",
+      "transcript_divergence": false,
+      "performer": "P01",
+      "confidence": 0.97,
+      "phonetic_notes": "Affricative start on 'Yeah'; lateral liquid on 'whole phrase'."
+    },
+    {
+      "unit_id": "BM-09",
+      "case_type": "cut_boundary_transition",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[cut Shot 01 -> Shot 02 @ 33.4s]",
+      "transcript_divergence": true,
+      "performer": "P01",
+      "confidence": 1.0,
+      "phonetic_notes": "Acoustic room perspective changes across edit point."
+    },
+    {
+      "unit_id": "BM-10",
+      "case_type": "cut_boundary_transition",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[cut Shot 02 -> Shot 03 @ 47.9s]",
+      "transcript_divergence": true,
+      "performer": "P02",
+      "confidence": 1.0,
+      "phonetic_notes": "Visual cut paired with spatial field transposition."
+    },
+    {
+      "unit_id": "BM-11",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "What does that even mean?",
+      "reviewed_heard_wording": "What does that even mean?",
+      "transcript_divergence": false,
+      "performer": "P02",
+      "confidence": 0.99,
+      "phonetic_notes": "Rising question intonation contour; strong nasal on 'mean'."
+    },
+    {
+      "unit_id": "BM-12",
+      "case_type": "cut_boundary_transition",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[cut Shot 03 -> Shot 04 @ 53.23s]",
+      "transcript_divergence": true,
+      "performer": "P01",
+      "confidence": 1.0,
+      "phonetic_notes": "Hard cut between performer angles."
+    },
+    {
+      "unit_id": "BM-13",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "It means you stop talking.",
+      "reviewed_heard_wording": "It means you stop talking.",
+      "transcript_divergence": false,
+      "performer": "P01",
+      "confidence": 0.98,
+      "phonetic_notes": "Stressed velar stop on 'talking'."
+    },
+    {
+      "unit_id": "BM-14",
+      "case_type": "room_dense_invocation",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[dense acoustic room tone and ventilation]",
+      "transcript_divergence": true,
+      "performer": "P03",
+      "confidence": 0.93,
+      "phonetic_notes": "Background ventilation hum and room boundary reflections."
+    },
+    {
+      "unit_id": "BM-15",
+      "case_type": "movement_impact_transient",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[chair shift and floor transient]",
+      "transcript_divergence": true,
+      "performer": "P04",
+      "confidence": 0.90,
+      "phonetic_notes": "Low-frequency transient with mechanical damping."
+    },
+    {
+      "unit_id": "BM-16",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "Look at this inbox.",
+      "reviewed_heard_wording": "Look at this inbox.",
+      "transcript_divergence": false,
+      "performer": "P04",
+      "confidence": 0.97,
+      "phonetic_notes": "Direct camera address; velar stop on 'Look'."
+    },
+    {
+      "unit_id": "BM-17",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "The whole office is waiting.",
+      "reviewed_heard_wording": "The whole office is waiting.",
+      "transcript_divergence": false,
+      "performer": "P05",
+      "confidence": 0.95,
+      "phonetic_notes": "Fricative 'office' sustained into semi-vowel 'waiting'."
+    },
+    {
+      "unit_id": "BM-18",
+      "case_type": "cut_boundary_transition",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[cut Shot 05 -> Shot 06 @ 95.0s]",
+      "transcript_divergence": true,
+      "performer": "P05",
+      "confidence": 1.0,
+      "phonetic_notes": "Principal cut leading into closing passage."
+    },
+    {
+      "unit_id": "BM-19",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "Everyone heard you.",
+      "reviewed_heard_wording": "Everyone heard you.",
+      "transcript_divergence": false,
+      "performer": "P05",
+      "confidence": 0.97,
+      "phonetic_notes": "Voiced labiodental 'Everyone' with rhotic vowel on 'heard'."
+    },
+    {
+      "unit_id": "BM-20",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "Nobody heard anything.",
+      "reviewed_heard_wording": "Nobody heard anything.",
+      "transcript_divergence": false,
+      "performer": "P01",
+      "confidence": 0.96,
+      "phonetic_notes": "Bilabial stop 'Nobody'; dental fricative 'anything'."
+    },
+    {
+      "unit_id": "BM-21",
+      "case_type": "intelligible_foreground_speech",
+      "draft_transcript": "From your ears to God's mouth.",
+      "reviewed_heard_wording": "From your ears to God's mouth.",
+      "transcript_divergence": false,
+      "performer": "P04",
+      "confidence": 0.99,
+      "phonetic_notes": "Inverted idiom with clear unvoiced dental fricative on 'mouth'."
+    },
+    {
+      "unit_id": "BM-22",
+      "case_type": "room_dense_invocation",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[room resonance surge post-speech]",
+      "transcript_divergence": true,
+      "performer": "P05",
+      "confidence": 0.92,
+      "phonetic_notes": "Standing wave resonance following speech termination."
+    },
+    {
+      "unit_id": "BM-23",
+      "case_type": "movement_impact_transient",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[desk touch and movement transient]",
+      "transcript_divergence": true,
+      "performer": "P03",
+      "confidence": 0.88,
+      "phonetic_notes": "Mid-band transient spike with rapid exponential decay."
+    },
+    {
+      "unit_id": "BM-24",
+      "case_type": "reverb_tail_hold",
+      "draft_transcript": "",
+      "reviewed_heard_wording": "[reverberation decay into silence]",
+      "transcript_divergence": true,
+      "performer": "P05",
+      "confidence": 0.95,
+      "phonetic_notes": "Exponential decay tail over 3.5 seconds to zero level."
+    }
+  ]
+}

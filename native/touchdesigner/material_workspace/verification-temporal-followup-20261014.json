@@ -1,0 +1,28 @@
+{
+  "feedback_and_typography_after_fix": {
+    "fx_feedback": {
+      "max_dry_difference": 0.5529412031173706,
+      "finite": true,
+      "time": 89.98332977294922,
+      "errors": "",
+      "warnings": ""
+    },
+    "fx_typography": {
+      "max_dry_difference": 0.8705882430076599,
+      "finite": true,
+      "time": 89.98332977294922,
+      "errors": "",
+      "warnings": ""
+    }
+  },
+  "typography_32_copies_after_warmup": {
+    "elapsed": 42.03334045410156,
+    "difference": 0.43529409170150757,
+    "finite": true
+  },
+  "short_smoke_typography": "0.65s window did not show a change; longer warmup did; cold-start latency still needs qualification",
+  "explicit_audio_control": {
+    "low_peak": 0.0,
+    "high_peak": 1.0
+  }
+}
