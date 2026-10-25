@@ -1,0 +1,96 @@
+{
+  "schema": "amps.god_here.w01_prompts.v1",
+  "project_id": "god-here",
+  "composition_id": "comp-001",
+  "prompts": [
+    {
+      "prompt_id": "PRM-TXT-01",
+      "prompt_type": "text",
+      "unit_id": "BM-01",
+      "text": "spoken voice of performer P01: From your mouth to God's ears",
+      "category": "speech",
+      "target_source": "P01_voice"
+    },
+    {
+      "prompt_id": "PRM-TXT-02",
+      "prompt_type": "text",
+      "unit_id": "BM-02",
+      "text": "sharp inhalation and breath intake before speech",
+      "category": "breath",
+      "target_source": "P02_breath"
+    },
+    {
+      "prompt_id": "PRM-TXT-03",
+      "prompt_type": "text",
+      "unit_id": "BM-05",
+      "text": "footstep heel strike against wooden soundstage floor",
+      "category": "impact",
+      "target_source": "foley_footstep"
+    },
+    {
+      "prompt_id": "PRM-SPAN-01",
+      "prompt_type": "span",
+      "unit_id": "BM-01",
+      "frame_span": [155, 210],
+      "category": "speech",
+      "target_source": "P01_speech_interval"
+    },
+    {
+      "prompt_id": "PRM-SPAN-02",
+      "prompt_type": "span",
+      "unit_id": "BM-02",
+      "frame_span": [210, 240],
+      "category": "breath",
+      "target_source": "P02_breath_interval"
+    },
+    {
+      "prompt_id": "PRM-SPAN-03",
+      "prompt_type": "span",
+      "unit_id": "BM-03",
+      "frame_span": [249, 293],
+      "category": "speech",
+      "target_source": "P02_speech_interval"
+    },
+    {
+      "prompt_id": "PRM-MASK-01",
+      "prompt_type": "visual_mask",
+      "unit_id": "BM-01",
+      "target_body": "performer_P01_face",
+      "on_screen": true,
+      "mask_span": [155, 210],
+      "bounding_box": [0.25, 0.20, 0.45, 0.50],
+      "category": "speech"
+    },
+    {
+      "prompt_id": "PRM-MASK-02",
+      "prompt_type": "visual_mask",
+      "unit_id": "BM-03",
+      "target_body": "performer_P02_face",
+      "on_screen": true,
+      "mask_span": [249, 293],
+      "bounding_box": [0.55, 0.22, 0.75, 0.52],
+      "category": "speech"
+    },
+    {
+      "prompt_id": "PRM-MASK-03",
+      "prompt_type": "visual_mask",
+      "unit_id": "BM-05",
+      "target_body": "performer_P01_boots",
+      "on_screen": true,
+      "mask_span": [330, 360],
+      "bounding_box": [0.30, 0.75, 0.50, 0.95],
+      "category": "impact"
+    },
+    {
+      "prompt_id": "PRM-MASK-OFFSCREEN",
+      "prompt_type": "visual_mask",
+      "unit_id": "BM-04",
+      "target_body": "offscreen_director_callout",
+      "on_screen": false,
+      "mask_span": [300, 330],
+      "bounding_box": null,
+      "category": "speech",
+      "is_negative_fixture": true
+    }
+  ]
+}

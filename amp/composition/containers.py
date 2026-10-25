@@ -234,6 +234,10 @@ class StudyBinding:
     parameters: Mapping[str, Any] = field(default_factory=dict)
     span: Optional[SourceSpan] = None
     timebase: Optional[Timebase] = None
+    status: str = "not_tested"
+    provenance: Mapping[str, Any] = field(default_factory=dict)
+    dependencies: Tuple[str, ...] = ()
+    id: Optional[str] = None
 
     @property
     def inputs(self) -> Tuple[MaterialRef, ...]:
@@ -255,6 +259,16 @@ class StudyBinding:
 
         _reject_command_or_url(self.parameters, "study parameters")
 
+        if self.status is not None:
+            _reject_command_or_url(self.status, "study status")
+        _reject_command_or_url(self.provenance, "study provenance")
+
+        if self.id is not None:
+            _reject_command_or_url(self.id, "study id")
+
+        for dep in self.dependencies:
+            _reject_command_or_url(dep, "study dependency")
+
         if self.span is not None and not isinstance(self.span, SourceSpan):
             object.__setattr__(self, "span", SourceSpan.from_dict(self.span))
 
@@ -266,7 +280,13 @@ class StudyBinding:
             "operator": self.operator,
             "materials": [m.to_dict() for m in self.materials],
             "parameters": dict(self.parameters),
+            "status": self.status,
+            "provenance": dict(self.provenance),
         }
+        if self.id is not None:
+            data["id"] = self.id
+        if self.dependencies:
+            data["dependencies"] = list(self.dependencies)
         if self.span is not None:
             data["span"] = self.span.to_dict()
         if self.timebase is not None:
@@ -281,12 +301,17 @@ class StudyBinding:
         mats = [MaterialRef.from_dict(m) for m in raw_mats]
         span = SourceSpan.from_dict(data["span"]) if data.get("span") is not None else None
         tb = Timebase.from_dict(data["timebase"]) if data.get("timebase") is not None else None
+        deps = tuple(data.get("dependencies", ()))
         return cls(
             operator=data["operator"],
             materials=tuple(mats),
             parameters=data.get("parameters", {}),
             span=span,
             timebase=tb,
+            status=data.get("status", "not_tested"),
+            provenance=data.get("provenance", {}),
+            dependencies=deps,
+            id=data.get("id"),
         )
 
 

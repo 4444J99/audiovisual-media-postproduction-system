@@ -1,0 +1,152 @@
+{
+  "schema": "amps.models.lock.v1",
+  "project_id": "god-here",
+  "composition_id": "comp-001",
+  "locked_at": "2026-10-25T00:00:00Z",
+  "candidates": {
+    "R01": {
+      "candidate_id": "R01",
+      "name": "sam-audio-base",
+      "wing": "wing_1_sound",
+      "weights_sha256": "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 16.0,
+      "max_vram_gb": 12.0,
+      "max_disk_gb": 8.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R02": {
+      "candidate_id": "R02",
+      "name": "sam-audio-large",
+      "wing": "wing_1_sound",
+      "weights_sha256": "2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 24.0,
+      "max_vram_gb": 16.0,
+      "max_disk_gb": 14.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R03": {
+      "candidate_id": "R03",
+      "name": "sam-audio-stem-separator",
+      "wing": "wing_1_sound",
+      "weights_sha256": "3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 16.0,
+      "max_vram_gb": 10.0,
+      "max_disk_gb": 6.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R04": {
+      "candidate_id": "R04",
+      "name": "canonical-surface-atlas-dense",
+      "wing": "wing_2_surface",
+      "weights_sha256": "4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 16.0,
+      "max_vram_gb": 12.0,
+      "max_disk_gb": 8.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R05": {
+      "candidate_id": "R05",
+      "name": "canonical-surface-atlas-temporal",
+      "wing": "wing_2_surface",
+      "weights_sha256": "5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 24.0,
+      "max_vram_gb": 16.0,
+      "max_disk_gb": 10.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R06": {
+      "candidate_id": "R06",
+      "name": "motion-decomp-optical-flow",
+      "wing": "wing_3_motion",
+      "weights_sha256": "6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 16.0,
+      "max_vram_gb": 8.0,
+      "max_disk_gb": 4.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R07": {
+      "candidate_id": "R07",
+      "name": "motion-decomp-persistent-tracks",
+      "wing": "wing_3_motion",
+      "weights_sha256": "7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 16.0,
+      "max_vram_gb": 10.0,
+      "max_disk_gb": 6.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R08": {
+      "candidate_id": "R08",
+      "name": "depth-world-monocular",
+      "wing": "wing_4_depth",
+      "weights_sha256": "8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 16.0,
+      "max_vram_gb": 12.0,
+      "max_disk_gb": 8.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R09": {
+      "candidate_id": "R09",
+      "name": "depth-world-metric-pointcloud",
+      "wing": "wing_4_depth",
+      "weights_sha256": "9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 32.0,
+      "max_vram_gb": 20.0,
+      "max_disk_gb": 16.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R10": {
+      "candidate_id": "R10",
+      "name": "insertion-removal-inpaint",
+      "wing": "wing_5_inpaint",
+      "weights_sha256": "0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 16.0,
+      "max_vram_gb": 12.0,
+      "max_disk_gb": 10.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R11": {
+      "candidate_id": "R11",
+      "name": "generative-texture-synthesis",
+      "wing": "wing_6_texture",
+      "weights_sha256": "1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 16.0,
+      "max_vram_gb": 12.0,
+      "max_disk_gb": 10.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    },
+    "R12": {
+      "candidate_id": "R12",
+      "name": "voice-acoustics-room-ir",
+      "wing": "wing_7_voice_acoustics",
+      "weights_sha256": "2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a",
+      "runtime_env": "pytorch_local",
+      "max_ram_gb": 8.0,
+      "max_vram_gb": 6.0,
+      "max_disk_gb": 4.0,
+      "cloud_spend_usd": 0.0,
+      "auto_download": false
+    }
+  }
+}
