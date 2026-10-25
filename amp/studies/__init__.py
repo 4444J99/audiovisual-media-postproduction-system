@@ -3,6 +3,12 @@ from .admission import (
     admit_model,
     load_models_lock,
 )
+from .amalgamation import (
+    balance_cross_cell_luminance_and_gaze,
+    compose_diptych_triptych_grid,
+    export_amalgamated_study_timeline,
+    route_polyphonic_cell_audio,
+)
 from .contracts import (
     REQUIRED_PROVENANCE_FIELDS,
     STATUS_AXIS,
@@ -41,6 +47,18 @@ from .motion import (
     extract_gesture_phrasing,
     retarget_motion_envelope,
 )
+from .provenance_archive import (
+    build_provenance_lineage_graph,
+    export_counter_archive_packet,
+    seal_archival_study_ledger,
+    verify_documentary_ethics_disclosure,
+)
+from .residual_study import (
+    classify_residual_regime,
+    compute_study_residual_envelope,
+    sonify_or_visualize_residual_layer,
+    verify_residual_conservation,
+)
 from .review import (
     build_review,
     compute_loudness_matching_gain,
@@ -58,6 +76,18 @@ from .surface_atlas import (
     promote_accepted_surface,
     run_material_transfers,
     validate_canonical_surface,
+)
+from .synthesis import (
+    ALL_WINGS,
+    assemble_comp001_master_synthesis,
+    collect_accepted_wing_materials,
+    resolve_cross_wing_conflicts,
+)
+from .temporal_architecture import (
+    build_piecewise_retime_curve,
+    compile_macro_section_arc,
+    detect_phase_lock_conjunctions,
+    enforce_long_take_continuity_budget,
 )
 from .voice_acoustics import (
     align_score_cues_to_breath_cadence,
@@ -117,9 +147,34 @@ __all__ = [
     "enforce_identity_preservation_gate",
     "blend_temporal_texture_cadence",
     "package_generative_material_layer",
+    # Residual Core Studies (W07)
+    "compute_study_residual_envelope",
+    "classify_residual_regime",
+    "sonify_or_visualize_residual_layer",
+    "verify_residual_conservation",
     # Voice, Breath & Room Acoustics (W08)
     "extract_vocal_prosody_and_breath",
     "estimate_room_impulse_profile",
     "convolve_acoustic_space_match",
     "align_score_cues_to_breath_cadence",
+    # Multi-Frame Amalgamation (W09)
+    "compose_diptych_triptych_grid",
+    "balance_cross_cell_luminance_and_gaze",
+    "route_polyphonic_cell_audio",
+    "export_amalgamated_study_timeline",
+    # Long-Take Temporal Architecture (W10)
+    "build_piecewise_retime_curve",
+    "detect_phase_lock_conjunctions",
+    "enforce_long_take_continuity_budget",
+    "compile_macro_section_arc",
+    # Archival Provenance & Counter-Archive (W11)
+    "build_provenance_lineage_graph",
+    "verify_documentary_ethics_disclosure",
+    "seal_archival_study_ledger",
+    "export_counter_archive_packet",
+    # Cross-Wing Composition Synthesis & Assembly (#114-116)
+    "ALL_WINGS",
+    "collect_accepted_wing_materials",
+    "resolve_cross_wing_conflicts",
+    "assemble_comp001_master_synthesis",
 ]
