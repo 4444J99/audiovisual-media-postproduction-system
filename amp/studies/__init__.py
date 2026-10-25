@@ -30,16 +30,43 @@ from .depth_world import (
     reconstruct_room_proxy_geometry,
     validate_parallax_camera_move,
 )
+from .directing import (
+    compile_directing_question,
+    evaluate_directing_choice,
+    evaluate_preference_ranker_readiness,
+    record_semantic_observation_cycle,
+    run_three_round_directing_experiment,
+)
 from .dispatch import (
     STUDY_BINDING_FAMILY,
     resolve_study_output_dir,
     run_study,
+)
+from .editions_e0_e6 import (
+    build_e4_responsive_bodies_and_room,
+    calibrate_e0_pilot_and_anchors,
+    calibrate_e6_interactive_installation,
+    compose_e2_five_character_fields,
+    generate_e5_reproducible_cue_graphs,
+    render_e3_combined_proof_and_linear_edition,
+    restore_e1_dialogue_and_ambience,
 )
 from .generative_texture import (
     blend_temporal_texture_cadence,
     enforce_identity_preservation_gate,
     package_generative_material_layer,
     synthesize_bounded_texture_pass,
+)
+from .integration import (
+    NINE_METHODS,
+    build_edition_level_comparison,
+    close_clean_environment_replay_accounting,
+    compose_residue_semantic_feedback_artwork,
+    connect_multiscale_recursive_composition,
+    integrate_priority_proofs,
+    register_nine_method_collection,
+    verify_bounded_live_performance,
+    verify_owner_hosted_device_behavior,
 )
 from .motion import (
     couple_gesture_to_sound_events,
@@ -177,4 +204,28 @@ __all__ = [
     "collect_accepted_wing_materials",
     "resolve_cross_wing_conflicts",
     "assemble_comp001_master_synthesis",
+    # Wing 9 Preference-Guided Directing (#105-108) & Semantic Cycle (#101-104)
+    "compile_directing_question",
+    "evaluate_directing_choice",
+    "run_three_round_directing_experiment",
+    "evaluate_preference_ranker_readiness",
+    "record_semantic_observation_cycle",
+    # Integration I01-I08 (#109-116) & Master Program (#63)
+    "NINE_METHODS",
+    "integrate_priority_proofs",
+    "compose_residue_semantic_feedback_artwork",
+    "register_nine_method_collection",
+    "connect_multiscale_recursive_composition",
+    "verify_bounded_live_performance",
+    "build_edition_level_comparison",
+    "verify_owner_hosted_device_behavior",
+    "close_clean_environment_replay_accounting",
+    # God's Ears Core Editions E0-E6 (#2-8, #11-48)
+    "calibrate_e0_pilot_and_anchors",
+    "restore_e1_dialogue_and_ambience",
+    "compose_e2_five_character_fields",
+    "render_e3_combined_proof_and_linear_edition",
+    "build_e4_responsive_bodies_and_room",
+    "generate_e5_reproducible_cue_graphs",
+    "calibrate_e6_interactive_installation",
 ]
