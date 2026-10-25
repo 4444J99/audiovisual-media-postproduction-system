@@ -12,10 +12,34 @@ from .contracts import (
     validate_material,
     validate_performance,
 )
+from .counterfactuals import (
+    audit_counterfactual_seam_integrity,
+    insert_diegetic_object,
+    register_counterfactual_branch,
+    remove_transient_distractor,
+)
+from .depth_world import (
+    estimate_metric_depth_consistency,
+    project_relighting_pass,
+    reconstruct_room_proxy_geometry,
+    validate_parallax_camera_move,
+)
 from .dispatch import (
     STUDY_BINDING_FAMILY,
     resolve_study_output_dir,
     run_study,
+)
+from .generative_texture import (
+    blend_temporal_texture_cadence,
+    enforce_identity_preservation_gate,
+    package_generative_material_layer,
+    synthesize_bounded_texture_pass,
+)
+from .motion import (
+    couple_gesture_to_sound_events,
+    decompose_motion_field,
+    extract_gesture_phrasing,
+    retarget_motion_envelope,
 )
 from .review import (
     build_review,
@@ -34,6 +58,12 @@ from .surface_atlas import (
     promote_accepted_surface,
     run_material_transfers,
     validate_canonical_surface,
+)
+from .voice_acoustics import (
+    align_score_cues_to_breath_cadence,
+    convolve_acoustic_space_match,
+    estimate_room_impulse_profile,
+    extract_vocal_prosody_and_breath,
 )
 
 __all__ = [
@@ -67,4 +97,29 @@ __all__ = [
     "apply_persistent_surface_edit",
     "run_material_transfers",
     "promote_accepted_surface",
+    # Motion & Gesture Decomposition (W03)
+    "decompose_motion_field",
+    "extract_gesture_phrasing",
+    "retarget_motion_envelope",
+    "couple_gesture_to_sound_events",
+    # Depth, Geometry & World Reconstruction (W04)
+    "estimate_metric_depth_consistency",
+    "reconstruct_room_proxy_geometry",
+    "project_relighting_pass",
+    "validate_parallax_camera_move",
+    # Counterfactuals & Inpainting (W05)
+    "remove_transient_distractor",
+    "insert_diegetic_object",
+    "audit_counterfactual_seam_integrity",
+    "register_counterfactual_branch",
+    # Generative Texture (W06)
+    "synthesize_bounded_texture_pass",
+    "enforce_identity_preservation_gate",
+    "blend_temporal_texture_cadence",
+    "package_generative_material_layer",
+    # Voice, Breath & Room Acoustics (W08)
+    "extract_vocal_prosody_and_breath",
+    "estimate_room_impulse_profile",
+    "convolve_acoustic_space_match",
+    "align_score_cues_to_breath_cadence",
 ]
