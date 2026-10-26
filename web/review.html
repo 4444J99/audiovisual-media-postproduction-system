@@ -14,6 +14,32 @@
   <h1>Hear the room.<br>Watch it change.</h1>
   <p class="intro">Compare the restored speech, the five character regions, and the new room tone and foley. These are production trials. Listening and mask quality still need review.</p>
 
+  <section id="measured-review" aria-labelledby="measured-heading">
+    <h2 id="measured-heading">Review measured comparison files</h2>
+    <p>Open the CLI's comparisons.json and its comparison WAV files. Files stay on this device. Their recorded hashes and audio clocks must match before playback. Switching A/B follows the same source content, including retimed passages.</p>
+    <label>Measured receipt <input id="measured-receipt" type="file" accept=".json,application/json"></label>
+    <label>Comparison copies <input id="measured-files" type="file" multiple accept=".wav,audio/wav"></label>
+    <button id="measured-import" type="button">Verify and open comparison</button>
+    <p id="measured-status" role="status" aria-live="polite">Choose a receipt and its local copies.</p>
+    <p id="measured-assessments" class="detail"></p>
+    <label>Comparison <select id="measured-comparison" disabled></select></label>
+    <div class="trial-buttons" role="group" aria-label="Measured comparison side">
+      <button id="measured-candidate" type="button" disabled aria-pressed="true">A · Candidate</button>
+      <button id="measured-baseline" type="button" disabled aria-pressed="false">B · Baseline</button>
+    </div>
+    <audio id="measured-audio" controls preload="metadata" aria-label="Verified measured comparison"></audio>
+    <p id="measured-position" class="clock"></p>
+    <div class="review-grid">
+      <label>Reviewer <input id="measured-reviewer" maxlength="120" autocomplete="name"></label>
+      <label>Assessment <select id="measured-axis"><option value="perceptual">Perceptual</option><option value="technical">Technical</option><option value="artistic">Artistic</option><option value="distribution">Distribution</option></select></label>
+      <label>Decision <select id="measured-disposition"><option value="pending">Pending</option><option value="accepted">Accepted</option><option value="rejected">Rejected</option></select></label>
+    </div>
+    <label>Decision notes <textarea id="measured-notes" rows="3" maxlength="8000"></textarea></label>
+    <button id="measured-record" type="button" disabled>Append review decision</button>
+    <button id="measured-export" type="button" disabled>Download decision log</button>
+    <p id="measured-decisions" class="detail">Each decision binds the receipt, source, selected copy and source position. Playback does not change any acceptance state. Decisions stay in this tab until downloaded.</p>
+  </section>
+
   <section aria-labelledby="picture-heading">
     <h2 id="picture-heading">The same moment, five versions</h2>
     <p>Each version covers source 85.133–107.167 seconds, in the same dialogue order. Switching picture or speech trials keeps your place in the exchange.</p>
@@ -94,5 +120,6 @@
   <p class="detail">Expressive words in the film are authored visual text. The performed transcript still needs checking before it can become captions. A venue presentation needs its own sound and playback calibration.</p>
 </main>
 <script type="module" src="review.js"></script>
+<script type="module" src="studio/measured-review.mjs"></script>
 </body>
 </html>

@@ -6,6 +6,8 @@ from setuptools.command.build_py import build_py
 
 
 RUNTIME_FILES = (
+    "tools/check-reference.mjs",
+    "web/studies/performance-adapter.mjs",
     "tools/render-fx.mjs",
     "tools/validate-execution-fx.mjs",
     "tools/run_room_stretch.py",

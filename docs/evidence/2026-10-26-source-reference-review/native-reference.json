@@ -1,0 +1,391 @@
+{
+  "active_selection": "caller-declared corresponding source intervals; no listening or certified VAD implied",
+  "audio_checks": {
+    "artifacts": {
+      "candidate": {
+        "channels": 1,
+        "finite": true,
+        "sample_count": 96000,
+        "sample_rate": 48000,
+        "source_map": [
+          {
+            "output_end": 96000,
+            "output_start": 0,
+            "source_end": 96000,
+            "source_start": 0
+          }
+        ]
+      },
+      "native": {
+        "channels": 1,
+        "finite": true,
+        "sample_count": 96000,
+        "sample_rate": 48000,
+        "source_map": [
+          {
+            "output_end": 96000,
+            "output_start": 0,
+            "source_end": 96000,
+            "source_start": 0
+          }
+        ]
+      },
+      "source": {
+        "channels": 1,
+        "finite": true,
+        "sample_count": 96000,
+        "sample_rate": 48000,
+        "source_map": [
+          {
+            "output_end": 96000,
+            "output_start": 0,
+            "source_end": 96000,
+            "source_start": 0
+          }
+        ]
+      }
+    },
+    "status": "passed"
+  },
+  "baselines": {
+    "model": null,
+    "native": "native",
+    "source": "source"
+  },
+  "code_sha256": {
+    "amp/composition/containers.py": "35dc959ce14595941066037e8638016924f2b89b38c0db8c5cf68eb13831fe26",
+    "amp/media_resolver.py": "26a47b5f3b6b0f23f02d97e524c0aa9720f80d886a0152715264c2bb725078c6",
+    "amp/residual_io.py": "233b2862b18862e7813a54947e7aabd8f3ebee3533741308241c41f8a823973b",
+    "amp/studies/admission_evidence.py": "5846ba0530c4bb86667de380fc997cb8e2010be01c9e06f2f220e039a0fb34b5",
+    "amp/studies/review.py": "c6db93856e95b539d604584ac167e7f423a8d0911c4518527e7dcea60497c2a1",
+    "amp/studies/review_artifacts.py": "e2f99addbf233692dd107c3ab211b8e1c76b87646d4b443bbc1861decfd7f125",
+    "amp/studies/review_reference.py": "b9876d745117b2b999a0dc4dc21dc60ff0185d2d1895db9fc078b5be15478030",
+    "tools/check-reference.mjs": "f1bb3b939fefe3ae5ceec69667b56e753f8b0760498e86be0c8ba28196865fd7",
+    "web/studies/performance-adapter.mjs": "b1d96f85df8b28318241f46f097b06aa88eebfec249c9929dc9b48d3bda8095b"
+  },
+  "comparison_complete": false,
+  "comparisons": [
+    {
+      "after": {
+        "candidate": {
+          "integrated_lufs": -25.65,
+          "true_peak_dbtp": -21.92
+        },
+        "native": {
+          "integrated_lufs": -25.65,
+          "true_peak_dbtp": -21.94
+        }
+      },
+      "baseline_active_spans": [
+        [
+          0,
+          96000
+        ]
+      ],
+      "baseline_id": "native",
+      "before": {
+        "candidate": {
+          "integrated_lufs": -29.75,
+          "true_peak_dbtp": -26.02
+        },
+        "native": {
+          "integrated_lufs": -25.65,
+          "true_peak_dbtp": -21.94
+        }
+      },
+      "candidate_active_spans": [
+        [
+          0,
+          96000
+        ]
+      ],
+      "candidate_id": "candidate",
+      "copies": {
+        "baseline": "comparison-00-baseline.wav",
+        "candidate": "comparison-00-candidate.wav"
+      },
+      "copy_encoding": "pcm_f32le",
+      "gain_db": {
+        "candidate": 4.100000000000001,
+        "native": 0.0
+      },
+      "measured_delta_lu": 0.0,
+      "method": "FFmpeg loudnorm measured BS.1770 input on explicit active intervals; fixed gain copies",
+      "switch_map": [
+        {
+          "baseline_sample": 24000,
+          "candidate_sample": 24000
+        },
+        {
+          "baseline_sample": 72000,
+          "candidate_sample": 72000
+        }
+      ],
+      "target_lufs": -25.65,
+      "tolerance_lu": 0.5,
+      "within_tolerance": true
+    }
+  ],
+  "inputs": {
+    "candidate": {
+      "bytes": 768058,
+      "sha256": "746ec1dbe7b651aa9331cce3b74a803b7f34a3868b4bcf08ee374bbd96eb555e"
+    },
+    "candidate-record": {
+      "bytes": 431,
+      "sha256": "0cf909a01682a24bbe429398e9d1070e2a5a6aec9ab3bceef15480f626ab1701"
+    },
+    "horizontal": {
+      "bytes": 4921,
+      "sha256": "5e4ffea06d988b0a5126c6f75974e0284569cbf8560e2a818d791c2feb04945a"
+    },
+    "horizontal-capture": {
+      "bytes": 490,
+      "sha256": "31054c4e02b43b62138064a564902dfb203c70e500a7c47420f0dab91405aa7d"
+    },
+    "native": {
+      "bytes": 768058,
+      "sha256": "6f6e8d8d0012827e7c262fc35d93d677a8736c7fc94466cc799cf378ce5c2ff5"
+    },
+    "native-record": {
+      "bytes": 431,
+      "sha256": "21b4f5a904aae79f95d32e4071e6e74f02c208cfcacba7406f12e4049459e0d1"
+    },
+    "performance": {
+      "bytes": 1998,
+      "sha256": "eae352e490a0c62f1010178adf0edcf4934d3d3b9f5e0d1f74f8617ec023d599"
+    },
+    "reference-source": {
+      "bytes": 1484,
+      "sha256": "9bee0d48782372901a2e37814537e978923657073f2f9df4a80185c969e9efd0"
+    },
+    "source": {
+      "bytes": 768058,
+      "sha256": "d9c3168cd379b3cd78859301346d4b3040b1bf4dab3236e745d45f87be49cbc4"
+    },
+    "vertical": {
+      "bytes": 4516,
+      "sha256": "01cd94bb4c4017b0f8e6be57a9d3c5f8bc5e725a358a65da56d45b06e9a64965"
+    },
+    "vertical-capture": {
+      "bytes": 488,
+      "sha256": "9f3ebe266e645efd3c10a2a7c5b99bed1abfb91b5faafdac3f572e72d9c4cf2a"
+    }
+  },
+  "missing_baselines": [
+    "model"
+  ],
+  "outputs": {
+    "comparison-00-baseline.wav": {
+      "bytes": 384058,
+      "sha256": "54cd909e3020878600b446592a2ab48fd2047cf209ebe786b2b790a22a67ad0b"
+    },
+    "comparison-00-candidate.wav": {
+      "bytes": 384058,
+      "sha256": "89e03ce7a045f5ac2479d8a66ef04528c2163e979686490bfa6f68785a1d22ec"
+    },
+    "comparisons.json": {
+      "bytes": 10855,
+      "sha256": "d7e8313042fc23ba9e8bb53623e04d2b3d49a39a92302d19a34f34925923ea8a"
+    },
+    "decisions.jsonl": {
+      "bytes": 234,
+      "sha256": "731efb75346a903b56b030f46b646e19e0e8c7d139234aff6ae8c09adb5b768c"
+    }
+  },
+  "parameter_sha256": "7885566268e84184f4e7d227651958550d3e7ec84dbe2323770a0aa8953ca8d5",
+  "provenance": {
+    "candidate": {
+      "code_sha256": "e687b103cd3f99db658dfb29d19181167761e59c1eacfc5c60649fe78d3b6f00",
+      "input_sha256": [
+        "d9c3168cd379b3cd78859301346d4b3040b1bf4dab3236e745d45f87be49cbc4"
+      ],
+      "method_class": "authored",
+      "method_id": "synthetic-fixture-gain",
+      "recipe_sha256": "989710fbbea55a1b3aa6b7a2b746ba39eb47f9bff8b37f77f2ee72f70eadadf5",
+      "record_sha256": "0cf909a01682a24bbe429398e9d1070e2a5a6aec9ab3bceef15480f626ab1701"
+    },
+    "native": {
+      "code_sha256": "e687b103cd3f99db658dfb29d19181167761e59c1eacfc5c60649fe78d3b6f00",
+      "input_sha256": [
+        "d9c3168cd379b3cd78859301346d4b3040b1bf4dab3236e745d45f87be49cbc4"
+      ],
+      "method_class": "authored",
+      "method_id": "synthetic-fixture-gain",
+      "recipe_sha256": "cedfd15c973332c9602e73272dc0c84cc2d8191742fbc502085e4ec8bcae951c",
+      "record_sha256": "21b4f5a904aae79f95d32e4071e6e74f02c208cfcacba7406f12e4049459e0d1"
+    }
+  },
+  "provenance_assessment": "hash-bound producing records; method execution not independently repeated",
+  "qualification": {
+    "artistic": "pending",
+    "distribution": "pending",
+    "perceptual": "pending",
+    "technical": "pending-missing-baselines"
+  },
+  "raw_stem_mutated": false,
+  "reference_frame": {
+    "cache_disposition": "Reconstructible decode caches removed after successful comparison; original inputs retained",
+    "capture_provenance": "Hash-bound producing records; capture executor authenticity not independently established",
+    "checked_frames": 16,
+    "decoded_cache_identities": {
+      "horizontal": {
+        "bytes": 170720,
+        "sha256": "3111de36d4e4f430a4bf4c80d2865e76f63e2eb3f4d08cb556257ca8444265bd"
+      },
+      "source": {
+        "bytes": 9216,
+        "sha256": "8eb510a01ed0af6c9fbc653ea744541f79900dc2dcaf09c71faec25180ead867"
+      },
+      "vertical": {
+        "bytes": 130144,
+        "sha256": "b68b40d0d98551b7d51c667f0afa361d0910468390300c2843bf56e5fa996b1a"
+      }
+    },
+    "max_channel_error": 0,
+    "max_mean_channel_error": 0,
+    "performance_sha256": "eae352e490a0c62f1010178adf0edcf4934d3d3b9f5e0d1f74f8617ec023d599",
+    "pixel_assessment": "Every protected-region pixel checked against retained Canvas full-frame source transform at recorded clock; declared numeric tolerance, not cross-backend pixel equivalence",
+    "renderer_sha256": "b1d96f85df8b28318241f46f097b06aa88eebfec249c9929dc9b48d3bda8095b",
+    "source_frames": [
+      0,
+      1,
+      2,
+      3,
+      0,
+      1,
+      2,
+      3
+    ],
+    "source_sha256": "9bee0d48782372901a2e37814537e978923657073f2f9df4a80185c969e9efd0",
+    "status": "passed",
+    "tolerance": {
+      "max_channel_error": 0,
+      "mean_channel_error": 0
+    },
+    "views": [
+      {
+        "dimensions": [
+          97,
+          55
+        ],
+        "frames": 8,
+        "geometry": {
+          "expressive": {
+            "height": 37,
+            "width": 97,
+            "x": 0,
+            "y": 0
+          },
+          "image": {
+            "height": 18,
+            "width": 32,
+            "x": 32.5,
+            "y": 37
+          },
+          "reserved": {
+            "height": 18,
+            "width": 97,
+            "x": 0,
+            "y": 37
+          }
+        },
+        "max_channel_error": 0,
+        "max_mean_channel_error": 0,
+        "orientation": "horizontal",
+        "per_frame_max_error": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "per_frame_mean_error": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "dimensions": [
+          49,
+          83
+        ],
+        "frames": 8,
+        "geometry": {
+          "expressive": {
+            "height": 56,
+            "width": 49,
+            "x": 0,
+            "y": 0
+          },
+          "image": {
+            "height": 27,
+            "width": 48,
+            "x": 0.5,
+            "y": 56
+          },
+          "reserved": {
+            "height": 27,
+            "width": 49,
+            "x": 0,
+            "y": 56
+          }
+        },
+        "max_channel_error": 0,
+        "max_mean_channel_error": 0,
+        "orientation": "vertical",
+        "per_frame_max_error": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "per_frame_mean_error": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "resource_profile": {
+    "deadline_seconds": 60,
+    "max_input_bytes": 8388608,
+    "max_output_bytes": 8388608,
+    "max_scratch_bytes": 8388608,
+    "max_working_bytes": 33554432
+  },
+  "schema": "amps.audio-comparison-receipt.v1",
+  "scope": "synthetic-contract",
+  "source": {
+    "material_id": "source",
+    "span": {
+      "end": 96000,
+      "start": 0,
+      "timebase": {
+        "den": 1,
+        "num": 48000
+      }
+    }
+  },
+  "status": "produced",
+  "study_id": "fixture-review"
+}

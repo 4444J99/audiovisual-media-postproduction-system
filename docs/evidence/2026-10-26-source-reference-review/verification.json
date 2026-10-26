@@ -1,0 +1,44 @@
+{
+  "code_sha256": {
+    "MANIFEST.in": "9dfc593f04e739460aec8e5813273d9952a294513ec749ec65abb0fde6eb6ca7",
+    "amp/studies/review_artifacts.py": "e2f99addbf233692dd107c3ab211b8e1c76b87646d4b443bbc1861decfd7f125",
+    "amp/studies/review_reference.py": "b9876d745117b2b999a0dc4dc21dc60ff0185d2d1895db9fc078b5be15478030",
+    "setup.py": "87a3075c61c60efec73e42f9851b96818e4819f3d284553e33820873d5c16f91",
+    "tools/check-reference.mjs": "f1bb3b939fefe3ae5ceec69667b56e753f8b0760498e86be0c8ba28196865fd7",
+    "web/review.html": "b749f522901bdcc7ba461b7914ab858eec1eefe4d1e272214248509d78b0c215",
+    "web/studies/performance-adapter.mjs": "b1d96f85df8b28318241f46f097b06aa88eebfec249c9929dc9b48d3bda8095b",
+    "web/studio/measured-review-core.mjs": "9f380abe6fc45a2ed4497d06c47c5b9cb22003ae13cf8eb1d156d1fd252377c7",
+    "web/studio/measured-review.mjs": "d72aaf81850b038b200651458deaba4f362a43a81ad799c5c1ec07b1caa4664f"
+  },
+  "comparison_complete": false,
+  "deletion_authorized": false,
+  "full_estate_complete": false,
+  "human_acceptance": {
+    "artistic": "pending",
+    "distribution": "pending",
+    "perceptual": "pending"
+  },
+  "installed_wheel_actual_hv_cli": "passed: 16 frames",
+  "native_browser": {
+    "reason": "Computer use returned cgWindowNotFound for Chrome and Safari, and in-app browser unavailable",
+    "status": "unobserved"
+  },
+  "native_canvas_reference": {
+    "checked_frames": 16,
+    "max_channel_error": 0,
+    "status": "passed"
+  },
+  "production_media_reviewed": false,
+  "required_gate": {
+    "command": "/usr/local/bin/python3 tools/check.py",
+    "exit_code": 0,
+    "log_sha256": "7ea2323363d8c6b08940003491e7183e14b65380c32f7dc8f65ee93406ba3173",
+    "node_tests": 280,
+    "python_tests": 645,
+    "score_validation": "passed",
+    "skipped": 0
+  },
+  "schema": "amps.source-reference-verification.v1",
+  "source_base": "0ca05f9fef18045113b792e6129c6c3ca1fafe33",
+  "ui_handler_harness": "passed: actual File hashes/headers, A-B rapid-switch intent and decision export"
+}

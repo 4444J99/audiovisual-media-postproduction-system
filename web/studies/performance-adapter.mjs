@@ -126,7 +126,7 @@ export class RuntimeSupervisor{
   static async restore(checkpoint){const p=clone(checkpoint),expected=p.sha256;delete p.sha256;if(p.schema!=='amps.performance-browser-checkpoint.v1'||expected!==await digest(canonicalJSON(p)))throw Error('Checkpoint digest mismatch');const s=new RuntimeSupervisor(p.record);s.frame=s.checkFrame(p.state.frame);if(typeof p.state.playing!=='boolean'||typeof p.state.resume_intent!=='boolean'||!['paused','playing','degraded','cancelled','finished'].includes(p.state.status))throw Error('Invalid checkpoint state');s.resumeIntent=p.state.playing||p.state.resume_intent;s.reasons=s.reasonsAt(s.frame);s.status=terminal(p.state.status)?p.state.status:s.reasons.length?'degraded':'paused';return s;}
 }
 
-export function referenceGeometry(width,height,aspect){finite(width,1,16384);finite(height,1,16384);finite(aspect,0.01,100);const reserved={x:0,y:height*2/3,width,height:height/3};let w=width,h=w/aspect;if(h>reserved.height){h=reserved.height;w=h*aspect;}return {reserved,expressive:{x:0,y:0,width,height:height*2/3},image:{x:(width-w)/2,y:reserved.y+(reserved.height-h)/2,width:w,height:h}};}
+export function referenceGeometry(width,height,aspect){finite(width,1,16384);finite(height,1,16384);finite(aspect,0.01,100);const split=Math.ceil(height*2/3),reserved={x:0,y:split,width,height:height-split};let w=width,h=w/aspect;if(h>reserved.height){h=reserved.height;w=h*aspect;}return {reserved,expressive:{x:0,y:0,width,height:split},image:{x:(width-w)/2,y:reserved.y+(reserved.height-h)/2,width:w,height:h}};}
 
 export function validatePreparedGeometry(material,prepared){
   const md=prepared.media;if(!md||md.fps!==material.span.timebase.num/material.span.timebase.den||!Number.isFinite(md.duration)||md.duration*md.fps+1e-6<material.span.end)throw Error('Prepared picture clock mismatch');
@@ -167,7 +167,7 @@ export async function preparePerformanceAudio(record,prepared,audioContext,{sign
  */
 export class PerformancePlayer{
   constructor({record,prepared,canvas,audioContext,createCanvas,autoTick=true}){
-    this.supervisor=new RuntimeSupervisor(record);this.prepared=prepared;this.canvas=canvas;this.context=audioContext;this.createCanvas=createCanvas;this.autoTick=autoTick;this.voices=new Map();this.engines=new Map();this.generation=0;this.mode='horizontal';this.raf=null;this.playPending=false;
+    this.supervisor=new RuntimeSupervisor(record);this.prepared=prepared;this.canvas=canvas;this.context=audioContext;this.createCanvas=createCanvas;this.autoTick=autoTick;this.voices=new Map();this.engines=new Map();this.referenceCells=new Map();this.referenceCellBytes=0;this.generation=0;this.mode='horizontal';this.raf=null;this.playPending=false;
     this.measurePrepared();this.supervisor.admit(this.resources());this.safeRender(this.supervisor.snapshot());
   }
   measurePrepared(){let audio=0,textures=0;const buffers=new Set(),images=new Set();
@@ -183,9 +183,11 @@ export class PerformancePlayer{
       if(!buffers.has(b)){audio+=b.length*b.numberOfChannels*4;buffers.add(b);}
     }
     this.preparedBytes={decoded_audio_bytes:audio,texture_bytes:textures};
+    this.referenceCellIds=new Set([this.supervisor.runtime.reference.material_id,this.supervisor.runtime.fallback_material_id]);
+    this.referenceCellBytes=[...this.referenceCellIds].reduce((sum,id)=>{const md=this.prepared.materials.get(id).media.picture;return sum+md.width*md.height*4;},0);
   }
   resources(){let rendering=0;for(const engine of this.engines.values()){const images=new Set([...engine.pool,...engine.freeTemporal,...engine.retiredTemporal,...[...engine.temporalCache.values()].map(v=>v.image)]);for(const image of images)rendering+=image.width*image.height*4;}
-    return {...this.preparedBytes,texture_bytes:this.preparedBytes.texture_bytes+rendering+this.canvas.width*this.canvas.height*4,event_history_bytes:new TextEncoder().encode(JSON.stringify(this.supervisor.executionRecord())).byteLength};
+    return {...this.preparedBytes,texture_bytes:this.preparedBytes.texture_bytes+this.referenceCellBytes+rendering+this.canvas.width*this.canvas.height*4,event_history_bytes:new TextEncoder().encode(JSON.stringify(this.supervisor.executionRecord())).byteLength};
   }
   stopVoices(){for(const {source,gain}of this.voices.values()){try{source.stop();}catch{}source.disconnect();gain.disconnect();}this.voices.clear();}
   play(){if(terminal(this.supervisor.status))return Promise.reject(Error('Terminal performance'));if(this.supervisor.playing)return Promise.resolve(this.tick());if(this.playPending)return this.playPromise;
@@ -215,7 +217,13 @@ export class PerformancePlayer{
     }
   }
   engine(materialId){let engine=this.engines.get(materialId);if(!engine){const p=this.prepared.materials.get(materialId);const allocate=(w,h)=>{const bytes=w*h*4;if(this.resources().texture_bytes+bytes>this.supervisor.profile.byte_caps.texture_bytes)throw Error('texture-byte-cap');const canvas=this.createCanvas?this.createCanvas(w,h):document.createElement('canvas');canvas.width=w;canvas.height=h;return canvas;};engine=new VisualEngine(p.media,p.assets,{width:320,height:180,cacheFrames:8,createCanvas:allocate});this.engines.set(materialId,engine);}return engine;}
-  drawSource(ctx,materialId,frame,box){const p=this.prepared.materials.get(materialId),md=p.media,index=frame,cell=index%md.framesPerPage,image=p.assets.picture[Math.floor(index/md.framesPerPage)];ctx.drawImage(image,(cell%md.columns)*md.picture.width,Math.floor(cell/md.columns)*md.picture.height,md.picture.width,md.picture.height,box.x,box.y,box.width,box.height);}
+  drawSource(ctx,materialId,frame,box){const p=this.prepared.materials.get(materialId),md=p.media,index=frame,cell=index%md.framesPerPage,image=p.assets.picture[Math.floor(index/md.framesPerPage)];
+    if(!this.referenceCellIds.has(materialId))throw Error('Unreserved source frame buffer');
+    let isolated=this.referenceCells.get(materialId);
+    if(!isolated){const canvas=this.createCanvas?this.createCanvas(md.picture.width,md.picture.height):document.createElement('canvas');canvas.width=md.picture.width;canvas.height=md.picture.height;isolated={canvas,frame:null};this.referenceCells.set(materialId,isolated);}
+    if(isolated.frame!==frame){const ic=isolated.canvas.getContext('2d');ic.setTransform(1,0,0,1,0,0);ic.globalAlpha=1;ic.clearRect(0,0,md.picture.width,md.picture.height);ic.drawImage(image,(cell%md.columns)*md.picture.width,Math.floor(cell/md.columns)*md.picture.height,md.picture.width,md.picture.height,0,0,md.picture.width,md.picture.height);isolated.frame=frame;}
+    ctx.drawImage(isolated.canvas,0,0,md.picture.width,md.picture.height,box.x,box.y,box.width,box.height);
+  }
   safeRender(state){try{this.render(state);}catch(error){if(error.message!=='texture-byte-cap')throw error;this.supervisor.degrade('texture_bytes');this.stopVoices();this.render(this.supervisor.snapshot());}this.supervisor.observeResources(this.resources());}
   render(state){this.visualMeasures=new Map();const c=this.canvas,ctx=c.getContext('2d'),m=this.supervisor.materials.get(state.reference.material_id),p=this.prepared.materials.get(m.id),aspect=p.media.picture.width/p.media.picture.height,box=referenceGeometry(c.width,c.height,aspect);
     ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.fillStyle='#000';ctx.fillRect(0,0,c.width,c.height);
