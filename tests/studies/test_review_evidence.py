@@ -83,6 +83,19 @@ class ReviewEvidenceTests(unittest.TestCase):
         except ValueError:self.fail(f"non-JSON review result: {process.stderr[-500:]}")
         return process,receipt
 
+    def test_typed_review_source_and_definitions_are_bound_at_actual_cli(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root,binding,locations,original=self.fixture(directory)
+            source=next(row for row in binding['inputs'] if row['id']=='source')
+            binding['span'].update(source_sha256=source['sha256'],clock_kind='audio_sample')
+            binding['definitions']=[copy.deepcopy(binding)]
+            process,receipt=self.execute(root,binding,locations,dry=True)
+            self.assertEqual(process.returncode,0,receipt);self.assertIsNotNone(receipt['static_definitions_sha256'])
+            for index,edit in enumerate((lambda b:b['span'].update(source_sha256='b'*64),lambda b:b['span'].update(clock_kind='video_frame'))):
+                bad=copy.deepcopy(binding);bad.pop('definitions');edit(bad)
+                process,receipt=self.execute(root,bad,locations,name=f'bad-bound{index}',dry=True)
+                self.assertEqual(process.returncode,2,receipt);self.assertEqual(receipt['error']['code'],'review_source_clock_mismatch')
+
     def test_cli_writes_measured_comparison_copies_and_preserves_every_raw_input(self):
         with tempfile.TemporaryDirectory() as directory:
             root,binding,locations,original=self.fixture(directory)

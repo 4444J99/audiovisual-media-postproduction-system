@@ -1,7 +1,7 @@
 """Wing 5 Object Insertion, Removal & Counterfactuals framework (Issues #86-89, W05).
 
 Implements:
-- remove_transient_distractor: executes clean plate removal enforcing mask-to-body span coupling.
+- remove_transient_distractor: plans clean plate removal with explicit mask/body clock coupling, without media execution.
 - insert_diegetic_object: composites counterfactual objects with depth-ordered occlusion and contact shadows.
 - audit_counterfactual_seam_integrity: measures boundary gradient continuity and temporal edge stability.
 - register_counterfactual_branch: registers counterfactual branch with explicit lineage (is_counterfactual=True).
@@ -57,27 +57,37 @@ def remove_transient_distractor(
     on_screen = background_plate.get("on_screen", True)
 
     coupling_errors = validate_mask_to_body_span(
-        mask_span=(m_start, m_end),
-        body_span=(b_start, b_end),
+        mask_span=mask_span,
+        body_span=body_span,
         target_body=target_body,
         on_screen=on_screen,
+        operation=background_plate.get('mask_clock_operation'),
     )
     if coupling_errors:
         raise ValueError(f"Mask-to-body coupling violation: {'; '.join(coupling_errors)}")
 
     plate_id = background_plate.get("plate_id", "plate_default")
-    temporal_coherence = float(background_plate.get("temporal_continuity", 0.96))
-
-    return {
+    result = {
         "schema": "amps.god_here.distractor_removal.v1",
         "shot_id": shot_id,
         "plate_id": plate_id,
-        "mask_span": {"start": m_start, "end": m_end},
-        "body_span": {"start": b_start, "end": b_end},
-        "frames_inpainted": m_end - m_start,
-        "temporal_seam_coherence": temporal_coherence,
-        "seam_verified": (temporal_coherence >= 0.90),
+        "mask_span": SourceSpan.from_dict(mask_span).to_dict(),
+        "body_span": SourceSpan.from_dict(body_span).to_dict(),
+        "status": "planned",
+        "execution_performed": False,
+        "frames_requested": m_end-m_start,
+        "frames_inpainted": None,
+        "temporal_seam_coherence": None,
+        "seam_verified": None,
     }
+    operation=background_plate.get('mask_clock_operation')
+    if operation is not None:
+        result['mask_clock_operation']={
+            'operator':operation['operator'],'reason':operation['reason'],
+            'mask_span':SourceSpan.from_dict(operation['mask_span']).to_dict(),
+            'body_span':SourceSpan.from_dict(operation['body_span']).to_dict(),
+        }
+    return result
 
 
 def insert_diegetic_object(

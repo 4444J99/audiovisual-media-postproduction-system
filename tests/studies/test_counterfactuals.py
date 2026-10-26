@@ -14,7 +14,7 @@ class CounterfactualsStudiesTests(unittest.TestCase):
         self.shot_id = "SHOT-CF-01"
         self.background_plate = {
             "plate_id": "PLATE-01",
-            "body_span": {"start": 100, "end": 200},
+            "body_span": {"start":100,"end":200,"timebase":{"num":30,"den":1},"source_sha256":"a"*64,"clock_kind":"video_frame"},
             "target_body": "stage_background",
             "on_screen": True,
             "temporal_continuity": 0.95,
@@ -22,10 +22,14 @@ class CounterfactualsStudiesTests(unittest.TestCase):
 
     def test_remove_transient_distractor_valid(self):
         # Mask [120, 150) inside body [100, 200)
-        res = remove_transient_distractor(self.shot_id, (120, 150), self.background_plate)
+        mask={**self.background_plate['body_span'],'start':120,'end':150}
+        self.background_plate['mask_clock_operation']={'operator':'mask.independent-clock.v1','reason':'Authored mask subspan','mask_span':mask,'body_span':self.background_plate['body_span']}
+        res = remove_transient_distractor(self.shot_id,mask,self.background_plate)
         self.assertEqual(res["schema"], "amps.god_here.distractor_removal.v1")
-        self.assertEqual(res["frames_inpainted"], 30)
-        self.assertTrue(res["seam_verified"])
+        self.assertEqual(res['frames_requested'],30)
+        self.assertIsNone(res["frames_inpainted"])
+        self.assertIsNone(res["seam_verified"])
+        self.assertFalse(res['execution_performed'])
 
     def test_remove_transient_distractor_coupling_violation(self):
         # Mask starts before body span (90 < 100)

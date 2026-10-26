@@ -93,6 +93,39 @@ class StudyExecutionTests(unittest.TestCase):
             self.assertEqual(process.returncode,0,receipt);self.assertEqual(receipt['status'],'preflight-only')
             self.assertFalse(receipt['render_executed']);self.assertFalse((root/'out').exists())
 
+    def test_cli_dependency_alias_cycles_and_conflicts_block_before_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root,binding,locations,source=self.fixture(directory)
+            for index,edit in enumerate((
+                lambda b:b.update(depends_on=[b['id']]),
+                lambda b:b.update(dependencies=[],depends_on=[b['id']]),
+                lambda b:b['parameters'].update(depends_on=[b['id']]),
+            )):
+                bad=copy.deepcopy(binding);edit(bad);bad['definitions']=[copy.deepcopy(bad)]
+                process,receipt=self.cli(root,bad,locations,name=f'cycle{index}',dry=True)
+                self.assertEqual(process.returncode,2,receipt);self.assertFalse((root/f'cycle{index}').exists())
+            binding['definitions']=[copy.deepcopy(binding)]
+            process,receipt=self.cli(root,binding,locations,name='valid-graph',dry=True)
+            self.assertEqual(process.returncode,0,receipt);self.assertIsNotNone(receipt['static_definitions_sha256'])
+            binding.pop('definitions')
+            for alias in ('dependencies','depends_on'):
+                valid=copy.deepcopy(binding);parent=copy.deepcopy(binding);parent['id']='parent'
+                valid['parameters'][alias]=['parent'];valid['definitions']=[parent,copy.deepcopy(valid)]
+                process,receipt=self.cli(root,valid,locations,name='valid-'+alias,dry=True)
+                self.assertEqual(process.returncode,0,receipt);self.assertIsNotNone(receipt['static_definitions_sha256'])
+
+    def test_typed_source_must_match_actual_input_identity_and_domain(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root,binding,locations,source=self.fixture(directory)
+            binding['span'].update(source_sha256=binding['inputs'][0]['sha256'],clock_kind='audio_sample')
+            for index,edit in enumerate((lambda b:b['span'].update(source_sha256='b'*64),lambda b:b['span'].update(clock_kind='video_frame'))):
+                bad=copy.deepcopy(binding);edit(bad)
+                process,receipt=self.cli(root,bad,locations,name=f'bad-clock{index}',dry=True)
+                self.assertEqual(process.returncode,2,receipt);self.assertFalse((root/f'bad-clock{index}').exists())
+            process,receipt=self.cli(root,binding,locations,dry=True)
+            self.assertEqual(process.returncode,0,receipt)
+            self.assertEqual(receipt['source_span'],binding['span'])
+
     def test_resource_caps_private_labels_and_absent_caps_block_before_writes(self):
         with tempfile.TemporaryDirectory() as directory:
             root,binding,locations,source=self.fixture(directory)
@@ -157,6 +190,14 @@ class StudyExecutionTests(unittest.TestCase):
             with patch('subprocess.Popen',side_effect=AssertionError('dry run started a child')):
                 direct=run_cli(binding,locations=locations,inventories=[],output=root/'direct-dry',dry_run=True)
             self.assertEqual(direct['status'],'preflight-only');self.assertFalse((root/'direct-dry').exists())
+            binding['span'].update(source_sha256=next(r['sha256'] for r in binding['inputs'] if r['id']=='source'),clock_kind='video_frame')
+            direct=run_cli(binding,locations=locations,inventories=[],output=root/'typed-native',dry_run=True)
+            self.assertEqual(direct['source_span'],binding['span'])
+            for edit in (lambda b:b['span'].update(clock_kind='audio_sample'),
+                lambda b:b['span'].update(source_sha256=next(r['sha256'] for r in b['inputs'] if r['id']=='inventory'))):
+                bad=copy.deepcopy(binding);edit(bad)
+                with self.assertRaises(ContractError):run_cli(bad,locations=locations,inventories=[],output=root/'bad-native',dry_run=True)
+                self.assertFalse((root/'bad-native').exists())
             binding['operator']='fx.rack.v1';process,receipt=self.cli(root,binding,locations,name='wrong',dry=True)
             self.assertEqual(process.returncode,2,receipt);self.assertEqual(receipt['error']['code'],'study_native_operator_mismatch')
 

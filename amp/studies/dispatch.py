@@ -53,6 +53,9 @@ def validate_study_parameters(parameters: Mapping[str, any]) -> None:
 
 def run_study(binding: StudyBinding, context: StudyContext) -> StudyResult:
     """Execute verified artifacts through the same fixed dispatch as the CLI."""
+    if not isinstance(binding,StudyBinding) or not isinstance(context,StudyContext):raise ValueError('StudyBinding and StudyContext required')
+    from .clock_contracts import validate_context_contract
+    validate_context_contract(binding,context)
     if isinstance(binding,StudyBinding) and binding.operator=='amp.review.v1':
         from .review import build_review
         return build_review(binding,context)

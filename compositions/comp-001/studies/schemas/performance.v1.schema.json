@@ -21,11 +21,15 @@
     },
     "span": {
       "type": "object",
+      "dependentRequired": {"source_sha256": ["clock_kind", "timebase"], "clock_kind": ["source_sha256", "timebase"]},
       "required": [
         "start",
         "end"
       ],
       "properties": {
+        "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "clock_kind": {"enum": ["video_frame", "audio_sample"]},
+        "timebase": {"$ref": "#/properties/timebase"},
         "start": {
           "type": "integer",
           "minimum": 0

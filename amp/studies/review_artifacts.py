@@ -222,6 +222,8 @@ def model_admission(admission,record,identity,scope):
 
 
 def prepare(binding,context,output,dry_run):
+    from .clock_contracts import validate_context_contract
+    validate_context_contract(binding,context)
     require(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,100}",context.study_id) is not None,"review_public_identity_invalid")
     spec=binding.parameters.get("review_spec")
     require(isinstance(spec,dict) and spec.get("schema")=="amps.audio-comparison.v1","review_spec_missing")
@@ -309,6 +311,8 @@ def prepare(binding,context,output,dry_run):
         require(name is None or name in artifacts and artifacts[name]["role"]==role,"review_baseline_identity_mismatch")
     require(baselines["source"] is not None,"review_source_baseline_missing")
     source=artifacts[baselines["source"]];source_span=SourceSpan(0,source["sample_count"])
+    if binding.span is not None and binding.span.source_sha256 is not None:
+        require(binding.span.source_sha256==refs[baselines['source']].sha256 and binding.span.clock_kind=='audio_sample','review_source_clock_mismatch')
     require(binding.span is not None and (binding.span.start,binding.span.end)==(0,source["sample_count"]) and binding.timebase is not None
         and binding.timebase.num==source["sample_rate"] and binding.timebase.den==1 and binding.span.timebase==binding.timebase==context.timebase,"review_source_clock_mismatch")
     maps={name:validated_retiming_map(SourceSpan(0,row["sample_count"]),source_span,row.get("source_map")) for name,row in artifacts.items()}
@@ -352,10 +356,13 @@ def execute_audio_review(binding,context,*,output,dry_run=False):
         comparison_complete=False,raw_stem_mutated=False,active_selection="caller-declared corresponding source intervals; no listening or certified VAD implied")
     code_root=Path(__file__).resolve().parents[2]
     report["parameter_sha256"]=digest(dict(binding.parameters))
+    report['binding_sha256']=digest(binding.to_dict())
+    report['static_definitions_sha256']=digest([row.to_dict() for row in context.bindings]) if context.bindings else None
     report["code_sha256"]={name:file_identity(runtime_path(code_root,name),"review_implementation")["sha256"] for name in
         ("amp/studies/review_artifacts.py","amp/studies/review.py","amp/studies/admission_evidence.py",
          "amp/studies/review_reference.py","tools/check-reference.mjs","web/studies/performance-adapter.mjs",
-         "amp/composition/containers.py","amp/media_resolver.py","amp/residual_io.py")}
+         "amp/composition/containers.py","amp/media_resolver.py","amp/residual_io.py",
+         "amp/studies/contracts.py","amp/studies/clock_contracts.py")}
     if dry_run:return report
     output.mkdir(mode=0o700,parents=True,exist_ok=False)
     for index,(c,b,ci,bi,switches) in enumerate(prepared):
@@ -418,7 +425,11 @@ def run_cli(document,*,locations,inventories,output,dry_run):
     require(document.get("schema_version")=="amps.study.v1" and document.get("operator")=="amp.review.v1","unsupported_study_operator")
     require(not any("path" in ref for ref in document.get("inputs",document.get("materials",[]))),"private_locators_belong_in_locations")
     binding=StudyBinding.from_dict(document)
+    raw_definitions=document.get('definitions',[])
+    require(isinstance(raw_definitions,list) and len(raw_definitions)<=4096,'study_dependency_graph_invalid')
+    try:definitions=tuple(StudyBinding.from_dict(row) for row in raw_definitions)
+    except (ValueError,TypeError,KeyError,AttributeError):raise ContractError('study_dependency_graph_invalid') from None
     require(isinstance(binding.id,str) and bool(binding.id),"review_binding_identity_missing")
     context=StudyContext(study_id=binding.id,composition_id=binding.parameters.get("composition_id","unassigned"),
-        timebase=binding.timebase,parameters={"locations":locations or {},"inventories":inventories})
+        timebase=binding.timebase,bindings=definitions,parameters={"locations":locations or {},"inventories":inventories})
     return execute_audio_review(binding,context,output=output,dry_run=dry_run)

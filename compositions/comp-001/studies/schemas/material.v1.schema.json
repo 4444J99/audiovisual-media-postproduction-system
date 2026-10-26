@@ -43,11 +43,18 @@
     },
     "span": {
       "type": "object",
+      "dependentRequired": {"source_sha256": ["clock_kind", "timebase"], "clock_kind": ["source_sha256", "timebase"]},
       "required": [
         "start",
         "end"
       ],
       "properties": {
+        "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "clock_kind": {"enum": ["video_frame", "audio_sample"]},
+        "timebase": {
+          "type": "object", "required": ["num"],
+          "properties": {"num": {"type": "integer", "minimum": 1}, "den": {"type": "integer", "minimum": 1}}
+        },
         "start": {
           "type": "integer",
           "minimum": 0

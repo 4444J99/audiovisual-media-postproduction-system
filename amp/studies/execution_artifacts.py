@@ -32,7 +32,10 @@ def resource_profile(parameters):
 
 def request(binding,context):
     require(isinstance(binding,StudyBinding) and isinstance(context,StudyContext),'study_request_invalid')
-    require(set(binding.parameters)<={'composition_id','workstream_id','case_id','resource_profile','execution_binding_id'},'study_unconsumed_parameter')
+    from .clock_contracts import validate_context_contract
+    validate_context_contract(binding,context)
+    require(set(binding.parameters)<={'composition_id','workstream_id','case_id','resource_profile','execution_binding_id',
+        'dependencies','depends_on'},'study_unconsumed_parameter')
     public_id(context.study_id);public_id(context.composition_id)
     public_id(binding.parameters.get('workstream_id') or context.parameters.get('workstream_id'),'study_workstream_id_invalid')
     public_id(binding.parameters.get('case_id') or context.parameters.get('case_id'),'study_case_id_invalid')
@@ -44,6 +47,11 @@ def request(binding,context):
     for ref in binding.inputs:
         public_id(ref.id);require(ref.path is None,'study_private_locators_belong_in_locations')
         require(type(ref.bytes) is int and ref.bytes>=0,'study_input_byte_count_missing')
+    if binding.span.source_sha256 is not None:
+        matches=[ref for ref in binding.inputs if ref.sha256==binding.span.source_sha256]
+        require(len(matches)==1,'study_source_identity_mismatch')
+        kinds={'video_frame':{'video'},'audio_sample':{'audio','video'}}
+        require(matches[0].kind in kinds[binding.span.clock_kind],'study_source_domain_mismatch')
 
 
 def monitor(output,caps):
@@ -97,6 +105,8 @@ def prepare(binding,context,output):
         require(metadata['adapter']==binding.operator,'study_native_operator_mismatch')
         clock=metadata['source_clock'];require(binding.span.start==0 and binding.span.end==clock['frames']
             and context.timebase.as_fraction()==Fraction(clock['frame_rate']['num'],clock['frame_rate']['den']),'study_native_source_span_mismatch')
+        if binding.span.source_sha256 is not None:
+            require(binding.span.source_sha256==clock['sha256'] and binding.span.clock_kind=='video_frame','study_native_source_span_mismatch')
         declared={(r.sha256,r.bytes) for name,r in refs.items() if name!=native_id}
         actual=set()
         for ref in metadata['inputs'].values():
@@ -138,7 +148,8 @@ def execute_artifacts(binding,context,*,output,dry_run=False):
     report['code_sha256']={name:file_identity(REPO_ROOT/name,'study-code')['sha256'] for name in
         ('amp/cli.py','amp/studies/__init__.py','amp/studies/execution_artifacts.py','amp/studies/native_worker.py',
          'amp/studies/dispatch.py','amp/execution.py','amp/studies/review_artifacts.py','amp/studies/admission_evidence.py',
-         'amp/composition/containers.py','amp/media_resolver.py')}
+         'amp/composition/containers.py','amp/media_resolver.py','amp/studies/contracts.py','amp/studies/clock_contracts.py')}
+    report['static_definitions_sha256']=digest([row.to_dict() for row in context.bindings]) if context.bindings else None
     if dry_run:return report
     require(not output.exists(),'study_output_directory_already_exists')
     output.mkdir(mode=0o700,parents=True,exist_ok=False)
@@ -183,13 +194,19 @@ def execute_artifacts(binding,context,*,output,dry_run=False):
 
 def run_cli(document,*,locations,inventories,output,dry_run):
     require(isinstance(document,dict) and document.get('schema_version')=='amps.study.v1','unsupported_study_family')
+    raw_definitions=document.get('definitions',[])
+    require(isinstance(raw_definitions,list) and len(raw_definitions)<=4096,'study_dependency_graph_invalid')
+    try:definitions=tuple(StudyBinding.from_dict(row) for row in raw_definitions)
+    except (ValueError,TypeError,KeyError,AttributeError):raise ContractError('study_dependency_graph_invalid') from None
+    binding=StudyBinding.from_dict(document)
+    context=StudyContext(study_id=binding.id or '',composition_id=binding.parameters.get('composition_id','unassigned'),
+        timebase=binding.timebase or binding.span.timebase,bindings=definitions,parameters={'locations':locations or {},'inventories':inventories})
+    from .clock_contracts import validate_context_contract
+    validate_context_contract(binding,context)
     if document.get('operator')=='amp.review.v1':
         from .review_artifacts import run_cli as review_cli
         return review_cli(document,locations=locations,inventories=inventories,output=output,dry_run=dry_run)
     require(document.get('operator') in ALLOWED_OPERATORS,'unsupported_study_operator')
-    binding=StudyBinding.from_dict(document)
-    context=StudyContext(study_id=binding.id or '',composition_id=binding.parameters.get('composition_id','unassigned'),
-        timebase=binding.timebase or binding.span.timebase,parameters={'locations':locations or {},'inventories':inventories})
     return execute_artifacts(binding,context,output=output,dry_run=dry_run)
 
 

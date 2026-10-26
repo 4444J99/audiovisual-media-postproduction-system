@@ -94,6 +94,7 @@ def validate_mask_to_body_span(
     body_span: Any,
     target_body: Any,
     on_screen: bool = True,
+    *, operation=None,
 ) -> tuple[str, ...]:
     errors: list[str] = []
 
@@ -136,7 +137,7 @@ def validate_mask_to_body_span(
         errors.extend(_validate_interval(b_start, b_end, role="Body span"))
 
     # Coupling: mask span must lie strictly within body span [b_start, b_end)
-    if (
+    if operation is None and (
         m_start is not None
         and m_end is not None
         and b_start is not None
@@ -159,6 +160,8 @@ def validate_mask_to_body_span(
                 f"Mask span end ({m_end}) exceeds body interval end ({b_end})"
             )
 
+    from .clock_contracts import validate_mask_clock
+    errors.extend(validate_mask_clock(mask_span,body_span,operation))
     return tuple(errors)
 
 
@@ -177,11 +180,12 @@ def validate_binding(binding: Union[StudyBinding, Mapping[str, Any]]) -> tuple[s
     elif isinstance(binding, Mapping):
         operator = binding.get("operator")
         parameters = binding.get("parameters", {})
+        safe_parameters=parameters if isinstance(parameters,Mapping) else {}
         span = binding.get("span")
-        status = binding.get("status", parameters.get("status", "not_tested"))
-        provenance = binding.get("provenance", parameters.get("provenance", {}))
-        dependencies = binding.get("dependencies", parameters.get("dependencies", ()))
-        mask_coupling = binding.get("mask_coupling", parameters.get("mask_coupling"))
+        status = binding.get("status", safe_parameters.get("status", "not_tested"))
+        provenance = binding.get("provenance", safe_parameters.get("provenance", {}))
+        dependencies = binding.get("dependencies", safe_parameters.get("dependencies", ()))
+        mask_coupling = binding.get("mask_coupling", safe_parameters.get("mask_coupling"))
     else:
         return (f"Expected StudyBinding or Mapping, got {type(binding).__name__}",)
 
@@ -198,6 +202,7 @@ def validate_binding(binding: Union[StudyBinding, Mapping[str, Any]]) -> tuple[s
     # 2. Parameters validation
     if not isinstance(parameters, Mapping):
         errors.append(f"Parameters must be a mapping, got {type(parameters).__name__}")
+        parameters={}
     else:
         err = _check_command_or_url(parameters, "parameters")
         if err:
@@ -208,7 +213,7 @@ def validate_binding(binding: Union[StudyBinding, Mapping[str, Any]]) -> tuple[s
     if span is not None:
         if isinstance(span, SourceSpan):
             errors.extend(_validate_interval(span.start, span.end, role="Binding span"))
-            b_span_tuple = (span.start, span.end)
+            b_span_tuple = span
         elif isinstance(span, Mapping):
             start = span.get("start")
             end = span.get("end")
@@ -219,7 +224,7 @@ def validate_binding(binding: Union[StudyBinding, Mapping[str, Any]]) -> tuple[s
                 and isinstance(end, int)
                 and not isinstance(end, bool)
             ):
-                b_span_tuple = (start, end)
+                b_span_tuple = span
         else:
             errors.append(f"Invalid span type: {type(span).__name__}")
 
@@ -260,6 +265,7 @@ def validate_binding(binding: Union[StudyBinding, Mapping[str, Any]]) -> tuple[s
                 body_span=b_span,
                 target_body=m_target,
                 on_screen=m_on_screen,
+                operation=mask_coupling.get('operation'),
             )
             errors.extend(coupling_errors)
 
@@ -274,6 +280,7 @@ def validate_binding(binding: Union[StudyBinding, Mapping[str, Any]]) -> tuple[s
             body_span=b_span,
             target_body=m_target,
             on_screen=m_on_screen,
+            operation=parameters.get('mask_clock_operation'),
         )
         errors.extend(coupling_errors)
 
@@ -396,6 +403,7 @@ def validate_dependency_dag(
     raise_on_cycle: bool = False,
 ) -> tuple[str, ...]:
     errors: list[str] = []
+    if not isinstance(bindings,(list,tuple)) or len(bindings)>4096:return ('Static dependency graph must be an array of at most 4096 definitions',)
 
     # Map binding identities to their declared dependency identities
     adj: dict[str, list[str]] = {}
@@ -406,25 +414,40 @@ def validate_dependency_dag(
         deps: list[str] = []
 
         if isinstance(b, StudyBinding):
-            b_id = getattr(b, "id", None) or b.parameters.get("id") or b.parameters.get("binding_id") or f"binding_{idx}"
-            declared_deps = getattr(b, "dependencies", ()) or b.parameters.get("dependencies", ()) or b.parameters.get("depends_on", ())
+            b_id = getattr(b, "id", None) or b.parameters.get("id") or b.parameters.get("binding_id")
+            from amp.composition.containers import dependency_identities
+            try:declared_deps=dependency_identities(b.to_dict())
+            except ValueError:errors.append('Invalid or conflicting dependency declarations');declared_deps=()
             if isinstance(declared_deps, (list, tuple)):
-                deps.extend(str(d) for d in declared_deps)
+                deps.extend(declared_deps)
             elif isinstance(declared_deps, str):
-                deps.append(declared_deps)
+                errors.append('Dependencies must be an array of explicit identities')
+            else:errors.append('Dependencies must be an array of explicit identities')
         elif isinstance(b, Mapping):
-            b_id = b.get("id") or b.get("binding_id") or b.get("parameters", {}).get("id") or f"binding_{idx}"
-            declared_deps = b.get("dependencies") or b.get("depends_on") or b.get("parameters", {}).get("dependencies", ())
+            params=b.get('parameters',{});params=params if isinstance(params,Mapping) else {}
+            b_id = b.get("id") or b.get("binding_id") or params.get("id")
+            from amp.composition.containers import dependency_identities
+            try:declared_deps=dependency_identities(b)
+            except ValueError:errors.append('Invalid or conflicting dependency declarations');declared_deps=()
             if isinstance(declared_deps, (list, tuple)):
-                deps.extend(str(d) for d in declared_deps)
+                deps.extend(declared_deps)
             elif isinstance(declared_deps, str):
-                deps.append(declared_deps)
+                errors.append('Dependencies must be an array of explicit identities')
+            else:errors.append('Dependencies must be an array of explicit identities')
 
-        b_id = str(b_id)
+        if not isinstance(b_id,str) or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._:-]{0,127}',b_id):errors.append('Definition needs an explicit public identity');continue
+        if b_id in node_names:errors.append('Duplicate static definition identity');continue
+        if not all(isinstance(dep,str) and re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._:-]{0,127}',dep) for dep in deps):errors.append('Invalid dependency identity');continue
+        if len(deps)!=len(set(deps)):errors.append('Duplicate dependency edge');continue
         node_names.add(b_id)
         if b_id not in adj:
             adj[b_id] = []
         adj[b_id].extend(deps)
+
+    for dependencies in adj.values():
+        if any(dep not in node_names for dep in dependencies):errors.append('Unknown static dependency identity')
+    if sum(map(len,adj.values()))>16384:errors.append('Static dependency edge limit exceeded')
+    if errors:return tuple(errors)
 
     # Cycle detection via 3-color DFS
     # 0 = unvisited, 1 = visiting, 2 = visited
@@ -434,10 +457,12 @@ def validate_dependency_dag(
     def dfs(u: str) -> bool:
         state[u] = 1
         path.append(u)
-        for v in adj.get(u, []):
-            if v not in state:
-                # Dependency node might not be in the list, skip or treat as external
-                continue
+        stack=[(u,iter(adj[u]))]
+        while stack:
+            parent,edges=stack[-1]
+            try:v=next(edges)
+            except StopIteration:
+                stack.pop();path.pop();state[parent]=2;continue
             if state[v] == 1:
                 # Cycle found!
                 cycle_slice = path[path.index(v):] + [v]
@@ -445,10 +470,7 @@ def validate_dependency_dag(
                 errors.append(f"Dependency cycle detected: {cycle_str}")
                 return True
             if state[v] == 0:
-                if dfs(v):
-                    return True
-        path.pop()
-        state[u] = 2
+                state[v]=1;path.append(v);stack.append((v,iter(adj[v])))
         return False
 
     for node in node_names:
