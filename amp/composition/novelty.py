@@ -261,26 +261,16 @@ def canonical_identity(record: Any) -> str:
     """Normalize labels/seed/UI metadata while retaining all realized decisions."""
     data = _record(record)
     runtime = copy.deepcopy(data["runtime"])
-    event_ids = {event["id"]: index for index, event in enumerate(runtime["events"])}
+    from .graph_identity import canonical_events
     material_ids = {material["id"]: {key: value for key, value in material.items()
                                    if key not in {"id", "origin", "metadata", "bytes"}}
                     for material in runtime["materials"]}
-    for event in runtime["events"]:
-        event["id"] = event_ids[event["id"]]
-        if event["parent_id"] is not None:
-            event["parent_id"] = event_ids[event["parent_id"]]
-        if "reused_from" in event:
-            event["reused_from"] = event_ids[event["reused_from"]]
-        if "material_id" in event:
-            event["material_id"] = material_ids[event["material_id"]]
-        for edge in event.get("couplings", []):
-            edge["source_event_id"] = event_ids[edge["source_event_id"]]
     reference = dict(runtime["reference"])
     reference["material_id"] = material_ids[reference["material_id"]]
     identity = {"composition_id": data["composition_id"], "timebase": data["timebase"],
                 "duration_frames": runtime["duration_frames"], "engine_sha256": runtime["engine_sha256"],
                 "reference": reference, "fallback": material_ids[runtime["fallback_material_id"]],
-                "events": runtime["events"]}
+                "events": canonical_events(runtime["events"], material_ids)}
     return hashlib.sha256(canonical_json(identity).encode()).hexdigest()
 
 

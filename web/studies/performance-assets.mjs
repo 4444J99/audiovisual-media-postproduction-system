@@ -1,5 +1,5 @@
 /** Local, hash-verified prepared media; never fetch a locator from a record. */
-import {canonicalJSON,digest,validateRecord,preparePerformanceAudio} from './performance-adapter.mjs';
+import {canonicalJSON,digest,validateRecord,preparePerformanceAudio,validatePreparedGeometry} from './performance-adapter.mjs';
 import {decodeWav} from '../fx/audio-engine.mjs';
 
 const ENGINES=['core.mjs','catalog.mjs','visual-engine.mjs','audio-engine.mjs'];
@@ -45,6 +45,7 @@ export async function loadPreparedFiles(record,selected,audioContext,{signal,dec
       if(!buffer){const bytes=await verified(a,files,signal);verifyWavHeader(bytes,a);const wav=decodeWav(bytes);if(wav.sampleRate!==a.sample_rate||wav.channels.length!==a.channels||wav.channels.some(c=>c.length!==a.samples))throw Error('Decoded audio measurements mismatch');buffer=audioContext.createBuffer(a.channels,a.samples,a.sample_rate);for(let c=0;c<a.channels;c++)buffer.copyToChannel(wav.channels[c],c);audioCache.set(a.sha256,buffer);}
       const assets={picture:[],matte:[]};prepared.materials.set(m.id,{sha256:m.sha256,audioBuffer:buffer,media:manifest.media,assets});
       for(const kind of ['picture','matte'])for(const row of manifest.assets[kind]){let image=imageCache.get(row.sha256);if(!image){const bytes=await verified(row,files,signal),dimensions=pngDimensions(bytes);if(dimensions[0]!==row.width||dimensions[1]!==row.height)throw Error('PNG header measurements mismatch');image=await decodeImage(new Blob([bytes],{type:'image/png'}));imageCache.set(row.sha256,image);signal?.throwIfAborted();if(image.width!==row.width||image.height!==row.height)throw Error('Decoded atlas measurements mismatch');}assets[kind].push(image);}
+      validatePreparedGeometry(m,prepared.materials.get(m.id));
     }
     await preparePerformanceAudio(record,prepared,audioContext,{signal});return prepared;
   }catch(error){for(const image of imageCache.values())image.close?.();disposePrepared(prepared);throw error;}

@@ -106,10 +106,9 @@ def plan_performance(corpus: Mapping[str, Any], profile: Mapping[str, Any], *,
                 else:
                     material = rng.choice(materials)
                     start = rng.randrange(material.span.start, material.span.end)
-                    audio_frame = rng.randrange(material.span.start, material.span.end)
                     sample_rate = material.metadata["audio_sample_rate"]
-                    source_tb = material.span.timebase
-                    sample = int(Fraction(audio_frame * sample_rate * source_tb.den, source_tb.num))
+                    audio_origin = material.metadata["audio_origin_sample"]
+                    sample = rng.randrange(audio_origin, audio_origin + material.metadata["audio_sample_count"])
                     event = {
                         "id": f"{parent_id}-{output}", "parent_id": parent_id, "kind": "material",
                         "scale": layer["scale"], "depth": 2, "start_frame": clock, "end_frame": clock + length,
@@ -156,6 +155,8 @@ class PerformanceSupervisor:
         self.status = "paused"
         self.reasons = []
         execution = self.runtime.get("execution", {})
+        if execution.get("observation_mode") == "simulation" and not self.simulation:
+            raise PerformanceBlocked("simulation-record-is-not-playback-evidence")
         self.windows = copy.deepcopy(execution.get("degradation_windows", []))
         self.transitions = copy.deepcopy(execution.get("transitions", []))
         self.controls = copy.deepcopy(execution.get("control_samples", []))

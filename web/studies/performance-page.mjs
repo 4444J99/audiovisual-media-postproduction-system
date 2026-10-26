@@ -4,7 +4,7 @@ import {loadPreparedFiles,verifyRetainedEngine,disposePrepared} from './performa
 const $=id=>document.getElementById(id);
 let player=null,record=null,recovery=null,prepared=null,context=null,abort=null,sequence=0,preparing=false;
 function status(text){$('status').textContent=text;}
-function controls(){const ready=!!player;for(const id of ['play','pause','checkpoint','export-record','seek'])$(id).disabled=!ready;for(const id of ['record','assets'])$(id).disabled=preparing;$('prepare').disabled=preparing||!record||!$('assets').files.length;$('cancel').disabled=!preparing&&!ready;}
+function controls(){const ready=!!player,state=player?.supervisor.status;for(const id of ['pause','checkpoint','export-record'])$(id).disabled=!ready;$('play').disabled=!ready||['finished','cancelled'].includes(state)||player.supervisor.playing||player.playPending;$('seek').disabled=!ready||state==='cancelled';for(const id of ['record','assets'])$(id).disabled=preparing;$('prepare').disabled=preparing||!record||!$('assets').files.length;$('cancel').disabled=!preparing&&!ready;}
 function pause(){sequence++;abort?.abort();if(preparing){preparing=false;status('Preparation paused. Select Prepare playback to try again.');}player?.pause();controls();}
 function suspend(){sequence++;abort?.abort();preparing=false;player?.suspend();controls();}
 function reset(){pause();player?.cancel();player=null;disposePrepared(prepared);prepared=null;}
@@ -25,15 +25,15 @@ $('prepare').addEventListener('click',async()=>{
   }catch(error){disposePrepared(loaded);if(mine===sequence)status(error.name==='AbortError'?'Preparation cancelled.':error.message);}
   finally{if(mine===sequence){preparing=false;controls();}}
 });
-$('play').addEventListener('click',async()=>{try{await player.play();status(player.supervisor.reasons.length?'Playing qualified fallback: '+player.supervisor.reasons.join(', '):'Playing.');}catch(error){status(error.message);}});
+$('play').addEventListener('click',async()=>{const current=player;try{const pending=current.play();controls();await pending;if(player===current&&current.supervisor.playing)status(current.supervisor.reasons.length?'Playing qualified fallback: '+current.supervisor.reasons.join(', '):'Playing.');}catch(error){if(player===current)status(error.message);}finally{controls();}});
 $('pause').addEventListener('click',()=>{pause();status('Paused. Your record and position are retained.');});
-$('cancel').addEventListener('click',()=>{pause();player?.cancel();status('Cancelled. Save the performed record or prepare the saved performance again.');$('play').disabled=true;});
-$('seek').addEventListener('input',()=>{try{player.seek(Number($('seek').value));}catch(error){status(error.message);}});
+$('cancel').addEventListener('click',()=>{pause();player?.cancel();status('Cancelled. Save the performed record or prepare the saved performance again.');controls();});
+$('seek').addEventListener('input',()=>{try{player.seek(Number($('seek').value));controls();}catch(error){status(error.message);}});
 $('orientation').addEventListener('change',()=>{try{player?.rotate($('orientation').value);}catch(error){status(error.message);}});
 function download(value,name){const url=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)+'\n'],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 $('checkpoint').addEventListener('click',async()=>{try{download(await player.checkpoint(),record.record_id+'-checkpoint.json');}catch(error){status(error.message);}});
 $('export-record').addEventListener('click',()=>download(player.supervisor.executionRecord(),record.record_id+'-performed.json'));
 document.addEventListener('visibilitychange',()=>{if(document.hidden){suspend();status('Paused while hidden. Press Play to resume.');}});
 window.addEventListener('pagehide',suspend);
-setInterval(()=>{if(!player)return;const state=player.supervisor.snapshot();$('seek').value=state.frame;$('clock').textContent=`Frame ${state.frame} / ${player.supervisor.duration} | ${state.audio_voices} voices | ${state.visual_instances} expressive pictures`;if(state.status==='finished')status('Performance finished. Save its performed record and recovery checkpoint.');else if(state.degradation_reasons.length)status('Qualified fallback: '+state.degradation_reasons.join(', '));},500);
+setInterval(()=>{if(!player)return;controls();const state=player.supervisor.snapshot();$('seek').value=state.frame;$('clock').textContent=`Frame ${state.frame} / ${player.supervisor.duration} | ${state.audio_voices} voices | ${state.visual_instances} expressive pictures`;if(state.status==='finished')status('Performance finished. Save its performed record and recovery checkpoint.');else if(state.degradation_reasons.length)status('Qualified fallback: '+state.degradation_reasons.join(', '));},500);
 window.ampPerformance=Object.freeze({pause,get ready(){return !!player;},get player(){return player;}});

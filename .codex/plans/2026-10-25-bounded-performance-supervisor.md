@@ -140,7 +140,7 @@ measured byte counts; rendering delegates to retained `VisualEngine`.
 
 ## Task 5: Actual runtime evidence and delivery
 
-- [ ] Qualify available prepared inputs through their existing source/F06 owner.
+- [x] Qualify available prepared inputs through their existing source/F06 owner.
   If absent, record the exact missing inputs/admission rather than relabel synthetic data.
 - [ ] Save three different actual runtime records and reject exact duplicates.
 - [ ] Run ten actual minutes without input; record events, resource maxima, replay,
@@ -175,5 +175,23 @@ claimed from the authored unadmitted profile.
 Task 5 current source evidence: `compositions/comp-001/qualification.json` retains
 all 3360 source frames as pending and no unit reviews. The existing acceptance
 audit likewise records no qualified units. The production F04 byte profile is
-unadmitted. Keep #113 and its upstream qualification/admission owners open; do
-not relabel the synthetic browser fixture as I-D4 or close the 53-task program.
+unadmitted. #113 and #63 remain open. Closed upstream issue states do not prove
+their unfinished qualification/admission criteria; retain those gates in the
+open program owner. Do not relabel the synthetic browser fixture as I-D4 or
+close the 53-task program.
+
+Final review: seven Important findings accepted and reproduced, then fixed in
+one pass. Independent sibling ordering, simulation-record promotion, independent
+audio origins, restore/cancel races, malformed atlas cells, repeated Play and
+terminal checkpoint reload each have RED-to-GREEN regressions. The complete
+corrected check passed 468 Python tests, 274 Node tests and score/replay checks
+with zero skips. Native-browser v2 proof passed on the corrected source hashes.
+Full dispositions and every declined review boundary are committed in
+`docs/evidence/2026-10-25-performance-runtime/review-disposition.md`.
+
+Final: Ruling: graph canonicalization normalizes independent ordering, preserves
+meaningful draw order and topology, and rejects excess ambiguity at finite work
+budgets -- novelty cannot consume unbounded host time -- a sufficiently complex
+symmetric graph can require changed authored structure before reservation.
+
+Final: minor (deferred): none.

@@ -128,6 +128,14 @@ export class RuntimeSupervisor{
 
 export function referenceGeometry(width,height,aspect){finite(width,1,16384);finite(height,1,16384);finite(aspect,0.01,100);const reserved={x:0,y:height*2/3,width,height:height/3};let w=width,h=w/aspect;if(h>reserved.height){h=reserved.height;w=h*aspect;}return {reserved,expressive:{x:0,y:0,width,height:height*2/3},image:{x:(width-w)/2,y:reserved.y+(reserved.height-h)/2,width:w,height:h}};}
 
+export function validatePreparedGeometry(material,prepared){
+  const md=prepared.media;if(!md||md.fps!==material.span.timebase.num/material.span.timebase.den||!Number.isFinite(md.duration)||md.duration*md.fps+1e-6<material.span.end)throw Error('Prepared picture clock mismatch');
+  integer(md.columns,1);integer(md.framesPerPage,1);
+  for(const kind of ['picture','matte']){const definition=md[kind];integer(definition?.width,1);integer(definition?.height,1);const pages=prepared.assets?.[kind],requiredPages=Math.ceil(material.span.end/md.framesPerPage);if(!Array.isArray(pages)||pages.length<requiredPages)throw Error('Prepared atlas incomplete');
+    for(let page=0;page<requiredPages;page++){const image=pages[page],frames=Math.min(md.framesPerPage,material.span.end-page*md.framesPerPage);integer(image?.width,1);integer(image?.height,1);if(image.width<md.columns*definition.width||image.height<Math.ceil(frames/md.columns)*definition.height)throw Error('Prepared atlas cell geometry mismatch');}
+  }
+}
+
 export function audioVariantKey(record,event){return canonicalJSON({material:record.runtime.materials.find(m=>m.id===event.material_id).sha256,fx:event.fx,seed:record.runtime.seed});}
 /** Prepare reusable native-rate FX buffers, never a process or model per grain.
  * Account for raw buffers, retained stereo variants and temporary DSP buffers
@@ -165,6 +173,7 @@ export class PerformancePlayer{
   measurePrepared(){let audio=0,textures=0;const buffers=new Set(),images=new Set();
     if(!(this.prepared?.materials instanceof Map))throw Error('Prepared materials unavailable');
     for(const m of this.supervisor.runtime.materials){const p=this.prepared.materials.get(m.id);if(!p||p.sha256!==m.sha256)throw Error('Prepared material identity mismatch');const b=p.audioBuffer;if(!b||b.sampleRate!==m.metadata.audio_sample_rate||b.length!==m.metadata.audio_sample_count||!Number.isSafeInteger(b.numberOfChannels)||b.numberOfChannels<1||b.numberOfChannels>2)throw Error('Prepared audio domain mismatch');
+      validatePreparedGeometry(m,p);
       if(!buffers.has(b)){audio+=b.length*b.numberOfChannels*4;buffers.add(b);}
       const md=p.media;if(!md||md.fps!==m.span.timebase.num/m.span.timebase.den||!Number.isFinite(md.duration)||md.duration*md.fps+1e-6<m.span.end||!Number.isSafeInteger(md.columns)||md.columns<1||!Number.isSafeInteger(md.framesPerPage)||md.framesPerPage<1)throw Error('Prepared picture clock mismatch');
       for(const kind of ['picture','matte']){if(!Array.isArray(p.assets?.[kind])||p.assets[kind].length<Math.ceil(m.span.end/md.framesPerPage))throw Error('Prepared atlas incomplete');for(const image of p.assets[kind]){integer(image.width,1);integer(image.height,1);if(!images.has(image)){textures+=image.width*image.height*4;images.add(image);}}}
@@ -179,12 +188,13 @@ export class PerformancePlayer{
     return {...this.preparedBytes,texture_bytes:this.preparedBytes.texture_bytes+rendering+this.canvas.width*this.canvas.height*4,event_history_bytes:new TextEncoder().encode(JSON.stringify(this.supervisor.executionRecord())).byteLength};
   }
   stopVoices(){for(const {source,gain}of this.voices.values()){try{source.stop();}catch{}source.disconnect();gain.disconnect();}this.voices.clear();}
-  async play(){if(terminal(this.supervisor.status))throw Error('Terminal performance');const generation=++this.generation;this.playPending=true;try{await this.context.resume();}catch(error){if(generation!==this.generation)return;this.playPending=false;throw error;}if(generation!==this.generation)return;this.playPending=false;this.supervisor.resume();this.anchorTime=this.context.currentTime;this.anchorFrame=this.supervisor.frame;this.tick();if(this.autoTick)this.schedule();}
+  play(){if(terminal(this.supervisor.status))return Promise.reject(Error('Terminal performance'));if(this.supervisor.playing)return Promise.resolve(this.tick());if(this.playPending)return this.playPromise;
+    const generation=++this.generation;this.playPending=true;this.playPromise=(async()=>{try{await this.context.resume();}catch(error){if(generation!==this.generation)return;this.playPending=false;throw error;}if(generation!==this.generation)return;this.playPending=false;this.supervisor.resume();this.anchorTime=this.context.currentTime;this.anchorFrame=this.supervisor.frame;this.tick();if(this.autoTick)this.schedule();})();return this.playPromise;}
   schedule(){if(this.raf!==null||!this.supervisor.playing)return;this.raf=requestAnimationFrame(()=>{this.raf=null;this.tick();this.schedule();});}
   pause(){++this.generation;this.playPending=false;this.stopVoices();if(this.raf!==null){cancelAnimationFrame(this.raf);this.raf=null;}return this.supervisor.pause();}
   suspend(){const intent=this.playPending||this.supervisor.playing||this.supervisor.resumeIntent;this.pause();if(!terminal(this.supervisor.status))this.supervisor.resumeIntent=intent;return this.supervisor.snapshot();}
   cancel(){this.pause();return this.supervisor.cancel();}
-  seek(frame){this.stopVoices();const state=this.supervisor.seek(frame);this.anchorTime=this.context.currentTime;this.anchorFrame=frame;this.safeRender(state);if(this.supervisor.playing)this.syncAudio(this.supervisor.snapshot());return this.supervisor.snapshot();}
+  seek(frame){++this.generation;this.playPending=false;this.stopVoices();const state=this.supervisor.seek(frame);if(!terminal(this.supervisor.status)&&!this.supervisor.admitted)this.supervisor.admit(this.resources());this.anchorTime=this.context.currentTime;this.anchorFrame=frame;this.safeRender(state);if(this.supervisor.playing)this.syncAudio(this.supervisor.snapshot());return this.supervisor.snapshot();}
   rotate(mode){if(!['horizontal','vertical'].includes(mode))throw Error('Unknown orientation');this.mode=mode;const long=Math.max(this.canvas.width,this.canvas.height),short=Math.min(this.canvas.width,this.canvas.height);this.canvas.width=mode==='horizontal'?long:short;this.canvas.height=mode==='horizontal'?short:long;this.safeRender(this.supervisor.snapshot());}
   tick(){if(!this.supervisor.playing)return this.supervisor.snapshot();const frame=Math.min(this.supervisor.duration,this.anchorFrame+Math.floor(Math.max(0,this.context.currentTime-this.anchorTime)*timebase(this.supervisor.record.timebase)+1e-7));this.supervisor.advance(frame);this.supervisor.observeResources(this.resources());this.safeRender(this.supervisor.snapshot());this.measureControls();const state=this.supervisor.snapshot();this.syncAudio(state);return state;}
   measureControls(){const s=this.supervisor,state=s.snapshot();if(!state.playing||s.controls.some(v=>v.frame===s.frame)||s.controls.at(-1)?.frame>s.frame)return;
@@ -224,5 +234,5 @@ export class PerformancePlayer{
     this.drawSource(ctx,m.id,state.reference.source_frame,box.image);
   }
   async checkpoint(){return this.supervisor.checkpoint();}
-  async restore(packet){this.pause();const restored=await RuntimeSupervisor.restore(packet);const graph=r=>{const copy=clone(r);delete copy.runtime.execution;return canonicalJSON(copy);};if(graph(restored.record)!==graph(this.supervisor.record))throw Error('Checkpoint uses another performance');restored.admit(this.resources());this.supervisor=restored;this.safeRender(restored.snapshot());return restored.snapshot();}
+  async restore(packet){this.pause();const generation=this.generation,restored=await RuntimeSupervisor.restore(packet);if(generation!==this.generation)return this.supervisor.snapshot();const graph=r=>{const copy=clone(r);delete copy.runtime.execution;return canonicalJSON(copy);};if(graph(restored.record)!==graph(this.supervisor.record))throw Error('Checkpoint uses another performance');if(!terminal(restored.status))restored.admit(this.resources());this.supervisor=restored;this.safeRender(restored.snapshot());return restored.snapshot();}
 }

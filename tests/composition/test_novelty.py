@@ -14,6 +14,44 @@ from tests.composition.fixtures import record, runtime
 
 
 class PerformanceNoveltyTests(unittest.TestCase):
+    def test_independent_sibling_order_does_not_create_a_new_performance(self):
+        import copy
+        from tests.composition.fixtures import record
+
+        first = record().to_dict()
+        second = copy.deepcopy(first["runtime"]["events"][1])
+        second.update(id="second", start_frame=90, end_frame=180)
+        first["runtime"]["events"].append(second)
+        reordered = copy.deepcopy(first)
+        reordered["runtime"]["events"][1:] = list(reversed(reordered["runtime"]["events"][1:]))
+        self.assertEqual(canonical_identity(first), canonical_identity(reordered))
+
+    def test_canonical_graph_retains_topology_and_meaningful_visual_order(self):
+        original = record().to_dict()
+        template = original["runtime"]["events"][1]
+        nodes = []
+        for index in range(6):
+            event = copy.deepcopy(template)
+            event.update(id=f"audio-{index}", picture=False,
+                         couplings=[dict(source_event_id=f"audio-{(index + 1) % 6}", lag_frames=1, amount=0.25)])
+            nodes.append(event)
+        original["runtime"]["events"] = [original["runtime"]["events"][0], *nodes]
+        permuted = copy.deepcopy(original)
+        permuted["runtime"]["events"][1:] = list(reversed(permuted["runtime"]["events"][1:]))
+        self.assertEqual(canonical_identity(original), canonical_identity(permuted))
+        triangles = copy.deepcopy(original)
+        for index, event in enumerate(triangles["runtime"]["events"][1:]):
+            event["couplings"][0]["source_event_id"] = f"audio-{index // 3 * 3 + (index + 1) % 3}"
+        self.assertNotEqual(canonical_identity(original), canonical_identity(triangles))
+        picture = record().to_dict()
+        other = copy.deepcopy(picture["runtime"]["events"][1])
+        other.update(id="another-picture")
+        other["picture_clock"]["start_frame"] += 1
+        picture["runtime"]["events"].append(other)
+        reversed_picture = copy.deepcopy(picture)
+        reversed_picture["runtime"]["events"][1:] = list(reversed(reversed_picture["runtime"]["events"][1:]))
+        self.assertNotEqual(canonical_identity(picture), canonical_identity(reversed_picture))
+
     def test_seed_labels_orientation_and_metadata_cannot_disguise_duplicate(self):
         original = record().to_dict()
         renamed = copy.deepcopy(original)

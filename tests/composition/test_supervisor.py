@@ -13,6 +13,17 @@ def performance(seed=1, duration=600):
 
 
 class PerformancePlannerTests(unittest.TestCase):
+    def test_audio_domain_can_be_independent_of_absolute_picture_frames(self):
+        changed = corpus()
+        for material in changed["materials"]:
+            material["span"].update(start=90, end=120)
+            material["metadata"].update(audio_origin_sample=0, audio_sample_count=44100)
+        changed["reference"]["clock"].update(start_frame=90)
+        result = plan_performance(changed, profile(), seed=7, duration_frames=180, record_id="subclip")
+        for event in result.runtime["events"]:
+            if event["kind"] == "material":
+                self.assertTrue(0 <= event["audio_clock"]["start_sample"] < 44100)
+
     def test_profiles_cannot_silently_raise_initial_policy_limits(self):
         for key, value in dict(max_depth=5, audio_voices=25, visual_instances=13,
                                pending_events=257, lookahead_frames=301).items():
@@ -55,6 +66,15 @@ class PerformancePlannerTests(unittest.TestCase):
 
 
 class PerformanceSupervisorTests(unittest.TestCase):
+    def test_simulated_shared_record_cannot_be_promoted_to_playback(self):
+        simulated = PerformanceSupervisor(performance(), simulation=True)
+        simulated.resume()
+        simulated.advance(30)
+        shared = simulated.checkpoint()["record"]
+        with self.assertRaises(PerformanceBlocked):
+            PerformanceSupervisor(shared)
+        self.assertTrue(PerformanceSupervisor(shared, simulation=True).simulation)
+
     def test_pending_horizon_and_active_resource_counts_are_bounded(self):
         supervisor = PerformanceSupervisor(performance(), simulation=True)
         supervisor.resume()

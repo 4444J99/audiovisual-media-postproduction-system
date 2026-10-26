@@ -122,3 +122,32 @@ test('texture pressure never allocates beyond its admitted cap and still paints 
   const p=new PerformancePlayer({record:r,prepared:prepared(),canvas:out,audioContext:ctx,createCanvas:allocate,autoTick:false});
   await p.play();assert.ok(p.supervisor.reasons.includes('texture_bytes'));assert.equal(allocated,0);assert.ok(out.draws.length>0);assert.equal(p.supervisor.snapshot().active.length,0);
 });
+test('later cancel, pause, seek and restore supersede an in-flight restore',async()=>{
+  for(const action of ['cancel','pause','seek']){
+    const p=new PerformancePlayer({record:playbackRecord(),prepared:prepared(),canvas:canvas(),audioContext:audioContext(),createCanvas:canvas,autoTick:false});
+    p.seek(30);const cp=await p.checkpoint();p.seek(0);const pending=p.restore(cp);
+    if(action==='seek')p.seek(10);else p[action]();await pending;
+    assert.equal(p.supervisor.status,action==='cancel'?'cancelled':'paused');assert.equal(p.supervisor.frame,action==='seek'?10:0);
+  }
+  const p=new PerformancePlayer({record:playbackRecord(),prepared:prepared(),canvas:canvas(),audioContext:audioContext(),createCanvas:canvas,autoTick:false});
+  p.seek(10);const a=await p.checkpoint();p.seek(20);const b=await p.checkpoint();p.seek(0);
+  await Promise.all([p.restore(a),p.restore(b)]);assert.equal(p.supervisor.frame,20);
+});
+test('repeated Play synchronizes the existing output clock without rescheduling its anchor',async()=>{
+  const ctx=audioContext(),p=new PerformancePlayer({record:playbackRecord(),prepared:prepared(),canvas:canvas(),audioContext:ctx,createCanvas:canvas,autoTick:false});
+  await p.play();ctx.currentTime=1;await p.play();assert.equal(p.supervisor.frame,30);assert.equal(p.anchorTime,0);assert.equal(ctx.started.length,1);
+});
+test('finished and cancelled checkpoints reload for inspection without playback admission',async()=>{
+  for(const status of ['finished','cancelled']){
+    const p=new PerformancePlayer({record:playbackRecord(),prepared:prepared(),canvas:canvas(),audioContext:audioContext(),createCanvas:canvas,autoTick:false});
+    if(status==='finished')p.seek(180);else p.cancel();const cp=await p.checkpoint();
+    const next=new PerformancePlayer({record:playbackRecord(),prepared:prepared(),canvas:canvas(),audioContext:audioContext(),createCanvas:canvas,autoTick:false});
+    await next.restore(cp);assert.equal(next.supervisor.status,status);assert.equal(next.supervisor.playing,false);await assert.rejects(()=>next.play());
+    if(status==='finished'){next.seek(0);await next.play();assert.equal(next.supervisor.playing,true);}else assert.throws(()=>next.seek(0));
+  }
+});
+test('atlas cell geometry cannot put any required source rectangle outside its page',()=>{
+  for(const mutate of [p=>p.materials.get('clip').media.picture.width=2,p=>p.materials.get('clip').media.matte.height=2,p=>p.materials.get('clip').media.picture.width=0]){
+    const p=prepared();mutate(p);assert.throws(()=>new PerformancePlayer({record:playbackRecord(),prepared:p,canvas:canvas(),audioContext:audioContext(),createCanvas:canvas,autoTick:false}));
+  }
+});

@@ -22,6 +22,11 @@ intentionally reproduces a record without reserving a new identity. Inspection
 is read-only. Planning can save an unadmitted record; its receipt never claims
 actual playback admission.
 
+Identity normalizes independent event ordering while retaining parent/reuse and
+coupling topology and meaningful overlapping picture order. Canonicalization is
+bounded; highly ambiguous graphs fail without reserving an identity. The exact
+work limits and review rationale are retained in the review disposition.
+
 In the existing Studio, select Compose / Recorded performance. Open that record
 and its prepared media folder, prepare playback, then press Play. No files are
 uploaded. Hidden pages pause. Reloaded checkpoints retain position and intent
