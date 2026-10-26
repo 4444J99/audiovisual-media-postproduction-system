@@ -134,11 +134,11 @@ class StudyContractsTests(unittest.TestCase):
         errors = validate_binding(bad_status_binding)
         self.assertTrue(any("not in valid status axis" in e for e in errors))
 
-    def test_mask_to_body_span_coupling_within_bounds(self):
-        # Valid: mask [10, 40) inside body [0, 90) with on_screen=True
+    def test_mask_to_body_span_coupling_defaults_to_the_same_bound_span(self):
+        bound=dict(start=0,end=90,timebase={'num':30,'den':1},source_sha256='a'*64,clock_kind='video_frame')
         coupling_errors = validate_mask_to_body_span(
-            mask_span=(10, 40),
-            body_span=(0, 90),
+            mask_span=bound,
+            body_span=bound,
             target_body="performer_P01_face",
             on_screen=True,
         )

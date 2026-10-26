@@ -132,6 +132,8 @@ class SourceSpan:
     start: int
     end: int
     timebase: Optional[Timebase] = None
+    source_sha256: Optional[str] = None
+    clock_kind: Optional[str] = None
 
     def __post_init__(self):
         if isinstance(self.start, bool) or not isinstance(self.start, int) or self.start < 0:
@@ -140,6 +142,9 @@ class SourceSpan:
             raise ValueError(f"Span end must be an integer strictly greater than start ({self.start}), got {self.end!r}")
         if self.timebase is not None and not isinstance(self.timebase, Timebase):
             object.__setattr__(self, "timebase", Timebase.from_dict(self.timebase))
+        if self.source_sha256 is not None or self.clock_kind is not None:
+            if not isinstance(self.source_sha256,str) or not re.fullmatch(r'[a-f0-9]{64}',self.source_sha256):raise ValueError('Bound span needs a source SHA-256')
+            if self.clock_kind not in ('video_frame','audio_sample') or self.timebase is None:raise ValueError('Bound span needs an explicit clock kind and timebase')
 
     @property
     def duration_frames(self) -> int:
@@ -157,12 +162,17 @@ class SourceSpan:
         return self.start <= index < self.end
 
     def overlaps(self, other: SourceSpan) -> bool:
+        if not isinstance(other,SourceSpan):raise ValueError('Expected another source span')
+        if self.source_sha256 is not None or other.source_sha256 is not None:
+            if self.source_sha256!=other.source_sha256 or self.clock_kind!=other.clock_kind or self.timebase is None or other.timebase is None or self.timebase.as_fraction()!=other.timebase.as_fraction():
+                raise ValueError('Cannot compare different source/clock domains')
         return max(self.start, other.start) < min(self.end, other.end)
 
     def to_dict(self) -> dict[str, Any]:
         result: dict[str, Any] = {"start": self.start, "end": self.end}
         if self.timebase is not None:
             result["timebase"] = self.timebase.to_dict()
+        if self.source_sha256 is not None:result.update(source_sha256=self.source_sha256,clock_kind=self.clock_kind)
         return result
 
     @classmethod
@@ -170,7 +180,7 @@ class SourceSpan:
         if isinstance(data, SourceSpan):
             return data
         tb = Timebase.from_dict(data["timebase"]) if "timebase" in data and data["timebase"] is not None else None
-        return cls(start=data["start"], end=data["end"], timebase=tb)
+        return cls(start=data["start"], end=data["end"], timebase=tb,source_sha256=data.get('source_sha256'),clock_kind=data.get('clock_kind'))
 
 
 @dataclass(frozen=True)
@@ -247,6 +257,20 @@ class MaterialRef:
         )
 
 
+def dependency_identities(data: Mapping[str, Any]) -> tuple[str, ...]:
+    """Normalize supported declarations without silently overriding an alias."""
+    params=data.get('parameters',{})
+    if not isinstance(params,Mapping):raise ValueError('Study parameters must be a mapping')
+    declarations=[owner[key] for owner in (data,params) for key in ('dependencies','depends_on') if key in owner]
+    normalized=[]
+    for value in declarations:
+        if not isinstance(value,(list,tuple)) or not all(isinstance(dep,str) and dep.strip() for dep in value):
+            raise ValueError('Study dependencies must be an array of explicit string identities')
+        normalized.append(tuple(value))
+    if normalized and any(value!=normalized[0] for value in normalized):raise ValueError('Conflicting dependency declarations')
+    return normalized[0] if normalized else ()
+
+
 @dataclass(frozen=True)
 class StudyBinding:
     operator: str
@@ -277,6 +301,7 @@ class StudyBinding:
                 raise ValueError(f"Expected MaterialRef, got {type(m).__name__}")
         object.__setattr__(self, "materials", tuple(valid_mats))
 
+        if not isinstance(self.parameters,Mapping) or not isinstance(self.provenance,Mapping):raise ValueError('Study parameters and provenance must be mappings')
         _reject_command_or_url(self.parameters, "study parameters")
 
         if self.status is not None:
@@ -286,6 +311,7 @@ class StudyBinding:
         if self.id is not None:
             _reject_command_or_url(self.id, "study id")
 
+        if not isinstance(self.dependencies,(list,tuple)) or not all(isinstance(dep,str) and dep.strip() for dep in self.dependencies):raise ValueError('Study dependencies must be explicit string identities')
         for dep in self.dependencies:
             _reject_command_or_url(dep, "study dependency")
 
@@ -321,11 +347,15 @@ class StudyBinding:
         mats = [MaterialRef.from_dict(m) for m in raw_mats]
         span = SourceSpan.from_dict(data["span"]) if data.get("span") is not None else None
         tb = Timebase.from_dict(data["timebase"]) if data.get("timebase") is not None else None
-        deps = tuple(data.get("dependencies", ()))
+        deps = dependency_identities(data)
+        params=dict(data.get('parameters',{}))
+        if 'mask_coupling' in data:
+            if 'mask_coupling' in params and params['mask_coupling']!=data['mask_coupling']:raise ValueError('Conflicting mask coupling declarations')
+            params['mask_coupling']=data['mask_coupling']
         return cls(
             operator=data["operator"],
             materials=tuple(mats),
-            parameters=data.get("parameters", {}),
+            parameters=params,
             span=span,
             timebase=tb,
             status=data.get("status", "not_tested"),

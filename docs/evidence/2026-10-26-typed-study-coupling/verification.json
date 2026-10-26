@@ -1,0 +1,55 @@
+{
+  "current_session_release_verified": false,
+  "estate_complete": false,
+  "f03_complete": false,
+  "production_media_execution_or_artistic_acceptance_claimed": false,
+  "program_complete": false,
+  "regression_evidence": [
+    "Dependency alias normalization failed before correction",
+    "Independent operation missing from planner result before correction",
+    "Wrong typed source hash passed preflight before correction",
+    "Valid acyclic parameter alias failed study_unconsumed_parameter before correction"
+  ],
+  "required_gate": {
+    "command": "/usr/local/bin/python3 tools/check.py",
+    "exit_code": 0,
+    "log_sha256": "44aa6f0c0db83fc3f9e9b69d44499e2bc5fce6b366f27456427d060d37b387e3",
+    "node_tests": 280,
+    "python_tests": 680,
+    "score_validation": "passed",
+    "skipped": 0
+  },
+  "retirement_authorized": false,
+  "review": {
+    "additional_alias_compatibility_finding_corrected": true,
+    "correction_rounds": 2,
+    "original_findings_corrected": 3,
+    "original_important_findings": 3,
+    "review_disposition": "review-disposition.md"
+  },
+  "schema": "amps.typed-study-coupling-verification.v1",
+  "schema_validation": {
+    "dialect": "Draft202012",
+    "malformed_examples_rejected": 6,
+    "metaschemas_passed": 3,
+    "valid_study_examples": 2
+  },
+  "source_base": "be81bfd7ed1363574bd19d5d0808396fbd98f44c",
+  "source_sha256": {
+    "amp/composition/containers.py": "47d59e1434bbdfd95b27428386263443e274793ff470318db02c621d86e35648",
+    "amp/studies/clock_contracts.py": "36165713ea36dd4852c74c95cef1186068f82ab847b44b873e99d2b76530d7aa",
+    "amp/studies/contracts.py": "39d9dde58edd47200a5169c3ee7c05f8c5223d1c5cc42098af704355d155fd37",
+    "amp/studies/counterfactuals.py": "4001312daf26fab9cab146b7379ed40f16266943462d2e4f24fafd048238f7f9",
+    "amp/studies/dispatch.py": "0d26bb05fc1c2592df4b0dea704452f753e622a1bf562d64a3b8c87aebf2cdd8",
+    "amp/studies/execution_artifacts.py": "6229fbf68d9c1e46760790bb3a6b137f66ea9880499d8a65c5ef1eff496cdbfd",
+    "amp/studies/review_artifacts.py": "90279768802cd952db580ed04dab06d9f7990606b80ca213fd7042f1440f23bb",
+    "compositions/comp-001/studies/schemas/material.v1.schema.json": "ed3c5bfa483704329c9160553518e5fc976504b7e3904ad7d142f60a961051d3",
+    "compositions/comp-001/studies/schemas/performance.v1.schema.json": "1addb82cc9b524b91a932b712bdedd9ac5ecc46d230efb78ca5149d2f0f4c8bb",
+    "compositions/comp-001/studies/schemas/study-binding.v1.schema.json": "eb77a1ed17484ec2ab769746a5cd61f582279e7d2d4cfabdb2646aa1f3716de6",
+    "tests/studies/test_clock_contracts.py": "602b69554696c6a22af92eea5848dac4f55e4b2f7e863b7f78e85ff8966d786f",
+    "tests/studies/test_contracts.py": "14d84e941eae460faa3aee03b74ea1523bd3ebe242f7d5d7ae1e3b3cfb722a8e",
+    "tests/studies/test_counterfactuals.py": "23ca7fddaf38e219b79b02324181a36dd2eee90aac38d0fdc18a798fb0f691df",
+    "tests/studies/test_review_evidence.py": "b6ee004aaa94956ab1db5aa8685cc71231da9e4d35a4843fb1941b588e419316",
+    "tests/studies/test_study_execution.py": "09c435e2ba8cd65ca6c0ade3d899529e5b9d305f0febcb35eca9e4f34e6fda24"
+  }
+}

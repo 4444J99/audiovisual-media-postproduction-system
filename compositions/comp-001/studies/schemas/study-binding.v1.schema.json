@@ -15,7 +15,13 @@
       "minLength": 1
     },
     "parameters": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "mask_coupling": {"$ref": "#/properties/mask_coupling"},
+        "mask_clock_operation": {"$ref": "#/$defs/independentMaskClock"},
+        "dependencies": {"$ref": "#/properties/dependencies"},
+        "depends_on": {"$ref": "#/properties/dependencies"}
+      }
     },
     "status": {
       "type": "string",
@@ -56,11 +62,14 @@
     },
     "span": {
       "type": "object",
+      "dependentRequired": {"source_sha256": ["clock_kind", "timebase"], "clock_kind": ["source_sha256", "timebase"]},
       "required": [
         "start",
         "end"
       ],
       "properties": {
+        "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "clock_kind": {"enum": ["video_frame", "audio_sample"]},
         "start": {
           "type": "integer",
           "minimum": 0
@@ -101,10 +110,14 @@
     },
     "dependencies": {
       "type": "array",
+      "uniqueItems": true,
+      "maxItems": 4096,
       "items": {
         "type": "string"
       }
     },
+    "depends_on": {"$ref": "#/properties/dependencies"},
+    "definitions": {"type": "array", "maxItems": 4096, "items": {"$ref": "#"}},
     "mask_coupling": {
       "type": "object",
       "required": [
@@ -113,6 +126,8 @@
         "mask_span"
       ],
       "properties": {
+        "body_span": {"$ref": "#/$defs/boundVideoSpan"},
+        "operation": {"$ref": "#/$defs/independentMaskClock"},
         "target_body": {
           "type": "string",
           "minLength": 1
@@ -121,6 +136,7 @@
           "type": "boolean"
         },
         "mask_span": {
+          "$ref": "#/$defs/boundVideoSpan",
           "type": "object",
           "required": [
             "start",
@@ -137,6 +153,24 @@
             }
           }
         }
+      }
+    }
+  },
+  "$defs": {
+    "boundVideoSpan": {
+      "$ref": "#/properties/span",
+      "required": ["start", "end", "timebase", "source_sha256", "clock_kind"],
+      "properties": {"clock_kind": {"const": "video_frame"}}
+    },
+    "independentMaskClock": {
+      "type": "object",
+      "required": ["operator", "reason", "mask_span", "body_span"],
+      "additionalProperties": false,
+      "properties": {
+        "operator": {"const": "mask.independent-clock.v1"},
+        "reason": {"type": "string", "pattern": "\\S", "maxLength": 2048},
+        "mask_span": {"$ref": "#/$defs/boundVideoSpan"},
+        "body_span": {"$ref": "#/$defs/boundVideoSpan"}
       }
     }
   },
