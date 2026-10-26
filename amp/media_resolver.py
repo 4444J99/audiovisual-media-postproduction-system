@@ -72,7 +72,8 @@ def inventory_rows(document):
 
 
 class MediaResolver:
-    def __init__(self, repo_root, locations=None, inventories=(), *, project_root=None, media_root=None):
+    def __init__(self, repo_root, locations=None, inventories=(), *, project_root=None, media_root=None, identity_reader=None):
+        self.identity_reader=identity_reader
         self.repo_root = Path(repo_root).resolve()
         self.project_root = Path(project_root).resolve() if project_root is not None else None
         self.media_root = Path(media_root).resolve() if media_root is not None else None
@@ -128,7 +129,7 @@ class MediaResolver:
         cached = next((key for key in self._verified if key[0] == resolved_path and key[1] == expected["sha256"]
                        and ("bytes" not in expected or key[2] == expected["bytes"])), None)
         if cached is None:
-            actual = file_identity(resolved_path, role)
+            actual = file_identity(resolved_path, role) if self.identity_reader is None else self.identity_reader(resolved_path,role,expected)
             if any(actual[k] != value for k, value in expected.items()):
                 raise ContractError("input_identity_mismatch", role)
             key = (resolved_path, actual["sha256"], actual["bytes"])
@@ -258,7 +259,9 @@ class MediaResolver:
 
     def recheck(self):
         for (resolved_path, digest, count), role in self._verified.items():
-            if file_identity(resolved_path, role) != {"sha256": digest, "bytes": count}:
+            expected={"sha256":digest,"bytes":count}
+            actual=file_identity(resolved_path,role) if self.identity_reader is None else self.identity_reader(resolved_path,role,expected)
+            if actual != expected:
                 raise ContractError("input_changed_during_execution", role)
 
 

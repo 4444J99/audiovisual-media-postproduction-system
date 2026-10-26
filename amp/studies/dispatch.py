@@ -52,6 +52,16 @@ def validate_study_parameters(parameters: Mapping[str, any]) -> None:
 
 
 def run_study(binding: StudyBinding, context: StudyContext) -> StudyResult:
+    """Execute verified artifacts through the same fixed dispatch as the CLI."""
+    if isinstance(binding,StudyBinding) and binding.operator=='amp.review.v1':
+        from .review import build_review
+        return build_review(binding,context)
+    from .execution_artifacts import build_executed_study
+    return build_executed_study(binding,context)
+
+
+def build_study_manifest(binding: StudyBinding, context: StudyContext) -> StudyResult:
+    """Legacy planning metadata only; this does not execute a media operator."""
     if not isinstance(binding, StudyBinding):
         raise ValueError(f"Expected StudyBinding, got {type(binding).__name__}")
     if not isinstance(context, StudyContext):
@@ -88,13 +98,9 @@ def run_study(binding: StudyBinding, context: StudyContext) -> StudyResult:
     # Validate parameters
     validate_study_parameters(binding.parameters)
     validate_study_parameters(context.parameters)
-    if binding.operator == "amp.review.v1":
-        from .review import build_review
-        return build_review(binding, context)
-
     # Resolve output directory
     output_dir = resolve_study_output_dir(context, workstream_id, case_id)
-    output_dir.mkdir(parents=True, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=False)
 
     # Determine span
     span = binding.span or context.span or SourceSpan(0, 3360, context.timebase)
@@ -108,6 +114,8 @@ def run_study(binding: StudyBinding, context: StudyContext) -> StudyResult:
         "case_id": case_id,
         "composition_id": context.composition_id,
         "operator": binding.operator,
+        "status": "planned",
+        "execution_performed": False,
         "span": span.to_dict(),
         "timebase": context.timebase.to_dict(),
         "inputs": [inp.to_dict() for inp in binding.inputs],
@@ -116,7 +124,7 @@ def run_study(binding: StudyBinding, context: StudyContext) -> StudyResult:
 
     manifest_bytes = json.dumps(manifest_data, indent=2, sort_keys=True).encode("utf-8")
     manifest_path = output_dir / "study-manifest.json"
-    manifest_path.write_bytes(manifest_bytes)
+    with manifest_path.open('xb') as stream:stream.write(manifest_bytes)
 
     manifest_sha = hashlib.sha256(manifest_bytes).hexdigest()
     product_ref = MaterialRef(
@@ -138,5 +146,7 @@ def run_study(binding: StudyBinding, context: StudyContext) -> StudyResult:
             "case_id": case_id,
             "output_dir": str(output_dir),
             "manifest_sha256": manifest_sha,
+            "status": "planned",
+            "execution_performed": False,
         },
     )

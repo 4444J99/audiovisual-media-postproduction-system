@@ -8,6 +8,7 @@ Provides immutable data structures with strict domain validation:
 from __future__ import annotations
 
 import re
+import json
 from dataclasses import dataclass, field
 from fractions import Fraction
 from pathlib import Path
@@ -46,6 +47,24 @@ ALLOWED_MATERIAL_KINDS = frozenset({
     "dat",
     "metadata",
 })
+
+
+def _validate_public_receipt(value):
+    """Output observations are JSON data, not executable recipe parameters."""
+    try:json.dumps(value,allow_nan=False)
+    except (TypeError,ValueError,OverflowError):raise ValueError('Invalid public receipt JSON') from None
+    def inspect(item):
+        if isinstance(item,str):
+            if re.search(r'(^/|^~/|^[A-Za-z]:\\|file://|/(?:Users|Volumes|private|home|tmp)/)',item):
+                raise ValueError('Private locator in public receipt')
+        elif isinstance(item,Mapping):
+            for key,child in item.items():
+                if not isinstance(key,str) or key.lower() in {'api_key','access_token','password','secret','authorization','locations','media_root','project_root'}:
+                    raise ValueError('Private field in public receipt')
+                inspect(key);inspect(child)
+        elif isinstance(item,(list,tuple)):
+            for child in item:inspect(child)
+    inspect(value)
 
 FORBIDDEN_COMMAND_PATTERNS = [
     re.compile(r"^\s*(sh|bash|zsh|python[0-9.]*|perl|ruby|php|node|curl|wget|nc|netcat|rm|cat|kill)\b", re.IGNORECASE),
@@ -429,7 +448,10 @@ class StudyResult:
                 raise ValueError(f"Expected MaterialRef product, got {type(p).__name__}")
         object.__setattr__(self, "products", tuple(valid_products))
 
-        _reject_command_or_url(self.metadata, "result metadata")
+        for key,value in self.metadata.items():
+            _reject_command_or_url(key,'result metadata key')
+            if key=='public_receipt':_validate_public_receipt(value)
+            else:_reject_command_or_url(value,'result metadata value')
 
     def to_dict(self) -> dict[str, Any]:
         data: dict[str, Any] = {

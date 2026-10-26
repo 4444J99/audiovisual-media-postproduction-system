@@ -38,6 +38,7 @@ from .directing import (
     run_three_round_directing_experiment,
 )
 from .dispatch import (
+    build_study_manifest,
     STUDY_BINDING_FAMILY,
     resolve_study_output_dir,
     run_study,
@@ -126,6 +127,7 @@ from .voice_acoustics import (
 __all__ = [
     # Dispatch
     "STUDY_BINDING_FAMILY",
+    "build_study_manifest",
     "run_study",
     "resolve_study_output_dir",
     # Review

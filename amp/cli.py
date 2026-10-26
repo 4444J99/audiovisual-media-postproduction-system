@@ -71,7 +71,7 @@ def main():
         try:
             document = read_json(args.binding, role="binding", limit=1024*1024)
             if isinstance(document, dict) and document.get("schema_version") == "amps.study.v1":
-                from .studies.review_artifacts import run_cli
+                from .studies.execution_artifacts import run_cli
                 result = run_cli(document,
                     locations=read_json(args.locations, role="locations") if args.locations else None,
                     inventories=[read_json(p, role="media-index") for p in args.media_index],
