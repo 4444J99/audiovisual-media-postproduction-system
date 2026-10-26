@@ -1,0 +1,60 @@
+{
+  "schema": "amps.performance-profile.v1",
+  "composition_id": "comp-001",
+  "timebase": {"num": 30, "den": 1},
+  "max_depth": 4,
+  "audio_voices": 24,
+  "visual_instances": 12,
+  "pending_events": 256,
+  "lookahead_frames": 300,
+  "admitted": false,
+  "byte_caps": {},
+  "admission": {
+    "owner_id": "F04",
+    "status": "not-measured",
+    "required_measurements": ["decoded_audio_bytes", "texture_bytes", "event_history_bytes"],
+    "scope": "Playback requires an explicitly admitted measured profile; planning is separate."
+  },
+  "reference_fraction": 0.3333333333333333,
+  "layers": [
+    {
+      "id": "macro",
+      "scale": "scene",
+      "duration_frames": [450, 1350],
+      "gain": [0.08, 0.25],
+      "intensity": [0.1, 0.6],
+      "fx_types": ["routing", "delay"],
+      "reuse_every": 3,
+      "coupling_amount": 0.25,
+      "coupling_lag_frames": 1
+    },
+    {
+      "id": "meso",
+      "scale": "phrase",
+      "duration_frames": [90, 300],
+      "gain": [0.1, 0.3],
+      "intensity": [0.1, 0.7],
+      "fx_types": ["routing", "gate", "reverse"],
+      "reuse_every": 3,
+      "coupling_amount": 0.25,
+      "coupling_lag_frames": 1
+    },
+    {
+      "id": "micro",
+      "scale": "shot",
+      "duration_frames": [15, 90],
+      "gain": [0.04, 0.15],
+      "intensity": [0.1, 0.75],
+      "fx_types": ["routing", "stutter", "granular"],
+      "reuse_every": 3,
+      "coupling_amount": 0.25,
+      "coupling_lag_frames": 1
+    }
+  ],
+  "acceptance": {
+    "technical": "not-tested-on-production-materials",
+    "perceptual": "pending",
+    "artistic": "pending",
+    "distribution": "not-authorized-by-this-profile"
+  }
+}

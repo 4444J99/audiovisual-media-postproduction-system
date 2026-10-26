@@ -8,6 +8,7 @@ for command in [[sys.executable, "-m", "amp.cli", "validate"],
                 [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
                 ["node", "tests/score.test.mjs"],
                 ["node", "--test", *[str(path.relative_to(root)) for path in sorted((root / "tests/studio").glob("*.test.mjs"))]],
+                ["node", "--test", *[str(path.relative_to(root)) for path in sorted((root / "tests/composition").glob("*.test.mjs"))]],
                 ["node", "--test", "tests/directed-media-state.test.mjs"],
                 ["node", "--test", "tests/room-tone-transport.test.mjs", "tests/room-tone-catalog.test.mjs", "tests/room-tone-page.test.mjs"],
                 ["node", "--test", *[str(path.relative_to(root)) for path in sorted((root / "tests/fx").glob("*.test.mjs"))]]]:

@@ -17,5 +17,8 @@ tracking = ["opencv-python-headless>=4.8,<6"]
 amp = "amp.cli:main"
 
 [tool.setuptools]
-packages = ["amp"]
 include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["amp", "amp.*"]
+namespaces = false

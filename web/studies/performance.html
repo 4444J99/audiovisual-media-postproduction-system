@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recorded performance</title>
+<style>
+body{margin:0;background:#101317;color:#edf0ee;font:16px/1.5 system-ui,sans-serif}main{max-width:1000px;margin:auto;padding:20px}h1{font-size:1.5rem}label{display:block;margin:12px 0}button,input,select{font:inherit}button,select{background:#293334;color:inherit;border:1px solid #647878;border-radius:5px;padding:8px}button:disabled{opacity:.45}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #cfff83}canvas{display:block;max-width:100%;max-height:75vh;width:auto;height:auto;margin:20px auto;background:#000}nav{display:flex;gap:8px;flex-wrap:wrap}#status{white-space:pre-wrap;overflow-wrap:anywhere}input[type=range]{width:100%}small{color:#b8c5c1}a{color:#cfff83}
+</style></head><body><main>
+<h1>Recorded performance</h1>
+<p>Open a saved performance and its prepared media folder. The full reference stays visible below the expressive picture.</p>
+<label>Performance record or recovery checkpoint <input id="record" type="file" accept="application/json,.json"></label>
+<label>Prepared media folder <input id="assets" type="file" webkitdirectory multiple></label>
+<nav aria-label="Performance controls">
+<button id="prepare" disabled>Prepare playback</button><button id="play" disabled>Play</button><button id="pause" disabled>Pause</button><button id="cancel" disabled>Cancel</button>
+<label>View <select id="orientation"><option value="horizontal">Horizontal</option><option value="vertical">Vertical</option></select></label>
+<button id="checkpoint" disabled>Save recovery checkpoint</button><button id="export-record" disabled>Save performed record</button>
+</nav>
+<p id="status" role="status" aria-live="polite">Select a saved record. Playback waits for your Play gesture.</p>
+<canvas id="stage" width="960" height="540" aria-label="Expressive picture above an unobstructed full reference"></canvas>
+<label>Output position <input id="seek" type="range" min="0" max="1" value="0" step="1" disabled></label>
+<small id="clock">No performance loaded.</small>
+<p><a href="/#compose/performance">Return to Studio</a></p>
+</main><script type="module" src="performance-page.mjs"></script></body></html>

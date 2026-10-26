@@ -19,7 +19,7 @@ class RoomSitePackagingTests(unittest.TestCase):
     def setUp(self):
         temporary = tempfile.TemporaryDirectory(prefix="room-site-packaging-")
         self.addCleanup(temporary.cleanup)
-        self.root = Path(temporary.name)
+        self.root = Path(temporary.name).resolve()
 
     def write(self, path, data=b"fixture bytes"):
         path.parent.mkdir(parents=True, exist_ok=True)

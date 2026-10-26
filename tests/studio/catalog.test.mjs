@@ -2,6 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {normalizeCatalog,availability,filterObjects,parseRoute,sourceMoment,toolForPath} from '../../web/studio/core.mjs';
 const sha='a'.repeat(64),other='b'.repeat(64);
+test('recorded performance is reachable through the existing compose workspace',()=>{
+  assert.deepEqual(parseRoute('#compose/performance'),{mode:'compose',tool:'performance'});
+  assert.equal(toolForPath('/studies/performance.html'),'performance');
+});
 const base={objects:[{sha256:sha,names:['original.mp4'],type:'video',links:[],decode:'passed'}],reproductions:[],retained_outputs:[],retained_inputs:[]};
 test('every identity is retained once across addenda',()=>assert.equal(normalizeCatalog({...base,retained_outputs:[{sha256:sha,names:['alias.mp4'],links:[]}]}).length,1));
 test('aliases are merged, never overwritten',()=>assert.deepEqual(normalizeCatalog({...base,retained_outputs:[{sha256:sha,names:['alias.mp4'],links:[]} ]})[0].names,['original.mp4','alias.mp4']));

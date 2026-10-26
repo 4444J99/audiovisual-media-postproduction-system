@@ -39,7 +39,7 @@ class InstalledWheelTests(unittest.TestCase):
     def setUpClass(cls):
         cls.temporary=tempfile.TemporaryDirectory(prefix='amp-wheel-test-')
         cls.addClassCleanup(cls.temporary.cleanup)
-        cls.root=Path(cls.temporary.name)
+        cls.root=Path(cls.temporary.name).resolve()
         source=cls.root/'source';source.mkdir()
         cls.runtime_files=[line.split(' ',1)[1] for line in (ROOT/'MANIFEST.in').read_text().splitlines()
                            if line.startswith('include ')]
@@ -61,7 +61,7 @@ class InstalledWheelTests(unittest.TestCase):
         cls.wheel=next((cls.root/'wheel').glob('*.whl'))
         cls.run_command([sys.executable,'-m','venv','--system-site-packages',str(cls.root/'environment')],cls.root)
         cls.python=cls.root/'environment/bin/python'
-        cls.run_command([str(cls.python),'-m','pip','install','--no-index','--no-deps',str(cls.wheel)],cls.root)
+        cls.run_command([str(cls.python),'-m','pip','install','--force-reinstall','--no-index','--no-deps',str(cls.wheel)],cls.root)
         cls.consumer=cls.root/'consumer';cls.consumer.mkdir()
         cls.probe=cls.consumer/'probe.py';shutil.copyfile(ROOT/'tests/wheel_preflight_probe.py',cls.probe)
 
@@ -108,3 +108,18 @@ class InstalledWheelTests(unittest.TestCase):
         self.assertTrue(receipt['fx_render_verified'])
         self.assertTrue(receipt['complete_asset_pack_staged'])
         self.assertTrue(receipt['asset_dependency_failures_rejected'])
+
+    def test_installed_performance_subpackages_use_the_bundled_retained_engine(self):
+        from amp.composition.performance_cli import retained_engine_identity
+
+        script = (
+            'import json; import amp.composition.supervisor as supervisor; '
+            'from amp.composition.novelty import PerformanceHistory; '
+            'from amp.composition.performance_cli import retained_engine_identity; '
+            'import amp.studies.integration; '
+            'print(json.dumps({"supervisor":supervisor.__file__,"engine":retained_engine_identity()}))'
+        )
+        result = self.run_command([str(self.python), '-I', '-c', script], self.consumer)
+        receipt = json.loads(result.stdout)
+        self.assertTrue(Path(receipt['supervisor']).is_relative_to(self.root / 'environment'))
+        self.assertEqual(receipt['engine'], retained_engine_identity())

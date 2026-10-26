@@ -73,7 +73,9 @@ def main(root):
         'nodes':[{'id':'source','type':'source'},{'id':'output','type':'output','gain':1}],
         'connections':[{'from':'source','to':'output','port':port,'gain':1,'role':'insert'}
                        for port in ('audio','picture','text','matte')],'events':[]})
-    font=Path(os.environ.get('AMP_TEST_FONT','/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
+    native_font=('/System/Library/Fonts/Supplemental/Arial.ttf' if sys.platform=='darwin'
+                 else '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf')
+    font=Path(os.environ.get('AMP_TEST_FONT',native_font))
     fx_binding=write_json(root/'fx-binding.json',binding('fx.rack.v1',
         {'recipe':reference(patch),'asset_receipt':asset_ref,'font':reference(font)},
         {'width':64,'height':64,'fps':12,'duration':1,'overlay':'none','audio_input':'reference'},51))

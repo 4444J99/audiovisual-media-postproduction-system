@@ -1,0 +1,66 @@
+{
+  "schema": "amps.synthetic-browser-regression.v2",
+  "production_acceptance": false,
+  "played_frame": 32,
+  "repeated_play_anchor_preserved": true,
+  "suspended_playing": false,
+  "suspended_resume_intent": true,
+  "restored_frame": 32,
+  "restored_playing": false,
+  "restored_resume_intent": true,
+  "protected_reference_rgba": [
+    255,
+    0,
+    0,
+    255
+  ],
+  "finished_checkpoint_reloaded": true,
+  "cancel_won_over_inflight_restore": true,
+  "cancelled_checkpoint_reloaded": true,
+  "voices_after_cancel": 0,
+  "resources": {
+    "decoded_audio_bytes": 2116800,
+    "texture_bytes": 5760480,
+    "event_history_bytes": 7238
+  },
+  "resource_maxima": {
+    "decoded_audio_bytes": 2116800,
+    "texture_bytes": 5760480,
+    "event_history_bytes": 7238
+  },
+  "context_state": "running",
+  "ui_status": "Cancelled. Save the performed record or prepare the saved performance again.",
+  "play_disabled": true,
+  "seek_disabled": true,
+  "observed_at_utc": "2026-10-26T01:54:48Z",
+  "source_sha256": {
+    "amp/composition/graph_identity.py": "e1a6378ed5805a6656d1164290a50724ef9e0bd59a89b4b9533b8136d08f5238",
+    "amp/composition/novelty.py": "577ba58ac8a38dc392522208634b98fa32405783f7463bb628ccb2430725df36",
+    "amp/composition/supervisor.py": "27ae37ccebf8a69019305c0fcb11c398d2059d9b5c0dc8f4abf06e3b1ca671ea",
+    "web/studies/performance-adapter.mjs": "500004ed25172339d47636f0b1d012dc5b851acf6a99860a25c5b6020f390f31",
+    "web/studies/performance-assets.mjs": "9af2ef68c1fe83286144979c42dc39d8bfc7e13fa25199c3076d1d13af5a2b4f",
+    "web/studies/performance-page.mjs": "5ff9ec20252272b5d3fa3b0924bee2616df63e0fddd14ac7c7bfacd3094ab95f",
+    "web/studies/performance.html": "922d3034cdaac92a261faf77dee43e7a209b5487e581902aacfb4c7f3089b39d",
+    "web/fx/core.mjs": "2127a48b62c507082ccf783937fc0ffb3222bab158d31d4768ea1d5439b9b0af",
+    "web/fx/catalog.mjs": "7f3659b58b446e9aae932b2fc9a2246524b67ec9d70f7730c37d409ab914adfd",
+    "web/fx/visual-engine.mjs": "a2edf08ab6793a07319cf955065624c6fd884f17ba1ce1ef557057474baab05b",
+    "web/fx/audio-engine.mjs": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f",
+    "tests/composition/serve_performance_fixture.py": "fbb85284f2250fce799b26f534a955765a0f95441a3785b8d4fadaac0f632c69"
+  },
+  "screenshot_sha256": "2be0a6e2e2950c035ecf3b67f225f86c2c1889981185493627521b46dea10341",
+  "previous_evidence": "synthetic-browser.json",
+  "verification": {
+    "command": "python tools/check.py",
+    "exit_code": 0,
+    "python_tests": 468,
+    "node_tests": 274,
+    "skipped": 0,
+    "score_contract": "passed",
+    "review_findings": 7,
+    "review_findings_reproduced_then_fixed": 7,
+    "resource_scope": "known retained audio buffers, atlas/render canvases and serialized history; total process RSS and native audio-device timing not certified",
+    "production_acceptance": false
+  },
+  "screenshot": "synthetic-browser-reviewed.png",
+  "production_owner": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/113"
+}
