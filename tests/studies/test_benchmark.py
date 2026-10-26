@@ -27,7 +27,7 @@ class BenchmarkValidationTests(unittest.TestCase):
         review_units = self.review.get("units", [])
         self.assertEqual(len(review_units), 24, "Units review must define exactly 24 units")
 
-    def test_all_six_case_types_covered(self):
+    def test_historical_case_labels_are_preserved_without_qualifying_current_cases(self):
         required_case_types = {
             "intelligible_foreground_speech",
             "room_dense_invocation",
@@ -36,10 +36,10 @@ class BenchmarkValidationTests(unittest.TestCase):
             "movement_impact_transient",
             "reverb_tail_hold",
         }
-        covered_types = {u["case_type"] for u in self.benchmark["units"]}
+        covered_types = {u["case_type"] for u in self.benchmark["historical_unverified_units"]}
         self.assertEqual(covered_types, required_case_types, "All 6 shared case types must be covered")
 
-        review_types = {u["case_type"] for u in self.review["units"]}
+        review_types = {u["case_type"] for u in self.review["historical_unverified_units"]}
         self.assertEqual(review_types, required_case_types, "All 6 shared case types must be covered in units.review.json")
 
     def test_frame_bounds_inside_valid_spine(self):
@@ -87,7 +87,7 @@ class BenchmarkValidationTests(unittest.TestCase):
             self.assertIn("draft_transcript", u)
             self.assertIn("reviewed_heard_wording", u)
             self.assertIsInstance(u["draft_transcript"], str)
-            self.assertIsInstance(u["reviewed_heard_wording"], str)
+            self.assertIsNone(u["reviewed_heard_wording"])
 
         for ru in self.review["units"]:
             self.assertIn("draft_transcript", ru)

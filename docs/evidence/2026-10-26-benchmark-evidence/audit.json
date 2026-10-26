@@ -1,0 +1,408 @@
+{
+  "schema": "amps.benchmark-audit.v1",
+  "source": {
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "frame_count": 3360,
+    "fps": {
+      "numerator": 30,
+      "denominator": 1
+    }
+  },
+  "units": [
+    {
+      "unit_id": "BM-01",
+      "frame_span": [
+        155,
+        210
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-02",
+      "frame_span": [
+        210,
+        240
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-03",
+      "frame_span": [
+        249,
+        293
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-04",
+      "frame_span": [
+        293,
+        300
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-05",
+      "frame_span": [
+        341,
+        387
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-06",
+      "frame_span": [
+        399,
+        529
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-07",
+      "frame_span": [
+        529,
+        550
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-08",
+      "frame_span": [
+        622,
+        712
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-09",
+      "frame_span": [
+        990,
+        1020
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-10",
+      "frame_span": [
+        1422,
+        1452
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-11",
+      "frame_span": [
+        1455,
+        1560
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-12",
+      "frame_span": [
+        1581,
+        1611
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-13",
+      "frame_span": [
+        1662,
+        1830
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-14",
+      "frame_span": [
+        2040,
+        2190
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-15",
+      "frame_span": [
+        2322,
+        2430
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-16",
+      "frame_span": [
+        2554,
+        2647
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-17",
+      "frame_span": [
+        2647,
+        2820
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-18",
+      "frame_span": [
+        2835,
+        2865
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-19",
+      "frame_span": [
+        2895,
+        3024
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-20",
+      "frame_span": [
+        3033,
+        3120
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-21",
+      "frame_span": [
+        3132,
+        3215
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-22",
+      "frame_span": [
+        3215,
+        3255
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-23",
+      "frame_span": [
+        2430,
+        2535
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    },
+    {
+      "unit_id": "BM-24",
+      "frame_span": [
+        3255,
+        3360
+      ],
+      "case_type": null,
+      "dispositions": {
+        "audio": "pending",
+        "image": "pending",
+        "action": "pending",
+        "annotation": "pending"
+      },
+      "words_verified": false,
+      "case_usable": false
+    }
+  ],
+  "vocabulary": [],
+  "usable_case_types": [],
+  "missing_case_types": [
+    "occlusion_cut",
+    "overlap",
+    "quiet_speech",
+    "semantic_exchange",
+    "simple_surface",
+    "visible_object_sound"
+  ],
+  "complete": false
+}

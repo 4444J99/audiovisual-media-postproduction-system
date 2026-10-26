@@ -1,10 +1,742 @@
 {
+  "status": "pending-actual-review",
+  "source": {
+    "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+    "frame_count": 3360,
+    "fps": {
+      "numerator": 30,
+      "denominator": 1
+    }
+  },
+  "history_scope": "Original wording/confidence/phonetic notes below are unverified historical assertions; not current listening evidence.",
+  "units": [
+    {
+      "unit_id": "BM-01",
+      "case_type": null,
+      "draft_transcript": "From your mouth to God's ears.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        155,
+        210
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "From your mouth to God's ears."
+    },
+    {
+      "unit_id": "BM-02",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        210,
+        240
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-03",
+      "case_type": null,
+      "draft_transcript": "I don't want God to hear that shit.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        249,
+        293
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "I don't want God to hear that shit."
+    },
+    {
+      "unit_id": "BM-04",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        293,
+        300
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-05",
+      "case_type": null,
+      "draft_transcript": "I just don't want to listen to you.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        341,
+        387
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "I just don't want to listen to you."
+    },
+    {
+      "unit_id": "BM-06",
+      "case_type": null,
+      "draft_transcript": "Like, if there is someone up there listening, I don't think we need you as a representative.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        399,
+        529
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "Like, if there is someone up there listening, I don't think we need you as a representative."
+    },
+    {
+      "unit_id": "BM-07",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        529,
+        550
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-08",
+      "case_type": null,
+      "draft_transcript": "Yeah, we should probably flip that whole phrase around.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        622,
+        712
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "Yeah, we should probably flip that whole phrase around."
+    },
+    {
+      "unit_id": "BM-09",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        990,
+        1020
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-10",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        1422,
+        1452
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-11",
+      "case_type": null,
+      "draft_transcript": "What does that even mean?",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        1455,
+        1560
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "What does that even mean?"
+    },
+    {
+      "unit_id": "BM-12",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        1581,
+        1611
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-13",
+      "case_type": null,
+      "draft_transcript": "It means you stop talking.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        1662,
+        1830
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "It means you stop talking."
+    },
+    {
+      "unit_id": "BM-14",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        2040,
+        2190
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-15",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        2322,
+        2430
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-16",
+      "case_type": null,
+      "draft_transcript": "Look at this inbox.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        2554,
+        2647
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "Look at this inbox."
+    },
+    {
+      "unit_id": "BM-17",
+      "case_type": null,
+      "draft_transcript": "The whole office is waiting.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        2647,
+        2820
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "The whole office is waiting."
+    },
+    {
+      "unit_id": "BM-18",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        2835,
+        2865
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-19",
+      "case_type": null,
+      "draft_transcript": "Everyone heard you.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        2895,
+        3024
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "Everyone heard you."
+    },
+    {
+      "unit_id": "BM-20",
+      "case_type": null,
+      "draft_transcript": "Nobody heard anything.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        3033,
+        3120
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "Nobody heard anything."
+    },
+    {
+      "unit_id": "BM-21",
+      "case_type": null,
+      "draft_transcript": "From your ears to God's mouth.",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        3132,
+        3215
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": "From your ears to God's mouth."
+    },
+    {
+      "unit_id": "BM-22",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        3215,
+        3255
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-23",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        2430,
+        2535
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    },
+    {
+      "unit_id": "BM-24",
+      "case_type": null,
+      "draft_transcript": "",
+      "source_sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "frame_span": [
+        3255,
+        3360
+      ],
+      "reviewed_heard_wording": null,
+      "dispositions": {
+        "audio": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "image": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "action": {
+          "status": "pending",
+          "evidence": {}
+        },
+        "annotation": {
+          "status": "pending",
+          "evidence": {}
+        }
+      },
+      "unresolved_words": ""
+    }
+  ],
   "schema": "amps.god_here.units_review.v1",
   "project_id": "god-here",
   "composition_id": "comp-001",
-  "reviewed_at": "2026-10-24T18:00:00Z",
+  "historical_claimed_reviewed_at": "2026-10-24T18:00:00Z",
   "policy": "Auditory review separates provisional automated hypotheses from heard speech; unverified caption claims are rejected.",
-  "units": [
+  "historical_unverified_units": [
     {
       "unit_id": "BM-01",
       "case_type": "intelligible_foreground_speech",
