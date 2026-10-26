@@ -93,12 +93,24 @@ def native(argv, deadline, *, limit=1024*1024, data=None):
             process.stdout.close();process.stderr.close()
 
 
-def decode(path, artifact, deadline):
+def audio_header(path, artifact):
     rate=artifact["sample_rate"];channels=artifact["channels"];count=artifact["sample_count"]
-    with path.open("rb") as stream:header=stream.read(12)
+    with path.open("rb") as stream:header=stream.read(42)
     if header[:4]==b"RIFF" and header[8:12]==b"WAVE":
         info=_wave_info(path,"review_audio")
         require((info.rate,info.channels,info.frames)==(rate,channels,count),"review_audio_clock_mismatch")
+        return info
+    require(len(header)==42 and header[:4]==b"fLaC" and header[4]&0x7f==0
+        and int.from_bytes(header[5:8],"big")==34,"review_audio_format_unsupported")
+    packed=int.from_bytes(header[18:26],"big")
+    require((packed>>44,(packed>>41&7)+1,packed&((1<<36)-1))==(rate,channels,count),"review_audio_clock_mismatch")
+    return None
+
+
+def decode(path, artifact, deadline):
+    rate=artifact["sample_rate"];channels=artifact["channels"];count=artifact["sample_count"]
+    info=audio_header(path,artifact)
+    if info is not None:
         return _read_window(path,info,0,count).reshape(count,channels)
     raw,errors=native(["ffprobe","-v","error","-show_streams","-of","json",str(path)],deadline)
     require(not errors.strip(),"review_audio_probe_failed")
@@ -302,7 +314,11 @@ def prepare(binding,context,output,dry_run):
     working=sum(row["sample_count"]*row["channels"]*8 for row in artifacts.values())*10
     outputs=sum((artifacts[c]["sample_count"]*artifacts[c]["channels"]+artifacts[b]["sample_count"]*artifacts[b]["channels"])*8 for c,b,*_ in prepared)+1024*1024
     require(working<=caps["max_working_bytes"] and outputs<=caps["max_output_bytes"],"review_resource_limit")
-    arrays={name:decode(paths[name],row,deadline) for name,row in artifacts.items()}
+    if dry_run:
+        for name,row in artifacts.items():audio_header(paths[name],row)
+        arrays={}
+    else:
+        arrays={name:decode(paths[name],row,deadline) for name,row in artifacts.items()}
     recheck_inputs(paths,refs,snapshots,deadline)
     return spec,caps,deadline,refs,paths,resolver,snapshots,artifacts,records,prepared,arrays
 
@@ -319,6 +335,11 @@ def execute_audio_review(binding,context,*,output,dry_run=False):
         reference_frame={"status":"not_tested","diagnostic":"full-frame H/V visual reference verification remains required under F06"},
         qualification={"technical":"pending-full-reference-check","perceptual":"pending","artistic":"pending","distribution":"pending"},
         comparison_complete=False,raw_stem_mutated=False,active_selection="caller-declared corresponding source intervals; no listening or certified VAD implied")
+    code_root=Path(__file__).resolve().parents[2]
+    report["parameter_sha256"]=digest(dict(binding.parameters))
+    report["code_sha256"]={name:file_identity(code_root/name,"review_implementation")["sha256"] for name in
+        ("amp/studies/review_artifacts.py","amp/studies/review.py","amp/studies/admission_evidence.py",
+         "amp/composition/containers.py","amp/media_resolver.py","amp/residual_io.py")}
     if dry_run:return report
     output.mkdir(mode=0o700,parents=True,exist_ok=False)
     for index,(c,b,ci,bi,switches) in enumerate(prepared):

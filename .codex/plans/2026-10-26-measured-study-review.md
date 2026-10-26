@@ -52,3 +52,12 @@ and zero skips. The current native synthetic observation again measures 0.0 LU
 and raw byte preservation. F04 evidence now exports verified weight/backend
 identity for downstream binding. Full visual-reference/Studio/listening/production
 F06 remains unfinished; do not close #69 or claim current estate/session release.
+
+04:11 checkpoint: source implementation ended at 04:10:28. Final exact F05 dry-run
+regression first reproduced unwanted decode; dry run now inspects only identity/
+size/maps/headers, with no sample decode, native measurement or output. Receipts
+retain separate checker code and parameter hashes. Required final check exits 0:
+637 Python (468 + 169), 274 Node, score/replay, zero skips; 20 focused review
+methods. Current actual synthetic observation again records 0.0 LU and immutable
+raw bytes. Implementation is checkpointed; only durable publication remains.
+Cumulative outcome/previous attempts are not reset. Full F06 remains open.

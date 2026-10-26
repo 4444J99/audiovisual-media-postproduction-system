@@ -72,3 +72,12 @@ Source-span, binding and context timebases must all agree. Public source maps co
 only normalized validated coordinates. Pipe-EOF timeouts are cleaned up and returned
 as coded deadline errors. Latest correction receipts use the `-v2` suffix; original
 verification/native observations remain as historical evidence.
+
+F05 dry-run validation performs identity/size/declared-map and WAV/FLAC header checks,
+without sample decoding, measurement, copies, inference or output creation. Execution
+performs the full decode and measurement. Receipts separately retain checker code
+fingerprints and the canonical parameter hash as well as source/model identities.
+
+Final F05 contract and native observation receipts are verification-v3.json and
+native-audio-v3.json in the existing measured-review evidence folder. Earlier
+versions retain the exact prior source observations.

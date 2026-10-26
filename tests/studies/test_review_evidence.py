@@ -244,3 +244,16 @@ class ReviewEvidenceTests(unittest.TestCase):
             process,receipt=self.execute(root,binding,locations,name='unbound',dry=True)
             self.assertEqual(process.returncode,2,receipt)
             self.assertEqual(receipt['error']['code'],'review_model_identity_mismatch')
+
+    def test_dry_run_does_not_decode_or_process_media(self):
+        from unittest.mock import patch
+        from amp.studies.review_artifacts import execute_audio_review
+        with tempfile.TemporaryDirectory() as directory:
+            root,binding,locations,original=self.fixture(directory)
+            parsed=StudyBinding.from_dict(binding)
+            context=StudyContext(study_id=parsed.id,composition_id='fixture',timebase=parsed.timebase,
+                parameters={'locations':json.loads(locations.read_text())})
+            with patch('amp.studies.review_artifacts.decode',side_effect=AssertionError('dry run decoded media')):
+                receipt=execute_audio_review(parsed,context,output=root/'out',dry_run=True)
+            self.assertEqual(receipt['status'],'preflight-only')
+            self.assertFalse((root/'out').exists())
