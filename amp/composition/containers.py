@@ -15,6 +15,7 @@ from typing import Any, Mapping, Optional, Sequence, Tuple
 
 
 ALLOWED_OPERATORS = frozenset({
+    "amp.review.v1",
     "amp.roomstretch.v1",
     "amp.roomrefine.v1",
     "amp.roomtone.v1",

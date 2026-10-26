@@ -69,6 +69,15 @@ def main():
         if not args.dry_run and "--output" not in supplied_options:
             parser.error("execute requires an explicit fresh --output directory unless --dry-run is used")
         try:
+            document = read_json(args.binding, role="binding", limit=1024*1024)
+            if isinstance(document, dict) and document.get("schema_version") == "amps.study.v1":
+                from .studies.review_artifacts import run_cli
+                result = run_cli(document,
+                    locations=read_json(args.locations, role="locations") if args.locations else None,
+                    inventories=[read_json(p, role="media-index") for p in args.media_index],
+                    output=Path(args.output), dry_run=args.dry_run)
+                print(json.dumps(result, indent=2))
+                return 0
             plan = preflight(args.binding,
                              locations=read_json(args.locations, role="locations") if args.locations else None,
                              inventories=[read_json(p, role="media-index") for p in args.media_index])

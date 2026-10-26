@@ -35,3 +35,11 @@ Attempt checkpoint target 04:11 UTC from 03:41, preserving earlier cumulative
 outcome usage under current advisory controls and existing time override. Fixture
 media is tiny/light CPU work; no heavy workload, model installation, download,
 source upload, provider spend, long-running service or original-media deletion.
+
+Implementation evidence at 03:59 UTC: corrected baseline reproduced 10 failed
+assertions across six methods. Additional regression-first checks cover FLAC under
+opaque filenames, dry-run preservation, RMS overflow, processing cycles and missing
+model admission. Required full check exits 0: 632 Python (468 + 164), 274 Node,
+score/replay and zero skips. Separate native fixture produced actual comparison
+copies with 0.0 measured LU delta and unchanged raw input bytes. No production media
+or listening qualification is claimed. #69 reopened; independent review pending.
