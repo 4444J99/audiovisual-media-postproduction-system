@@ -1,0 +1,35 @@
+{
+  "schema": "amp.live-performance-telemetry-repair.v1",
+  "source_base": "856d5b0",
+  "owners": [113, 63],
+  "reproduced_before_repair": {
+    "empty_summary_passed": true,
+    "later_nan_sample_passed": true,
+    "negative_measurements_passed": true,
+    "new_regression_run": {"tests": 21, "failures": 37, "errors": 12, "exit_code": 1},
+    "failure_counts_include_subtests": true
+  },
+  "review_correction": {
+    "finding": "Dividing before fsum can still overflow for three finite maximum-float latency samples",
+    "regression_observed": "OverflowError: intermediate overflow in fsum",
+    "resolution": "statistics.mean uses exact accumulation before converting the finite average"
+  },
+  "verification": {
+    "command": "env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/local/bin/python3 -m unittest discover -s tests/studies -q",
+    "tests": 135,
+    "exit_code": 0,
+    "coverage": "All study tests, including seven new telemetry regression methods",
+    "compilation_exit_code": 0,
+    "whitespace_check_exit_code": 0
+  },
+  "contract": {
+    "all_measurements_explicit": true,
+    "non_finite_negative_boolean_and_string_values_rejected": true,
+    "recovery_requires_integer": true,
+    "latency_and_novelty_aliases_preserved": true,
+    "observed_zeroes_preserved": true,
+    "acceptance_thresholds_unchanged": true,
+    "result_schema_unchanged": true
+  },
+  "acceptance_boundary": "This validates supplied measurements. It does not generate performances, establish three distinct histories or a ten-minute no-input run, prove replay/recovery, provision prepared media, or complete I05. Original runtime, device, artistic and custody acceptance remain under the existing owners."
+}
