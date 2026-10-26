@@ -6,6 +6,7 @@ import sys
 root = Path(__file__).resolve().parents[1]
 for command in [[sys.executable, "-m", "amp.cli", "validate"],
                 [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
+                [sys.executable, "-m", "unittest", "discover", "-s", "tests/studies", "-v"],
                 ["node", "tests/score.test.mjs"],
                 ["node", "--test", *[str(path.relative_to(root)) for path in sorted((root / "tests/studio").glob("*.test.mjs"))]],
                 ["node", "--test", *[str(path.relative_to(root)) for path in sorted((root / "tests/composition").glob("*.test.mjs"))]],

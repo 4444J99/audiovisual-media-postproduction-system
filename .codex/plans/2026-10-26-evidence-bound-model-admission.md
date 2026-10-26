@@ -33,3 +33,12 @@ does not grant output qualification, artistic acceptance or distribution rights.
 Attempt bound: 30 minutes for implementation/verification from this plan, with
 verification at most ten minutes; checkpoint unfinished work rather than claiming
 full F04 completion. Preserve source, caches and all previous custody evidence.
+
+Implementation evidence: the baseline regression had seven failed assertions and
+two errors across five methods. Fourteen focused admission tests now pass. The
+required full check explicitly includes the formerly omitted studies namespace:
+608 Python tests, 274 Node tests and score/replay checks pass with zero skips.
+The twelve historical candidate objects exactly match the pinned baseline;
+their canonical SHA-256 is `1fe668c5ecc995ce1622fd036590e06724bb95d1b3e484098b010db551abff27`.
+All twelve corrected source proposals remain not tested. #67 is reopened.
+Independent whole-branch review and any bounded corrections remain pending.

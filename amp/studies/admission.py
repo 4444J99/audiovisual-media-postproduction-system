@@ -9,6 +9,7 @@ Enforces:
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 from typing import Any, Mapping, Optional
 
@@ -29,12 +30,7 @@ def load_models_lock(lock_path: Optional[Path] = None) -> dict[str, Any]:
 
     path = Path(lock_path)
     if not path.is_absolute() and not path.exists():
-        # Try finding relative to known workspace roots
-        candidates = [
-            Path("/Users/4jp/Workspace/.wt-amp-foundation") / path,
-            Path("projects/god-here/studies/models.lock.json"),
-            Path("/Users/4jp/Workspace/.wt-amp-foundation/compositions/comp-001/studies/models.lock.json"),
-        ]
+        candidates = [Path(__file__).resolve().parents[2] / path]
         for c in candidates:
             if c.exists():
                 path = c
@@ -75,6 +71,12 @@ def admit_model(
         raise ValueError(f"Unknown or unpinned model candidate: {candidate_id!r}")
 
     cand = candidates[candidate_id]
+
+    from .admission_evidence import preflight
+    checked, verified_facts = preflight(binding, context, candidate_id, cand)
+    if isinstance(checked, StudyResult):
+        return checked
+    cand = checked
 
     # Enforce zero cloud spend
     cloud_spend = binding.parameters.get(
@@ -127,13 +129,13 @@ def admit_model(
         else:
             status = "named_block"
     elif weights_path is not None and not Path(weights_path).exists():
-        diagnostics.append(f"Declared local weights path does not exist: {weights_path}")
+        diagnostics.append("local_weights_unavailable")
         status = "named_block"
 
     cuda_available = context.parameters.get(
         "cuda_available", binding.parameters.get("cuda_available")
     )
-    if cuda_available is False and cand.get("max_vram_gb", 0) > 0:
+    if cuda_available is False and cand.get("requires_cuda") is True:
         diagnostics.append(f"CUDA acceleration absent on host for candidate {candidate_id}")
         if status != "not_tested":
             status = "named_block"
@@ -154,15 +156,14 @@ def admit_model(
 
     span = binding.span or context.span or SourceSpan(0, 3360, context.timebase)
 
+    public_record = {"candidate_id": candidate_id, "status": status, **verified_facts}
+    payload = json.dumps(public_record, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
     product_ref = MaterialRef(
         id=f"model-admission-{candidate_id.lower()}",
-        sha256=cand["weights_sha256"],
+        sha256=hashlib.sha256(payload).hexdigest(),
         kind="metadata",
-        bytes=len(json.dumps(cand)),
-        metadata={
-            "candidate_id": candidate_id,
-            "status": status,
-        },
+        bytes=len(payload),
+        metadata=public_record,
     )
 
     return StudyResult(
@@ -182,5 +183,6 @@ def admit_model(
             "max_ram_gb": cand["max_ram_gb"],
             "max_vram_gb": cand["max_vram_gb"],
             "max_disk_gb": cand["max_disk_gb"],
+            **verified_facts,
         },
     )

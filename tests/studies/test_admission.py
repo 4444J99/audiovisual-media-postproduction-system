@@ -8,7 +8,7 @@ from amp.studies.admission import admit_model, load_models_lock
 
 class ModelAdmissionTests(unittest.TestCase):
     def setUp(self):
-        self.lock_path = Path("/Users/4jp/Workspace/.wt-amp-foundation/compositions/comp-001/studies/models.lock.json")
+        self.lock_path = Path(__file__).resolve().parents[2] / "compositions/comp-001/studies/models.lock.json"
         self.timebase = Timebase(30, 1)
         self.span = SourceSpan(start=0, end=90, timebase=self.timebase)
         self.mat = MaterialRef(
@@ -27,12 +27,10 @@ class ModelAdmissionTests(unittest.TestCase):
             cand = candidates[cid]
             self.assertEqual(cand["cloud_spend_usd"], 0.0)
             self.assertFalse(cand["auto_download"])
-            self.assertEqual(len(cand["weights_sha256"]), 64)
-            self.assertGreater(cand["max_ram_gb"], 0)
-            self.assertGreater(cand["max_vram_gb"], 0)
-            self.assertGreater(cand["max_disk_gb"], 0)
+            self.assertIsNone(cand["weights_sha256"])
+            self.assertEqual(cand["status"], "not_tested")
 
-    def test_admit_all_candidates_success_when_provisioned(self):
+    def test_host_budget_alone_does_not_provision_any_candidate(self):
         for i in range(1, 13):
             cid = f"R{i:02d}"
             binding = StudyBinding(
@@ -47,12 +45,11 @@ class ModelAdmissionTests(unittest.TestCase):
                 parameters={"host_ram_gb": 64.0, "host_vram_gb": 32.0, "host_disk_gb": 100.0},
             )
             result = admit_model(binding, ctx, lock_path=self.lock_path)
-            self.assertEqual(result.metadata["status"], "admitted")
-            self.assertTrue(result.metadata["admitted"])
+            self.assertEqual(result.metadata["status"], "not_tested")
+            self.assertFalse(result.metadata["admitted"])
             self.assertEqual(result.metadata["candidate_id"], cid)
 
-    def test_ram_cap_violation_results_in_named_block(self):
-        # R09 requires 32 GB RAM
+    def test_partial_ram_budget_keeps_unpinned_proposal_not_tested(self):
         binding = StudyBinding(
             operator="amp.roomstretch.v1",
             materials=(self.mat,),
@@ -61,15 +58,14 @@ class ModelAdmissionTests(unittest.TestCase):
         ctx = StudyContext(
             study_id="study-cap-ram",
             composition_id="comp-001",
-            parameters={"max_ram_gb": 16.0},  # Budget is 16 GB, model needs 32 GB
+            parameters={"max_ram_gb": 16.0},
         )
         result = admit_model(binding, ctx, lock_path=self.lock_path)
-        self.assertEqual(result.metadata["status"], "named_block")
+        self.assertEqual(result.metadata["status"], "not_tested")
         self.assertFalse(result.metadata["admitted"])
-        self.assertTrue(any("RAM cap exceeded" in d for d in result.metadata["diagnostics"]))
+        self.assertIn("host_vram_cap_missing", result.metadata["diagnostics"])
 
-    def test_vram_cap_violation_results_in_named_block(self):
-        # R05 requires 16 GB VRAM
+    def test_partial_vram_budget_keeps_unpinned_proposal_not_tested(self):
         binding = StudyBinding(
             operator="amp.roomstretch.v1",
             materials=(self.mat,),
@@ -78,12 +74,12 @@ class ModelAdmissionTests(unittest.TestCase):
         ctx = StudyContext(
             study_id="study-cap-vram",
             composition_id="comp-001",
-            parameters={"max_vram_gb": 8.0},  # Budget is 8 GB, model needs 16 GB
+            parameters={"max_vram_gb": 8.0},
         )
         result = admit_model(binding, ctx, lock_path=self.lock_path)
-        self.assertEqual(result.metadata["status"], "named_block")
+        self.assertEqual(result.metadata["status"], "not_tested")
         self.assertFalse(result.metadata["admitted"])
-        self.assertTrue(any("VRAM cap exceeded" in d for d in result.metadata["diagnostics"]))
+        self.assertIn("host_ram_cap_missing", result.metadata["diagnostics"])
 
     def test_missing_local_weights_handling(self):
         binding = StudyBinding(
@@ -99,7 +95,7 @@ class ModelAdmissionTests(unittest.TestCase):
         )
         res_blocked = admit_model(binding, ctx_blocked, lock_path=self.lock_path)
         self.assertEqual(res_blocked.metadata["status"], "named_block")
-        self.assertTrue(any("Local weights absent" in d for d in res_blocked.metadata["diagnostics"]))
+        self.assertIn("local_weights_absent", res_blocked.metadata["diagnostics"])
 
         # Status explicitly requested as not_tested
         ctx_not_tested = StudyContext(
@@ -114,7 +110,7 @@ class ModelAdmissionTests(unittest.TestCase):
         binding = StudyBinding(
             operator="amp.roomstretch.v1",
             materials=(self.mat,),
-            parameters={"candidate_id": "R02"},
+            parameters={"candidate_id": "R03"},
         )
         ctx_no_cuda = StudyContext(
             study_id="study-no-cuda",
@@ -123,7 +119,7 @@ class ModelAdmissionTests(unittest.TestCase):
         )
         res = admit_model(binding, ctx_no_cuda, lock_path=self.lock_path)
         self.assertEqual(res.metadata["status"], "named_block")
-        self.assertTrue(any("CUDA acceleration absent" in d for d in res.metadata["diagnostics"]))
+        self.assertIn("cuda_acceleration_absent", res.metadata["diagnostics"])
 
     def test_forbidden_cloud_spend_rejection(self):
         binding = StudyBinding(

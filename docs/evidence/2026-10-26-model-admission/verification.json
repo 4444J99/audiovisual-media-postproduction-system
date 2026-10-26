@@ -1,0 +1,39 @@
+{
+  "schema": "amps.model-admission-correction.v1",
+  "base": "02a1663be5285d93885d94126562b6e39fc1f9e0",
+  "source_owner": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/67",
+  "baseline_counterexample": {
+    "candidate_id": "R01",
+    "host_context": {},
+    "status": "admitted",
+    "actual_weights_or_workload_verified": false
+  },
+  "corrected_proposals": {
+    "count": 12,
+    "status": "not_tested",
+    "source_candidate_ids_restored": true,
+    "historical_candidate_objects_preserved": true,
+    "historical_candidates_sha256": "1fe668c5ecc995ce1622fd036590e06724bb95d1b3e484098b010db551abff27"
+  },
+  "verification": {
+    "command": "python tools/check.py",
+    "exit_code": 0,
+    "python_tests": 608,
+    "node_tests": 274,
+    "score_replay": "passed",
+    "skipped": 0,
+    "synthetic_fixture": "dedicated native Python environment, clean pinned Git code, local weights/output and measured child execution; no production model qualification"
+  },
+  "source_sha256": {
+    "amp/studies/admission.py": "97bfcef8ca0410093ef8b47189d424a1005f292fcfacb1f033b5f9361cb62213",
+    "amp/studies/admission_evidence.py": "b554909961c74f07c908094014d96574f4778dd98b0b65aef89c2a973c68e2c3",
+    "compositions/comp-001/studies/models.lock.json": "0ae388b052ebddfd9be8286ac9e76b9a7074b767f9fd545a3a3c7507e5d942eb",
+    "tests/studies/test_admission.py": "26eedb0aa9452eeedef181f35a96eed4145b4a7864f4e7fdc2298e86de05b097",
+    "tests/studies/test_admission_evidence.py": "a707691711c9c59b0b200a1b139fde79ae96cfac5cee09662a81ea8df16f6014",
+    "tools/check.py": "b82a07d71bff1f4d112d74b665c2f3a32a8ed0e92b965f33f81870933a437a35"
+  },
+  "actual_model_installation": false,
+  "production_F04_complete": false,
+  "artistic_acceptance": false,
+  "publication_permission": false
+}
