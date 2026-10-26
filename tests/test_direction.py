@@ -2,6 +2,7 @@
 import copy
 import json
 import os
+import sys
 from pathlib import Path
 import tempfile
 import unittest
@@ -12,7 +13,9 @@ from PIL import Image
 from amp.direction import validate_recipe, validate_field_source, frame_map, time_map, camera_box, add_type, render
 
 ROOT=Path(__file__).resolve().parents[1]
-FONT=Path(os.environ.get('AMP_TEST_FONT', '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf'))
+DEFAULT_FONT=('/System/Library/Fonts/Supplemental/Arial.ttf' if sys.platform=='darwin'
+              else '/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf')
+FONT=Path(os.environ.get('AMP_TEST_FONT', DEFAULT_FONT))
 
 class DirectionTests(unittest.TestCase):
     def setUp(self):
