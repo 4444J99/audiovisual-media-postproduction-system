@@ -1,0 +1,54 @@
+{
+  "id": "f01-source-identity-20261026",
+  "inputs": [
+    {
+      "bytes": 2299,
+      "id": "source-0",
+      "kind": "metadata",
+      "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67"
+    },
+    {
+      "bytes": 12636527,
+      "id": "source-2",
+      "kind": "video",
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225"
+    },
+    {
+      "bytes": 4284067,
+      "id": "source-4",
+      "kind": "video",
+      "sha256": "d5d1ce43fffed6c95969a449659b947ca259257acec8a1eed6abbd5ffb701d25"
+    },
+    {
+      "bytes": 192296,
+      "id": "source-5",
+      "kind": "image",
+      "sha256": "d5deb50824888de14e92d2dde9077643dc405c7c1a1e2121848874f38dffd7f4"
+    }
+  ],
+  "operator": "passthrough",
+  "parameters": {
+    "case_id": "current-identity",
+    "composition_id": "comp-001",
+    "resource_profile": {
+      "deadline_seconds": 30,
+      "max_input_bytes": 134217728,
+      "max_output_bytes": 134217728,
+      "max_scratch_bytes": 268435456
+    },
+    "workstream_id": "source-reuse"
+  },
+  "schema_version": "amps.study.v1",
+  "span": {
+    "end": 3360,
+    "start": 0,
+    "timebase": {
+      "den": 1,
+      "num": 30
+    }
+  },
+  "timebase": {
+    "den": 1,
+    "num": 30
+  }
+}

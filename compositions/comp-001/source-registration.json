@@ -22,7 +22,7 @@
       "path": "project_sources/01-God-s-Ears-First-Draft-May-21-2020.txt",
       "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67",
       "bytes": 2299,
-      "custody_status": "canonical_repo_asset",
+      "custody_status": "owner_corpus_asset",
       "canonical_provenance": {
         "source_id": "SRC-001",
         "historical_role": "draft_script_text",

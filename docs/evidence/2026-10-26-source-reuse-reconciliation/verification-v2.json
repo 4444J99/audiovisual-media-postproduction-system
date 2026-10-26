@@ -1,0 +1,46 @@
+{
+  "actual_byte_audit": {
+    "all_six_preflight": "blocked: missing_location",
+    "all_six_ready": false,
+    "intended_identities": 6,
+    "unavailable_exact_wavs": 2,
+    "verified": 4,
+    "verified_copy_bytes": 17115189
+  },
+  "current_served_studio_source_read": false,
+  "current_session_release_verified": false,
+  "estate_complete": false,
+  "f01_complete": false,
+  "gate_history": "Initial metadata correction passed663Python. Cross-register correction first failed original migration byte gate. Original snapshot retained and exact one-field reconciliation added; final664Python gate passes. Prior verification remains historical.",
+  "historical_preparation_code_equivalence_verified": false,
+  "independent_custody_or_restore_verified": false,
+  "independent_review": "No blocking defect. Plan provenance finding fixed by additivev2. Targeted review verified all59originalpath/hashrecords, exactsnapshot, onefielddelta, currenthash andalias, without weakening preservation.",
+  "migration_preservation": {
+    "declared_current_field_corrections": 1,
+    "original_records_retained": 59,
+    "original_registration_sha256": "d08dcd6cb0bdfb81dba2a03ac4e8402deb7394a353a0f825de05ad1e44bf78e5",
+    "original_snapshot_and_current_alias_verified": true
+  },
+  "regression": "Prior workprint size5448378 contradicted exact catalog/current size4284067; identity-size consistency test reproduced fail before correction and now passes",
+  "required_gate": {
+    "command": "/usr/local/bin/python3 tools/check.py",
+    "exit_code": 0,
+    "log_sha256": "efea48eb0f1715641dac60bf36f3c7d4d565562588f91ed100011173b9238d45",
+    "node_tests": 280,
+    "python_tests": 664,
+    "score_validation": "passed",
+    "skipped": 0
+  },
+  "retirement_authorized": false,
+  "schema": "amps.source-reuse-verification.v1",
+  "source_base": "47282990d030c356639619a80a0b813a886adec3",
+  "source_sha256": {
+    "compositions/comp-001/source-registration.json": "e544d2e5f229d04c6950c2d52a7d0af3471be966c3a63002ea312f1e4c6c936a",
+    "compositions/comp-001/studies/reuse-map.json": "54dcaec1e38d0194c61e60872f9ea25ba3881476212c21bdee5f8ffa599df4de",
+    "docs/architecture/composition-migration-baseline/source-registration.json": "d08dcd6cb0bdfb81dba2a03ac4e8402deb7394a353a0f825de05ad1e44bf78e5",
+    "docs/architecture/composition-migration.json": "c7f5e46eaeaf4009f3dde5e46d817f211916bf4ae917eefdb2e72e034199d734",
+    "tests/studies/test_benchmark.py": "b40d3b08fae59b593b0cb2585742b5727199f3ed72921b0a31f30fc23c679c85",
+    "tests/test_composition_identity.py": "f985d08c681a2bae8b0881dbe5aa2d69d26691bab8273410dbb920a3fc7c5b58",
+    "tools/prepare_direction_audio.py": "328775897260ad8df157622be31a2a5231013d9d30059d2661ccf77e3f78e888"
+  }
+}

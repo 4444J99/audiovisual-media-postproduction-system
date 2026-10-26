@@ -1,0 +1,99 @@
+{
+  "binding_sha256": "eb19dddd13e9638f42b8b1a1d2745af211bd11190ffc5d395a1abe682b2d1f9e",
+  "code_sha256": {
+    "amp/cli.py": "99ddc24d95e968a9fa53a4aad390c4cf161c983d595e285ebbc8044d6c879f7f",
+    "amp/composition/containers.py": "6cfb415e6f6beefe28d809a2486725cfeb17c5115cb6d9b6597cdb35b131557a",
+    "amp/execution.py": "b6061664d5ed30093118e3b4abd7fcfa91ede2a040a3e5125e131377abc7706e",
+    "amp/media_resolver.py": "4fa09c2479555f0038828f867d026ea4fcf3c3a2a4c52d60012fefaf3349e927",
+    "amp/studies/__init__.py": "8eed3a45fc7985bf094e01356d7d8841598eedaf5bbc9d24d3ad3134cc11c493",
+    "amp/studies/admission_evidence.py": "81c41c0a39f614ada785cb97c6f43ab81892b946dcb10549d2d324d447cb4625",
+    "amp/studies/dispatch.py": "abf0a2b9a1ee2951c1c69b877b5e9130332570cc91732a1ecfc59e9768265a6a",
+    "amp/studies/execution_artifacts.py": "d2cd4e08d3bd289b8c280901547fea1cd53cf7a56acf3d4d32ba3b69258ad16a",
+    "amp/studies/native_worker.py": "1f41fc74390aa9272617fc9ad024f2b9f22529757957f9ec58c2a1f1217bcd3f",
+    "amp/studies/review_artifacts.py": "dac3121c4af8b8a436251e6b28df2172483572496f946674c49aecd7d2651250"
+  },
+  "execution_scope": "verified-byte-copy",
+  "inputs": {
+    "source-0": {
+      "bytes": 2299,
+      "kind": "metadata",
+      "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67"
+    },
+    "source-2": {
+      "bytes": 12636527,
+      "kind": "video",
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225"
+    },
+    "source-4": {
+      "bytes": 4284067,
+      "kind": "video",
+      "sha256": "d5d1ce43fffed6c95969a449659b947ca259257acec8a1eed6abbd5ffb701d25"
+    },
+    "source-5": {
+      "bytes": 192296,
+      "kind": "image",
+      "sha256": "d5deb50824888de14e92d2dde9077643dc405c7c1a1e2121848874f38dffd7f4"
+    }
+  },
+  "model_sha256": null,
+  "native_validation": "not-applicable",
+  "operator": "passthrough",
+  "outputs": [
+    {
+      "bytes": 2299,
+      "file": "material-0000.data",
+      "input_id": "source-0",
+      "kind": "metadata",
+      "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67"
+    },
+    {
+      "bytes": 12636527,
+      "file": "material-0001.data",
+      "input_id": "source-2",
+      "kind": "video",
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225"
+    },
+    {
+      "bytes": 4284067,
+      "file": "material-0002.data",
+      "input_id": "source-4",
+      "kind": "video",
+      "sha256": "d5d1ce43fffed6c95969a449659b947ca259257acec8a1eed6abbd5ffb701d25"
+    },
+    {
+      "bytes": 192296,
+      "file": "material-0003.data",
+      "input_id": "source-5",
+      "kind": "image",
+      "sha256": "d5deb50824888de14e92d2dde9077643dc405c7c1a1e2121848874f38dffd7f4"
+    }
+  ],
+  "parameter_sha256": "bac88bb169ebe5f22ee92c8ce68a13bae8a72e6ba5b8ca9abfecf21345e9bd47",
+  "qualification": {
+    "artistic": "pending",
+    "distribution": "pending",
+    "perceptual": "pending",
+    "technical": "byte-identity-only"
+  },
+  "raw_inputs_mutated": false,
+  "render_executed": false,
+  "resource_assessment": "Configured byte/deadline limits; scratch/output monitored at pipe polling intervals; host-wide peak RAM/VRAM not measured or admitted here",
+  "resource_profile": {
+    "deadline_seconds": 30,
+    "max_input_bytes": 134217728,
+    "max_output_bytes": 134217728,
+    "max_scratch_bytes": 268435456
+  },
+  "schema": "amps.study-execution-receipt.v1",
+  "signal_validation": "byte-identity-only",
+  "source_span": {
+    "end": 3360,
+    "start": 0,
+    "timebase": {
+      "den": 1,
+      "num": 30
+    }
+  },
+  "status": "produced",
+  "study_id": "f01-source-identity-20261026"
+}

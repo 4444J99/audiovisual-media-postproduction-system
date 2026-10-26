@@ -1,0 +1,49 @@
+{
+  "all_six_preflight": {
+    "artistic_acceptance": "pending",
+    "error": {
+      "code": "missing_location",
+      "role": "study-input"
+    },
+    "schema_version": "amps.execution-receipt.v1",
+    "status": "blocked"
+  },
+  "all_six_ready": false,
+  "current_locally_verified": 4,
+  "current_unavailable": 2,
+  "independent_custody_or_restore_verified": false,
+  "native_owner_catalog_sha256": "6153283487421b6a388f639feb70b3310ffceeb3fc21bdb81f776b0e05115bc2",
+  "originals_mutated": false,
+  "schema": "amps.source-reuse-current-bytes.v1",
+  "scope": "All six intended reuse identities accounted for; four verified local byte copies and two unavailable exact WAVs",
+  "source_media_processed": false,
+  "total_identities": 6,
+  "unavailable_objects": [
+    {
+      "bytes": 43013074,
+      "sha256": "57cd5662206c247861551bad7dc9651bb07157188b70c4687203b0c913f4fd21"
+    },
+    {
+      "bytes": 43013074,
+      "sha256": "be0e55149b0e9b076e88659b2a16a309c536283355765ec77ed344eebe201aa7"
+    }
+  ],
+  "verified_objects": [
+    {
+      "bytes": 2299,
+      "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67"
+    },
+    {
+      "bytes": 12636527,
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225"
+    },
+    {
+      "bytes": 4284067,
+      "sha256": "d5d1ce43fffed6c95969a449659b947ca259257acec8a1eed6abbd5ffb701d25"
+    },
+    {
+      "bytes": 192296,
+      "sha256": "d5deb50824888de14e92d2dde9077643dc405c7c1a1e2121848874f38dffd7f4"
+    }
+  ]
+}
