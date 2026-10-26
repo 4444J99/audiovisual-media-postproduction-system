@@ -6,7 +6,7 @@ from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(description="Source-addressable postproduction")
-    parser.add_argument("command", choices=["validate", "qualify", "audio", "render", "generate", "revision", "replay", "track", "execute"])
+    parser.add_argument("command", choices=["validate", "qualify", "audio", "render", "generate", "revision", "replay", "track", "execute", "performance"])
     parser.add_argument("--composition", "--project", dest="project",
                         help="Composition directory, registered ID or alias; --project remains compatible")
     parser.add_argument("--source")
@@ -30,7 +30,20 @@ def main():
     parser.add_argument("--media-index", action="append", default=[])
     parser.add_argument("--locations")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--operation", choices=["new", "replay", "inspect"], default="new")
+    parser.add_argument("--corpus")
+    parser.add_argument("--profile")
+    parser.add_argument("--history")
+    parser.add_argument("--identity")
+    parser.add_argument("--duration-frames", type=int)
     args = parser.parse_args()
+    performance_options = {"--operation", "--corpus", "--profile", "--history", "--identity", "--duration-frames"}
+    supplied_options = {arg.split("=", 1)[0] for arg in sys.argv[1:] if arg.startswith("--")}
+    if args.command == "performance":
+        from .composition.performance_cli import run
+        return run(args, supplied_options)
+    if supplied_options & performance_options:
+        parser.error("performance options require the performance command")
     if args.command in ("revision", "replay"):
         if args.output is None:
             parser.error("revision/replay requires an explicit --output file, for example outputs/revision.mp4")

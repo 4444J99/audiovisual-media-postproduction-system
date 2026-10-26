@@ -115,9 +115,9 @@ Interface: `amp performance --operation new|replay|inspect --corpus FILE
 --profile FILE --history FILE --output FILE`, with existing `--seed`, `--session`
 and explicit `--duration-frames`. Preserve all existing commands and movie replay.
 
-- [ ] Regress explicit fresh outputs, no overwrite of source/history, safe public
+- [x] Regress explicit fresh outputs, no overwrite of source/history, safe public
   errors, persistence across processes, replay without new reservation and bad admission.
-- [ ] Implement the interface with existing composition resolution; represent pending
+- [x] Implement the interface with existing composition resolution; represent pending
   production byte admission explicitly in the authored profile. Commit passing CLI tests.
 
 ## Task 4: Browser scheduling, playback and canonical Studio integration
@@ -150,3 +150,5 @@ measured byte counts; rendering delegates to retained `VisualEngine`.
   exact-head PR submission once, default/readback evidence and durable acceptance receipt.
 - [ ] Keep artistic/device/original-media and publication requirements with their
   actual owners unless independently observed; never mark all 53 tasks complete here.
+
+Task 3 evidence: six fresh-process CLI regressions and nine history regressions pass; the installed-wheel probe imports both new subpackages and binds the bundled retained FX engine. The temporary-root assertion first failed because macOS resolves /var to /private/var; normalizing the fixture root fixes the comparison without changing installation behavior. The authored profile remains unadmitted pending measured F04 limits.

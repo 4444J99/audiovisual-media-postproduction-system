@@ -115,6 +115,20 @@ class PerformanceNoveltyTests(unittest.TestCase):
                 PerformanceHistory(path).load(canonical_identity(record()))
             self.assertFalse(path.exists())
 
+    def test_unrelated_sqlite_database_is_not_adopted_or_modified(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "another.sqlite3"
+            connection = sqlite3.connect(path)
+            connection.execute("CREATE TABLE protected_content (value TEXT)")
+            connection.execute("INSERT INTO protected_content VALUES ('keep')")
+            connection.commit()
+            connection.close()
+            path.chmod(0o600)
+            before = path.read_bytes()
+            with self.assertRaisesRegex(ValueError, "history"):
+                PerformanceHistory(path).reserve(record())
+            self.assertEqual(path.read_bytes(), before)
+
 
 if __name__ == "__main__":
     unittest.main()

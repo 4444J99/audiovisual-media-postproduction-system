@@ -21,6 +21,7 @@ FX_TYPES = frozenset({"routing", "delay", "stutter", "granular", "reverse", "fre
                       "feedback", "queue", "gate", "displacement", "exchange", "typography", "damage"})
 IDENTIFIER = re.compile(r"[A-Za-z0-9][A-Za-z0-9._:-]*\Z")
 HASH = re.compile(r"[0-9a-f]{64}\Z")
+HISTORY_APPLICATION_ID = 0x414D5050
 
 
 def canonical_json(value: Any) -> str:
@@ -303,12 +304,25 @@ class PerformanceHistory:
             raise ValueError("Performance history must be an owned private regular file")
         connection = sqlite3.connect(self.path.resolve().as_uri() + "?mode=rw", uri=True,
                                      timeout=self.busy_timeout_seconds)
-        if create:
-            try:
+        try:
+            if create:
+                connection.execute("BEGIN IMMEDIATE")
+            application_id = connection.execute("PRAGMA application_id").fetchone()[0]
+            version = connection.execute("PRAGMA user_version").fetchone()[0]
+            if create and application_id == 0 and version == 0:
+                tables = connection.execute("SELECT name FROM sqlite_master WHERE type = 'table'").fetchall()
+                if tables:
+                    raise ValueError("Unrelated database is not a performance history")
+                connection.execute(f"PRAGMA application_id = {HISTORY_APPLICATION_ID}")
+                connection.execute("PRAGMA user_version = 1")
+            elif application_id != HISTORY_APPLICATION_ID or version != 1:
+                raise ValueError("Unsupported performance history owner or version")
+            if create:
                 connection.execute("CREATE TABLE IF NOT EXISTS performances (identity TEXT PRIMARY KEY, record_json TEXT NOT NULL, created_at TEXT NOT NULL)")
-            except BaseException:
-                connection.close()
-                raise
+                connection.commit()
+        except BaseException:
+            connection.close()
+            raise
         return connection
 
     def reserve(self, record: Any) -> str:
