@@ -29,8 +29,8 @@ def canonical_json(value: Any) -> str:
 
 
 def _integer(value: Any, role: str, *, minimum: int = 0) -> int:
-    if type(value) is not int or value < minimum:
-        raise ValueError(f"{role} must be an integer >= {minimum}")
+    if type(value) is not int or not minimum <= value <= 9_007_199_254_740_991:
+        raise ValueError(f"{role} must be an exactly representable browser integer >= {minimum}")
     return value
 
 
@@ -68,7 +68,8 @@ def validate_runtime(runtime: Mapping[str, Any], *, duration_frames: int | None 
     duration = _integer(runtime.get("duration_frames"), "duration_frames", minimum=1)
     if duration_frames is not None and duration != duration_frames:
         raise ValueError("Runtime duration disagrees with the shared performance span")
-    _integer(runtime.get("seed"), "seed")
+    if _integer(runtime.get("seed"), "seed") > 0xffffffff:
+        raise ValueError("Seed must fit the retained FX engine's unsigned 32-bit contract")
     for name in ("engine_sha256", "rules_sha256", "corpus_sha256"):
         if not isinstance(runtime.get(name), str) or not HASH.fullmatch(runtime[name]):
             raise ValueError(f"{name} must bind the actual public-safe revision")
@@ -95,7 +96,11 @@ def validate_runtime(runtime: Mapping[str, Any], *, duration_frames: int | None 
         qualification = material.metadata.get("qualification", {})
         if qualification.get("technical") != "passed" or "performance" not in qualification.get("allowed_uses", []):
             raise ValueError("Prepared material is not qualified for performance use")
+        for name in ("audio_sample_rate", "audio_origin_sample", "audio_sample_count"):
+            _integer(material.metadata.get(name), name, minimum=0 if name == "audio_origin_sample" else 1)
         by_material[material.id] = material
+    if runtime.get("fallback_material_id") not in by_material:
+        raise ValueError("A qualified prepared fallback is required")
     reference = runtime.get("reference")
     if not isinstance(reference, Mapping) or reference.get("material_id") not in by_material:
         raise ValueError("A protected reference material is required")
@@ -133,6 +138,10 @@ def validate_runtime(runtime: Mapping[str, Any], *, duration_frames: int | None 
             if depth != parent["depth"] + 1 or start < parent["start_frame"] or end > parent["end_frame"]:
                 raise ValueError("Child escapes its parent span or depth")
         kind = event.get("kind")
+        if "reused_from" in event:
+            reused = seen.get(event["reused_from"])
+            if reused is None or reused.get("kind") != kind:
+                raise ValueError("Reused composition must bind an earlier matching event kind")
         if kind == "material":
             material = by_material.get(event.get("material_id"))
             if material is None:
@@ -144,8 +153,11 @@ def validate_runtime(runtime: Mapping[str, Any], *, duration_frames: int | None 
                 _integer(c.get("rate_num"), name + " rate numerator", minimum=1)
                 _integer(c.get("rate_den"), name + " rate denominator", minimum=1)
                 if name == "audio_clock":
-                    _integer(c.get("start_sample"), "audio sample")
-                    _integer(c.get("sample_rate"), "native audio sample rate", minimum=1)
+                    sample = _integer(c.get("start_sample"), "audio sample")
+                    rate = _integer(c.get("sample_rate"), "native audio sample rate", minimum=1)
+                    origin = material.metadata["audio_origin_sample"]
+                    if rate != material.metadata["audio_sample_rate"] or not origin <= sample < origin + material.metadata["audio_sample_count"]:
+                        raise ValueError("Audio clock disagrees with the registered native sample domain")
                 else:
                     position = _integer(c.get("start_frame"), name + " position")
                     if not material.span.contains(position):
@@ -167,13 +179,64 @@ def validate_runtime(runtime: Mapping[str, Any], *, duration_frames: int | None 
         raise ValueError("Exactly one edition root is required")
     for event in events:
         for edge in event.get("couplings", []):
-            if not isinstance(edge, Mapping) or edge.get("source_event_id") not in seen:
+            if not isinstance(edge, Mapping) or seen.get(edge.get("source_event_id"), {}).get("kind") != "material":
                 raise ValueError("Unknown coupling source")
             _integer(edge.get("lag_frames"), "coupling delay", minimum=1)
             _number(edge.get("amount"), "coupling amount", -1, 1)
     initial = runtime.get("initial_state")
     if not isinstance(initial, Mapping) or initial.get("frame") != 0 or type(initial.get("playing")) is not bool:
         raise ValueError("Initial clock and play intent must be explicit")
+    if "execution" in runtime:
+        _validate_execution(runtime["execution"], seen, duration)
+
+
+def _validate_execution(execution, events, duration):
+    if not isinstance(execution, Mapping) or execution.get("observation_mode") not in {"simulation", "playback"}:
+        raise ValueError("Execution observation mode must be explicit")
+    for key in ("degradation_windows", "transitions", "control_samples"):
+        if not isinstance(execution.get(key), list):
+            raise ValueError("Execution history collections must be explicit")
+    for window in execution["degradation_windows"]:
+        if not isinstance(window, Mapping):
+            raise ValueError("Degradation window must be a record")
+        start = _integer(window.get("start_frame"), "degradation start")
+        end = window.get("end_frame")
+        if start >= duration or (end is not None and not start < _integer(end, "degradation end") <= duration):
+            raise ValueError("Degradation window has an invalid output span")
+        if not isinstance(window.get("reasons"), list) or not window["reasons"]:
+            raise ValueError("Degradation reasons must be recorded")
+        for reason in window["reasons"]:
+            _id(reason, "degradation reason")
+    previous = -1
+    for sample in execution["control_samples"]:
+        if not isinstance(sample, Mapping):
+            raise ValueError("Control sample must be a record")
+        frame = _integer(sample.get("frame"), "control sample frame")
+        if not previous < frame < duration or not isinstance(sample.get("values"), Mapping):
+            raise ValueError("Control observations must have unique increasing output frames")
+        for identifier, value in sample["values"].items():
+            if events.get(identifier, {}).get("kind") != "material":
+                raise ValueError("Control observation names an unknown material event")
+            _number(value, "control observation", 0, 1)
+        previous = frame
+    for transition in execution["transitions"]:
+        if not isinstance(transition, Mapping) or transition.get("kind") not in {"seek", "tick"}:
+            raise ValueError("Unknown execution transition")
+        if _integer(transition.get("frame"), "transition frame") > duration:
+            raise ValueError("Execution transition exceeds the output span")
+        if transition["kind"] == "tick":
+            for key in ("started", "ended"):
+                if not isinstance(transition.get(key), list) or any(events.get(identifier, {}).get("kind") != "material" for identifier in transition[key]):
+                    raise ValueError("Execution transition names an unknown event")
+            _integer(transition.get("unobserved_frames"), "unobserved output frames")
+        elif type(transition.get("playing")) is not bool:
+            raise ValueError("Seek must retain explicit play intent")
+    if not isinstance(execution.get("resource_maxima"), Mapping):
+        raise ValueError("Resource observations must be explicit")
+    for name, value in execution["resource_maxima"].items():
+        if name not in {"decoded_audio_bytes", "texture_bytes", "event_history_bytes"}:
+            raise ValueError("Unknown resource observation")
+        _integer(value, "observed resource maximum")
 
 
 def _record(value: Any) -> dict:
@@ -200,6 +263,8 @@ def canonical_identity(record: Any) -> str:
         event["id"] = event_ids[event["id"]]
         if event["parent_id"] is not None:
             event["parent_id"] = event_ids[event["parent_id"]]
+        if "reused_from" in event:
+            event["reused_from"] = event_ids[event["reused_from"]]
         if "material_id" in event:
             event["material_id"] = material_ids[event["material_id"]]
         for edge in event.get("couplings", []):
@@ -208,7 +273,8 @@ def canonical_identity(record: Any) -> str:
     reference["material_id"] = material_ids[reference["material_id"]]
     identity = {"composition_id": data["composition_id"], "timebase": data["timebase"],
                 "duration_frames": runtime["duration_frames"], "engine_sha256": runtime["engine_sha256"],
-                "reference": reference, "events": runtime["events"]}
+                "reference": reference, "fallback": material_ids[runtime["fallback_material_id"]],
+                "events": runtime["events"]}
     return hashlib.sha256(canonical_json(identity).encode()).hexdigest()
 
 
@@ -238,7 +304,11 @@ class PerformanceHistory:
         connection = sqlite3.connect(self.path.resolve().as_uri() + "?mode=rw", uri=True,
                                      timeout=self.busy_timeout_seconds)
         if create:
-            connection.execute("CREATE TABLE IF NOT EXISTS performances (identity TEXT PRIMARY KEY, record_json TEXT NOT NULL, created_at TEXT NOT NULL)")
+            try:
+                connection.execute("CREATE TABLE IF NOT EXISTS performances (identity TEXT PRIMARY KEY, record_json TEXT NOT NULL, created_at TEXT NOT NULL)")
+            except BaseException:
+                connection.close()
+                raise
         return connection
 
     def reserve(self, record: Any) -> str:

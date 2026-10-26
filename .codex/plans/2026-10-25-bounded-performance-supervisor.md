@@ -91,13 +91,20 @@ source/body/matte clocks and a protected reference. The profile supplies count
 limits and explicit byte admission. Resolved events carry IDs, parent IDs, scale,
 material hashes, independent source clocks, output spans, FX decisions and gains.
 
-- [ ] Regress three structurally distinct records, duration variation, at least three
+- [x] Regress three structurally distinct records, duration variation, at least three
   scales, composite parent/reuse and coupled control decisions; reject duplicate IDs,
   invalid spans, unknown hashes, cyclic parents and unqualified material use.
-- [ ] Regress every scheduling limit, ten-second pending horizon, exact end boundary,
+- [x] Regress every scheduling limit, ten-second pending horizon, exact end boundary,
   skipped ticks, checkpoint recovery, paused intent, cancellation and fallback pressure.
-- [ ] Observe absent capability, implement planner/validator/supervisor, then run both
+- [x] Observe absent capability, implement planner/validator/supervisor, then run both
   focused commands from #113 plus composition compatibility tests; commit the task.
+
+Task 2 evidence: missing supervisor module observed before implementation. Nineteen
+focused supervisor tests plus eight novelty tests pass, including regressions first
+observing early resume scheduling, terminal resurrection, invalid native clocks,
+reused-label identity drift, unlabeled simulation and missing pressure-window replay.
+Delayed controls and complete saved degradation/recovery decisions replay deterministically.
+This is synthetic execution evidence, not three production performances or a live soak.
 
 ## Task 3: Existing CLI entry point and authored profile
 

@@ -1,10 +1,12 @@
 import copy
+import gc
 import json
 import sqlite3
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import tempfile
 import unittest
+import warnings
 
 from amp.composition import PerformanceRecord, SourceSpan, Timebase
 from amp.composition.novelty import DuplicatePerformance, PerformanceHistory, canonical_identity
@@ -23,6 +25,7 @@ class PerformanceNoveltyTests(unittest.TestCase):
         renamed["runtime"]["events"][1].update(id="renamed-shot", parent_id="renamed-parent")
         renamed["runtime"]["materials"][0]["id"] = "renamed-material"
         renamed["runtime"]["reference"]["material_id"] = "renamed-material"
+        renamed["runtime"]["fallback_material_id"] = "renamed-material"
         renamed["runtime"]["events"][1]["material_id"] = "renamed-material"
         self.assertEqual(canonical_identity(original), canonical_identity(renamed))
 
@@ -83,8 +86,12 @@ class PerformanceNoveltyTests(unittest.TestCase):
             path = Path(directory) / "history.sqlite3"
             path.write_bytes(b"not a database")
             path.chmod(0o600)
-            with self.assertRaises(sqlite3.DatabaseError):
-                PerformanceHistory(path).reserve(record())
+            with warnings.catch_warnings(record=True) as emitted:
+                warnings.simplefilter("always", ResourceWarning)
+                with self.assertRaises(sqlite3.DatabaseError):
+                    PerformanceHistory(path).reserve(record())
+                gc.collect()
+            self.assertFalse([warning for warning in emitted if warning.category is ResourceWarning])
             self.assertEqual(path.read_bytes(), b"not a database")
 
     def test_history_rejects_tampered_decisions_without_repairing_them(self):
