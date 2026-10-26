@@ -14,6 +14,7 @@ from amp.composition.containers import (
 )
 from amp.execution import execute_study, is_study_binding
 from amp.studies import (
+    build_study_manifest,
     STUDY_BINDING_FAMILY,
     resolve_study_output_dir,
     run_study,
@@ -54,7 +55,7 @@ class StudyDispatchTests(unittest.TestCase):
         expected = self.output_dir / "god-here" / "studies" / "w01-speech" / "study-alpha" / "case-01"
         self.assertEqual(resolved, expected)
 
-    def test_valid_study_dispatch(self):
+    def test_explicit_planning_manifest_does_not_claim_media_execution(self):
         binding = StudyBinding(
             operator="passthrough",
             materials=(self.mat_ref,),
@@ -71,7 +72,7 @@ class StudyDispatchTests(unittest.TestCase):
             parameters={"workstream_id": "audio-restoration"},
         )
 
-        result = run_study(binding, ctx)
+        result = build_study_manifest(binding, ctx)
         self.assertIsInstance(result, StudyResult)
         self.assertEqual(result.study_id, "study-f05")
         self.assertEqual(result.operator, "passthrough")
@@ -81,6 +82,8 @@ class StudyDispatchTests(unittest.TestCase):
         product = result.products[0]
         self.assertTrue(Path(product.path).is_file())
         self.assertEqual(product.kind, "metadata")
+        self.assertEqual(result.metadata['status'],'planned')
+        self.assertFalse(result.metadata['execution_performed'])
 
         expected_dir = self.output_dir / "god-here" / "studies" / "audio-restoration" / "study-f05" / "case-dense-01"
         self.assertEqual(Path(result.metadata["output_dir"]), expected_dir)
@@ -127,7 +130,7 @@ class StudyDispatchTests(unittest.TestCase):
             output_dir=str(self.output_dir),
             parameters={"workstream_id": "w1"},
         )
-        with self.assertRaisesRegex(ValueError, "Incompatible Timebase"):
+        with self.assertRaisesRegex(ValueError, "study_clock_mismatch"):
             run_study(binding, ctx)
 
     def test_fail_closed_on_empty_inputs(self):
@@ -143,7 +146,7 @@ class StudyDispatchTests(unittest.TestCase):
             output_dir=str(self.output_dir),
             parameters={"workstream_id": "w1"},
         )
-        with self.assertRaisesRegex(ValueError, "at least one input"):
+        with self.assertRaisesRegex(ValueError, "study_inputs_missing"):
             run_study(binding, ctx)
 
     def test_fail_closed_on_path_traversal(self):
@@ -175,9 +178,9 @@ class StudyDispatchTests(unittest.TestCase):
             "output_dir": str(self.output_dir),
             "parameters": {"workstream_id": "ws01"},
         }
-        res = execute_study(binding_dict, ctx_dict)
-        self.assertEqual(res.study_id, "study-wiring")
-        self.assertEqual(res.operator, "passthrough")
+        # A declared hash and planning context cannot supply an executed product.
+        with self.assertRaisesRegex(ValueError,'study_source_span_missing'):
+            execute_study(binding_dict, ctx_dict)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,51 @@
+{
+  "code_sha256": {
+    "amp/cli.py": "99ddc24d95e968a9fa53a4aad390c4cf161c983d595e285ebbc8044d6c879f7f",
+    "amp/composition/containers.py": "6cfb415e6f6beefe28d809a2486725cfeb17c5115cb6d9b6597cdb35b131557a",
+    "amp/execution.py": "b6061664d5ed30093118e3b4abd7fcfa91ede2a040a3e5125e131377abc7706e",
+    "amp/media_resolver.py": "4fa09c2479555f0038828f867d026ea4fcf3c3a2a4c52d60012fefaf3349e927",
+    "amp/studies/__init__.py": "8eed3a45fc7985bf094e01356d7d8841598eedaf5bbc9d24d3ad3134cc11c493",
+    "amp/studies/admission_evidence.py": "81c41c0a39f614ada785cb97c6f43ab81892b946dcb10549d2d324d447cb4625",
+    "amp/studies/dispatch.py": "abf0a2b9a1ee2951c1c69b877b5e9130332570cc91732a1ecfc59e9768265a6a",
+    "amp/studies/execution_artifacts.py": "d2cd4e08d3bd289b8c280901547fea1cd53cf7a56acf3d4d32ba3b69258ad16a",
+    "amp/studies/native_worker.py": "1f41fc74390aa9272617fc9ad024f2b9f22529757957f9ec58c2a1f1217bcd3f",
+    "amp/studies/review_artifacts.py": "dac3121c4af8b8a436251e6b28df2172483572496f946674c49aecd7d2651250"
+  },
+  "controlled_race_regressions": [
+    "Changed admitted binding cannot change snapshot executed by worker",
+    "Changed native WAV cannot retain native-verification claim",
+    "Oversized input rejected before hashing and growing-file reads bounded"
+  ],
+  "deadline_fixture": "one-second shared deadline reaped worker group with no non-zombie survivors and retained partials",
+  "estate_completed": false,
+  "human_acceptance": {
+    "artistic": "pending",
+    "distribution": "pending",
+    "perceptual": "pending"
+  },
+  "installed_wheel_actual_native_cli": "passed",
+  "native_fixture": {
+    "fully_decoded_media": 15,
+    "native_status": "render_verified",
+    "operator": "amp.roomstretch.v1",
+    "output_count": 16,
+    "raw_source_unchanged": true,
+    "status": "produced"
+  },
+  "production_media_processed": false,
+  "required_gate": {
+    "command": "/usr/local/bin/python3 tools/check.py",
+    "exit_code": 0,
+    "log_sha256": "927f81a343c88373aebc2f823882e7aba205e297da069cc6f5dc25aba32e6442",
+    "node_tests": 280,
+    "python_tests": 662,
+    "score_validation": "passed",
+    "skipped": 0
+  },
+  "resource_assessment": "Configured byte/deadline limits; scratch/output monitored at pipe polling intervals; host-wide peak RAM/VRAM not measured or admitted here",
+  "retirement_authorized": false,
+  "schema": "amps.verified-study-dispatch-verification.v1",
+  "session_release_verified": false,
+  "source_base": "03dffc72aedc76ecdfca629307c93b9a7168cdb6",
+  "task_completed": false
+}

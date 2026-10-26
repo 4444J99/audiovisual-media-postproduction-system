@@ -258,8 +258,8 @@ class ExecutionPlan:
         return result + ([] if self.options["spectral"] else ["--no-spectral-control"])
 
 
-def preflight(binding_path, *, locations=None, inventories=(), repo_root=REPO_ROOT):
-    binding = read_json(binding_path, role="binding", limit=1024 * 1024)
+def validate_execution_binding(binding):
+    """Validate the fixed native envelope without probing or processing media."""
     exact_keys(binding, ("schema_version", "id", "adapter", "upstream", "source_clock", "inputs", "options"))
     require(binding["schema_version"] == SCHEMA and binding["adapter"] in ADAPTERS, "schema_mismatch", "binding")
     require(re.fullmatch(r"[a-z0-9][a-z0-9-]{0,79}", str(binding["id"])) is not None, "schema_mismatch", "binding")
@@ -267,8 +267,32 @@ def preflight(binding_path, *, locations=None, inventories=(), repo_root=REPO_RO
     require(binding["upstream"]["pull_request"] in (49, 50, 51, 53) and re.fullmatch(r"[0-9a-f]{40}", str(binding["upstream"]["commit"])) is not None, "schema_mismatch", "upstream")
     validate_source_clock(binding["source_clock"])
     require(isinstance(binding["inputs"], dict) and isinstance(binding["options"], dict), "schema_mismatch")
-    resolver = MediaResolver(repo_root, locations, inventories)
-    plan = ExecutionPlan(binding, file_identity(binding_path, "binding"), resolver, Path(repo_root).resolve())
+    adapter=binding['adapter']
+    expected_pr = dict(zip(ADAPTERS, (49, 50, 51, 53)))[adapter]
+    require(binding['upstream']['pull_request']==expected_pr,'upstream_adapter_mismatch')
+    allowed = {"amp.direction.v1": ("recipe", "source", "audio", "fields", "font"),
+               "amp.revision.v1": ("recipe", "source", "audio", "composition", "track", "font", "session"),
+               "fx.rack.v1": ("recipe", "asset_receipt", "font"),
+               "amp.roomstretch.v1": ("parameter_report", "inventory", "source")}[adapter]
+    required = {"amp.direction.v1": ("recipe", "source", "audio"), "amp.revision.v1": ("recipe", "source", "audio", "composition"),
+                "fx.rack.v1": ("recipe", "asset_receipt", "font"), "amp.roomstretch.v1": ("parameter_report", "inventory", "source")}[adapter]
+    require(set(binding['inputs'])<=set(allowed),'unsupported_input_role')
+    require(set(required)<=set(binding['inputs']),'missing_input_reference')
+    return binding
+
+
+def preflight(binding_path, *, locations=None, inventories=(), repo_root=REPO_ROOT, expected_binding_identity=None, identity_reader=None):
+    if expected_binding_identity is None:
+        binding=read_json(binding_path,role='binding',limit=1024*1024);binding_identity=file_identity(binding_path,'binding')
+    else:
+        with Path(binding_path).open('rb') as stream:payload=stream.read(1024*1024+1)
+        binding_identity={'sha256':hashlib.sha256(payload).hexdigest(),'bytes':len(payload)}
+        require(len(payload)<=1024*1024 and binding_identity==expected_binding_identity,'native_binding_identity_mismatch')
+        try:binding=json.loads(payload,parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
+        except (ValueError,UnicodeError):raise ContractError('invalid_json','binding') from None
+    binding=validate_execution_binding(binding)
+    resolver = MediaResolver(repo_root, locations, inventories,identity_reader=identity_reader)
+    plan = ExecutionPlan(binding,binding_identity,resolver,Path(repo_root).resolve())
     adapter, inputs, options = binding["adapter"], binding["inputs"], binding["options"]
     expected_pr = dict(zip(ADAPTERS, (49, 50, 51, 53)))[adapter]
     require(binding["upstream"]["pull_request"] == expected_pr, "upstream_adapter_mismatch")
@@ -653,7 +677,7 @@ def verify_products(plan, products, *, accounting=None):
     return rows
 
 
-def execute(plan, output):
+def execute(plan, output, *, isolate_process_group=True):
     output = Path(output).resolve()
     require(not output.exists(), "output_directory_already_exists")
     # Recheck before snapshotting, after snapshotting, and after native execution.
@@ -680,14 +704,15 @@ def execute(plan, output):
         with os.fdopen(fd, "wb") as log:
             try:
                 process = subprocess.Popen(plan.argv(products, paths, assets), cwd=plan.repo_root, env=env,
-                                           stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
+                                           stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT, start_new_session=isolate_process_group)
                 native_started = True
             except OSError:
                 raise ContractError("native_execution_unavailable_or_timed_out") from None
             try:
                 return_code = process.wait(timeout=7200)
             except subprocess.TimeoutExpired:
-                os.killpg(process.pid, signal.SIGKILL)
+                if isolate_process_group:os.killpg(process.pid, signal.SIGKILL)
+                else:process.kill()
                 process.wait()
                 raise ContractError("native_execution_unavailable_or_timed_out") from None
         require(return_code == 0, "native_execution_failed")

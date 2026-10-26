@@ -113,12 +113,15 @@ def sha_file(value, deadline, *, maximum=None, git_blob=False):
         digest = hashlib.sha1() if git_blob else hashlib.sha256()
         if git_blob:
             digest.update(f"blob {before.st_size}\0".encode())
+        consumed=0
         while True:
             if time.monotonic() >= deadline:
                 raise EvidenceUnavailable("verification_deadline_exhausted")
-            block = stream.read(1024 * 1024)
+            block = stream.read(1024 * 1024 if maximum is None else min(1024 * 1024,maximum-consumed+1))
             if not block:
                 break
+            consumed+=len(block)
+            if maximum is not None and consumed>maximum:raise EvidenceUnavailable("artifact_size_invalid")
             digest.update(block)
         after = os.fstat(stream.fileno())
     if (before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns, before.st_ctime_ns) != (

@@ -140,3 +140,17 @@ class InstalledWheelTests(unittest.TestCase):
         self.assertEqual(receipt['reference_frame']['status'],'passed')
         self.assertEqual(receipt['reference_frame']['checked_frames'],16)
         self.assertIn('tools/check-reference.mjs',receipt['code_sha256'])
+
+    def test_installed_study_executes_retained_native_recipe_outside_checkout(self):
+        fixture=self.consumer/'study-fixture';fixture.mkdir()
+        producer=('import sys,json; sys.path.insert(0,"tests/studies"); '
+            'from test_study_execution import StudyExecutionTests; '
+            'root,binding,locations,source=StudyExecutionTests().native_fixture(sys.argv[1]); '
+            '(root/"binding.json").write_text(json.dumps(binding)); (root/"locations.json").write_text(json.dumps(locations))')
+        self.run_command([sys.executable,'-c',producer,str(fixture)],ROOT)
+        result=self.run_command([str(self.python),'-I','-m','amp.cli','execute','--binding',str(fixture/'binding.json'),
+            '--locations',str(fixture/'locations.json'),'--output',str(fixture/'installed-native')],self.consumer)
+        receipt=json.loads(result.stdout)
+        self.assertEqual(receipt['status'],'produced');self.assertTrue(receipt['render_executed'])
+        self.assertEqual(receipt['native']['status'],'render_verified')
+        self.assertEqual(receipt['qualification']['perceptual'],'pending')

@@ -52,7 +52,7 @@ def recheck_inputs(paths,refs,snapshots,deadline):
     revalidate_inputs(snapshots,deadline)
 
 
-def native(argv, deadline, *, limit=1024*1024, data=None, sink=None):
+def native(argv, deadline, *, limit=1024*1024, data=None, sink=None, observer=None, success_codes=(0,)):
     """Drain both pipes under byte/time bounds and terminate the whole child group."""
     require(time.monotonic()<deadline,"review_deadline_exhausted")
     with tempfile.TemporaryFile() as incoming:
@@ -68,6 +68,7 @@ def native(argv, deadline, *, limit=1024*1024, data=None, sink=None):
             with selectors.DefaultSelector() as selector:
                 for name in buffers:selector.register(getattr(process,name),selectors.EVENT_READ,name)
                 while selector.get_map():
+                    if observer is not None:observer()
                     remaining=deadline-time.monotonic()
                     require(remaining>0,"review_deadline_exhausted")
                     for key,_ in selector.select(min(remaining,0.2)):
@@ -82,7 +83,7 @@ def native(argv, deadline, *, limit=1024*1024, data=None, sink=None):
                         else:
                             buffers[name].extend(chunk);require(len(buffers[name])<=1024*1024,"review_native_output_limit")
                 process.wait(timeout=max(.001,deadline-time.monotonic()))
-            require(process.returncode==0,"review_native_execution_failed")
+            require(process.returncode in success_codes,"review_native_execution_failed")
             return bytes(buffers["stdout"]),bytes(buffers["stderr"])
         except BaseException as error:
             try:
