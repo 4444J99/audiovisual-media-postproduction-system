@@ -42,3 +42,9 @@ The twelve historical candidate objects exactly match the pinned baseline;
 their canonical SHA-256 is `1fe668c5ecc995ce1622fd036590e06724bb95d1b3e484098b010db551abff27`.
 All twelve corrected source proposals remain not tested. #67 is reopened.
 Independent whole-branch review and any bounded corrections remain pending.
+
+Review checkpoint at 03:10 UTC: four Important and one Minor findings accepted;
+see docs/evidence/2026-10-26-model-admission/review-disposition.md.
+Attempt exhausted before safe reproduction/correction/verification. Preserve a
+draft PR, do not merge, retain unfinished owner AMP #67 under #63. Existing
+green tests do not establish the reviewed admission contract.
