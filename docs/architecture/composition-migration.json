@@ -266,7 +266,11 @@
     {
       "from": "projects/god-here/source-registration.json",
       "to": "compositions/comp-001/source-registration.json",
-      "sha256": "d08dcd6cb0bdfb81dba2a03ac4e8402deb7394a353a0f825de05ad1e44bf78e5"
+      "sha256": "d08dcd6cb0bdfb81dba2a03ac4e8402deb7394a353a0f825de05ad1e44bf78e5",
+      "preserved_original": "docs/architecture/composition-migration-baseline/source-registration.json",
+      "reconciled_sha256": "e544d2e5f229d04c6950c2d52a7d0af3471be966c3a63002ea312f1e4c6c936a",
+      "reconciliation_evidence": "docs/evidence/2026-10-26-source-reuse-reconciliation/observations.json",
+      "corrections": [{"json_path": ["sources", 1, "custody_status"], "before": "canonical_repo_asset", "after": "owner_corpus_asset"}]
     },
     {
       "from": "projects/god-here/transcript.provisional.json",

@@ -44,7 +44,21 @@ class CompositionIdentityTests(unittest.TestCase):
         for record in inventory["files"]:
             with self.subTest(path=record["from"]):
                 current = (ROOT / record["to"]).read_bytes()
-                self.assertEqual(hashlib.sha256(current).hexdigest(), record["sha256"])
+                expected_hash=record["sha256"]
+                if 'preserved_original' in record:
+                    original=(ROOT/record['preserved_original']).read_bytes()
+                    self.assertEqual(hashlib.sha256(original).hexdigest(),record['sha256'])
+                    self.assertTrue((ROOT/record['reconciliation_evidence']).is_file())
+                    corrected=json.loads(original)
+                    self.assertTrue(record['corrections'])
+                    for correction in record['corrections']:
+                        parent=corrected
+                        for key in correction['json_path'][:-1]:parent=parent[key]
+                        key=correction['json_path'][-1]
+                        self.assertEqual(parent[key],correction['before']);parent[key]=correction['after']
+                    self.assertEqual(json.loads(current),corrected)
+                    expected_hash=record['reconciled_sha256']
+                self.assertEqual(hashlib.sha256(current).hexdigest(),expected_hash)
                 self.assertEqual((ROOT / record["from"]).read_bytes(), current)
 
     def test_default_id_and_legacy_selections_resolve_one_composition(self):

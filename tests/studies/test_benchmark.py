@@ -115,6 +115,27 @@ class BenchmarkValidationTests(unittest.TestCase):
 
         self.assertTrue(found_movie, "Supplied movie hash must be registered in reuse map")
 
+    def test_reuse_identity_sizes_match_frozen_recovery_and_exact_input_evidence(self):
+        root=Path(__file__).resolve().parents[2]
+        catalog=json.loads((root/'manifests/artifacts/god-here-recovery-catalog.json').read_text())
+        prepared=json.loads((root/'manifests/acceptance/god-here-direction-exact-input-recovery.json').read_text())
+        known={row['sha256']:row['bytes'] for row in catalog['objects']}
+        for row in prepared['inputs']:
+            if row['sha256'] in known:self.assertEqual(known[row['sha256']],row['bytes'])
+            known[row['sha256']]=row['bytes']
+        for row in self.reuse_map['entries']:
+            with self.subTest(role=row['role']):
+                self.assertIn(row['sha256'],known,'A registered identity needs existing source-owned evidence')
+                self.assertEqual(row['size'],known[row['sha256']],'One SHA-256 cannot identify two different byte counts')
+
+    def test_primary_source_registration_and_reuse_ownership_agree(self):
+        registration=json.loads((STUDIES_DIR.parent/'source-registration.json').read_text())
+        reuse={row['sha256']:row for row in self.reuse_map['entries']}
+        for source in registration['sources']:
+            row=reuse[source['sha256']]
+            self.assertEqual(source['bytes'],row['size'])
+            self.assertEqual(source['custody_status'],row['custody_status'])
+
 
 if __name__ == "__main__":
     unittest.main()

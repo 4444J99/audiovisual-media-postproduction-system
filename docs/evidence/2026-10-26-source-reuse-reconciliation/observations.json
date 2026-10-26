@@ -1,0 +1,252 @@
+{
+  "all_six_currently_available": false,
+  "base_commit": "47282990d030c356639619a80a0b813a886adec3",
+  "canonical_studio": {
+    "current_served_studio_source_read": false,
+    "deployment_id": "appgdep_6ad57b90488c8191923ebf22a837f1fd",
+    "deployment_status": "succeeded",
+    "environment_revision": 13,
+    "latest_saved_version": 25,
+    "origin": "https://god-here-five.ajpadavano.chatgpt.site",
+    "production_routes_modified": false,
+    "project_id": "appgprj_6ac71699c8fc81919b030dcf9ad112e4",
+    "qualification": "Retained frozen source map read; current metadata refreshed through Sites, source requests unavailable. No current source-map/readback acceptance or deployment change claimed.",
+    "source_commit": "f40791baabbe2b06a6422a83a1b54f9861731942",
+    "source_routes_observed_http_status": {
+      "/index.html": 403,
+      "/studio/core.mjs": 403
+    }
+  },
+  "current_preparation_code": {
+    "exact_historical_code_equivalence_verified": false,
+    "observed_current_method": "48 kHz decode, highpass and FFT-denoise candidate, alignment and fixed-gain comparison copies, neural_enhancement false; not proof of historical execution",
+    "path": "tools/prepare_direction_audio.py",
+    "reported_historical_script_sha256": "0689cab7d51952df4a7fff5ab3a14ff528873cc848790b4a5a04e5a9a722ae2e",
+    "sha256": "328775897260ad8df157622be31a2a5231013d9d30059d2661ccf77e3f78e888"
+  },
+  "discovery_scope": {
+    "global_nonexistence_claimed": false,
+    "google_drive": "Exact saved PR49 input-recovery title returned no result",
+    "local": "Existing owner material catalog, named source documents/workprint, retained direction package and corpus filename search",
+    "spotlight": "Exact saved PR49 input-recovery volume title returned no indexed match"
+  },
+  "entries": [
+    {
+      "current_assertion": {
+        "custody_status": "owner_corpus_asset",
+        "producer": "historical_author",
+        "reuse_disposition": "unverified_vocabulary_reference",
+        "role": "draft_script_text",
+        "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67",
+        "size": 2299
+      },
+      "current_local_availability": "verified-byte-identity",
+      "current_registered_role": "draft_script_text",
+      "independent_custody_or_restore": "not_tested",
+      "prior_assertion": {
+        "custody_status": "canonical_repo_asset",
+        "producer": "historical_author",
+        "reuse_disposition": "unverified_vocabulary_reference",
+        "role": "draft_script_text",
+        "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67",
+        "size": 2299
+      },
+      "sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67",
+      "size": 2299
+    },
+    {
+      "current_assertion": {
+        "custody_status": "privately_preserved",
+        "producer": "historical_prepare_direction_audio_candidate",
+        "reuse_disposition": "historical_prepared_candidate_method_and_listening_unverified",
+        "role": "candidate_restoration_audio",
+        "sha256": "57cd5662206c247861551bad7dc9651bb07157188b70c4687203b0c913f4fd21",
+        "size": 43013074
+      },
+      "current_local_availability": "unavailable-in-inspected-owner-context",
+      "current_registered_role": "candidate_restoration_audio",
+      "independent_custody_or_restore": "not_tested",
+      "prior_assertion": {
+        "custody_status": "privately_preserved",
+        "producer": "neural_speech_restoration_pass",
+        "reuse_disposition": "benchmark_candidate_audio",
+        "role": "candidate_restoration_audio",
+        "sha256": "57cd5662206c247861551bad7dc9651bb07157188b70c4687203b0c913f4fd21",
+        "size": 43013074
+      },
+      "sha256": "57cd5662206c247861551bad7dc9651bb07157188b70c4687203b0c913f4fd21",
+      "size": 43013074
+    },
+    {
+      "current_assertion": {
+        "custody_status": "privately_preserved",
+        "producer": "historical_camera_cut",
+        "reuse_disposition": "canonical_timing_spine",
+        "role": "original_video_spine",
+        "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+        "size": 12636527
+      },
+      "current_local_availability": "verified-byte-identity",
+      "current_registered_role": "original_video_spine",
+      "independent_custody_or_restore": "not_tested",
+      "prior_assertion": {
+        "custody_status": "privately_preserved",
+        "producer": "historical_camera_cut",
+        "reuse_disposition": "canonical_timing_spine",
+        "role": "original_video_spine",
+        "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+        "size": 12636527
+      },
+      "sha256": "bde1c7e0910941f8ca3bce06e8c2ddb3a31da4335b544fd041d84e97d1060225",
+      "size": 12636527
+    },
+    {
+      "current_assertion": {
+        "custody_status": "privately_preserved",
+        "producer": "historical_prepare_direction_audio_reference_48k",
+        "reuse_disposition": "prepared_reference_baseline_not_immutable_raw_source_audio",
+        "role": "prepared_full_source_reference_audio",
+        "sha256": "be0e55149b0e9b076e88659b2a16a309c536283355765ec77ed344eebe201aa7",
+        "size": 43013074
+      },
+      "current_local_availability": "unavailable-in-inspected-owner-context",
+      "current_registered_role": "prepared_full_source_reference_audio",
+      "independent_custody_or_restore": "not_tested",
+      "prior_assertion": {
+        "custody_status": "privately_preserved",
+        "producer": "lossless_container_demux_44k1",
+        "reuse_disposition": "canonical_reference_speech_baseline",
+        "role": "extracted_full_source_audio",
+        "sha256": "be0e55149b0e9b076e88659b2a16a309c536283355765ec77ed344eebe201aa7",
+        "size": 43013074
+      },
+      "sha256": "be0e55149b0e9b076e88659b2a16a309c536283355765ec77ed344eebe201aa7",
+      "size": 43013074
+    },
+    {
+      "current_assertion": {
+        "custody_status": "privately_preserved",
+        "producer": "god_here_iteration_02_study",
+        "reuse_disposition": "historical_reception_reference_only",
+        "role": "historical_reception_workprint",
+        "sha256": "d5d1ce43fffed6c95969a449659b947ca259257acec8a1eed6abbd5ffb701d25",
+        "size": 4284067
+      },
+      "current_local_availability": "verified-byte-identity",
+      "current_registered_role": "historical_reception_workprint",
+      "independent_custody_or_restore": "not_tested",
+      "prior_assertion": {
+        "custody_status": "privately_preserved",
+        "producer": "god_here_iteration_02_study",
+        "reuse_disposition": "historical_reception_reference_only",
+        "role": "historical_reception_workprint",
+        "sha256": "d5d1ce43fffed6c95969a449659b947ca259257acec8a1eed6abbd5ffb701d25",
+        "size": 5448378
+      },
+      "sha256": "d5d1ce43fffed6c95969a449659b947ca259257acec8a1eed6abbd5ffb701d25",
+      "size": 4284067
+    },
+    {
+      "current_assertion": {
+        "custody_status": "owner_corpus_asset",
+        "producer": "historical_author_sketch",
+        "reuse_disposition": "spatial_performer_geometry_anchor",
+        "role": "field_sketch_photo",
+        "sha256": "d5deb50824888de14e92d2dde9077643dc405c7c1a1e2121848874f38dffd7f4",
+        "size": 192296
+      },
+      "current_local_availability": "verified-byte-identity",
+      "current_registered_role": "field_sketch_photo",
+      "independent_custody_or_restore": "not_tested",
+      "prior_assertion": {
+        "custody_status": "canonical_repo_asset",
+        "producer": "historical_author_sketch",
+        "reuse_disposition": "spatial_performer_geometry_anchor",
+        "role": "field_sketch_photo",
+        "sha256": "d5deb50824888de14e92d2dde9077643dc405c7c1a1e2121848874f38dffd7f4",
+        "size": 192296
+      },
+      "sha256": "d5deb50824888de14e92d2dde9077643dc405c7c1a1e2121848874f38dffd7f4",
+      "size": 192296
+    }
+  ],
+  "estate_complete": false,
+  "f01_complete": false,
+  "frozen_evidence": [
+    {
+      "path": "manifests/artifacts/god-here-recovery-catalog.json",
+      "sha256": "8843bba3e9b0d5937fe5fb93e02233fe8be69aa5f072349ad896011999ccb1e3"
+    },
+    {
+      "path": "manifests/acceptance/god-here-direction-exact-input-recovery.json",
+      "sha256": "dd9ad2cd19307b4088b7db55f3ac6a1560d52c258cd414759b3bc568b567844b"
+    },
+    {
+      "path": "manifests/experiments/god-here-review-surface-map.json",
+      "sha256": "dbed764d3844740c9cdfdc64a9acded6e0d191eb9ae618013ba68a931f5a193f"
+    }
+  ],
+  "primary_source_registration_correction": {
+    "path": "compositions/comp-001/source-registration.json",
+    "prior_file_sha256": "d08dcd6cb0bdfb81dba2a03ac4e8402deb7394a353a0f825de05ad1e44bf78e5",
+    "source_sha256": "288b42930883f9f9d3b9051571b708884dee806c62cc901342281f651700ea67",
+    "prior_custody_status": "canonical_repo_asset",
+    "current_custody_status": "owner_corpus_asset",
+    "reason": "Current source bytes verified in the owner corpus; the script is not a tracked current repository asset. Registered logical alias and historical provenance stay unchanged. This is not independent custody or restore proof."
+  },
+  "historical_prepared_audio": {
+    "channels": 2,
+    "codec": "pcm_f32le",
+    "each_file_bytes": 43013074,
+    "evidence": "manifests/acceptance/god-here-direction-exact-input-recovery.json",
+    "method_scope": "Historical named preparation script; exact historical producing code bytes and both exact current WAVs remain unavailable in this inspected context",
+    "neural_method_verified": false,
+    "pcm_frames_per_channel": 5376627,
+    "raw_native_44100_demux": false,
+    "sample_rate": 48000
+  },
+  "human_qualification": {
+    "artistic": "pending",
+    "distribution": "pending",
+    "perceptual": "pending"
+  },
+  "media_or_private_locators_committed": false,
+  "observed_at": "2026-10-26T05:47:21.312258+00:00",
+  "prior_reuse_map_sha256": "4dfef73c745444b801af2a29abd924b0aa2c67958c682597704d537314c7cdfa",
+  "program_owner": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/63",
+  "saved_restore_owner": {
+    "action": "Restore the four recorded ordered volumes, verify full archive and exact WAV hashes; do not regenerate a missing historical identity",
+    "archive_sha256": "9892b3fbfece3b93027e9306acc1eaff63591e9748e64e0d9b3b44d56c516ff8",
+    "manifest": "manifests/acceptance/god-here-direction-exact-input-recovery.json"
+  },
+  "schema": "amps.source-reuse-reconciliation.v1",
+  "source_header_observation": {
+    "scope": "Current ffprobe stream metadata only, not a new full decode or human playback qualification",
+    "streams": [
+      {
+        "avg_frame_rate": "30/1",
+        "codec_name": "h264",
+        "codec_type": "video",
+        "duration": "112.000000",
+        "duration_ts": 1720320,
+        "height": 720,
+        "nb_frames": "3360",
+        "time_base": "1/15360",
+        "width": 1280
+      },
+      {
+        "avg_frame_rate": "0/0",
+        "channels": 2,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "duration": "112.013061",
+        "duration_ts": 4939776,
+        "nb_frames": "4824",
+        "sample_rate": "44100",
+        "time_base": "1/44100"
+      }
+    ]
+  },
+  "source_modified": false,
+  "source_owner": "https://github.com/4444J99/audiovisual-media-postproduction-system/issues/64"
+}

@@ -1,0 +1,34 @@
+{
+  "actual_byte_audit": {
+    "all_six_preflight": "blocked: missing_location",
+    "all_six_ready": false,
+    "intended_identities": 6,
+    "unavailable_exact_wavs": 2,
+    "verified": 4,
+    "verified_copy_bytes": 17115189
+  },
+  "current_served_studio_source_read": false,
+  "current_session_release_verified": false,
+  "estate_complete": false,
+  "f01_complete": false,
+  "historical_preparation_code_equivalence_verified": false,
+  "independent_custody_or_restore_verified": false,
+  "regression": "Prior workprint size5448378 contradicted exact catalog/current size4284067; identity-size consistency test reproduced fail before correction and now passes",
+  "required_gate": {
+    "command": "/usr/local/bin/python3 tools/check.py",
+    "exit_code": 0,
+    "log_sha256": "8125a8bb9a66f83aa1521d961acff9fb41db2d7499d5f3a47abd96e4be1ad964",
+    "node_tests": 280,
+    "python_tests": 663,
+    "score_validation": "passed",
+    "skipped": 0
+  },
+  "retirement_authorized": false,
+  "schema": "amps.source-reuse-verification.v1",
+  "source_base": "47282990d030c356639619a80a0b813a886adec3",
+  "source_sha256": {
+    "compositions/comp-001/studies/reuse-map.json": "54dcaec1e38d0194c61e60872f9ea25ba3881476212c21bdee5f8ffa599df4de",
+    "tests/studies/test_benchmark.py": "813dd86caff82d2753bc3381ab3138d531892b64c7313c233855685a5028b015",
+    "tools/prepare_direction_audio.py": "328775897260ad8df157622be31a2a5231013d9d30059d2661ccf77e3f78e888"
+  }
+}
