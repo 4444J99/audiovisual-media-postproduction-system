@@ -295,6 +295,7 @@ def preflight(binding, context, candidate_id, candidate):
             verify_code(code_root, candidate["code_commit"], deadline, snapshots)
             revalidate_inputs(snapshots, deadline)
             facts = dict(weights_verified=True, code_verified=True, environment_verified=True,
+                weights_sha256=weights_sha, runtime_env=backend,
                 workload_evidence_verified=True, workload_receipt_sha256=receipt_sha,
                 evidence_scope=scope, device=report["device"], backend_version=probe["version"],
                 host_fingerprint=host_sha,

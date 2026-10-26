@@ -2,7 +2,7 @@
 
 Provides:
 - finite sample verification (rejecting NaN/Inf and non-zero active RMS)
-- 0.5 LU active-speech loudness matching gain on comparison copies with raw_stem_mutated: False
+- RMS-only gain estimates; actual BS.1770 comparison copies use review_artifacts
 - retimed content moment mapping between candidate and baseline spans
 - build_review dispatch helper returning StudyResult
 """
@@ -11,6 +11,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+from fractions import Fraction
 from pathlib import Path
 from typing import Any, Mapping, Optional, Sequence
 
@@ -30,12 +31,17 @@ from amp.studies.dispatch import resolve_study_output_dir
 def verify_finite_samples(samples: np.ndarray, role: str = "audio", min_rms: float = 1e-9) -> np.ndarray:
     if not isinstance(samples, np.ndarray):
         raise ValueError(f"Expected numpy.ndarray for {role}, got {type(samples).__name__}")
+    if samples.dtype.kind not in "fiu" or samples.ndim not in (1, 2):
+        raise ValueError(f"{role} must contain real audio samples")
+    if type(min_rms) not in (int, float) or not math.isfinite(min_rms) or min_rms <= 0:
+        raise ValueError("min_rms must be finite and positive")
     if not np.all(np.isfinite(samples)):
         raise ValueError(f"{role} contains non-finite samples (NaN or Inf)")
     if samples.size == 0:
         raise ValueError(f"{role} sample array is empty")
 
-    rms = float(np.sqrt(np.mean(samples.astype(np.float64) ** 2)))
+    peak = float(np.max(np.abs(samples.astype(np.float64))))
+    rms = peak * float(np.sqrt(np.mean((samples.astype(np.float64)/peak) ** 2))) if peak else 0.0
     if rms < min_rms:
         raise ValueError(f"{role} contains zero active RMS ({rms:.3e} < {min_rms:.3e})")
     return samples
@@ -49,23 +55,60 @@ def compute_loudness_matching_gain(
     c = verify_finite_samples(candidate, "candidate")
     b = verify_finite_samples(baseline, "baseline")
 
-    rms_c = float(np.sqrt(np.mean(c.astype(np.float64) ** 2)))
-    rms_b = float(np.sqrt(np.mean(b.astype(np.float64) ** 2)))
+    peak_c = float(np.max(np.abs(c.astype(np.float64))))
+    peak_b = float(np.max(np.abs(b.astype(np.float64))))
+    rms_c = peak_c * float(np.sqrt(np.mean((c.astype(np.float64)/peak_c) ** 2)))
+    rms_b = peak_b * float(np.sqrt(np.mean((b.astype(np.float64)/peak_b) ** 2)))
 
     gain_linear = rms_b / rms_c
     gain_db = 20.0 * math.log10(gain_linear)
-    diff_lu = abs(gain_db)  # 1 LU ~= 1 dB in integrated active speech measurement
+    if not math.isfinite(gain_linear) or type(tolerance_lu) not in (int, float) or not math.isfinite(tolerance_lu) or tolerance_lu < 0:
+        raise ValueError("Invalid RMS gain or comparison threshold")
 
     matched_copy = candidate.copy() * gain_linear
+    if not np.isfinite(matched_copy).all():
+        raise ValueError("RMS-matched estimate is not finite")
 
     return {
         "gain_db": round(gain_db, 4),
         "gain_linear": gain_linear,
-        "diff_lu": round(diff_lu, 4),
-        "within_tolerance": diff_lu <= tolerance_lu,
+        "rms_gain_db": round(gain_db, 4),
+        "diff_lu": None,
+        "within_tolerance": None,
+        "method": "RMS-estimate-only; no BS.1770 or active-speech measurement",
         "raw_stem_mutated": False,
         "matched_copy": matched_copy,
     }
+
+
+def validated_retiming_map(candidate_span, baseline_span, mapping):
+    if not isinstance(mapping, (list, tuple)) or not mapping:
+        raise ValueError("Explicit retiming map must be nonempty")
+    rows = []
+    cursor = Fraction(candidate_span.start)
+    for spec in mapping:
+        if not isinstance(spec, Mapping):
+            raise ValueError("Retiming segment must be an object")
+        values = []
+        for snake, camel in (("output_start","outputStart"),("output_end","outputEnd"),
+                             ("source_start","sourceStart"),("source_end","sourceEnd")):
+            value = spec.get(snake, spec.get(camel))
+            if snake in spec and camel in spec and spec[snake] != spec[camel]:
+                raise ValueError("Conflicting retiming aliases")
+            try:
+                valid = type(value) in (int,float) and math.isfinite(value)
+            except OverflowError:
+                valid = False
+            if not valid:
+                raise ValueError("Retiming endpoints must be finite real coordinates")
+            values.append(Fraction(str(value)))
+        a,b,c,d = values
+        if a != cursor or b <= a or b > candidate_span.end or not all(baseline_span.start <= x <= baseline_span.end for x in (c,d)):
+            raise ValueError("Retiming map is gapped, overlapping or outside declared spans")
+        rows.append((a,b,c,d));cursor = b
+    if cursor != candidate_span.end:
+        raise ValueError("Retiming map must cover the full candidate span")
+    return rows
 
 
 def map_retimed_moments(
@@ -85,21 +128,12 @@ def map_retimed_moments(
     if not c_start <= candidate_time <= c_end:
         raise ValueError(f"Candidate time {candidate_time} outside candidate span [{c_start}, {c_end}]")
 
-    if retiming_map:
-        for span_spec in retiming_map:
-            o_start = span_spec.get("output_start", span_spec.get("outputStart"))
-            o_end = span_spec.get("output_end", span_spec.get("outputEnd"))
-            s_start = span_spec.get("source_start", span_spec.get("sourceStart"))
-            s_end = span_spec.get("source_end", span_spec.get("sourceEnd"))
-
-            if None in (o_start, o_end, s_start, s_end):
-                continue
-
-            if o_start <= candidate_time <= o_end:
-                if o_end == o_start:
-                    return float(s_start)
-                fraction = (candidate_time - o_start) / (o_end - o_start)
-                return float(s_start + fraction * (s_end - s_start))
+    if retiming_map is not None:
+        for o_start,o_end,s_start,s_end in validated_retiming_map(candidate_span,baseline_span,retiming_map):
+            if o_start <= candidate_time < o_end or candidate_time == c_end == o_end:
+                fraction = (Fraction(str(candidate_time))-o_start)/(o_end-o_start)
+                return float(s_start+fraction*(s_end-s_start))
+        raise ValueError("Candidate position is not mapped")
 
     # Proportional fallback
     if c_end == c_start:
@@ -113,12 +147,15 @@ def build_review(binding: StudyBinding, context: StudyContext) -> StudyResult:
         raise ValueError(f"Expected StudyBinding, got {type(binding).__name__}")
     if not isinstance(context, StudyContext):
         raise ValueError(f"Expected StudyContext, got {type(context).__name__}")
+    if binding.operator == "amp.review.v1":
+        from .review_artifacts import build_measured_review
+        return build_measured_review(binding, context)
 
     workstream_id = context.parameters.get("workstream_id") or binding.parameters.get("workstream_id", "review")
     case_id = binding.parameters.get("case_id") or context.parameters.get("case_id", "case-01")
 
     out_dir = resolve_study_output_dir(context, workstream_id, case_id)
-    out_dir.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=False)
 
     span = binding.span or context.span or SourceSpan(0, 3360, context.timebase)
 
@@ -146,12 +183,15 @@ def build_review(binding: StudyBinding, context: StudyContext) -> StudyResult:
             "diff_lu": matching["diff_lu"],
             "within_tolerance": matching["within_tolerance"],
             "raw_stem_mutated": matching["raw_stem_mutated"],
+            "rms_gain_db": matching["rms_gain_db"],
+            "method": matching["method"],
         }
     else:
         review_report["matching"] = {
-            "gain_db": 0.0,
-            "diff_lu": 0.0,
-            "within_tolerance": True,
+            "gain_db": None,
+            "diff_lu": None,
+            "within_tolerance": None,
+            "method": "not_tested; complete measured media inputs absent",
             "raw_stem_mutated": False,
         }
 
@@ -180,5 +220,6 @@ def build_review(binding: StudyBinding, context: StudyContext) -> StudyResult:
             "output_dir": str(out_dir),
             "raw_stem_mutated": False,
             "review_sha256": report_sha,
+            "technical": "not_tested",
         },
     )

@@ -88,6 +88,9 @@ def run_study(binding: StudyBinding, context: StudyContext) -> StudyResult:
     # Validate parameters
     validate_study_parameters(binding.parameters)
     validate_study_parameters(context.parameters)
+    if binding.operator == "amp.review.v1":
+        from .review import build_review
+        return build_review(binding, context)
 
     # Resolve output directory
     output_dir = resolve_study_output_dir(context, workstream_id, case_id)

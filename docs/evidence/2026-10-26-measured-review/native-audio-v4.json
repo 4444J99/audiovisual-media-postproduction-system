@@ -1,0 +1,237 @@
+{
+  "schema": "amps.native-audio-review-observation.v4",
+  "scope": "synthetic-contract",
+  "actual_production_media": false,
+  "actual_listening_performed": false,
+  "environment": {
+    "python": "3.13.7",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "ffmpeg": "9.0.2"
+  },
+  "fixture_source_sha256": "f1f0bbfba9dd79a00ea70ac563866b9650b4f90fe6a493b8775d182372f7be9a",
+  "receipt": {
+    "schema": "amps.audio-comparison-receipt.v1",
+    "status": "produced",
+    "scope": "synthetic-contract",
+    "study_id": "fixture-review",
+    "inputs": {
+      "source": {
+        "sha256": "d9c3168cd379b3cd78859301346d4b3040b1bf4dab3236e745d45f87be49cbc4",
+        "bytes": 768058
+      },
+      "native": {
+        "sha256": "6f6e8d8d0012827e7c262fc35d93d677a8736c7fc94466cc799cf378ce5c2ff5",
+        "bytes": 768058
+      },
+      "native-record": {
+        "sha256": "d0289cdcc1b6cae265eca9aa5c59784bde743e38eff78ec15dc08de239e1d25c",
+        "bytes": 431
+      },
+      "candidate": {
+        "sha256": "746ec1dbe7b651aa9331cce3b74a803b7f34a3868b4bcf08ee374bbd96eb555e",
+        "bytes": 768058
+      },
+      "candidate-record": {
+        "sha256": "7904b8ea1a4df70a1c5557ba794b48044c0f0a9ae2d8635f9ef7d9fbd6897aeb",
+        "bytes": 431
+      }
+    },
+    "source": {
+      "material_id": "source",
+      "span": {
+        "start": 0,
+        "end": 96000,
+        "timebase": {
+          "num": 48000,
+          "den": 1
+        }
+      }
+    },
+    "baselines": {
+      "source": "source",
+      "native": "native",
+      "model": null
+    },
+    "missing_baselines": [
+      "model"
+    ],
+    "provenance": {
+      "native": {
+        "record_sha256": "d0289cdcc1b6cae265eca9aa5c59784bde743e38eff78ec15dc08de239e1d25c",
+        "method_class": "authored",
+        "method_id": "synthetic-fixture-gain",
+        "recipe_sha256": "cedfd15c973332c9602e73272dc0c84cc2d8191742fbc502085e4ec8bcae951c",
+        "code_sha256": "f1f0bbfba9dd79a00ea70ac563866b9650b4f90fe6a493b8775d182372f7be9a",
+        "input_sha256": [
+          "d9c3168cd379b3cd78859301346d4b3040b1bf4dab3236e745d45f87be49cbc4"
+        ]
+      },
+      "candidate": {
+        "record_sha256": "7904b8ea1a4df70a1c5557ba794b48044c0f0a9ae2d8635f9ef7d9fbd6897aeb",
+        "method_class": "authored",
+        "method_id": "synthetic-fixture-gain",
+        "recipe_sha256": "989710fbbea55a1b3aa6b7a2b746ba39eb47f9bff8b37f77f2ee72f70eadadf5",
+        "code_sha256": "f1f0bbfba9dd79a00ea70ac563866b9650b4f90fe6a493b8775d182372f7be9a",
+        "input_sha256": [
+          "d9c3168cd379b3cd78859301346d4b3040b1bf4dab3236e745d45f87be49cbc4"
+        ]
+      }
+    },
+    "provenance_assessment": "hash-bound producing records; method execution not independently repeated",
+    "resource_profile": {
+      "max_input_bytes": 8388608,
+      "max_working_bytes": 33554432,
+      "max_output_bytes": 8388608,
+      "deadline_seconds": 30
+    },
+    "audio_checks": {
+      "status": "passed",
+      "artifacts": {
+        "source": {
+          "finite": true,
+          "sample_rate": 48000,
+          "sample_count": 96000,
+          "channels": 1,
+          "source_map": [
+            {
+              "output_start": 0,
+              "output_end": 96000,
+              "source_start": 0,
+              "source_end": 96000
+            }
+          ]
+        },
+        "native": {
+          "finite": true,
+          "sample_rate": 48000,
+          "sample_count": 96000,
+          "channels": 1,
+          "source_map": [
+            {
+              "output_start": 0,
+              "output_end": 96000,
+              "source_start": 0,
+              "source_end": 96000
+            }
+          ]
+        },
+        "candidate": {
+          "finite": true,
+          "sample_rate": 48000,
+          "sample_count": 96000,
+          "channels": 1,
+          "source_map": [
+            {
+              "output_start": 0,
+              "output_end": 96000,
+              "source_start": 0,
+              "source_end": 96000
+            }
+          ]
+        }
+      }
+    },
+    "comparisons": [
+      {
+        "candidate_id": "candidate",
+        "baseline_id": "native",
+        "candidate_active_spans": [
+          [
+            0,
+            96000
+          ]
+        ],
+        "baseline_active_spans": [
+          [
+            0,
+            96000
+          ]
+        ],
+        "switch_map": [
+          {
+            "candidate_sample": 24000,
+            "baseline_sample": 24000
+          },
+          {
+            "candidate_sample": 72000,
+            "baseline_sample": 72000
+          }
+        ],
+        "target_lufs": -25.65,
+        "gain_db": {
+          "candidate": 4.100000000000001,
+          "native": 0.0
+        },
+        "before": {
+          "candidate": {
+            "integrated_lufs": -29.75,
+            "true_peak_dbtp": -26.02
+          },
+          "native": {
+            "integrated_lufs": -25.65,
+            "true_peak_dbtp": -21.94
+          }
+        },
+        "after": {
+          "candidate": {
+            "integrated_lufs": -25.65,
+            "true_peak_dbtp": -21.92
+          },
+          "native": {
+            "integrated_lufs": -25.65,
+            "true_peak_dbtp": -21.94
+          }
+        },
+        "measured_delta_lu": 0.0,
+        "tolerance_lu": 0.5,
+        "within_tolerance": true,
+        "method": "FFmpeg loudnorm measured BS.1770 input on explicit active intervals; fixed gain copies",
+        "copies": {
+          "candidate": "comparison-00-candidate.wav",
+          "baseline": "comparison-00-baseline.wav"
+        }
+      }
+    ],
+    "outputs": {
+      "comparison-00-candidate.wav": {
+        "sha256": "a03d4a3872996cfa03c8ad10beccbc59046f9c1de96b962a3e434339bda8da22",
+        "bytes": 768058
+      },
+      "comparison-00-baseline.wav": {
+        "sha256": "6f6e8d8d0012827e7c262fc35d93d677a8736c7fc94466cc799cf378ce5c2ff5",
+        "bytes": 768058
+      },
+      "decisions.jsonl": {
+        "sha256": "5959ada0ea2dc17af1b870e584d25c184a3fc4f54e52cd0b4eb3cdc8f7e9076d",
+        "bytes": 234
+      },
+      "comparisons.json": {
+        "sha256": "096aa6a2a3a9911ece3b6450881e849bae5b9abc49c9d32605d87fdcd2e4c6ed",
+        "bytes": 6470
+      }
+    },
+    "reference_frame": {
+      "status": "not_tested",
+      "diagnostic": "full-frame H/V visual reference verification remains required under F06"
+    },
+    "qualification": {
+      "technical": "pending-full-reference-check",
+      "perceptual": "pending",
+      "artistic": "pending",
+      "distribution": "pending"
+    },
+    "comparison_complete": false,
+    "raw_stem_mutated": false,
+    "active_selection": "caller-declared corresponding source intervals; no listening or certified VAD implied",
+    "parameter_sha256": "57bb8ee482b866bd7c4122c146ec0b9d362c2e911dea6bb0f8b58a09096eeaab",
+    "code_sha256": {
+      "amp/studies/review_artifacts.py": "f2b005fabc9cd5d0ff784e42dc7eae75b6aa0d19d47dc1879f2008d7b6fb73f4",
+      "amp/studies/review.py": "c6db93856e95b539d604584ac167e7f423a8d0911c4518527e7dcea60497c2a1",
+      "amp/studies/admission_evidence.py": "5846ba0530c4bb86667de380fc997cb8e2010be01c9e06f2f220e039a0fb34b5",
+      "amp/composition/containers.py": "35dc959ce14595941066037e8638016924f2b89b38c0db8c5cf68eb13831fe26",
+      "amp/media_resolver.py": "26a47b5f3b6b0f23f02d97e524c0aa9720f80d886a0152715264c2bb725078c6",
+      "amp/residual_io.py": "233b2862b18862e7813a54947e7aabd8f3ebee3533741308241c41f8a823973b"
+    }
+  }
+}

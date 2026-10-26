@@ -69,7 +69,7 @@ class StudyReviewTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "zero active RMS"):
             verify_finite_samples(zero_audio)
 
-    def test_loudness_matching_within_half_lu_and_raw_stem_immutability(self):
+    def test_rms_estimate_preserves_raw_stems_without_certifying_loudness(self):
         rng = np.random.default_rng(123)
         baseline = rng.normal(0, 0.10, 5000).astype(np.float64)
         # Candidate at 0.096 (very close: diff < 0.5 LU)
@@ -79,8 +79,9 @@ class StudyReviewTests(unittest.TestCase):
         result = compute_loudness_matching_gain(candidate_close, baseline, tolerance_lu=0.5)
 
         self.assertFalse(result["raw_stem_mutated"])
-        self.assertTrue(result["within_tolerance"])
-        self.assertLessEqual(result["diff_lu"], 0.5)
+        self.assertIsNone(result["within_tolerance"])
+        self.assertIsNone(result["diff_lu"])
+        self.assertLessEqual(abs(result["rms_gain_db"]),0.5)
 
         # Verify candidate array was NOT mutated in-place
         self.assertTrue(np.array_equal(candidate_close, original_copy))
@@ -94,8 +95,9 @@ class StudyReviewTests(unittest.TestCase):
         # Candidate with larger difference (> 0.5 LU) is correctly flagged
         candidate_far = rng.normal(0, 0.05, 5000).astype(np.float64)
         result_far = compute_loudness_matching_gain(candidate_far, baseline, tolerance_lu=0.5)
-        self.assertFalse(result_far["within_tolerance"])
-        self.assertGreater(result_far["diff_lu"], 0.5)
+        self.assertIsNone(result_far["within_tolerance"])
+        self.assertIsNone(result_far["diff_lu"])
+        self.assertGreater(abs(result_far["rms_gain_db"]),0.5)
         self.assertFalse(result_far["raw_stem_mutated"])
 
     def test_retimed_moment_mapping(self):
