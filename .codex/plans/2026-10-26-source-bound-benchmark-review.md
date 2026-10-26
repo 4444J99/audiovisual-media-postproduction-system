@@ -37,3 +37,11 @@ Sixteen focused methods pass. Required full check exits 0: 618 Python (468 + 150
 274 Node, score/replay and zero skips. Original 24-unit objects in both files equal
 the pinned baseline exactly. Actual audit: 24 pending units, zero vocabulary and
 all six usable case types missing. #65 reopened. Fresh review remains pending.
+
+Independent review: one Important and two Minor findings accepted, reproduced red
+and corrected in one pass. Quiet-speech coverage rejects observed no speech;
+duration agrees with source clock; omitted category normalizes to unassigned.
+Final required check exits 0: 621 Python (468 + 153), 274 Node, score/replay,
+zero skips. Nineteen focused methods pass. Pending source audit is unchanged and
+both complete historical object sets still match base. Production F02 remains
+false; see review-disposition.md and verification-v2.json.

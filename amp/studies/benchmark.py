@@ -90,6 +90,10 @@ def audit_benchmark(benchmark, reviews, *, source):
         rate = spine.get("fps")
         if type(rate) not in (int, float) or Fraction(str(rate)) != fps:
             raise ValueError("Benchmark spine fps contradicts registered source")
+        if "duration_seconds" in spine:
+            duration = spine["duration_seconds"]
+            if type(duration) not in (int, float) or Fraction(str(duration)) != Fraction(registered["frame_count"], 1)/fps:
+                raise ValueError("Benchmark spine duration contradicts registered source clock")
         expected_spine = dict(total_frames=registered["frame_count"],native_audio_rate_hz=44100,
             derivative_audio_rate_hz=48000,
             native_total_samples=int(Fraction(registered["frame_count"]*44100, 1)/fps),
@@ -137,8 +141,10 @@ def audit_benchmark(benchmark, reviews, *, source):
         words_verified = axes["audio"] == "verified" and axes["annotation"] == "verified"
         if words_verified and wording is not None and wording.strip():
             vocabulary.append({"unit_id":unit_id,"heard_wording":wording})
-        case_type = unit["case_type"]
+        case_type = unit.get("case_type")
         case_usable = case_type is not None and all(axes[axis] == "verified" for axis in CASE_AXES[case_type])
+        if case_type == "quiet_speech" and (wording is None or not wording.strip()):
+            case_usable = False
         if case_usable:
             usable.add(case_type)
         reports.append(dict(unit_id=unit_id,frame_span=list(unit["frame_span"]),case_type=case_type,

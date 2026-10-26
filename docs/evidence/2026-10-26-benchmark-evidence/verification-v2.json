@@ -1,0 +1,51 @@
+{
+  "schema": "amps.benchmark-evidence-correction.v2",
+  "base": "6302e648e639fde46b73c3463616174d02a5d912",
+  "owner_issue": 65,
+  "program_issue": 63,
+  "historical_objects_preserved": true,
+  "historical_sha256": {
+    "compositions/comp-001/studies/benchmark.json": "c8d9c2bb6fad6fb34006846f612a57f12acbe569fd84d30818f39687dd077814",
+    "compositions/comp-001/studies/units.review.json": "4e43e17cf32849b1674f3573ac1ca5495dd8d51a2839b936b04d0338a4a89e3f"
+  },
+  "verification": {
+    "command": "python tools/check.py",
+    "exit_code": 0,
+    "python_tests": 621,
+    "node_tests": 274,
+    "skipped": 0,
+    "score_replay": "passed",
+    "focused_tests": 19,
+    "log_sha256": "70231684b6bdd9eac58b742a9447dde30c953d1d299fb6d5d9c26ed2d4352333"
+  },
+  "source_sha256": {
+    "amp/studies/benchmark.py": "80b307e44f6fac2e558f018c5efc83dbaee3a676e87762dcbac1647852545685",
+    "tests/studies/test_benchmark.py": "98788a8bf2064093c4c829d1af366e22af3b1ff47f87dc54b6fe0abe986d9301",
+    "tests/studies/test_benchmark_evidence.py": "ce64fe3c92ac7fe664a336c6dd79f4055e2ffd6921eeb89739abf8fdf2432e8e",
+    "compositions/comp-001/studies/benchmark.json": "c1c46fafef00e6543c31435b84f74f59ce3dc3ff34f650d91d1bea37470b1358",
+    "compositions/comp-001/studies/units.review.json": "3ef0a3f3aa96509fa24bfb3129212ce18d3fa94d09131969f9918f5e3cc31c66",
+    "compositions/comp-001/source-registration.json": "d08dcd6cb0bdfb81dba2a03ac4e8402deb7394a353a0f825de05ad1e44bf78e5"
+  },
+  "actual_listening_performed": false,
+  "qualified_vocabulary_count": 0,
+  "usable_case_types": [],
+  "missing_case_types": [
+    "occlusion_cut",
+    "overlap",
+    "quiet_speech",
+    "semantic_exchange",
+    "simple_surface",
+    "visible_object_sound"
+  ],
+  "benchmark_complete": false,
+  "artistic_acceptance": false,
+  "supersedes_verification": "verification.json",
+  "review_disposition": "review-disposition.md",
+  "review_findings": {
+    "important": 1,
+    "minor": 2,
+    "reproduced_before_fix": 3,
+    "all_resolved": true,
+    "second_independent_review": false
+  }
+}

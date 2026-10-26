@@ -49,3 +49,9 @@ listening, authenticate a reviewer, fetch private evidence or audit actual media
 bytes. Source custody and truthful human observations retain their existing owners.
 Software tests cannot grant perceptual/artistic/device/distribution acceptance.
 Actual source review remains unfinished and #65 is reopened accordingly.
+
+Review correction: observed no speech cannot satisfy the quiet-speech case, even
+when all disposition records are verified. Empty heard wording remains valid for
+genuinely non-speech categories. The broad overlap category is not silently
+redefined as speech-only without source authority. Optional declared duration must
+match exact frame_count / fps; omitted case assignment normalizes to unassigned.

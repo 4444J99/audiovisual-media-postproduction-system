@@ -128,3 +128,31 @@ class BenchmarkEvidenceTests(unittest.TestCase):
             with self.subTest(field=key):
                 changed=copy.deepcopy(benchmark);changed["spine"][key]=value
                 with self.assertRaises(ValueError):self.audit(changed,reviews)
+
+    def test_observed_no_speech_cannot_satisfy_quiet_speech_coverage(self):
+        benchmark,reviews=fixture();review=reviews["units"][0]
+        review["reviewed_heard_wording"]=""
+        review["dispositions"]={
+            "audio":{"status":"verified","evidence":{aspect:{"method":"listened","reviewer":"fixture","evidence_id":"fixture"} for aspect in ("words","speaker","boundaries")}},
+            **{axis:{"status":"verified","evidence":{"method":method,"reviewer":"fixture","evidence_id":"fixture"}}
+                for axis,method in (("image","viewed"),("action","observed"),("annotation","compared_to_source"))}}
+        result=self.audit(benchmark,reviews)
+        self.assertIn("quiet_speech",result["missing_case_types"])
+        self.assertFalse(result["units"][0]["case_usable"])
+        self.assertFalse(result["complete"])
+        benchmark["units"][0]["case_type"]="simple_surface";review["case_type"]="simple_surface"
+        self.assertIn("simple_surface",self.audit(benchmark,reviews)["usable_case_types"])
+
+    def test_declared_duration_must_match_registered_frame_clock(self):
+        benchmark,reviews=fixture()
+        benchmark["spine"]={"fps":30,"total_frames":300,"native_audio_rate_hz":44100,
+            "native_total_samples":441000,"derivative_audio_rate_hz":48000,"derivative_total_samples":480000,"duration_seconds":1}
+        with self.assertRaises(ValueError):self.audit(benchmark,reviews)
+
+    def test_omitted_case_assignment_is_consistently_unassigned(self):
+        benchmark,reviews=fixture();del benchmark["units"][0]["case_type"]
+        reviews["units"][0]["case_type"]=None
+        try:result=self.audit(benchmark,reviews)
+        except KeyError:self.fail("missing case assignment escaped normalization")
+        self.assertIsNone(result["units"][0]["case_type"])
+        self.assertEqual(result["usable_case_types"],[])
