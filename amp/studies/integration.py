@@ -16,6 +16,7 @@ import copy
 import hashlib
 import json
 import math
+from statistics import mean
 from typing import Any, Mapping, Optional, Sequence, Union
 
 NINE_METHODS: tuple[str, ...] = (
@@ -344,6 +345,9 @@ def verify_bounded_live_performance(
     - Max novelty drift <= 0.35.
     - Deterministic replay divergence <= 1e-4.
     - Recovery from dropped frames <= 3 frames.
+
+    Each sample must contain all four observed measurements. Missing, non-finite,
+    negative or incorrectly typed values cannot establish performance acceptance.
     """
     if isinstance(session_telemetry, Mapping) and "samples" in session_telemetry:
         samples = session_telemetry["samples"]
@@ -355,21 +359,40 @@ def verify_bounded_live_performance(
     else:
         raise ValueError("session_telemetry must be a sequence or mapping of telemetry records")
 
-    if not samples:
-        raise ValueError("session_telemetry contains no samples")
+    if not isinstance(samples, (list, tuple)) or not samples:
+        raise ValueError("session_telemetry samples must be a non-empty sequence")
+
+    def measurement(sample: Mapping[str, Any], index: int, field: str,
+                    alias: Optional[str] = None) -> float:
+        value = sample[field] if field in sample else sample.get(alias) if alias else None
+        message = f"sample {index} {field} must be an explicit finite non-negative number"
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or value < 0:
+            raise ValueError(message)
+        try:
+            observed = float(value)
+        except (OverflowError, ValueError) as exc:
+            raise ValueError(message) from exc
+        if not math.isfinite(observed):
+            raise ValueError(message)
+        return observed
 
     latencies: list[float] = []
     novelties: list[float] = []
     replay_diffs: list[float] = []
     recovery_times: list[int] = []
 
-    for s in samples:
-        latencies.append(float(s.get("render_time_ms", s.get("latency_ms", 22.0))))
-        novelties.append(float(s.get("novelty_divergence", s.get("novelty", 0.10))))
-        replay_diffs.append(float(s.get("replay_divergence", 0.0)))
-        recovery_times.append(int(s.get("dropped_frames_recovered", 0)))
+    for index, s in enumerate(samples):
+        if not isinstance(s, Mapping):
+            raise ValueError(f"sample {index} must be a telemetry mapping")
+        latencies.append(measurement(s, index, "render_time_ms", "latency_ms"))
+        novelties.append(measurement(s, index, "novelty_divergence", "novelty"))
+        replay_diffs.append(measurement(s, index, "replay_divergence"))
+        recovery = s.get("dropped_frames_recovered")
+        if isinstance(recovery, bool) or not isinstance(recovery, int) or recovery < 0:
+            raise ValueError(f"sample {index} dropped_frames_recovered must be an explicit non-negative integer")
+        recovery_times.append(recovery)
 
-    mean_lat = sum(latencies) / len(latencies)
+    mean_lat = mean(latencies)
     max_lat = max(latencies)
     max_nov = max(novelties)
     max_replay = max(replay_diffs)

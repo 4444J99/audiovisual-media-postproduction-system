@@ -139,6 +139,97 @@ class IntegrationStudiesTests(unittest.TestCase):
         self.assertFalse(res["overall_pass"])
         self.assertFalse(res["latency_pass"])
 
+    def test_live_performance_requires_each_measurement(self):
+        complete = {
+            "render_time_ms": 20,
+            "novelty_divergence": 0.1,
+            "replay_divergence": 0,
+            "dropped_frames_recovered": 0,
+        }
+        for field in complete:
+            with self.subTest(field=field):
+                sample = dict(complete)
+                del sample[field]
+                with self.assertRaisesRegex(ValueError, field):
+                    verify_bounded_live_performance([complete, sample])
+
+    def test_live_performance_rejects_invalid_measurements_in_every_sample(self):
+        complete = {
+            "render_time_ms": 20,
+            "novelty_divergence": 0.1,
+            "replay_divergence": 0,
+            "dropped_frames_recovered": 0,
+        }
+        invalid = (None, True, False, "0", "NaN", float("nan"), float("inf"), -float("inf"), -1)
+        for field in complete:
+            for value in invalid:
+                with self.subTest(field=field, value=value):
+                    sample = dict(complete, **{field: value})
+                    with self.assertRaisesRegex(ValueError, field):
+                        verify_bounded_live_performance({"samples": [complete, sample]})
+
+    def test_live_performance_requires_integer_recovery_count(self):
+        for count in (0.5, 1.0, 3.9):
+            with self.subTest(count=count):
+                with self.assertRaisesRegex(ValueError, "dropped_frames_recovered"):
+                    verify_bounded_live_performance({
+                        "render_time_ms": 20,
+                        "novelty_divergence": 0.1,
+                        "replay_divergence": 0,
+                        "dropped_frames_recovered": count,
+                    })
+
+    def test_live_performance_rejects_malformed_sample_collections(self):
+        for samples in (None, "samples", {}, {"latency_ms": 20}, [None], [3], ["sample"]):
+            with self.subTest(samples=samples):
+                with self.assertRaisesRegex(ValueError, "samples|sample"):
+                    verify_bounded_live_performance({"samples": samples})
+
+    def test_live_performance_preserves_aliases_and_observed_zeroes(self):
+        result = verify_bounded_live_performance({
+            "latency_ms": 0,
+            "novelty": 0,
+            "replay_divergence": 0,
+            "dropped_frames_recovered": 0,
+        })
+        self.assertTrue(result["overall_pass"])
+        self.assertEqual(result["telemetry_summary"]["mean_latency_ms"], 0)
+        self.assertEqual(result["telemetry_summary"]["max_novelty"], 0)
+
+    def test_live_performance_finite_out_of_budget_measurements_fail(self):
+        complete = {
+            "render_time_ms": 20,
+            "novelty_divergence": 0.1,
+            "replay_divergence": 0,
+            "dropped_frames_recovered": 0,
+        }
+        for field, value in (("render_time_ms", 40), ("novelty_divergence", 0.36),
+                             ("replay_divergence", 0.001), ("dropped_frames_recovered", 4)):
+            with self.subTest(field=field):
+                result = verify_bounded_live_performance(dict(complete, **{field: value}))
+                self.assertFalse(result["overall_pass"])
+                self.assertEqual(result["status"], "failed")
+
+    def test_live_performance_large_finite_measurements_have_finite_summary(self):
+        import json
+        import sys
+
+        sample = {
+            "render_time_ms": 1e308,
+            "novelty_divergence": 0,
+            "replay_divergence": 0,
+            "dropped_frames_recovered": 0,
+        }
+        result = verify_bounded_live_performance([sample, sample])
+        self.assertFalse(result["overall_pass"])
+        json.dumps(result, allow_nan=False)
+
+        sample["render_time_ms"] = sys.float_info.max
+        result = verify_bounded_live_performance([sample, sample, sample])
+        self.assertFalse(result["overall_pass"])
+        self.assertEqual(result["telemetry_summary"]["mean_latency_ms"], sys.float_info.max)
+        json.dumps(result, allow_nan=False)
+
     def test_build_edition_level_comparison(self):
         baseline = {
             "edition_id": "ed-source-112",
