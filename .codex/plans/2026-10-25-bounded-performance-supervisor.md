@@ -67,11 +67,16 @@ Interfaces: optional `PerformanceRecord.runtime`; `canonical_identity(record)`;
 `PerformanceHistory(path).reserve(record)` rejects duplicates atomically and stores
 the complete public-safe record, while `.load(identity)` returns it for replay.
 
-- [ ] Regress seed/ID/orientation changes, material/clock changes, conflicting
+- [x] Regress seed/ID/orientation changes, material/clock changes, conflicting
   reservations, corrupt/mismatched records, and the unchanged legacy record roundtrip.
-- [ ] Run the new tests and observe absent-capability failures.
-- [ ] Implement canonical JSON, immutable record snapshots and SQLite transactions.
-- [ ] Run novelty and existing composition-contract tests; commit this tested task.
+- [x] Run the new tests and observe absent-capability failures.
+- [x] Implement canonical JSON, defensive record snapshots and SQLite transactions.
+- [x] Run novelty and existing composition-contract tests; commit this tested task.
+
+Task 1 evidence: absent `amp.composition.novelty` reproduced on the pinned baseline;
+eight novelty tests and 25 retained composition tests pass. A replay-missing-history
+regression first proved an unintended empty-database write, then passed after read
+mode stopped creating it. Corrupt and tampered histories are retained and rejected.
 
 ## Task 2: Deterministic performance planner and stateful supervisor
 

@@ -5,6 +5,7 @@ Encapsulates frozen performance state, performer cues, and study execution resul
 from __future__ import annotations
 
 import math
+import json
 from dataclasses import dataclass, field
 from typing import Any, Mapping, Optional, Tuple
 
@@ -30,6 +31,7 @@ class PerformanceRecord:
     results: Tuple[StudyResult, ...] = ()
     timestamp: Optional[str] = None
     provenance: Mapping[str, Any] = field(default_factory=dict)
+    runtime: Optional[Mapping[str, Any]] = None
 
     def __post_init__(self):
         if not isinstance(self.record_id, str) or not self.record_id.strip():
@@ -68,6 +70,11 @@ class PerformanceRecord:
             _reject_command_or_url(self.timestamp, "timestamp")
 
         _reject_command_or_url(self.provenance, "provenance")
+        if self.runtime is not None:
+            from .novelty import validate_runtime
+            snapshot = json.loads(json.dumps(self.runtime, allow_nan=False))
+            validate_runtime(snapshot, duration_frames=self.span.duration_frames)
+            object.__setattr__(self, "runtime", snapshot)
 
     def to_dict(self) -> dict[str, Any]:
         data: dict[str, Any] = {
@@ -82,6 +89,8 @@ class PerformanceRecord:
             data["timestamp"] = self.timestamp
         if self.provenance:
             data["provenance"] = dict(self.provenance)
+        if self.runtime is not None:
+            data["runtime"] = json.loads(json.dumps(self.runtime, allow_nan=False))
         return data
 
     @classmethod
@@ -100,4 +109,5 @@ class PerformanceRecord:
             results=tuple(results),
             timestamp=data.get("timestamp"),
             provenance=data.get("provenance", {}),
+            runtime=data.get("runtime"),
         )
