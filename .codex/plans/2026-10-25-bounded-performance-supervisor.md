@@ -130,13 +130,13 @@ with `.play()`, `.pause()`, `.seek(frame)`, `.rotate(mode)`, `.checkpoint()`,
 `.restore(checkpoint)` and `.cancel()`. `prepared` contains decoded asset data and
 measured byte counts; rendering delegates to retained `VisualEngine`.
 
-- [ ] Regress shared H/V decisions, protected reference geometry and pixels,
+- [x] Regress shared H/V decisions, protected reference geometry and pixels,
   persistent audio buffers, independent clocks and audio starts/cleanup.
-- [ ] Regress delayed preparation plus cancel/pause, background/foreground recovery,
+- [x] Regress delayed preparation plus cancel/pause, background/foreground recovery,
   JSON history reload, pressure fallback and bounded pending scheduling.
-- [ ] Run Node tests and one owned native-browser harness using the existing backend.
+- [x] Run Node tests and one owned native-browser harness using the existing backend.
   Add the tool to the existing Studio; no new site or separate asset registry.
-- [ ] Run `python tools/check.py` before integration and commit passing source changes.
+- [x] Run `python tools/check.py` before integration and commit passing source changes.
 
 ## Task 5: Actual runtime evidence and delivery
 
@@ -152,3 +152,28 @@ measured byte counts; rendering delegates to retained `VisualEngine`.
   actual owners unless independently observed; never mark all 53 tasks complete here.
 
 Task 3 evidence: six fresh-process CLI regressions and nine history regressions pass; the installed-wheel probe imports both new subpackages and binds the bundled retained FX engine. The temporary-root assertion first failed because macOS resolves /var to /private/var; normalizing the fixture root fixes the comparison without changing installation behavior. The authored profile remains unadmitted pending measured F04 limits.
+
+Task 4 evidence: the required full check exited 0: 464 Python tests, 269 Node
+tests and score/replay checks, no skips. It includes 14 new browser-runtime and
+prepared-package tests. A subsequent background-intent regression failed first,
+then all 15 focused Node tests passed after suspension retained requested play
+intent without autoplay. Native Web Audio/Canvas evidence and exact source hashes
+are retained in `docs/evidence/2026-10-25-performance-runtime/`; tested recovery
+held frame 45, resumed to 54, preserved the reference pixel in portrait, and
+cancelled with zero voices. This is synthetic evidence only.
+
+Ruling: browser checkpoints use their own versioned transport digest while
+performed records remain the shared CLI interchange -- Python and JavaScript
+serialize integral floats differently -- cross-runtime checkpoint-state import
+is deliberately rejected rather than silently misverified.
+
+Ruling: initial preparation rejects unavailable admission; admitted live playback
+degrades to the qualified fallback on measured count/byte pressure -- missing
+production caps cannot authorize allocation -- no production performance is
+claimed from the authored unadmitted profile.
+
+Task 5 current source evidence: `compositions/comp-001/qualification.json` retains
+all 3360 source frames as pending and no unit reviews. The existing acceptance
+audit likewise records no qualified units. The production F04 byte profile is
+unadmitted. Keep #113 and its upstream qualification/admission owners open; do
+not relabel the synthetic browser fixture as I-D4 or close the 53-task program.

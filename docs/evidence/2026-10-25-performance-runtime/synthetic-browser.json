@@ -1,0 +1,68 @@
+{
+  "schema": "amps.synthetic-browser-regression.v1",
+  "production_acceptance": false,
+  "played_frame": 45,
+  "restored_frame": 45,
+  "restored_playing": false,
+  "resume_intent": true,
+  "resumed_frame": 54,
+  "protected_reference_rgba": [
+    255,
+    0,
+    0,
+    255
+  ],
+  "orientation": "vertical",
+  "context_state": "running",
+  "control_samples": 90,
+  "resources": {
+    "decoded_audio_bytes": 2116800,
+    "texture_bytes": 5760480,
+    "event_history_bytes": 7153
+  },
+  "resource_maxima": {
+    "decoded_audio_bytes": 2116800,
+    "texture_bytes": 5760480,
+    "event_history_bytes": 7153
+  },
+  "cancelled_status": "cancelled",
+  "voices_after_cancel": 0,
+  "ui_status": "Cancelled. Save the performed record or prepare the saved performance again.",
+  "observed_at_utc": "2026-10-26T01:32:07Z",
+  "source_sha256": {
+    "web/studies/performance-adapter.mjs": "e8d1e83b34a658873a2e47d4e8e1327154dc4b44a6fbf0affc569c3d344409b5",
+    "web/studies/performance-assets.mjs": "ef55557d3daf871aa938863cff7b4099b7c0a68374fc6b19b75d50fa97f5a3ac",
+    "web/studies/performance-page.mjs": "d13392db564f9e1ee9c16fbdbd3936b63275b2732ec84d75a57f716afa5fc901",
+    "web/studies/performance.html": "922d3034cdaac92a261faf77dee43e7a209b5487e581902aacfb4c7f3089b39d",
+    "web/fx/core.mjs": "2127a48b62c507082ccf783937fc0ffb3222bab158d31d4768ea1d5439b9b0af",
+    "web/fx/catalog.mjs": "7f3659b58b446e9aae932b2fc9a2246524b67ec9d70f7730c37d409ab914adfd",
+    "web/fx/visual-engine.mjs": "a2edf08ab6793a07319cf955065624c6fd884f17ba1ce1ef557057474baab05b",
+    "web/fx/audio-engine.mjs": "84cdfdfc4cc25ac3f50402a165e79724fb4e076e40a940ab4f9506c3e2dbf47f",
+    "tests/composition/serve_performance_fixture.py": "fbb85284f2250fce799b26f534a955765a0f95441a3785b8d4fadaac0f632c69"
+  },
+  "verification": {
+    "command": "python tools/check.py",
+    "exit_code": 0,
+    "python_tests": 464,
+    "node_tests": 269,
+    "node_skipped": 0,
+    "python_skipped": 0,
+    "score_contract": "passed",
+    "native_scope": "synthetic local prepared media; actual Web Audio and Canvas",
+    "resource_scope": "known retained audio buffers, atlas/render canvases and serialized history; total process RSS not measured",
+    "console_errors": "favicon.ico 404 only"
+  },
+  "screenshot": {
+    "path": "synthetic-browser.png",
+    "sha256": "6e8f4a41b93bb37f18baedfc36ce53a6fa40280fc1ae83cb495b728960257166"
+  },
+  "remaining_acceptance": {
+    "source_qualification": "composition qualification has no approved units",
+    "byte_admission": "production profile remains unadmitted pending measured F04 limits",
+    "three_production_performances": false,
+    "ten_minute_production_run": false,
+    "artistic_acceptance": false,
+    "physical_device_acceptance": false,
+    "publication": false
+  }
+}

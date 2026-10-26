@@ -13,6 +13,14 @@ def performance(seed=1, duration=600):
 
 
 class PerformancePlannerTests(unittest.TestCase):
+    def test_profiles_cannot_silently_raise_initial_policy_limits(self):
+        for key, value in dict(max_depth=5, audio_voices=25, visual_instances=13,
+                               pending_events=257, lookahead_frames=301).items():
+            changed = profile()
+            changed[key] = value
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                plan_performance(corpus(), changed, seed=1, duration_frames=600, record_id="test")
+
     def test_three_distinct_graphs_with_varied_returns_reuse_and_two_way_coupling(self):
         records = [performance(seed) for seed in (1, 2, 3)]
         self.assertEqual(len({canonical_identity(record) for record in records}), 3)

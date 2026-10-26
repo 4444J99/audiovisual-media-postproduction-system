@@ -8,6 +8,7 @@ function say(text){$('studio-message').textContent=text;$('studio-message').clas
 function api(frame){try{return frame?.contentWindow||null;}catch{return null;}}
 function pauseFrame(frame){const w=api(frame);if(!w)return;try{
   if(w.GOD_HERE?.pause)w.GOD_HERE.pause();
+  if(w.ampPerformance)w.ampPerformance.pause();
   if(w.fxWorkbench){const s=w.fxWorkbench.getStatus();if(s.playing||s.playPending)w.document.getElementById('play')?.click();}
   // Click legacy canvas transports BEFORE pausing media: clicking a stale
   // “Pause” label after media.pause() can otherwise restart the main film.

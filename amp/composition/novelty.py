@@ -79,6 +79,9 @@ def validate_runtime(runtime: Mapping[str, Any], *, duration_frames: int | None 
         raise ValueError("A performance resource profile is required")
     for name in ("max_depth", "audio_voices", "visual_instances", "pending_events", "lookahead_frames"):
         _integer(profile.get(name), name, minimum=1)
+    for name, maximum in dict(max_depth=4, audio_voices=24, visual_instances=12, pending_events=256).items():
+        if profile[name] > maximum:
+            raise ValueError(f"{name} exceeds the initial performance policy")
     if type(profile.get("admitted")) is not bool or not isinstance(profile.get("byte_caps"), Mapping):
         raise ValueError("Profile admission and byte caps must be explicit")
     for value in profile["byte_caps"].values():
@@ -247,8 +250,10 @@ def _record(value: Any) -> dict:
     data = json.loads(canonical_json(data))
     _id(data.get("composition_id"), "composition id")
     span = SourceSpan.from_dict(data["span"])
-    Timebase.from_dict(data["timebase"])
+    timebase = Timebase.from_dict(data["timebase"])
     validate_runtime(data.get("runtime"), duration_frames=span.duration_frames)
+    if data["runtime"]["profile"]["lookahead_frames"] > 10 * timebase.as_fraction():
+        raise ValueError("Look-ahead exceeds the ten-second performance policy")
     return data
 
 

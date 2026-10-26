@@ -74,6 +74,8 @@ class PerformanceRecord:
             from .novelty import validate_runtime
             snapshot = json.loads(json.dumps(self.runtime, allow_nan=False))
             validate_runtime(snapshot, duration_frames=self.span.duration_frames)
+            if snapshot["profile"]["lookahead_frames"] > 10 * self.timebase.as_fraction():
+                raise ValueError("Look-ahead exceeds the ten-second performance policy")
             object.__setattr__(self, "runtime", snapshot)
 
     def to_dict(self) -> dict[str, Any]:
