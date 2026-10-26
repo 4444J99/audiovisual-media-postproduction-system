@@ -43,3 +43,12 @@ model admission. Required full check exits 0: 632 Python (468 + 164), 274 Node,
 score/replay and zero skips. Separate native fixture produced actual comparison
 copies with 0.0 measured LU delta and unchanged raw input bytes. No production media
 or listening qualification is claimed. #69 reopened; independent review pending.
+
+Independent review found four Important issues, all reproduced red and corrected
+in one pass: complete bound F04 record/pins, consistent span clocks, normalized
+public maps, and coded pipe-EOF deadline cleanup. Nineteen focused methods pass.
+Final required full check exits 0: 636 Python (468 + 168), 274 Node, score/replay
+and zero skips. The current native synthetic observation again measures 0.0 LU
+and raw byte preservation. F04 evidence now exports verified weight/backend
+identity for downstream binding. Full visual-reference/Studio/listening/production
+F06 remains unfinished; do not close #69 or claim current estate/session release.

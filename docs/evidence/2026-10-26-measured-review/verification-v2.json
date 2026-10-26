@@ -1,0 +1,46 @@
+{
+  "schema": "amps.measured-review-verification.v2",
+  "base": "19f770e4551e1875a2f97a24fa111ba439e820ae",
+  "owner_issue": 69,
+  "related_issue": 68,
+  "program_issue": 63,
+  "baseline": {
+    "failed_assertions": 10,
+    "methods": 6,
+    "cli_setup_corrected_before_behavioral_baseline": true
+  },
+  "verification": {
+    "command": "python tools/check.py",
+    "exit_code": 0,
+    "python_tests": 636,
+    "node_tests": 274,
+    "focused_tests": 19,
+    "score_replay": "passed",
+    "skipped": 0,
+    "log_sha256": "8ad7f64d0052f06fff9338571f7b42b05c0dc8de700668e14349a03d84513820"
+  },
+  "source_sha256": {
+    "amp/cli.py": "a38e936d6b159801630e60895f0a30da408bb30ff40f0f13722ba1df82e1ec2c",
+    "amp/composition/containers.py": "35dc959ce14595941066037e8638016924f2b89b38c0db8c5cf68eb13831fe26",
+    "amp/studies/dispatch.py": "80cf9ad78d59b2e021ace446501bb385eb3ca60d20dbbb0fc2b7363394c6ed06",
+    "amp/studies/review.py": "c6db93856e95b539d604584ac167e7f423a8d0911c4518527e7dcea60497c2a1",
+    "amp/studies/review_artifacts.py": "7d2ce2b8bfd5ad5a916ccc3c3554b52d7861cd630082c8171cc120b5b581b661",
+    "tests/studies/test_review.py": "40830fd43e61d7c6e213327b264ec91aaede678654948d481b327ccfcf848e24",
+    "tests/studies/test_review_evidence.py": "52ca53883ccb04cd835a303d43cff99913ffe2e09ffc6821213ccd12921c4121",
+    "amp/studies/admission_evidence.py": "5846ba0530c4bb86667de380fc997cb8e2010be01c9e06f2f220e039a0fb34b5"
+  },
+  "actual_production_media": false,
+  "actual_listening_performed": false,
+  "full_F06_completed": false,
+  "visual_reference_verified": false,
+  "artistic_acceptance": false,
+  "scope": "Actual bounded audio/clock/CLI correction, preserving all remaining F06 acceptance requirements",
+  "supersedes_verification": "verification.json",
+  "native_observation": "native-audio-v2.json",
+  "review_findings": {
+    "important": 4,
+    "all_reproduced": true,
+    "all_resolved": true,
+    "second_review": false
+  }
+}

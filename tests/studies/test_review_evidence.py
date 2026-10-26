@@ -181,3 +181,66 @@ class ReviewEvidenceTests(unittest.TestCase):
             process,receipt=self.execute(root,binding,locations,name="unadmitted")
             self.assertEqual(process.returncode,2,receipt)
             self.assertEqual(receipt["error"]["code"],"review_model_admission_missing")
+
+    def test_review_rejects_a_span_clock_that_disagrees_with_binding(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root,binding,locations,original=self.fixture(directory)
+            binding['span']['timebase']={'num':30,'den':1}
+            process,receipt=self.execute(root,binding,locations,dry=True)
+            self.assertEqual(process.returncode,2,receipt)
+            self.assertEqual(receipt['error']['code'],'review_source_clock_mismatch')
+
+    def test_public_source_maps_exclude_private_unvalidated_fields(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root,binding,locations,original=self.fixture(directory)
+            private='/Users/owner/private/media.wav'
+            binding['parameters']['review_spec']['artifacts'][0]['source_map'][0]['private_source_path']=private
+            process,receipt=self.execute(root,binding,locations)
+            self.assertEqual(process.returncode,0,receipt)
+            self.assertNotIn(private,json.dumps(receipt))
+
+    def test_native_pipe_eof_deadline_returns_coded_error_and_reaps_child(self):
+        import time
+        from amp.media_resolver import ContractError
+        from amp.studies.review_artifacts import native
+        with self.assertRaises(ContractError) as raised:
+            native([sys.executable,'-c','import os,time;os.close(1);os.close(2);time.sleep(5)'],time.monotonic()+.1)
+        self.assertEqual(raised.exception.code,'review_deadline_exhausted')
+
+    def test_model_admission_requires_full_record_and_producing_identity_binding(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root,binding,locations,original=self.fixture(directory)
+            spec=binding['parameters']['review_spec'];spec['scope']='production-prepared-media'
+            spec['artifacts'][-1]['role']='model';spec['artifacts'][-1]['model_admission_id']='admission';spec['baselines']['model']='candidate'
+            record={'status':'admitted','evidence_scope':'representative-model-workload',
+                **{key:True for key in ('weights_verified','code_verified','environment_verified','workload_evidence_verified')}}
+            admission=root/'admission.json'
+            def save():
+                admission.write_text(json.dumps(record));sha=hashlib.sha256(admission.read_bytes()).hexdigest()
+                existing=next((ref for ref in binding['inputs'] if ref['id']=='admission'),None)
+                if existing is None:
+                    existing={'id':'admission','kind':'metadata'};binding['inputs'].append(existing)
+                existing.update(sha256=sha,bytes=admission.stat().st_size)
+                loc=json.loads(locations.read_text());loc['objects'][sha]=str(admission);locations.write_text(json.dumps(loc))
+                return sha
+            save();process,receipt=self.execute(root,binding,locations,name='flags',dry=True)
+            self.assertEqual(process.returncode,2,receipt)
+            self.assertEqual(receipt['error']['code'],'review_model_admission_invalid')
+            record.update(candidate_id='R01',weights_sha256='a'*64,code_commit='b'*40,environment_sha256='c'*64,
+                python_sha256='d'*64,workload_receipt_sha256='e'*64,runtime_env='pytorch',device='cpu',backend_version='fixture',
+                host_fingerprint='f'*64,observations={'peak_ram_gb':.1,'peak_vram_gb':0,'disk_gb':.1,'duration_seconds':1},
+                code_terms={'reviewed':True,'license_id':'CC0-1.0','use':'test'},weight_terms={'reviewed':True,'license_id':'CC0-1.0','use':'test'})
+            sha=save();processing=root/'candidate.json';data=json.loads(processing.read_text())
+            keys=('candidate_id','weights_sha256','code_commit','environment_sha256','python_sha256','runtime_env')
+            data['model']={key:record[key] for key in keys};data['model']['admission_sha256']=sha;data['method_class']='generated'
+            def save_processing():
+                processing.write_text(json.dumps(data));digest=hashlib.sha256(processing.read_bytes()).hexdigest()
+                ref=next(ref for ref in binding['inputs'] if ref['id']=='candidate-record')
+                ref.update(sha256=digest,bytes=processing.stat().st_size)
+                loc=json.loads(locations.read_text());loc['objects'][digest]=str(processing);locations.write_text(json.dumps(loc))
+            save_processing();process,receipt=self.execute(root,binding,locations,name='bound',dry=True)
+            self.assertEqual(process.returncode,0,receipt) # Structure only; executor authenticity is outside this validator.
+            data['model']['candidate_id']='R02';save_processing()
+            process,receipt=self.execute(root,binding,locations,name='unbound',dry=True)
+            self.assertEqual(process.returncode,2,receipt)
+            self.assertEqual(receipt['error']['code'],'review_model_identity_mismatch')

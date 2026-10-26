@@ -78,7 +78,7 @@ def native(argv, deadline, *, limit=1024*1024, data=None):
                 process.wait(timeout=max(.001,deadline-time.monotonic()))
             require(process.returncode==0,"review_native_execution_failed")
             return bytes(buffers["stdout"]),bytes(buffers["stderr"])
-        except BaseException:
+        except BaseException as error:
             try:
                 os.killpg(process.pid,signal.SIGTERM)
                 process.wait(timeout=1)
@@ -86,6 +86,8 @@ def native(argv, deadline, *, limit=1024*1024, data=None):
                 os.killpg(process.pid,signal.SIGKILL);process.wait(timeout=1)
             except ProcessLookupError:
                 process.wait()
+            if isinstance(error,subprocess.TimeoutExpired):
+                raise ContractError("review_deadline_exhausted") from None
             raise
         finally:
             process.stdout.close();process.stderr.close()
@@ -171,6 +173,35 @@ def switch_map(positions,candidate,baseline,cmap,bmap):
     return result
 
 
+def model_admission(admission,record,identity,scope):
+    require(isinstance(admission,dict) and admission.get("status")=="admitted" and admission.get("evidence_scope")==scope
+        and all(admission.get(key) is True for key in ("weights_verified","code_verified","environment_verified","workload_evidence_verified")),"review_model_admission_invalid")
+    pins=("candidate_id","weights_sha256","code_commit","environment_sha256","python_sha256","runtime_env")
+    for key in ("weights_sha256","environment_sha256","python_sha256","workload_receipt_sha256","host_fingerprint"):
+        require(re.fullmatch(r"[0-9a-f]{64}",str(admission.get(key))) is not None,"review_model_admission_invalid")
+    require(re.fullmatch(r"[0-9a-f]{40}",str(admission.get("code_commit"))) is not None,"review_model_admission_invalid")
+    require(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,63}",str(admission.get("candidate_id"))) is not None,"review_model_admission_invalid")
+    backend=admission.get("runtime_env")
+    require(backend in ({"pytorch","jax_flax"} if scope=="representative-model-workload" else {"python_fixture"}),"review_model_admission_invalid")
+    for key in ("device","backend_version"):
+        require(isinstance(admission.get(key),str) and re.fullmatch(r"[A-Za-z0-9+_.-]{1,80}",admission[key]) is not None,"review_model_admission_invalid")
+    observations=admission.get("observations")
+    require(isinstance(observations,dict),"review_model_admission_invalid")
+    for key in ("peak_ram_gb","peak_vram_gb","disk_gb","duration_seconds"):
+        value=observations.get(key)
+        try:valid=type(value) in (int,float) and math.isfinite(value) and (value>0 if key in {"peak_ram_gb","duration_seconds"} else value>=0)
+        except OverflowError:valid=False
+        require(valid,"review_model_admission_invalid")
+    for key in ("code_terms","weight_terms"):
+        terms=admission.get(key)
+        require(isinstance(terms,dict) and terms.get("reviewed") is True and terms.get("use") in {"test","local-research","performance"}
+            and isinstance(terms.get("license_id"),str) and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9 .+_-]{0,127}",terms["license_id"]) is not None,"review_model_admission_invalid")
+    model=record.get("model")
+    require(record.get("method_class") in {"estimated","generated"} and isinstance(model,dict)
+        and model.get("admission_sha256")==identity and all(model.get(key)==admission[key] for key in pins),"review_model_identity_mismatch")
+    return {key:admission[key] for key in pins}
+
+
 def prepare(binding,context,output,dry_run):
     spec=binding.parameters.get("review_spec")
     require(isinstance(spec,dict) and spec.get("schema")=="amps.audio-comparison.v1","review_spec_missing")
@@ -227,8 +258,7 @@ def prepare(binding,context,output,dry_run):
                 require(admission_id in refs and refs[admission_id].kind=="metadata","review_model_admission_missing")
                 admission=read_json(paths[admission_id],role="review_model_admission",limit=1024*1024)
                 expected_scope="representative-model-workload" if spec["scope"]=="production-prepared-media" else "synthetic-contract"
-                require(isinstance(admission,dict) and admission.get("status")=="admitted" and admission.get("evidence_scope")==expected_scope
-                    and all(admission.get(key) is True for key in ("weights_verified","code_verified","environment_verified","workload_evidence_verified")),"review_model_admission_not_verified")
+                records[name]["model_identity"]=model_admission(admission,record,refs[admission_id].sha256,expected_scope)
                 records[name]["model_admission_sha256"]=refs[admission_id].sha256
                 used.add(admission_id)
     require(used==set(refs),"review_input_artifact_accounting_incomplete")
@@ -253,7 +283,7 @@ def prepare(binding,context,output,dry_run):
     require(baselines["source"] is not None,"review_source_baseline_missing")
     source=artifacts[baselines["source"]];source_span=SourceSpan(0,source["sample_count"])
     require(binding.span is not None and (binding.span.start,binding.span.end)==(0,source["sample_count"]) and binding.timebase is not None
-        and binding.timebase.num==source["sample_rate"] and binding.timebase.den==1 and binding.timebase==context.timebase,"review_source_clock_mismatch")
+        and binding.timebase.num==source["sample_rate"] and binding.timebase.den==1 and binding.span.timebase==binding.timebase==context.timebase,"review_source_clock_mismatch")
     maps={name:validated_retiming_map(SourceSpan(0,row["sample_count"]),source_span,row.get("source_map")) for name,row in artifacts.items()}
     require(maps[baselines["source"]]==[(Fraction(0),Fraction(source["sample_count"]),Fraction(0),Fraction(source["sample_count"]))],"review_source_map_not_identity")
     comparisons=spec.get("comparisons")
@@ -314,7 +344,10 @@ def execute_audio_review(binding,context,*,output,dry_run=False):
             switch_map=switches,target_lufs=target,gain_db=gains,before=before,after=after,measured_delta_lu=delta,
             tolerance_lu=.5,within_tolerance=True,method="FFmpeg loudnorm measured BS.1770 input on explicit active intervals; fixed gain copies",copies=copies))
     recheck_inputs(paths,refs,snapshots,deadline)
-    report["audio_checks"]={"status":"passed","artifacts":{name:{"finite":True,"sample_rate":row["sample_rate"],"sample_count":len(arrays[name]),"channels":row["channels"],"source_map":row["source_map"]} for name,row in artifacts.items()}}
+    source_end=artifacts[spec["baselines"]["source"]]["sample_count"]
+    safe_maps={name:[dict(zip(("output_start","output_end","source_start","source_end"),(int(x) if x.denominator==1 else float(x) for x in values)))
+        for values in validated_retiming_map(SourceSpan(0,row["sample_count"]),SourceSpan(0,source_end),row["source_map"])] for name,row in artifacts.items()}
+    report["audio_checks"]={"status":"passed","artifacts":{name:{"finite":True,"sample_rate":row["sample_rate"],"sample_count":len(arrays[name]),"channels":row["channels"],"source_map":safe_maps[name]} for name,row in artifacts.items()}}
     event=dict(event="prepared-audio-comparison",artifact_set_sha256=digest(report["outputs"]),
         technical_audio="passed",perceptual="pending",artistic="pending",distribution="pending")
     decisions=output/"decisions.jsonl"

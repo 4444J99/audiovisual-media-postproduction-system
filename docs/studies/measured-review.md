@@ -62,3 +62,13 @@ distribution states pending. Full-frame proportional unobstructed H/V reference 
 Studio integration, actual source listening, model comparisons and complete production
 F06 output remain under reopened #69 and program #63. No pending gate is promoted by
 producing an audio comparison or by passing software tests.
+
+Independent-review corrections bind model-producing sidecars to the exact F04
+record hash, candidate, weight/code/environment/Python pins and backend; flag-only
+or unrelated admissions are rejected. F04 public records now retain their verified
+weight hash and backend so this binding is possible. Record authenticity remains
+an executor trust boundary, rather than a signature or a repeated inference claim.
+Source-span, binding and context timebases must all agree. Public source maps contain
+only normalized validated coordinates. Pipe-EOF timeouts are cleaned up and returned
+as coded deadline errors. Latest correction receipts use the `-v2` suffix; original
+verification/native observations remain as historical evidence.
