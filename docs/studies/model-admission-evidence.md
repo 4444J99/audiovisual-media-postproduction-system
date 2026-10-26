@@ -54,3 +54,20 @@ discovery from `tests` omitted that namespace directory. Existing tests remain i
 the gate, and the admission regressions are added rather than silently omitted.
 Actual production F04 admission and its upstream perceptual benchmark remain
 unfinished under #67/#63.
+
+The review correction requires `representative-model-workload` scope for both
+production backends; synthetic scope is accepted only for the fixture backend.
+Catalogue record identity must agree with its lookup key and request identities.
+Malformed receipt/observation shapes return named blocks.
+
+Code verification streams each tracked regular file against its pinned Git blob
+and executable mode, with replacement objects disabled. It does not rely on index
+assume-unchanged/skip-worktree flags. Symlink/submodule entries are visibly blocked
+as unsupported rather than verified without their own identity protocol.
+All private locators, environment config/lock/interpreter and tracked code retain
+resolved-path and device/inode/mode/size/mtime/ctime observations. After the runtime
+probe the code check repeats, then all observed identities are revalidated before
+success. Changed bytes, replaced paths and redirected locators invalidate admission.
+This is a bounded consistency observation, not a filesystem lock or a guarantee
+that inputs cannot change after admission returns. Producing execution must retain
+its own input custody. The existing 30-second verification deadline still governs.

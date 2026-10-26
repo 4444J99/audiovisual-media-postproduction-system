@@ -19,3 +19,9 @@ No model installation, inference, automatic downloads, new service or spending.
 No production F04 acceptance from synthetic tests. Preserve all prior artifacts.
 Retain the existing isolated checkout/branch, no new worktree. Target next
 checkpoint by 03:40 UTC, recording cumulative continuation rather than reset.
+
+Implementation/verification at 03:17 UTC: all five review findings reproduced and
+corrected; twenty-two review subcases pass, plus overflow and Git replacement
+regressions. Required check exited 0: 608 Python (468 + 140), 274 Node, score/replay
+checks, zero skips. No source changes followed that check; only receipts/docs.
+See review-disposition-v2.md and verification-v2.json. Production F04 remains false.

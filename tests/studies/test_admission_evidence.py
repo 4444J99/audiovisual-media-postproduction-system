@@ -12,6 +12,9 @@ import tempfile
 import time
 import unittest
 import venv
+from unittest.mock import patch
+
+import amp.studies.admission_evidence as ev
 
 from amp.composition.containers import MaterialRef, StudyBinding, StudyContext
 from amp.studies.admission import admit_model, load_models_lock
@@ -48,7 +51,7 @@ class AdmissionEvidenceTests(unittest.TestCase):
         self.assertEqual(len(lock["historical_unverified_candidates"]), 12)
 
     def test_invalid_or_conflicting_limits_are_not_treated_as_an_unlimited_host(self):
-        for value in (True, "64", math.nan, math.inf, -1):
+        for value in (True, "64", math.nan, math.inf, -1, 10**1000):
             with self.subTest(value=value), self.assertRaises(ValueError):
                 admit_model(self.binding(), self.context(host_ram_gb=value), LOCK)
         with self.assertRaises(ValueError):
@@ -103,6 +106,7 @@ class AdmissionEvidenceTests(unittest.TestCase):
             self.assertTrue(result.metadata["weights_verified"])
             self.assertEqual(result.metadata["evidence_scope"], "synthetic-contract")
             self.assertNotIn(str(root), json.dumps(result.to_dict()))
+            self.check_review_counterexamples(code, git, weights, environment, output, evidence, lock, candidate, report, params)
             for mutation in (lambda: weights.write_bytes(b"changed"), lambda: output.write_bytes(b"changed"),
                              lambda: (code / "model.py").write_text("changed source")):
                 before = {p: p.read_bytes() for p in (weights,output,code / "model.py")}
@@ -123,3 +127,97 @@ class AdmissionEvidenceTests(unittest.TestCase):
                 changed_params = {**params,"workload_receipt_sha256":sha(evidence)}
                 self.assertFalse(admit_model(self.binding(),self.context(**changed_params),lock).metadata["admitted"])
             evidence.write_text(json.dumps(report))
+
+    def check_review_counterexamples(self, code, git, weights, environment, output, evidence, lock, candidate, report, params):
+        sha = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
+        def admit():
+            return admit_model(self.binding(), self.context(**{**params, "workload_receipt_sha256":sha(evidence)}), lock)
+        with self.subTest(review="catalogue identity"):
+            lock.write_text(json.dumps({"candidates":{"R01":{**candidate,"candidate_id":"R99"}}}))
+            try:
+                with self.assertRaises(ValueError):
+                    admit()
+            finally:
+                lock.write_text(json.dumps({"candidates":{"R01":candidate}}))
+        for shape in ([], {**report,"observations":None}):
+            with self.subTest(review="receipt mapping", shape=type(shape).__name__):
+                evidence.write_text(json.dumps(shape))
+                try:
+                    try:
+                        denied = admit()
+                    except Exception as error:
+                        self.fail(f"malformed receipt escaped blocked-result contract: {type(error).__name__}")
+                    self.assertFalse(denied.metadata["admitted"])
+                finally:
+                    evidence.write_text(json.dumps(report))
+        original_run = ev.run
+        with self.subTest(review="path replacement with identical bytes"):
+            original = weights.read_bytes(); replaced = False
+            def replace_path(argv, deadline):
+                nonlocal replaced
+                result = original_run(argv, deadline)
+                if not replaced and argv[-1] == "python_fixture":
+                    temporary = weights.with_suffix(".replacement")
+                    temporary.write_bytes(original)
+                    temporary.replace(weights)
+                    replaced = True
+                return result
+            with patch.object(ev,"run",side_effect=replace_path):
+                self.assertFalse(admit().metadata["admitted"])
+            self.assertTrue(replaced)
+        with self.subTest(review="production scope"):
+            lock.write_text(json.dumps({"candidates":{"R01":{**candidate,"runtime_env":"pytorch","name":"production-candidate"}}}))
+            evidence.write_text(json.dumps({**report,"runtime_env":"pytorch"}))
+            def available_backend(argv, deadline):
+                if argv[-1] == "pytorch":
+                    return json.dumps(dict(prefix=str(environment),version=report["backend_version"],devices=["cpu"]))
+                return original_run(argv,deadline)
+            try:
+                with patch.object(ev,"run",side_effect=available_backend):
+                    self.assertFalse(admit().metadata["admitted"])
+            finally:
+                lock.write_text(json.dumps({"candidates":{"R01":candidate}}))
+                evidence.write_text(json.dumps(report))
+        with self.subTest(review="replacement Git objects are not the pinned tree"):
+            model = code/"model.py"; revision = git("rev-parse","HEAD")
+            model.write_text("replacement implementation")
+            git("add","model.py");git("commit","-qm","replacement tree")
+            replacement = git("rev-parse","HEAD")
+            git("reset","--hard",revision)
+            git("replace",revision,replacement)
+            model.write_text("replacement implementation")
+            git("add","model.py")
+            try:
+                self.assertFalse(admit().metadata["admitted"])
+            finally:
+                git("replace","-d",revision)
+                git("reset","--hard",revision)
+        for flag in ("assume-unchanged", "skip-worktree"):
+            with self.subTest(review="hidden tracked bytes", flag=flag):
+                model = code / "model.py"; previous = model.read_bytes()
+                git("update-index",f"--{flag}","model.py")
+                model.write_bytes(b"changed tracked source")
+                try:
+                    self.assertFalse(admit().metadata["admitted"])
+                finally:
+                    model.write_bytes(previous)
+                    git("update-index",f"--no-{flag}","model.py")
+        targets = [weights, environment/"environment-lock.json", environment/"pyvenv.cfg", evidence, output, code/"model.py"]
+        for target in targets:
+            for moment in ("first-git", "after-probe"):
+                with self.subTest(review="verification interleaving", target=target.name, moment=moment):
+                    previous = target.read_bytes(); changed = False
+                    def interleave(argv, deadline):
+                        nonlocal changed
+                        result = original_run(argv,deadline)
+                        if not changed and ((moment=="first-git" and argv[0]=="git") or (moment=="after-probe" and argv[-1]=="python_fixture")):
+                            target.write_bytes(previous+b"changed")
+                            changed = True
+                        return result
+                    try:
+                        with patch.object(ev,"run",side_effect=interleave):
+                            denied = admit()
+                        self.assertTrue(changed)
+                        self.assertFalse(denied.metadata["admitted"])
+                    finally:
+                        target.write_bytes(previous)

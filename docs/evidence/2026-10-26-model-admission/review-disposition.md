@@ -1,4 +1,6 @@
-# Independent review checkpoint
+# Historical independent review checkpoint
+
+Superseded for the corrected implementation by [review-disposition-v2.md](review-disposition-v2.md).
 
 Reviewed base `02a1663` through implementation `2d724f6` on 2026-10-26.
 Disposition: **with fixes; do not merge**. The bounded attempt ends at

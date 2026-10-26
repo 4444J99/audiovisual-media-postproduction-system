@@ -45,7 +45,11 @@ class EvidenceUnavailable(ValueError):
 
 
 def number(value, role, minimum=0):
-    if type(value) not in (int, float) or not math.isfinite(value) or value < minimum:
+    try:
+        valid = type(value) in (int, float) and math.isfinite(value) and value >= minimum
+    except OverflowError:
+        valid = False
+    if not valid:
         raise ValueError(f"{role} must be a finite nonnegative number")
     return value
 
@@ -56,15 +60,59 @@ def finite_json(payload):
     return json.loads(payload, parse_constant=invalid)
 
 
-def sha_file(value, deadline, *, maximum=None):
+def file_identity(value):
+    return (value.st_dev, value.st_ino, value.st_mode, value.st_size,
+            value.st_mtime_ns, value.st_ctime_ns)
+
+
+def remember_input(value, snapshots):
+    locator = Path(value).absolute()
+    resolved = locator.resolve(strict=True)
+    snapshots.append((locator, resolved, file_identity(resolved.stat())))
+
+
+def revalidate_inputs(snapshots, deadline):
+    for locator, resolved, identity in snapshots:
+        if time.monotonic() >= deadline:
+            raise EvidenceUnavailable("verification_deadline_exhausted")
+        if locator.resolve(strict=True) != resolved or file_identity(resolved.stat()) != identity:
+            raise EvidenceUnavailable("artifact_changed_during_verification")
+
+
+def verify_code(code_root, expected, deadline, snapshots):
+    argv = ["git", "--no-replace-objects", "-C", str(code_root)]
+    if run([*argv, "rev-parse", "HEAD"], deadline) != expected:
+        raise EvidenceUnavailable("code_identity_mismatch")
+    if run([*argv, "status", "--porcelain=v1", "--untracked-files=all"], deadline):
+        raise EvidenceUnavailable("code_identity_mismatch")
+    # Read the pinned tree and actual bytes: index visibility flags are not proof.
+    tree = run([*argv, "ls-tree", "-rz", "--full-tree", expected], deadline)
+    for entry in tree.split("\0"):
+        if not entry:
+            continue
+        description, name = entry.split("\t", 1)
+        mode, kind, expected_blob = description.split(" ")
+        path = code_root / name
+        if kind != "blob" or mode not in {"100644", "100755"} or path.is_symlink():
+            raise EvidenceUnavailable("code_tree_entry_unsupported")
+        remember_input(str(path), snapshots)
+        blob, _ = sha_file(str(path), deadline, git_blob=True)
+        executable = bool(path.stat().st_mode & 0o111)
+        if blob != expected_blob or executable != (mode == "100755"):
+            raise EvidenceUnavailable("code_identity_mismatch")
+
+
+def sha_file(value, deadline, *, maximum=None, git_blob=False):
     if not isinstance(value, str) or not value:
         raise EvidenceUnavailable("local_artifact_unavailable")
     path = Path(value).resolve(strict=True)
-    digest = hashlib.sha256()
     with os.fdopen(os.open(path, os.O_RDONLY | os.O_NONBLOCK), "rb") as stream:
         before = os.fstat(stream.fileno())
         if not stat.S_ISREG(before.st_mode) or maximum is not None and before.st_size > maximum:
             raise EvidenceUnavailable("artifact_size_invalid")
+        digest = hashlib.sha1() if git_blob else hashlib.sha256()
+        if git_blob:
+            digest.update(f"blob {before.st_size}\0".encode())
         while True:
             if time.monotonic() >= deadline:
                 raise EvidenceUnavailable("verification_deadline_exhausted")
@@ -128,7 +176,7 @@ def preflight(binding, context, candidate_id, candidate):
     parameters = context.parameters
     if PRIVATE.intersection(binding.parameters):
         raise ValueError("Private model locators belong to StudyContext")
-    identities = [source[key] for source in (binding.parameters, binding.provenance, parameters)
+    identities = [source[key] for source in (candidate, binding.parameters, binding.provenance, parameters)
                   for key in ("candidate_id", "model_id") if source.get(key) is not None]
     if any(value != candidate_id for value in identities):
         raise ValueError("Conflicting model candidate identities")
@@ -180,26 +228,32 @@ def preflight(binding, context, candidate_id, candidate):
     if not reasons:
         deadline = time.monotonic() + 30
         try:
+            snapshots = []
+            environment = Path(parameters.get("environment_root", "")).resolve(strict=True)
+            code_root = Path(parameters.get("model_code_root", "")).resolve(strict=True)
+            python = environment / "bin/python"
+            for path in [*(parameters[key] for key in PRIVATE),
+                         str(environment / "pyvenv.cfg"), str(environment / "environment-lock.json"),
+                         str(python)]:
+                remember_input(path, snapshots)
             weights_sha, weights_bytes = sha_file(parameters.get("weights_path"), deadline)
             if weights_sha != candidate["weights_sha256"]:
                 raise EvidenceUnavailable("weights_identity_mismatch")
             if weights_bytes > budgets["disk"] * 1024 ** 3:
                 raise EvidenceUnavailable("disk_cap_exceeded")
-            code_root = Path(parameters.get("model_code_root", "")).resolve(strict=True)
-            observed_commit = run(["git", "-C", str(code_root), "rev-parse", "HEAD"], deadline)
-            if observed_commit != candidate["code_commit"] or run(["git", "-C", str(code_root), "status", "--porcelain=v1", "--untracked-files=all"], deadline):
-                raise EvidenceUnavailable("code_identity_mismatch")
-            environment = Path(parameters.get("environment_root", "")).resolve(strict=True)
+            verify_code(code_root, candidate["code_commit"], deadline, snapshots)
+            observed_commit = candidate["code_commit"]
             if not (environment / "pyvenv.cfg").is_file():
                 raise EvidenceUnavailable("dedicated_environment_unavailable")
             env_sha, _ = sha_file(str(environment / "environment-lock.json"), deadline, maximum=1024*1024)
-            python = environment / "bin/python"
             python_sha, _ = sha_file(str(python), deadline)
             if env_sha != candidate["environment_sha256"] or python_sha != candidate["python_sha256"]:
                 raise EvidenceUnavailable("environment_identity_mismatch")
             receipt_path = parameters.get("workload_receipt_path")
             receipt_sha = parameters.get("workload_receipt_sha256")
             report = read_receipt(receipt_path, receipt_sha, deadline)
+            if not isinstance(report, dict):
+                raise EvidenceUnavailable("workload_receipt_shape_invalid")
             if report.get("schema") != "amps.model-workload.v1" or report.get("status") != "completed" or type(report.get("exit_code")) is not int or report["exit_code"] != 0 or report.get("candidate_id") != candidate_id:
                 raise EvidenceUnavailable("workload_not_completed")
             host = dict(node=platform.node(),system=platform.system(),machine=platform.machine())
@@ -210,6 +264,8 @@ def preflight(binding, context, candidate_id, candidate):
                 if report.get(key) != candidate[key]:
                     raise EvidenceUnavailable("workload_input_identity_mismatch")
             observations = report.get("observations", {})
+            if not isinstance(observations, dict):
+                raise EvidenceUnavailable("workload_observations_shape_invalid")
             for key in ("peak_ram_gb", "peak_vram_gb", "disk_gb", "duration_seconds"):
                 number(observations.get(key), key)
             observations = {key: observations[key] for key in ("peak_ram_gb", "peak_vram_gb", "disk_gb", "duration_seconds")}
@@ -227,6 +283,8 @@ def preflight(binding, context, candidate_id, candidate):
                 raise EvidenceUnavailable("runtime_evidence_scope_invalid")
             if backend == "python_fixture" and (scope != "synthetic-contract" or not candidate["name"].startswith("synthetic-")):
                 raise EvidenceUnavailable("fixture_backend_is_not_a_production_model")
+            if backend != "python_fixture" and scope != "representative-model-workload":
+                raise EvidenceUnavailable("production_workload_scope_required")
             probe = finite_json(run([str(python), "-I", "-c", PROBE, backend], deadline))
             if Path(probe["prefix"]).resolve() != environment or report.get("device") not in probe["devices"]:
                 raise EvidenceUnavailable("runtime_device_identity_mismatch")
@@ -234,6 +292,8 @@ def preflight(binding, context, candidate_id, candidate):
                 raise EvidenceUnavailable("runtime_version_mismatch")
             if candidate.get("requires_cuda") is True and report.get("device") != "cuda":
                 raise EvidenceUnavailable("cuda_acceleration_absent")
+            verify_code(code_root, candidate["code_commit"], deadline, snapshots)
+            revalidate_inputs(snapshots, deadline)
             facts = dict(weights_verified=True, code_verified=True, environment_verified=True,
                 workload_evidence_verified=True, workload_receipt_sha256=receipt_sha,
                 evidence_scope=scope, device=report["device"], backend_version=probe["version"],
