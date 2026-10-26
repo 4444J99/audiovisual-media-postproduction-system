@@ -1,4 +1,6 @@
 include tools/render-fx.mjs
+include tools/check-reference.mjs
+include web/studies/performance-adapter.mjs
 include tools/validate-execution-fx.mjs
 include tools/run_room_stretch.py
 include web/fx/core.mjs

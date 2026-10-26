@@ -1,4 +1,4 @@
-# Measured F06 audio comparison
+# Measured F06 comparison and source reference
 
 `amp execute --binding review.json --locations private-locations.json --output FRESH`
 now routes the fixed `amp.review.v1` operator in the existing `amps.study.v1`
@@ -55,13 +55,13 @@ Native children have a shared operation deadline, bounded stdout/stderr and proc
 termination. Input/decoded/output limits are explicit; these small CPU fixtures do not
 claim admission for a heavy production workload.
 
-This implements the actual audio/clock/CLI correction, not all F06 acceptance. The
-receipt keeps `reference_frame.status=not_tested`, `comparison_complete=false`, overall
-technical qualification pending full-reference verification, and perceptual/artistic/
-distribution states pending. Full-frame proportional unobstructed H/V reference checks,
-Studio integration, actual source listening, model comparisons and complete production
-F06 output remain under reopened #69 and program #63. No pending gate is promoted by
-producing an audio comparison or by passing software tests.
+Without `visual_reference`, the receipt keeps `reference_frame.status=not_tested`.
+With it, every protected pixel in every decoded H/V frame is checked against the whole
+source frame at the shared PerformanceRecord clock. A passed reference still leaves
+technical qualification pending any missing baselines. `comparison_complete=false`
+and perceptual/artistic/distribution states remain pending. Actual source listening,
+model comparisons and complete production F06 output remain under reopened #69 and
+program #63. Producing a comparison does not promote those gates.
 
 Independent-review corrections bind model-producing sidecars to the exact F04
 record hash, candidate, weight/code/environment/Python pins and backend; flag-only
@@ -85,3 +85,56 @@ versions retain the exact prior source observations.
 Public study/material identifiers are bounded ASCII IDs, so owner paths cannot
 be projected through labels. Latest final source receipts use verification-v4.json
 and native-audio-v4.json; earlier snapshots retain their historical identities.
+
+## Full-frame H/V reference
+
+The optional `review_spec.visual_reference` adds hash-bound MaterialRefs for the source
+video, one PerformanceRecord, H/V captures and producing capture sidecars. Its `source`
+contains width, height, frames and rational frame_rate. Each of exactly two `views`
+contains material_id, capture_record_id, orientation (`horizontal`/`vertical`), width,
+height, frames, rational frame_rate and optional start_frame (default zero). Both views
+must cover the same output frames at the record rate. Source material span/rate and
+hash must match the record's protected reference; the retained FX engine must match.
+
+Each `amps.performance-capture.v1` sidecar binds performance_sha256, source_sha256,
+output_sha256, renderer_sha256, orientation, dimensions, frames, frame_rate and
+start_frame. These are producing records, not executor-authenticity signatures.
+The exact executable example is `tests/studies/test_reference_review.py`.
+
+Explicit `max_channel_error` (0..8) and `mean_channel_error` (0..1) declare numeric
+tolerance. `resource_profile.max_scratch_bytes` must cover full bounded RGBA decode
+caches plus a possible extra frame per video. The checker validates actual stream
+dimensions, square pixels, rates, zero presentation origin and every timestamp before
+decoding. Coarse ticks cannot hide an entire shifted frame. Pixel comparison reuses
+the retained Canvas transform and RuntimeSupervisor clock; it reports per-frame errors,
+source frame indices, geometry and actual hashes. This is not cross-backend pixel
+equivalence or evidence that a specific executor made the captures. The protected split
+is an integer pixel boundary; native-size frame isolation prevents atlas neighbors
+bleeding into the scaled protected image. These buffers are reserved in the texture cap.
+
+Successful checks revalidate originals and remove only their own fixed reconstructible
+cache files through a verified directory descriptor. Failed decode/check partials remain.
+Node, the already-declared @napi-rs/canvas dependency, and FFmpeg/FFprobe are required;
+installed runtimes accept the existing AMP_NODE_MODULES dependency location.
+
+## Canonical Studio comparison
+
+Studio's existing compare tool (`web/review.html`) accepts the saved comparisons.json
+and its local comparison WAVs. No imported URL is fetched. Actual hashes, byte counts,
+WAV headers and source maps must match before playback. Copies now use float32 WAV;
+BS.1770 measurements are repeated from those actual written bytes. A/B switches follow
+source position across rates, retiming and reversal. Held/repeated source content with
+an ambiguous inverse blocks that switch. Rapid switching retains playback intent.
+
+Imported technical observations are displayed separately from explicit human decisions.
+Each appended decision binds receipt/source/copy hashes, source position, reviewer,
+assessment axis and disposition. Logs download as JSONL and remain independent of the
+receipt. Decisions persist across receipt imports within the tab and must be downloaded
+to survive closing it. Playback never grants acceptance. Existing workprint, speech and
+layer controls remain available.
+
+Actual CLI/native Canvas and installed-wheel execution are verified with tiny synthetic
+fixtures. UI handlers and local File verification are exercised in the test harness.
+Native browser acceptance remains unobserved: computer use found no Chrome/Safari
+window and no in-app browser. Production media, real listening, device/venue calibration,
+model comparison and artistic/distribution acceptance remain unperformed.

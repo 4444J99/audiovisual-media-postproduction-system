@@ -123,3 +123,20 @@ class InstalledWheelTests(unittest.TestCase):
         receipt = json.loads(result.stdout)
         self.assertTrue(Path(receipt['supervisor']).is_relative_to(self.root / 'environment'))
         self.assertEqual(receipt['engine'], retained_engine_identity())
+
+    def test_installed_review_checks_actual_hv_captures_with_bundled_checker(self):
+        fixture=self.consumer/'reference-fixture';fixture.mkdir()
+        producer=(
+            'import sys,json; from pathlib import Path; sys.path.insert(0,"tests"); '
+            'from studies.test_reference_review import ReferenceReviewTests; '
+            'helper,root,binding,locations=ReferenceReviewTests().fixture(sys.argv[1]); '
+            '(root/"binding.json").write_text(json.dumps(binding))'
+        )
+        self.run_command([sys.executable,'-c',producer,str(fixture)],ROOT)
+        result=self.run_command([str(self.python),'-I','-m','amp.cli','execute',
+            '--binding',str(fixture/'binding.json'),'--locations',str(fixture/'locations.json'),
+            '--output',str(fixture/'installed-output')],self.consumer)
+        receipt=json.loads(result.stdout)
+        self.assertEqual(receipt['reference_frame']['status'],'passed')
+        self.assertEqual(receipt['reference_frame']['checked_frames'],16)
+        self.assertIn('tools/check-reference.mjs',receipt['code_sha256'])

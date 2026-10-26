@@ -100,6 +100,9 @@ class ReviewEvidenceTests(unittest.TestCase):
             for name,identity in receipt["outputs"].items():
                 payload=(root/"out"/name).read_bytes()
                 self.assertEqual(hashlib.sha256(payload).hexdigest(),identity["sha256"])
+                if name.endswith('.wav'):
+                    rate,samples=wavfile.read(root/'out'/name)
+                    self.assertEqual(samples.dtype,np.dtype('float32')) # Browser-supported measured copies.
             for path,payload in original.items():self.assertEqual(path.read_bytes(),payload)
             self.assertNotIn(str(root),json.dumps(receipt))
 

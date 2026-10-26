@@ -120,7 +120,7 @@ test('texture pressure never allocates beyond its admitted cap and still paints 
   const r=playbackRecord();r.runtime.profile.byte_caps.texture_bytes=30000;
   let allocated=0;const allocate=(w,h)=>{allocated+=w*h*4;return canvas();};const ctx=audioContext(),out=canvas();
   const p=new PerformancePlayer({record:r,prepared:prepared(),canvas:out,audioContext:ctx,createCanvas:allocate,autoTick:false});
-  await p.play();assert.ok(p.supervisor.reasons.includes('texture_bytes'));assert.equal(allocated,0);assert.ok(out.draws.length>0);assert.equal(p.supervisor.snapshot().active.length,0);
+  await p.play();assert.ok(p.supervisor.reasons.includes('texture_bytes'));assert.equal(allocated,4,'only the pre-reserved isolated reference cell is allocated');assert.ok(out.draws.length>0);assert.equal(p.supervisor.snapshot().active.length,0);
 });
 test('later cancel, pause, seek and restore supersede an in-flight restore',async()=>{
   for(const action of ['cancel','pause','seek']){

@@ -1,8 +1,8 @@
 """Bounded F06 audio comparison over actual local bytes; no human acceptance.
 
 Uses retained content resolution, native FFmpeg BS.1770 input measurements and
-explicit sample/source maps. Full visual-reference verification remains an unmet
-F06 gate. A produced audio comparison is not a completed review or model admission.
+explicit sample/source maps and optional every-frame H/V reference verification.
+A produced comparison is not a completed human review or model admission.
 """
 from __future__ import annotations
 
@@ -25,6 +25,7 @@ from scipy.io import wavfile
 from amp.composition.containers import MaterialRef, SourceSpan, StudyBinding, StudyContext, StudyResult
 from amp.media_resolver import ContractError, MediaResolver, file_identity, read_json
 from amp.residual_io import _wave_info, _read_window
+from amp.runtime import runtime_path
 from .admission_evidence import remember_input, revalidate_inputs, sha_file
 from .review import validated_retiming_map
 
@@ -51,7 +52,7 @@ def recheck_inputs(paths,refs,snapshots,deadline):
     revalidate_inputs(snapshots,deadline)
 
 
-def native(argv, deadline, *, limit=1024*1024, data=None):
+def native(argv, deadline, *, limit=1024*1024, data=None, sink=None):
     """Drain both pipes under byte/time bounds and terminate the whole child group."""
     require(time.monotonic()<deadline,"review_deadline_exhausted")
     with tempfile.TemporaryFile() as incoming:
@@ -62,7 +63,7 @@ def native(argv, deadline, *, limit=1024*1024, data=None):
                 stdout=subprocess.PIPE,stderr=subprocess.PIPE,start_new_session=True)
         except OSError:
             raise ContractError("review_native_tool_unavailable") from None
-        buffers={"stdout":bytearray(),"stderr":bytearray()}
+        buffers={"stdout":bytearray(),"stderr":bytearray()};stdout_bytes=0
         try:
             with selectors.DefaultSelector() as selector:
                 for name in buffers:selector.register(getattr(process,name),selectors.EVENT_READ,name)
@@ -73,8 +74,13 @@ def native(argv, deadline, *, limit=1024*1024, data=None):
                         chunk=os.read(key.fileobj.fileno(),65536)
                         if not chunk:
                             selector.unregister(key.fileobj);continue
-                        name=key.data;buffers[name].extend(chunk)
-                        require(len(buffers[name])<=(limit if name=="stdout" else 1024*1024),"review_native_output_limit")
+                        name=key.data
+                        if name=="stdout":
+                            stdout_bytes+=len(chunk);require(stdout_bytes<=limit,"review_native_output_limit")
+                            if sink is not None:sink.write(chunk)
+                            else:buffers[name].extend(chunk)
+                        else:
+                            buffers[name].extend(chunk);require(len(buffers[name])<=1024*1024,"review_native_output_limit")
                 process.wait(timeout=max(.001,deadline-time.monotonic()))
             require(process.returncode==0,"review_native_execution_failed")
             return bytes(buffers["stdout"]),bytes(buffers["stderr"])
@@ -223,6 +229,8 @@ def prepare(binding,context,output,dry_run):
     require(isinstance(profile,dict),"review_resource_profile_missing")
     caps={key:integer(profile.get(key),1,maximum,"review_resource_profile_invalid") for key,maximum in
         (("max_input_bytes",64*1024*1024),("max_working_bytes",192*1024*1024),("max_output_bytes",128*1024*1024),("deadline_seconds",300))}
+    if spec.get('visual_reference') is not None:
+        caps['max_scratch_bytes']=integer(profile.get('max_scratch_bytes'),1,64*1024**3,'review_reference_scratch_cap_missing')
     deadline=time.monotonic()+caps["deadline_seconds"]
     require(dry_run or not output.exists() and not output.is_symlink(),"review_output_not_fresh")
     refs={}
@@ -275,8 +283,12 @@ def prepare(binding,context,output,dry_run):
                 records[name]["model_identity"]=model_admission(admission,record,refs[admission_id].sha256,expected_scope)
                 records[name]["model_admission_sha256"]=refs[admission_id].sha256
                 used.add(admission_id)
+    from .review_reference import prepare_reference
+    visual=prepare_reference(spec.get('visual_reference'),refs,paths,caps,spec['scope'])
+    if visual is not None:used.update(visual['used'])
     require(used==set(refs),"review_input_artifact_accounting_incomplete")
     roots={refs[name].sha256 for name,row in artifacts.items() if row["role"] in {"source","raw"}}
+    if visual is not None:roots.add(refs[visual['source_id']].sha256)
     graph={}
     for name,record in records.items():
         key=refs[name].sha256
@@ -322,12 +334,12 @@ def prepare(binding,context,output,dry_run):
     else:
         arrays={name:decode(paths[name],row,deadline) for name,row in artifacts.items()}
     recheck_inputs(paths,refs,snapshots,deadline)
-    return spec,caps,deadline,refs,paths,resolver,snapshots,artifacts,records,prepared,arrays
+    return spec,caps,deadline,refs,paths,resolver,snapshots,artifacts,records,prepared,arrays,visual
 
 
 def execute_audio_review(binding,context,*,output,dry_run=False):
     output=Path(output)
-    spec,caps,deadline,refs,paths,resolver,snapshots,artifacts,records,prepared,arrays=prepare(binding,context,output,dry_run)
+    spec,caps,deadline,refs,paths,resolver,snapshots,artifacts,records,prepared,arrays,visual=prepare(binding,context,output,dry_run)
     report=dict(schema="amps.audio-comparison-receipt.v1",status="preflight-only",scope=spec["scope"],
         study_id=context.study_id,inputs={name:{"sha256":ref.sha256,"bytes":ref.bytes} for name,ref in refs.items()},
         source={"material_id":spec["baselines"]["source"],"span":binding.span.to_dict()},
@@ -339,8 +351,9 @@ def execute_audio_review(binding,context,*,output,dry_run=False):
         comparison_complete=False,raw_stem_mutated=False,active_selection="caller-declared corresponding source intervals; no listening or certified VAD implied")
     code_root=Path(__file__).resolve().parents[2]
     report["parameter_sha256"]=digest(dict(binding.parameters))
-    report["code_sha256"]={name:file_identity(code_root/name,"review_implementation")["sha256"] for name in
+    report["code_sha256"]={name:file_identity(runtime_path(code_root,name),"review_implementation")["sha256"] for name in
         ("amp/studies/review_artifacts.py","amp/studies/review.py","amp/studies/admission_evidence.py",
+         "amp/studies/review_reference.py","tools/check-reference.mjs","web/studies/performance-adapter.mjs",
          "amp/composition/containers.py","amp/media_resolver.py","amp/residual_io.py")}
     if dry_run:return report
     output.mkdir(mode=0o700,parents=True,exist_ok=False)
@@ -355,9 +368,10 @@ def execute_audio_review(binding,context,*,output,dry_run=False):
             copy=arrays[name]*10**(gains[name]/20)
             require(bool(np.isfinite(copy).all()) and float(np.max(np.abs(copy)))<1,"review_gain_would_clip_or_overflow")
             filename=f"comparison-{index:02d}-{role}.wav";path=output/filename
-            with path.open("xb") as stream:wavfile.write(stream,artifacts[name]["sample_rate"],copy)
+            persisted=np.asarray(copy,dtype=np.float32)
+            with path.open("xb") as stream:wavfile.write(stream,artifacts[name]["sample_rate"],persisted)
             written=decode(path,artifacts[name],deadline)
-            require(bool(np.array_equal(written,copy)),"review_copy_roundtrip_mismatch")
+            require(bool(np.array_equal(written,persisted.astype(np.float64))),"review_copy_roundtrip_mismatch")
             active=np.concatenate([written[a:z] for a,z in spans],axis=0)
             after[name]=loudness(active,artifacts[name]["sample_rate"],deadline)
             report["outputs"][filename]=file_identity(path,"review_output");copies[role]=filename
@@ -365,8 +379,13 @@ def execute_audio_review(binding,context,*,output,dry_run=False):
         require(abs(delta)<=.5,"review_loudness_match_failed")
         report["comparisons"].append(dict(candidate_id=c,baseline_id=b,candidate_active_spans=ci,baseline_active_spans=bi,
             switch_map=switches,target_lufs=target,gain_db=gains,before=before,after=after,measured_delta_lu=delta,
-            tolerance_lu=.5,within_tolerance=True,method="FFmpeg loudnorm measured BS.1770 input on explicit active intervals; fixed gain copies",copies=copies))
+            tolerance_lu=.5,within_tolerance=True,copy_encoding="pcm_f32le",method="FFmpeg loudnorm measured BS.1770 input on explicit active intervals; fixed gain copies",copies=copies))
+    from .review_reference import verify_reference
+    report['reference_frame']=verify_reference(visual,refs,paths,output,caps,deadline,
+        check_inputs=lambda:recheck_inputs(paths,refs,snapshots,deadline))
     recheck_inputs(paths,refs,snapshots,deadline)
+    if report['reference_frame']['status']=='passed':
+        report['qualification']['technical']='pending-missing-baselines' if report['missing_baselines'] else 'passed'
     source_end=artifacts[spec["baselines"]["source"]]["sample_count"]
     safe_maps={name:[dict(zip(("output_start","output_end","source_start","source_end"),(int(x) if x.denominator==1 else float(x) for x in values)))
         for values in validated_retiming_map(SourceSpan(0,row["sample_count"]),SourceSpan(0,source_end),row["source_map"])] for name,row in artifacts.items()}
@@ -391,7 +410,7 @@ def build_measured_review(binding,context):
     products=tuple(MaterialRef(id="review-"+row["sha256"][:12],sha256=row["sha256"],bytes=row["bytes"],
         kind="audio" if name.endswith(".wav") else "metadata",path=str(output/name)) for name,row in report["outputs"].items())
     return StudyResult(study_id=context.study_id,operator=binding.operator,span=binding.span,products=products,
-        metadata={"public_receipt":report,"technical":"pending-full-reference-check","raw_stem_mutated":False})
+        metadata={"public_receipt":report,"technical":report['qualification']['technical'],"raw_stem_mutated":False})
 
 
 def run_cli(document,*,locations,inventories,output,dry_run):
