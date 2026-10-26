@@ -61,3 +61,11 @@ retain separate checker code and parameter hashes. Required final check exits 0:
 methods. Current actual synthetic observation again records 0.0 LU and immutable
 raw bytes. Implementation is checkpointed; only durable publication remains.
 Cumulative outcome/previous attempts are not reset. Full F06 remains open.
+
+Publication-tail inspection at 04:13 reproduced owner paths supplied as public IDs.
+The same privacy correction now validates study/material identifiers. Final full
+check exits 0: 638 Python (468 + 170), 274 Node, score/replay and zero skips; 21
+focused methods. Fresh native fixture still measures 0.0 LU with unchanged raw
+inputs. These tails retain original cumulative usage and existing advisory/time
+authority; no allowance reset or complete F06 claim. No source edits after this
+passing full gate; remaining work is exact-head publication only.

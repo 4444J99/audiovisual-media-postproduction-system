@@ -215,6 +215,7 @@ def model_admission(admission,record,identity,scope):
 
 
 def prepare(binding,context,output,dry_run):
+    require(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,100}",context.study_id) is not None,"review_public_identity_invalid")
     spec=binding.parameters.get("review_spec")
     require(isinstance(spec,dict) and spec.get("schema")=="amps.audio-comparison.v1","review_spec_missing")
     require(spec.get("scope") in {"synthetic-contract","production-prepared-media"},"review_scope_invalid")
@@ -226,6 +227,7 @@ def prepare(binding,context,output,dry_run):
     require(dry_run or not output.exists() and not output.is_symlink(),"review_output_not_fresh")
     refs={}
     for ref in binding.inputs:
+        require(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,100}",ref.id) is not None,"review_public_identity_invalid")
         require(ref.id not in refs and ref.path is None and ref.bytes is not None,"review_input_reference_invalid")
         refs[ref.id]=ref
     require(bool(refs) and sum(ref.bytes for ref in refs.values())<=caps["max_input_bytes"],"review_input_byte_limit")

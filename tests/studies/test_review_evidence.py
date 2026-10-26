@@ -257,3 +257,21 @@ class ReviewEvidenceTests(unittest.TestCase):
                 receipt=execute_audio_review(parsed,context,output=root/'out',dry_run=True)
             self.assertEqual(receipt['status'],'preflight-only')
             self.assertFalse((root/'out').exists())
+
+    def test_owner_paths_cannot_be_projected_as_public_study_or_material_ids(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root,binding,locations,original=self.fixture(directory)
+            private='/Users/owner/private/media.wav'
+            binding['id']=private
+            process,receipt=self.execute(root,binding,locations,name='private-study',dry=True)
+            self.assertEqual(process.returncode,2,receipt)
+            self.assertNotIn(private,json.dumps(receipt))
+        with tempfile.TemporaryDirectory() as directory:
+            root,binding,locations,original=self.fixture(directory)
+            private='/Users/owner/private/media.wav'
+            binding['inputs'][0]['id']=private
+            binding['parameters']['review_spec']['artifacts'][0]['material_id']=private
+            binding['parameters']['review_spec']['baselines']['source']=private
+            process,receipt=self.execute(root,binding,locations,name='private-material',dry=True)
+            self.assertEqual(process.returncode,2,receipt)
+            self.assertNotIn(private,json.dumps(receipt))

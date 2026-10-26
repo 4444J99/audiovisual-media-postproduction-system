@@ -28,3 +28,9 @@ listening, production F06 acceptance, executor authentication/truthfulness,
 certified VAD/perceptual alignment, exhaustive host-wide memory measurement and
 malicious concurrent filesystem replacement. These are not claimed by this
 bounded audio/clock/CLI correction. Complete F06 remains open under #69/#63.
+
+Publication inspection reproduced an additional owner-path-as-public-ID leak.
+Study/material IDs now use bounded public-safe identifiers, with a regression
+covering both entry points. This supplements the same privacy correction; no
+new independent review round or production acceptance is claimed. Latest exact
+source verification/native observations are verification-v4.json/native-audio-v4.json.

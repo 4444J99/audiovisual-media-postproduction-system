@@ -81,3 +81,7 @@ fingerprints and the canonical parameter hash as well as source/model identities
 Final F05 contract and native observation receipts are verification-v3.json and
 native-audio-v3.json in the existing measured-review evidence folder. Earlier
 versions retain the exact prior source observations.
+
+Public study/material identifiers are bounded ASCII IDs, so owner paths cannot
+be projected through labels. Latest final source receipts use verification-v4.json
+and native-audio-v4.json; earlier snapshots retain their historical identities.
