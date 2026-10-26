@@ -28,3 +28,12 @@ follow exact frame boundaries. No actual listening proof was found in those reco
 No new model, heavy render, download, external source upload, service or spending.
 This continues the same original outcome/accounting; target checkpoint 03:40 UTC
 under effective advisory controls and the existing direct time authorization.
+
+Observed baseline: 26 failed assertions and nine missing-validator errors across
+seven methods. Both sample domains contained rounded-second discrepancies, not
+only the 48 kHz map hypothesized above. Additional regression-first checks reject
+stale category bindings, unreviewed wording in verified audio and spine conflicts.
+Sixteen focused methods pass. Required full check exits 0: 618 Python (468 + 150),
+274 Node, score/replay and zero skips. Original 24-unit objects in both files equal
+the pinned baseline exactly. Actual audit: 24 pending units, zero vocabulary and
+all six usable case types missing. #65 reopened. Fresh review remains pending.

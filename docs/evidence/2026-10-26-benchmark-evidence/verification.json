@@ -1,0 +1,42 @@
+{
+  "schema": "amps.benchmark-evidence-correction.v1",
+  "base": "6302e648e639fde46b73c3463616174d02a5d912",
+  "owner_issue": 65,
+  "program_issue": 63,
+  "historical_objects_preserved": true,
+  "historical_sha256": {
+    "compositions/comp-001/studies/benchmark.json": "c8d9c2bb6fad6fb34006846f612a57f12acbe569fd84d30818f39687dd077814",
+    "compositions/comp-001/studies/units.review.json": "4e43e17cf32849b1674f3573ac1ca5495dd8d51a2839b936b04d0338a4a89e3f"
+  },
+  "verification": {
+    "command": "python tools/check.py",
+    "exit_code": 0,
+    "python_tests": 618,
+    "node_tests": 274,
+    "skipped": 0,
+    "score_replay": "passed",
+    "focused_tests": 16,
+    "log_sha256": "6906caa9d91d4033f76beb7ec9dd68aed7a1ced4a7759d39a8d38637e3e2a96e"
+  },
+  "source_sha256": {
+    "amp/studies/benchmark.py": "7cdccb5fc859617357d8f695c7a0163c493916e5b4f465e5fc11cb4197b890c3",
+    "tests/studies/test_benchmark.py": "98788a8bf2064093c4c829d1af366e22af3b1ff47f87dc54b6fe0abe986d9301",
+    "tests/studies/test_benchmark_evidence.py": "fb466d176a446b8ac4df4ab0f867bf484d74e87e8922e3858e14cb4a7875049d",
+    "compositions/comp-001/studies/benchmark.json": "c1c46fafef00e6543c31435b84f74f59ce3dc3ff34f650d91d1bea37470b1358",
+    "compositions/comp-001/studies/units.review.json": "3ef0a3f3aa96509fa24bfb3129212ce18d3fa94d09131969f9918f5e3cc31c66",
+    "compositions/comp-001/source-registration.json": "d08dcd6cb0bdfb81dba2a03ac4e8402deb7394a353a0f825de05ad1e44bf78e5"
+  },
+  "actual_listening_performed": false,
+  "qualified_vocabulary_count": 0,
+  "usable_case_types": [],
+  "missing_case_types": [
+    "occlusion_cut",
+    "overlap",
+    "quiet_speech",
+    "semantic_exchange",
+    "simple_surface",
+    "visible_object_sound"
+  ],
+  "benchmark_complete": false,
+  "artistic_acceptance": false
+}
